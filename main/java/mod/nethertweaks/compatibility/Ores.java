@@ -1,6 +1,7 @@
 package mod.nethertweaks.compatibility;
 
-import mod.chaust.Constants;
+import mod.nethertweaks.Config;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.blocks.OreDust;
@@ -42,131 +43,21 @@ public class Ores implements INames{
 		oreSand = Registry.registerBlock(new OreSand(Material.SAND), ORESAND, Constants.MOD);
 		oreDust = Registry.registerBlock(new OreDust(Material.SAND), OREDUST, Constants.MOD);
 		
-		oreMaterial = new ItemOreMaterial("OreMaterial");
+		oreMaterial = Registry.registerItem(new ItemOreMaterial("OreMaterial"), "OreMaterial", Constants.MOD);
 		
 		//Nicht Erze
 		if(blizzpowder != null) NTMSieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);
 		
-		//Erze
-		if(OreDictionary.doesOreNameExist("oreCopper")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 34, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 0, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreTin")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 35, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 1, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreLead")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 36, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 2, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreNickel")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 37, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 3, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("orePlatinum")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 38, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 4, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreSilver")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 39, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 5, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreUranium")){
-
-	        NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 40, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 6, 20);
-	        
-		}
-		if(OreDictionary.doesOreNameExist("oreOsmium")){
-
-	        NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 41, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 7, 20);
-	        
-		}if(OreDictionary.doesOreNameExist("oreDraconium")){
-
-			//Draconic Evo
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 42, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 8, 20);
-			
-		}
-		if(OreDictionary.doesOreNameExist("oreSulfur")){
-			//Sulfur
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 43, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 9, 20);
-            
-		}
-		if(OreDictionary.doesOreNameExist("oreAluminum")){
-			//Aluminum
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 44, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 10, 20);
-		}
-		if(OreDictionary.doesOreNameExist("oreSilicon")){
-			
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 45, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 11, 20);
-		}
-		if(OreDictionary.doesOreNameExist("oreAmber")){
-			//Amber
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 46, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 12, 20);
-		}
-		if(OreDictionary.doesOreNameExist("oreCinnabar")){
-			//Cinnabar
-			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 47, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 13, 20);
-		}
-		if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
-			//AppEng2
-            NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 48, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 14, 20);
-            
-		}
-		
-		//Salt
-        NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 49, 20);
-		NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 32, 20);
-		NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 15, 20);
-		
-		if(OreDictionary.doesOreNameExist("oreSaltpeter")){
-			//Saltpeter
-			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 50, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 33, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 16, 20);
-		}
 	}
 	
 	public static void registerRecipes(){
 		//ore blocks
 		
-		if(OreDictionary.doesOreNameExist("oreCopper")){
+		if(OreDictionary.doesOreNameExist("oreCopper") && Config.oreCopper){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 34, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 0, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 0));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 17));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 34));
@@ -176,7 +67,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreTin")){
+		if(OreDictionary.doesOreNameExist("oreTin") && Config.oreTin){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 35, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 1, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 1));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 18));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 35));
@@ -186,7 +81,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreLead")){
+		if(OreDictionary.doesOreNameExist("oreLead") && Config.oreLead){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 36, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 2, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 2), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 2));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 2), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 19));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 2), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 36));
@@ -196,7 +95,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreNickel")){
+		if(OreDictionary.doesOreNameExist("oreNickel") && Config.oreNickel){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 37, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 3, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel , 1, 3), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 3));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 3), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 20));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 3), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 37));
@@ -205,7 +108,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreSand, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0f);
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0f);
 		}
-		if(OreDictionary.doesOreNameExist("orePlatinum")){
+		if(OreDictionary.doesOreNameExist("orePlatinum") && Config.orePlatinum){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 38, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 4, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 4), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 4));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 4), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 21));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 4), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 38));
@@ -216,7 +123,11 @@ public class Ores implements INames{
             
             
 		}
-		if(OreDictionary.doesOreNameExist("oreSilver")){
+		if(OreDictionary.doesOreNameExist("oreSilver") && Config.oreSilver){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 39, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 5, 20);
+			
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 5), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 5));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 5), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 22));
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 5), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 39));
@@ -227,7 +138,10 @@ public class Ores implements INames{
             
             
 		}
-		if(OreDictionary.doesOreNameExist("oreUranium")){
+		if(OreDictionary.doesOreNameExist("oreUranium") && Config.oreUranium){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 40, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 6, 20);
 
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust,1 , 6), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 40));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 6), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 6));
@@ -237,16 +151,21 @@ public class Ores implements INames{
 	        GameRegistry.addSmelting(new ItemStack(oreSand, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0f);
 	        GameRegistry.addSmelting(new ItemStack(oreDust, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0f);
 	        
-	        
 		}
-		if(OreDictionary.doesOreNameExist("oreOsmium")){
+		if(OreDictionary.doesOreNameExist("oreOsmium") && Config.oreOsmium){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 41, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 7, 20);
 
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 7), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 41));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 7), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 7));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 7), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 24));
 	        
 		}
-		if(OreDictionary.doesOreNameExist("oreDraconium")){
+		if(OreDictionary.doesOreNameExist("oreDraconium") && Config.oreDraconium){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 42, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 8, 20);
 
 			//Draconic Evo
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 8), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 42));
@@ -259,7 +178,11 @@ public class Ores implements INames{
             
 			
 		}
-		if(OreDictionary.doesOreNameExist("oreSulfur")){
+		if(OreDictionary.doesOreNameExist("oreSulfur") && Config.oreSulfur){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 43, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 9, 20);
+			
 			//Sulfur
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 9), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 43));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 9), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 9));
@@ -271,7 +194,11 @@ public class Ores implements INames{
             
             
 		}
-		if(OreDictionary.doesOreNameExist("oreAluminum")){
+		if(OreDictionary.doesOreNameExist("oreAluminum") && Config.oreAluminum){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 44, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 10, 20);
+			
 			//Aluminum
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 10), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 44));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 10), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 10));
@@ -282,7 +209,10 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreSilicon")){
+		if(OreDictionary.doesOreNameExist("oreSilicon") && Config.oreSilicon){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 45, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 11, 20);
 			
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 11), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 45));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 11), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 11));
@@ -293,7 +223,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreAmber")){
+		if(OreDictionary.doesOreNameExist("oreAmber") && Config.oreAmber){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 46, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 12, 20);
+			
 			//Amber
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 12), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 46));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 12), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 12));
@@ -304,7 +238,11 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0f);
             
 		}
-		if(OreDictionary.doesOreNameExist("oreCinnabar")){
+		if(OreDictionary.doesOreNameExist("oreCinnabar") && Config.oreCinnabar){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 47, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 13, 20);
+			
 			//Cinnabar
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 13), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 47));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 13), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 13));
@@ -316,7 +254,11 @@ public class Ores implements INames{
             
             
 		}
-		if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
+		if(OreDictionary.doesOreNameExist("oreCertusQuartz") && Config.oreCertusQuartz){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 48, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 14, 20);
+			
 			//AppEng2
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 14), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 48));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 14), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 14));
@@ -327,20 +269,28 @@ public class Ores implements INames{
             GameRegistry.addSmelting(new ItemStack(oreDust, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0f);
                     
 		}
-		
-		//Salt
-		GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 49));
-		GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 15));
-		GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 32));
-		
-		/*
-		GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
-        GameRegistry.addSmelting(new ItemStack(oreSand, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
-        GameRegistry.addSmelting(new ItemStack(oreDust, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
-        */
-        
+		if(Config.oreSalt){
+			//Salt
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 49, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 32, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 15, 20);
+			
+			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 49));
+			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 15));
+			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 32));
+			
+			/*
+			GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
+	        GameRegistry.addSmelting(new ItemStack(oreSand, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
+	        GameRegistry.addSmelting(new ItemStack(oreDust, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
+	        */
+		}
 		
 		if(OreDictionary.doesOreNameExist("oreSaltpeter")){
+			NTMSieveHandler.register(NTMBlocks.blockDust, 0, oreMaterial, 50, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 33, 20);
+			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 16, 20);
+			
 			//Saltpeter
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 16), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 50));
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 16), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 16));

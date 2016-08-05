@@ -33,141 +33,71 @@ public class Config {
 	public static boolean nBrickPick;
 	public static boolean cookJerky;
 	
-	public static boolean oreGravelCopper;
-	public static boolean oreGravelTin;
-	public static boolean oreGravelLead;
-	public static boolean oreGravelNickel;
-	public static boolean oreGravelPlatinum;
-	public static boolean oreGravelSilver;
-	public static boolean oreGravelUranium;
-	public static boolean oreGravelOsmium;
-	public static boolean oreGravelDraconium;
-	public static boolean oreGravelSulfur;
-	public static boolean oreGravelAluminum;
-	public static boolean oreGravelSilicon;
-	public static boolean oreGravelAmber;
-	public static boolean oreGravelCinnabar;
-	public static boolean oreGravelCertusQuartz;
-	public static boolean oreGravelSalt;
-	
-	public static boolean oreSandCopper;
-	public static boolean oreSandTin;
-	public static boolean oreSandLead;
-	public static boolean oreSandNickel;
-	public static boolean oreSandPlatinum;
-	public static boolean oreSandSilver;
-	public static boolean oreSandUranium;
-	public static boolean oreSandOsmium;
-	public static boolean oreSandDraconium;
-	public static boolean oreSandSulfur;
-	public static boolean oreSandAluminum;
-	public static boolean oreSandSilicon;
-	public static boolean oreSandAmber;
-	public static boolean oreSandCinnabar;
-	public static boolean oreSandCertusQuartz;
-	public static boolean oreSandSalt;
-	
-	public static boolean oreDustCopper;
-	public static boolean oreDustTin;
-	public static boolean oreDustLead;
-	public static boolean oreDustNickel;
-	public static boolean oreDustPlatinum;
-	public static boolean oreDustSilver;
-	public static boolean oreDustUranium;
-	public static boolean oreDustOsmium;
-	public static boolean oreDustDraconium;
-	public static boolean oreDustSulfur;
-	public static boolean oreDustAluminum;
-	public static boolean oreDustSilicon;
-	public static boolean oreDustAmber;
-	public static boolean oreDustCinnabar;
-	public static boolean oreDustCertusQuartz;
-	public static boolean oreDustSalt;
+	public static boolean oreCopper;
+	public static boolean oreTin;
+	public static boolean oreLead;
+	public static boolean oreNickel;
+	public static boolean orePlatinum;
+	public static boolean oreSilver;
+	public static boolean oreUranium;
+	public static boolean oreOsmium;
+	public static boolean oreDraconium;
+	public static boolean oreSulfur;
+	public static boolean oreAluminum;
+	public static boolean oreSilicon;
+	public static boolean oreAmber;
+	public static boolean oreCinnabar;
+	public static boolean oreCertusQuartz;
+	public static boolean oreSalt;
 	
 	//int
 	public static int sieveDifficulty = 0;
 	public static int StwtHDimension;
 	public static int nethDim;
 	
-	private static final String disablePrefix = "Set to false to disable recipe for ";
-	private static String disable(String name){
-		return disablePrefix + name + ".";
-	}
-	
 	public static void loadConfigs(FMLPreInitializationEvent event){
 		Configuration Config = new Configuration(event.getSuggestedConfigurationFile());
         Config.load();
         iwantvanillaWater = Config.get("Tweak", "Is vanilla Water placable in the Nether?", false).getBoolean();
+        burnTimeFurnace = Config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
+        HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth?", HolyEarth.EntityIDList).getIntList();
+        sieveDifficulty = Config.get("Tweak", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
+
         easyWaterSource = Config.get("Recipes", "Easy Source of Water?", true).getBoolean();
         disableStairwaytoHeaven = Config.get("Recipes", "Disable Stairway to Heaven?", false).getBoolean();
         disableMaceDust = Config.get("Recipes", "Disable Dust Recipe in TE Pulverizer?", false).getBoolean();
-        HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth?", HolyEarth.EntityIDList).getIntList();
-        sieveDifficulty = Config.get("Mechanics", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
+                
         StwtHDimension = Config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
         nethDim = Config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();
         endDim = Config.get("World", "To which Dimension shall an end portal send you back?", 0).getInt();
-        burnTimeFurnace = Config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
 
         //Blocks
-        endTeleport = Config.get("Blocks", disable(INames.ENDTELEPORT), true).getBoolean();
-        bonfire = Config.get("Blocks", disable(INames.BONFIRE), true).getBoolean();
-        condenser = Config.get("Blocks", disable(INames.CONDENSER), true).getBoolean();
-        netherrackFurnace = Config.get("Blocks", disable(INames.NETHERRACKFURNACE), true).getBoolean();
-        barrel = Config.get("Blocks", disable(INames.BARREL), true).getBoolean();
-        sieve = Config.get("Blocks", disable(INames.SIEVE), true).getBoolean();
-        freezer = Config.get("Blocks", disable(INames.FREEZER), true).getBoolean();
+        endTeleport = Config.get("Blocks", "Set to false to disable Stairway to Heaven recipe?", true).getBoolean();
+        bonfire = Config.get("Blocks", "Set to false to disable Bonfire recipe?", true).getBoolean();
+        sansidian = Config.get("Blocks", "Set to false to disable sansidian recipe?", true).getBoolean();
+        condenser = Config.get("Blocks", "Set to false to disable condenser recipe?", true).getBoolean();
+        netherrackFurnace = Config.get("Blocks", "Set to false to disable Netherrack Furnace recipe?", true).getBoolean();
+        barrel = Config.get("Blocks", "Set to false to disable Barrel recipe?", true).getBoolean();
+        sieve = Config.get("Blocks", "Set to false to disable Sieve recipe?", true).getBoolean();
+        freezer = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
         
-        oreGravelCopper = Config.get("Blocks", disable("Copper Gravel Ore"), true).getBoolean();
-    	oreGravelTin = Config.get("Blocks", disable("Tin Gravel Ore"), true).getBoolean();
-    	oreGravelLead = Config.get("Blocks", disable("Lead Gravel Ore"), true).getBoolean();
-    	oreGravelNickel = Config.get("Blocks", "Set to false to disable Nickel Gravel Ore recipe?", true).getBoolean();
-    	oreGravelPlatinum = Config.get("Blocks", "Set to false to disable Platinum Gravel Ore recipe?", true).getBoolean();
-    	oreGravelSilver = Config.get("Blocks", "Set to false to disable Silver Gravel Ore recipe?", true).getBoolean();
-    	oreGravelUranium = Config.get("Blocks", "Set to false to disable Uranium Gravel Ore recipe?", true).getBoolean();
-    	oreGravelOsmium = Config.get("Blocks", "Set to false to disable Osmium Gravel Ore recipe?", true).getBoolean();
-    	oreGravelDraconium = Config.get("Blocks", "Set to false to disable Draconium recipe?", true).getBoolean();
-    	oreGravelSulfur = Config.get("Blocks", "Set to false to disable Sulfur recipe?", true).getBoolean();
-    	oreGravelAluminum = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreGravelSilicon = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreGravelAmber = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreGravelCinnabar = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreGravelCertusQuartz = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreGravelSalt = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
+        oreCopper = Config.get("Blocks", "Set to false to disable Copper Ore recipe?", true).getBoolean();
+    	oreTin = Config.get("Blocks", "Set to false to disable Tin Ore recipe?", true).getBoolean();
+    	oreLead = Config.get("Blocks", "Set to false to disable Lead recipe?", true).getBoolean();
+    	oreNickel = Config.get("Blocks", "Set to false to disable Nickel Ore recipe?", true).getBoolean();
+    	orePlatinum = Config.get("Blocks", "Set to false to disable Platinum Ore recipe?", true).getBoolean();
+    	oreSilver = Config.get("Blocks", "Set to false to disable Silver Ore recipe?", true).getBoolean();
+    	oreUranium = Config.get("Blocks", "Set to false to disable Uranium Ore recipe?", true).getBoolean();
+    	oreOsmium = Config.get("Blocks", "Set to false to disable Osmium Ore recipe?", true).getBoolean();
+    	oreDraconium = Config.get("Blocks", "Set to false to disable Draconium Ore recipe?", true).getBoolean();
+    	oreSulfur = Config.get("Blocks", "Set to false to disable Sulfur Ore recipe?", true).getBoolean();
+    	oreAluminum = Config.get("Blocks", "Set to false to disable Aluminum Ore recipe?", true).getBoolean();
+    	oreSilicon = Config.get("Blocks", "Set to false to disable Silicon Ore recipe?", true).getBoolean();
+    	oreAmber = Config.get("Blocks", "Set to false to disable Amber Ore recipe?", true).getBoolean();
+    	oreCinnabar = Config.get("Blocks", "Set to false to disable Cinnabar Ore recipe?", true).getBoolean();
+    	oreCertusQuartz = Config.get("Blocks", "Set to false to disable Certus Quartz Ore recipe?", true).getBoolean();
+    	oreSalt = Config.get("Blocks", "Set to false to disable Salt Ore recipe?", true).getBoolean();
     	
-    	oreSandCopper = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandTin = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandLead = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandNickel = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandPlatinum = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandSilver = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandUranium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandOsmium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandDraconium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandSulfur = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandAluminum = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandSilicon = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandAmber = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandCinnabar = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandCertusQuartz = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreSandSalt = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	
-    	oreDustCopper = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustTin = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustLead = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustNickel = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustPlatinum = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustSilver = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustUranium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustOsmium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustDraconium = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustSulfur = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustAluminum = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustSilicon = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustAmber = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustCinnabar = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustCertusQuartz = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-    	oreDustSalt = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-
         //Items
         disableHammers = Config.get("Items", "Disable Hammers?", false).getBoolean();
         

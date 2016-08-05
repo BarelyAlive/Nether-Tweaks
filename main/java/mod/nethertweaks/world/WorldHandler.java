@@ -47,7 +47,7 @@ public class WorldHandler{
         if(event.getWorldType() instanceof WorldTypeHellworld) {
              
             this.isHellworldType = true;
-             
+            
             DimensionManager.unregisterDimension(0);
             DimensionType.register("Overworld", "Provider", 0, WorldProviderSurfaceNTM.class, true);
             DimensionManager.registerDimension(0, DimensionType.getById(0));
