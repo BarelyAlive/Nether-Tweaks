@@ -31,11 +31,12 @@ import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
+import mod.sfhcore.Constants;
  
-@Mod(modid=Constants.MOD, name=Constants.MOD, version=Constants.VERSION, dependencies=Constants.DEPENDENCY_CORE)
+@Mod(modid=Constants.ModIdNTM, name=Constants.ModIdNTM, version=Constants.NTMVersion, dependencies=Constants.ModIdSFHCORE)
 public class NetherTweaksMod {
      
-    @Instance(value=Constants.MOD)
+    @Instance(value=Constants.ModIdNTM)
     public static NetherTweaksMod instance;
     
     //Creative Tabs

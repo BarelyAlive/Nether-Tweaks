@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tileentities;
 
-import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Dryable;
 import mod.nethertweaks.RecipeLoader;
@@ -17,13 +16,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 public class TileEntityCondenser extends TileEntity implements IInventory {
 	
 	private ItemStack[] inv;
-	public Item[] buckets = {ChaustItems.bucketWood, ChaustItems.bucketStone, Items.BUCKET};
+	public Item[] buckets = {Items.BUCKET};
 	private boolean canDry = false;
 	private int a = 0;
 	public int dryTime;
@@ -73,17 +73,19 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 							decrStackSize(1, amount);
 							setInventorySlotContents(0, new ItemStack(Items.WATER_BUCKET, 1));
 						}
-						if(bucket.equals(ChaustItems.bucketStone)){
+						if(bucket.getUnlocalizedName() == "BucketStone"){
 							decrStackSize(0, 1);
 							int amount = NTMDryHandler.getItem(food, food.getDamage(inv[1])).value;
 							decrStackSize(1, amount);
-							setInventorySlotContents(0, new ItemStack(ChaustItems.bucketStoneWater, 1));	
+							setInventorySlotContents(0, new ItemStack(Item.REGISTRY.getObject((new ResourceLocation("Chaust", "BucketStoneWater")))
+							
+, 1));	
 						}
-						if(bucket.equals(ChaustItems.bucketWood)){
+						if(bucket.getUnlocalizedName() == "BucketWood"){
 							decrStackSize(0, 1);
 							int amount = NTMDryHandler.getItem(food, food.getDamage(inv[1])).value;
 							decrStackSize(1, amount);
-							setInventorySlotContents(0, new ItemStack(ChaustItems.bucketWoodWater, 1));
+							setInventorySlotContents(0, new ItemStack(Item.REGISTRY.getObject((new ResourceLocation("Chaust", "BucketWoodWater"))), 1));
 						}
 						if(bucket.equals(BucketLoader.itemBucketNTM)){
 							decrStackSize(0, 1);

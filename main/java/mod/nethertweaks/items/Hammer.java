@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import ibxm.Player;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;

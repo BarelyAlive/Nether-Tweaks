@@ -2,7 +2,6 @@ package mod.nethertweaks.blocks;
 
 import java.util.List;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.itemblocks.ItemOreGravel;

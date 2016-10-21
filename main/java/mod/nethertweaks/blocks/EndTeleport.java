@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks;
 import java.util.Random;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.RecipeLoader;

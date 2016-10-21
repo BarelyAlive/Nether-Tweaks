@@ -3,7 +3,6 @@ package mod.nethertweaks.items;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.BucketLoader;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.Block;

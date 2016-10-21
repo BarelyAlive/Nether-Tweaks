@@ -2,7 +2,6 @@ package mod.nethertweaks.items;
 
 import java.util.List;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

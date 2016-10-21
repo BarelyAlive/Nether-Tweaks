@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.nethertweaks.handler.BucketHandler;
 import mod.nethertweaks.items.BucketDemonWater;
+import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 
 
@@ -40,7 +41,7 @@ public class BucketLoader {
 		//Fluids
 		fluidDemonWater = new Fluid("FluidDemonWater", null, null).setUnlocalizedName(INames.DEMONWATERFLUID);
 		FluidRegistry.registerFluid(fluidDemonWater);
-		blockDemonWater = Registry.registerBlock(new BlockDemonWater(fluidDemonWater, Material.WATER), INames.DEMOMWATERBLOCK, Constants.MOD);
+		blockDemonWater = Registry.registerBlock(new BlockDemonWater(fluidDemonWater, Material.WATER), INames.DEMOMWATERBLOCK, Constants.ModIdNTM);
 		fluidDemonWater.setUnlocalizedName(blockDemonWater.getUnlocalizedName());
 		
 		//Buckets

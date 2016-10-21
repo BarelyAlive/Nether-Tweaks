@@ -65,14 +65,38 @@ public class WorldHandler{
     }    
     
     
+//    @ForgeSubscribe
+//    @SubscribeEvent
+//    public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
+//    	if(event.getEntity() instanceof EntityPlayer){
+//    		EntityPlayer player = (EntityPlayer) event.getEntity();
+//	        if(player.dimension != -1 && isHellworldType == true) {
+//	        	
+//	        	//player.preparePlayerToSpawn();
+//	        	player.changeDimension(0);
+//	            player.changeDimension(-1);
+//	        }
+//    	
+//	    	if(isHellworldType == false){
+//	            
+//	        	if(player.dimension == 0){
+//	        		player.changeDimension(Config.nethDim);
+//	        	}
+//	        	if(player.dimension == 1){
+//	        		player.changeDimension(Config.endDim);
+//	        	}
+//	        }
+//    	}
+//    }
+    
     @ForgeSubscribe
     @SubscribeEvent
-    public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
+    public void perfectJoin(net.minecraftforge.event.entity.living.LivingSpawnEvent event){
     	if(event.getEntity() instanceof EntityPlayer){
     		EntityPlayer player = (EntityPlayer) event.getEntity();
-	        if(player.dimension != -1 && isHellworldType == true) {
+	        if(isHellworldType == true) {
 	        	
-	        	//player.preparePlayerToSpawn();
+	        	if(player.dimension == 0)
 	            player.changeDimension(-1);
 	        }
     	
