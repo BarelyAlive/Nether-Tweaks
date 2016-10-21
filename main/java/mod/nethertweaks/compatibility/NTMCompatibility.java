@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid="NTMCompatibility", name="NTMCompatibility", version=Constants.ModIdNTM, dependencies=Constants.ModIdNTM)
+@Mod(modid="NTMCompatibility", name="NTMCompatibility", version=Constants.NTMVersion, dependencies=Constants.ModIdNTM)
 public class NTMCompatibility {
 	
 	@Mod.Instance
