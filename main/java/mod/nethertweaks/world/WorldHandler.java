@@ -2,7 +2,6 @@ package mod.nethertweaks.world;
  
 import java.io.*;
 
-import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.ForgeSubscribe;

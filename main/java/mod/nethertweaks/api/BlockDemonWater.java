@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks;
+package mod.nethertweaks.api;
 
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.NetherTweaksMod;

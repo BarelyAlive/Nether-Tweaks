@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import mod.nethertweaks.blocks.BlockDemonWater;
+import mod.nethertweaks.api.BlockDemonWater;
 import mod.nethertweaks.handler.BucketHandler;
 import mod.nethertweaks.items.BucketDemonWater;
 import mod.sfhcore.Constants;

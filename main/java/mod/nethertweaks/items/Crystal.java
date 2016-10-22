@@ -4,7 +4,7 @@ import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.compatibility.Chaust;
+import mod.sfhcore.Constants;
 import mod.sfhcore.items.ItemThing;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
@@ -49,15 +49,16 @@ public class Crystal extends ItemThing{
 				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
 				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketDemonWater));
 			}
-			if(Loader.isModLoaded("NetherTweaksMod")){
-				if(playerIn.inventory.hasItemStack(new ItemStack(ChaustItems.bucketStoneWater))){
+			if(Loader.isModLoaded(Constants.ModIdCHAUST)){
+				if(playerIn.inventory.hasItemStack(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketStoneWater"))))){
 					playerIn.inventory.clearMatchingItems(ChaustItems.bucketStoneWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketStoneDemonWater));
+					playerIn.inventory.addItemStackToInventory(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketStoneDemonWater"))));
 				}
-			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(ChaustItems.bucketWoodWater))){
-				playerIn.inventory.clearMatchingItems(ChaustItems.bucketWoodWater, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketWoodDemonWater));
+				if(playerIn.inventory.hasItemStack(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketWoodWater"))))){
+					playerIn.inventory.clearMatchingItems(ChaustItems.bucketWoodWater, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketWoodDemonWater"))));
+				}
+
 			}
 		}
 		

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid="NTMCompatibility", name="NTMCompatibility", version=Constants.NTMVersion, dependencies=Constants.ModIdNTM)
+@Mod(modid="NTMCompatibility", name="NTMCompatibility", version=Constants.NTMVersion, dependencies=Constants.DepNTM)
 public class NTMCompatibility {
 	
 	@Mod.Instance
@@ -20,7 +20,6 @@ public class NTMCompatibility {
 	public void postInit(FMLPostInitializationEvent evt) {
 		MinefactoryReloaded.loadCompatibility();
 		ThermalExpansion.loadCompatibility();
-		Chaust.loadCompatibility();
 		Ores.registerOres();
         Ores.registerNames();
         Ores.registerRecipes();
