@@ -87,12 +87,6 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 							decrStackSize(1, amount);
 							setInventorySlotContents(0, new ItemStack(Item.REGISTRY.getObject((new ResourceLocation("Chaust", "BucketWoodWater"))), 1));
 						}
-						if(bucket.equals(BucketLoader.itemBucketNTM)){
-							decrStackSize(0, 1);
-							int amount = NTMDryHandler.getItem(food, food.getDamage(inv[1])).value;
-							decrStackSize(1, amount);
-							setInventorySlotContents(0, new ItemStack(BucketLoader.itemBucketNTMWater, 1));
-						}
 						canDry = false;
 						dryTime = 0;
 					}
