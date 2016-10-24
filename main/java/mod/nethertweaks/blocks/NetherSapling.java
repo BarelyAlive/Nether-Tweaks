@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks;
+ package mod.nethertweaks.blocks;
  
 import java.util.List;
 import java.util.Random;
@@ -85,92 +85,10 @@ public class NetherSapling extends BlockSapling {
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = (WorldGenerator)(rand.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true));
+        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenNetherTree(true);
         int i = 0;
         int j = 0;
         boolean flag = false;
-
-        switch ((BlockPlanks.EnumType)state.getValue(TYPE))
-        {
-            case SPRUCE:
-                label114:
-
-                for (i = 0; i >= -1; --i)
-                {
-                    for (j = 0; j >= -1; --j)
-                    {
-                        if (this.isTwoByTwoOfType(worldIn, pos, i, j, BlockPlanks.EnumType.SPRUCE))
-                        {
-                            worldgenerator = new WorldGenMegaPineTree(false, rand.nextBoolean());
-                            flag = true;
-                            break label114;
-                        }
-                    }
-                }
-
-                if (!flag)
-                {
-                    j = 0;
-                    i = 0;
-                    worldgenerator = new WorldGenTaiga2(true);
-                }
-
-                break;
-            case BIRCH:
-                worldgenerator = new WorldGenBirchTree(true, false);
-                break;
-            case JUNGLE:
-                IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
-                IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-                label269:
-
-                for (i = 0; i >= -1; --i)
-                {
-                    for (j = 0; j >= -1; --j)
-                    {
-                        if (this.isTwoByTwoOfType(worldIn, pos, i, j, BlockPlanks.EnumType.JUNGLE))
-                        {
-                            worldgenerator = new WorldGenMegaJungle(true, 10, 20, iblockstate, iblockstate1);
-                            flag = true;
-                            break label269;
-                        }
-                    }
-                }
-
-                if (!flag)
-                {
-                    j = 0;
-                    i = 0;
-                    worldgenerator = new WorldGenTrees(true, 4 + rand.nextInt(7), iblockstate, iblockstate1, false);
-                }
-
-                break;
-            case ACACIA:
-                worldgenerator = new WorldGenSavannaTree(true);
-                break;
-            case DARK_OAK:
-                label390:
-
-                for (i = 0; i >= -1; --i)
-                {
-                    for (j = 0; j >= -1; --j)
-                    {
-                        if (this.isTwoByTwoOfType(worldIn, pos, i, j, BlockPlanks.EnumType.DARK_OAK))
-                        {
-                            worldgenerator = new WorldGenCanopyTree(true);
-                            flag = true;
-                            break label390;
-                        }
-                    }
-                }
-
-                if (!flag)
-                {
-                    return;
-                }
-
-            case OAK:
-        }
 
         IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 

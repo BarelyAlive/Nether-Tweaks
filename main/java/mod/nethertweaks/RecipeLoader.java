@@ -33,9 +33,6 @@ public class RecipeLoader {
 		/*Reverse*/			GameRegistry.addShapelessRecipe(new ItemStack(NTMItems.itemBase, 3, 16), new ItemStack(NTMBlocks.blockBasic, 1, 3));
 		/*Torch*/			GameRegistry.addShapedRecipe(new ItemStack(Blocks.TORCH, 64), "X", "Y", 'X', new ItemStack(NTMItems.itemBase, 1, 10), 'Y', Items.STICK);
 		if(Config.condenser)GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser,1), "XXX", "XYX", "XXX", 'X', Blocks.NETHERRACK, 'Y', Items.BUCKET);
-		if(Config.iwantvanillaWater == true){
-		/*Condenser*/		GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser), "XXX", "XYX", "XXX", 'X', Blocks.NETHERRACK, 'Y', BucketLoader.itemBucketNTM);
-		}
 		/*NbrickPAxe*/		GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemPickaxeNetherbrick), "XXX", " Y ", " Y ", 'X', Items.NETHERBRICK, 'Y', Items.BONE);
 		if(Config.netherrackFurnace)
 							GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockNetherrackFurnace), "XXX", "X X", "XXX", 'X', Blocks.NETHERRACK);
@@ -47,15 +44,6 @@ public class RecipeLoader {
 		/*Bonfire*/			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockBonfire, 1), " YZ", "XXX",'X', Blocks.NETHERRACK, 'Y', Items.IRON_SWORD, 'Z', NTMItems.itemFlintAndBlaze);
 		}
 		/*Flint and Blaze*/	GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemFlintAndBlaze), "X", "Y", 'X', Items.BLAZE_ROD, 'Y', Items.FLINT);
-		if(Config.iwantvanillaWater == true){
-		/*BucketNTM*/		GameRegistry.addShapedRecipe(new ItemStack(BucketLoader.itemBucketNTM), "X X", " X ", 'X', Items.IRON_INGOT);
-		/*BucketNTM*/		GameRegistry.addShapelessRecipe(new ItemStack(BucketLoader.itemBucketNTM), Items.BUCKET);
-		/*Reverse*/			GameRegistry.addShapelessRecipe(new ItemStack(Items.BUCKET), BucketLoader.itemBucketNTM);
-		/*BucketWNTM*/		GameRegistry.addShapelessRecipe(new ItemStack(BucketLoader.itemBucketNTMWater), Items.WATER_BUCKET);
-		/*Reverse*/			GameRegistry.addShapelessRecipe(new ItemStack(Items.WATER_BUCKET), BucketLoader.itemBucketNTMWater);
-		/*BucketLNTM*/		GameRegistry.addShapelessRecipe(new ItemStack(BucketLoader.itemBucketNTMLava), Items.LAVA_BUCKET);
-		/*Reverse*/			GameRegistry.addShapelessRecipe(new ItemStack(Items.LAVA_BUCKET), BucketLoader.itemBucketNTMLava);
-		}
 		/*ForWoodPl*/		GameRegistry.addShapelessRecipe(new ItemStack(NTMBlocks.blockNetherWood, 4), NTMBlocks.blockNetherLog);
 		/*SancCrystal*/		GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemSanctuaryCrystal), "XYX", "YZY", "XYX", 'X', Items.GLOWSTONE_DUST, 'Y', Items.DIAMOND, 'Z', Blocks.GOLD_BLOCK);
 		/*EnderCrystal*/	GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemBase, 1, 5), "XYX", "YZY", "XYX", 'X', Items.ENDER_EYE, 'Y', Items.DIAMOND, 'Z', Blocks.OBSIDIAN);

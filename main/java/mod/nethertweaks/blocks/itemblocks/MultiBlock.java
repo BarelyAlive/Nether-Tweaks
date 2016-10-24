@@ -4,9 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemOreSand extends ItemBlock{
+public class MultiBlock extends ItemBlock {
 
-    public ItemOreSand(Block block) {
+    public MultiBlock(Block block) {
             super(block);
     }
     

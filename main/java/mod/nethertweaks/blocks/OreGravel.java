@@ -4,7 +4,6 @@ import java.util.List;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.itemblocks.ItemOreGravel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;

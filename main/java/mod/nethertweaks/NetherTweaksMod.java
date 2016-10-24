@@ -40,7 +40,7 @@ public class NetherTweaksMod {
     public static NetherTweaksMod instance;
     
     //Creative Tabs
-    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs("tabNetherTweaksMod"){
+    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs(Constants.TABNTM){
          
         @Override
         @SideOnly(Side.CLIENT)
