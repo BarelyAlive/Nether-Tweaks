@@ -8,24 +8,24 @@ public interface INames {
 	//Blocks
 	public static final String DEMOMWATERBLOCK				= "BlockDemonWater";
 	
-	public static final String CONDENSER 					= "Condenser";
-	public static final String NETHERRACKFURNACE 			= "NetherrackFurnace";
-	public static final String NETHERRACKFURNACE_LIT 		= "NetherrackFurnace_lit";
-	public static final String BARREL						= "Barrel";
-	public static final String BARRELSTONE 					= "BarrelStone";
-	public static final String FREEZER 						= "Freezer";
+	public static final String CONDENSER 					= "BlockCondenser";
+	public static final String NETHERRACKFURNACE 			= "BlockNetherrackFurnace";
+	public static final String NETHERRACKFURNACE_LIT 		= "BlockNetherrackFurnace_lit";
+	public static final String BARREL						= "BlockBarrel";
+	public static final String BARRELSTONE 					= "BlockBarrelStone";
+	public static final String FREEZER 						= "BlockFreezer";
 	
-	public static final String DUST 						= "Dust";
-	public static final String ENDTELEPORT 					= "EndTeleport";
-	public static final String NETHERSAPLING 				= "NetherSapling";
-	public static final String NETHERLEAVES 				= "NetherLeaves";
-	public static final String NETHERWOOD					= "NetherWood";
-	public static final String NETHERLOG 					= "NetherLog";
-	public static final String BONFIRE 						= "Bonfire";
+	public static final String DUST 						= "BlockDust";
+	public static final String ENDTELEPORT 					= "BlockEndTeleport";
+	public static final String NETHERSAPLING 				= "BlockNetherSapling";
+	public static final String NETHERLEAVES 				= "BlockNetherLeaves";
+	public static final String NETHERWOOD					= "BlockNetherWood";
+	public static final String NETHERLOG 					= "BlockNetherLog";
+	public static final String BONFIRE 						= "BlockBonfire";
 	public static final String HOLYEARTH 					= "HolyEarth";
-	public static final String SANSIDIAN					= "Sansidian";
-	public static final String MEANVINE 					= "MeanVine";
-	public static final String SIEVE 						= "Sieve";
+	public static final String SANSIDIAN					= "BlockSansidian";
+	public static final String MEANVINE 					= "BlockMeanVine";
+	public static final String SIEVE 						= "BlockSieve";
 	
 	public static final String OREGRAVEL 					= "OreGravel";
 	public static final String ORESAND 						= "OreSand";

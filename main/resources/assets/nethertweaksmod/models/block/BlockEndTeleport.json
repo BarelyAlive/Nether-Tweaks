@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "NetherTweaksMod:blocks/BlockEndTeleport",
+        "bottom": "NetherTweaksMod:blocks/endteleport_bottom",
+        "top": "NetherTweaksMod:blocks/endteleport_top",
+        "side": "NetherTweaksMod:blocks/endteleport_side"
+    }
+}

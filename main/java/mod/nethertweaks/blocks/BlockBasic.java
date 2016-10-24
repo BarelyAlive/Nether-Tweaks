@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.itemblocks.ItemBlockBasic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;

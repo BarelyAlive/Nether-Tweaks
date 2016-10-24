@@ -1,9 +1,9 @@
 [
 {
   "modid": "NetherTweaksMod",
-  "name": "NetherTweaksMod",
+  "name": "Nether Tweaks",
   "description": "A mod which helps to live only in the nether, or better anywhere else",
-  "version": "1.6.0",
+  "version": "1.6.2",
   "mcversion": "1.10.2",
   "url": "http://www.curse.com/mc-mods/Minecraft/231443-nether-tweaks",
   "updateUrl": "",

@@ -12,9 +12,9 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import mod.nethertweaks.api.BlockDemonWater;
-import mod.nethertweaks.handler.BucketHandler;
+import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.nethertweaks.items.BucketDemonWater;
+import mod.sfhcore.BucketHandler;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 
@@ -30,10 +30,6 @@ public class BucketLoader {
 		
 		//Buckets
 		public static Item bucketDemonWater;
-		public static Item itemBucketNTM;
-		public static Item itemBucketNTMWater;
-		public static Item itemBucketNTMDemonWater;
-		public static Item itemBucketNTMLava;
 		
 	
 	public static void registerBuckets(){
@@ -51,15 +47,7 @@ public class BucketLoader {
 		GameRegistry.registerItem(bucketDemonWater, "BucketDemonWater");
 		}
 		
-		if(Config.iwantvanillaWater == false){
-			BucketHandler.INSTANCE.buckets.put(blockDemonWater, bucketDemonWater);
-			}
-		if(Config.iwantvanillaWater == true){
-			BucketHandler.INSTANCE.buckets.put(blockDemonWater, itemBucketNTMDemonWater);
-			BucketHandler.INSTANCE.buckets.put(Blocks.FLOWING_WATER, itemBucketNTMWater);
-			BucketHandler.INSTANCE.buckets.put(Blocks.FLOWING_LAVA, itemBucketNTMLava);
-			BucketHandler.INSTANCE.buckets.put(Blocks.AIR, BucketLoader.itemBucketNTM);
-		}
+		BucketHandler.INSTANCE.buckets.put(blockDemonWater, bucketDemonWater);
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
