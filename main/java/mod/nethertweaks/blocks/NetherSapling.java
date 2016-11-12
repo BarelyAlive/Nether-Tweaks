@@ -1,18 +1,13 @@
- package mod.nethertweaks.blocks;
- 
+package mod.nethertweaks.blocks;
+
 import java.util.List;
 import java.util.Random;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.WorldGenNetherTree;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSapling;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
@@ -25,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
@@ -37,19 +31,21 @@ import net.minecraft.world.gen.feature.WorldGenSavannaTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
- 
-public class NetherSapling extends BlockSapling {
-     
-	public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.<BlockPlanks.EnumType>create("type", BlockPlanks.EnumType.class);
+
+public class NetherSapling extends BlockBush implements IPlantable, IGrowable
+{
+    public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.<BlockPlanks.EnumType>create("type", BlockPlanks.EnumType.class);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    public NetherSapling()
+    protected NetherSapling()
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
+        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -89,6 +85,13 @@ public class NetherSapling extends BlockSapling {
         int i = 0;
         int j = 0;
         boolean flag = false;
+
+        switch ((BlockPlanks.EnumType)state.getValue(TYPE))
+        {
+            
+            case OAK:
+            	worldgenerator.generate(worldIn, rand, pos);
+        }
 
         IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
@@ -196,5 +199,9 @@ public class NetherSapling extends BlockSapling {
     {
         return new BlockStateContainer(this, new IProperty[] {TYPE, STAGE});
     }
-     
+    
+    @Override
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
+        return EnumPlantType.Nether;
+    }
 }

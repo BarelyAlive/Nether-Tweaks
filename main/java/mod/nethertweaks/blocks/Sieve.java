@@ -38,6 +38,7 @@ public class Sieve extends BlockContainer{
 		setUnlocalizedName(INames.SIEVE);
 		setResistance(15.0f);
 		setHardness(2.0f);
+		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		GameRegistry.registerTileEntity(TileEntitySieve.class, INames.TESIEVE);
 	}
 	

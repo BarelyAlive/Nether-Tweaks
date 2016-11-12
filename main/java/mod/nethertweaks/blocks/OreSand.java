@@ -51,9 +51,4 @@ public class OreSand extends BlockFalling{
             list.add(new ItemStack(item, 1, i));
         }
     }
-    
-    @Override
-    public String getUnlocalizedName() {
-    	return INames.ORESAND + "_" + this.getMetaFromState(getDefaultState());
-    }
 }

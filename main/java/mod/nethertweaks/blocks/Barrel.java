@@ -1,6 +1,12 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -8,16 +14,20 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.scoreboard.IScoreCriteria.EnumRenderType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,9 +45,15 @@ import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.proxy.IVariantProvider;
 
 public class Barrel extends BlockContainer
 {	
+	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
+    protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
 	
 	public Barrel() {
 		super(Material.WOOD);
@@ -49,6 +65,25 @@ public class Barrel extends BlockContainer
 		GameRegistry.registerTileEntity(TileEntityBarrel.class, INames.TEBARREL);
 	}
 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn)
+    {
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_WEST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_NORTH);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_EAST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_SOUTH);
+    }
+	
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return FULL_BLOCK_AABB;
+    }
+
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+	
 	public Barrel(Material material) {
         super(material);  
     }
@@ -57,6 +92,11 @@ public class Barrel extends BlockContainer
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);
 	}
+	
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
+    }
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
@@ -269,6 +309,12 @@ public class Barrel extends BlockContainer
 	}
 
 	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		// TODO Auto-generated method stub
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
 	public boolean hasTileEntity() {
 		return true;
 	}
@@ -277,4 +323,5 @@ public class Barrel extends BlockContainer
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntityBarrel();
 	}
+
 }

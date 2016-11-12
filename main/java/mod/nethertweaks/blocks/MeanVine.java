@@ -3,9 +3,12 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.BlockVine;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -21,6 +24,11 @@ public class MeanVine extends BlockVine{
 	@Override
 	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 	
 	/**

@@ -51,9 +51,4 @@ public class OreGravel extends BlockFalling{
             list.add(new ItemStack(item, 1, i));
         }
     }
-    
-    @Override
-    public String getUnlocalizedName() {
-    	return INames.OREGRAVEL + "_" + this.getMetaFromState(getDefaultState());
-    }
 }

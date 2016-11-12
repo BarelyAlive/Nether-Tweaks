@@ -4,7 +4,6 @@ import java.util.List;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.itemblocks.MultiBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -52,10 +51,5 @@ public class OreDust extends BlockFalling{
         for (int i = 0; i < 16; i ++) {
             list.add(new ItemStack(item, 1, i));
         }
-    }
-    
-    @Override
-    public String getUnlocalizedName() {
-    	return INames.OREDUST + "_" + this.getMetaFromState(getDefaultState());
     }
 }

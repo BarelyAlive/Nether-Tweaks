@@ -11,6 +11,7 @@ import mod.nethertweaks.items.ItemOreMaterial;
 import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
+import mod.sfhcore.blocks.itemblocks.ItemBlockBasic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -39,9 +40,9 @@ public class Ores implements INames{
     
 	public static void registerOres(){
 		
-		oreGravel = Registry.registerBlock(new OreGravel(Material.GROUND), OREGRAVEL, Constants.ModIdNTM);
-		oreSand = Registry.registerBlock(new OreSand(Material.SAND), ORESAND, Constants.ModIdNTM);
-		oreDust = Registry.registerBlock(new OreDust(Material.SAND), OREDUST, Constants.ModIdNTM);
+		oreGravel = Registry.registerBlock(new ItemBlockBasic(new OreGravel(Material.GROUND)), OREGRAVEL, 16, Constants.ModIdNTM);
+		oreSand = Registry.registerBlock(new ItemBlockBasic(new OreSand(Material.SAND)), ORESAND, 16,Constants.ModIdNTM);
+		oreDust = Registry.registerBlock(new ItemBlockBasic(new OreDust(Material.SAND)), OREDUST, 16, Constants.ModIdNTM);
 		
 		oreMaterial = Registry.registerItem(new ItemOreMaterial("OreMaterial"), "OreMaterial", Constants.ModIdNTM);
 		

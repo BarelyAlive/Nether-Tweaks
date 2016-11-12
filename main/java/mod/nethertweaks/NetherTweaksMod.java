@@ -79,7 +79,7 @@ public class NetherTweaksMod {
      
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(NTMBlocks.blockBasic.getDefaultState(), 16, 16), 1);
     }
      
 }

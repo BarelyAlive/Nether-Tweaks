@@ -43,24 +43,24 @@ public class NTMItems implements INames{
         	//Multi ID Item
         	itemBase = new ItemBase();
             
-        	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            seedGrass = Registry.registerItem(new Seed(), SEEDGRASS, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            mushroomSpores = Registry.registerItem(new Seed(), MUSHROOMSPORES, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemCactusSeeds = Registry.registerItem(new Seed(), CACTUSSEED, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), SANCTUARYCRYSTAL, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemLightCrystal = Registry.registerItem(new Crystal(), LIGHTCRYSTAL, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY, Constants.ModIdNTM);
+            seedGrass = Registry.registerItem(new Seed(), SEEDGRASS, Constants.ModIdNTM);
+            mushroomSpores = Registry.registerItem(new Seed(), MUSHROOMSPORES, Constants.ModIdNTM);
+            itemCactusSeeds = Registry.registerItem(new Seed(), CACTUSSEED, Constants.ModIdNTM);
+            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), SANCTUARYCRYSTAL, Constants.ModIdNTM);
+            itemLightCrystal = Registry.registerItem(new Crystal(), LIGHTCRYSTAL, Constants.ModIdNTM);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), PICKAXENETHERRACK, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), PICKAXENETHERBRICK, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), PICKAXENETHERRACK, Constants.ModIdNTM);
+            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), PICKAXENETHERBRICK, Constants.ModIdNTM);
              
-            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), HAMMERIRON, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), HAMMERDIAMOND, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.ModIdNTM);
+            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.ModIdNTM);
+            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), HAMMERIRON, Constants.ModIdNTM);
+            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), HAMMERDIAMOND, Constants.ModIdNTM);
             itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), HAMMERSTONE, Constants.ModIdNTM);
             
-            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), FLINTNBLAZE, Constants.ModIdNTM).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), FLINTNBLAZE, Constants.ModIdNTM);
             
         }
      

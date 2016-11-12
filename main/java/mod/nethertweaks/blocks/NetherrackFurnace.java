@@ -57,6 +57,7 @@ public class NetherrackFurnace extends BlockContainer {
         	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         if(getUnlocalizedName() == INames.NETHERRACKFURNACE_LIT)
         	setLightLevel(13.0F);
+        setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
 
     /**

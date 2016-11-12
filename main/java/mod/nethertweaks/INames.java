@@ -22,7 +22,7 @@ public interface INames {
 	public static final String NETHERWOOD					= "BlockNetherWood";
 	public static final String NETHERLOG 					= "BlockNetherLog";
 	public static final String BONFIRE 						= "BlockBonfire";
-	public static final String HOLYEARTH 					= "HolyEarth";
+	public static final String HOLYEARTH 					= "BlockHolyEarth";
 	public static final String SANSIDIAN					= "BlockSansidian";
 	public static final String MEANVINE 					= "BlockMeanVine";
 	public static final String SIEVE 						= "BlockSieve";
