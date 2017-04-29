@@ -1,11 +1,16 @@
 package mod.nethertweaks.items;
 
-import mod.chaust.ChaustItems;
-import mod.nethertweaks.BucketLoader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.sfhcore.Constants;
 import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
 import net.minecraft.client.audio.Sound;
@@ -28,7 +33,7 @@ import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.client.event.sound.SoundEvent.SoundSourceEvent;
 import net.minecraftforge.fml.common.Loader;
 
-public class Crystal extends ItemThing{
+public class Crystal extends ItemThing implements IVariantProvider{
 	
 	public static final Block bob = Blocks.OBSIDIAN;
 	
@@ -47,16 +52,16 @@ public class Crystal extends ItemThing{
 		if(playerIn.isSneaking()){
 			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketDemonWater));
+				playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketDemonWater));
 			}
 			if(Loader.isModLoaded(Constants.ModIdCHAUST)){
-				if(playerIn.inventory.hasItemStack(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketStoneWater"))))){
-					playerIn.inventory.clearMatchingItems(ChaustItems.bucketStoneWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketStoneDemonWater"))));
+				if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketStoneWater))){
+					playerIn.inventory.clearMatchingItems(NTMItems.bucketStoneWater, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketStoneDemonWater));
 				}
-				if(playerIn.inventory.hasItemStack(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketWoodWater"))))){
-					playerIn.inventory.clearMatchingItems(ChaustItems.bucketWoodWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(Constants.ModIdCHAUST, "BucketWoodDemonWater"))));
+				if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketWoodWater))){
+					playerIn.inventory.clearMatchingItems(NTMItems.bucketWoodWater, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketWoodDemonWater));
 				}
 
 			}
@@ -187,4 +192,11 @@ public class Crystal extends ItemThing{
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 	}
 
+	@Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
 }

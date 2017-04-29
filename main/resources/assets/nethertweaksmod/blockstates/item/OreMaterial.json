@@ -1,0 +1,266 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "0": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkCopper"
+        }
+      },
+      "1": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkTin"
+        }
+      },
+      "2": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkLead"
+        }
+      },
+      "3": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkNickel"
+        }
+      },
+      "4": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/chunkPlatinum"
+        }
+      },
+      "5": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkSilver"
+        }
+      },
+      "6": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkUranium"
+        }
+      },
+      "7": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkOsmium"
+        }
+      },
+      "8": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkDraconium"
+        }
+      },
+      "9": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkSulfur"
+        }
+      },
+      "10": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkAluminum"
+        }
+      },
+      "11": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkSilicon"
+        }
+      },
+      "12": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkAmber"
+        }
+      },
+      "13": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkCinnabar"
+        }
+      },
+      "14": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkCertusQuartz"
+        }
+      },
+      "15": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkSalt"
+        }
+      },
+      "16": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/ChunkSaltpeter"
+        }
+      },
+      "17": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedCopper"
+        }
+      },
+      "18": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedTin"
+        }
+      },
+      "19": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedLead"
+        }
+      },
+      "20": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedNickel"
+        }
+      },
+      "21": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedPlatinum"
+        }
+      },
+      "22": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/Crushedsilver"
+        }
+      },
+      "23": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedUranium"
+        }
+      },
+      "24": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedOsmium"
+        }
+      },
+      "25": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedDraconium"
+        }
+      },
+      "26": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedSulfur"
+        }
+      },
+      "27": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedAluminum"
+        }
+      },
+      "28": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedSilicon"
+        }
+      },
+      "29": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedAmber"
+        }
+      },
+      "30": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedCinnabar"
+        }
+      },
+      "31": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedCertusQuartz"
+        }
+      },
+      "32": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/Crushedsalt"
+        }
+      },
+      "33": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/CrushedSaltpeter"
+        }
+      },
+      "34": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileCopper"
+        }
+      },
+      "35": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileTin"
+        }
+      },
+      "36": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileLead"
+        }
+      },
+      "37": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileNickel"
+        }
+      },
+      "38": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PilePlatinum"
+        }
+      },
+      "39": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileSilver"
+        }
+      },
+      "40": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileUranium"
+        }
+      },
+      "41": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileOsmium"
+        }
+      },
+      "42": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileDraconium"
+        }
+      },
+      "43": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileSulfur"
+        }
+      },
+      "44": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileAluminum"
+        }
+      },
+      "45": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileSilicon"
+        }
+      },
+      "46": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileAmber"
+        }
+      },
+      "47": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileCinnabar"
+        }
+      },
+      "48": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileCertusQuartz"
+        }
+      },
+      "49": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileSalt"
+        }
+      },
+      "50": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/PileSaltpeter"
+        }
+      }
+    }
+  }
+}

@@ -57,9 +57,9 @@ public class WorldGeneratorNetherTweaksMod implements IWorldGenerator{
         for(int i = 0; i < 15; i++) // 15 is rarity
     	{
     	    int randPosX=posX + random.nextInt(16);
-    	    int randPosY=random.nextInt(250); //Max Y coordinate
+    	    int randPosY=random.nextInt(128); //Max Y coordinate
     	    int randPosZ=posZ + random.nextInt(16);
-    	    (new WorldGenNetherTree(true)).generate(world, random, new BlockPos(randPosX,randPosY, randPosZ));
+    	    new WorldGenNetherTree(true).generate(world, random, new BlockPos(randPosX,randPosY, randPosZ));
     	}
          
     }

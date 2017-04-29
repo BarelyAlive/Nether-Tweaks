@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all",
+    "uvlock": true
+  },
+  "variants": {
+    "type": {
+      "orehellfayah": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreHellfayah"
+        }
+      },
+      "charcoalblock": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/CharcoalBlock"
+        }
+      },
+      "hellfayahblock": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/HellfayahBlock"
+        }
+      },
+      "blocksalt": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/BlockSalt"
+        }
+      }
+    }
+  }
+}

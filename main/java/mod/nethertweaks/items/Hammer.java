@@ -5,9 +5,16 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
+import mod.sfhcore.proxy.IVariantProvider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.google.common.collect.Sets;
 
 import net.minecraft.block.Block;
@@ -25,7 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-public class Hammer extends ItemTool {
+public class Hammer extends ItemTool implements IVariantProvider{
 	
 	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blocks.NETHERRACK, Blocks.ICE});
 	EntityItem entityItem;
@@ -91,5 +98,13 @@ public class Hammer extends ItemTool {
 		}
 		return true;
 	}
+	
+	@Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
 	
 }

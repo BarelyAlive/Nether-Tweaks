@@ -1,0 +1,92 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all",
+    "uvlock": true
+  },
+  "variants": {
+    "type": {
+      "copper": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCopperDust"
+        }
+      },
+      "tin": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreTinDust"
+        }
+      },
+      "lead": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreLeadDust"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreNickelDust"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OrePlatinumDust"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSilverDust"
+        }
+      },
+      "uranium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreUraniumDust"
+        }
+      },
+      "osmium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreOsmiumDust"
+        }
+      },
+      "draconium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreDraconiumDust"
+        }
+      },
+      "sulfur": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSulfurDust"
+        }
+      },
+      "aluminum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAluminumDust"
+        }
+      },
+      "silicon": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSiliconDust"
+        }
+      },
+      "amber": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAmberDust"
+        }
+      },
+      "cinnabar": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCinnabarDust"
+        }
+      },
+      "certusquartz": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCertusQuartzDust"
+        }
+      },
+      "salt": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSaltDust"
+        }
+      }
+    }
+  }
+}

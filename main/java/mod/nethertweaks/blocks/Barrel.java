@@ -36,7 +36,6 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
@@ -47,7 +46,7 @@ import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.proxy.IVariantProvider;
 
-public class Barrel extends BlockContainer
+public class Barrel extends BlockContainer implements IVariantProvider
 {	
 	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
     protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
@@ -87,11 +86,6 @@ public class Barrel extends BlockContainer
 	public Barrel(Material material) {
         super(material);  
     }
-	
-	@Override
-	public int damageDropped(IBlockState state) {
-		return getMetaFromState(state);
-	}
 	
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
@@ -205,7 +199,7 @@ public class Barrel extends BlockContainer
 							}
 							
 							if(item.getItem() == NTMItems.itemLightCrystal){
-								barrel.fluid = new FluidStack(BucketLoader.fluidDemonWater, 1000);
+								barrel.fluid = new FluidStack(NTMItems.fluidDemonWater, 1000);
 								barrel.setMode(BarrelMode.FLUID);
 							}
 
@@ -237,7 +231,7 @@ public class Barrel extends BlockContainer
 							
 						}
 						
-						if(barrel.fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(barrel.fluid.getFluid() == NTMItems.fluidDemonWater){
 							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockNetherSapling)){
 								barrel.setMode(BarrelMode.OAK);
 								useItem(player);
@@ -285,12 +279,6 @@ public class Barrel extends BlockContainer
 		return false;
 	}
 
-	@Override
-	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		// TODO Auto-generated method stub
-		return super.canRenderInLayer(state, layer);
-	}
-
 	private ItemStack getContainer(ItemStack item)
 	{
 		if (item.stackSize == 1) {
@@ -323,5 +311,13 @@ public class Barrel extends BlockContainer
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntityBarrel();
 	}
+	
+	@Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
 
 }

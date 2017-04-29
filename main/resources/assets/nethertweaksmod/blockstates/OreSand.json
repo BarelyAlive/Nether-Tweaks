@@ -1,0 +1,92 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all",
+    "uvlock": true
+  },
+  "variants": {
+    "type": {
+      "copper": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCopperSand"
+        }
+      },
+      "tin": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreTinSand"
+        }
+      },
+      "lead": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreLeadSand"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreNickelSand"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OrePlatinumSand"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSilverSand"
+        }
+      },
+      "uranium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreUraniumSand"
+        }
+      },
+      "osmium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreOsmiumSand"
+        }
+      },
+      "draconium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreDraconiumSand"
+        }
+      },
+      "sulfur": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSulfurSand"
+        }
+      },
+      "aluminum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAluminumSand"
+        }
+      },
+      "silicon": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSiliconSand"
+        }
+      },
+      "amber": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAmberSand"
+        }
+      },
+      "cinnabar": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCinnabarSand"
+        }
+      },
+      "certusquartz": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCertusQuartzSand"
+        }
+      },
+      "salt": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSaltSand"
+        }
+      }
+    }
+  }
+}

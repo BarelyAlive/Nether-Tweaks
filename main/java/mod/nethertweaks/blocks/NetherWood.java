@@ -1,28 +1,35 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.blocks.Cube;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetherWood extends Cube {
-	
-	public static final String[] Wood = new String[] {"ForTre"};
-    
+public class NetherWood extends Cube implements IVariantProvider{
+	    
 	public NetherWood() {
-		super(Material.WOOD, 2.0F, 10.0F);
+		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNetherTweaksMod);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	
@@ -31,13 +38,10 @@ public class NetherWood extends Cube {
 		return false;
 	}
 	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tabs,
-			List list) {
-		for(int i = 0; i < Wood.length; i++) {
-			list.add(new ItemStack(item, 1, i));
-		}
-	}
-	
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+        return ret;
+    }
 }

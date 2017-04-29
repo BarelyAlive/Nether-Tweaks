@@ -1,10 +1,15 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.WorldGenNetherTree;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.IGrowable;
@@ -36,7 +41,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetherSapling extends BlockBush implements IPlantable, IGrowable
+public class NetherSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
 {
     public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.<BlockPlanks.EnumType>create("type", BlockPlanks.EnumType.class);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
@@ -53,13 +58,13 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable
         return SAPLING_AABB;
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        if (!worldIn.isRemote)
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+    	if (!worldIn.isRemote)
         {
             super.updateTick(worldIn, pos, state, rand);
 
-            if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0)
+            if (rand.nextInt(7) == 0)
             {
                 this.grow(worldIn, pos, state, rand);
             }
@@ -77,7 +82,7 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable
             this.generateTree(worldIn, pos, state, rand);
         }
     }
-
+    
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
@@ -86,12 +91,7 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable
         int j = 0;
         boolean flag = false;
 
-        switch ((BlockPlanks.EnumType)state.getValue(TYPE))
-        {
-            
-            case OAK:
-            	worldgenerator.generate(worldIn, rand, pos);
-        }
+    	worldgenerator.generate(worldIn, rand, pos);
 
         IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
@@ -123,85 +123,54 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable
         }
     }
 
-    private boolean isTwoByTwoOfType(World worldIn, BlockPos pos, int p_181624_3_, int p_181624_4_, BlockPlanks.EnumType type)
-    {
-        return this.isTypeAt(worldIn, pos.add(p_181624_3_, 0, p_181624_4_), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_ + 1, 0, p_181624_4_), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_, 0, p_181624_4_ + 1), type) && this.isTypeAt(worldIn, pos.add(p_181624_3_ + 1, 0, p_181624_4_ + 1), type);
+    @Override
+    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+    	return true;
     }
 
-    /**
-     * Check whether the given BlockPos has a Sapling of the given type
-     */
-    public boolean isTypeAt(World worldIn, BlockPos pos, BlockPlanks.EnumType type)
-    {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        return iblockstate.getBlock() == this && iblockstate.getValue(TYPE) == type;
-    }
-
-    /**
-     * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
-     * returns the metadata of the dropped item based on the old metadata of the block.
-     */
-    public int damageDropped(IBlockState state)
-    {
-        return ((BlockPlanks.EnumType)state.getValue(TYPE)).getMetadata();
-    }
-
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
-    {
-        for (BlockPlanks.EnumType blockplanks$enumtype : BlockPlanks.EnumType.values())
-        {
-            list.add(new ItemStack(itemIn, 1, blockplanks$enumtype.getMetadata()));
-        }
-    }
-
-    /**
-     * Whether this IGrowable can grow
-     */
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
-    {
-        return true;
-    }
-
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
-    {
+    @Override
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
         return (double)worldIn.rand.nextFloat() < 0.45D;
     }
 
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
-    {
+    @Override
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
         this.grow(worldIn, pos, state, rand);
     }
 
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    public IBlockState getStateFromMeta(int meta)
-    {
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TYPE, BlockPlanks.EnumType.byMetadata(meta & 7)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state)
-    {
-        int i = 0;
+    @Override
+    public int getMetaFromState(IBlockState state) {
+    	int i = 0;
         i = i | ((BlockPlanks.EnumType)state.getValue(TYPE)).getMetadata();
         i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
         return i;
     }
 
-    protected BlockStateContainer createBlockState()
-    {
+    @Override
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {TYPE, STAGE});
+    }
+    
+    @Override
+    protected boolean canSustainBush(IBlockState state) {
+    	return state.getBlock() == Blocks.NETHERRACK;
     }
     
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return EnumPlantType.Nether;
+    }
+    
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=0"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=1"));
+        return ret;
     }
 }

@@ -3,13 +3,17 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
+import mod.nethertweaks.blocks.itemblocks.ItemBlockEnum;
+import mod.nethertweaks.blocks.itemblocks.ItemBlockEnumFalling;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.items.ItemDoor;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.itemblocks.ItemBlockBasic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class NTMBlocks implements INames{
@@ -21,13 +25,14 @@ public class NTMBlocks implements INames{
         public static Block blockBarrel;
         public static Block blockBarrelStone;
         public static Block blockFreezer;
+        public static Block waterFountain;
          
         //Blocks
         public static Block blockDust;
         public static Block blockEndTeleport;
         public static Block blockNetherSapling;
         public static Block blockNetherLog;
-        public static Block blockNetherLeav;
+        public static Block blockNetherLeaves;
         public static Block blockNetherWood;
         public static Block blockBonfire;
         public static Block blockHolyEarth;
@@ -40,35 +45,41 @@ public class NTMBlocks implements INames{
         public static Block oreIronSand;
         public static Block oreGoldDust;
         public static Block oreIronDust;
+        public static Block oreGravel;
+        public static Block oreSand;
+        public static Block oreDust;
         
         public static Block blockBasic;
         
     public static void registerBlocks(){
     	
-    	blockBasic = Registry.registerBlock(new ItemBlockBasic(new BlockBasic(BLOCKBASIC, Material.ROCK)), BLOCKBASIC, 5, Constants.ModIdNTM);
-		
-        blockDust = Registry.registerBlock(new CubeFalling(Material.SAND, 0.4F, 0.3F), DUST, Constants.ModIdNTM);
+    	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockBasic(BLOCKBASIC, Material.ROCK)), BLOCKBASIC, 5, Constants.ModIdNTM);
+        blockDust = Registry.registerBlock(new CubeFalling(Material.SAND, 0.4F, 0.3F, NetherTweaksMod.tabNetherTweaksMod), DUST, Constants.ModIdNTM);
         blockEndTeleport = Registry.registerBlock(new EndTeleport(), ENDTELEPORT, Constants.ModIdNTM);
         blockNetherSapling = Registry.registerBlock(new NetherSapling(), NETHERSAPLING, Constants.ModIdNTM);
         blockNetherLog = Registry.registerBlock(new NetherLog(), NETHERLOG, Constants.ModIdNTM);
-        blockNetherLeav = Registry.registerBlock(new NetherLeaves(), NETHERLEAVES, Constants.ModIdNTM);
+        blockNetherLeaves = Registry.registerBlock(new NetherLeaves(), NETHERLEAVES, Constants.ModIdNTM);
         blockNetherWood = Registry.registerBlock(new NetherWood(), NETHERWOOD, Constants.ModIdNTM);
         blockBonfire = Registry.registerBlock(new Bonfire(Material.ROCK), BONFIRE, Constants.ModIdNTM);
         blockHolyEarth = Registry.registerBlock(new HolyEarth(), HOLYEARTH, Constants.ModIdNTM);
-        blockSansidian = Registry.registerBlock(new CubeFalling(Material.SAND, 2.5F, 0.5F), SANSIDIAN, Constants.ModIdNTM);
+        blockSansidian = Registry.registerBlock(new CubeFalling(Material.SAND, 2.5F, 0.5F, NetherTweaksMod.tabNetherTweaksMod), SANSIDIAN, Constants.ModIdNTM);
         blockMeanVine = Registry.registerBlock(new MeanVine(), MEANVINE, Constants.ModIdNTM);
         
         //Ore
         
-        oreGoldGravel = Registry.registerBlock(new CubeFalling(Material.GROUND, 2.0f, 0.4f), OREGOLDGRAVEL, Constants.ModIdNTM);
-        oreIronGravel = Registry.registerBlock(new CubeFalling(Material.GROUND, 2.0f, 0.4f), OREIRONGRAVEL, Constants.ModIdNTM);
+        oreGoldGravel = Registry.registerBlock(new CubeFalling(Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREGOLDGRAVEL, Constants.ModIdNTM);
+        oreIronGravel = Registry.registerBlock(new CubeFalling(Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREIRONGRAVEL, Constants.ModIdNTM);
         
-        oreGoldSand = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f), OREGOLDSAND, Constants.ModIdNTM);
-        oreIronSand = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f), OREIRONSAND, Constants.ModIdNTM);
+        oreGoldSand = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREGOLDSAND, Constants.ModIdNTM);
+        oreIronSand = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREIRONSAND, Constants.ModIdNTM);
         
-        oreGoldDust = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f), OREGOLDDUST, Constants.ModIdNTM);
-        oreIronDust = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f), OREIRONDUST, Constants.ModIdNTM);
-         
+        oreGoldDust = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREGOLDDUST, Constants.ModIdNTM);
+        oreIronDust = Registry.registerBlock(new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod), OREIRONDUST, Constants.ModIdNTM);
+        
+        oreGravel = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.GROUND)), OREGRAVEL, 16, Constants.ModIdNTM);
+        oreSand = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.SAND)), ORESAND, 16, Constants.ModIdNTM);
+        oreDust = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.SAND)), OREDUST, 16, Constants.ModIdNTM);
+
         //Tile Entity
         blockCondenser = Registry.registerBlock(new Condenser(), CONDENSER, Constants.ModIdNTM);
         
@@ -80,5 +91,6 @@ public class NTMBlocks implements INames{
         blockBarrelStone = Registry.registerBlock(new BarrelStone(), BARRELSTONE, Constants.ModIdNTM);
         blockSieve = Registry.registerBlock(new Sieve(), SIEVE, Constants.ModIdNTM);
         blockFreezer = Registry.registerBlock(new Freezer(), FREEZER, Constants.ModIdNTM);
+        waterFountain = Registry.registerBlock(new WaterFountain(), WATERFOUNTAIN, Constants.ModIdNTM);
     }
 }

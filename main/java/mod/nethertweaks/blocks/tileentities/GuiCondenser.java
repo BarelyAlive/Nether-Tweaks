@@ -37,7 +37,7 @@ public class GuiCondenser extends GuiContainer {
         
         if(this.entity.isDrying()){
         	int k = this.entity.getBurnTimeRemainingScaled(12);
-        	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
+        	drawTexturedModalRect(guiLeft + 57, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
         }
     }
     

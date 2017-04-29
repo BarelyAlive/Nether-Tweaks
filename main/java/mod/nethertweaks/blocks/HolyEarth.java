@@ -2,10 +2,10 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.blocks.Cube;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -41,7 +41,7 @@ public class HolyEarth extends Cube{
 	private int spawnSec;
 	
 	public HolyEarth() {
-		super(Material.GRASS, 3.0F, 0.6F);
+		super(Material.GRASS, 3.0F, 0.6F, NetherTweaksMod.tabNetherTweaksMod);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(15);
 	}
@@ -49,7 +49,7 @@ public class HolyEarth extends Cube{
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if(!worldIn.isRemote && !worldIn.getBlockState(pos.add(0, 1, 0)).isOpaqueCube() 
-				&& worldIn.getBlockState(pos.add(0, 1, 0)) != BucketLoader.blockDemonWater){
+				&& worldIn.getBlockState(pos.add(0, 1, 0)) != NTMItems.blockDemonWater){
 			if(spawnTick <= 0){
 				spawnSec = rand.nextInt(5);
 				spawnTick = (spawnSec*20) + (minSpawnSec*20);
