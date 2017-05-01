@@ -29,7 +29,6 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Compostable;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.handler.NTMCompostHandler;
@@ -157,7 +156,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 							setMode(BarrelMode.COBBLESTONE);
 						}
 						
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(fluid.getFluid() == NTMItems.fluidDemonWater){
 							if(worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
 								setMode(BarrelMode.COBBLESTONE);
 							}
@@ -227,7 +226,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						}
 						
 						//Demon Water
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(fluid.getFluid() == NTMItems.fluidDemonWater){
 							needsUpdate = true;
 							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
@@ -237,7 +236,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
-						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == BucketLoader.blockDemonWater)
+						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == NTMItems.blockDemonWater)
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}

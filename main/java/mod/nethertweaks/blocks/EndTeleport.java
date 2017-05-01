@@ -1,12 +1,18 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.RecipeLoader;
 import mod.sfhcore.blocks.Cube;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,12 +32,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class EndTeleport extends Cube {
+public class EndTeleport extends Cube implements IVariantProvider{
 	
 	int dimension;
 	
 	public EndTeleport() {
-		super(Material.ROCK, 75.0F, 16.0F);
+		super(Material.ROCK, 75.0F, 16.0F, NetherTweaksMod.tabNetherTweaksMod);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
@@ -97,15 +103,10 @@ public class EndTeleport extends Cube {
 		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
 	
-	/*
-	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		icons[0] = iconRegister.registerIcon("NetherTweaksMod:endteleport_bottom");
-		icons[1] = iconRegister.registerIcon("NetherTweaksMod:endteleport_top");
-		icons[2] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[3] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[4] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[5] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-	}
-	*/
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+        return ret;
+    }
 }

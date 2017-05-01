@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mod.nethertweaks.blocks.MeanVine;
 import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.blocks.NetherSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockLeaves;
@@ -22,7 +23,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 public class WorldGenNetherTree extends WorldGenAbstractTree
 {
     private static final IBlockState DEFAULT_TRUNK = NTMBlocks.blockNetherLog.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = NTMBlocks.blockNetherLeav.getDefaultState();
+    private static final IBlockState DEFAULT_LEAF = NTMBlocks.blockNetherLeaves.getDefaultState();
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -34,7 +35,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
     public WorldGenNetherTree(boolean p_i2027_1_)
     {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
+        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
     }
 
     public WorldGenNetherTree(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)
@@ -44,6 +45,15 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
         this.metaWood = p_i46446_3_;
         this.metaLeaves = p_i46446_4_;
         this.vinesGrow = p_i46446_5_;
+    }
+    
+    //have to override this to prevent vanilla from generating dirt
+    @Override
+    protected void setDirtAt(World worldIn, BlockPos pos) {
+    	if (worldIn.getBlockState(pos).getBlock() != Blocks.NETHERRACK)
+        {
+            this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.NETHERRACK.getDefaultState());
+        }
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
@@ -96,7 +106,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)NTMBlocks.blockNetherSapling) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;

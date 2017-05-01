@@ -3,24 +3,27 @@ package mod.nethertweaks;
 public interface INames {
 
 	//Fluids
-	public static final String DEMONWATERFLUID				= "FluidDemonWater";
+	public static final String DEMONWATERFLUID				= "fluiddemonwater";
 	
-	//Blocks
+	//FluidBlocks
 	public static final String DEMOMWATERBLOCK				= "BlockDemonWater";
 	
+	//Blocks
 	public static final String CONDENSER 					= "BlockCondenser";
 	public static final String NETHERRACKFURNACE 			= "BlockNetherrackFurnace";
 	public static final String NETHERRACKFURNACE_LIT 		= "BlockNetherrackFurnace_lit";
-	public static final String BARREL						= "BlockBarrel";
-	public static final String BARRELSTONE 					= "BlockBarrelStone";
+	public static final String BARREL						= "BarrelWood";
+	public static final String BARRELSTONE 					= "BarrelStone";
 	public static final String FREEZER 						= "BlockFreezer";
+	public static final String WATERFOUNTAIN 				= "WaterFountain";
 	
+	public static final String DOORNTM 						= "DoorNTM";
 	public static final String DUST 						= "BlockDust";
 	public static final String ENDTELEPORT 					= "BlockEndTeleport";
-	public static final String NETHERSAPLING 				= "BlockNetherSapling";
-	public static final String NETHERLEAVES 				= "BlockNetherLeaves";
-	public static final String NETHERWOOD					= "BlockNetherWood";
-	public static final String NETHERLOG 					= "BlockNetherLog";
+	public static final String NETHERSAPLING 				= "NetherSapling";
+	public static final String NETHERLEAVES 				= "NetherLeaves";
+	public static final String NETHERWOOD					= "NetherWood";
+	public static final String NETHERLOG 					= "NetherLog";
 	public static final String BONFIRE 						= "BlockBonfire";
 	public static final String HOLYEARTH 					= "BlockHolyEarth";
 	public static final String SANSIDIAN					= "BlockSansidian";
@@ -47,12 +50,25 @@ public interface INames {
 	public static final String TEBARRELSTONE 				= "TileEntityBarrelStone";
 	public static final String TEFREEZER					= "TileEntityFreezer";
 	public static final String TESIEVE						= "TileEntitySieve";
+	public static final String TEWATERFOUNTAIN				= "TileEntityWaterFountain";
 	
 	//Items
 	public static final String BUCKETDEMONWATER				= "BucketDemonWater";
-	public static final String BUCKETWOODDMW				= "BucketStoneDemonWater";
-	public static final String BUCKETSTONEDMW				= "BucketWoodDemonWater";
+	public static final String BUCKETSTONE 					= "BucketStone";
+	public static final String BUCKETSTONEWATER 			= "BucketStoneWater";
+	public static final String BUCKETSTONEDEMONWATER		= "BucketStoneDemonWater";
+	public static final String BUCKETSTONELAVA 				= "BucketStoneLava";
+	public static final String BUCKETSTONEMILK 				= "BucketStoneMilk";
+	public static final String BUCKETWOOD 					= "BucketWood";
+	public static final String BUCKETWOODWATER 				= "BucketWoodWater";
+	public static final String BUCKETWOODDEMONWATER			= "BucketWoodDemonWater";
+	public static final String BUCKETWOODMILK				= "BucketWoodMilk";
 	
+	public static final String ITEMDOORNTM 					= "ItemDoorNTM";
+	public static final String CACTUSGRABBER 				= "ItemCactusGrabber";
+	public static final String ITEMSTONEDOOR 				= "ItemStoneDoor";
+	public static final String ITEMOBSIDIANDOOR 			= "ItemObsidianDoor";
+	public static final String LENS 						= "Lens";
 	public static final String SEEDGRASS 					= "SeedGrass";
 	public static final String MUSHROOMSPORES 				= "MushroomSpores";
 	public static final String CACTUSSEED 					= "CactusSeed";

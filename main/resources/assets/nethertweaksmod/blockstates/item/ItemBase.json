@@ -1,0 +1,111 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "0": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_0"
+        }
+      },
+      "1": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_1"
+        }
+      },
+      "2": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_2"
+        }
+      },
+      "3": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_3"
+        }
+      },
+      "4": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_4"
+        }
+      },
+      "5": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_5"
+        }
+      },
+      "6": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_6"
+        }
+      },
+      "7": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_7"
+        }
+      },
+      "8": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_8"
+        }
+      },
+      "9": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_9"
+        }
+      },
+      "10": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_10"
+        }
+      },
+      "11": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_11"
+        }
+      },
+      "12": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_12"
+        }
+      },
+      "13": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_13"
+        }
+      },
+      "14": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_14"
+        }
+      },
+      "15": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_15"
+        }
+      },
+      "16": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_16"
+        }
+      },
+      "17": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_17"
+        }
+      },
+      "18": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_18"
+        }
+      },
+      "19": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/multitexture_19"
+        }
+      }
+    }
+  }
+}

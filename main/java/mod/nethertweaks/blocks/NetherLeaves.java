@@ -1,12 +1,17 @@
 package mod.nethertweaks.blocks;
  
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -34,7 +39,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class NetherLeaves extends Block implements net.minecraftforge.common.IShearable {
+public class NetherLeaves extends Block implements net.minecraftforge.common.IShearable, IVariantProvider {
      
 	 public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
 	    public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
@@ -290,4 +295,11 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
+		public List<Pair<Integer, String>> getVariants()
+	    {
+	        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+	        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+	        return ret;
+	    }
 }

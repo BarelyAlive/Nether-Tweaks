@@ -1,6 +1,11 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.BucketLoader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
@@ -11,6 +16,7 @@ import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,6 +27,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -31,12 +38,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Sieve extends BlockContainer{
+public class Sieve extends BlockContainer implements IVariantProvider{
 	
 	public Sieve() {
-		super(Material.WOOD);
+		super(Material.ROCK);
 		setUnlocalizedName(INames.SIEVE);
-		setResistance(15.0f);
+		setResistance(30.0f);
 		setHardness(2.0f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		GameRegistry.registerTileEntity(TileEntitySieve.class, INames.TESIEVE);
@@ -99,8 +106,28 @@ public class Sieve extends BlockContainer{
 	}
 	
 	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntitySieve();
 	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		// TODO Auto-generated method stub
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
 	
 }

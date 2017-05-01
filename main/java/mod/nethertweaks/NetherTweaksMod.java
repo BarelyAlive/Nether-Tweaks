@@ -2,6 +2,7 @@ package mod.nethertweaks;
  
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -45,7 +46,7 @@ public class NetherTweaksMod {
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {
-            return NTMItems.itemCookedJerky;
+            return NTMItems.itemSanctuaryCrystal;
             }
         };
     
@@ -60,7 +61,7 @@ public class NetherTweaksMod {
         //Registry
         NTMBlocks.registerBlocks();
         NTMItems.registerItems();
-        BucketLoader.registerBuckets();
+        NTMItems.registerBuckets();
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();

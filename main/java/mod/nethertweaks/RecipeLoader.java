@@ -65,14 +65,10 @@ public class RecipeLoader {
 		/*Hellfayah*/		GameRegistry.addSmelting(new ItemStack(NTMBlocks.blockBasic, 1, 0), (new ItemStack (NTMItems.itemBase, 1, 10)), 2.0F);
 		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronGravel, (new ItemStack(Items.IRON_INGOT)), 2.0F);
 		/*GoldIngot*/		GameRegistry.addSmelting(NTMBlocks.oreGoldGravel, (new ItemStack(Items.GOLD_INGOT)), 2.0F);
-		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronGravel, (new ItemStack(Items.IRON_INGOT)), 2.0F);
-		/*GoldIngot*/		GameRegistry.addSmelting(NTMBlocks.oreGoldGravel, (new ItemStack(Items.GOLD_INGOT)), 2.0F);
 		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronDust, (new ItemStack(Items.IRON_INGOT)), 2.0F);
 		/*GoldIngot*/		GameRegistry.addSmelting(NTMBlocks.oreGoldDust, (new ItemStack(Items.GOLD_INGOT)), 2.0F);
 		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronSand, (new ItemStack(Items.IRON_INGOT)), 2.0F);
 		/*GoldIngot*/		GameRegistry.addSmelting(NTMBlocks.oreGoldSand, (new ItemStack(Items.GOLD_INGOT)), 2.0F);
-		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronGravel, (new ItemStack(Items.IRON_INGOT)), 2.0F);
-		/*GoldIngot*/		GameRegistry.addSmelting(NTMBlocks.oreGoldGravel, (new ItemStack(Items.GOLD_INGOT)), 2.0F);
 	}
 	
 	//Ore-Dictionary
@@ -87,7 +83,7 @@ public class RecipeLoader {
     	OreDictionary.registerOre("plankWood", new ItemStack(NTMBlocks.blockNetherWood));
     	OreDictionary.registerOre("logWood", new ItemStack(NTMBlocks.blockNetherLog));
     	OreDictionary.registerOre("treeSapling", new ItemStack(NTMBlocks.blockNetherSapling));
-    	OreDictionary.registerOre("treeLeaves", new ItemStack(NTMBlocks.blockNetherLeav));
+    	OreDictionary.registerOre("treeLeaves", new ItemStack(NTMBlocks.blockNetherLeaves));
     	OreDictionary.registerOre("dustSalt", new ItemStack(NTMItems.itemBase, 1, 16));
     	OreDictionary.registerOre("oreGold", NTMBlocks.oreGoldDust);
     	OreDictionary.registerOre("oreGold", NTMBlocks.oreGoldGravel);
@@ -95,6 +91,10 @@ public class RecipeLoader {
     	OreDictionary.registerOre("oreIron", NTMBlocks.oreIronDust);
     	OreDictionary.registerOre("oreIron", NTMBlocks.oreIronGravel);
     	OreDictionary.registerOre("oreIron", NTMBlocks.oreIronSand);
+    	
+    	OreDictionary.registerOre("bucketWater", NTMItems.bucketStoneWater);
+    	OreDictionary.registerOre("bucketWater", NTMItems.bucketWoodWater);
+    	OreDictionary.registerOre("bucketWater", Items.WATER_BUCKET);
     }
    
     public static void addOreRecipes()
@@ -105,7 +105,6 @@ public class RecipeLoader {
     	if(Config.barrel){
 		GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockBarrel, "X X", "X X", "XXX", 'X', "plankWood"));
     	GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockBarrelStone, "X X", "X X", "XXX", 'X', "cobblestone"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockBarrelStone, "X X", "X X", "XXX", 'X', "stone"));
     	}
     	
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMItems.itemBase, 1, 16), "waterBucket"));
@@ -120,8 +119,9 @@ public class RecipeLoader {
 		GameRegistry.addRecipe(new ShapedOreRecipe(NTMItems.itemPickaxeNetherrack, "XXX", " Y ", " Y ", 'X', Blocks.NETHERRACK, 'Y', "stickWood"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NTMItems.itemBase, 1, 12), "XYX", "XZX", "XYX", 'X', Items.GLOWSTONE_DUST, 'Y', "dustSalt", 'Z', Blocks.SAND));
 		if(Config.sieve)
-		GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockSieve, "XYX", "Z Z", "Z Z", 'X', "plankWood", 'Y', new ItemStack(NTMItems.itemBase, 1, 17), 'Z', "stickWood"));
+		GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockSieve, "XYX", "Z Z", "Z Z", 'X', "cobblestone", 'Y', new ItemStack(NTMItems.itemBase, 1, 17), 'Z', new ItemStack(NTMItems.itemBase, 1, 19)));
 		/*HellfayahBLock*/	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMBlocks.blockBasic, 1, 2), "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah"));
 		/*Reverse*/			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMItems.itemBase, 9, 10), "blockHellfayah"));		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NTMBlocks.waterFountain), "XYX", "X X", "XYX", 'X', Blocks.COBBLESTONE, 'Y', "bucketWater"));
     }
 }

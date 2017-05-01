@@ -1,0 +1,92 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all",
+    "uvlock": true
+  },
+  "variants": {
+    "type": {
+      "copper": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCopperGravel"
+        }
+      },
+      "tin": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreTinGravel"
+        }
+      },
+      "lead": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreLeadGravel"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreNickelGravel"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OrePlatinumGravel"
+        }
+      },
+      "silver": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSilverGravel"
+        }
+      },
+      "uranium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreUraniumGravel"
+        }
+      },
+      "osmium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreOsmiumGravel"
+        }
+      },
+      "draconium": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreDraconiumGravel"
+        }
+      },
+      "sulfur": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSulfurGravel"
+        }
+      },
+      "aluminum": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAluminumGravel"
+        }
+      },
+      "silicon": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSiliconGravel"
+        }
+      },
+      "amber": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreAmberGravel"
+        }
+      },
+      "cinnabar": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCinnabarGravel"
+        }
+      },
+      "certusquartz": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreCertusQuartzGravel"
+        }
+      },
+      "salt": {
+        "textures": {
+          "all": "nethertweaksmod:blocks/OreSaltGravel"
+        }
+      }
+    }
+  }
+}

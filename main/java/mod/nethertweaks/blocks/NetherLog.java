@@ -1,14 +1,22 @@
 package mod.nethertweaks.blocks;
  
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,19 +31,49 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class NetherLog extends Block {
+public class NetherLog extends Block implements IVariantProvider{
      
-    public static final String[] Logs = new String[] {"ForTre"};
-    public static final PropertyEnum<BlockLog.EnumAxis> LOG_AXIS = PropertyEnum.<BlockLog.EnumAxis>create("axis", BlockLog.EnumAxis.class);
+    public static final PropertyEnum<NetherLog.EnumAxis> LOG_AXIS = PropertyEnum.<NetherLog.EnumAxis>create("axis", NetherLog.EnumAxis.class);
     
     public NetherLog() {
     	super(Material.WOOD);
+    	this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, NetherLog.EnumAxis.NONE));
     	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     	setLightLevel(0.0F);
     	setSoundType(SoundType.WOOD);
     	setUnlocalizedName(INames.NETHERLOG);
 	}
      
+    @Override
+    protected BlockStateContainer createBlockState() {
+    	return new BlockStateContainer(this, new IProperty[] { LOG_AXIS });
+    }
+    
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
+    		int meta, EntityLivingBase placer) {
+        return this.getDefaultState().withProperty(LOG_AXIS, NetherLog.EnumAxis.fromFacingAxis(facing.getAxis()));
+    }
+    
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+    	// TODO Auto-generated method stub
+    	return getDefaultState().withProperty(LOG_AXIS, meta == 1 ? EnumAxis.X : (meta == 2 ? EnumAxis.Y : (meta == 3 ? EnumAxis.Z : EnumAxis.NONE)));
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state) {
+    	
+    	EnumAxis type = (EnumAxis) state.getValue(LOG_AXIS);
+    	
+    	if(type.getName().equals("none")) return 0;
+    	if(type.getName().equals("x")) return 1;
+    	if(type.getName().equals("y")) return 2;
+    	if(type.getName().equals("z")) return 3;
+    	
+    	return 0;
+    }
+    
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         int i = 4;
@@ -66,12 +104,12 @@ public class NetherLog extends Block {
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
 
-                switch ((BlockLog.EnumAxis)state.getValue(LOG_AXIS))
+                switch ((NetherLog.EnumAxis)state.getValue(LOG_AXIS))
                 {
                     case X:
-                        return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
+                        return state.withProperty(LOG_AXIS, NetherLog.EnumAxis.Z);
                     case Z:
-                        return state.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
+                        return state.withProperty(LOG_AXIS, NetherLog.EnumAxis.X);
                     default:
                         return state;
                 }
@@ -81,7 +119,9 @@ public class NetherLog extends Block {
         }
     }
 
-    @Override public boolean canSustainLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
+    @Override public boolean canSustainLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos){ 
+    	return true; 
+    }
 
     public static enum EnumAxis implements IStringSerializable
     {
@@ -122,16 +162,6 @@ public class NetherLog extends Block {
             return this.name;
         }
     }
-
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs,
-            List list) {
-        for(int i = 0; i < Logs.length; i++) {
-            list.add(new ItemStack(item, 1, i));
-        }
-    }
     
     @Override
     public boolean isWood(IBlockAccess world, BlockPos pos) {
@@ -142,5 +172,14 @@ public class NetherLog extends Block {
     public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
     	return false;
     }
-     
+    
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "axis=x"));
+        ret.add(new ImmutablePair<Integer, String>(0, "axis=y"));
+        ret.add(new ImmutablePair<Integer, String>(0, "axis=z"));
+        ret.add(new ImmutablePair<Integer, String>(0, "axis=none"));
+        return ret;
+    }
 }
