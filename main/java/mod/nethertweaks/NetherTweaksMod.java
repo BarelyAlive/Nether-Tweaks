@@ -45,7 +45,7 @@ public class NetherTweaksMod {
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
-            return new ItemStack(NTMItems.itemCookedJerky );
+            return new ItemStack(NTMItems.itemCookedJerky);
             }
         };
     
