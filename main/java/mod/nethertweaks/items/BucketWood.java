@@ -65,17 +65,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BucketWood extends Item
-{
-    /** field for checking if the bucket has been filled. */
+public class BucketWood extends Item implements IFluidHandler, IVariantProvider{
+	
+	/** field for checking if the bucket has been filled. */
     private final Block containedBlock;
+	
+	public BucketWood(Block containedBlockIn, String unlocalizedName){
 
-    public BucketWood(Block containedBlockIn)
-    {
-        this.maxStackSize = 1;
+		this.maxStackSize = 1;
         this.containedBlock = containedBlockIn;
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-    }
+	}
 
     /**
      * Called when the equipped item is right clicked.
@@ -219,16 +219,15 @@ public class BucketWood extends Item
                         worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)l + Math.random(), (double)i + Math.random(), (double)j + Math.random(), 0.0D, 0.0D, 0.0D);
                     }
                 }
-                else
+                
+                else if (!worldIn.isRemote && (flag || flag1) && !material.isLiquid())
                 {
-                    if (!worldIn.isRemote && (flag || flag1) && !material.isLiquid())
-                    {
-                        worldIn.destroyBlock(posIn, true);
-                    }
+                    worldIn.destroyBlock(posIn, true);
 
-                    SoundEvent soundevent = this.containedBlock == Blocks.FLOWING_LAVA ? SoundEvents.ITEM_BUCKET_EMPTY_LAVA : SoundEvents.ITEM_BUCKET_EMPTY;
-                    worldIn.playSound(player, posIn, soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    worldIn.setBlockState(posIn, this.containedBlock.getDefaultState(), 11);
+                SoundEvent soundevent = this.containedBlock == Blocks.FLOWING_LAVA ? SoundEvents.ITEM_BUCKET_EMPTY_LAVA : SoundEvents.ITEM_BUCKET_EMPTY;
+                worldIn.playSound(player, posIn, soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                worldIn.setBlockState(posIn, this.containedBlock.getDefaultState(), 11);
+                
                 }
 
                 return true;
@@ -247,4 +246,41 @@ public class BucketWood extends Item
             return super.initCapabilities(stack, nbt);
         }
     }
+    
+    @Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
+
+    @Override
+	public IFluidTankProperties[] getTankProperties() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int fill(FluidStack resource, boolean doFill) {
+		return 1000;
+	}
+
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		if(this.containedBlock == BucketLoader.blockDemonWater)
+			return new FluidStack(BucketLoader.fluidDemonWater, 1000);
+			if(this.containedBlock == Blocks.FLOWING_WATER)
+				return new FluidStack(FluidRegistry.WATER, 1000);
+			return null;
+	}
+
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain) {
+		if(this.containedBlock == BucketLoader.blockDemonWater)
+			return new FluidStack(BucketLoader.fluidDemonWater, 1000);
+			if(this.containedBlock == Blocks.FLOWING_WATER)
+				return new FluidStack(FluidRegistry.WATER, 1000);
+			return null;
+	}
 }
