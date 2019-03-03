@@ -74,7 +74,7 @@ public class BucketWood extends Item
     {
         this.maxStackSize = 1;
         this.containedBlock = containedBlockIn;
-        this.setCreativeTab(CreativeTabs.MISC);
+        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
 
     /**
