@@ -1,16 +1,16 @@
 package mod.nethertweaks.world;
-
+ 
 import java.util.Random;
 
-import mod.nethertweaks.blocks.MeanVine;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.blocks.NetherSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockSapling;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -19,11 +19,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
-public class WorldGenNetherTree extends WorldGenAbstractTree
+import net.minecraft.world.gen.feature.WorldGenTrees;
+ 
+public class WorldGenNetherTree extends WorldGenTrees
 {
-    private static final IBlockState DEFAULT_TRUNK = NTMBlocks.blockNetherLog.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = NTMBlocks.blockNetherLeaves.getDefaultState();
+	private static final IBlockState DEFAULT_TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+    private static final IBlockState DEFAULT_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -35,7 +36,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
     public WorldGenNetherTree(boolean p_i2027_1_)
     {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
+        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
     }
 
     public WorldGenNetherTree(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)
@@ -45,15 +46,6 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
         this.metaWood = p_i46446_3_;
         this.metaLeaves = p_i46446_4_;
         this.vinesGrow = p_i46446_5_;
-    }
-    
-    //have to override this to prevent vanilla from generating dirt
-    @Override
-    protected void setDirtAt(World worldIn, BlockPos pos) {
-    	if (worldIn.getBlockState(pos).getBlock() != Blocks.NETHERRACK)
-        {
-            this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.NETHERRACK.getDefaultState());
-        }
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
@@ -106,16 +98,16 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)NTMBlocks.blockNetherSapling) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)NTMBlocks.blockNetherSapling) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
                     int l2 = 0;
 
-                    for (int i3 = position.getY() - 3 + i; i3 <= position.getY() + i; ++i3)
+                    for (int i3 = position.getY() - k2 + i; i3 <= position.getY() + i; ++i3)
                     {
                         int i4 = i3 - (position.getY() + i);
-                        int j1 = 1 - i4 / 2;
+                        int j1 = l2 + 1 - i4 / 2;
 
                         for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
                         {
@@ -152,22 +144,22 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
                             {
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(-1, j3, 0)))
                                 {
-                                    this.addVine(worldIn, position.add(-1, j3, 0), MeanVine.EAST);
+                                    this.addVine(worldIn, position.add(-1, j3, 0), BlockVine.EAST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(1, j3, 0)))
                                 {
-                                    this.addVine(worldIn, position.add(1, j3, 0), MeanVine.WEST);
+                                    this.addVine(worldIn, position.add(1, j3, 0), BlockVine.WEST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, -1)))
                                 {
-                                    this.addVine(worldIn, position.add(0, j3, -1), MeanVine.SOUTH);
+                                    this.addVine(worldIn, position.add(0, j3, -1), BlockVine.SOUTH);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, 1)))
                                 {
-                                    this.addVine(worldIn, position.add(0, j3, 1), MeanVine.NORTH);
+                                    this.addVine(worldIn, position.add(0, j3, 1), BlockVine.NORTH);
                                 }
                             }
                         }
@@ -197,22 +189,22 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos2))
                                         {
-                                            this.addHangingVine(worldIn, blockpos2, MeanVine.EAST);
+                                            this.addHangingVine(worldIn, blockpos2, BlockVine.EAST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos3))
                                         {
-                                            this.addHangingVine(worldIn, blockpos3, MeanVine.WEST);
+                                            this.addHangingVine(worldIn, blockpos3, BlockVine.WEST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos4))
                                         {
-                                            this.addHangingVine(worldIn, blockpos4, MeanVine.SOUTH);
+                                            this.addHangingVine(worldIn, blockpos4, BlockVine.SOUTH);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos1))
                                         {
-                                            this.addHangingVine(worldIn, blockpos1, MeanVine.NORTH);
+                                            this.addHangingVine(worldIn, blockpos1, BlockVine.NORTH);
                                         }
                                     }
                                 }

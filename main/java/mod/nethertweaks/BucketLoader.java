@@ -46,6 +46,7 @@ public class BucketLoader {
 		if(Config.iwantvanillaWater == false){
 		bucketDemonWater = new BucketDemonWater(blockDemonWater);
 		bucketDemonWater.setUnlocalizedName(INames.BUCKETDEMONWATER).setContainerItem(Items.BUCKET);
+		
 		bucketDemonWater.setRegistryName("BucketDemonWater");
 		bucketDemonWater.registerItems();
 		}

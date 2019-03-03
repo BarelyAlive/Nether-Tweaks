@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.lang.reflect.Method;
 
 import mod.nethertweaks.Config;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.items.NTMItems;

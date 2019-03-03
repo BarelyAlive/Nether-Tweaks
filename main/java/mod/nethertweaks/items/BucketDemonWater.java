@@ -1,16 +1,11 @@
 package mod.nethertweaks.items;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
+import mod.nethertweaks.BucketLoader;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -40,7 +35,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
 
-public class BucketDemonWater extends ItemFluidContainer implements IVariantProvider{
+public class BucketDemonWater extends ItemFluidContainer{
+
+	private Block isFull;
 	
 	public BucketDemonWater(Block blockDemonWater) {
 		super(1000);
@@ -48,17 +45,18 @@ public class BucketDemonWater extends ItemFluidContainer implements IVariantProv
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setContainerItem(Items.BUCKET);
 	}
+
+	@Override
+	public Item getContainerItem() {
+		return Items.BUCKET;
+	}
 	
 	@Override
 	public int getItemStackLimit(ItemStack stack) {
 		return 1;
 	}
 	
-	@Override
-    public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
-        return ret;
-    }
+	
+	
+	
 }

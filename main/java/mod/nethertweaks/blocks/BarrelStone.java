@@ -18,8 +18,7 @@ public class BarrelStone extends Barrel{
 	public BarrelStone() {
 		super(Material.ROCK);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		setResistance(30.0f);
-		setHardness(2.0f);
+		setHardness(4.0f);
 		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
 		setUnlocalizedName(INames.BARRELSTONE);
 		GameRegistry.registerTileEntity(TileEntityBarrel.class, INames.TEBARRELSTONE);
