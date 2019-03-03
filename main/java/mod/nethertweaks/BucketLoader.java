@@ -9,7 +9,6 @@ import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.blocks.BlockDemonWater;
@@ -47,7 +46,9 @@ public class BucketLoader {
 		if(Config.iwantvanillaWater == false){
 		bucketDemonWater = new BucketDemonWater(blockDemonWater);
 		bucketDemonWater.setUnlocalizedName(INames.BUCKETDEMONWATER).setContainerItem(Items.BUCKET);
-		GameRegistry.registerItem(bucketDemonWater, "BucketDemonWater");
+		
+		bucketDemonWater.setRegistryName("BucketDemonWater");
+		bucketDemonWater.registerItems();
 		}
 		
 		if(Config.iwantvanillaWater == false){
