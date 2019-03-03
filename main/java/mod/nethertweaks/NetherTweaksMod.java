@@ -2,7 +2,6 @@ package mod.nethertweaks;
  
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -32,21 +31,20 @@ import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
-import mod.sfhcore.Constants;
  
-@Mod(modid=Constants.ModIdNTM, name=Constants.ModIdNTM, version=Constants.NTMVersion, dependencies=Constants.DepSFH)
+@Mod(modid=Constants.MOD, name=Constants.MOD, version=Constants.VERSION, dependencies=Constants.DEPENDENCY_CORE)
 public class NetherTweaksMod {
      
-    @Instance(value=Constants.ModIdNTM)
+    @Instance(value=Constants.MOD)
     public static NetherTweaksMod instance;
     
     //Creative Tabs
-    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs(Constants.TABNTM){
+    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs("tabNetherTweaksMod"){
          
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {
-            return NTMItems.itemSanctuaryCrystal;
+            return NTMItems.itemCookedJerky;
             }
         };
     
@@ -61,7 +59,7 @@ public class NetherTweaksMod {
         //Registry
         NTMBlocks.registerBlocks();
         NTMItems.registerItems();
-        NTMItems.registerBuckets();
+        BucketLoader.registerBuckets();
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();
@@ -80,7 +78,7 @@ public class NetherTweaksMod {
      
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(NTMBlocks.blockBasic.getDefaultState(), 16, 16), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }
      
 }

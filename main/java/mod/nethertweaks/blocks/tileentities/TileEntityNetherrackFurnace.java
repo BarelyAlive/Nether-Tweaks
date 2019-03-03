@@ -38,16 +38,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityNetherrackFurnace extends TileEntity implements ITickable, ISidedInventory {
+public class TileEntityNetherrackFurnace extends TileEntityLockable implements ITickable, ISidedInventory {
 	
-	private static final int[] SLOTS_TOP = new int[] {0};
-    private static final int[] SLOTS_BOTTOM = new int[] {1};
-    private static final int[] SLOTS_SIDES = new int[] {0, 1};
+	private static final int[] SLOTS_TOP = new int[] {1};
+    private static final int[] SLOTS_BOTTOM = new int[] {0, 1};
+    private static final int[] SLOTS_SIDES = new int[] {1};
     /** The ItemStacks that hold the items currently being used in the furnace */
     private ItemStack[] furnaceItemStacks = new ItemStack[2];
     /** The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for */
     private int currentItemBurnTime;
-    int cookTime = 0;
+    int cookTime;
     int totalCookTime;
     private String furnaceCustomName;
 
@@ -147,6 +147,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
 
         this.cookTime = compound.getInteger("CookTime");
         this.totalCookTime = compound.getInteger("CookTimeTotal");
+        this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
 
         if (compound.hasKey("CustomName", 8))
         {
@@ -204,27 +205,33 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
         return inventory.getField(0) > 0;
     }
 
-    @Override
-    public void update() {
-    	boolean flag = this.isBurning();
+    /**
+     * Like the old updateEntity(), except more generic.
+     */
+    public void update()
+    {
+        boolean flag = this.isBurning();
         boolean flag1 = false;
 
         if (!this.worldObj.isRemote)
         {
-            if (worldObj.getBlockState(this.pos.add(0, -1, 0)).getBlock() == Blocks.FIRE && this.furnaceItemStacks[0] != null)
+            if (worldObj.getBlockState(this.pos.add(0, -1, 0)) == Blocks.FIRE && this.furnaceItemStacks[0] != null)
             {
                 if (!this.isBurning() && this.canSmelt())
                 {
-                	if(cookTime == 0)cookTime++;
                     if (this.isBurning())
                     {
                         flag1 = true;
 
+                        if (this.furnaceItemStacks[0] != null)
+                        {
+                            --this.furnaceItemStacks[0].stackSize;
 
                             if (this.furnaceItemStacks[0].stackSize == 0)
                             {
                                 this.furnaceItemStacks[0] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[0]);
                             }
+                        }
                     }
                 }
 
@@ -253,7 +260,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
             if (flag != this.isBurning())
             {
                 flag1 = true;
-                NetherrackFurnace.setState(this.isBurning(), this.worldObj, this.pos);
+                BlockFurnace.setState(this.isBurning(), this.worldObj, this.pos);
             }
         }
 
@@ -261,7 +268,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
         {
             this.markDirty();
         }
-    }  
+    }
 
     public int getCookTime(@Nullable ItemStack stack)
     {
@@ -273,7 +280,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
      */
     private boolean canSmelt()
     {
-        if (this.furnaceItemStacks[0] == null)
+        if (this.furnaceItemStacks[1] == null)
         {
             return false;
         }
@@ -281,10 +288,10 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
         {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.furnaceItemStacks[0]);
             if (itemstack == null) return false;
-            if (this.furnaceItemStacks[1] == null) return true;
-            if (!this.furnaceItemStacks[1].isItemEqual(itemstack)) return false;
-            int result = furnaceItemStacks[1].stackSize + itemstack.stackSize;
-            return result <= getInventoryStackLimit() && result <= this.furnaceItemStacks[1].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
+            if (this.furnaceItemStacks[2] == null) return true;
+            if (!this.furnaceItemStacks[2].isItemEqual(itemstack)) return false;
+            int result = furnaceItemStacks[2].stackSize + itemstack.stackSize;
+            return result <= getInventoryStackLimit() && result <= this.furnaceItemStacks[2].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
         }
     }
 
@@ -297,13 +304,18 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
         {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.furnaceItemStacks[0]);
 
-            if (this.furnaceItemStacks[1] == null)
+            if (this.furnaceItemStacks[2] == null)
             {
-                this.furnaceItemStacks[1] = itemstack.copy();
+                this.furnaceItemStacks[2] = itemstack.copy();
             }
-            else if (this.furnaceItemStacks[1].getItem() == itemstack.getItem())
+            else if (this.furnaceItemStacks[2].getItem() == itemstack.getItem())
             {
-                this.furnaceItemStacks[1].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
+                this.furnaceItemStacks[2].stackSize += itemstack.stackSize; // Forge BugFix: Results may have multiple items
+            }
+
+            if (this.furnaceItemStacks[0].getItem() == Item.getItemFromBlock(Blocks.SPONGE) && this.furnaceItemStacks[0].getMetadata() == 1 && this.furnaceItemStacks[1] != null && this.furnaceItemStacks[1].getItem() == Items.BUCKET)
+            {
+                this.furnaceItemStacks[1] = new ItemStack(Items.WATER_BUCKET);
             }
 
             --this.furnaceItemStacks[0].stackSize;
@@ -312,6 +324,52 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ITickable
             {
                 this.furnaceItemStacks[0] = null;
             }
+        }
+    }
+
+    /**
+     * Returns the number of ticks that the supplied fuel item will keep the furnace burning, or 0 if the item isn't
+     * fuel
+     */
+    public static int getItemBurnTime(ItemStack stack)
+    {
+        if (stack == null)
+        {
+            return 0;
+        }
+        else
+        {
+            Item item = stack.getItem();
+
+            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.AIR)
+            {
+                Block block = Block.getBlockFromItem(item);
+
+                if (block == Blocks.WOODEN_SLAB)
+                {
+                    return 150;
+                }
+
+                if (block.getDefaultState().getMaterial() == Material.WOOD)
+                {
+                    return 300;
+                }
+
+                if (block == Blocks.COAL_BLOCK)
+                {
+                    return 16000;
+                }
+            }
+
+            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
+            if (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD")) return 200;
+            if (item == Items.STICK) return 100;
+            if (item == Items.COAL) return 1600;
+            if (item == Items.LAVA_BUCKET) return 20000;
+            if (item == Item.getItemFromBlock(Blocks.SAPLING)) return 100;
+            if (item == Items.BLAZE_ROD) return 2400;
+            return net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(stack);
         }
     }
 

@@ -2,6 +2,8 @@ package mod.nethertweaks.world;
  
 import java.io.*;
 
+import mod.chaust.ChaustItems;
+import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.ForgeSubscribe;
 import mod.nethertweaks.RecipeLoader;
@@ -34,7 +36,6 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetWaterColor;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
  
 public class WorldHandler{
      
@@ -46,7 +47,7 @@ public class WorldHandler{
         if(event.getWorldType() instanceof WorldTypeHellworld) {
              
             this.isHellworldType = true;
-            
+             
             DimensionManager.unregisterDimension(0);
             DimensionType.register("Overworld", "Provider", 0, WorldProviderSurfaceNTM.class, true);
             DimensionManager.registerDimension(0, DimensionType.getById(0));
@@ -63,35 +64,28 @@ public class WorldHandler{
          
     }    
     
-	@SubscribeEvent
-	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
-		if(this.isHellworldType == true && event.toDim == 0 && !event.player.worldObj.isRemote) {
-			event.player.changeDimension(-1);
-		}
-	}
-	
-	@SubscribeEvent
-	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
-		EntityPlayer player = event.player;
-		EntityPlayerMP playermp = (EntityPlayerMP) event.player;
-		
-		boolean isRemote = event.player.worldObj.isRemote;
-		NBTTagCompound tag = player.getEntityData();
-		
-		if(!(this.isHellworldType)) return;
-		if(isRemote) return;
-		if(!tag.hasKey("ntm.firstSpawn"))		teleportPlayer(playermp, player);
-		if(!tag.getBoolean("ntm.firstSpawn"))	teleportPlayer(playermp, player);
-		return;
-	}
-	
-	private void teleportPlayer(EntityPlayerMP player, EntityPlayer player2) {
-		
-		player.getEntityData().setBoolean("ntm.firstSpawn", true);
-		
-		player.setPortal(player.getPosition());
-		player.changeDimension(-1);
-		
-	}
+    
+    @ForgeSubscribe
+    @SubscribeEvent
+    public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
+    	if(event.getEntity() instanceof EntityPlayer){
+    		EntityPlayer player = (EntityPlayer) event.getEntity();
+	        if(player.dimension != -1 && isHellworldType == true) {
+	        	
+	        	//player.preparePlayerToSpawn();
+	            player.changeDimension(-1);
+	        }
+    	
+	    	if(isHellworldType == false){
+	            
+	        	if(player.dimension == 0){
+	        		player.changeDimension(Config.nethDim);
+	        	}
+	        	if(player.dimension == 1){
+	        		player.changeDimension(Config.endDim);
+	        	}
+	        }
+    	}
+    }
      
 }

@@ -1,5 +1,6 @@
 package mod.nethertweaks.compatibility;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.handler.NTMSieveHandler;
