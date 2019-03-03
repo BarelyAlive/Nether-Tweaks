@@ -7,6 +7,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemBase extends Item{
@@ -18,9 +19,9 @@ public class ItemBase extends Item{
 	}
 
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
-	    for (int i = 0; i < 20; i ++) {
-	        list.add(new ItemStack(item, 1, i));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		for (int i = 0; i < 20; i ++) {
+	        items.add(items.get(i));
 	    }
 	}
 
