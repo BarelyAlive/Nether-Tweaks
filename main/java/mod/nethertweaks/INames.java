@@ -50,8 +50,16 @@ public interface INames {
 	
 	//Items
 	public static final String BUCKETDEMONWATER				= "BucketDemonWater";
-	public static final String BUCKETWOODDMW				= "BucketStoneDemonWater";
-	public static final String BUCKETSTONEDMW				= "BucketWoodDemonWater";
+	
+	public static final String BUCKETSTONE					= "BucketStone";
+	public static final String BUCKETSTONEWATER				= "BucketStoneWater";
+	public static final String BUCKETSTONELAVA				= "BucketStoneLava";
+	public static final String BUCKETSTONEDMW				= "BucketStoneDemonWater";
+
+	public static final String BUCKETWOOD					= "BucketStone";
+	public static final String BUCKETWOODWATER				= "BucketStoneWater";
+	public static final String BUCKETWOODLAVA				= "BucketStoneLava";
+	public static final String BUCKETWOODDMW				= "BucketWoodDemonWater";
 	
 	public static final String SEEDGRASS 					= "SeedGrass";
 	public static final String MUSHROOMSPORES 				= "MushroomSpores";

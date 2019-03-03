@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -36,7 +37,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -91,14 +91,14 @@ public class BucketWood extends Item implements IFluidHandler, IVariantProvider{
                         worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
                         playerIn.addStat(StatList.getObjectUseStats(this));
                         playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-                        return new ActionResult(EnumActionResult.SUCCESS, this.fillBucket(itemStackIn, playerIn, NTMItems.bucketWoodWater));
+                        return new ActionResult(EnumActionResult.SUCCESS, this.fillBucket(itemStackIn, playerIn, BucketLoader.bucketWoodWater));
                     }
-                    else if (material == Material.WATER && iblockstate.getBlock() == NTMItems.blockDemonWater && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
+                    else if (material == Material.WATER && iblockstate.getBlock() == BucketLoader.blockDemonWater && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0)
                     {
                         worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
                         playerIn.addStat(StatList.getObjectUseStats(this));
                         playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
-                        return new ActionResult(EnumActionResult.SUCCESS, this.fillBucket(itemStackIn, playerIn, NTMItems.bucketWoodDemonWater));
+                        return new ActionResult(EnumActionResult.SUCCESS, this.fillBucket(itemStackIn, playerIn, BucketLoader.bucketWoodDemonWater));
                     }
                     else
                     {
@@ -118,7 +118,7 @@ public class BucketWood extends Item implements IFluidHandler, IVariantProvider{
                 else if (this.tryPlaceContainedLiquid(playerIn, worldIn, blockpos1))
                 {
                     playerIn.addStat(StatList.getObjectUseStats(this));
-                    return !playerIn.capabilities.isCreativeMode ? new ActionResult(EnumActionResult.SUCCESS, new ItemStack(NTMItems.bucketWood)) : new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+                    return !playerIn.capabilities.isCreativeMode ? new ActionResult(EnumActionResult.SUCCESS, new ItemStack(BucketLoader.bucketWood)) : new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
                 }
                 else
                 {
