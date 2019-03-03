@@ -2,6 +2,7 @@ package mod.nethertweaks;
  
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -43,8 +44,8 @@ public class NetherTweaksMod {
          
         @Override
         @SideOnly(Side.CLIENT)
-        public Item getTabIconItem() {
-            return NTMItems.itemCookedJerky;
+        public ItemStack getTabIconItem() {
+            return new ItemStack(NTMItems.itemCookedJerky );
             }
         };
     
