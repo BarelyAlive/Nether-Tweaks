@@ -54,8 +54,8 @@ public class NTMItems implements INames{
             itemLightCrystal = new Crystal(LIGHTCRYSTAL, Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) new PickaxeNTM(ToolMaterial.STONE), PICKAXENETHERRACK, Constants.MOD);
-            itemPickaxeNetherbrick = (PickaxeNTM) new PickaxeNTM(ToolMaterial.IRON), PICKAXENETHERBRICK, Constants.MOD);
+            itemPickaxeNetherrack = (PickaxeNTM) new PickaxeNTM(ToolMaterial.STONE);
+            itemPickaxeNetherbrick = (PickaxeNTM) new PickaxeNTM(ToolMaterial.IRON);
              
             itemHammerWood = new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.MOD);
             itemHammerGold = new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.MOD);

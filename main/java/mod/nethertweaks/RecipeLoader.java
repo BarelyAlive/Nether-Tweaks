@@ -133,7 +133,7 @@ public class RecipeLoader {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NTMItems.itemBase, 1, 12), "XYX", "XZX", "XYX", 'X', Items.GLOWSTONE_DUST, 'Y', "dustSalt", 'Z', Blocks.SAND));
 		if(Config.sieve)
 		GameRegistry.addRecipe(new ShapedOreRecipe(NTMBlocks.blockSieve, "XYX", "Z Z", "Z Z", 'X', "plankWood", 'Y', new ItemStack(NTMItems.itemBase, 1, 17), 'Z', "stickWood"));
-		/*HellfayahBLock*/	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMBlocks.blockBasic, 1, 2), "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah"));
+		/*HellfayahBlock*/	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMBlocks.blockBasic, 1, 2), "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah"));
 		/*Reverse*/			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(NTMItems.itemBase, 9, 10), "blockHellfayah"));		
     }
 }

@@ -3,7 +3,9 @@ package mod.nethertweaks.items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -34,24 +36,26 @@ public class ItemCactusGrabber extends ItemShears implements IVariantProvider{
 		setMaxStackSize(1);
 	}
 	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-			EnumHand hand) {
+	/**
+	 * Called when a Block is right-clicked with this Item
+	 */
+	@SuppressWarnings("incomplete-switch")
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
 		
-		RayTraceResult rtr = new RayTraceResult(playerIn);
+		RayTraceResult rtr = new RayTraceResult(player);
 		
 		Block block = worldIn.getBlockState(rtr.getBlockPos()).getBlock();
 		if(block == Blocks.CACTUS || block == Blocks.MELON_BLOCK){
 			worldIn.setBlockToAir(rtr.getBlockPos());
-			playerIn.inventory.addItemStackToInventory(new ItemStack(block));
+			player.inventory.addItemStackToInventory(new ItemStack(block));
 			
-			if(!playerIn.capabilities.isCreativeMode)
-				itemStackIn.damageItem(1, playerIn);
+			if(!player.capabilities.isCreativeMode)
+				player.getActiveItemStack().damageItem(1, player);
 
-	        return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
-
+			return EnumActionResult.SUCCESS;
 		}else{
-			return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+			return EnumActionResult.FAIL;
 		}
 	}
 	

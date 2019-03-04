@@ -1,6 +1,5 @@
 package mod.nethertweaks.items;
 
-import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
@@ -19,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -42,32 +42,33 @@ public class Crystal extends ItemThing{
 		return true;
 	}
 	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-			EnumHand hand) {
-		if(playerIn.isSneaking()){
-			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
-				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketDemonWater));
+	/**
+     * Called when a Block is right-clicked with this Item
+     */
+    @SuppressWarnings("incomplete-switch")
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+		if(player.isSneaking()){
+			if(player.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
+				player.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
+				player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketDemonWater));
 			}
-			if(Loader.isModLoaded("NetherTweaksMod")){
-				if(playerIn.inventory.hasItemStack(new ItemStack(ChaustItems.bucketStoneWater))){
-					playerIn.inventory.clearMatchingItems(ChaustItems.bucketStoneWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketStoneDemonWater));
-				}
+			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketStoneWater))){
+					player.inventory.clearMatchingItems(BucketLoader.bucketStoneWater, 0, 1, null);
+					player.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketStoneDemonWater));
 			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(ChaustItems.bucketWoodWater))){
-				playerIn.inventory.clearMatchingItems(ChaustItems.bucketWoodWater, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketWoodDemonWater));
+			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketWoodWater))){
+				player.inventory.clearMatchingItems(BucketLoader.bucketWoodWater, 0, 1, null);
+				player.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketWoodDemonWater));
 			}
 		}
 		
-		if (playerIn.isSneaking() && itemStackIn.getItem() == NTMItems.itemSanctuaryCrystal){
+		if (player.isSneaking() && player.getActiveItemStack().getItem() == NTMItems.itemSanctuaryCrystal){
 			
 		
 		//Structure ok?
-		RayTraceResult rtr = new RayTraceResult(playerIn);
-		BlockPos pos = rtr.getBlockPos();
+		RayTraceResult rtr = new RayTraceResult(player);
+		pos = rtr.getBlockPos();
 		
 		//enchantment table
 		Block[] block = new Block[25];
@@ -109,7 +110,7 @@ public class Crystal extends ItemThing{
 			
 			for(int i = 0; i < 7; i++){
 				if(worldIn.getBlockState(pos.add(x+zahl, y-1, z+zahl2)) != Blocks.DIRT.getDefaultState()){
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+					return EnumActionResult.FAIL;
 				}
 				zahl++;
 			}
@@ -120,49 +121,49 @@ public class Crystal extends ItemThing{
 		
 		if(block.equals(Blocks.ENCHANTING_TABLE)){
 			
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z-3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x, y+2, z-3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z-3), Blocks.FIRE.getDefaultState());
 		}else{
-			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			return EnumActionResult.FAIL;
 		}
 		
 	}else{
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+		return EnumActionResult.FAIL;
 	}
 		//Auswirkungen
 		int zahl = -3;
@@ -180,11 +181,11 @@ public class Crystal extends ItemThing{
 				
 		}
 		
-		if(!playerIn.capabilities.isCreativeMode){
-			playerIn.inventory.clearMatchingItems(this, 0, 1, null);
+		if(!player.capabilities.isCreativeMode){
+			player.inventory.clearMatchingItems(this, 0, 1, null);
 		}
 	}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return EnumActionResult.SUCCESS;
 	}
 
 }

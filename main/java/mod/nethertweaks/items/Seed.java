@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -22,12 +23,15 @@ public Seed() {
 		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false);
 	}
 
-@Override
-public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-		EnumHand hand) {
-	RayTraceResult rtr = new RayTraceResult(playerIn);
+/**
+ * Called when a Block is right-clicked with this Item
+ */
+@SuppressWarnings("incomplete-switch")
+public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+{
+	RayTraceResult rtr = new RayTraceResult(player);
 	Block block = worldIn.getBlockState(rtr.getBlockPos()).getBlock();
-	BlockPos pos = rtr.getBlockPos();
+	pos = rtr.getBlockPos();
 	
 	if(this.getUnlocalizedName() == INames.MUSHROOMSPORES){
 	
@@ -59,6 +63,6 @@ public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World wor
 			}
 		}
 	
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return EnumActionResult.SUCCESS;
 }
 }
