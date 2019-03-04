@@ -4,20 +4,18 @@ import java.util.List;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.items.ItemThing;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemOreMaterial extends Item{
+public class ItemOreMaterial extends ItemThing{
 	
 	public ItemOreMaterial(String unlocalizedName) {
-        super();
-        this.setHasSubtypes(true);
+        super(null, 1, NetherTweaksMod.tabNetherTweaksMod, true);
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	
-	/*
 	@Override
 	public void registerIcons(IIconRegister reg){
 	    
@@ -74,14 +72,6 @@ public class ItemOreMaterial extends Item{
         icons[48] = reg.registerIcon(Constants.TEX + "PileCertusQuartz");
         icons[49] = reg.registerIcon(Constants.TEX + "PileSalt");
         icons[50] = reg.registerIcon(Constants.TEX + "PileSaltpeter");
-	}
-	*/
-
-	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
-	    for (int i = 0; i < 51; i ++) {
-	        list.add(new ItemStack(item, 1, i));
-	    }
 	}
 
 	@Override

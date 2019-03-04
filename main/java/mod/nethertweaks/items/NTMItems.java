@@ -5,11 +5,15 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
 import mod.sfhcore.Registry;
+import mod.sfhcore.items.ItemThing;
 
 public class NTMItems implements INames{
  
@@ -36,30 +40,32 @@ public class NTMItems implements INames{
     public static Item itemHammerDiamond;
     public static Item itemHammerStone;
     
-                 
-        public static void registerItems(){
+        @SubscribeEvent       
+        public void registerItems(RegistryEvent.Register<Item> event){
         	
         	//Multi ID Item
-        	itemBase = new ItemBase();
+        	itemBase = new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true);
             
         	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY, Constants.MOD);
-            seedGrass = Registry.registerItem(new Seed(), SEEDGRASS, Constants.MOD);
-            mushroomSpores = Registry.registerItem(new Seed(), MUSHROOMSPORES, Constants.MOD);
-            itemCactusSeeds = Registry.registerItem(new Seed(), CACTUSSEED, Constants.MOD);
-            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), SANCTUARYCRYSTAL, Constants.MOD);
-            itemLightCrystal = Registry.registerItem(new Crystal(), LIGHTCRYSTAL, Constants.MOD);
+            seedGrass = new Seed(SEEDGRASS, Constants.MOD);
+            mushroomSpores = new Seed(MUSHROOMSPORES, Constants.MOD);
+            itemCactusSeeds = new Seed(CACTUSSEED, Constants.MOD);
+            itemSanctuaryCrystal = new Crystal(SANCTUARYCRYSTAL, Constants.MOD);
+            itemLightCrystal = new Crystal(LIGHTCRYSTAL, Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), PICKAXENETHERRACK, Constants.MOD);
-            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), PICKAXENETHERBRICK, Constants.MOD);
+            itemPickaxeNetherrack = (PickaxeNTM) new PickaxeNTM(ToolMaterial.STONE), PICKAXENETHERRACK, Constants.MOD);
+            itemPickaxeNetherbrick = (PickaxeNTM) new PickaxeNTM(ToolMaterial.IRON), PICKAXENETHERBRICK, Constants.MOD);
              
-            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.MOD);
-            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.MOD);
-            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), HAMMERIRON, Constants.MOD);
-            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), HAMMERDIAMOND, Constants.MOD);
-            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), HAMMERSTONE, Constants.MOD);
+            itemHammerWood = new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.MOD);
+            itemHammerGold = new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.MOD);
+            itemHammerIron = new Hammer(4.0F, ToolMaterial.IRON), HAMMERIRON, Constants.MOD);
+            itemHammerDiamond = new Hammer(5.0F, ToolMaterial.DIAMOND), HAMMERDIAMOND, Constants.MOD);
+            itemHammerStone = new Hammer(3.0F, ToolMaterial.STONE), HAMMERSTONE, Constants.MOD);
             
-            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), FLINTNBLAZE, Constants.MOD);
+            itemFlintAndBlaze = new FlintAndBlaze(), FLINTNBLAZE, Constants.MOD);
+            
+            event.getRegistry().registerAll();
             
         }
      

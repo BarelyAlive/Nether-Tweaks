@@ -1,52 +1,50 @@
 package mod.nethertweaks.items;
 
-import javax.annotation.Nullable;
-
+import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.sfhcore.items.ItemThing;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucketMilk;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class BucketWoodMilk extends ItemBucketMilk{
-	
-    public BucketWoodMilk(Item container, int maxstack) {
-		super();
-		setContainerItem(NTMItems.bucketWood);
-		setMaxStackSize(1);
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+public class BucketWoodMilk extends Item
+{
+    public BucketWoodMilk()
+    {
+        this.setMaxStackSize(1);
+        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
 
-    @Nullable
+    /**
+     * Called when the player finishes using this Item (E.g. finishes eating.). Not called when the player stops using
+     * the Item before the action is complete.
+     */
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
+        if (!worldIn.isRemote) entityLiving.curePotionEffects(stack); // FORGE - move up so stack.shrink does not turn stack into air
+        if (entityLiving instanceof EntityPlayerMP)
+        {
+            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityLiving;
+            CriteriaTriggers.CONSUME_ITEM.trigger(entityplayermp, stack);
+            entityplayermp.addStat(StatList.getObjectUseStats(this));
+        }
+
         if (entityLiving instanceof EntityPlayer && !((EntityPlayer)entityLiving).capabilities.isCreativeMode)
         {
-            --stack.stackSize;
+            stack.shrink(1);
         }
 
-        if (!worldIn.isRemote)
-        {
-            entityLiving.curePotionEffects(stack);
-        }
-
-        if (entityLiving instanceof EntityPlayer)
-        {
-            ((EntityPlayer)entityLiving).addStat(StatList.getObjectUseStats(this));
-        }
-
-        return stack.stackSize <= 0 ? new ItemStack(NTMItems.bucketWood) : stack;
+        return stack.isEmpty() ? new ItemStack(BucketLoader.bucketWood) : stack;
     }
 
     /**
@@ -65,13 +63,17 @@ public class BucketWoodMilk extends ItemBucketMilk{
         return EnumAction.DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
-    {
-        playerIn.setActiveHand(hand);
-        return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
-    }
-
+    @Override
     public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, net.minecraft.nbt.NBTTagCompound nbt) {
         return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
+    }
+
+    /**
+     * Called when the equipped item is right clicked.
+     */
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+    {
+        playerIn.setActiveHand(handIn);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 }
