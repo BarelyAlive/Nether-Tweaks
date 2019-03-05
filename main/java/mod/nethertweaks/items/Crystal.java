@@ -34,7 +34,7 @@ public class Crystal extends ItemThing{
 	public static final Block bob = Blocks.OBSIDIAN;
 	
 	public Crystal() {
-		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false);
+		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 5);
 	}
 	
 	@Override

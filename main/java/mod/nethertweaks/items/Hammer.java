@@ -45,43 +45,43 @@ public class Hammer extends ItemTool {
 			
 			EntityPlayer player = (EntityPlayer) entityLiving;
 
-			if(!player.worldObj.isRemote) {
+			if(!player.world.isRemote) {
 	
 			Block block = worldIn.getBlockState(pos).getBlock();
 			
 			if(block == Blocks.COBBLESTONE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.GRAVEL, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.GRAVEL) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.SAND, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.SAND) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(NTMBlocks.blockDust, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.NETHERRACK) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.GRAVEL, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.STONE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.COBBLESTONE, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.ICE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.SNOW, 1));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(block == Blocks.OBSIDIAN) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(NTMItems.itemBase, 4, 14));
-				worldIn.spawnEntityInWorld(entityItem);
+				worldIn.spawnEntity(entityItem);
 			}
 			
 			if(stack.getItemDamage() < stack.getMaxDamage()){
