@@ -11,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidRegistry.FluidRegisterEvent;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.blocks.BlockDemonWater;
@@ -47,11 +49,11 @@ public class BucketLoader {
 		public static Item bucketStoneDemonWater;
 		public static Item bucketStoneMilk;
 		
-		private ResourceLocation still = new ResourceLocation(Constants.TEX + "DemonWater_still");
-		private ResourceLocation flow  = new ResourceLocation(Constants.TEX + "DemonWater_flow");
+		private static ResourceLocation still = new ResourceLocation(Constants.TEX + "DemonWater_still");
+		private static ResourceLocation flow  = new ResourceLocation(Constants.TEX + "DemonWater_flow");
 
 	
-	public void registerBuckets(){
+	public static void registerBuckets(){
 		
 		//Fluids
 		fluidDemonWater = new Fluid(INames.DEMONWATERFLUID, still, flow).setUnlocalizedName(INames.DEMONWATERFLUID);
@@ -65,6 +67,7 @@ public class BucketLoader {
 		if(Config.iwantvanillaWater == false){
 		FluidRegistry.enableUniversalBucket();
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
+		bucketDemonWater = UniversalBucket.getItemFromBlock(blockDemonWater);
 		}
 		
 		if(Config.iwantvanillaWater == false){

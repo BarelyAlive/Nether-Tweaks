@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 public class Seed extends ItemThing{
 	
 public Seed() {
-		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false);
+		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 5);
 	}
 
 /**
