@@ -55,11 +55,13 @@ public interface INames {
 	public static final String BUCKETSTONEWATER				= "BucketStoneWater";
 	public static final String BUCKETSTONELAVA				= "BucketStoneLava";
 	public static final String BUCKETSTONEDMW				= "BucketStoneDemonWater";
+	public static final String BUCKETSTONEMILK				= "BucketStoneMilk";
 
 	public static final String BUCKETWOOD					= "BucketStone";
 	public static final String BUCKETWOODWATER				= "BucketStoneWater";
 	public static final String BUCKETWOODLAVA				= "BucketStoneLava";
 	public static final String BUCKETWOODDMW				= "BucketWoodDemonWater";
+	public static final String BUCKETWOODMILK				= "BucketWoodMilk";
 	
 	public static final String SEEDGRASS 					= "SeedGrass";
 	public static final String MUSHROOMSPORES 				= "MushroomSpores";

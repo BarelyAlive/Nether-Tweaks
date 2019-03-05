@@ -7,18 +7,19 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.handler.BucketHandler;
-import mod.nethertweaks.items.BucketDemonWater;
-import mod.nethertweaks.items.BucketStone;
-import mod.nethertweaks.items.BucketWood;
 import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.Registry;
+import mod.sfhcore.items.BucketCustomMilk;
+import mod.sfhcore.items.CustomBucket;
 
 
 public class BucketLoader {
@@ -39,35 +40,36 @@ public class BucketLoader {
 		public static Item bucketWood;
 		public static Item bucketWoodWater;
 		public static Item bucketWoodDemonWater;
+		public static Item bucketWoodMilk;
 		public static Item bucketStone;
 		public static Item bucketStoneWater;
 		public static Item bucketStoneLava;
 		public static Item bucketStoneDemonWater;
+		public static Item bucketStoneMilk;
 		
+		private ResourceLocation still = new ResourceLocation(Constants.TEX + "DemonWater_still");
+		private ResourceLocation flow  = new ResourceLocation(Constants.TEX + "DemonWater_flow");
+
 	
-	public static void registerBuckets(){
+	public void registerBuckets(){
 		
 		//Fluids
-		fluidDemonWater = new Fluid("FluidDemonWater", null, null).setUnlocalizedName(INames.DEMONWATERFLUID);
+		fluidDemonWater = new Fluid(INames.DEMONWATERFLUID, still, flow).setUnlocalizedName(INames.DEMONWATERFLUID);
 		FluidRegistry.registerFluid(fluidDemonWater);
 		blockDemonWater = Registry.registerBlock(new BlockDemonWater(fluidDemonWater, Material.WATER), INames.DEMOMWATERBLOCK, Constants.MOD);
-		fluidDemonWater.setUnlocalizedName(blockDemonWater.getUnlocalizedName());
 		
 		//Buckets
 		
 		//Demon Water if necessary
 		
 		if(Config.iwantvanillaWater == false){
-		bucketDemonWater = new BucketDemonWater(blockDemonWater);
-		bucketDemonWater.setUnlocalizedName(INames.BUCKETDEMONWATER).setContainerItem(Items.BUCKET);
-		
-		bucketDemonWater.setRegistryName("BucketDemonWater");
-		bucketDemonWater.registerItems();
+		FluidRegistry.enableUniversalBucket();
+		FluidRegistry.addBucketForFluid(fluidDemonWater);
 		}
 		
 		if(Config.iwantvanillaWater == false){
 			BucketHandler.INSTANCE.buckets.put(blockDemonWater, bucketDemonWater);
-			}
+		}
 		if(Config.iwantvanillaWater == true){
 			BucketHandler.INSTANCE.buckets.put(blockDemonWater, itemBucketNTMDemonWater);
 			BucketHandler.INSTANCE.buckets.put(Blocks.FLOWING_WATER, itemBucketNTMWater);
@@ -77,37 +79,49 @@ public class BucketLoader {
 		
 		//Regular Buckets
 		
-		bucketStoneWater = new BucketStone(Blocks.FLOWING_WATER, INames.BUCKETSTONEWATER);
+		bucketStoneWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETSTONEWATER, new ItemStack(bucketStone)), INames.BUCKETSTONEWATER, Constants.MOD);
 		bucketStoneWater.setUnlocalizedName(INames.BUCKETSTONEWATER).setContainerItem(BucketLoader.bucketStone);
 		
 		bucketStoneWater.setRegistryName(INames.BUCKETSTONEWATER);
 		bucketStoneWater.registerItems();
 		
-		bucketStoneLava = new BucketStone(Blocks.FLOWING_LAVA, INames.BUCKETSTONELAVA);
+		bucketStoneLava = Registry.registerItem(new CustomBucket(Blocks.FLOWING_LAVA, INames.BUCKETSTONELAVA, new ItemStack(bucketStone)), INames.BUCKETSTONELAVA, Constants.MOD);
 		bucketStoneLava.setUnlocalizedName(INames.BUCKETSTONELAVA).setContainerItem(BucketLoader.bucketStone);
 		
 		bucketStoneLava.setRegistryName(INames.BUCKETSTONELAVA);
 		bucketStoneLava.registerItems();
 		
-		bucketStoneDemonWater = new BucketStone(blockDemonWater, INames.BUCKETSTONEDMW);
+		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDMW, new ItemStack(bucketStone)), INames.BUCKETSTONEDMW, Constants.MOD);
 		bucketStoneDemonWater.setUnlocalizedName(INames.BUCKETSTONEDMW).setContainerItem(BucketLoader.bucketStone);
 		
 		bucketStoneDemonWater.setRegistryName(INames.BUCKETSTONEDMW);
 		bucketStoneDemonWater.registerItems();
 		
+		bucketStoneMilk = Registry.registerItem(new BucketCustomMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone)), INames.BUCKETSTONEDMW, Constants.MOD);
+		bucketStoneMilk.setUnlocalizedName(INames.BUCKETSTONEMILK).setContainerItem(BucketLoader.bucketStone);
+		
+		bucketStoneMilk.setRegistryName(INames.BUCKETSTONEMILK);
+		bucketStoneMilk.registerItems();
+		
 		//Same with Wood
 		
-		bucketWoodWater = new BucketWood(Blocks.FLOWING_WATER, INames.BUCKETWOODWATER);
+		bucketWoodWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETWOODWATER, new ItemStack(bucketWood)), INames.BUCKETWOODWATER, Constants.MOD);
 		bucketWoodWater.setUnlocalizedName(INames.BUCKETWOODWATER).setContainerItem(BucketLoader.bucketWood);
 		
 		bucketWoodWater.setRegistryName(INames.BUCKETWOODWATER);
 		bucketWoodWater.registerItems();
 		
-		bucketWoodDemonWater = new BucketWood(blockDemonWater, INames.BUCKETWOODDMW);
+		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETWOODDMW, new ItemStack(bucketWood)), INames.BUCKETWOODDMW, Constants.MOD);
 		bucketWoodDemonWater.setUnlocalizedName(INames.BUCKETWOODDMW).setContainerItem(BucketLoader.bucketWood);
 		
 		bucketWoodDemonWater.setRegistryName(INames.BUCKETWOODDMW);
 		bucketWoodDemonWater.registerItems();
+		
+		bucketWoodMilk = Registry.registerItem(new BucketCustomMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood)), INames.BUCKETWOODDMW, Constants.MOD);
+		bucketWoodMilk.setUnlocalizedName(INames.BUCKETWOODMILK).setContainerItem(BucketLoader.bucketWood);
+		
+		bucketWoodMilk.setRegistryName(INames.BUCKETWOODMILK);
+		bucketWoodMilk.registerItems();
 		
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
