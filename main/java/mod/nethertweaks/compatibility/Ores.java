@@ -1,15 +1,14 @@
 package mod.nethertweaks.compatibility;
 
-import mod.chaust.Constants;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.blocks.OreDust;
-import mod.nethertweaks.blocks.OreGravel;
-import mod.nethertweaks.blocks.OreSand;
 import mod.nethertweaks.handler.NTMSieveHandler;
-import mod.nethertweaks.items.ItemOreMaterial;
 import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.Registry;
+import mod.sfhcore.blocks.CubeFalling;
+import mod.sfhcore.items.ItemThing;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -38,11 +37,11 @@ public class Ores implements INames{
     
 	public static void registerOres(){
 		
-		oreGravel = Registry.registerBlock(new OreGravel(Material.GROUND), OREGRAVEL, Constants.MOD);
-		oreSand = Registry.registerBlock(new OreSand(Material.SAND), ORESAND, Constants.MOD);
-		oreDust = Registry.registerBlock(new OreDust(Material.SAND), OREDUST, Constants.MOD);
+		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0f, 0.4f, OREGRAVEL), OREGRAVEL, Constants.MOD);
+		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, ORESAND), ORESAND, Constants.MOD);
+		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREDUST), OREDUST, Constants.MOD);
 		
-		oreMaterial = new ItemOreMaterial("OreMaterial");
+		oreMaterial = new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, "OreMaterial");
 		
 		//Nicht Erze
 		if(blizzpowder != null) NTMSieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);

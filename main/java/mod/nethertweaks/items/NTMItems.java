@@ -44,26 +44,26 @@ public class NTMItems implements INames{
         public static void registerItems(){
         	
         	//Multi ID Item
-        	itemBase = Registry.registerItem(new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51), INames.ITEMBASE, 51, Constants.MOD);
+        	itemBase = Registry.registerItem(new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.ITEMBASE), 51, Constants.MOD);
             
-        	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY, Constants.MOD);
-            seedGrass = Registry.registerItem(new Seed(), INames.SEEDGRASS, Constants.MOD);
-            mushroomSpores = Registry.registerItem(new Seed(), INames.MUSHROOMSPORES, Constants.MOD);
-            itemCactusSeeds = Registry.registerItem(new Seed(), INames.CACTUSSEED, Constants.MOD);
-            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), INames.SANCTUARYCRYSTAL, Constants.MOD);
-            itemLightCrystal = Registry.registerItem(new Crystal(), INames.LIGHTCRYSTAL, Constants.MOD);
+        	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
+            seedGrass = Registry.registerItem(new Seed(), Constants.MOD);
+            mushroomSpores = Registry.registerItem(new Seed(), Constants.MOD);
+            itemCactusSeeds = Registry.registerItem(new Seed(), Constants.MOD);
+            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), Constants.MOD);
+            itemLightCrystal = Registry.registerItem(new Crystal(), Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), INames.PICKAXENETHERRACK, Constants.MOD);
-            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), INames.PICKAXENETHERBRICK, Constants.MOD);
+            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), Constants.MOD);
+            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), Constants.MOD);
              
-            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), HAMMERWOOD, Constants.MOD);
-            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), HAMMERGOLD, Constants.MOD);
-            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), HAMMERIRON, Constants.MOD);
-            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), HAMMERDIAMOND, Constants.MOD);
-            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), HAMMERSTONE, Constants.MOD);
+            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), Constants.MOD);
+            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), Constants.MOD);
+            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), Constants.MOD);
+            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), Constants.MOD);
+            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), Constants.MOD);
             
-            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), FLINTNBLAZE, Constants.MOD);
+            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), Constants.MOD);
                         
         }
      

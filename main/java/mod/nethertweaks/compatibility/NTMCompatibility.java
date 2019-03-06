@@ -20,7 +20,6 @@ public class NTMCompatibility {
 	public void postInit(FMLPostInitializationEvent evt) {
 		MinefactoryReloaded.loadCompatibility();
 		ThermalExpansion.loadCompatibility();
-		Chaust.loadCompatibility();
 		Ores.registerOres();
         Ores.registerNames();
         Ores.registerRecipes();
