@@ -50,8 +50,8 @@ public class NTMItems implements INames{
             seedGrass = Registry.registerItem(new Seed(), Constants.MOD);
             mushroomSpores = Registry.registerItem(new Seed(), Constants.MOD);
             itemCactusSeeds = Registry.registerItem(new Seed(), Constants.MOD);
-            itemSanctuaryCrystal = Registry.registerItem(new Crystal(), Constants.MOD);
-            itemLightCrystal = Registry.registerItem(new Crystal(), Constants.MOD);
+            itemSanctuaryCrystal = Registry.registerItem(new Crystal(INames.SANCTUARYCRYSTAL), Constants.MOD);
+            itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
             
             //Werkzeuge
             itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), Constants.MOD);

@@ -16,7 +16,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +27,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemCactusGrabber extends ItemShears implements IVariantProvider{
+public class ItemCactusGrabber extends ItemShears{
 
 	public ItemCactusGrabber(ToolMaterial material) {
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
@@ -58,12 +57,4 @@ public class ItemCactusGrabber extends ItemShears implements IVariantProvider{
 			return EnumActionResult.FAIL;
 		}
 	}
-	
-	@Override
-    public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
-        return ret;
-    }
 }

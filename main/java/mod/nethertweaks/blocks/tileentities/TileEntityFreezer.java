@@ -143,7 +143,7 @@ public class TileEntityFreezer extends TileEntity implements IInventory, net.min
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		return worldObj.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d) < 64;
+		return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d) < 64;
 	}
 	
 	@Override
@@ -250,7 +250,7 @@ public class TileEntityFreezer extends TileEntity implements IInventory, net.min
 							fluid.amount = resource.amount;
 						}
 						volume = (float)fluid.amount / (float)MAX_CAPACITY;
-												worldObj.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
+												world.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
 						//needsUpdate = true;
 						return resource.amount;
 					}

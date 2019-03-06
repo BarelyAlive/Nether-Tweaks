@@ -4,7 +4,6 @@ import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.compatibility.Chaust;
 import mod.sfhcore.items.ItemThing;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
@@ -33,8 +32,8 @@ public class Crystal extends ItemThing{
 	
 	public static final Block bob = Blocks.OBSIDIAN;
 	
-	public Crystal() {
-		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 5);
+	public Crystal(String name) {
+		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 5, name);
 	}
 	
 	@Override
@@ -55,11 +54,11 @@ public class Crystal extends ItemThing{
 			}
 			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketStoneWater))){
 					player.inventory.clearMatchingItems(BucketLoader.bucketStoneWater, 0, 1, null);
-					player.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketStoneDemonWater));
+					player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketStoneDemonWater));
 			}
 			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketWoodWater))){
 				player.inventory.clearMatchingItems(BucketLoader.bucketWoodWater, 0, 1, null);
-				player.inventory.addItemStackToInventory(new ItemStack(Chaust.bucketWoodDemonWater));
+				player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketWoodDemonWater));
 			}
 		}
 		

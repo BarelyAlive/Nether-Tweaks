@@ -20,8 +20,8 @@ public class TileEntityWaterFountain extends TileEntity implements IFluidHandler
 
 @Override
 public IFluidTankProperties[] getTankProperties() {
-	// TODO Auto-generated method stub
-	return null;
+	IFluidTankProperties[] prop = new IFluidTankProperties[fullStack2.amount];
+	return prop;
 }
 
 @Override

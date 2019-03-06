@@ -1,8 +1,8 @@
 package mod.nethertweaks.blocks.tileentities;
 
-import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Dryable;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.handler.NTMDryHandler;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 public class TileEntityCondenser extends TileEntity implements IInventory {
 	
 	private ItemStack[] inv;
-	public Item[] buckets = {ChaustItems.bucketWood, ChaustItems.bucketStone, Items.BUCKET};
+	public Item[] buckets = {BucketLoader.bucketWood, BucketLoader.bucketStone, Items.BUCKET};
 	private boolean canDry = false;
 	private int a = 0;
 	public int dryTime;
@@ -56,7 +56,7 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 		if(canDry == true) {
 			a = 0;
 			if(canDry == true) {
-				a = inv[1].stackSize;
+				a = inv[1].getCount();
 				checkHeatSource();
 			} 
 			else {
@@ -73,17 +73,17 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 							decrStackSize(1, amount);
 							setInventorySlotContents(0, new ItemStack(Items.WATER_BUCKET, 1));
 						}
-						if(bucket.equals(ChaustItems.bucketStone)){
+						if(bucket.equals(BucketLoader.bucketStone)){
 							decrStackSize(0, 1);
 							int amount = NTMDryHandler.getItem(food, food.getDamage(inv[1])).value;
 							decrStackSize(1, amount);
-							setInventorySlotContents(0, new ItemStack(ChaustItems.bucketStoneWater, 1));	
+							setInventorySlotContents(0, new ItemStack(BucketLoader.bucketStoneWater, 1));	
 						}
-						if(bucket.equals(ChaustItems.bucketWood)){
+						if(bucket.equals(BucketLoader.bucketWood)){
 							decrStackSize(0, 1);
 							int amount = NTMDryHandler.getItem(food, food.getDamage(inv[1])).value;
 							decrStackSize(1, amount);
-							setInventorySlotContents(0, new ItemStack(ChaustItems.bucketWoodWater, 1));
+							setInventorySlotContents(0, new ItemStack(BucketLoader.bucketWoodWater, 1));
 						}
 						if(bucket.equals(BucketLoader.itemBucketNTM)){
 							decrStackSize(0, 1);
@@ -119,11 +119,11 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 		boolean canDry1 = false;
 		boolean canDry2 = false;
 		canDry = false;
-		if(inv[0].stackSize < 2){
+		if(inv[0].getCount() < 2){
 			
 			if(NTMDryHandler.containsItem(food, meta)){
 				int wert = NTMDryHandler.getItem(food, meta).value;
-				if(inv[1].stackSize >= wert){
+				if(inv[1].getCount() >= wert){
 				canDry1 = true;
 				}
 			}else{
@@ -165,12 +165,12 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 	public ItemStack decrStackSize(int slot, int amt) {
 		ItemStack stack = getStackInSlot(slot);
 		if(stack != null) {
-			if(stack.stackSize <= amt) {
+			if(stack.getCount() <= amt) {
 				setInventorySlotContents(slot, null);
 			}
 			else {
 				stack = stack.splitStack(amt);
-				if(stack.stackSize == 0) {
+				if(stack.getCount() == 0) {
 					setInventorySlotContents(slot, null);
 				}
 			}
@@ -181,8 +181,8 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inv[slot] = stack;
-		if(stack != null && stack.stackSize >= getInventoryStackLimit()) {
-			stack.stackSize = getInventoryStackLimit();
+		if(stack != null && stack.getCount() >= getInventoryStackLimit()) {
+			stack.setCount(getInventoryStackLimit());
 		}
 	}
 
@@ -193,7 +193,7 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		return worldObj.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F) < 64;
+		return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F) < 64;
 	}
 	
 	@Override
@@ -247,7 +247,7 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return INames.CONDENSER;
 	}
 
 	@Override
@@ -257,15 +257,21 @@ public class TileEntityCondenser extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public ITextComponent getDisplayName() {
+	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override

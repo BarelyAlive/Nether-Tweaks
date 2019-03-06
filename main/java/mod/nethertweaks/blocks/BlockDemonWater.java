@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.BucketLoader;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,6 +23,8 @@ public class BlockDemonWater extends BlockFluidClassic {
                 setResistance(500.0F);
                 setHardness(100.0F);
                 setDensity(1000);
+                setUnlocalizedName(INames.DEMOMWATERBLOCK);
+                setLightLevel(3);
         }
         
         @Override
