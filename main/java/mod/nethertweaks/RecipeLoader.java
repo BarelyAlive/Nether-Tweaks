@@ -32,7 +32,7 @@ public class RecipeLoader {
 		/*Salz-Block*/		GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockBasic, 1, 3), "XX", "XX", 'X', new ItemStack(NTMItems.itemBase, 1, 16));
 		/*Reverse*/			GameRegistry.addShapelessRecipe(new ItemStack(NTMItems.itemBase, 3, 16), new ItemStack(NTMBlocks.blockBasic, 1, 3));
 		/*Torch*/			GameRegistry.addShapedRecipe(new ItemStack(Blocks.TORCH, 64), "X", "Y", 'X', new ItemStack(NTMItems.itemBase, 1, 10), 'Y', Items.STICK);
-		if(Config.condenser)GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser,1), "XXX", "XYX", "XXX", 'X', Blocks.NETHERRACK, 'Y', Items.BUCKET);
+		if(Config.condenser)GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", 'X', Blocks.NETHERRACK, 'Y', Items.BUCKET);
 		if(Config.iwantvanillaWater == true){
 		/*Condenser*/		GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser), "XXX", "XYX", "XXX", 'X', Blocks.NETHERRACK, 'Y', BucketLoader.itemBucketNTM);
 		}
