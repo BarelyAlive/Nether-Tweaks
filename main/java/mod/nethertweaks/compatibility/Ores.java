@@ -37,9 +37,9 @@ public class Ores implements INames{
     
 	public static void registerOres(){
 		
-		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0f, 0.4f, OREGRAVEL), OREGRAVEL, Constants.MOD);
-		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, ORESAND), ORESAND, Constants.MOD);
-		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREDUST), OREDUST, Constants.MOD);
+		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0f, 0.4f, OREGRAVEL), Constants.MOD);
+		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, ORESAND), Constants.MOD);
+		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREDUST), Constants.MOD);
 		
 		oreMaterial = new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, "OreMaterial");
 		

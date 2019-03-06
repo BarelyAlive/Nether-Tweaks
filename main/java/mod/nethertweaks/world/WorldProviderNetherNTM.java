@@ -38,40 +38,34 @@ public class WorldProviderNetherNTM extends WorldProviderHell {
 	}
 	
 	@Override
-	public String getWelcomeMessage() {
-		String message = "Welcome to your Doom!";
-		return message;
-	}
-	
-	@Override
 	public void onPlayerAdded(EntityPlayerMP player) {
 		player.changeDimension(-1);
 	}
 	
 	@Override
 	public void setSpawnPoint(BlockPos pos){
-		if(this.worldObj.getWorldType() instanceof WorldTypeHellworld){
-			worldObj.getWorldInfo().setSpawn(new BlockPos(0,50,0));
+		if(this.world.getWorldType() instanceof WorldTypeHellworld){
+			world.getWorldInfo().setSpawn(new BlockPos(0,50,0));
 		}
 		else{
-			worldObj.getWorldInfo().setSpawn(pos);
+			world.getWorldInfo().setSpawn(pos);
 		}
     }
 	
 	@Override
 	public BlockPos getSpawnPoint(){
-        if(this.worldObj.getWorldType() instanceof WorldTypeHellworld){
+        if(this.world.getWorldType() instanceof WorldTypeHellworld){
         	return new BlockPos(0, 51, 0);
 		}
 		else{
-			net.minecraft.world.storage.WorldInfo info = worldObj.getWorldInfo();
+			net.minecraft.world.storage.WorldInfo info = world.getWorldInfo();
 	        return new BlockPos(info.getSpawnX(), info.getSpawnY(), info.getSpawnZ());
 		}
 	}
 	
 	@Override
 	public BlockPos getSpawnCoordinate(){
-		if(this.worldObj.getWorldType() instanceof WorldTypeHellworld){
+		if(this.world.getWorldType() instanceof WorldTypeHellworld){
 			return new BlockPos(0,51,0);
 		}
 		else{

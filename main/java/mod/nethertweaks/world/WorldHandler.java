@@ -2,10 +2,8 @@ package mod.nethertweaks.world;
  
 import java.io.*;
 
-import mod.chaust.ChaustItems;
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
-import mod.nethertweaks.ForgeSubscribe;
 import mod.nethertweaks.RecipeLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -65,7 +63,6 @@ public class WorldHandler{
     }    
     
     
-    @ForgeSubscribe
     @SubscribeEvent
     public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
     	if(event.getEntity() instanceof EntityPlayer){
