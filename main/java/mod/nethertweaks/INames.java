@@ -81,5 +81,7 @@ public interface INames {
 	public static final String HAMMERSTONE 					= "HammerStone";
 	public static final String HAMMERIRON					= "HammerIron";
 	public static final String HAMMERDIAMOND				= "HammerDiamond";
+
+	public static final String TEWATERFOUNTAIN = "TileEntityWaterFountain";
 	
 }

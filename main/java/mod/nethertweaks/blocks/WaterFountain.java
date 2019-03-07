@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,11 +33,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
@@ -49,7 +48,8 @@ public class WaterFountain extends Block{
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         GameRegistry.registerTileEntity(TileEntityWaterFountain.class, INames.TEWATERFOUNTAIN);
     }
-     
+    
+    /*
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
     		EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -67,7 +67,7 @@ public class WaterFountain extends Block{
               {
                 wf.drain(a, true);
               }
-              else if (heldItem.stackSize == 1)
+              else if (heldItem.getCount() == 1)
               {
             	heldItem.stackSize -= 1;
             	player.inventory.addItemStackToInventory(filled);
@@ -85,6 +85,7 @@ public class WaterFountain extends Block{
         }
 		return true;
     }
+    */
     
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
