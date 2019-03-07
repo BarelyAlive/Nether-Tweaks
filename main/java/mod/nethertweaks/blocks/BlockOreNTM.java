@@ -1,3 +1,4 @@
+/*
 package mod.nethertweaks.blocks;
 
 import java.util.ArrayList;
@@ -39,3 +40,4 @@ public class BlockOreNTM extends BlockEnumFalling<EnumBlockOreNTM> implements IV
         return ret;
     }
 }
+*/

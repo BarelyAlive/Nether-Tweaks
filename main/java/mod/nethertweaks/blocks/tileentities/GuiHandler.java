@@ -21,8 +21,8 @@ public class GuiHandler implements IGuiHandler {
         TileEntity tileEntity3 = world.getTileEntity(new BlockPos(x, y, z));
         TileEntity tileEntity4 = world.getTileEntity(new BlockPos(x, y, z));
         if(tileEntity1 instanceof TileEntityCondenser) return new ContainerCondenser(player.inventory, (TileEntityCondenser) tileEntity1);
-        else if(tileEntity3 instanceof TileEntityNetherrackFurnace) return new ContainerNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) tileEntity3);
-        else if(tileEntity4 instanceof TileEntityFreezer) return new ContainerFreezer(player.inventory, (TileEntityFreezer) tileEntity4);
+        else if(tileEntity2 instanceof TileEntityNetherrackFurnace) return new ContainerNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) tileEntity3);
+        else if(tileEntity3 instanceof TileEntityFreezer) return new ContainerFreezer(player.inventory, (TileEntityFreezer) tileEntity4);
         else return null;
 	}
 
@@ -33,8 +33,8 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity tileEntity3 = world.getTileEntity(new BlockPos(x, y, z));
 		TileEntity tileEntity4 = world.getTileEntity(new BlockPos(x, y, z));
         if(tileEntity1 instanceof TileEntityCondenser) return new GuiCondenser(player.inventory, (TileEntityCondenser) tileEntity1);
-        else if(tileEntity3 instanceof TileEntityNetherrackFurnace) return new GuiNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) tileEntity3);
-        else if(tileEntity4 instanceof TileEntityFreezer) return new GuiFreezer(player.inventory, (TileEntityFreezer) tileEntity4);
+        else if(tileEntity2 instanceof TileEntityNetherrackFurnace) return new GuiNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) tileEntity3);
+        else if(tileEntity3 instanceof TileEntityFreezer) return new GuiFreezer(player.inventory, (TileEntityFreezer) tileEntity4);
         else return null;
 	}
 
