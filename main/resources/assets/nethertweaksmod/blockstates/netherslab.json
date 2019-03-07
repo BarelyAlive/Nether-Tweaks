@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "nethertweaksmod:/netherslab" },
+        "half=top": { "model": "nethertweaksmod:/netherslab_upper" }
+    }
+}

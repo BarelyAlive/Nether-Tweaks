@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "nethertweaksmod:BlockNetherrackFurnace" },
-        "facing=south": { "model": "nethertweaksmod:BlockNetherrackFurnace", "y": 180 },
-        "facing=west":  { "model": "nethertweaksmod:BlockNetherrackFurnace", "y": 270 },
-        "facing=east":  { "model": "nethertweaksmod:BlockNetherrackFurnace", "y": 90 }
+        "facing=north": { "model": "nethertweaksmod:blocknetherrackfurnace" },
+        "facing=south": { "model": "nethertweaksmod:blocknetherrackfurnace", "y": 180 },
+        "facing=west":  { "model": "nethertweaksmod:blocknetherrackfurnace", "y": 270 },
+        "facing=east":  { "model": "nethertweaksmod:blocknetherrackfurnace", "y": 90 }
     }
 }

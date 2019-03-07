@@ -47,10 +47,10 @@ public class Condenser extends BlockContainer {
         this.field_149935_N = p_149651_1_.registerIcon("NetherTweaksMod:BlockCondenser");
     }
     */
-     
+    
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-    		EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
     	if(!worldIn.isRemote) {
             if(worldIn.getTileEntity(pos) != null && !worldIn.provider.isSurfaceWorld()) {
                 playerIn.openGui(NetherTweaksMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
@@ -79,23 +79,23 @@ public class Condenser extends BlockContainer {
         for(int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack item = inventory.getStackInSlot(i);
              
-            if(item != null && item.stackSize > 0) {
+            if(item != null && item.getCount() > 0) {
                 float rx = rand.nextFloat() *0.8F + 0.1F;
                 float ry = rand.nextFloat() *0.8F + 0.1F;
                 float rz = rand.nextFloat() *0.8F + 0.1F;
                  
-                EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+                EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, new ItemStack(item.getItem(), item.getCount(), item.getItemDamage()));
                  
                 if(item.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
+                    entityItem.getItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
                 }
              
                 float factor = 0.05F;
                 entityItem.motionX = rand.nextGaussian() * factor;
                 entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
                 entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                item.stackSize = 0;
+                world.spawnEntity(entityItem);
+                item.setCount(0);
             }
         }
     }

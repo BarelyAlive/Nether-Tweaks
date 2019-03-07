@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "nethertweaksmod:blockfreezer" },
+        "facing=south": { "model": "nethertweaksmod:blockfreezer", "y": 180 },
+        "facing=west":  { "model": "nethertweaksmod:blockfreezer", "y": 270 },
+        "facing=east":  { "model": "nethertweaksmod:blockfreezer", "y": 90 }
+    }
+}

@@ -49,10 +49,10 @@ public class Bonfire extends Block{
 		}
 		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
 		if(playerIn.onGround && !worldIn.isRemote && playerIn.dimension == -1){
 		    ITextComponent name = playerIn.getDisplayName();
@@ -60,16 +60,16 @@ public class Bonfire extends Block{
 		    int x = (int) playerIn.posX;
 		    int y = (int) playerIn.posY;
 		    int z = (int) playerIn.posZ;
-		    playerIn.addChatMessage(new TextComponentString(name + " rested at X: " + x + " Y: " + y +" Z: " + z + "!"));
-		    }
+		    playerIn.sendMessage(new TextComponentString(name + " rested at X: " + x + " Y: " + y +" Z: " + z + "!"));
+		}
 		
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-	    player.addChatComponentMessage(new TextComponentString("Your point of rest is lost!"));
-	    
+		player.sendMessage(new TextComponentString("Your point of rest is lost!"));
+		
 	    player.setSpawnPoint(null, true);
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}

@@ -1,6 +1,5 @@
 {
     "variants": {
-        "stage=0": { "model": "nethertweaksmod:NetherSapling" },
-        "stage=1": { "model": "nethertweaksmod:NetherSapling" }
+        "stage=0,type=oak": { "model": "nethertweaksmod:nethersapling" }
     }
 }

@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top",
+    "textures": {
+        "bottom": "nethertweaksmod:blocks/BlockObsidianDoor_lower",
+        "top": "nethertweaksmod:blocks/BlockObsidianDoor_upper"
+    }
+}

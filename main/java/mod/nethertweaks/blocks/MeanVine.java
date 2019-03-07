@@ -29,7 +29,7 @@ public class MeanVine extends BlockVine{
     public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity entity)
     {
     	if(!(entity instanceof EntityItem)){
-        entity.attackEntityFrom(DamageSource.cactus, 1.0F);
+        entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);
     	}
     }
 }

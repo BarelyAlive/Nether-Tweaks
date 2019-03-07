@@ -63,17 +63,17 @@
       },
       "11": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_11"
+          "layer0": "nethertweaksmod:items/multitexture_12"
         }
       },
       "12": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_12"
+          "layer0": "nethertweaksmod:items/multitexture_13"
         }
       },
       "13": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_13"
+          "layer0": "nethertweaksmod:items/multitexture_16"
         }
       },
       "14": {
@@ -83,27 +83,22 @@
       },
       "15": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_15"
+          "layer0": "nethertweaksmod:items/multitexture_17"
         }
       },
       "16": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_16"
+          "layer0": "nethertweaksmod:items/multitexture_18"
         }
       },
       "17": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_17"
+          "layer0": "nethertweaksmod:items/multitexture_19"
         }
       },
       "18": {
         "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_18"
-        }
-      },
-      "19": {
-        "textures": {
-          "layer0": "nethertweaksmod:items/multitexture_19"
+          "layer0": "nethertweaksmod:items/ItemIngotOsmium"
         }
       }
     }

@@ -32,7 +32,7 @@ public class EndTeleport extends Cube {
 	int dimension;
 	
 	public EndTeleport() {
-		super(Material.ROCK, 75.0F, 16.0F);
+		super(Material.ROCK, 75.0F, 16.0F, 1, INames.ENDTELEPORT);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
@@ -40,20 +40,20 @@ public class EndTeleport extends Cube {
 	}
 	
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer) {
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
 		EntityLightningBolt entitybolt = new EntityLightningBolt(worldIn, 0D, 0D, 0D, enableStats);
 		double x = pos.getX();  	//what ever location you want
 		double y = pos.getY();	//what ever location you want
 		double z = pos.getZ();  	//what ever location you want
 		entitybolt.setLocationAndAngles(x, y, z, 0, 0.0F);	
-		worldIn.spawnEntityInWorld(entitybolt);
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+		worldIn.spawnEntity(entitybolt);
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
 			playerIn.changeDimension(1);
 		}
@@ -62,7 +62,7 @@ public class EndTeleport extends Cube {
 				playerIn.changeDimension(Config.StwtHDimension);
 			}
 		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override

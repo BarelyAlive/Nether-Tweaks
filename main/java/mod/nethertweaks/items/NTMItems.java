@@ -47,9 +47,9 @@ public class NTMItems implements INames{
         	itemBase = Registry.registerItem(new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.ITEMBASE), 51, Constants.MOD);
             
         	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
-            seedGrass = Registry.registerItem(new Seed(), Constants.MOD);
-            mushroomSpores = Registry.registerItem(new Seed(), Constants.MOD);
-            itemCactusSeeds = Registry.registerItem(new Seed(), Constants.MOD);
+            seedGrass = Registry.registerItem(new Seed(INames.SEEDGRASS), Constants.MOD);
+            mushroomSpores = Registry.registerItem(new Seed(INames.MUSHROOMSPORES), Constants.MOD);
+            itemCactusSeeds = Registry.registerItem(new Seed(INames.CACTUSSEED), Constants.MOD);
             itemSanctuaryCrystal = Registry.registerItem(new Crystal(INames.SANCTUARYCRYSTAL), Constants.MOD);
             itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
             

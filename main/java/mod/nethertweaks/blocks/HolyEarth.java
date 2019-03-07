@@ -41,7 +41,7 @@ public class HolyEarth extends Cube{
 	private int spawnSec;
 	
 	public HolyEarth() {
-		super(Material.GRASS, 3.0F, 0.6F);
+		super(Material.GRASS, 3.0F, 0.6F, 1, INames.HOLYEARTH);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(15);
 	}
@@ -63,7 +63,7 @@ public class HolyEarth extends Cube{
 					worldIn.scheduleBlockUpdate(pos, this, 20, 0);
 					return;
 				}
-				worldIn.spawnEntityInWorld(ent);
+				worldIn.spawnEntity(ent);
 				spreadHoly(worldIn, pos, rand);
 			}
 			spawnTick--;

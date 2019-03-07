@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mod.nethertweaks.BucketLoader;
-import mod.nethertweaks.ForgeSubscribe;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -24,7 +23,6 @@ public class BucketHandler {
         }
         
         @SubscribeEvent
-        @ForgeSubscribe
         public void onBucketFill(FillBucketEvent event) {
 
         	Block block = event.getWorld().getBlockState(event.getTarget().getBlockPos()).getBlock();
