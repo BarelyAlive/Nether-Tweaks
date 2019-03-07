@@ -1,40 +1,27 @@
 package mod.nethertweaks.blocks.tileentities;
 
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileNTMBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerBarrel extends Container {
+public class ContainerNTMBase extends Container{
+
+	private TileNTMBase tileEntity;
 	
-	private TileEntityBarrel tileEntity;
-	
-	public ContainerBarrel(InventoryPlayer inventoryPlayer, TileEntityBarrel te) {
+	public ContainerNTMBase(InventoryPlayer inventoryPlayer, TileNTMBase te) {
 		tileEntity = te;
-		
-		addSlotToContainer(new Slot(tileEntity, 0, 56, 18));
-		addSlotToContainer(new Slot(tileEntity, 1, 56, 54));
-
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 85 + i * 18));
-			}
-		}
-		for(int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 143));
-		}
 
 	}
-	
-	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-	}
-	
+
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return tileEntity.isUseableByPlayer(player);
+		return tileEntity.isUsableByPlayer(player);
 	}
 	
 	@Override
@@ -58,13 +45,13 @@ public class ContainerBarrel extends Container {
 				return null;
 			}
 			
-			if(stackInSlot.getCount() == 0) {
+			if(stackInSlot.stackSize == 0) {
 				slotObject.putStack(null);
 			} else {
 				slotObject.onSlotChanged();
 			}
 			
-			if(stackInSlot.getCount() == stack.getCount()) {
+			if(stackInSlot.stackSize == stack.stackSize) {
 				return null;
 			}
 			slotObject.onPickupFromSlot(player, stackInSlot);
@@ -72,4 +59,11 @@ public class ContainerBarrel extends Container {
 		return stack;
 	}
 	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void updateProgressBar(int slot, int newValue) {
+		super.updateProgressBar(slot, newValue);
+		
+		if(slot == 1) this.tileEntity.workTime = newValue;
+	}
 }

@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks.tileentities;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.EnumFaceDirection;
+import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -29,13 +30,14 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.BucketLoader;
-import mod.nethertweaks.Compostable;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.*;
+import mod.nethertweaks.vars.Compostable;
 
-public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.fluids.capability.IFluidHandler, ISidedInventory{	
+public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.fluids.capability.IFluidHandler, net.minecraft.util.ITickable, ISidedInventory{	
 	private static final float MIN_RENDER_CAPACITY = 0.1f;
 	private static final float MAX_RENDER_CAPACITY = 0.9f;
 	private static final int MAX_COMPOSTING_TIME = 1000;
@@ -99,7 +101,8 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 		fluid = new FluidStack(FluidRegistry.WATER, 0);
 	}
 
-	public void update() {
+	@Override
+    public void update() {
 		//XXX Barrel state logic.
 				if (updateTimer >= UPDATE_INTERVAL)
 				{
@@ -156,12 +159,6 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						{
 							setMode(BarrelMode.COBBLESTONE);
 						}
-						
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
-							if(worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
-								setMode(BarrelMode.COBBLESTONE);
-							}
-						}
 
 						//Spread moss.
 						if(!worldObj.isRemote && fluid.amount > 0 && worldObj.getBlockState(pos).getMaterial().getCanBurn() && worldObj.rand.nextInt(500) == 0)
@@ -187,6 +184,12 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 									worldObj.setBlockState(pos, Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 									drain(100, true);
 								}
+							}
+						}
+						
+						if(fluid.getFluid() == NTMItems.fluidDemonWater){
+							if(worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
+								setMode(BarrelMode.COBBLESTONE);
 							}
 						}
 					}
@@ -227,7 +230,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						}
 						
 						//Demon Water
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(fluid.getFluid() == NTMItems.fluidDemonWater){
 							needsUpdate = true;
 							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
@@ -237,7 +240,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
-						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == BucketLoader.blockDemonWater)
+						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == NTMItems.blockDemonWater)
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
@@ -247,12 +250,13 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 				case COMPOST:
 					if (volume >= 1.0F)
 					{
+						System.out.println("Bin am kompostieren");
 						timer++;
 
 						//Are we done yet?
-						if(timer >= TileEntityBarrel.MAX_COMPOSTING_TIME)
+						if(timer >= this.MAX_COMPOSTING_TIME)
 						{
-							setMode(BarrelMode.DIRT);
+							this.setMode(BarrelMode.DIRT);
 							timer = 0;
 							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
@@ -373,7 +377,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 	private ItemStack getExtractItem()
 	{
 		//XXX getExtractItem
-		switch (getMode())
+		switch (this.getMode())
 		{
 		case CLAY:
 			return new ItemStack(Blocks.CLAY, 1, 0);
@@ -913,6 +917,4 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 			}
 		}
 	}
-	
-	
 }
