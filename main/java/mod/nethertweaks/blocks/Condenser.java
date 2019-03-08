@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class Condenser extends BlockContainer implements IVariantProvider{
      
-    public static TileEntityCondenser tecondenser = new TileEntityCondenser();
+    public static TileEntityCondenser tecondenser = new TileEntityCondenser("condenser");
 
     public Condenser() {
         super(Material.ROCK);
@@ -115,7 +115,7 @@ public class Condenser extends BlockContainer implements IVariantProvider{
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		// TODO Auto-generated method stub
-		return new TileEntityCondenser();
+		return new TileEntityCondenser("condenser");
 	}
 	
 	@Override

@@ -72,15 +72,6 @@ public class NetherSlab extends Block implements IVariantProvider{
     }
 
     /**
-     * Checks if an IBlockState represents a block that is opaque and a full cube.
-     */
-	@Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return ((NetherSlab)state.getBlock()).isDouble() || state.getValue(HALF) == NetherSlab.EnumBlockHalf.TOP;
-    }
-
-    /**
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
 	@Override
@@ -106,11 +97,18 @@ public class NetherSlab extends Block implements IVariantProvider{
      * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
      * IBlockstate
      */
-    @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, NetherSlab.EnumBlockHalf.BOTTOM);
-        return this.isDouble() ? iblockstate : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, NetherSlab.EnumBlockHalf.TOP));
+        IBlockState iblockstate = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, NetherSlab.EnumBlockHalf.BOTTOM);
+
+        if (this.isDouble())
+        {
+            return iblockstate;
+        }
+        else
+        {
+            return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, NetherSlab.EnumBlockHalf.TOP);
+        }
     }
 
     /**

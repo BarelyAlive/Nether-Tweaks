@@ -9,6 +9,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -26,7 +28,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
@@ -48,7 +49,7 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if(!worldIn.isRemote) {
             if(worldIn.getTileEntity(pos) != null) {
                 playerIn.openGui(NetherTweaksMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
@@ -61,9 +62,9 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	        if (item != null)
 	        {
 	          
-	          if (FluidContainerRegistry.isFilledContainer(item))
+	          if (FluidHelper.isFillableContainerWithRoom(item))
 	          {
-	            FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(item);
+	            FluidStack fluid = FluidHelper.getFluidForFilledItem(item.getItem());
 	            if (fr.fill(fluid, false) == fluid.amount)
 	            {
 	              if (playerIn.capabilities.isCreativeMode)
@@ -76,13 +77,13 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	                if (item.getItem().hasContainerItem(item)) {
 	                  c = item.getItem().getContainerItem(item);
 	                }
-	                if ((c == null) || (item.stackSize == 1) || (playerIn.inventory.hasItemStack(c)))
+	                if ((c == null) || (item.getCount() == 1) || (playerIn.inventory.hasItemStack(c)))
 	                {
 	                  fr.fill(fluid, true);
-	                  if (item.stackSize == 1) {
+	                  if (item.getCount() == 1) {
 	                    playerIn.inventory.setInventorySlotContents(0, c);
-	                  } else if (item.stackSize > 1) {
-	                    item.stackSize -= 1;
+	                  } else if (item.getCount() > 1) {
+	                    StackUtils.substrateFromStackSize(item, 1);;
 	                  }
 	                }
 	              }
@@ -96,14 +97,12 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 
 	@Override
 	public boolean hasTileEntity() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		// TODO Auto-generated method stub
-		return new TileEntityFreezer();
+		return new TileEntityFreezer("freezer");
 	}
 
 	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)

@@ -22,7 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -36,6 +35,8 @@ import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.helper.StackUtils;
 
 public class Barrel extends BlockContainer
 {	
@@ -60,22 +61,22 @@ public class Barrel extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (player == null)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (playerIn == null)
 		{
 			return false;
 		}
 
-		TileEntityBarrel barrel = (TileEntityBarrel) world.getTileEntity(pos);
+		TileEntityBarrel barrel = (TileEntityBarrel) worldIn.getTileEntity(pos);
 
 		if (barrel.getMode().canExtract == ExtractMode.Always)
 		{
 			barrel.giveAppropriateItem();
 		}
-		else if (player.getHeldItemMainhand() != null)
+		else if (playerIn.getHeldItemMainhand() != null)
 		{
-			ItemStack item = player.getHeldItemMainhand();
+			ItemStack item = playerIn.getHeldItemMainhand();
 			if (item!=null)
 			{
 
@@ -86,10 +87,10 @@ public class Barrel extends BlockContainer
 						{
 							barrel.addCompostItem(NTMCompostHandler.getItem(item.getItem(), item.getItemDamage()));
 
-							if (!player.capabilities.isCreativeMode)
+							if (!playerIn.capabilities.isCreativeMode)
 							{
-								item.stackSize -= 1;
-								if (item.stackSize == 0)
+								StackUtils.substrateFromStackSize(item, 1);
+								if (item.getCount() == 0)
 								{
 									item = null;
 								}
@@ -102,7 +103,7 @@ public class Barrel extends BlockContainer
 				//FLUIDS!
 				if (barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.FLUID)
 				{
-					FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(item);
+					FluidStack fluid = FluidHelper.getFluidForFilledItem(item.getItem());
 					//FILL
 					if (fluid != null)
 					{
@@ -113,36 +114,36 @@ public class Barrel extends BlockContainer
 						{
 							barrel.fill(fluid, true);
 
-							if (!player.capabilities.isCreativeMode)
+							if (!playerIn.capabilities.isCreativeMode)
 							{
 								if (item.getItem() == Items.POTIONITEM && item.getItemDamage() == 0)
 								{
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.GLASS_BOTTLE, 1, 0));
+									playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, new ItemStack(Items.GLASS_BOTTLE, 1, 0));
 								}else
 								{
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, getContainer(item));
+									playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, getContainer(item));
 								}
 							}
 						}
 					}
 					//DRAIN
-					else if(FluidContainerRegistry.isContainer(item))
+					else if(FluidHelper.isFillableContainerWithRoom(item))
 					{				
 						FluidStack available = barrel.drain(Integer.MAX_VALUE, false);
 						if (available != null)
 						{
-							ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, item);
-							FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
+							ItemStack filled = FluidHelper.fillContainer(item, available.getFluid(), available.amount);;
+							FluidStack liquid = FluidHelper.getFluidForFilledItem(filled.getItem());
 							if (liquid != null) {
 
-								if (item.stackSize > 1) {
-									if (!player.inventory.addItemStackToInventory(filled)) {
+								if (item.getCount() > 1) {
+									if (!playerIn.inventory.addItemStackToInventory(filled)) {
 										return false;
 									} else {
-										item.stackSize -= 1;
+										StackUtils.substrateFromStackSize(item, 1);
 									}
 								} else {
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, filled);
+									playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, filled);
 								}
 
 								barrel.drain(liquid.amount, true);
@@ -162,7 +163,7 @@ public class Barrel extends BlockContainer
 							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockDust))
 							{
 								barrel.setMode(BarrelMode.CLAY);
-								useItem(player);
+								useItem(playerIn);
 							}
 							
 							if(item.getItem() == NTMItems.itemLightCrystal){
@@ -174,14 +175,14 @@ public class Barrel extends BlockContainer
 							if(item.getItem() == Items.MILK_BUCKET)
 							{
 								barrel.setMode(BarrelMode.MILKED);
-								useItem(player);
+								useItem(playerIn);
 							}
 
 							//Mushroom stew + Water = Witch Water!
 							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == NTMItems.mushroomSpores)
 							{
 								barrel.setMode(BarrelMode.SPORED);
-								useItem(player);
+								useItem(playerIn);
 							}
 
 						} 
@@ -193,7 +194,7 @@ public class Barrel extends BlockContainer
 							if(item.getItem() == Items.GLOWSTONE_DUST)
 							{
 								barrel.setMode(BarrelMode.ENDSTONE);
-								useItem(player);
+								useItem(playerIn);
 							}
 							
 						}
@@ -201,7 +202,7 @@ public class Barrel extends BlockContainer
 						if(barrel.fluid.getFluid() == BucketLoader.fluidDemonWater){
 							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.netherSapling)){
 								barrel.setMode(BarrelMode.OAK);
-								useItem(player);
+								useItem(playerIn);
 							}
 						}
 						
@@ -218,22 +219,22 @@ public class Barrel extends BlockContainer
 		if (!player.capabilities.isCreativeMode)
 		{
 
-			ItemStack item = player.inventory.mainInventory[player.inventory.currentItem];
+			ItemStack item = player.getHeldItemMainhand();
 			//Special cases
 			if (item.getItem() == Items.MILK_BUCKET)
 			{
-				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.BUCKET, 1);
+				player.setHeldItem(player.getActiveHand(), new ItemStack(Items.BUCKET, 1));
 			}
 			else if (item.getItem() == Items.MUSHROOM_STEW)
 			{
-				player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(Items.BOWL, 1);
+				player.setHeldItem(player.getActiveHand(), new ItemStack(Items.BOWL, 1));
 			}
 			//Generic case
 			else
 			{
-				item.stackSize -= 1;
+				StackUtils.substrateFromStackSize(item, 1);;
 
-				if (item.stackSize == 0)
+				if (item.getCount() == 0)
 				{
 					item = null;
 				}
@@ -254,7 +255,7 @@ public class Barrel extends BlockContainer
 
 	private ItemStack getContainer(ItemStack item)
 	{
-		if (item.stackSize == 1) {
+		if (item.getCount() == 1) {
 			if (item.getItem().hasContainerItem(item)) 
 			{
 				return item.getItem().getContainerItem(item);
@@ -276,6 +277,6 @@ public class Barrel extends BlockContainer
 	
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityBarrel();
+		return new TileEntityBarrel(getUnlocalizedName());
 	}
 }

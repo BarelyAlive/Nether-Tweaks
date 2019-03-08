@@ -51,10 +51,13 @@ public class NetherLog extends Block implements IVariantProvider{
     	return new BlockStateContainer(this, new IProperty[] { LOG_AXIS });
     }
     
-    @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-    		int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(LOG_AXIS, NetherLog.EnumAxis.fromFacingAxis(facing.getAxis()));
+    /**
+     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
+     * IBlockstate
+     */
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return this.getStateFromMeta(meta).withProperty(LOG_AXIS, NetherLog.EnumAxis.fromFacingAxis(facing.getAxis()));
     }
     
     @Override

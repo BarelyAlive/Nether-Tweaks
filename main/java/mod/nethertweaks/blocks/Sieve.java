@@ -12,6 +12,7 @@ import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.helper.StackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,7 +28,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -44,7 +44,7 @@ public class Sieve extends BlockContainer{
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (playerIn == null)
 		{
 			return false;
@@ -84,8 +84,8 @@ public class Sieve extends BlockContainer{
 
 		if (!player.capabilities.isCreativeMode)
 		{
-			item.stackSize -= 1;
-			if (item.stackSize == 0)
+			StackUtils.substrateFromStackSize(item, 1);;
+			if (item.getCount() == 0)
 			{
 				item = null;
 			}

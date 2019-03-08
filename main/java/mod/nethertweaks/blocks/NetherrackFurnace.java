@@ -195,7 +195,7 @@ public class NetherrackFurnace extends BlockContainer {
      */
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityNetherrackFurnace();
+        return new TileEntityNetherrackFurnace("netherrackfurnace");
     }
 
     /**
