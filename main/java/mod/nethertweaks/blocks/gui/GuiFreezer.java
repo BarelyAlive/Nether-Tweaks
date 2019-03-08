@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -6,13 +6,16 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class GuiCondenser extends GuiContainer {
+import mod.nethertweaks.blocks.container.ContainerFreezer;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+
+public class GuiFreezer extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiCondenser.png");
-	private TileEntityCondenser entity;
+	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiFreezer.png");
+	private TileEntityFreezer entity;
 	
-	public GuiCondenser(InventoryPlayer inventoryPlayer, TileEntityCondenser tileEntity) {
-        super(new ContainerCondenser(inventoryPlayer, tileEntity));
+	public GuiFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer tileEntity) {
+        super(new ContainerFreezer(inventoryPlayer, tileEntity));
         entity = tileEntity;
    		xSize = 175;
 		ySize = 165;
@@ -35,8 +38,8 @@ public class GuiCondenser extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
-        if(this.entity.isDrying()){
-        	int k = this.entity.getBurnTimeRemainingScaled(12);
+        if(this.entity.isWorking()){
+        	int k = this.entity.getWorkTimeRemainingScaled(12);
         	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
         }
     }

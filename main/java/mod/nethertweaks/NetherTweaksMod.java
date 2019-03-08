@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.blocks.HolyEarth;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.blocks.tileentities.GuiHandler;
+import mod.nethertweaks.blocks.gui.GuiHandler;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.compatibility.Ores;
 import mod.nethertweaks.compatibility.ThermalExpansion;

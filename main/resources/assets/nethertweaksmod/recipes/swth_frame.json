@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "XYX",
+    "Y Y",
+    "XYX"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:enderpearl"
+    },
+    "X": {
+      "item": "minecraft:obsidian"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "nethertweaksmod:stwh_frame"
+  }
+}

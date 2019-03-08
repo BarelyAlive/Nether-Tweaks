@@ -2,14 +2,12 @@ package mod.nethertweaks.blocks.tileentities;
 
 import javax.annotation.Nullable;
 
+import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
-import mod.nethertweaks.NTMBlocks;
-import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.handler.NTMDryHandler;
-import mod.nethertweaks.handler.RecipeHandler;
-import mod.nethertweaks.vars.Dryable;
 import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,22 +35,22 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileEntityCondenser extends TileNTMBase{
+public class TileEntityCondenser extends TileEntityBase{
 	
-	public Item[] buckets = {Items.BUCKET, NTMItems.bucketStone, NTMItems.bucketWood};
+	public Item[] buckets = {Items.BUCKET, BucketLoader.bucketStone, BucketLoader.bucketWood};
 	private boolean canDry = false;
 	private int a = 0;
 	
-    public TileEntityCondenser() {
-		super(2, Config.dryTimeCondenser);
-		// TODO Auto-generated constructor stub
+    public TileEntityCondenser(String field) {
+		super(2, field);
+		this.maxworkTime = Config.dryTimeCondenser;
 	}
 
 	@Override
     public void update() {
     	checkInv();
 		if(canDry){
-			dry(inv[1].getItem(), inv[0].getItem());
+			dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
 		}
 	}
 	
@@ -63,35 +61,35 @@ public class TileEntityCondenser extends TileNTMBase{
 		}
 		if(canDry) {
 			a = 0;
-			a = inv[1].stackSize;
+			a = machineItemStacks.get(1).getCount();
 			checkHeatSource();
 		}
 		else {
 			return;
 		}
-		if(a >= NTMDryHandler.getItem(material, material.getDamage(inv[1])).value) {
+		if(a >= NTMDryHandler.getItem(material, material.getDamage(machineItemStacks.get(1))).value) {
 			if(canDry && workTime == 0) {
-			int amount = NTMDryHandler.getItem(inv[1].getItem(), inv[1].getItemDamage()).value;
+			int amount = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
 			decrStackSize(1, amount);
 			}
 			if(canDry) {
 				workTime++;
-				if(workTime == totalWorkTime)
+				if(workTime == maxworkTime)
 				{
 					if(bucket.equals(Items.BUCKET)){
 						decrStackSize(0, 1);
 						setInventorySlotContents(0, new ItemStack(Items.WATER_BUCKET, 1));
 					}
-					if(bucket == NTMItems.bucketStone){
+					if(bucket == BucketLoader.bucketStone){
 						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(NTMItems.bucketStoneWater, 1));
+						setInventorySlotContents(0, new ItemStack(BucketLoader.bucketStoneWater, 1));
 							
 					}
-					if(bucket == NTMItems.bucketWood){
+					if(bucket == BucketLoader.bucketWood){
 						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(NTMItems.bucketWoodWater, 1));
+						setInventorySlotContents(0, new ItemStack(BucketLoader.bucketWoodWater, 1));
 					}
-					FluidHelper.fillContainer(inv[0], FluidRegistry.WATER, 1000);
+					FluidHelper.fillContainer(machineItemStacks.get(0), FluidRegistry.WATER, 1000);
 					canDry = false;
 					workTime = 0;
 				}
@@ -104,14 +102,14 @@ public class TileEntityCondenser extends TileNTMBase{
 		World world = getWorld();
 		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
 		if(Config.dryTimeCondenser != 2400)
-			return totalWorkTime = Config.dryTimeCondenser;
+			return maxworkTime = Config.dryTimeCondenser;
 		if(block.getDefaultState().getMaterial() == Material.FIRE){
-			return totalWorkTime = 1800;
+			return maxworkTime = 1800;
 		}
 		if(block.getDefaultState().getMaterial() == Material.LAVA){
-			return totalWorkTime = 1200;
+			return maxworkTime = 1200;
 		}else {
-			return totalWorkTime = 2400;
+			return maxworkTime = 2400;
 		}
 	}
 	
@@ -119,12 +117,12 @@ public class TileEntityCondenser extends TileNTMBase{
 		boolean canDry1 = false;
 		boolean canDry2 = false;
 		canDry = false;
-		if(inv[0] != null && inv[1] != null){
-			if(inv[0].stackSize < 2){
+		if(machineItemStacks.get(0) != null && machineItemStacks.get(1) != null){
+			if(machineItemStacks.get(0).getCount() < 2){
 				
-				if(NTMDryHandler.containsItem(inv[1].getItem(), inv[1].getItemDamage())){
-					int wert = NTMDryHandler.getItem(inv[1].getItem(), inv[1].getItemDamage()).value;
-					if(inv[1].stackSize >= wert){
+				if(NTMDryHandler.containsItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage())){
+					int wert = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
+					if(machineItemStacks.get(1).getCount() >= wert){
 					canDry1 = true;
 					}
 				}else{
@@ -134,12 +132,12 @@ public class TileEntityCondenser extends TileNTMBase{
 				}
 				
 				for (Item item : buckets){
-					if (item == inv[0].getItem()){
+					if (item == machineItemStacks.get(0).getItem()){
 						canDry2 = true;
 						break;
 					}
 				}
-				if(FluidHelper.isFillableContainerWithRoom(inv[0])){
+				if(FluidHelper.isFillableContainerWithRoom(machineItemStacks.get(0))){
 					canDry2 = true;
 				}
 			}else

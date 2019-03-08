@@ -1,8 +1,15 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +22,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockDemonWater extends BlockFluidClassic {
+public class BlockDemonWater extends BlockFluidClassic implements IVariantProvider{
 
         public BlockDemonWater(Fluid fluid, Material material) {
                 super(fluid, Material.WATER);
@@ -44,5 +51,11 @@ public class BlockDemonWater extends BlockFluidClassic {
         return BucketLoader.fluidDemonWater;
         }
         
-        
+        @Override
+        public List<Pair<Integer, String>> getVariants()
+        {
+            List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+                ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+            return ret;
+        }
 }

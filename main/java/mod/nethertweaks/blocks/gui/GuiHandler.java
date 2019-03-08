@@ -1,6 +1,12 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.gui;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.container.ContainerCondenser;
+import mod.nethertweaks.blocks.container.ContainerFreezer;
+import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

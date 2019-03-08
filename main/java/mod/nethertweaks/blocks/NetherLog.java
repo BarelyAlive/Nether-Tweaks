@@ -175,10 +175,11 @@ public class NetherLog extends Block implements IVariantProvider{
     	return false;
     }
     
+    @Override
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
+            ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
         return ret;
     }
 }

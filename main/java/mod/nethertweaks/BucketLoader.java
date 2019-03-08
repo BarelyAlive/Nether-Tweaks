@@ -35,10 +35,6 @@ public class BucketLoader {
 		
 		//Buckets
 		public static Item bucketDemonWater;
-		public static Item itemBucketNTM;
-		public static Item itemBucketNTMWater;
-		public static Item itemBucketNTMDemonWater;
-		public static Item itemBucketNTMLava;
 		public static Item bucketWood;
 		public static Item bucketWoodWater;
 		public static Item bucketWoodDemonWater;
@@ -72,12 +68,6 @@ public class BucketLoader {
 		
 		if(Config.iwantvanillaWater == false){
 			BucketHandler.INSTANCE.buckets.put(blockDemonWater, bucketDemonWater);
-		}
-		if(Config.iwantvanillaWater == true){
-			BucketHandler.INSTANCE.buckets.put(blockDemonWater, itemBucketNTMDemonWater);
-			BucketHandler.INSTANCE.buckets.put(Blocks.FLOWING_WATER, itemBucketNTMWater);
-			BucketHandler.INSTANCE.buckets.put(Blocks.FLOWING_LAVA, itemBucketNTMLava);
-			BucketHandler.INSTANCE.buckets.put(Blocks.AIR, BucketLoader.itemBucketNTM);
 		}
 		
 		//Regular Buckets

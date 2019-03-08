@@ -4,7 +4,7 @@ import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
-import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.items.CustomItem;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
 import net.minecraft.client.audio.Sound;
@@ -28,7 +28,7 @@ import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.client.event.sound.SoundEvent.SoundSourceEvent;
 import net.minecraftforge.fml.common.Loader;
 
-public class Crystal extends ItemThing{
+public class Crystal extends CustomItem{
 	
 	public static final Block bob = Blocks.OBSIDIAN;
 	

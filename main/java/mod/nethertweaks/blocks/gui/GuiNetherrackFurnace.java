@@ -1,23 +1,30 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 
-public class GuiFreezer extends GuiContainer {
+import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+
+public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiFreezer.png");
-	private TileEntityFreezer entity;
+	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiNetherrackFurnace.png");
+	private TileEntityNetherrackFurnace entity;
 	
-	public GuiFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer tileEntity) {
-        super(new ContainerFreezer(inventoryPlayer, tileEntity));
+	public GuiNetherrackFurnace(InventoryPlayer inventoryPlayer, TileEntityNetherrackFurnace tileEntity) {
+        super(new ContainerNetherrackFurnace(inventoryPlayer, tileEntity));
         entity = tileEntity;
    		xSize = 175;
 		ySize = 165;
 	}
-		
+	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
 		/*
@@ -35,10 +42,11 @@ public class GuiFreezer extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
-        if(this.entity.isFreezing()){
-        	int k = this.entity.getFreezeTimeRemainingScaled(12);
+        if(this.entity.isWorking()){
+        	int k = this.entity.getWorkTimeRemainingScaled(12);
         	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
         }
+        
     }
     
     @Override

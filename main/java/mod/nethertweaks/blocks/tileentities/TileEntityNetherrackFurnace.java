@@ -5,6 +5,9 @@ import javax.annotation.Nullable;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.blocks.NetherrackFurnace;
+import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.sfhcore.helper.StackUtils;
+import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -40,10 +43,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityNetherrackFurnace extends TileNTMBase {
+public class TileEntityNetherrackFurnace extends TileEntityBase{
     
-    public TileEntityNetherrackFurnace() {
-		super(2, Config.burnTimeFurnace);
+    public TileEntityNetherrackFurnace(String field) {
+		super(2, field);
+		maxworkTime = Config.burnTimeFurnace;
 	}
 
 
@@ -65,9 +69,9 @@ public class TileEntityNetherrackFurnace extends TileNTMBase {
                     flag1 = true;
 
 
-                        if (inv[0].getCount() == 0)
+                        if (machineItemStacks.get(0).getCount() == 0)
                         {
-                            inv[0] = inv[1].getItem().getContainerItem(inv[0]);
+                            machineItemStacks.set(0, machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)));
                         }
                 }
             }
@@ -76,7 +80,7 @@ public class TileEntityNetherrackFurnace extends TileNTMBase {
             {
                 ++workTime;
 
-                if (workTime == totalWorkTime)
+                if (workTime == maxworkTime)
                 {
                     workTime = 0;
                     smeltItem();
@@ -90,7 +94,7 @@ public class TileEntityNetherrackFurnace extends TileNTMBase {
         }
             else if (!isWorking() && workTime > 0)
             {
-                workTime = MathHelper.clamp_int(workTime - 2, 0, totalWorkTime);
+                workTime = MathHelper.clamp(workTime - 2, 0, maxworkTime);
             }else if(isWorking() && !canSmelt()){
             	workTime = 0;
             }
@@ -123,18 +127,18 @@ public class TileEntityNetherrackFurnace extends TileNTMBase {
      */
     private boolean canSmelt()
     {
-        if (this.inv[0] == null)
+        if (this.machineItemStacks.get(0) == null)
         {
             return false;
         }
         else
         {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.inv[0]);
+            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
             if (itemstack == null) return false;
-            if (this.inv[1] == null) return true;
-            if (!this.inv[1].isItemEqual(itemstack)) return false;
-            int result = inv[1].getCount() + itemstack.getCount();
-            return result <= getInventoryStackLimit() && result <= this.inv[1].getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
+            if (this.machineItemStacks.get(1) == null) return true;
+            if (!this.machineItemStacks.get(1).isItemEqual(itemstack)) return false;
+            int result = machineItemStacks.get(1).getCount() + itemstack.getCount();
+            return result <= getInventoryStackLimit() && result <= this.machineItemStacks.get(1).getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
         }
     }
 
@@ -145,22 +149,22 @@ public class TileEntityNetherrackFurnace extends TileNTMBase {
     {
         if (canSmelt())
         {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.inv[0]);
+            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
 
-            if (this.inv[1] == null)
+            if (this.machineItemStacks.get(1) == null)
             {
-                this.inv[1] = itemstack.copy();
+                this.machineItemStacks.set(1, itemstack.copy());
             }
-            else if (this.inv[1].getItem() == itemstack.getItem())
+            else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
             {
-                this.inv[1].getCount() += itemstack.getCount(); // Forge BugFix: Results may have multiple items
+                StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount()); // Forge BugFix: Results may have multiple items
             }
 
-            this.inv[0].setCount(this.inv[]-1);
+            this.machineItemStacks.get(0).setCount(this.machineItemStacks.get(0).getCount()-1);
 
-            if (this.inv[0].getCount() <= 0)
+            if (this.machineItemStacks.get(0).getCount() <= 0)
             {
-                this.inv[0] = null;
+                this.machineItemStacks.set(0, null);
             }
         }
     }

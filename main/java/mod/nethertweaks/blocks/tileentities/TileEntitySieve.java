@@ -51,7 +51,7 @@ public class TileEntitySieve extends TileEntity{
 		this.mode = SieveMode.FILLED;
 
 		volume = 1.0f;
-		worldObj.markBlockRangeForRenderUpdate(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+		world.markBlockRangeForRenderUpdate(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class TileEntitySieve extends TileEntity{
 		{
 			mode = SieveMode.EMPTY;
 			//give rewards!
-			if (!worldObj.isRemote)
+			if (!world.isRemote)
 			{
 				ArrayList<SieveReward> rewards = NTMSieveHandler.getRewards(content, contentMeta);
 				if (rewards.size() > 0)
@@ -100,16 +100,16 @@ public class TileEntitySieve extends TileEntity{
 					{
 						SieveReward reward = it.next();
 
-						if (worldObj.rand.nextInt(reward.rarity) == 0)
+						if (world.rand.nextInt(reward.rarity) == 0)
 						{
-							EntityItem entityitem = new EntityItem(worldObj, (double)this.getPos().getX() + 0.5D, (double)this.getPos().getY() + 1.5D, (double)this.getPos().getZ() + 0.5D, new ItemStack(reward.item, 1, reward.meta));
+							EntityItem entityitem = new EntityItem(world, (double)this.getPos().getX() + 0.5D, (double)this.getPos().getY() + 1.5D, (double)this.getPos().getZ() + 0.5D, new ItemStack(reward.item, 1, reward.meta));
 
 							double f3 = 0.05F;
-							entityitem.motionX = worldObj.rand.nextGaussian() * f3;
+							entityitem.motionX = world.rand.nextGaussian() * f3;
 							entityitem.motionY = (0.2d);
-							entityitem.motionZ = worldObj.rand.nextGaussian() * f3;
+							entityitem.motionZ = world.rand.nextGaussian() * f3;
 
-							worldObj.spawnEntityInWorld(entityitem);
+							world.spawnEntityInWorld(entityitem);
 
 						}
 					}
@@ -135,7 +135,7 @@ public class TileEntitySieve extends TileEntity{
 	private void update()
 	{
 		update = false;
-		worldObj.markBlockRangeForRenderUpdate(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+		world.markBlockRangeForRenderUpdate(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 	}
 
 	@Override

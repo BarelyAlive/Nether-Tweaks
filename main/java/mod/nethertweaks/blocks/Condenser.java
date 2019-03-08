@@ -1,10 +1,16 @@
 package mod.nethertweaks.blocks;
  
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -24,7 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class Condenser extends BlockContainer {
+public class Condenser extends BlockContainer implements IVariantProvider{
      
     public static TileEntityCondenser tecondenser = new TileEntityCondenser();
 
@@ -111,5 +117,13 @@ public class Condenser extends BlockContainer {
 		// TODO Auto-generated method stub
 		return new TileEntityCondenser();
 	}
+	
+	@Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
+    }
     
 }

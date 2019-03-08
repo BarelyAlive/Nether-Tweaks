@@ -13,7 +13,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
 import mod.sfhcore.Registry;
-import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.items.CustomItem;
 
 public class NTMItems implements INames{
  
@@ -27,6 +27,7 @@ public class NTMItems implements INames{
     
     //Multi ID Item
 	public static Item itemBase;
+	public static Item oreMaterial;
     
 	//food
     public static CookedJerky itemCookedJerky;
@@ -44,7 +45,8 @@ public class NTMItems implements INames{
         public static void registerItems(){
         	
         	//Multi ID Item
-        	itemBase = Registry.registerItem(new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.ITEMBASE), 51, Constants.MOD);
+        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 18, INames.ITEMBASE), 51, Constants.MOD);
+    		oreMaterial = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.OREMATERIAL), Constants.MOD);
             
         	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
             seedGrass = Registry.registerItem(new Seed(INames.SEEDGRASS), Constants.MOD);

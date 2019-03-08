@@ -2,7 +2,7 @@ package mod.nethertweaks.items;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.items.CustomItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class Seed extends ItemThing{
+public class Seed extends CustomItem{
 	
 public Seed(String name) {
 		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 5, name);
