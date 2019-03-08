@@ -28,10 +28,10 @@ public class NTMBlocks implements INames{
         //Blocks
         public static Block blockDust;
         public static Block blockEndTeleport;
-        public static Block blockNetherSapling;
-        public static Block blockNetherLog;
-        public static Block blockNetherLeav;
-        public static Block blockNetherWood;
+        public static Block netherSapling;
+        public static Block netherLog;
+        public static Block netherLeaves;
+        public static Block netherWood;
         public static Block blockBonfire;
         public static Block blockHolyEarth;
         public static Block blockSansidian;
@@ -43,6 +43,9 @@ public class NTMBlocks implements INames{
         public static Block oreIronSand;
         public static Block oreGoldDust;
         public static Block oreIronDust;
+        public static Block oreGravel;
+        public static Block oreSand;
+        public static Block oreDust;
         
         public static Block doorNTMStone;
         public static Block doorNTMObsidian;
@@ -56,10 +59,10 @@ public class NTMBlocks implements INames{
 		
         blockDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
         blockEndTeleport = Registry.registerBlock(new EndTeleport(), Constants.MOD);
-        blockNetherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
-        blockNetherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
-        blockNetherLeav = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
-        blockNetherWood = Registry.registerBlock(new NetherWood(), Constants.MOD);
+        netherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
+        netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
+        netherLeaves = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
+        netherWood = Registry.registerBlock(new NetherWood(), Constants.MOD);
         blockBonfire = Registry.registerBlock(new Bonfire(Material.ROCK), Constants.MOD);
         blockHolyEarth = Registry.registerBlock(new HolyEarth(), Constants.MOD);
         blockSansidian = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.5F, 0.5F, SANSIDIAN), Constants.MOD);

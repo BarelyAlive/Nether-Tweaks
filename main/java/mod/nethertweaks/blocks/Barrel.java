@@ -199,7 +199,7 @@ public class Barrel extends BlockContainer
 						}
 						
 						if(barrel.fluid.getFluid() == BucketLoader.fluidDemonWater){
-							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockNetherSapling)){
+							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.netherSapling)){
 								barrel.setMode(BarrelMode.OAK);
 								useItem(player);
 							}

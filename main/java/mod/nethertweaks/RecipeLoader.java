@@ -47,7 +47,7 @@ public class RecipeLoader {
 		/*Bonfire*/			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockBonfire, 1), " YZ", "XXX",'X', Blocks.NETHERRACK, 'Y', Items.IRON_SWORD, 'Z', NTMItems.itemFlintAndBlaze);
 		}
 		/*Flint and Blaze*/	GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemFlintAndBlaze), "X", "Y", 'X', Items.BLAZE_ROD, 'Y', Items.FLINT);
-		/*ForWoodPl*/		GameRegistry.addShapelessRecipe(new ItemStack(NTMBlocks.blockNetherWood, 4), NTMBlocks.blockNetherLog);
+		/*ForWoodPl*/		GameRegistry.addShapelessRecipe(new ItemStack(NTMBlocks.netherWood, 4), NTMBlocks.netherLog);
 		/*SancCrystal*/		GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemSanctuaryCrystal), "XYX", "YZY", "XYX", 'X', Items.GLOWSTONE_DUST, 'Y', Items.DIAMOND, 'Z', Blocks.GOLD_BLOCK);
 		/*EnderCrystal*/	GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemBase, 1, 5), "XYX", "YZY", "XYX", 'X', Items.ENDER_EYE, 'Y', Items.DIAMOND, 'Z', Blocks.OBSIDIAN);
 		/*SieveWeb*/		GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemBase, 1, 17), "XXX", "XXX", "XXX", 'X', NTMBlocks.blockMeanVine);
@@ -63,7 +63,7 @@ public class RecipeLoader {
 		//Schmelz-Rezepte
 		
 		/*EssFleisch*/		GameRegistry.addSmelting(Items.ROTTEN_FLESH, (new ItemStack(NTMItems.itemCookedJerky)), 1.0F);
-		/*Charcoal*/		GameRegistry.addSmelting(NTMBlocks.blockNetherLog, (new ItemStack(Items.COAL, 1, 1)), 0.0F);
+		/*Charcoal*/		GameRegistry.addSmelting(NTMBlocks.netherLog, (new ItemStack(Items.COAL, 1, 1)), 0.0F);
 		/*LightCrystal*/	GameRegistry.addSmelting(new ItemStack(NTMItems.itemBase, 1, 12), (new ItemStack(NTMItems.itemLightCrystal)), 2.0F);
 		/*Hellfayah*/		GameRegistry.addSmelting(new ItemStack(NTMBlocks.blockBasic, 1, 0), (new ItemStack (NTMItems.itemBase, 1, 10)), 2.0F);
 		/*IronIngot*/		GameRegistry.addSmelting(NTMBlocks.oreIronGravel, (new ItemStack(Items.IRON_INGOT)), 2.0F);
@@ -87,10 +87,10 @@ public class RecipeLoader {
     	OreDictionary.registerOre("itemHellfayah", new ItemStack(NTMItems.itemBase, 1, 10));
     	OreDictionary.registerOre("oreHellfayah", new ItemStack(NTMBlocks.blockBasic, 1, 0));
     	OreDictionary.registerOre("blockHellfayah", new ItemStack (NTMBlocks.blockBasic, 1, 2));
-    	OreDictionary.registerOre("plankWood", new ItemStack(NTMBlocks.blockNetherWood));
-    	OreDictionary.registerOre("logWood", new ItemStack(NTMBlocks.blockNetherLog));
-    	OreDictionary.registerOre("treeSapling", new ItemStack(NTMBlocks.blockNetherSapling));
-    	OreDictionary.registerOre("treeLeaves", new ItemStack(NTMBlocks.blockNetherLeav));
+    	OreDictionary.registerOre("plankWood", new ItemStack(NTMBlocks.netherWood));
+    	OreDictionary.registerOre("logWood", new ItemStack(NTMBlocks.netherLog));
+    	OreDictionary.registerOre("treeSapling", new ItemStack(NTMBlocks.netherSapling));
+    	OreDictionary.registerOre("treeLeaves", new ItemStack(NTMBlocks.netherLeaves));
     	OreDictionary.registerOre("dustSalt", new ItemStack(NTMItems.itemBase, 1, 16));
     	OreDictionary.registerOre("oreGold", NTMBlocks.oreGoldDust);
     	OreDictionary.registerOre("oreGold", NTMBlocks.oreGoldGravel);

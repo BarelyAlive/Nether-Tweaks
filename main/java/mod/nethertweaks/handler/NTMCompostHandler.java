@@ -46,7 +46,7 @@ public class NTMCompostHandler {
 		register(Item.getItemFromBlock(Blocks.SAPLING), 3, 0.125f); 
 		register(Item.getItemFromBlock(Blocks.SAPLING), 4, 0.125f); 
 		register(Item.getItemFromBlock(Blocks.SAPLING), 5, 0.125f);
-		register(Item.getItemFromBlock(NTMBlocks.blockNetherSapling), 0, 0.125f);
+		register(Item.getItemFromBlock(NTMBlocks.netherSapling), 0, 0.125f);
 		
 		//leaves
 		register(Item.getItemFromBlock(Blocks.LEAVES), 0, 0.125f);

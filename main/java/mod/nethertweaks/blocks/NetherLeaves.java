@@ -192,7 +192,7 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 	    @Override
 	    public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	    {
-	        return Item.getItemFromBlock(NTMBlocks.blockNetherSapling);
+	        return Item.getItemFromBlock(NTMBlocks.netherSapling);
 	    }
 
 	    @Override
@@ -322,7 +322,7 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 		@Override
 		public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 			java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
-			ret.add(new ItemStack(NTMBlocks.blockNetherLeav));
+			ret.add(new ItemStack(NTMBlocks.netherLeaves));
 			
 			return ret;
 		}
