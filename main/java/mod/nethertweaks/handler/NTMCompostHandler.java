@@ -2,9 +2,9 @@ package mod.nethertweaks.handler;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.Compostable;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.vars.Compostable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

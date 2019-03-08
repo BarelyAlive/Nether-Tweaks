@@ -27,17 +27,16 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.NTMBlocks;
-import mod.nethertweaks.NTMItems;
+import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.vars.Compostable;
+import mod.sfhcore.tileentities.TileEntityFluidBase;
 
-public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.fluids.capability.IFluidHandler, net.minecraft.util.ITickable, ISidedInventory{	
+public class TileEntityBarrel extends TileEntityFluidBase implements net.minecraft.util.ITickable{	
 	private static final float MIN_RENDER_CAPACITY = 0.1f;
 	private static final float MAX_RENDER_CAPACITY = 0.9f;
 	private static final int MAX_COMPOSTING_TIME = 1000;
@@ -93,8 +92,9 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 		this.needsUpdate = true;
 	}
 
-	public TileEntityBarrel()
+	public TileEntityBarrel(String name)
 	{
+		super(1, name, 8000);
 		setMode(BarrelMode.EMPTY);
 		volume = 0;
 		timer = 0;
@@ -110,7 +110,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 					if (needsUpdate)
 					{
 						needsUpdate = false;
-						worldObj.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
+						world.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
 					}
 				}
 				else
@@ -122,7 +122,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 				{
 				case EMPTY:
 					//Handle Rain
-					if (!worldObj.isRemote && worldObj.isRaining() && this.pos.getY() >= worldObj.getBiomeForCoordsBody(pos).getRainfall())
+					if (!world.isRemote && world.isRaining() && this.pos.getY() >= world.getBiomeForCoordsBody(pos).getRainfall())
 					{
 						fluid = new FluidStack(FluidRegistry.WATER, 0);
 						setMode(BarrelMode.FLUID);
@@ -134,9 +134,9 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 					if (fluid.getFluid() == FluidRegistry.WATER)
 					{
 						//Handle Rain
-						if (!worldObj.isRemote && !isFull() && worldObj.isRaining() && this.pos.getY() >= worldObj.getTopSolidOrLiquidBlock(pos).getY() - 1 && worldObj.getBiomeForCoordsBody(pos).getRainfall() > 0.0f)
+						if (!world.isRemote && !isFull() && world.isRaining() && this.pos.getY() >= world.getTopSolidOrLiquidBlock(pos).getY() - 1 && world.getBiomeForCoordsBody(pos).getRainfall() > 0.0f)
 						{
-							volume += worldObj.getBiomeForCoordsBody(pos).getRainfall() / (float)1000;
+							volume += world.getBiomeForCoordsBody(pos).getRainfall() / (float)1000;
 
 							if (volume > 1)
 							{
@@ -148,47 +148,47 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						}
 
 						//Check for spores.
-						if(!worldObj.isRemote && isFull() && worldObj.getBlockState(pos.add(0, -1, 0)) == Blocks.MYCELIUM.getDefaultState())
+						if(!world.isRemote && isFull() && world.getBlockState(pos.add(0, -1, 0)) == Blocks.MYCELIUM.getDefaultState())
 						{
 							setMode(BarrelMode.SPORED);
 							needsUpdate = true;
 						}
 
 						//Turn into cobblestone?
-						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock())
+						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock())
 						{
 							setMode(BarrelMode.COBBLESTONE);
 						}
 
 						//Spread moss.
-						if(!worldObj.isRemote && fluid.amount > 0 && worldObj.getBlockState(pos).getMaterial().getCanBurn() && worldObj.rand.nextInt(500) == 0)
+						if(!world.isRemote && fluid.amount > 0 && world.getBlockState(pos).getMaterial().getCanBurn() && world.rand.nextInt(500) == 0)
 						{
-							int x = this.pos.getX() + (worldObj.rand.nextInt(MOSS_SPREAD_X_POS - MOSS_SPREAD_X_NEG + 1) + MOSS_SPREAD_X_NEG);
-							int y = this.pos.getY() + (worldObj.rand.nextInt(MOSS_SPREAD_Y_POS - MOSS_SPREAD_Y_NEG + 1) + MOSS_SPREAD_Y_NEG);
-							int z = this.pos.getZ() + (worldObj.rand.nextInt(MOSS_SPREAD_Z_POS - MOSS_SPREAD_Z_NEG + 1) + MOSS_SPREAD_Z_NEG);
-							int lightLevel = worldObj.getBlockState(pos.add(0, 1, 0)).getLightValue(getWorld(), pos);
+							int x = this.pos.getX() + (world.rand.nextInt(MOSS_SPREAD_X_POS - MOSS_SPREAD_X_NEG + 1) + MOSS_SPREAD_X_NEG);
+							int y = this.pos.getY() + (world.rand.nextInt(MOSS_SPREAD_Y_POS - MOSS_SPREAD_Y_NEG + 1) + MOSS_SPREAD_Y_NEG);
+							int z = this.pos.getZ() + (world.rand.nextInt(MOSS_SPREAD_Z_POS - MOSS_SPREAD_Z_NEG + 1) + MOSS_SPREAD_Z_NEG);
+							int lightLevel = world.getBlockState(pos.add(0, 1, 0)).getLightValue(getWorld(), pos);
 
-							if(!worldObj.isAirBlock(pos) && worldObj.getTopSolidOrLiquidBlock(pos).getY() > y && lightLevel >= 9 && lightLevel <= 11)
+							if(!world.isAirBlock(pos) && world.getTopSolidOrLiquidBlock(pos).getY() > y && lightLevel >= 9 && lightLevel <= 11)
 							{
-								Block selected = worldObj.getBlockState(pos).getBlock();
+								Block selected = world.getBlockState(pos).getBlock();
 								int meta = blockType.getMetaFromState(this.blockType.getDefaultState());
 
 								if (selected == Blocks.STONEBRICK && meta == 0)
 								{
-									worldObj.setBlockState(pos, Blocks.STONEBRICK.getDefaultState(), 3);
+									world.setBlockState(pos, Blocks.STONEBRICK.getDefaultState(), 3);
 									drain(100, true);
 								}
 
 								if (selected == Blocks.COBBLESTONE)
 								{
-									worldObj.setBlockState(pos, Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
+									world.setBlockState(pos, Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
 									drain(100, true);
 								}
 							}
 						}
 						
-						if(fluid.getFluid() == NTMItems.fluidDemonWater){
-							if(worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
+						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+							if(world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
 								setMode(BarrelMode.COBBLESTONE);
 							}
 						}
@@ -198,17 +198,17 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 					if (fluid.getFluid() == FluidRegistry.LAVA)
 					{
 						//Burn the barrel it is flammable.
-						if(worldObj.getBlockState(pos).getMaterial().getCanBurn())
+						if(world.getBlockState(pos).getMaterial().getCanBurn())
 						{
 							timer++;
 							if (timer % 30 == 0)
 							{
-								worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
+								world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
 							}
 
 							if (timer % 5 == 0)
 							{
-								worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
+								world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
 							}
 
 							if (timer >= 400)
@@ -217,30 +217,30 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 								if (fluid.amount < 1000)
 								{
 									//burn
-									worldObj.setBlockState(pos.add(0, 2, 0), Blocks.FIRE.getDefaultState());
+									world.setBlockState(pos.add(0, 2, 0), Blocks.FIRE.getDefaultState());
 									return;
 								}
 								else
 								{
 									//spit lava on the ground
-									worldObj.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
+									world.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
 									return;
 								}	
 							}
 						}
 						
 						//Demon Water
-						if(fluid.getFluid() == NTMItems.fluidDemonWater){
+						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
 							needsUpdate = true;
-							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
 						
 						//Turn into obsidian
-						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.WATER.getBlock())
+						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.WATER.getBlock())
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
-						if (isFull() && worldObj.getBlockState(pos.add(0, 1, 0)) == NTMItems.blockDemonWater)
+						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == BucketLoader.blockDemonWater)
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
@@ -258,7 +258,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						{
 							this.setMode(BarrelMode.DIRT);
 							timer = 0;
-							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
 					}
 					break;
@@ -270,7 +270,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 					{
 						timer = 0;
 						setMode(BarrelMode.SLIME);
-						worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+						world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 					}
 					break;
 
@@ -279,7 +279,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 
 					timer += 1 + (nearbyMYCELIUM / 2);
 
-					if(!worldObj.isRemote && nearbyMYCELIUM > 0)
+					if(!world.isRemote && nearbyMYCELIUM > 0)
 					{
 						//Spawn Mushrooms
 						for (int x = -2; x <= 2; x++)
@@ -288,14 +288,14 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 							{
 								for (int z = -2; z <= 2; z++)
 								{
-									if(worldObj.getBlockState(pos.add(x, y, z)) == Blocks.MYCELIUM && worldObj.isAirBlock(pos.add(x, y, z +1)) && worldObj.rand.nextInt(1500) == 0)
+									if(world.getBlockState(pos.add(x, y, z)) == Blocks.MYCELIUM && world.isAirBlock(pos.add(x, y, z +1)) && world.rand.nextInt(1500) == 0)
 									{
-										int choice = worldObj.rand.nextInt(2);
+										int choice = world.rand.nextInt(2);
 
 										if (choice == 0)
-											worldObj.setBlockState(pos.add(x, y+1, z), Blocks.BROWN_MUSHROOM.getDefaultState(), 3);
+											world.setBlockState(pos.add(x, y+1, z), Blocks.BROWN_MUSHROOM.getDefaultState(), 3);
 										if (choice == 1)
-											worldObj.setBlockState(pos.add(x, y+1, z), Blocks.RED_MUSHROOM.getDefaultState(), 3);
+											world.setBlockState(pos.add(x, y+1, z), Blocks.RED_MUSHROOM.getDefaultState(), 3);
 									}
 								}
 							}
@@ -324,7 +324,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						volume = 1.0f;
 					}
 
-					worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+					world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 					needsUpdate = true;
 					return true;
 				}
@@ -357,16 +357,16 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 
 	private void giveItem(ItemStack item)
 	{
-		if(!worldObj.isRemote)
+		if(!world.isRemote)
 		{
-			EntityItem entityitem = new EntityItem(worldObj, (double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 1.5D, (double)this.pos.getZ() + 0.5D, item);
+			EntityItem entityitem = new EntityItem(world, (double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 1.5D, (double)this.pos.getZ() + 0.5D, item);
 
 			double f3 = 0.05F;
-			entityitem.motionX = worldObj.rand.nextGaussian() * f3;
+			entityitem.motionX = world.rand.nextGaussian() * f3;
 			entityitem.motionY = (0.2d);
-			entityitem.motionZ = worldObj.rand.nextGaussian() * f3;
+			entityitem.motionZ = world.rand.nextGaussian() * f3;
 
-			worldObj.spawnEntityInWorld(entityitem);
+			world.spawnEntity(entityitem);
 
 			timer = 0;
 		}
@@ -389,7 +389,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 			return new ItemStack(Blocks.END_STONE, 1, 0);
 
 		case SLIME:
-			return new ItemStack(Items.SLIME_BALL, 1 + worldObj.rand.nextInt(4));
+			return new ItemStack(Items.SLIME_BALL, 1 + world.rand.nextInt(4));
 
 		case OBSIDIAN:
 			return new ItemStack(Blocks.OBSIDIAN, 1, 0);
@@ -398,7 +398,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 			return new ItemStack(Blocks.COBBLESTONE, 1, 0);
 
 		case OAK:
-			return new ItemStack(Blocks.SAPLING, 1, worldObj.rand.nextInt(6));
+			return new ItemStack(Blocks.SAPLING, 1, world.rand.nextInt(6));
 			
 		default:
 			return null;
@@ -489,7 +489,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 		volume = compound.getFloat("volume");
 		timer = compound.getInteger("timer");
 		
-		fluid = new FluidStack(FluidRegistry.getFluid(compound.getShort("fluid")), (int)(volume * MAX_FLUID));
+		fluid = new FluidStack(FluidRegistry.getFluid(compound.getString("fluid")), (int)(volume * MAX_FLUID));
 		needsUpdate = true;
 	}
 
@@ -518,7 +518,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 			{
 				for (int z = -1; z <= 1; z++)
 				{
-					if(worldObj.getBlockState(pos.add(x, y, z)) == block)
+					if(world.getBlockState(pos.add(x, y, z)) == block)
 					{
 						count++;
 					}
@@ -617,7 +617,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 			}
 		}
 
-		worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+		world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override
@@ -626,8 +626,8 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return false;
+	public boolean isUsableByPlayer(EntityPlayer player) {
+		return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d) < 64;
 	}
 
 	@Override
@@ -684,50 +684,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 		return false;
 	}
 	//HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void openInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void closeInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public int getField(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public void setField(int id, int value) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public int getFieldCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean hasCustomName() {
-		return false;
-	}
+	
 	@Override
 	public ITextComponent getDisplayName() {
 		// TODO Auto-generated method stub
@@ -808,7 +765,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						}
 						setMode(BarrelMode.FLUID);
 						volume = (float)fluid.amount / (float)MAX_FLUID;
-						worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+						world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						//needsUpdate = true;
 						return resource.amount;
 					}
@@ -826,7 +783,7 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 						{
 							fluid.amount = MAX_FLUID;
 							volume = 1.0f;
-							worldObj.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 							//needsUpdate = true;
 							return capacity;
 						}
@@ -916,5 +873,10 @@ public class TileEntityBarrel extends TileEntity implements  net.minecraftforge.
 				return drained;
 			}
 		}
+	}
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

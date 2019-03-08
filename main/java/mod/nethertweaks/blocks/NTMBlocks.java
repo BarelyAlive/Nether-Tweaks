@@ -4,10 +4,15 @@ import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
+import mod.nethertweaks.blocks.enums.EnumBlockBasic;
+import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.BlockDoorCustom;
 import mod.sfhcore.blocks.CubeFalling;
+import mod.sfhcore.blocks.base.BlockEnum;
+import mod.sfhcore.blocks.base.BlockEnumFalling;
+import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
 import mod.sfhcore.items.block.ItemDoor;
 import net.minecraft.block.Block;
@@ -57,6 +62,8 @@ public class NTMBlocks implements INames{
         
     public static void registerBlocks(){
 		
+    	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 5, Constants.MOD);
+
         blockDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
         blockEndTeleport = Registry.registerBlock(new EndTeleport(), Constants.MOD);
         netherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
@@ -87,9 +94,9 @@ public class NTMBlocks implements INames{
         oreGoldDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREGOLDDUST), Constants.MOD);
         oreIronDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREIRONDUST), Constants.MOD);
         
-        oreGravel = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.GROUND)), OREGRAVEL, 16, Constants.MOD);
-        oreSand = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.SAND)), ORESAND, 16, Constants.MOD);
-        oreDust = Registry.registerBlock(new ItemBlockEnumFalling(new BlockOreNTM(Material.SAND)), OREDUST, 16, Constants.MOD);
+        oreGravel = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, OREGRAVEL)), 16, Constants.MOD);
+        oreSand = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, ORESAND)), 16, Constants.MOD);
+        oreDust = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, OREDUST)), 16, Constants.MOD);
 
          
         //Tile Entity

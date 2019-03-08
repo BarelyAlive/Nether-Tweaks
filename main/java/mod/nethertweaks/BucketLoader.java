@@ -84,10 +84,10 @@ public class BucketLoader {
 		bucketStoneLava.setRegistryName(INames.BUCKETSTONELAVA);
 		bucketStoneLava.registerItems();
 		
-		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDMW, new ItemStack(bucketStone)), Constants.MOD);
-		bucketStoneDemonWater.setUnlocalizedName(INames.BUCKETSTONEDMW).setContainerItem(BucketLoader.bucketStone);
+		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDEMONWATER, new ItemStack(bucketStone)), Constants.MOD);
+		bucketStoneDemonWater.setUnlocalizedName(INames.BUCKETSTONEDEMONWATER).setContainerItem(BucketLoader.bucketStone);
 		
-		bucketStoneDemonWater.setRegistryName(INames.BUCKETSTONEDMW);
+		bucketStoneDemonWater.setRegistryName(INames.BUCKETSTONEDEMONWATER);
 		bucketStoneDemonWater.registerItems();
 		
 		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone)), Constants.MOD);
@@ -104,10 +104,10 @@ public class BucketLoader {
 		bucketWoodWater.setRegistryName(INames.BUCKETWOODWATER);
 		bucketWoodWater.registerItems();
 		
-		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETWOODDMW, new ItemStack(bucketWood)), Constants.MOD);
-		bucketWoodDemonWater.setUnlocalizedName(INames.BUCKETWOODDMW).setContainerItem(BucketLoader.bucketWood);
+		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDEMONWATER, new ItemStack(bucketWood)), Constants.MOD);
+		bucketWoodDemonWater.setUnlocalizedName(INames.BUCKETSTONEDEMONWATER).setContainerItem(BucketLoader.bucketWood);
 		
-		bucketWoodDemonWater.setRegistryName(INames.BUCKETWOODDMW);
+		bucketWoodDemonWater.setRegistryName(INames.BUCKETSTONEDEMONWATER);
 		bucketWoodDemonWater.registerItems();
 		
 		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood)), Constants.MOD);

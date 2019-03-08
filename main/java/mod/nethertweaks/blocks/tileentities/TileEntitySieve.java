@@ -109,7 +109,7 @@ public class TileEntitySieve extends TileEntity{
 							entityitem.motionY = (0.2d);
 							entityitem.motionZ = world.rand.nextGaussian() * f3;
 
-							world.spawnEntityInWorld(entityitem);
+							world.spawnEntity(entityitem);
 
 						}
 					}

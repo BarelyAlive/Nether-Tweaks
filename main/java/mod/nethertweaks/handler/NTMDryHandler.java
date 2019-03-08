@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.Dryable;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.items.*;
+import mod.nethertweaks.vars.Dryable;
 
 public class NTMDryHandler {
 	

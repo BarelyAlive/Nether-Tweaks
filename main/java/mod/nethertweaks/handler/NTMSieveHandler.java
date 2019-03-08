@@ -3,11 +3,11 @@ package mod.nethertweaks.handler;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mod.nethertweaks.SieveReward;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.compatibility.Ores;
 import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.vars.SieveReward;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
