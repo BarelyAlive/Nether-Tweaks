@@ -2,9 +2,9 @@ package mod.nethertweaks.handler;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.Compostable;
-import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
+import mod.nethertweaks.vars.Compostable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class NTMCompostHandler {
 
@@ -39,20 +40,28 @@ public class NTMCompostHandler {
 	
 	public static void load()
 	{
-		//SAPLINGs
-		register(Item.getItemFromBlock(Blocks.SAPLING), 0, 0.125f);
-		register(Item.getItemFromBlock(Blocks.SAPLING), 1, 0.125f);
-		register(Item.getItemFromBlock(Blocks.SAPLING), 2, 0.125f);
-		register(Item.getItemFromBlock(Blocks.SAPLING), 3, 0.125f); 
-		register(Item.getItemFromBlock(Blocks.SAPLING), 4, 0.125f); 
-		register(Item.getItemFromBlock(Blocks.SAPLING), 5, 0.125f);
-		register(Item.getItemFromBlock(NTMBlocks.blockNetherSapling), 0, 0.125f);
+		//manuelle vanilla Registrierung -.-
+		for(int i = 0; i < 6; i++){
+			register(Item.getItemFromBlock(Blocks.SAPLING), i, 0.125f);
+		}
+		for(int i = 0; i < 4; i++){
+			register(Item.getItemFromBlock(Blocks.LEAVES), i, 0.125f);
+		}
+		for(int i = 0; i < 2; i++){
+			register(Item.getItemFromBlock(Blocks.LEAVES2), i, 0.125f);
+		}
 		
-		//leaves
-		register(Item.getItemFromBlock(Blocks.LEAVES), 0, 0.125f);
-		register(Item.getItemFromBlock(Blocks.LEAVES), 1, 0.125f);
-		register(Item.getItemFromBlock(Blocks.LEAVES), 2, 0.125f);
-		register(Item.getItemFromBlock(Blocks.LEAVES), 3, 0.125f);
+		//automatische ore dic Regsistrierung
+		for(ItemStack sap : OreDictionary.getOres("treeSapling")){
+			register(sap.getItem(), sap.getItemDamage(), 0.125f);
+		}
+		
+		for(ItemStack sap : OreDictionary.getOres("treeLeaves")){
+			register(sap.getItem(), sap.getItemDamage(), 0.125f);
+		}
+		for(ItemStack sap : OreDictionary.getOres("vine")){
+			register(sap.getItem(), sap.getItemDamage(), 0.125f);
+		}
 		
 		//rotten flesh
 		register(Items.ROTTEN_FLESH, 0, 0.10f);
@@ -121,6 +130,14 @@ public class NTMCompostHandler {
 		//cooked chicken
 		register(Items.COOKED_CHICKEN, 0, 0.2f);
 		
+		//Rabbit
+		register(Items.RABBIT_STEW, 0, 0.2f);
+		register(Items.RABBIT, 0, 0.2f);
+		
+		//Sheep
+		register(Items.MUTTON, 0, 0.2f);
+		register(Items.COOKED_MUTTON, 0, 0.2f);
+		
 		//fish
 		register(Items.FISH, 0, 0.15f);
 		//cooked fish
@@ -138,6 +155,10 @@ public class NTMCompostHandler {
 		
 		//apple
 		register(Items.APPLE, 0, 0.10f);
+		
+		register(Items.CHORUS_FRUIT, 0, 0.10f);
+		register(Items.CHORUS_FRUIT_POPPED, 0, 0.10f);
+		
 		//melon slice
 		register(Items.MELON, 0, 0.04f);
 		//melon

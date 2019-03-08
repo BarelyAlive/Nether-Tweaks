@@ -7,7 +7,7 @@
   },
   "variants": {
       "normal": {
-      "model": "nethertweaksmod:BlockSansidian",
+      "model": "nethertweaksmod:sansidian",
         "textures": {
           "all": "nethertweaksmod:blocks/BlockSansidian"
        }

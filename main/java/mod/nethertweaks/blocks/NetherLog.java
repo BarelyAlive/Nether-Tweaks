@@ -2,6 +2,7 @@ package mod.nethertweaks.blocks;
  
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -37,9 +38,10 @@ public class NetherLog extends Block implements IVariantProvider{
     
     public NetherLog() {
     	super(Material.WOOD);
-    	this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, NetherLog.EnumAxis.NONE));
+    	this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, NetherLog.EnumAxis.Y));
     	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-    	setLightLevel(0.0F);
+    	setHardness(2);
+    	setResistance(10);
     	setSoundType(SoundType.WOOD);
     	setUnlocalizedName(INames.NETHERLOG);
 	}
@@ -176,10 +178,7 @@ public class NetherLog extends Block implements IVariantProvider{
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "axis=x"));
-        ret.add(new ImmutablePair<Integer, String>(0, "axis=y"));
-        ret.add(new ImmutablePair<Integer, String>(0, "axis=z"));
-        ret.add(new ImmutablePair<Integer, String>(0, "axis=none"));
+        ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
         return ret;
     }
 }

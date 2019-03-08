@@ -10,7 +10,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NTMBlocks;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.NetherLog.EnumAxis;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -18,7 +20,9 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.renderer.EnumFaceDirection;
@@ -39,7 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class NetherLeaves extends Block implements net.minecraftforge.common.IShearable, IVariantProvider {
+public class NetherLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable, IVariantProvider {
      
 	 public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
 	    public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
@@ -48,7 +52,8 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 
 	    public NetherLeaves()
 	    {
-	        super(Material.LEAVES);
+	        super();
+	        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 	        this.setTickRandomly(true);
 	        setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	        this.setHardness(0.2F);
@@ -56,105 +61,117 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	        this.setSoundType(SoundType.PLANT);
 	    }
 
+	    @Override
 	    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	    {
-	        if (!worldIn.isRemote)
-	        {
-	                int i = 4;
-	                int j = 5;
-	                int k = pos.getX();
-	                int l = pos.getY();
-	                int i1 = pos.getZ();
-	                int j1 = 32;
-	                int k1 = 1024;
-	                int l1 = 16;
+	    	 if (!worldIn.isRemote)
+	         {
+	             if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
+	             {
+	                 int i = 4;
+	                 int j = 5;
+	                 int k = pos.getX();
+	                 int l = pos.getY();
+	                 int i1 = pos.getZ();
+	                 int j1 = 32;
+	                 int k1 = 1024;
+	                 int l1 = 16;
 
-	                if (this.surroundings == null)
-	                {
-	                    this.surroundings = new int[32768];
-	                }
+	                 if (this.surroundings == null)
+	                 {
+	                     this.surroundings = new int[32768];
+	                 }
 
-	                if (worldIn.isAreaLoaded(new BlockPos(k - 5, l - 5, i1 - 5), new BlockPos(k + 5, l + 5, i1 + 5)))
-	                {
-	                    BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+	                 if (worldIn.isAreaLoaded(new BlockPos(k - 5, l - 5, i1 - 5), new BlockPos(k + 5, l + 5, i1 + 5)))
+	                 {
+	                     BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-	                    for (int i2 = -4; i2 <= 4; ++i2)
-	                    {
-	                        for (int j2 = -4; j2 <= 4; ++j2)
-	                        {
-	                            for (int k2 = -4; k2 <= 4; ++k2)
-	                            {
-	                                IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
-	                                Block block = iblockstate.getBlock();
+	                     for (int i2 = -4; i2 <= 4; ++i2)
+	                     {
+	                         for (int j2 = -4; j2 <= 4; ++j2)
+	                         {
+	                             for (int k2 = -4; k2 <= 4; ++k2)
+	                             {
+	                                 IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
+	                                 Block block = iblockstate.getBlock();
 
-	                                if (!block.canSustainLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
-	                                {
-	                                    if (block.isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
-	                                    {
-	                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
-	                                    }
-	                                    else
-	                                    {
-	                                        this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
-	                                    }
-	                                }
-	                                else
-	                                {
-	                                    this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
-	                                }
-	                            }
-	                        }
-	                    }
+	                                 if (!block.canSustainLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+	                                 {
+	                                     if (block.isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+	                                     {
+	                                         this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
+	                                     }
+	                                     else
+	                                     {
+	                                         this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
+	                                     }
+	                                 }
+	                                 else
+	                                 {
+	                                     this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
+	                                 }
+	                             }
+	                         }
+	                     }
 
-	                    for (int i3 = 1; i3 <= 4; ++i3)
-	                    {
-	                        for (int j3 = -4; j3 <= 4; ++j3)
-	                        {
-	                            for (int k3 = -4; k3 <= 4; ++k3)
-	                            {
-	                                for (int l3 = -4; l3 <= 4; ++l3)
-	                                {
-	                                    if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
-	                                    {
-	                                        if (this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
-	                                        }
+	                     for (int i3 = 1; i3 <= 4; ++i3)
+	                     {
+	                         for (int j3 = -4; j3 <= 4; ++j3)
+	                         {
+	                             for (int k3 = -4; k3 <= 4; ++k3)
+	                             {
+	                                 for (int l3 = -4; l3 <= 4; ++l3)
+	                                 {
+	                                     if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
+	                                     {
+	                                         if (this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+	                                         }
 
-	                                        if (this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
-	                                        }
+	                                         if (this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+	                                         }
 
-	                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
-	                                        }
+	                                         if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
+	                                         }
 
-	                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
-	                                        }
+	                                         if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
+	                                         }
 
-	                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] = i3;
-	                                        }
+	                                         if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + (l3 + 16 - 1)] = i3;
+	                                         }
 
-	                                        if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
-	                                        {
-	                                            this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
-	                                        }
-	                                    }
-	                                }
-	                            }
-	                        }
-	                    }
-	                }
+	                                         if (this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
+	                                         {
+	                                             this.surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
+	                                         }
+	                                     }
+	                                 }
+	                             }
+	                         }
+	                     }
+	                 }
 
-	                int l2 = this.surroundings[16912];
+	                 int l2 = this.surroundings[16912];
 
-	        }
+	                 if (l2 >= 0)
+	                 {
+	                     worldIn.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
+	                 }
+	                 else
+	                 {
+	                     this.destroy(worldIn, pos);
+	                 }
+	             }
+	         }
 	    }
 
 	    private void destroy(World worldIn, BlockPos pos)
@@ -163,21 +180,7 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	        worldIn.setBlockToAir(pos);
 	    }
 
-	    @SideOnly(Side.CLIENT)
-	    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	    {
-	        if (worldIn.isRainingAt(pos.up()) && !worldIn.getBlockState(pos.down()).isFullyOpaque() && rand.nextInt(15) == 1)
-	        {
-	            double d0 = (double)((float)pos.getX() + rand.nextFloat());
-	            double d1 = (double)pos.getY() - 0.05D;
-	            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
-	            worldIn.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
-	        }
-	    }
-
-	    /**
-	     * Returns the quantity of items to drop on block destruction.
-	     */
+	    @Override
 	    public int quantityDropped(Random random)
 	    {
 	        return random.nextInt(20) == 0 ? 1 : 0;
@@ -187,31 +190,25 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	     * Get the Item that this Block should drop when harvested.
 	     */
 	    @Nullable
+	    @Override
 	    public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	    {
-	        return Item.getItemFromBlock(NTMBlocks.blockNetherSapling);
+	        return Item.getItemFromBlock(NTMBlocks.netherSapling);
 	    }
 
-	    /**
-	     * Spawns this Block's drops into the World as EntityItems.
-	     */
+	    @Override
 	    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	    {
 	        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 	    }
 
-	    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
-	    {
-	    }
-
+	    @Override
 	    protected int getSaplingDropChance(IBlockState state)
 	    {
 	        return 20;
 	    }
 
-	    /**
-	     * Used to determine ambient occlusion and culling when rebuilding chunks for render
-	     */
+	    @Override
 	    public boolean isOpaqueCube(IBlockState state)
 	    {
 	        return !this.leavesFancy;
@@ -221,22 +218,26 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	     * Pass true to draw this block using fancy graphics, or false for fast graphics.
 	     */
 	    @SideOnly(Side.CLIENT)
+	    @Override
 	    public void setGraphicsLevel(boolean fancy)
 	    {
 	        this.leavesFancy = fancy;
 	    }
 
 	    @SideOnly(Side.CLIENT)
+	    @Override
 	    public BlockRenderLayer getBlockLayer()
 	    {
 	        return this.leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
 	    }
 
+	    @Override
 	    public boolean isVisuallyOpaque()
 	    {
 	        return false;
 	    }
-
+	    
+	    @Override
 	    public BlockPlanks.EnumType getWoodType(int meta) {
 			return null;
 		}
@@ -249,7 +250,7 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	    {
 	        if (!(Boolean)state.getValue(CHECK_DECAY))
 	        {
-	            world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 4);
+	            world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 1);
 	        }
 	    }
 
@@ -277,29 +278,54 @@ public class NetherLeaves extends Block implements net.minecraftforge.common.ISh
 	        }
 
 	        this.captureDrops(true);
-	        if (world instanceof World)
-	            this.dropApple((World)world, pos, state, chance); // Dammet mojang
 	        ret.addAll(this.captureDrops(false));
 	        return ret;
 	    }
 
 
 	    @SideOnly(Side.CLIENT)
+	    @Override
 	    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	    {
 	        return !this.leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	    }
-
+		
 		@Override
-		public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-			// TODO Auto-generated method stub
-			return null;
+		protected BlockStateContainer createBlockState() {
+			return new BlockStateContainer(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
 		}
+		
+		@Override
+	    public IBlockState getStateFromMeta(int meta) {
+	    	return getDefaultState().withProperty(CHECK_DECAY, meta == 0 ? false : true);
+	    }
+		
+		@Override
+	    public int getMetaFromState(IBlockState state) {
+	    	
+	    	boolean cd = state.getValue(CHECK_DECAY);
+	    	
+	    	if(!cd) return 0;
+	    	if(cd) return 1;
+	    	
+	    	return 0;
+	    }
 		
 		public List<Pair<Integer, String>> getVariants()
 	    {
-	        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-	        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+	        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();        
+	        ret.add(new ImmutablePair<Integer, String>(0, "check_decay=false,decayable=false"));
+	        ret.add(new ImmutablePair<Integer, String>(0, "check_decay=false,decayable=true"));
+	        ret.add(new ImmutablePair<Integer, String>(1, "check_decay=true,decayable=false"));
+	        ret.add(new ImmutablePair<Integer, String>(1, "check_decay=true,decayable=true"));
 	        return ret;
 	    }
+
+		@Override
+		public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
+			java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+			ret.add(new ItemStack(NTMBlocks.netherLeaves));
+			
+			return ret;
+		}
 }

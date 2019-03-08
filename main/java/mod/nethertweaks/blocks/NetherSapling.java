@@ -47,7 +47,7 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable, I
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    protected NetherSapling()
+    public NetherSapling()
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
@@ -169,8 +169,8 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable, I
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=0"));
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=1"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=0,type=oak"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=1,type=oak"));
         return ret;
     }
 }

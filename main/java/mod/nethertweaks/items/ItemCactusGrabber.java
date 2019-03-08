@@ -3,7 +3,9 @@ package mod.nethertweaks.items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -13,9 +15,12 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -30,30 +35,37 @@ public class ItemCactusGrabber extends ItemShears implements IVariantProvider{
 
 	public ItemCactusGrabber(ToolMaterial material) {
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		setUnlocalizedName("ItemCactusGrabber");
+		setUnlocalizedName(INames.CACTUSGRABBER);
 		setMaxStackSize(1);
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
-			EnumHand hand) {
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
-		RayTraceResult rtr = new RayTraceResult(playerIn);
 		
-		Block block = worldIn.getBlockState(rtr.getBlockPos()).getBlock();
+		Block block = worldIn.getBlockState(pos).getBlock();
 		if(block == Blocks.CACTUS || block == Blocks.MELON_BLOCK){
-			worldIn.setBlockToAir(rtr.getBlockPos());
+			worldIn.destroyBlock(pos, false);
 			playerIn.inventory.addItemStackToInventory(new ItemStack(block));
 			
 			if(!playerIn.capabilities.isCreativeMode)
-				itemStackIn.damageItem(1, playerIn);
+				stack.damageItem(1, playerIn);
 
-	        return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+			return EnumActionResult.SUCCESS;
 
 		}else{
-			return new ActionResult(EnumActionResult.FAIL, itemStackIn);
-		}
+			return EnumActionResult.FAIL;
+		}		
 	}
+	
+	@Override
+	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        stack.damageItem(1, entityLiving);
+        Block block = state.getBlock();
+        return state.getMaterial() != Material.LEAVES && block != Blocks.WEB && block != Blocks.TALLGRASS && block != Blocks.VINE && block != Blocks.TRIPWIRE && block != Blocks.WOOL && !(state instanceof net.minecraftforge.common.IShearable) ? super.onBlockDestroyed(stack, worldIn, state, pos, entityLiving) : true;
+    }
 	
 	@Override
     public List<Pair<Integer, String>> getVariants()

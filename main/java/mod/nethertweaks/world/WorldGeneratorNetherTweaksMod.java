@@ -4,7 +4,8 @@ import java.util.Random;
 
 import com.google.common.base.Predicate;
 
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.Konstanten;
+import mod.nethertweaks.NTMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockPistonStructureHelper;
 import net.minecraft.block.state.IBlockState;

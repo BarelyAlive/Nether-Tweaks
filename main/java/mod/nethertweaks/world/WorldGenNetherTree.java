@@ -2,8 +2,8 @@ package mod.nethertweaks.world;
 
 import java.util.Random;
 
+import mod.nethertweaks.NTMBlocks;
 import mod.nethertweaks.blocks.MeanVine;
-import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.blocks.NetherSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
@@ -22,8 +22,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class WorldGenNetherTree extends WorldGenAbstractTree
 {
-    private static final IBlockState DEFAULT_TRUNK = NTMBlocks.blockNetherLog.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = NTMBlocks.blockNetherLeaves.getDefaultState();
+    private static final IBlockState DEFAULT_TRUNK = NTMBlocks.netherLog.getDefaultState();
+    private static final IBlockState DEFAULT_LEAF = NTMBlocks.netherLeaves.getDefaultState();
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -106,7 +106,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)NTMBlocks.blockNetherSapling) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)NTMBlocks.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
@@ -256,7 +256,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
     {
-        this.setBlockAndNotifyAdequately(worldIn, pos, NTMBlocks.blockMeanVine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(worldIn, pos, NTMBlocks.meanVine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
     }
 
     private void addHangingVine(World worldIn, BlockPos pos, PropertyBool prop)

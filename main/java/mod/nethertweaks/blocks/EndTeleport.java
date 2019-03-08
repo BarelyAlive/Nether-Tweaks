@@ -10,7 +10,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.RecipeLoader;
+import mod.nethertweaks.handler.RecipeHandler;
+import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -31,6 +32,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 
 public class EndTeleport extends Cube implements IVariantProvider{
 	
@@ -45,27 +47,30 @@ public class EndTeleport extends Cube implements IVariantProvider{
 	}
 	
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-			int meta, EntityLivingBase placer) {
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		
 		EntityLightningBolt entitybolt = new EntityLightningBolt(worldIn, 0D, 0D, 0D, enableStats);
 		double x = pos.getX();  	//what ever location you want
 		double y = pos.getY();	//what ever location you want
 		double z = pos.getZ();  	//what ever location you want
 		entitybolt.setLocationAndAngles(x, y, z, 0, 0.0F);	
 		worldIn.spawnEntityInWorld(entitybolt);
-		return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+		
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
+		if (!worldIn.isRemote && worldIn.provider.getDimension() != 1) {
 			playerIn.changeDimension(1);
 		}
-		else{
-			if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
-				playerIn.changeDimension(Config.StwtHDimension);
-			}
+		if (worldIn.getWorldType() instanceof WorldTypeHellworld && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
+			playerIn.changeDimension(-1);
+		}
+		if (!(worldIn.getWorldType() instanceof WorldTypeHellworld) && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
+			playerIn.changeDimension(Config.StwtHDimension);
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
 	}

@@ -9,13 +9,11 @@ public class Config {
 	public static int endDim;
 	//Booleans
 	public static boolean isEndPortalCraftable;
-	public static boolean easyWaterSource;
-	public static boolean iwantvanillaWater;
 	public static boolean disableStairwaytoHeaven;
 	public static boolean disableBonfire;
 	public static boolean disableMaceDust;
 	public static boolean disableHammers;
-	public static int burnTimeFurnace;
+	
 	//Blöcke
 	public static boolean endTeleport;
 	public static boolean bonfire;
@@ -26,6 +24,7 @@ public class Config {
 	public static boolean sieve;
 	public static boolean freezer;
 	
+	//Items
 	public static boolean flintnblaze;
 	public static boolean sancCrystal;
 	public static boolean lightCrystal;
@@ -33,6 +32,7 @@ public class Config {
 	public static boolean nBrickPick;
 	public static boolean cookJerky;
 	
+	//Ores
 	public static boolean oreCopper;
 	public static boolean oreTin;
 	public static boolean oreLead;
@@ -54,16 +54,23 @@ public class Config {
 	public static int sieveDifficulty = 0;
 	public static int StwtHDimension;
 	public static int nethDim;
+	public static int burnTimeFurnace;
+	public static int dryTimeCondenser;
+	public static int freezeTimeFreezer;
+	public static int burnTimeHellfayah;
+	public static int burnTimeHellfayahBlock;
 	
 	public static void loadConfigs(FMLPreInitializationEvent event){
 		Configuration Config = new Configuration(event.getSuggestedConfigurationFile());
         Config.load();
-        iwantvanillaWater = Config.get("Tweak", "Is vanilla Water placable in the Nether?", false).getBoolean();
+        burnTimeHellfayah = Config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
+        burnTimeHellfayahBlock = Config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace = Config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
+        dryTimeCondenser = Config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
+        freezeTimeFreezer = Config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
         HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth?", HolyEarth.EntityIDList).getIntList();
         sieveDifficulty = Config.get("Tweak", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
 
-        easyWaterSource = Config.get("Recipes", "Easy Source of Water?", true).getBoolean();
         disableStairwaytoHeaven = Config.get("Recipes", "Disable Stairway to Heaven?", false).getBoolean();
         disableMaceDust = Config.get("Recipes", "Disable Dust Recipe in TE Pulverizer?", false).getBoolean();
                 

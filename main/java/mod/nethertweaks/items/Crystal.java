@@ -6,13 +6,17 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.NTMBlocks;
 import mod.sfhcore.Constants;
+import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.helper.Tools;
 import mod.sfhcore.items.ItemThing;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -31,11 +35,22 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.client.event.sound.SoundEvent.SoundSourceEvent;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.UniversalBucket;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.ItemFluidContainer;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import scala.Int;
 
 public class Crystal extends ItemThing implements IVariantProvider{
 	
-	public static final Block bob = Blocks.OBSIDIAN;
+	public static final IBlockState bob = Blocks.OBSIDIAN.getDefaultState();
 	
 	public Crystal() {
 		super(null, 1, NetherTweaksMod.tabNetherTweaksMod);
@@ -49,147 +64,185 @@ public class Crystal extends ItemThing implements IVariantProvider{
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn,
 			EnumHand hand) {
+		
 		if(playerIn.isSneaking()){
 			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketDemonWater));
+				playerIn.inventory.addItemStackToInventory(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, NTMItems.fluidDemonWater));
 			}
-			if(Loader.isModLoaded(Constants.ModIdCHAUST)){
-				if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketStoneWater))){
-					playerIn.inventory.clearMatchingItems(NTMItems.bucketStoneWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketStoneDemonWater));
-				}
-				if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketWoodWater))){
-					playerIn.inventory.clearMatchingItems(NTMItems.bucketWoodWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketWoodDemonWater));
-				}
-
+			if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketStoneWater))){
+				playerIn.inventory.clearMatchingItems(NTMItems.bucketStoneWater, 0, 1, null);
+				playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketStoneDemonWater));
 			}
+			if(playerIn.inventory.hasItemStack(new ItemStack(NTMItems.bucketWoodWater))){
+				playerIn.inventory.clearMatchingItems(NTMItems.bucketWoodWater, 0, 1, null);
+				playerIn.inventory.addItemStackToInventory(new ItemStack(NTMItems.bucketWoodDemonWater));
+			}
+		}
+		
+		//bless tanks etc.
+		for(ItemStack stack : playerIn.inventory.mainInventory){
+			FluidHelper.switchFluids(stack, FluidRegistry.WATER, NTMItems.fluidDemonWater);			
 		}
 		
 		if (playerIn.isSneaking() && itemStackIn.getItem() == NTMItems.itemSanctuaryCrystal){
 			
 		
-		//Structure ok?
-		RayTraceResult rtr = new RayTraceResult(playerIn);
-		BlockPos pos = rtr.getBlockPos();
-		
-		//enchantment table
-		Block[] block = new Block[25];
-		
-		int x = 3;
-		int y = 2;
-		int z = 3;
-		for(int i = 25; i < 25; i++){
-			block[i] = worldIn.getBlockState(pos.add(x, y, z)).getBlock();
+			//Structure ok?
+								
+			int x =  (int) playerIn.posX;
+			int y =  (int) playerIn.posY;
+			int z =  (int) playerIn.posZ;
+
+			BlockPos pos = new BlockPos(x-1, y, z-1);
 			
-			if(x >= -3){
-				x--;
-			}
-			if(y >= 0 && x == -3){
-				y--;
-			}
-			if(z >= -3 && y == 0){
-				z-=3;
-			}
-		}
-		
-		//block 2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24 equals Obsidian
-		//block 1, 4, 7, 10, 13, 16, 19, 21 equals glowstone
-		//block 0 is enchantment table
-		//rest is dirt
-		if(	bob.equals(block[2]) &&bob.equals(block[3]) &&bob.equals(block[5]) &&bob.equals(block[6]) 
-			&&bob.equals(block[8]) &&bob.equals(block[9]) &&bob.equals(block[11]) &&bob.equals(block[12])
-			&&bob.equals(block[14]) &&bob.equals(block[15]) &&bob.equals(block[17]) &&bob.equals(block[18]) 
-			&&bob.equals(block[20]) &&bob.equals(block[21]) &&bob.equals(block[23]) &&bob.equals(block[24])
-			&&Blocks.GLOWSTONE.equals(block[1]) &&Blocks.GLOWSTONE.equals(block[4]) &&Blocks.GLOWSTONE.equals(block[7]) &&Blocks.GLOWSTONE.equals(block[10])
-			&&Blocks.GLOWSTONE.equals(block[13]) &&Blocks.GLOWSTONE.equals(block[16]) &&Blocks.GLOWSTONE.equals(block[19]) &&Blocks.GLOWSTONE.equals(block[22])){
-		
-		//earth
-		int zahl = -3;
-		int zahl2 = 3;
-		
-		for(int numba = 7; numba > 0; numba--){
-		//rows
+			//block 2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24 equals Obsidian
+			//block 1, 4, 7, 10, 13, 16, 19, 21 equals glowstone
+			//block 0 is enchantment table
+			//rest is dirt
 			
-			for(int i = 0; i < 7; i++){
-				if(worldIn.getBlockState(pos.add(x+zahl, y-1, z+zahl2)) != Blocks.DIRT.getDefaultState()){
-					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
-				}
-				zahl++;
+			//Obsidian säulen
+			if(bob != worldIn.getBlockState(pos.add(-1, 0, 3)))
+			{
+				System.out.println(worldIn.getBlockState(pos.add(-1, 0, 3)).getBlock().getUnlocalizedName());
+				System.out.println(pos.add(-1, 0, 3));
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+
 			}
-			zahl = -3;
-			zahl2--;
 			
-		}
-		
-		if(block.equals(Blocks.ENCHANTING_TABLE)){
+			if(bob != worldIn.getBlockState(pos.add(1, 0, 3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 			
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x-3, y+2, z+3), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x, y+2, z+3), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x+3, y+2, z+3), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x-3, y+2, z), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x+3, y+2, z), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x-3, y+2, z-3), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x, y+2, z-3), Blocks.FIRE.getDefaultState());
-			for(int i = 0; i < 600; i++){
-				System.out.println();
-			}
-			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
-			worldIn.setBlockState(pos.add(x+3, y+2, z-3), Blocks.FIRE.getDefaultState());
-		}else{
-			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
-		}
-		
-	}else{
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
-	}
-		//Auswirkungen
-		int zahl = -3;
-		int zahl2 = 3;
-		
-		for(int numba = 7; numba > 0; numba--){
+			if(bob != worldIn.getBlockState(pos.add(-1, 0, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-1, 0, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(3, 0, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(3, 0, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-3, 0, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-3, 0, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			
+			if(bob != worldIn.getBlockState(pos.add(-1, 1, 3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(1, 1, 3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-1, 1, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(1, 1, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(3, 1, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(3, 1, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-3, 1, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(bob != worldIn.getBlockState(pos.add(-3, 1, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			System.out.println("Obsidian Säulen sind ok");
+			
+			//GoldBlocke
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(-1, 2, 3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(1, 2, 3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(-1, 2, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(1, 2, -3)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(3, 2, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(3, 2, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(-3, 2, 1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			
+			if(Blocks.GLOWSTONE.getDefaultState() != worldIn.getBlockState(pos.add(-3, 2, -1)))
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			System.out.println("Glowstone Säulen sind ok");
+
+			
 			//rows
 				
-			for(int i = 0; i < 7; i++){
-				worldIn.setBlockState(pos.add(x+zahl, y-1, z+zahl2), NTMBlocks.blockHolyEarth.getDefaultState());
-				zahl++;
+			if(!Tools.checkBlockArea(worldIn, Blocks.DIRT, pos.add(-3, -1, 3), 7, 7, 0)){
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 			}
-			zahl = -3;
-			zahl2--;
 				
-		}
-		
-		if(!playerIn.capabilities.isCreativeMode){
-			playerIn.inventory.clearMatchingItems(this, 0, 1, null);
-		}
-	}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			System.out.println("dirt ist ok");
+
+			
+			if(worldIn.getBlockState(pos).equals(Blocks.ENCHANTING_TABLE.getDefaultState())){
+				
+				EntityLightningBolt entitybolt = new EntityLightningBolt(worldIn, 0D, 0D, 0D, false);
+				
+				entitybolt.setLocationAndAngles(pos.getX()+1, pos.getY()+2, pos.getZ()-3, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(1, 2, -3), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()-1, pos.getY()+2, pos.getZ()-3, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(-1, 2, -3), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()+1, pos.getY()+2, pos.getZ()+3, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(1, 2, 3), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()-1, pos.getY()+2, pos.getZ()+3, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(-1, 2, 3), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()+3, pos.getY()+2, pos.getZ()+1, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(3, 2, 1), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()-3, pos.getY()+2, pos.getZ()-1, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(3, 2, -1), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()-3, pos.getY()+2, pos.getZ()+1, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(-3, 2, 1), Blocks.FIRE.getDefaultState());
+				
+				entitybolt.setLocationAndAngles(pos.getX()-3, pos.getY()+2, pos.getZ()-1, 0, 0.0F);	
+				worldIn.spawnEntityInWorld(entitybolt);
+				worldIn.setBlockState(pos.add(-3, 2, -1), Blocks.FIRE.getDefaultState());
+				
+			}else{
+				return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+			}
+			
+			//Auswirkungen
+			
+			Tools.setBlockArea(worldIn, NTMBlocks.holyearth, pos.add(-3, -1, 3), 7, 7, 0);
+
+				if(!playerIn.capabilities.isCreativeMode){
+					playerIn.inventory.clearMatchingItems(NTMItems.itemSanctuaryCrystal, 0, 1, null);
+				}
+			}
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+	
 	}
 
 	@Override

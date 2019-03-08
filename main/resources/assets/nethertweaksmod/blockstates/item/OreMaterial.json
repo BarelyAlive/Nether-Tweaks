@@ -28,7 +28,7 @@
       },
       "4": {
         "textures": {
-          "layer0": "nethertweaksmod:items/chunkPlatinum"
+          "layer0": "nethertweaksmod:items/ChunkPlatinum"
         }
       },
       "5": {
@@ -118,7 +118,7 @@
       },
       "22": {
         "textures": {
-          "layer0": "nethertweaksmod:items/Crushedsilver"
+          "layer0": "nethertweaksmod:items/CrushedSilver"
         }
       },
       "23": {
@@ -168,7 +168,7 @@
       },
       "32": {
         "textures": {
-          "layer0": "nethertweaksmod:items/Crushedsalt"
+          "layer0": "nethertweaksmod:items/CrushedSalt"
         }
       },
       "33": {

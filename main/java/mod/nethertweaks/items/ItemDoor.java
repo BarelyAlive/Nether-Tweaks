@@ -1,8 +1,15 @@
 package mod.nethertweaks.items;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.BlockDoorNTM;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +28,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemDoor extends Item
+public class ItemDoor extends Item implements IVariantProvider
 {
     public Material doorMaterial;
     private Block block;
@@ -95,10 +102,18 @@ public class ItemDoor extends Item
 
         BlockPos blockpos2 = pos.up();
         boolean flag2 = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(blockpos2);
-        IBlockState iblockstate = door.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HINGE, isRightHinge ? BlockDoor.EnumHingePosition.RIGHT : BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.POWERED, Boolean.valueOf(flag2)).withProperty(BlockDoor.OPEN, Boolean.valueOf(flag2));
-        worldIn.setBlockState(pos, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER), 2);
-        worldIn.setBlockState(blockpos2, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
+        IBlockState iblockstate = door.getDefaultState().withProperty(BlockDoorNTM.FACING, facing).withProperty(BlockDoorNTM.HINGE, isRightHinge ? BlockDoorNTM.EnumHingePosition.RIGHT : BlockDoorNTM.EnumHingePosition.LEFT).withProperty(BlockDoorNTM.POWERED, Boolean.valueOf(flag2)).withProperty(BlockDoorNTM.OPEN, Boolean.valueOf(flag2));
+        worldIn.setBlockState(pos, iblockstate.withProperty(BlockDoorNTM.HALF, BlockDoorNTM.EnumDoorHalf.LOWER), 2);
+        worldIn.setBlockState(blockpos2, iblockstate.withProperty(BlockDoorNTM.HALF, BlockDoorNTM.EnumDoorHalf.UPPER), 2);
         worldIn.notifyNeighborsOfStateChange(pos, door);
         worldIn.notifyNeighborsOfStateChange(blockpos2, door);
+    }
+    
+    @Override
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
     }
 }

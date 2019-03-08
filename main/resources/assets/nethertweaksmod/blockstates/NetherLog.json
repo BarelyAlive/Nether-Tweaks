@@ -1,8 +1,8 @@
 {
     "variants": {
-        "axis=y": { "model": "nethertweaksmod:NetherLog" },
-        "axis=z": { "model": "nethertweaksmod:NetherLog", "x": 90 },
-        "axis=x": { "model": "nethertweaksmod:NetherLog", "x": 90, "y": 90 },
-        "axis=none":  { "model": "nethertweaksmod:NetherLog" }
+        "axis=y": { "model": "nethertweaksmod:netherlog" },
+        "axis=z": { "model": "nethertweaksmod:netherlog", "x": 90 },
+        "axis=x": { "model": "nethertweaksmod:netherlog", "x": 90, "y": 90 },
+        "axis=none":  { "model": "nethertweaksmod:netherlog" }
     }
 }

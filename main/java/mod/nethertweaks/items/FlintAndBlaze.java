@@ -23,7 +23,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel implements IVariantProvider
     {
     	this.setUnlocalizedName("ItemFlintandBlaze");
         this.maxStackSize = 1;
-        this.setMaxDamage(64);
+        this.setMaxDamage(256);
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
 

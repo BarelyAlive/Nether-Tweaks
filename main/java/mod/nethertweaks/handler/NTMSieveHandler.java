@@ -3,20 +3,20 @@ package mod.nethertweaks.handler;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mod.nethertweaks.SieveReward;
-import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.compatibility.MinefactoryReloaded;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.compatibility.Ores;
-import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.vars.SieveReward;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class NTMSieveHandler {
 	public static ArrayList<SieveReward> rewards = new ArrayList<SieveReward>();
-	public static boolean dropRubberSeeds = false;
 	
 	public static void register(Block source, int sourceMeta, Item output, int outputMeta, int rarity)
 	{
@@ -97,6 +97,8 @@ public class NTMSieveHandler {
 	
 	public static void load()
 	{
+		register(Blocks.WATER, 0, Items.PRISMARINE_SHARD, 0, 15);
+		
 		//Dirt!
 		register(Blocks.DIRT, 0, Items.WHEAT_SEEDS, 0, 15);
 		register(Blocks.DIRT, 0, NTMItems.seedGrass, 0, 15);
@@ -110,8 +112,13 @@ public class NTMSieveHandler {
 		register(Blocks.DIRT, 0, Item.getItemFromBlock(Blocks.SAPLING), 2, 90);
 		register(Blocks.DIRT, 0, Item.getItemFromBlock(Blocks.SAPLING), 3, 90);
 		register(Blocks.DIRT, 0, Item.getItemFromBlock(Blocks.SAPLING), 4, 90);
-		if(MinefactoryReloaded.rubberSapling != null)
-		register(Blocks.DIRT, 0, Item.getItemFromBlock(MinefactoryReloaded.rubberSapling), 0, 44);
+		
+		for(ItemStack sap : OreDictionary.getOres("treeSapling")){
+			register(Blocks.DIRT, 0, sap.getItem(), sap.getItemDamage(), 90);
+		}
+		for(ItemStack sap : OreDictionary.getOres("vine")){
+			register(Blocks.DIRT, 0, sap.getItem(), sap.getItemDamage(), 90);
+		}
 
 		//Gravel!
 		register(Blocks.GRAVEL, 0, Items.FLINT, 0, 4);

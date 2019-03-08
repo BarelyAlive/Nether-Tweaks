@@ -7,9 +7,8 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.InventoryRenderHelper;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -63,7 +62,6 @@ public class BlockDemonWater extends BlockFluidClassic{
         
         @Override
         public Fluid getFluid() {
-        // TODO Auto-generated method stub
         return NTMItems.fluidDemonWater;
         }
 }

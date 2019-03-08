@@ -5,87 +5,91 @@ public interface INames {
 	//Fluids
 	public static final String DEMONWATERFLUID				= "fluiddemonwater";
 	
-	//FluidBlocks
-	public static final String DEMOMWATERBLOCK				= "BlockDemonWater";
+	//Fluidblocks
+	public static final String DEMOMWATERBLOCK				= "blockdemonwater";
 	
-	//Blocks
-	public static final String CONDENSER 					= "BlockCondenser";
-	public static final String NETHERRACKFURNACE 			= "BlockNetherrackFurnace";
-	public static final String NETHERRACKFURNACE_LIT 		= "BlockNetherrackFurnace_lit";
-	public static final String BARREL						= "BarrelWood";
-	public static final String BARRELSTONE 					= "BarrelStone";
-	public static final String FREEZER 						= "BlockFreezer";
-	public static final String WATERFOUNTAIN 				= "WaterFountain";
+	//blocks
+	public static final String CONDENSER 					= "blockcondenser";
+	public static final String NETHERRACKFURNACE 			= "blocknetherrackfurnace";
+	public static final String NETHERRACKFURNACE_LIT 		= "blocknetherrackfurnace_lit";
+	public static final String BARREL						= "barrelwood";
+	public static final String BARRELSTONE 					= "barrelstone";
+	public static final String FREEZER 						= "blockfreezer";
+	public static final String WATERFOUNTAIN 				= "waterfountain";
 	
-	public static final String DOORNTM 						= "DoorNTM";
-	public static final String DUST 						= "BlockDust";
-	public static final String ENDTELEPORT 					= "BlockEndTeleport";
-	public static final String NETHERSAPLING 				= "NetherSapling";
-	public static final String NETHERLEAVES 				= "NetherLeaves";
-	public static final String NETHERWOOD					= "NetherWood";
-	public static final String NETHERLOG 					= "NetherLog";
-	public static final String BONFIRE 						= "BlockBonfire";
-	public static final String HOLYEARTH 					= "BlockHolyEarth";
-	public static final String SANSIDIAN					= "BlockSansidian";
-	public static final String MEANVINE 					= "BlockMeanVine";
-	public static final String SIEVE 						= "BlockSieve";
+	public static final String DOORNTMSTONE					= "doorntmstone";
+	public static final String DOORNTMOBSIDIAN				= "doorntmobsidian";
+	public static final String DUST 						= "dust";
+	public static final String ENDTELEPORT 					= "blockendteleport";
+	public static final String NETHERSAPLING 				= "nethersapling";
+	public static final String NETHERLEAVES 				= "netherleaves";
+	public static final String NETHERWOOD					= "netherwood";
+	public static final String NETHERSLAB					= "netherslab";
+	public static final String NETHERLOG 					= "netherlog";
+	public static final String BONFIRE 						= "bonfire";
+	public static final String HOLYEARTH 					= "blockholyearth";
+	public static final String SANSIDIAN					= "sansidian";
+	public static final String MEANVINE 					= "blockmeanvine";
+	public static final String SIEVE 						= "blocksieve";
 	
-	public static final String OREGRAVEL 					= "OreGravel";
-	public static final String ORESAND 						= "OreSand";
-	public static final String OREDUST 						= "OreDust";
+	public static final String OREGRAVEL 					= "oregravel";
+	public static final String ORESAND 						= "oresand";
+	public static final String OREDUST 						= "oredust";
 	
-	public static final String OREGOLDGRAVEL 				= "OreGoldGravel";
-	public static final String OREGOLDSAND					= "OreGoldSand";
-	public static final String OREGOLDDUST 					= "OreGoldDust";
-	public static final String OREIRONGRAVEL 				= "OreIronGravel";
-	public static final String OREIRONSAND 					= "OreIronSand";
-	public static final String OREIRONDUST 					= "OreIronDust";
+	public static final String OREGOLDGRAVEL 				= "oregoldgravel";
+	public static final String OREGOLDSAND					= "oregoldsand";
+	public static final String OREGOLDDUST 					= "oregolddust";
+	public static final String OREIRONGRAVEL 				= "oreirongravel";
+	public static final String OREIRONSAND 					= "oreironsand";
+	public static final String OREIRONDUST 					= "oreirondust";
 	
-	public static final String BLOCKBASIC 					= "BlockBasic";
+	public static final String BLOCKBASIC 					= "blockbasic";
 	
 	//Tile ENtities
-	public static final String TENETHERRACKFURNACE			= "TileEntityNetherrackFurnace";
-	public static final String TECONDENSER 					= "TileEntityCondenser";
-	public static final String TEBARREL 					= "TileEntityBarrel";
-	public static final String TEBARRELSTONE 				= "TileEntityBarrelStone";
-	public static final String TEFREEZER					= "TileEntityFreezer";
-	public static final String TESIEVE						= "TileEntitySieve";
-	public static final String TEWATERFOUNTAIN				= "TileEntityWaterFountain";
+	public static final String TENETHERRACKFURNACE			= "tileentitynetherrackFurnace";
+	public static final String TECONDENSER 					= "tileentitycondenser";
+	public static final String TEBARREL 					= "tileentitybarrel";
+	public static final String TEBARRELSTONE 				= "tileentitybarrelstone";
+	public static final String TEFREEZER					= "tileentityfreezer";
+	public static final String TESIEVE						= "tileentitysieve";
+	public static final String TEWATERFOUNTAIN				= "tileentitywaterfountain";
 	
-	//Items
-	public static final String BUCKETDEMONWATER				= "BucketDemonWater";
-	public static final String BUCKETSTONE 					= "BucketStone";
-	public static final String BUCKETSTONEWATER 			= "BucketStoneWater";
-	public static final String BUCKETSTONEDEMONWATER		= "BucketStoneDemonWater";
-	public static final String BUCKETSTONELAVA 				= "BucketStoneLava";
-	public static final String BUCKETSTONEMILK 				= "BucketStoneMilk";
-	public static final String BUCKETWOOD 					= "BucketWood";
-	public static final String BUCKETWOODWATER 				= "BucketWoodWater";
-	public static final String BUCKETWOODDEMONWATER			= "BucketWoodDemonWater";
-	public static final String BUCKETWOODMILK				= "BucketWoodMilk";
+	//items
+	public static final String BUCKETDEMONWATER				= "bucketdemonwater";
+	public static final String BUCKETSTONE 					= "bucketstone";
+	public static final String BUCKETSTONEWATER 			= "bucketstonewater";
+	public static final String BUCKETSTONEDEMONWATER		= "bucketstonedemonwater";
+	public static final String BUCKETSTONELAVA 				= "bucketstonelava";
+	public static final String BUCKETSTONEMILK 				= "bucketstonemilk";
+	public static final String BUCKETWOOD 					= "bucketwood";
+	public static final String BUCKETWOODWATER 				= "bucketwoodwater";
+	public static final String BUCKETWOODDEMONWATER			= "bucketwooddemonwater";
+	public static final String BUCKETWOODMILK				= "bucketwoodmilk";
 	
-	public static final String ITEMDOORNTM 					= "ItemDoorNTM";
-	public static final String CACTUSGRABBER 				= "ItemCactusGrabber";
-	public static final String ITEMSTONEDOOR 				= "ItemStoneDoor";
-	public static final String ITEMOBSIDIANDOOR 			= "ItemObsidianDoor";
-	public static final String LENS 						= "Lens";
-	public static final String SEEDGRASS 					= "SeedGrass";
-	public static final String MUSHROOMSPORES 				= "MushroomSpores";
-	public static final String CACTUSSEED 					= "CactusSeed";
-	public static final String FLINTNBLAZE 					= "FlintAndBlaze";
+	public static final String ITEMDOORNTM 					= "itemdoorntm";
+	public static final String OREMATERIAL 					= "orematerial";
+	public static final String CACTUSGRABBER 				= "itemcactusgrabber";
+	public static final String LENS 						= "lens";
+	public static final String SEEDGRASS 					= "seedgrass";
+	public static final String MUSHROOMSPORES 				= "mushroomspores";
+	public static final String CACTUSSEED 					= "cactusseed";
+	public static final String FLINTNBLAZE 					= "flintandblaze";
 	
-	public static final String SANCTUARYCRYSTAL 			= "SanctuaryCrystal";
-	public static final String LIGHTCRYSTAL 				= "LightCrystal";
-	public static final String ITEMBASE 					= "ItemBase";
+	public static final String SANCTUARYCRYSTAL 			= "sanctuarycrystal";
+	public static final String LIGHTCRYSTAL 				= "lightcrystal";
+	public static final String ITEMBASE 					= "itembase";
 	
-	public static final String COOKEDJERKY 					= "CookedJerky";
-	public static final String PICKAXENETHERRACK 			= "PickaxeNetherrack";
-	public static final String PICKAXENETHERBRICK			= "PickaxeNetherbrick";
+	public static final String COOKEDJERKY 					= "cookedjerky";
+	public static final String PICKAXENETHERRACK 			= "pickaxenetherrack";
+	public static final String PICKAXENETHERBRICK			= "pickaxenetherbrick";
 	
-	public static final String HAMMERWOOD 					= "HammerWood";
-	public static final String HAMMERGOLD 					= "HammerGold";
-	public static final String HAMMERSTONE 					= "HammerStone";
-	public static final String HAMMERIRON					= "HammerIron";
-	public static final String HAMMERDIAMOND				= "HammerDiamond";
+	public static final String HAMMERWOOD 					= "hammerwood";
+	public static final String HAMMERGOLD 					= "hammergold";
+	public static final String HAMMERSTONE 					= "hammerstone";
+	public static final String HAMMERIRON					= "hammeriron";
+	public static final String HAMMERDIAMOND				= "hammerdiamond";
+	
+	public static final String ITEMDOORNTMSTONE				= "itemdoorntmstone";
+	public static final String ITEMDOORNTMOBSIDIAN			= "itemdoorntmobsidian";
 	
 }

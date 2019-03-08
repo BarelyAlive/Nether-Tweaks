@@ -1,10 +1,11 @@
 package mod.nethertweaks.items;
 
 import ibxm.Player;
+import mod.nethertweaks.Konstanten;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.RecipeLoader;
-import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.compatibility.MinefactoryReloaded;
+import mod.nethertweaks.handler.RecipeHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 
 import java.util.ArrayList;
@@ -34,69 +35,82 @@ import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 public class Hammer extends ItemTool implements IVariantProvider{
 	
-	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blocks.NETHERRACK, Blocks.ICE});
+	public static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] {Blocks.STONE, Blocks.COBBLESTONE, Blocks.GRAVEL, Blocks.SAND, Blocks.OBSIDIAN, Blocks.NETHERRACK, Blocks.ICE});
 	EntityItem entityItem;
 	
 	public Hammer(float effective, ToolMaterial tool) {
 		
-		super(effective, effective, tool, blocksEffectiveAgainst);
+		super(effective, -2.8F, tool, blocksEffectiveAgainst);
 		
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		setMaxStackSize(1);	
+		setMaxStackSize(1);
+		if(tool == ToolMaterial.STONE){
+			setMaxDamage(204);
+		}
+		if(tool == ToolMaterial.GOLD){
+			setMaxDamage(105);	
+				}
+		if(tool == ToolMaterial.IRON){
+			setMaxDamage(323);
+		}
+		if(tool == ToolMaterial.DIAMOND){
+			setMaxDamage(1634);
+		}
 	}
 	
 	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos,
-			EntityLivingBase entityLiving) {
-			
-			EntityPlayer player = (EntityPlayer) entityLiving;
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+		World worldIn = player.worldObj;
+		
+		if(!player.worldObj.isRemote) {
 
-			if(!player.worldObj.isRemote) {
-	
 			Block block = worldIn.getBlockState(pos).getBlock();
 			
 			if(block == Blocks.COBBLESTONE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.GRAVEL, 1));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
 			
 			if(block == Blocks.GRAVEL) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.SAND, 1));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
 			
 			if(block == Blocks.SAND) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(NTMBlocks.blockDust, 1));
-				worldIn.spawnEntityInWorld(entityItem);
-			}
+				worldIn.destroyBlock(pos, false);
+				worldIn.spawnEntityInWorld(entityItem);			}
 			
 			if(block == Blocks.NETHERRACK) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.GRAVEL, 1));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
 			
 			if(block == Blocks.STONE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.COBBLESTONE, 1));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
 			
 			if(block == Blocks.ICE) {
 				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Blocks.SNOW, 1));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
 			
 			if(block == Blocks.OBSIDIAN) {
-				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(NTMItems.itemBase, 4, 14));
+				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(Konstanten.OBSIDIANDUST.getItem(), 4, Konstanten.OBSIDIANDUST.getItemDamage()));
+				worldIn.destroyBlock(pos, false);
 				worldIn.spawnEntityInWorld(entityItem);
 			}
-			
-			if(stack.getItemDamage() < stack.getMaxDamage()){
-				stack.damageItem(1, player);
-			}else{
-				stack = null;
-			}
+			return true;
 		}
-		return true;
+		if(!player.capabilities.isCreativeMode)
+			itemstack.damageItem(1, player);
+		return false;
 	}
 	
 	@Override

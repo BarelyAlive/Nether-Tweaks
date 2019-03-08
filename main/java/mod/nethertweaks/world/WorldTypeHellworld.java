@@ -25,6 +25,11 @@ public class WorldTypeHellworld extends WorldType {
 	}	
 	
 	@Override
+	public void onGUICreateWorldPress() {
+		WorldHandler.isHellworldType = true;
+	}
+	
+	@Override
 	public int getMinimumSpawnHeight(World world) {
 		return 1;
 	}

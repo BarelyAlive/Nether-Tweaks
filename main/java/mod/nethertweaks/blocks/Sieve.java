@@ -7,6 +7,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
@@ -15,7 +16,6 @@ import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
-import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Sieve extends BlockContainer implements IVariantProvider{
@@ -62,7 +63,16 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 		if (sieve.mode == SieveMode.EMPTY && playerIn.inventory.getCurrentItem() != null)
 		{
 			ItemStack held = playerIn.inventory.getCurrentItem();
-			
+			if(FluidUtil.getFluidContained(held) != null){
+				if(FluidUtil.getFluidContained(held).getFluid() == FluidRegistry.WATER && FluidUtil.getFluidContained(held).amount == 1000){
+					held = held.getItem().getContainerItem(held);
+					sieve.content = Blocks.WATER;
+				}
+				else if(held.getItem() == Items.WATER_BUCKET){
+					held = held.getItem().getContainerItem(held);
+					sieve.content = Blocks.WATER;
+				}
+			}
 			if (NTMSieveHandler.Contains(Block.getBlockFromItem(held.getItem()), held.getItemDamage()))
 			{
 				sieve.addSievable(Block.getBlockFromItem(held.getItem()), held.getItemDamage());
@@ -107,7 +117,6 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

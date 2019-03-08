@@ -1,9 +1,17 @@
 package mod.nethertweaks.items;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class BucketStoneMilk extends ItemBucketMilk{
+public class BucketStoneMilk extends ItemBucketMilk implements IVariantProvider{
 	
     public BucketStoneMilk(Item container, int maxstack) {
     	super();
@@ -74,5 +82,12 @@ public class BucketStoneMilk extends ItemBucketMilk{
 
     public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, net.minecraft.nbt.NBTTagCompound nbt) {
         return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
+    }
+    
+    public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        return ret;
     }
 }

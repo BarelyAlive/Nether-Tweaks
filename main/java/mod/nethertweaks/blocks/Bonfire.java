@@ -1,14 +1,22 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -21,12 +29,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
-public class Bonfire extends Block{
+public class Bonfire extends Block implements IVariantProvider{
 	
 	public Bonfire(Material bed) {
 		super(bed);
-		setLightLevel(15);
-		setUnlocalizedName(INames.BONFIRE);
+		setLightLevel(1.0F);
+		setResistance(2.0f);
+		setHardness(0.4f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	
@@ -54,23 +63,48 @@ public class Bonfire extends Block{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		
-		if(playerIn.onGround && !worldIn.isRemote && playerIn.dimension == -1){
-		    ITextComponent name = playerIn.getDisplayName();
-		    playerIn.setSpawnChunk(pos, true, -1);
-		    int x = (int) playerIn.posX;
-		    int y = (int) playerIn.posY;
-		    int z = (int) playerIn.posZ;
-		    playerIn.addChatMessage(new TextComponentString(name + " rested at X: " + x + " Y: " + y +" Z: " + z + "!"));
-		    }
+		if(playerIn.onGround && !playerIn.isRiding() && !worldIn.isRemote){
+			String name = playerIn.getName();
+			
+			EntityPlayerMP epmp = (EntityPlayerMP) playerIn;
+			BlockPos blockpos = epmp.getPosition();
+
+            if (worldIn != null)
+            {
+            	epmp.setSpawnPoint(blockpos, true);
+            }
+            
+		    playerIn.addChatComponentMessage(new TextComponentString(name + " rested at X: " + blockpos.getX() + " Y: " + blockpos.getY() +" Z: " + blockpos.getZ() + "!"));
+		}
 		
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
 	}
 	
 	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(this);
+	}
+	
+	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-	    player.addChatComponentMessage(new TextComponentString("Your point of rest is lost!"));
+		if(!worldIn.isRemote){
+			player.addChatComponentMessage(new TextComponentString("Your point of rest is lost!"));
+		    
+		    player.setSpawnPoint(null, true);
+		}
 	    
-	    player.setSpawnPoint(null, true);
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+        return ret;
+    }
 }

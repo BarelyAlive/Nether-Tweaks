@@ -10,6 +10,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NTMBlocks;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
@@ -276,10 +277,7 @@ public class NetherrackFurnace extends BlockContainer implements IVariantProvide
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "facing=north"));
-        ret.add(new ImmutablePair<Integer, String>(0, "facing=south"));
-        ret.add(new ImmutablePair<Integer, String>(0, "facing=east"));
-        ret.add(new ImmutablePair<Integer, String>(0, "facing=west"));
+        ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
         return ret;
     }
 }

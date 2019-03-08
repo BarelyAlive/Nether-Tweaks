@@ -9,6 +9,8 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -50,8 +52,10 @@ public class BucketWood extends Item implements IFluidHandler, IVariantProvider{
         this.isFull = air;
 		setUnlocalizedName(INames.BUCKETWOOD);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setMaxStackSize(1);
 	}
 	
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         boolean flag = this.isFull == Blocks.AIR;
@@ -210,20 +214,28 @@ public class BucketWood extends Item implements IFluidHandler, IVariantProvider{
 
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
+		if(resource.getFluid() == FluidRegistry.WATER && doFill)
 		return 1000;
+		if(resource.getFluid() == NTMItems.fluidDemonWater && doFill)
+			return 1000;
+		else{
+			return 0;
+		}
 	}
 
 	@Override
 	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		if(this.isFull == Blocks.FLOWING_LAVA)
+		if(resource.getFluid() == FluidRegistry.LAVA)
 			return new FluidStack(FluidRegistry.LAVA, 1000);
-			if(this.isFull == Blocks.FLOWING_WATER)
+			if(resource.getFluid() == FluidRegistry.WATER)
 				return new FluidStack(FluidRegistry.WATER, 1000);
 			return null;
 	}
 
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {
+		if(this.isFull == NTMItems.blockDemonWater)
+			return new FluidStack(NTMItems.fluidDemonWater, 1000);
 		if(this.isFull == Blocks.FLOWING_LAVA)
 			return new FluidStack(FluidRegistry.LAVA, 1000);
 			if(this.isFull == Blocks.FLOWING_WATER)

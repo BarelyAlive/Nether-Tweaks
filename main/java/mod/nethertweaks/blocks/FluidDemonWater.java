@@ -4,6 +4,7 @@ import mod.nethertweaks.INames;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public class FluidDemonWater extends Fluid{
 
@@ -12,8 +13,13 @@ public class FluidDemonWater extends Fluid{
 	
 	public FluidDemonWater() {
 		super(INames.DEMONWATERFLUID, still, flowing);
-		setDensity(2000);
-        setViscosity(2000);
+		setDensity(FluidRegistry.WATER.getDensity());
+        setViscosity(FluidRegistry.WATER.getViscosity());
 		FluidRegistry.registerFluid(this);
+	}
+	
+	@Override
+	public boolean doesVaporize(FluidStack fluidStack) {
+		return false;
 	}
 }

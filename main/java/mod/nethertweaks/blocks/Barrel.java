@@ -37,45 +37,31 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NTMBlocks;
+import mod.nethertweaks.NTMItems;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.handler.NTMCompostHandler;
-import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.helper.Tools;
 import mod.sfhcore.proxy.IVariantProvider;
 
-public class Barrel extends BlockContainer implements IVariantProvider
-{	
-	protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
-    protected static final AxisAlignedBB AABB_WALL_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.125D);
-    protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
+public class Barrel extends BlockContainer implements IVariantProvider{
 	
 	public Barrel() {
 		super(Material.WOOD);
-		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
 		setUnlocalizedName(INames.BARREL);
 		setResistance(10.0f);
 		setHardness(2.0f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		GameRegistry.registerTileEntity(TileEntityBarrel.class, INames.TEBARREL);
 	}
-
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_LEGS);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_WEST);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_NORTH);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_EAST);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, AABB_WALL_SOUTH);
-    }
 	
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return FULL_BLOCK_AABB;
+        return new AxisAlignedBB(0.06d, 0.0d, 0.06d, 0.94d, 1.0d, 0.94d);
     }
 
     public boolean isFullCube(IBlockState state)
@@ -102,148 +88,167 @@ public class Barrel extends BlockContainer implements IVariantProvider
 
 		TileEntityBarrel barrel = (TileEntityBarrel) world.getTileEntity(pos);
 
-		if (barrel.getMode().canExtract == ExtractMode.Always)
-		{
-			barrel.giveAppropriateItem();
-		}
-		else if (player.getHeldItemMainhand() != null)
-		{
-			ItemStack item = player.getHeldItemMainhand();
-			if (item!=null)
+		if(Tools.checkHandEmpty(player)){
+			
+			if (barrel.getMode() == BarrelMode.DIRT)
 			{
-
-				//COMPOST!
-					if (barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.COMPOST && !barrel.isFull())
-					{
-						if (NTMCompostHandler.containsItem(item.getItem(), item.getItemDamage()))
-						{
-							barrel.addCompostItem(NTMCompostHandler.getItem(item.getItem(), item.getItemDamage()));
-
-							if (!player.capabilities.isCreativeMode)
-							{
-								item.stackSize -= 1;
-								if (item.stackSize == 0)
-								{
-									item = null;
-								}
-							}
-						}
-					}
-				}
-
-
-				//FLUIDS!
-				if (barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.FLUID)
+				barrel.giveAppropriateItem();
+				barrel.setMode(BarrelMode.EMPTY);
+				
+				return true;
+			}
+			
+			return false;
+		}
+		
+		if(!Tools.checkHandEmpty(player)){
+			
+			if(player.inventory.getCurrentItem().getItem() == Items.MILK_BUCKET || player.inventory.getCurrentItem().getItem() == NTMItems.bucketStoneMilk || player.inventory.getCurrentItem().getItem() == NTMItems.bucketWoodMilk){
+				barrel.setMode(BarrelMode.MILKED);
+			}
+			else if (player.inventory.getCurrentItem() != null)
+			{
+				ItemStack item = player.inventory.getCurrentItem();
+				if (item != null)
 				{
-					FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(item);
-					//FILL
-					if (fluid != null)
-					{
-
-						int capacity = barrel.fill(fluid, false);
-
-						if(capacity > 0) //&& fluid.fluidID == FluidRegistry.WATER.getID())
+	
+					//COMPOST!
+						if (barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.COMPOST && !barrel.isFull())
 						{
-							barrel.fill(fluid, true);
-
-							if (!player.capabilities.isCreativeMode)
+							if (NTMCompostHandler.containsItem(item.getItem(), item.getItemDamage()))
 							{
-								if (item.getItem() == Items.POTIONITEM && item.getItemDamage() == 0)
+								barrel.addCompostItem(NTMCompostHandler.getItem(item.getItem(), item.getItemDamage()));
+								if (!player.capabilities.isCreativeMode)
 								{
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.GLASS_BOTTLE, 1, 0));
-								}else
-								{
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, getContainer(item));
-								}
-							}
-						}
-					}
-					//DRAIN
-					else if(FluidContainerRegistry.isContainer(item))
-					{				
-						FluidStack available = barrel.drain(Integer.MAX_VALUE, false);
-						if (available != null)
-						{
-							ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, item);
-							FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
-							if (liquid != null) {
-
-								if (item.stackSize > 1) {
-									if (!player.inventory.addItemStackToInventory(filled)) {
-										return false;
-									} else {
-										item.stackSize -= 1;
+									item.stackSize -= 1;
+									if (item.stackSize == 0)
+									{
+										item = null;
 									}
-								} else {
-									player.inventory.setInventorySlotContents(player.inventory.currentItem, filled);
 								}
-
-								barrel.drain(liquid.amount, true);
-								return true;
 							}
 						}
 					}
-
-				//XXX BARREL RECIPES!
-				if (item!= null)
-				{
-					if (barrel.getMode() == BarrelMode.FLUID && barrel.isFull())
+	
+	
+					//FLUIDS!
+					if (barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.FLUID)
 					{
-						if (barrel.fluid.getFluid() == FluidRegistry.WATER)
+						FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);
+						//FILL
+						if (player.inventory.getCurrentItem().getItem() == Items.WATER_BUCKET || player.inventory.getCurrentItem().getItem() == NTMItems.bucketStoneWater || player.inventory.getCurrentItem().getItem() == NTMItems.bucketWoodWater)
 						{
-							//Dust turns water into clay!
-							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockDust))
+	
+							int capacity = barrel.fill(fluid, false);
+	
+							if(capacity > 0) //&& fluid.fluidID == FluidRegistry.WATER.getID())
 							{
+								barrel.fill(fluid, true);
+	
+								if (!player.capabilities.isCreativeMode)
+								{
+									if (item.getItem() == Items.POTIONITEM && item.getItemDamage() == 0)
+									{
+										player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.GLASS_BOTTLE, 1, 0));
+									}else
+									{
+										player.inventory.setInventorySlotContents(player.inventory.currentItem, getContainer(item));
+									}
+								}
+							}
+						}
+						if(barrel.getMode() == BarrelMode.FLUID && barrel.fluid.getFluid() == FluidRegistry.WATER){
+							if(player.inventory.getCurrentItem().getItem() == Item.getItemFromBlock(NTMBlocks.blockDust))
 								barrel.setMode(BarrelMode.CLAY);
-								useItem(player);
-							}
-							
-							if(item.getItem() == NTMItems.itemLightCrystal){
-								barrel.fluid = new FluidStack(NTMItems.fluidDemonWater, 1000);
-								barrel.setMode(BarrelMode.FLUID);
-							}
-
-							//Milk + Water = Slime!
-							if(item.getItem() == Items.MILK_BUCKET)
+						}
+						//DRAIN
+						else if(FluidContainerRegistry.isContainer(item))
+						{				
+							FluidStack available = barrel.drain(Integer.MAX_VALUE, false);
+							if (available != null)
 							{
-								barrel.setMode(BarrelMode.MILKED);
-								useItem(player);
+								ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, item);
+								FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
+								if (liquid != null) {
+	
+									if (item.stackSize > 1) {
+										if (!player.inventory.addItemStackToInventory(filled)) {
+											return false;
+										} else {
+											item.stackSize -= 1;
+										}
+									} else {
+										player.inventory.setInventorySlotContents(player.inventory.currentItem, filled);
+									}
+	
+									barrel.drain(liquid.amount, true);
+									return true;
+								}
 							}
-
-							//Mushroom stew + Water = Witch Water!
-							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == NTMItems.mushroomSpores)
-							{
-								barrel.setMode(BarrelMode.SPORED);
-								useItem(player);
-							}
-
-						} 
-						
-						if (barrel.fluid.getFluid() == FluidRegistry.LAVA)
+						}
+	
+					//XXX BARREL RECIPES!
+					if (item!= null)
+					{
+						if (barrel.getMode() == BarrelMode.FLUID && barrel.isFull())
 						{
-
-							//Glowstone + Lava = End Stone
-							if(item.getItem() == Items.GLOWSTONE_DUST)
+							if (barrel.fluid.getFluid() == FluidRegistry.WATER)
 							{
-								barrel.setMode(BarrelMode.ENDSTONE);
-								useItem(player);
+								//Dust turns water into clay!
+								if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockDust))
+								{
+									barrel.setMode(BarrelMode.CLAY);
+									useItem(player);
+								}
+								
+								if(item.getItem() == NTMItems.itemLightCrystal){
+									barrel.fluid = new FluidStack(NTMItems.fluidDemonWater, 1000);
+									barrel.setMode(BarrelMode.FLUID);
+								}
+	
+								//Milk + Water = Slime!
+								if(item.getItem() == Items.MILK_BUCKET)
+								{
+									barrel.setMode(BarrelMode.MILKED);
+									useItem(player);
+								}
+	
+								//Mushroom stew + Water = Witch Water!
+								if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == NTMItems.mushroomSpores)
+								{
+									barrel.setMode(BarrelMode.SPORED);
+									useItem(player);
+								}
+	
+							} 
+							
+							if (barrel.fluid.getFluid() == FluidRegistry.LAVA)
+							{
+	
+								//Glowstone + Lava = End Stone
+								if(item.getItem() == Items.GLOWSTONE_DUST)
+								{
+									barrel.setMode(BarrelMode.ENDSTONE);
+									useItem(player);
+								}
+								
+							}
+							
+							if(barrel.fluid.getFluid() == NTMItems.fluidDemonWater){
+								if(item.getItem() == Item.getItemFromBlock(NTMBlocks.netherSapling)){
+									barrel.setMode(BarrelMode.OAK);
+									useItem(player);
+								}
 							}
 							
 						}
-						
-						if(barrel.fluid.getFluid() == NTMItems.fluidDemonWater){
-							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockNetherSapling)){
-								barrel.setMode(BarrelMode.OAK);
-								useItem(player);
-							}
-						}
-						
 					}
 				}
 			}
+			//Return true to keep buckets from pouring all over the damn place.
+			return true;
 		}
-		//Return true to keep buckets from pouring all over the damn place.
-		return true;
+        return false;
 	}
 
 	public void useItem(EntityPlayer player)
@@ -251,7 +256,7 @@ public class Barrel extends BlockContainer implements IVariantProvider
 		if (!player.capabilities.isCreativeMode)
 		{
 
-			ItemStack item = player.inventory.mainInventory[player.inventory.currentItem];
+			ItemStack item = player.inventory.getCurrentItem();
 			//Special cases
 			if (item.getItem() == Items.MILK_BUCKET)
 			{
@@ -273,7 +278,7 @@ public class Barrel extends BlockContainer implements IVariantProvider
 			}
 		}
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;

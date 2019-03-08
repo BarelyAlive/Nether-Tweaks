@@ -8,9 +8,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.base.BlockEnum;
-import mod.nethertweaks.blocks.base.BlockEnumFalling;
 import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
+import mod.sfhcore.blocks.base.BlockEnumFalling;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
