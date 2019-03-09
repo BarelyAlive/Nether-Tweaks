@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.BucketLoader;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.sfhcore.items.CustomItem;

@@ -1,6 +1,5 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraftforge.common.util.EnumHelper;

@@ -1,4 +1,4 @@
-package mod.nethertweaks;
+package mod.nethertweaks.handler;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,11 +11,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import io.netty.channel.nio.NioTask;
+import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.items.NTMItems;
 
 
-public class RecipeLoader {
+public class RecipeHandler {
 
 	public static void loadRecipes(){
 		//Crafting Rezepte

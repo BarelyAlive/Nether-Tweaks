@@ -7,11 +7,11 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
+import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.items.CustomItem;
 

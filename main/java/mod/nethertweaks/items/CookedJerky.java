@@ -1,6 +1,5 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.item.ItemFood;

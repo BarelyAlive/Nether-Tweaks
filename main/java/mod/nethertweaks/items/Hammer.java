@@ -1,11 +1,10 @@
 package mod.nethertweaks.items;
 
 import ibxm.Player;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.RecipeLoader;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
+import mod.nethertweaks.handler.RecipeHandler;
 
 import java.util.Random;
 import java.util.Set;

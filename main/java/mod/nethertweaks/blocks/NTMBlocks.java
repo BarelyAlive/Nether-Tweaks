@@ -1,12 +1,12 @@
 package mod.nethertweaks.blocks;
  
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
 import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.BlockDoorCustom;
 import mod.sfhcore.blocks.CubeFalling;

@@ -19,7 +19,9 @@ import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.handler.BucketHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
+import mod.sfhcore.helper.InventoryRenderHelper;
 import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;
 
@@ -61,7 +63,6 @@ public class BucketLoader {
 		//Demon Water if necessary
 		
 		if(Config.iwantvanillaWater == false){
-		FluidRegistry.enableUniversalBucket();
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
 		bucketDemonWater = UniversalBucket.getItemFromBlock(blockDemonWater);
 		}
@@ -119,4 +120,8 @@ public class BucketLoader {
 		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
 	}
+	
+	public static void doHelper(){
+		InventoryRenderHelper.fluidRender(BucketLoader.blockDemonWater);
+    }
 }

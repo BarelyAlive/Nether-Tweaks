@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.BucketLoader;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;

@@ -8,10 +8,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.RecipeLoader;
+import mod.nethertweaks.handler.RecipeHandler;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;

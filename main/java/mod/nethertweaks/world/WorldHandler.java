@@ -4,7 +4,7 @@ import java.io.*;
 
 import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
-import mod.nethertweaks.RecipeLoader;
+import mod.nethertweaks.handler.RecipeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;

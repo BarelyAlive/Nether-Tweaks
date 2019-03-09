@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,15 +36,27 @@ public class BlockDemonWater extends BlockFluidClassic implements IVariantProvid
         }
         
         @Override
-        public boolean canDisplace(IBlockAccess world, BlockPos pos) {
-            if (world.getBlockState(pos).getMaterial().isLiquid()) return false;
-        return super.canDisplace(world, pos);
+        public IBlockState getStateFromMeta(int meta)
+        {
+            return getBlockState().getBaseState().withProperty(LEVEL, meta);
         }
-        
+
         @Override
-        public boolean displaceIfPossible(World world, BlockPos pos) {
-        	if (world.getBlockState(pos).getMaterial().isLiquid()) return false;
-        return super.displaceIfPossible(world, pos);
+        public boolean canDisplace(IBlockAccess world, BlockPos blockPos)
+        {
+            return !world.getBlockState(blockPos).getBlock().getMaterial(world.getBlockState(blockPos)).isLiquid() && super.canDisplace(world, blockPos);
+        }
+
+        @Override
+        public boolean displaceIfPossible(World world, BlockPos blockPos)
+        {
+            return !world.getBlockState(blockPos).getBlock().getMaterial(world.getBlockState(blockPos)).isLiquid() && super.displaceIfPossible(world, blockPos);
+        }
+
+        @Override
+        public BlockRenderLayer getBlockLayer()
+        {
+            return BlockRenderLayer.SOLID;
         }
         
         @Override

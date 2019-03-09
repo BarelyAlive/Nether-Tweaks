@@ -7,6 +7,7 @@ import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.terraingen.WorldTypeEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -28,12 +29,14 @@ import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.handler.NetherTweaksModFuelHandler;
+import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
+import mod.sfhcore.Constants;
  
-@Mod(modid=Constants.MOD, name=Constants.MOD, version=Constants.VERSION, dependencies=Constants.DEPENDENCY_CORE)
+@Mod(modid=Constants.MOD, name=Constants.MOD, version=Constants.NTMVersion, dependencies=Constants.DEPENDENCY_CORE)
 public class NetherTweaksMod {
      
     @Instance(value=Constants.MOD)
@@ -48,6 +51,10 @@ public class NetherTweaksMod {
             return new ItemStack(NTMItems.itemCookedJerky);
             }
         };
+        
+    static {
+    	FluidRegistry.enableUniversalBucket();
+    }
     
     public WorldHandler whNTM = new WorldHandler();
     public WorldType Hellworld = new WorldTypeHellworld("Hellworld");
@@ -61,6 +68,8 @@ public class NetherTweaksMod {
         NTMBlocks.registerBlocks();
         NTMItems.registerItems();
         BucketLoader.registerBuckets();
+        if(event.getSide().isClient())
+        	BucketLoader.doHelper();
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();
@@ -70,15 +79,23 @@ public class NetherTweaksMod {
     
     @EventHandler
     public void load(FMLInitializationEvent event){
-        GameRegistry.registerFuelHandler(new NetherTweaksModFuelHandler());
-        RecipeLoader.loadRecipes();
-        RecipeLoader.oreRegistration();
-        RecipeLoader.addOreRecipes();
-        new GuiHandler();
+        //Block & Item recipes
+        RecipeHandler.loadRecipes();
+        RecipeHandler.oreRegistration();
+        RecipeHandler.addOreRecipes();
+        //handler recipes
+        NTMCompostHandler.load();
+        NTMDryHandler.load();
+        NTMSieveHandler.load();
     }
      
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
+    	//mod ores
+        Ores.registerNames();
+        Ores.registerRecipes();
+        GameRegistry.registerFuelHandler(new NetherTweaksModFuelHandler());
+        new GuiHandler();
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }
      
