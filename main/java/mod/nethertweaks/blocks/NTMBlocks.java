@@ -37,6 +37,7 @@ public class NTMBlocks implements INames{
         public static Block netherLog;
         public static Block netherLeaves;
         public static Block netherWood;
+        public static Block netherSlab;
         public static Block blockBonfire;
         public static Block blockHolyEarth;
         public static Block blockSansidian;
@@ -70,6 +71,7 @@ public class NTMBlocks implements INames{
         netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
         netherLeaves = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
         netherWood = Registry.registerBlock(new NetherWood(), Constants.MOD);
+        netherSlab = Registry.registerBlock(new NetherSlab(Material.WOOD), Constants.ModIdNTM);
         blockBonfire = Registry.registerBlock(new Bonfire(Material.ROCK), Constants.MOD);
         blockHolyEarth = Registry.registerBlock(new HolyEarth(), Constants.MOD);
         blockSansidian = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.5F, 0.5F, SANSIDIAN), Constants.MOD);
