@@ -1,14 +1,14 @@
 package mod.nethertweaks.compatibility;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.items.NTMItems;
+import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.CubeFalling;
-import mod.sfhcore.items.ItemThing;
+import mod.sfhcore.items.CustomItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -41,7 +41,7 @@ public class Ores implements INames{
 		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, ORESAND), Constants.MOD);
 		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREDUST), Constants.MOD);
 		
-		oreMaterial = new ItemThing(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, "OreMaterial");
+		oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, "OreMaterial");
 		
 		//Nicht Erze
 		if(blizzpowder != null) NTMSieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);

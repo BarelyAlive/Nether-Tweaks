@@ -45,8 +45,8 @@ public class RecipeHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.TORCH, 64), "X", "Y", x, Konstanten.HELLFAYAH, y, Items.STICK);
 		if(Config.condenser){
 			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, Items.BUCKET);
-			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, NTMItems.bucketStone);
-			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, NTMItems.bucketWood);
+			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, BucketLoader.bucketStone);
+			GameRegistry.addShapedRecipe(new ItemStack(NTMBlocks.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, BucketLoader.bucketWood);
 		}
 		GameRegistry.addShapedRecipe(new ItemStack(NTMItems.itemPickaxeNetherbrick), "XXX", " Y ", " Y ", x, Items.NETHERBRICK, y, Items.BONE);
 		if(Config.netherrackFurnace)

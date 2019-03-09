@@ -1,10 +1,10 @@
 fluid.tile.DemonWater=Demon Water
 
-tile.Flesh.name=Flesh Block
-tile.BlockDemonWater.name=Demon Water
-tile.Condenser.name=Condenser
-tile.WaterFountain.name=Water Fountain
-tile.NetherrackFurnace.name=Netherrack Furnace
+tile.flesh.name=Flesh Block
+tile.blockdemonwater.name=Demon Water
+tile.condenser.name=Condenser
+tile.waterfountain.name=Water Fountain
+tile.netherrackfurnace.name=Netherrack Furnace
 tile.EndTeleport.name=Stairway to Heaven
 tile.Dust.name=Dust
 tile.StoneLadder.name=Stone Ladder
