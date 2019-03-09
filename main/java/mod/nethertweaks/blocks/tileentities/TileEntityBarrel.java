@@ -29,8 +29,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.blocks.*;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.vars.Compostable;
@@ -187,7 +188,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 							}
 						}
 						
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
 							if(world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
 								setMode(BarrelMode.COBBLESTONE);
 							}
@@ -230,7 +231,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 						}
 						
 						//Demon Water
-						if(fluid.getFluid() == BucketLoader.fluidDemonWater){
+						if(fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
 							needsUpdate = true;
 							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
 						}
@@ -240,7 +241,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
-						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == BucketLoader.blockDemonWater)
+						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == BucketNFluidHandler.blockDemonWater)
 						{
 							setMode(BarrelMode.OBSIDIAN);
 						}
@@ -598,7 +599,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 			{
 				if(fluid.getFluid() == FluidRegistry.WATER)
 				{
-					if (Block.getBlockFromItem(item) == NTMBlocks.blockDust)
+					if (Block.getBlockFromItem(item) == BlockHandler.blockDust)
 					{
 						setMode(BarrelMode.CLAY);
 					}
@@ -658,7 +659,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 		{
 			if(fluid.getFluid() == FluidRegistry.WATER)
 			{
-				if (Block.getBlockFromItem(item) == NTMBlocks.blockDust)
+				if (Block.getBlockFromItem(item) == BlockHandler.blockDust)
 				{
 					return true;
 				}

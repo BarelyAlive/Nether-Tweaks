@@ -1,8 +1,8 @@
 package mod.nethertweaks.compatibility;
 
 import mod.sfhcore.Constants;
-import mod.nethertweaks.blocks.NTMBlocks;
-import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

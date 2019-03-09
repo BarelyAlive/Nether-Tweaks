@@ -4,12 +4,12 @@ import javax.swing.Icon;
 
 import org.lwjgl.opengl.GL11;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
-import mod.nethertweaks.items.NTMItems;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelRenderer;

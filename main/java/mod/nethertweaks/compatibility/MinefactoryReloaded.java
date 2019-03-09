@@ -1,6 +1,6 @@
 package mod.nethertweaks.compatibility;
 
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import net.minecraft.block.Block;

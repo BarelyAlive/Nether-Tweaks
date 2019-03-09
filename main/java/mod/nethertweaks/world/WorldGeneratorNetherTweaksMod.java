@@ -2,7 +2,7 @@ package mod.nethertweaks.world;
  
 import java.util.Random;
 
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class WorldGeneratorNetherTweaksMod implements IWorldGenerator {
  
     private void generateNether(World world, Random random, int x, int z) {
-        erzGenerationNether(NTMBlocks.blockBasic, world, random, x, z, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
+        erzGenerationNether(BlockHandler.blockBasic, world, random, x, z, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
     }
  
     public void erzGenerationNether(Block block, World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY){

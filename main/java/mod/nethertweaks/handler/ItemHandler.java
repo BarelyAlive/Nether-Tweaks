@@ -1,4 +1,4 @@
-package mod.nethertweaks.items;
+package mod.nethertweaks.handler;
  
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
@@ -11,11 +11,17 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
+import mod.nethertweaks.items.CookedJerky;
+import mod.nethertweaks.items.Crystal;
+import mod.nethertweaks.items.FlintAndBlaze;
+import mod.nethertweaks.items.Hammer;
+import mod.nethertweaks.items.PickaxeNTM;
+import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.items.CustomItem;
 
-public class NTMItems implements INames{
+public class ItemHandler implements INames{
  
 	//ITEMS
     public static Item seedGrass;

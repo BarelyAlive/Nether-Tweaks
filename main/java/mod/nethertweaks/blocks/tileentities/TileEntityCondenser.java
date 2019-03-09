@@ -2,9 +2,9 @@ package mod.nethertweaks.blocks.tileentities;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -37,7 +37,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class TileEntityCondenser extends TileEntityBase{
 	
-	public Item[] buckets = {Items.BUCKET, BucketLoader.bucketStone, BucketLoader.bucketWood};
+	public Item[] buckets = {Items.BUCKET, BucketNFluidHandler.bucketStone, BucketNFluidHandler.bucketWood};
 	private boolean canDry = false;
 	private int a = 0;
 	
@@ -80,14 +80,14 @@ public class TileEntityCondenser extends TileEntityBase{
 						decrStackSize(0, 1);
 						setInventorySlotContents(0, new ItemStack(Items.WATER_BUCKET, 1));
 					}
-					if(bucket == BucketLoader.bucketStone){
+					if(bucket == BucketNFluidHandler.bucketStone){
 						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(BucketLoader.bucketStoneWater, 1));
+						setInventorySlotContents(0, new ItemStack(BucketNFluidHandler.bucketStoneWater, 1));
 							
 					}
-					if(bucket == BucketLoader.bucketWood){
+					if(bucket == BucketNFluidHandler.bucketWood){
 						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(BucketLoader.bucketWoodWater, 1));
+						setInventorySlotContents(0, new ItemStack(BucketNFluidHandler.bucketWoodWater, 1));
 					}
 					FluidHelper.fillContainer(machineItemStacks.get(0), FluidRegistry.WATER, 1000);
 					canDry = false;

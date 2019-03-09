@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
@@ -8,9 +7,10 @@ import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
-import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.helper.StackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

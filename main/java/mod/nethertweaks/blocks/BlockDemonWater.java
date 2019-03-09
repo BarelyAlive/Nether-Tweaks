@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -61,7 +61,7 @@ public class BlockDemonWater extends BlockFluidClassic implements IVariantProvid
         
         @Override
         public Fluid getFluid() {
-        return BucketLoader.fluidDemonWater;
+        return BucketNFluidHandler.fluidDemonWater;
         }
         
         @Override

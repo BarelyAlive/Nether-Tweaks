@@ -2,7 +2,7 @@ package mod.nethertweaks.world;
  
 import java.util.Random;
 
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.BlockLeaves;
@@ -98,7 +98,7 @@ public class WorldGenNetherTree extends WorldGenTrees
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)NTMBlocks.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)BlockHandler.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
@@ -248,7 +248,7 @@ public class WorldGenNetherTree extends WorldGenTrees
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
     {
-        this.setBlockAndNotifyAdequately(worldIn, pos, NTMBlocks.blockMeanVine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(worldIn, pos, BlockHandler.blockMeanVine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
     }
 
     private void addHangingVine(World worldIn, BlockPos pos, PropertyBool prop)

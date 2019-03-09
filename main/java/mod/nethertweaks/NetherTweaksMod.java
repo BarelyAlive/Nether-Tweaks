@@ -20,17 +20,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.blocks.HolyEarth;
-import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.blocks.gui.GuiHandler;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.compatibility.Ores;
 import mod.nethertweaks.compatibility.ThermalExpansion;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.handler.NetherTweaksModFuelHandler;
 import mod.nethertweaks.handler.RecipeHandler;
-import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
@@ -65,11 +66,11 @@ public class NetherTweaksMod {
         //Config
         Config.loadConfigs(event);
         //Registry
-        NTMBlocks.registerBlocks();
-        NTMItems.registerItems();
-        BucketLoader.registerBuckets();
+        BlockHandler.registerBlocks();
+        ItemHandler.registerItems();
+        BucketNFluidHandler.registerBuckets();
         if(event.getSide().isClient())
-        	BucketLoader.doHelper();
+        	BucketNFluidHandler.doHelper();
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();

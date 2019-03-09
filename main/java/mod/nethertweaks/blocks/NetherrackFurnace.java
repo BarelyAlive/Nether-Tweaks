@@ -8,6 +8,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -65,7 +66,7 @@ public class NetherrackFurnace extends BlockContainer {
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NTMBlocks.blockNetherrackFurnace);
+        return Item.getItemFromBlock(BlockHandler.blockNetherrackFurnace);
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
@@ -171,13 +172,13 @@ public class NetherrackFurnace extends BlockContainer {
 
         if (active)
         {
-            worldIn.setBlockState(pos, NTMBlocks.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, NTMBlocks.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, NTMBlocks.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, NTMBlocks.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -252,7 +253,7 @@ public class NetherrackFurnace extends BlockContainer {
 
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(NTMBlocks.blockNetherrackFurnace);
+        return new ItemStack(BlockHandler.blockNetherrackFurnace);
     }
 
     /**

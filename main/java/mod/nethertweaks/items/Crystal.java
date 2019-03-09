@@ -1,8 +1,9 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.items.CustomItem;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
@@ -49,19 +50,19 @@ public class Crystal extends CustomItem{
 		if(player.isSneaking()){
 			if(player.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 				player.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketDemonWater));
+				player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketDemonWater));
 			}
-			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketStoneWater))){
-					player.inventory.clearMatchingItems(BucketLoader.bucketStoneWater, 0, 1, null);
-					player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketStoneDemonWater));
+			if(player.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketStoneWater))){
+					player.inventory.clearMatchingItems(BucketNFluidHandler.bucketStoneWater, 0, 1, null);
+					player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneDemonWater));
 			}
-			if(player.inventory.hasItemStack(new ItemStack(BucketLoader.bucketWoodWater))){
-				player.inventory.clearMatchingItems(BucketLoader.bucketWoodWater, 0, 1, null);
-				player.inventory.addItemStackToInventory(new ItemStack(BucketLoader.bucketWoodDemonWater));
+			if(player.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketWoodWater))){
+				player.inventory.clearMatchingItems(BucketNFluidHandler.bucketWoodWater, 0, 1, null);
+				player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodDemonWater));
 			}
 		}
 		
-		if (player.isSneaking() && player.getActiveItemStack().getItem() == NTMItems.itemSanctuaryCrystal){
+		if (player.isSneaking() && player.getActiveItemStack().getItem() == ItemHandler.itemSanctuaryCrystal){
 			
 		
 		//Structure ok?
@@ -171,7 +172,7 @@ public class Crystal extends CustomItem{
 			//rows
 				
 			for(int i = 0; i < 7; i++){
-				worldIn.setBlockState(pos.add(x+zahl, y-1, z+zahl2), NTMBlocks.blockHolyEarth.getDefaultState());
+				worldIn.setBlockState(pos.add(x+zahl, y-1, z+zahl2), BlockHandler.blockHolyEarth.getDefaultState());
 				zahl++;
 			}
 			zahl = -3;

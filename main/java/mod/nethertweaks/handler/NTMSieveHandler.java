@@ -3,9 +3,7 @@ package mod.nethertweaks.handler;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.compatibility.Ores;
-import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.vars.SieveReward;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -101,7 +99,7 @@ public class NTMSieveHandler {
 		
 		//Dirt!
 		register(Blocks.DIRT, 0, Items.WHEAT_SEEDS, 0, 15);
-		register(Blocks.DIRT, 0, NTMItems.seedGrass, 0, 15);
+		register(Blocks.DIRT, 0, ItemHandler.seedGrass, 0, 15);
 		register(Blocks.DIRT, 0, Items.MELON_SEEDS, 0, 32);
 		register(Blocks.DIRT, 0, Items.PUMPKIN_SEEDS, 0, 32);
 		register(Blocks.DIRT, 0, Item.getItemFromBlock(Blocks.REEDS), 0, 32);
@@ -127,24 +125,24 @@ public class NTMSieveHandler {
 		register(Blocks.GRAVEL, 0, Items.DIAMOND, 0, 128);
 		register(Blocks.GRAVEL, 0, Items.EMERALD, 0, 150);
 		
-		register(Blocks.GRAVEL, 0, NTMItems.itemBase, 0, 11);
-		register(Blocks.GRAVEL, 0, NTMItems.itemBase, 1, 5);
+		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 0, 11);
+		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 1, 5);
 
 		
 		//Sand!
 		register(Blocks.SAND, 0, Items.DYE, 3, 32); //Cocoa beans
-		register(Blocks.SAND, 0, NTMItems.itemCactusSeeds, 0, 32);
-		register(Blocks.SAND, 0, NTMItems.mushroomSpores, 0, 128);
+		register(Blocks.SAND, 0, ItemHandler.itemCactusSeeds, 0, 32);
+		register(Blocks.SAND, 0, ItemHandler.mushroomSpores, 0, 128);
 		
-		register(Blocks.SAND, 0, NTMItems.itemBase, 2, 11);
-		register(Blocks.SAND, 0, NTMItems.itemBase, 3, 5);
+		register(Blocks.SAND, 0, ItemHandler.itemBase, 2, 11);
+		register(Blocks.SAND, 0, ItemHandler.itemBase, 3, 5);
 		
 		//Dust!
-		register(NTMBlocks.blockDust, 0, Items.DYE, 15, 5); //Bone Meal
-		register(NTMBlocks.blockDust, 0, Items.REDSTONE, 0, 8);		
-		register(NTMBlocks.blockDust, 0, Items.GUNPOWDER, 0, 15);
+		register(BlockHandler.blockDust, 0, Items.DYE, 15, 5); //Bone Meal
+		register(BlockHandler.blockDust, 0, Items.REDSTONE, 0, 8);		
+		register(BlockHandler.blockDust, 0, Items.GUNPOWDER, 0, 15);
 		
-		register(NTMBlocks.blockDust, 0, NTMItems.itemBase, 0, 9);
-		register(NTMBlocks.blockDust, 0, NTMItems.itemBase, 0, 18);
+		register(BlockHandler.blockDust, 0, ItemHandler.itemBase, 0, 9);
+		register(BlockHandler.blockDust, 0, ItemHandler.itemBase, 0, 18);
 	}
 }

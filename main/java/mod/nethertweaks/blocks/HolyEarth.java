@@ -2,10 +2,11 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.sfhcore.blocks.Cube;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -49,7 +50,7 @@ public class HolyEarth extends Cube{
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if(!worldIn.isRemote && !worldIn.getBlockState(pos.add(0, 1, 0)).isOpaqueCube() 
-				&& worldIn.getBlockState(pos.add(0, 1, 0)) != BucketLoader.blockDemonWater){
+				&& worldIn.getBlockState(pos.add(0, 1, 0)) != BucketNFluidHandler.blockDemonWater){
 			if(spawnTick <= 0){
 				spawnSec = rand.nextInt(5);
 				spawnTick = (spawnSec*20) + (minSpawnSec*20);
@@ -85,56 +86,56 @@ public class HolyEarth extends Cube{
 		case 0:
 			Block block = world.getBlockState(pos.add(-1, 0, 0)).getBlock();
 			if(block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, 0), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, 0), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 1:
 			Block block2 = world.getBlockState(pos.add(0, 0, -1)).getBlock();
 			if(block2.equals(Blocks.DIRT) || block2.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(0, 0, -1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(0, 0, -1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 2:
 			Block block3 = world.getBlockState(pos.add(+1, 0, 0)).getBlock();
 			if(block3.equals(Blocks.DIRT) || block3.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, 0), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, 0), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 3:
 			Block block4 = world.getBlockState(pos.add(0, 0, +1)).getBlock();
 			if(block4.equals(Blocks.DIRT) || block4.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(0, 0, +1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(0, 0, +1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 4:
 			Block block5 = world.getBlockState(pos.add(-1, 0, -1)).getBlock();
 			if(block5.equals(Blocks.DIRT) || block5.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, -1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, -1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 5:
 			Block block6 = world.getBlockState(pos.add(+1, 0, -1)).getBlock();
 			if(block6.equals(Blocks.DIRT) || block6.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, -1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, -1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 6:
 			Block block7 = world.getBlockState(pos.add(-1, 0, +1)).getBlock();
 			if(block7.equals(Blocks.DIRT) || block7.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, +1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, +1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		
 		case 7:
 			Block block8 = world.getBlockState(pos.add(+1, 0, +1)).getBlock();
 			if(block8.equals(Blocks.DIRT) || block8.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, +1), NTMBlocks.blockHolyEarth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, +1), BlockHandler.blockHolyEarth.getDefaultState());
 			}
 			return;
 		

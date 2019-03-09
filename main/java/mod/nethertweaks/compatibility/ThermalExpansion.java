@@ -4,9 +4,9 @@ import java.io.PrintStream;
 import java.lang.reflect.Method;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.blocks.NTMBlocks;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.RecipeHandler;
-import mod.nethertweaks.items.NTMItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

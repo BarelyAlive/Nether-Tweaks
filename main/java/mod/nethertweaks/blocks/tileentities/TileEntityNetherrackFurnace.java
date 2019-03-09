@@ -3,9 +3,9 @@ package mod.nethertweaks.blocks.tileentities;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.blocks.NTMBlocks;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
@@ -63,7 +63,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             {
             	if(workTime == 0)
             		workTime++;
-            	world.notifyBlockUpdate(pos, NTMBlocks.blockNetherrackFurnace_lit.getDefaultState(), NTMBlocks.blockNetherrackFurnace_lit.getDefaultState(), 3);
+            	world.notifyBlockUpdate(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState(), BlockHandler.blockNetherrackFurnace_lit.getDefaultState(), 3);
                 if (isWorking())
                 {
                     flag1 = true;

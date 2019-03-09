@@ -2,7 +2,6 @@ package mod.nethertweaks.handler;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.items.NTMItems;
 import mod.nethertweaks.vars.Compostable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,7 +64,7 @@ public class NTMCompostHandler {
 		//rotten flesh
 		register(Items.ROTTEN_FLESH, 0, 0.10f);
 		//cookedJerky
-		register(NTMItems.itemCookedJerky, 0, 0.2f);
+		register(ItemHandler.itemCookedJerky, 0, 0.2f);
 		
 		//spider eye
 		register(Items.SPIDER_EYE, 0, 0.08f);

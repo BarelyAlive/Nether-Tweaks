@@ -25,15 +25,16 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import mod.nethertweaks.BucketLoader;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
-import mod.nethertweaks.items.NTMItems;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 
@@ -159,14 +160,14 @@ public class Barrel extends BlockContainer
 						if (barrel.fluid.getFluid() == FluidRegistry.WATER)
 						{
 							//Dust turns water into clay!
-							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.blockDust))
+							if(item.getItem() == Item.getItemFromBlock(BlockHandler.blockDust))
 							{
 								barrel.setMode(BarrelMode.CLAY);
 								useItem(playerIn);
 							}
 							
-							if(item.getItem() == NTMItems.itemLightCrystal){
-								barrel.fluid = new FluidStack(BucketLoader.fluidDemonWater, 1000);
+							if(item.getItem() == ItemHandler.itemLightCrystal){
+								barrel.fluid = new FluidStack(BucketNFluidHandler.fluidDemonWater, 1000);
 								barrel.setMode(BarrelMode.FLUID);
 							}
 
@@ -178,7 +179,7 @@ public class Barrel extends BlockContainer
 							}
 
 							//Mushroom stew + Water = Witch Water!
-							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == NTMItems.mushroomSpores)
+							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == ItemHandler.mushroomSpores)
 							{
 								barrel.setMode(BarrelMode.SPORED);
 								useItem(playerIn);
@@ -198,8 +199,8 @@ public class Barrel extends BlockContainer
 							
 						}
 						
-						if(barrel.fluid.getFluid() == BucketLoader.fluidDemonWater){
-							if(item.getItem() == Item.getItemFromBlock(NTMBlocks.netherSapling)){
+						if(barrel.fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
+							if(item.getItem() == Item.getItemFromBlock(BlockHandler.netherSapling)){
 								barrel.setMode(BarrelMode.OAK);
 								useItem(playerIn);
 							}

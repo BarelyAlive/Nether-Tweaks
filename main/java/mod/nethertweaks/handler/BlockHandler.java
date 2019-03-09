@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks;
+package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
@@ -20,7 +20,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class NTMBlocks implements INames{
+public class BlockHandler implements INames{
 	
 		//Tile Entity
         public static Block blockCondenser;

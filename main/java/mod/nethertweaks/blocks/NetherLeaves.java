@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.NetherLog.EnumAxis;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -192,7 +193,7 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 	    @Override
 	    public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	    {
-	        return Item.getItemFromBlock(NTMBlocks.netherSapling);
+	        return Item.getItemFromBlock(BlockHandler.netherSapling);
 	    }
 
 	    @Override
@@ -322,7 +323,7 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 		@Override
 		public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 			java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
-			ret.add(new ItemStack(NTMBlocks.netherLeaves));
+			ret.add(new ItemStack(BlockHandler.netherLeaves));
 			
 			return ret;
 		}
