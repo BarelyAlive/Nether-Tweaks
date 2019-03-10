@@ -182,7 +182,7 @@ item.item_base_18.name=Iron Pile
 item.item_base_19.name=Stone Bar
 
 tile.block_basic_0.name=Hellfayah Ore
-tile.block_basic_2.name=Hellfayah Block
-tile.block_basic_3.name=Salt Block
+tile.block_basic_1.name=Hellfayah Block
+tile.block_basic_2.name=Salt Block
 
 itemGroup.tabNetherTweaksMod=Nether Tweaks

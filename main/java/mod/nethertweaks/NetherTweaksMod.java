@@ -30,7 +30,6 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
-import mod.nethertweaks.handler.NTMFuelHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
@@ -95,7 +94,6 @@ public class NetherTweaksMod {
     	//mod ores
         Ores.registerNames();
         Ores.registerRecipes();
-        new NTMFuelHandler();
         new GuiHandler();
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }

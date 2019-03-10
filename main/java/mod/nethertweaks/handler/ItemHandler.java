@@ -5,9 +5,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
@@ -19,6 +21,8 @@ import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
+import mod.sfhcore.SFHCore;
+import mod.sfhcore.handler.CustomFuelhandler;
 import mod.sfhcore.items.CustomItem;
 
 public class ItemHandler implements INames{
@@ -72,7 +76,14 @@ public class ItemHandler implements INames{
             itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), Constants.MOD);
             
             itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), Constants.MOD);
-                        
+            
+            addItemBurnTime();          
+        }
+        
+        public static void addItemBurnTime() {
+        	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 20000);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 20000);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 20000);
         }
      
 }
