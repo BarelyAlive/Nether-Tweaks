@@ -165,6 +165,7 @@ public class Ores implements INames{
 	public static void registerRecipes(){
 		//ore blocks
 		
+		/*
 		if(OreDictionary.doesOreNameExist("oreCopper")){
 			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 0));
 			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 17));
@@ -331,6 +332,7 @@ public class Ores implements INames{
 		GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 49));
 		GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 15));
 		GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 15), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 32));
+		*/
 		
 		/*
 		GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 15), new ItemStack(NTMItems.itemBase, 1, 16), 2.0f);
@@ -339,6 +341,7 @@ public class Ores implements INames{
         */
         
 		
+		/*
 		if(OreDictionary.doesOreNameExist("oreSaltpeter")){
 			//Saltpeter
 			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 16), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 50));
@@ -350,6 +353,7 @@ public class Ores implements INames{
             GameRegistry.addSmelting(oreSaltpeterDust, OreDictionary.getOres("dustSaltpeter").get(0), 2.0f);
             
 		}
+		*/
 	}
 	
 	public static void registerNames(){
