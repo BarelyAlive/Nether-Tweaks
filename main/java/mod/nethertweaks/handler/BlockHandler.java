@@ -61,7 +61,8 @@ public class BlockHandler implements INames{
         public static Item itemDoorNTMObsidian;
         
         public static Block blockBasic;
-        
+    
+    //Registering all the blocks
     public static void registerBlocks(){
 		
     	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 5, Constants.MOD);
@@ -112,6 +113,7 @@ public class BlockHandler implements INames{
         registerItemBlocks();
     }
     
+    //Just an extra method after the register block thing to orevent errors
     private static void registerItemBlocks(){
     	
     	//itemDoors
