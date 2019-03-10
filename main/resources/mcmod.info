@@ -1,10 +1,10 @@
 [
 {
-  "modid": "NetherTweaksModID",
-  "name": "NetherTweaksMod",
+  "modid": "nethertweaksmod",
+  "name": "Nether Tweaks Mod",
   "description": "A mod which helps to live only in the nether, or better anywhere else",
-  "version": "1.5.0",
-  "mcversion": "1.9.4",
+  "version": "1.7.0",
+  "mcversion": "1.12.2",
   "url": "http://www.curse.com/mc-mods/Minecraft/231443-nether-tweaks",
   "updateUrl": "",
   "authorList": ["Barely Alive", "Gaprosys"],
