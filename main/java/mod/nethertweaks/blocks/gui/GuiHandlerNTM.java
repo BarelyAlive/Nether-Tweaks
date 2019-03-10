@@ -24,9 +24,9 @@ public class GuiHandlerNTM{
 	*/
 	
 	public static void addGuiToHandler() {
-		GuiHandler.addGUIRelation(new TileEntityCondenser(null), new ContainerCondenser(null, null));
-		GuiHandler.addGUIRelation(new TileEntityFreezer(null), new ContainerFreezer(null, null));
-		GuiHandler.addGUIRelation(new TileEntityNetherrackFurnace(null), new ContainerNetherrackFurnace(null, null));
+		GuiHandler.addGUIRelation(TileEntityCondenser.class, ContainerCondenser.class);
+		GuiHandler.addGUIRelation(TileEntityFreezer.class, ContainerFreezer.class);
+		GuiHandler.addGUIRelation(TileEntityNetherrackFurnace.class, ContainerNetherrackFurnace.class);
 	}
 	
 	/*

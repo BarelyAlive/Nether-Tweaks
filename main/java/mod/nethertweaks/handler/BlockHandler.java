@@ -14,6 +14,7 @@ import mod.sfhcore.blocks.base.BlockEnum;
 import mod.sfhcore.blocks.base.BlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.items.block.ItemDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -103,8 +104,8 @@ public class BlockHandler implements INames{
          
         //Tile Entity
         blockCondenser = Registry.registerBlock(new Condenser(), Constants.MOD);
-        
-        GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, TENETHERRACKFURNACE);
+        RegisterTileEntity.add(blockNetherrackFurnace, new TileEntityNetherrackFurnace(TENETHERRACKFURNACE));
+        //GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, TENETHERRACKFURNACE);
         blockNetherrackFurnace = Registry.registerBlock(new NetherrackFurnace(false), Constants.MOD);
         blockNetherrackFurnace_lit = Registry.registerBlock(new NetherrackFurnace(true), Constants.MOD);
         

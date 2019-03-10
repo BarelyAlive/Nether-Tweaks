@@ -72,9 +72,10 @@ public class BucketNFluidHandler {
 		bucketStoneWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETSTONEWATER, new ItemStack(bucketStone)), Constants.MOD);
 		bucketStoneWater.setUnlocalizedName(INames.BUCKETSTONEWATER).setContainerItem(BucketNFluidHandler.bucketStone);
 		
-		bucketStoneWater.setRegistryName(INames.BUCKETSTONEWATER);
-		bucketStoneWater.registerItems();
+		//bucketStoneWater.setRegistryName(INames.BUCKETSTONEWATER);
+		//bucketStoneWater.registerItems();
 		
+		/*
 		bucketStoneLava = Registry.registerItem(new CustomBucket(Blocks.FLOWING_LAVA, INames.BUCKETSTONELAVA, new ItemStack(bucketStone)), Constants.MOD);
 		bucketStoneLava.setUnlocalizedName(INames.BUCKETSTONELAVA).setContainerItem(BucketNFluidHandler.bucketStone);
 		
@@ -112,6 +113,7 @@ public class BucketNFluidHandler {
 		
 		bucketWoodMilk.setRegistryName(INames.BUCKETWOODMILK);
 		bucketWoodMilk.registerItems();
+		*/
 				
 	}
 	
