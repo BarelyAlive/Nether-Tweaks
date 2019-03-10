@@ -66,7 +66,7 @@ public class NetherrackFurnace extends BlockContainer {
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(BlockHandler.blockNetherrackFurnace);
+        return Item.getItemFromBlock(BlockHandler.netherrackfurnace);
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
@@ -172,13 +172,13 @@ public class NetherrackFurnace extends BlockContainer {
 
         if (active)
         {
-            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, BlockHandler.blockNetherrackFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -253,7 +253,7 @@ public class NetherrackFurnace extends BlockContainer {
 
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(BlockHandler.blockNetherrackFurnace);
+        return new ItemStack(BlockHandler.netherrackfurnace);
     }
 
     /**

@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockNetherrackFurnace extends ItemBlock{
 	
 	public ItemBlockNetherrackFurnace(Block block) {
-		super(BlockHandler.blockNetherrackFurnace);
+		super(BlockHandler.netherrackfurnace);
 	}
 	     
 }

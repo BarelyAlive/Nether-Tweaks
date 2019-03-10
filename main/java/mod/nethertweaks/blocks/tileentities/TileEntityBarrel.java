@@ -599,7 +599,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 			{
 				if(fluid.getFluid() == FluidRegistry.WATER)
 				{
-					if (Block.getBlockFromItem(item) == BlockHandler.blockDust)
+					if (Block.getBlockFromItem(item) == BlockHandler.dust)
 					{
 						setMode(BarrelMode.CLAY);
 					}
@@ -659,7 +659,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 		{
 			if(fluid.getFluid() == FluidRegistry.WATER)
 			{
-				if (Block.getBlockFromItem(item) == BlockHandler.blockDust)
+				if (Block.getBlockFromItem(item) == BlockHandler.dust)
 				{
 					return true;
 				}

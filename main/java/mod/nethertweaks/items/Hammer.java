@@ -60,7 +60,7 @@ public class Hammer extends ItemTool {
 			}
 			
 			if(block == Blocks.SAND) {
-				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(BlockHandler.blockDust, 1));
+				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(BlockHandler.dust, 1));
 				worldIn.spawnEntity(entityItem);
 			}
 			

@@ -63,7 +63,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             {
             	if(workTime == 0)
             		workTime++;
-            	world.notifyBlockUpdate(pos, BlockHandler.blockNetherrackFurnace_lit.getDefaultState(), BlockHandler.blockNetherrackFurnace_lit.getDefaultState(), 3);
+            	world.notifyBlockUpdate(pos, BlockHandler.netherrackfurnace_lit.getDefaultState(), BlockHandler.netherrackfurnace_lit.getDefaultState(), 3);
                 if (isWorking())
                 {
                     flag1 = true;

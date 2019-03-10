@@ -141,11 +141,11 @@ public class NTMSieveHandler {
 		register(Blocks.SAND, 0, ItemHandler.itemBase, 3, 5);
 		
 		//Dust!
-		register(BlockHandler.blockDust, 0, Items.DYE, 15, 5); //Bone Meal
-		register(BlockHandler.blockDust, 0, Items.REDSTONE, 0, 8);		
-		register(BlockHandler.blockDust, 0, Items.GUNPOWDER, 0, 15);
+		register(BlockHandler.dust, 0, Items.DYE, 15, 5); //Bone Meal
+		register(BlockHandler.dust, 0, Items.REDSTONE, 0, 8);		
+		register(BlockHandler.dust, 0, Items.GUNPOWDER, 0, 15);
 		
-		register(BlockHandler.blockDust, 0, ItemHandler.itemBase, 0, 9);
-		register(BlockHandler.blockDust, 0, ItemHandler.itemBase, 0, 18);
+		register(BlockHandler.dust, 0, ItemHandler.itemBase, 0, 9);
+		register(BlockHandler.dust, 0, ItemHandler.itemBase, 0, 18);
 	}
 }

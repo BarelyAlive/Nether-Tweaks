@@ -162,7 +162,7 @@ public class Barrel extends BlockContainer
 						if (barrel.fluid.getFluid() == FluidRegistry.WATER)
 						{
 							//Dust turns water into clay!
-							if(item.getItem() == Item.getItemFromBlock(BlockHandler.blockDust))
+							if(item.getItem() == Item.getItemFromBlock(BlockHandler.dust))
 							{
 								barrel.setMode(BarrelMode.CLAY);
 								useItem(playerIn);

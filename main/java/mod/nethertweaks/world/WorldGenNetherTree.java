@@ -248,7 +248,7 @@ public class WorldGenNetherTree extends WorldGenTrees
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
     {
-        this.setBlockAndNotifyAdequately(worldIn, pos, BlockHandler.blockMeanVine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(worldIn, pos, BlockHandler.meanvine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
     }
 
     private void addHangingVine(World worldIn, BlockPos pos, PropertyBool prop)

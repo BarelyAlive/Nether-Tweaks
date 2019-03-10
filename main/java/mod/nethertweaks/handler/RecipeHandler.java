@@ -93,7 +93,7 @@ public class RecipeHandler {
     {
 		OreDictionary.registerOre("treeSapling", BlockHandler.netherSapling);
 		OreDictionary.registerOre("treeLeaves", BlockHandler.netherLeaves);
-		OreDictionary.registerOre("vine", BlockHandler.blockMeanVine);
+		OreDictionary.registerOre("vine", BlockHandler.meanvine);
     	OreDictionary.registerOre("itemSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustObsidian", Konstanten.OBSIDIANDUST);
