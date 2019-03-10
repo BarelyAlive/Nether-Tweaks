@@ -12,10 +12,11 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.sfhcore.Constants;
 
 public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiNetherrackFurnace.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiNetherrackFurnace.png");
 	private TileEntityNetherrackFurnace entity;
 	
 	public GuiNetherrackFurnace(InventoryPlayer inventoryPlayer, TileEntityNetherrackFurnace tileEntity) {

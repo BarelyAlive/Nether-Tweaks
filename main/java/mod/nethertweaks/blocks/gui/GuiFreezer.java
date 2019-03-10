@@ -8,10 +8,11 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.sfhcore.Constants;
 
 public class GuiFreezer extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiFreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiFreezer.png");
 	private TileEntityFreezer entity;
 	
 	public GuiFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer tileEntity) {
