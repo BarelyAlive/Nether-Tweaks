@@ -34,7 +34,8 @@ import net.minecraft.world.World;
 
 public class HolyEarth extends Cube{
 
-	public static int[] EntityIDList = {23, 31, 50, 51, 52, 54, 55, 58, 59, 66, 65, 98, 91, 92, 93, 95, 98, 100, 101, 102, 103, 105, 120};
+	public static int[] EntityIDList = {4, 23, 31, 50, 51, 52, 54, 55, 58, 59, 66, 65, 68, 98, 91, 92, 93, 94, 95, 98, 100, 101, 102, 103, 105, 120};
+	public int[]EntityWaterID = {4, 23, 68, 94};
 	private int EntityID;
 	private int minSpawnSec = 10;
 	private Entity ent;
@@ -58,19 +59,38 @@ public class HolyEarth extends Cube{
 			}
 			if(spawnTick == 1){
 				EntityID = rand.nextInt(EntityIDList.length);
-				ent = EntityList.createEntityByID(EntityIDList[EntityID], worldIn);
-				ent.setLocationAndAngles(pos.getX()+0.5d, pos.getY()+1.0d, pos.getZ()+0.5d, MathHelper.wrapDegrees(180.0F), state.getBlockHardness(worldIn, pos));
-				if(!ent.isInsideOfMaterial(Material.AIR)){
-					worldIn.scheduleBlockUpdate(pos, this, 20, 0);
-					return;
+
+				for(int id : EntityWaterID) {
+					if(worldIn.getBlockState(pos.add(0, 1, 0)) == BucketNFluidHandler.blockDemonWater && id == EntityID) {
+						ent = EntityList.createEntityByID(EntityIDList[EntityID], worldIn);
+						ent.setLocationAndAngles(pos.getX()+0.5d, pos.getY()+1.0d, pos.getZ()+0.5d, MathHelper.wrapDegrees(180.0F), state.getBlockHardness(worldIn, pos));
+						
+						if(!ent.isInsideOfMaterial(Material.AIR)){
+							worldIn.scheduleBlockUpdate(pos, this, 20, 0);
+							return;
+						}
+						worldIn.spawnEntity(ent);
+					}
+					else {
+						ent = EntityList.createEntityByID(EntityIDList[EntityID], worldIn);
+						ent.setLocationAndAngles(pos.getX()+0.5d, pos.getY()+1.0d, pos.getZ()+0.5d, MathHelper.wrapDegrees(180.0F), state.getBlockHardness(worldIn, pos));
+						
+						if(!ent.isInsideOfMaterial(Material.AIR)){
+							worldIn.scheduleBlockUpdate(pos, this, 20, 0);
+							return;
+						}
+						worldIn.spawnEntity(ent);
+					}
 				}
-				worldIn.spawnEntity(ent);
 				spreadHoly(worldIn, pos, rand);
+				
 			}
 			spawnTick--;
 		}
-		if(worldIn.getBlockState(pos.add(0, 1, 0)).isSideSolid(worldIn, pos, EnumFacing.UP)){
-			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+		if(worldIn.getBlockState(pos) != BucketNFluidHandler.blockDemonWater) {
+			if(worldIn.getBlockState(pos.add(0, 1, 0)).isSideSolid(worldIn, pos, EnumFacing.UP)){
+				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+			}
 		}
 		worldIn.scheduleBlockUpdate(pos, this, 20, 0);
 	}
