@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
@@ -11,6 +12,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.StackUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -39,6 +41,7 @@ public class Sieve extends BlockContainer{
 		setResistance(15.0f);
 		setHardness(2.0f);
 		GameRegistry.registerTileEntity(TileEntitySieve.class, INames.TESIEVE);
+        RegisterTileEntity.add(this, new TileEntitySieve());
 	}
 	
 	@Override

@@ -9,7 +9,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -40,7 +42,7 @@ public class Condenser extends BlockContainer implements IVariantProvider{
         setResistance(30.0f);
         setHardness(4.0f);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        GameRegistry.registerTileEntity(TileEntityCondenser.class, INames.TECONDENSER);
+        RegisterTileEntity.add(this, new TileEntityCondenser(INames.TECONDENSER));
     }
 
     /*

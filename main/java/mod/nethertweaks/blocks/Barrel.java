@@ -29,12 +29,14 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 
@@ -48,7 +50,7 @@ public class Barrel extends BlockContainer
 		setResistance(10.0f);
 		setHardness(2.0f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		GameRegistry.registerTileEntity(TileEntityBarrel.class, INames.TEBARREL);
+        RegisterTileEntity.add(this, new TileEntityBarrel(INames.TEBARREL));
 	}
 
 	public Barrel(Material material) {

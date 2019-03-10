@@ -10,7 +10,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import ibxm.Player;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityWaterFountain;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -46,7 +48,7 @@ public class WaterFountain extends Block{
         setResistance(30.0f);
 		setHardness(2.0f);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        GameRegistry.registerTileEntity(TileEntityWaterFountain.class, INames.TEWATERFOUNTAIN);
+        RegisterTileEntity.add(this, new TileEntityWaterFountain());
     }
     
     /*

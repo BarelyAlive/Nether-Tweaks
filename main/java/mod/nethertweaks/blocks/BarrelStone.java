@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.SFHCoreClientProxy;
 
 public class BarrelStone extends Barrel{
@@ -21,6 +23,6 @@ public class BarrelStone extends Barrel{
 		setHardness(4.0f);
 		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
 		setUnlocalizedName(INames.BARRELSTONE);
-		GameRegistry.registerTileEntity(TileEntityBarrel.class, INames.TEBARRELSTONE);
+		RegisterTileEntity.add(this, new TileEntityBarrel(INames.TEBARRELSTONE));
 	}
 }

@@ -105,7 +105,6 @@ public class BlockHandler implements INames{
         //Tile Entity
         blockCondenser = Registry.registerBlock(new Condenser(), Constants.MOD);
         RegisterTileEntity.add(blockNetherrackFurnace, new TileEntityNetherrackFurnace(TENETHERRACKFURNACE));
-        //GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, TENETHERRACKFURNACE);
         blockNetherrackFurnace = Registry.registerBlock(new NetherrackFurnace(false), Constants.MOD);
         blockNetherrackFurnace_lit = Registry.registerBlock(new NetherrackFurnace(true), Constants.MOD);
         

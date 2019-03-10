@@ -8,7 +8,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -44,7 +46,7 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 		setResistance(17.5f);
 		setHardness(3.5f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		GameRegistry.registerTileEntity(TileEntityFreezer.class, INames.TEFREEZER);
+        RegisterTileEntity.add(this, new TileEntityFreezer(INames.TEFREEZER));
 	}
 
 	@Override
