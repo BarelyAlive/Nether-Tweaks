@@ -42,7 +42,6 @@ public class NTMSieveHandler {
 		}
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static ArrayList<SieveReward> getRewards(Block block, int meta)
 	{
 		ArrayList<SieveReward> rewardList = new ArrayList();
@@ -122,8 +121,12 @@ public class NTMSieveHandler {
 		register(Blocks.GRAVEL, 0, Items.FLINT, 0, 4);
 		register(Blocks.GRAVEL, 0, Items.COAL, 0, 8);
 		register(Blocks.GRAVEL, 0, Items.DYE, 4, 20); //Lapis Lazuli
-		register(Blocks.GRAVEL, 0, Items.DIAMOND, 0, 128);
-		register(Blocks.GRAVEL, 0, Items.EMERALD, 0, 150);
+		for(ItemStack sap : OreDictionary.getOres("gemDiamond")){
+			register(Blocks.GRAVEL, 0, sap.getItem(), sap.getItemDamage(), 90);
+		}
+		for(ItemStack sap : OreDictionary.getOres("gemEmerald")){
+			register(Blocks.GRAVEL, 0, sap.getItem(), sap.getItemDamage(), 90);
+		}
 		
 		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 0, 11);
 		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 1, 5);

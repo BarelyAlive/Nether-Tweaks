@@ -1,5 +1,6 @@
 package mod.nethertweaks.items;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,7 +15,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
 
     public FlintAndBlaze()
     {
-    	this.setUnlocalizedName("ItemFlintandBlaze");
+    	this.setUnlocalizedName(INames.FLINTNBLAZE);
         this.maxStackSize = 1;
         this.setMaxDamage(64);
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);

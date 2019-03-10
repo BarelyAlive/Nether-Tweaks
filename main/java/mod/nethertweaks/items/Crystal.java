@@ -44,7 +44,6 @@ public class Crystal extends CustomItem{
 	/**
      * Called when a Block is right-clicked with this Item
      */
-    @SuppressWarnings("incomplete-switch")
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
 		if(player.isSneaking()){
@@ -118,7 +117,7 @@ public class Crystal extends CustomItem{
 			
 		}
 		
-		if(block.equals(Blocks.ENCHANTING_TABLE)){
+		if(block[0] == Blocks.ENCHANTING_TABLE){
 			
 			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z+3), Blocks.FIRE.getDefaultState());

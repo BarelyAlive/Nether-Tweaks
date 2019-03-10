@@ -15,6 +15,7 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,14 +32,13 @@ public class ItemCactusGrabber extends ItemShears{
 
 	public ItemCactusGrabber(ToolMaterial material) {
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-		setUnlocalizedName("ItemCactusGrabber");
+		setUnlocalizedName(INames.CACTUSGRABBER);
 		setMaxStackSize(1);
 	}
 	
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
-	@SuppressWarnings("incomplete-switch")
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		
