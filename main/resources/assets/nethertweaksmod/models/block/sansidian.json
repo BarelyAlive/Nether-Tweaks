@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "nethertweaksmod:blocks/BlockSansidian"
+        "all": "nethertweaksmod:blocks/block_sansidian"
     }
 }

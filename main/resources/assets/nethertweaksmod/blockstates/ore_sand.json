@@ -9,82 +9,82 @@
     "type": {
       "copper": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCopperSand"
+          "all": "nethertweaksmod:blocks/ore_copper_sand"
         }
       },
       "tin": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreTinSand"
+          "all": "nethertweaksmod:blocks/ore_tin_sand"
         }
       },
       "lead": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreLeadSand"
+          "all": "nethertweaksmod:blocks/ore_lead_sand"
         }
       },
       "nickel": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreNickelSand"
+          "all": "nethertweaksmod:blocks/ore_nickel_sand"
         }
       },
       "platinum": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OrePlatinumSand"
+          "all": "nethertweaksmod:blocks/ore_platinum_sand"
         }
       },
       "silver": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSilverSand"
+          "all": "nethertweaksmod:blocks/ore_silver_sand"
         }
       },
       "uranium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreUraniumSand"
+          "all": "nethertweaksmod:blocks/ore_uranium_sand"
         }
       },
       "osmium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreOsmiumSand"
+          "all": "nethertweaksmod:blocks/ore_osmium_sand"
         }
       },
       "draconium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreDraconiumSand"
+          "all": "nethertweaksmod:blocks/ore_draconium_sand"
         }
       },
       "sulfur": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSulfurSand"
+          "all": "nethertweaksmod:blocks/ore_sulfur_sand"
         }
       },
       "aluminum": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreAluminumSand"
+          "all": "nethertweaksmod:blocks/ore_aluminum_sand"
         }
       },
       "silicon": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSiliconSand"
+          "all": "nethertweaksmod:blocks/ore_silicon_sand"
         }
       },
       "amber": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreAmberSand"
+          "all": "nethertweaksmod:blocks/ore_amber_sand"
         }
       },
       "cinnabar": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCinnabarSand"
+          "all": "nethertweaksmod:blocks/ore_cinnabar_sand"
         }
       },
       "certusquartz": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCertusQuartzSand"
+          "all": "nethertweaksmod:blocks/ore_certus_quartz_sand"
         }
       },
       "salt": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSaltSand"
+          "all": "nethertweaksmod:blocks/ore_salt_sand"
         }
       }
     }

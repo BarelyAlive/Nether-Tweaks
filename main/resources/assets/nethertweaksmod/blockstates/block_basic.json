@@ -9,22 +9,22 @@
     "type": {
       "orehellfayah": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreHellfayah"
+          "all": "nethertweaksmod:blocks/ore_hellfayah"
         }
       },
       "charcoalblock": {
         "textures": {
-          "all": "nethertweaksmod:blocks/CharcoalBlock"
+          "all": "nethertweaksmod:blocks/charcoal_block"
         }
       },
       "hellfayahblock": {
         "textures": {
-          "all": "nethertweaksmod:blocks/HellfayahBlock"
+          "all": "nethertweaksmod:blocks/hellfayah_block"
         }
       },
       "blocksalt": {
         "textures": {
-          "all": "nethertweaksmod:blocks/BlockSalt"
+          "all": "nethertweaksmod:blocks/block_salt"
         }
       }
     }

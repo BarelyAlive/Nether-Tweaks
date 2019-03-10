@@ -1,5 +1,5 @@
 {
     "variants": {
-        "stage=0,type=oak": { "model": "nethertweaksmod:nethersapling" }
+        "stage=0,type=oak": { "model": "nethertweaksmod:nether_sapling" }
     }
 }

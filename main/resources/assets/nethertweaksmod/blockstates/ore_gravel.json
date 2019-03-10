@@ -9,82 +9,82 @@
     "type": {
       "copper": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCopperGravel"
+          "all": "nethertweaksmod:blocks/ore_copper_gravel"
         }
       },
       "tin": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreTinGravel"
+          "all": "nethertweaksmod:blocks/ore_tin_gravel"
         }
       },
       "lead": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreLeadGravel"
+          "all": "nethertweaksmod:blocks/ore_lead_gravel"
         }
       },
       "nickel": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreNickelGravel"
+          "all": "nethertweaksmod:blocks/ore_nickel_gravel"
         }
       },
       "platinum": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OrePlatinumGravel"
+          "all": "nethertweaksmod:blocks/ore_platinum_gravel"
         }
       },
       "silver": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSilverGravel"
+          "all": "nethertweaksmod:blocks/ore_silver_gravel"
         }
       },
       "uranium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreUraniumGravel"
+          "all": "nethertweaksmod:blocks/ore_uranium_gravel"
         }
       },
       "osmium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreOsmiumGravel"
+          "all": "nethertweaksmod:blocks/ore_osmium_gravel"
         }
       },
       "draconium": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreDraconiumGravel"
+          "all": "nethertweaksmod:blocks/ore_draconium_gravel"
         }
       },
       "sulfur": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSulfurGravel"
+          "all": "nethertweaksmod:blocks/ore_sulfur_gravel"
         }
       },
       "aluminum": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreAluminumGravel"
+          "all": "nethertweaksmod:blocks/ore_aluminum_gravel"
         }
       },
       "silicon": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSiliconGravel"
+          "all": "nethertweaksmod:blocks/ore_silicon_gravel"
         }
       },
       "amber": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreAmberGravel"
+          "all": "nethertweaksmod:blocks/ore_amber_gravel"
         }
       },
       "cinnabar": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCinnabarGravel"
+          "all": "nethertweaksmod:blocks/ore_cinnabar_gravel"
         }
       },
       "certusquartz": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreCertusQuartzGravel"
+          "all": "nethertweaksmod:blocks/ore_certus_quartz_gravel"
         }
       },
       "salt": {
         "textures": {
-          "all": "nethertweaksmod:blocks/OreSaltGravel"
+          "all": "nethertweaksmod:blocks/ore_salt_gravel"
         }
       }
     }

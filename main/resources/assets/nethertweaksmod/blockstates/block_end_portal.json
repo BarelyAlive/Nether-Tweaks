@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:blockendteleport" }
+        "normal": { "model": "nethertweaksmod:block_end_teleport" }
     }
 }

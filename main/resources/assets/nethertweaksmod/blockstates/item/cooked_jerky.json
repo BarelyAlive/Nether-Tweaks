@@ -8,7 +8,7 @@
     "type": {
       "normal": {
         "textures": {
-          "layer0": "nethertweaksmod:items/ItemCookedJerky"
+          "layer0": "nethertweaksmod:items/item_cooked_jerky"
         }
       }
     }

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:blocksieve" }
+        "normal": { "model": "nethertweaksmod:block_sieve" }
     }
 }

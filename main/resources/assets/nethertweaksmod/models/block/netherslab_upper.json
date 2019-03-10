@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "nethertweaksmod:blocks/BlockForTreWood",
-        "top": "nethertweaksmod:blocks/BlockForTreWood",
-        "side": "nethertweaksmod:blocks/BlockForTreWood"
-    }
-}

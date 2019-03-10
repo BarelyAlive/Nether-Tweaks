@@ -9,7 +9,7 @@
       "normal": {
       "model": "nethertweaksmod:sansidian",
         "textures": {
-          "all": "nethertweaksmod:blocks/BlockSansidian"
+          "all": "nethertweaksmod:blocks/block_sansidian"
        }
     }
   }

@@ -8,7 +8,7 @@
     "type": {
       "normal": {
         "textures": {
-          "layer0": "nethertweaksmod:items/ItemHammerWood"
+          "layer0": "nethertweaksmod:items/item_hammer_wood"
         }
       }
     }

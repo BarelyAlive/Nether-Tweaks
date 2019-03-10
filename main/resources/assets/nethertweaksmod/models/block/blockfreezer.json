@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "nethertweaksmod:blocks/BlockFreezer_top",
-        "front": "nethertweaksmod:blocks/BlockFreezer_front",
-        "side": "nethertweaksmod:blocks/BlockNetherrackFurnace"
-    }
-}

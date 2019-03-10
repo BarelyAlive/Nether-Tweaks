@@ -8,7 +8,7 @@
     "type": {
       "normal": {
         "textures": {
-          "layer0": "nethertweaksmod:items/ItemPickaxeNetherbrick"
+          "layer0": "nethertweaksmod:items/item_pickaxe_netherbrick"
         }
       }
     }

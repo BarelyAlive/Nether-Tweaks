@@ -1,8 +1,8 @@
 {
     "variants": {
-        "check_decay=false,decayable=false": { "model": "nethertweaksmod:netherleaves" },
-        "check_decay=false,decayable=true": { "model": "nethertweaksmod:netherleaves" },
-        "check_decay=true,decayable=false": { "model": "nethertweaksmod:netherleaves" },
-        "check_decay=true,decayable=true": { "model": "nethertweaksmod:netherleaves" }
+        "check_decay=false,decayable=false": { "model": "nethertweaksmod:nether_leaves" },
+        "check_decay=false,decayable=true": { "model": "nethertweaksmod:nether_leaves" },
+        "check_decay=true,decayable=false": { "model": "nethertweaksmod:nether_leaves" },
+        "check_decay=true,decayable=true": { "model": "nethertweaksmod:nether_leaves" }
     }
 }

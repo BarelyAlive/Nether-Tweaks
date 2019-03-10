@@ -8,7 +8,7 @@
     "type": {
       "normal": {
         "textures": {
-          "layer0": "nethertweaksmod:items/BucketStoneWater"
+          "layer0": "nethertweaksmod:items/bucket_stone_water"
         }
       }
     }
