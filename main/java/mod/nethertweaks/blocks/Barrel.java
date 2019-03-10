@@ -89,7 +89,7 @@ public class Barrel extends BlockContainer
 
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								StackUtils.substrateFromStackSize(item, 1);
+								StackUtils.substractFromStackSize(item, 1);
 								if (item.getCount() == 0)
 								{
 									item = null;
@@ -140,7 +140,7 @@ public class Barrel extends BlockContainer
 									if (!playerIn.inventory.addItemStackToInventory(filled)) {
 										return false;
 									} else {
-										StackUtils.substrateFromStackSize(item, 1);
+										StackUtils.substractFromStackSize(item, 1);
 									}
 								} else {
 									playerIn.inventory.setInventorySlotContents(playerIn.inventory.currentItem, filled);
@@ -232,7 +232,7 @@ public class Barrel extends BlockContainer
 			//Generic case
 			else
 			{
-				StackUtils.substrateFromStackSize(item, 1);;
+				StackUtils.substractFromStackSize(item, 1);;
 
 				if (item.getCount() == 0)
 				{

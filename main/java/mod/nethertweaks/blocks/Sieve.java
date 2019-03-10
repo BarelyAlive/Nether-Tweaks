@@ -83,7 +83,7 @@ public class Sieve extends BlockContainer{
 
 		if (!player.capabilities.isCreativeMode)
 		{
-			StackUtils.substrateFromStackSize(item, 1);;
+			StackUtils.substractFromStackSize(item, 1);;
 			if (item.getCount() == 0)
 			{
 				item = null;

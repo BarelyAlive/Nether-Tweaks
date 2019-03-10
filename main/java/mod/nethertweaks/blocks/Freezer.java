@@ -83,7 +83,7 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	                  if (item.getCount() == 1) {
 	                    playerIn.inventory.setInventorySlotContents(0, c);
 	                  } else if (item.getCount() > 1) {
-	                    StackUtils.substrateFromStackSize(item, 1);;
+	                    StackUtils.substractFromStackSize(item, 1);;
 	                  }
 	                }
 	              }
