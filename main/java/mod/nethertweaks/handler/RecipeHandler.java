@@ -29,6 +29,7 @@ public class RecipeHandler {
 	public static void loadRecipes(){
 		//Crafting Rezepte
 		
+		/*
 		if(Config.endTeleport){
 			GameRegistry.addShapedRecipe(Konstanten.ENDERINFUSEDFRAME, "XYX", "Y Y", "XYX", x, Blocks.OBSIDIAN, y, Items.ENDER_PEARL);
 			GameRegistry.addShapedRecipe(Konstanten.ENDBOX, "XXX", "XYX", "XXX", x, Blocks.END_STONE, y, Konstanten.ENDERINFUSEDFRAME);
@@ -70,6 +71,7 @@ public class RecipeHandler {
 		BucketNFluidHandler.bucketDemonWater);
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketStoneDemonWater);
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketWoodDemonWater);
+		*/
 		
 		//Schmelz-Rezepte
 		
@@ -114,6 +116,7 @@ public class RecipeHandler {
    
     public static void addOreRecipes()
     {
+    	/*
     	GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.SALTBLOCK, "XX", "XX", x, "dustSalt"));
     	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockHandler.sansidian, 2, 0), " X ", "XYX", " X ", x, "dustObsidian", y, "sand"));
     	GameRegistry.addRecipe(new ShapedOreRecipe(BucketNFluidHandler.bucketStone, "X X", " X ", x, "cobblestone"));
@@ -150,6 +153,7 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ShapedOreRecipe(ItemHandler.itemCactusGrabber, "XYX", " X ", " X ", x, "stickWood", y, Items.FLINT));
 		GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.STONEBAR, "X ", " X", x, "cobblestone"));
 		GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.STONEBAR, " X", "X ", x, "cobblestone"));
+		*/
 
     }
 }
