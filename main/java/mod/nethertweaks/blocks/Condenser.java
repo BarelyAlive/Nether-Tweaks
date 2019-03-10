@@ -120,11 +120,10 @@ public class Condenser extends BlockContainer implements IVariantProvider{
 		return new TileEntityCondenser("condenser");
 	}
 	
-	@Override
-    public List<Pair<Integer, String>> getVariants()
+	public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
+        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
         return ret;
     }
     
