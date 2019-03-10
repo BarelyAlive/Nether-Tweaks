@@ -23,7 +23,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockDemonWater extends BlockFluidClassic implements IVariantProvider{
+public class BlockDemonWater extends BlockFluidClassic{
 
         public BlockDemonWater(Fluid fluid, Material material) {
                 super(fluid, Material.WATER);
@@ -42,18 +42,6 @@ public class BlockDemonWater extends BlockFluidClassic implements IVariantProvid
         }
 
         @Override
-        public boolean canDisplace(IBlockAccess world, BlockPos blockPos)
-        {
-            return !world.getBlockState(blockPos).getBlock().getMaterial(world.getBlockState(blockPos)).isLiquid() && super.canDisplace(world, blockPos);
-        }
-
-        @Override
-        public boolean displaceIfPossible(World world, BlockPos blockPos)
-        {
-            return !world.getBlockState(blockPos).getBlock().getMaterial(world.getBlockState(blockPos)).isLiquid() && super.displaceIfPossible(world, blockPos);
-        }
-
-        @Override
         public BlockRenderLayer getBlockLayer()
         {
             return BlockRenderLayer.SOLID;
@@ -62,13 +50,5 @@ public class BlockDemonWater extends BlockFluidClassic implements IVariantProvid
         @Override
         public Fluid getFluid() {
         return BucketNFluidHandler.fluidDemonWater;
-        }
-        
-        @Override
-        public List<Pair<Integer, String>> getVariants()
-        {
-            List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-                ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
-            return ret;
         }
 }
