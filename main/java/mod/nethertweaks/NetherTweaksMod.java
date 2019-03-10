@@ -44,7 +44,7 @@ public class NetherTweaksMod {
     public static NetherTweaksMod instance;
     
     //Creative Tabs
-    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs("tabNetherTweaksMod"){
+    public static CreativeTabs tabNetherTweaksMod = new CreativeTabs("tab_nether_tweaks_mod"){
          
         @Override
         @SideOnly(Side.CLIENT)
@@ -58,7 +58,7 @@ public class NetherTweaksMod {
     }
     
     public WorldHandler whNTM = new WorldHandler();
-    public WorldType Hellworld = new WorldTypeHellworld("Hellworld");
+    public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
     @EventHandler
     public void PreInit(FMLPreInitializationEvent event){
@@ -95,7 +95,7 @@ public class NetherTweaksMod {
     	//mod ores
         Ores.registerNames();
         Ores.registerRecipes();
-        GameRegistry.registerFuelHandler(new NetherTweaksModFuelHandler());
+        new NetherTweaksModFuelHandler();
         new GuiHandler();
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }

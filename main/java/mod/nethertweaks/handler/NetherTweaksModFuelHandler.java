@@ -1,12 +1,13 @@
 package mod.nethertweaks.handler;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class NetherTweaksModFuelHandler implements IFuelHandler{
+public class NetherTweaksModFuelHandler{
 
-	@Override
-	public int getBurnTime(ItemStack fuel) {
+	@SubscribeEvent
+	public int setBurnTime(FurnaceFuelBurnTimeEvent e) {
 		
 		if(fuel.toString().contains("BucketStoneLava")){
 			
