@@ -4,35 +4,35 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class NetherTweaksModFuelHandler{
+public class NTMFuelHandler{
 
 	@SubscribeEvent
 	public int setBurnTime(FurnaceFuelBurnTimeEvent e) {
-		
-		if(fuel.toString().contains("BucketStoneLava")){
+				
+		if(e.getItemStack().getUnlocalizedName().contains("bucket_stone_lava")){
 			
 			return 20000;
 			
 		}
 		
-		if(fuel.toString().contains("ItemBase_10")){
+		if(e.getItemStack().getUnlocalizedName().contains("ItemBase_10")){
 			//200 Ticks gleich 1 Vorgang
 			
 			return 12800;
 			
 			
 		}
-		if(fuel.toString().contains("BlockBasic_1")){
-			//200 Ticks gleich 1 Vorgang
-			
-			return 128000;
-			
-			
-		}
-		if(fuel.toString().contains("BlockBasic_0")){
+		if(e.getItemStack().getUnlocalizedName().contains("block_basic_0")){
 			//200 Ticks gleich 1 Vorgang
 			
 			return 16000;
+			
+			
+		}
+		if(e.getItemStack().getUnlocalizedName().contains("block_basic_1")){
+			//200 Ticks gleich 1 Vorgang
+			
+			return 128000;
 			
 			
 		}
