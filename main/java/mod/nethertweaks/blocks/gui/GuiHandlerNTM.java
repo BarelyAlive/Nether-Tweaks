@@ -7,6 +7,7 @@ import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -14,12 +15,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-public class GuiHandler implements IGuiHandler {
-
+public class GuiHandlerNTM{
+	
+	/*
 	public GuiHandler() {
 		NetworkRegistry.INSTANCE.registerGuiHandler(NetherTweaksMod.instance, this);
 	}
+	*/
 	
+	public static void addGuiToHandler() {
+		GuiHandler.addGUIRelation(new TileEntityCondenser(null), new ContainerCondenser(null, null));
+		GuiHandler.addGUIRelation(new TileEntityFreezer(null), new ContainerFreezer(null, null));
+		GuiHandler.addGUIRelation(new TileEntityNetherrackFurnace(null), new ContainerNetherrackFurnace(null, null));
+	}
+	
+	/*
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tileEntity1 = world.getTileEntity(new BlockPos(x, y, z));
@@ -43,5 +53,5 @@ public class GuiHandler implements IGuiHandler {
         else if(tileEntity3 instanceof TileEntityFreezer) return new GuiFreezer(player.inventory, (TileEntityFreezer) tileEntity4);
         else return null;
 	}
-
+	*/
 }

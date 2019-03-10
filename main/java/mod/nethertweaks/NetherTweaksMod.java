@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.blocks.HolyEarth;
-import mod.nethertweaks.blocks.gui.GuiHandler;
+import mod.nethertweaks.blocks.gui.GuiHandlerNTM;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.compatibility.Ores;
 import mod.nethertweaks.compatibility.ThermalExpansion;
@@ -35,6 +35,7 @@ import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
+import mod.sfhcore.handler.GuiHandler;
  
 @Mod(modid=Constants.MOD, name=Constants.MOD, version=Constants.NTMVersion, dependencies=Constants.DEPENDENCY_CORE)
 public class NetherTweaksMod {
@@ -94,7 +95,8 @@ public class NetherTweaksMod {
     	//mod ores
         Ores.registerNames();
         Ores.registerRecipes();
-        new GuiHandler();
+        new GuiHandler(NetherTweaksMod.instance);
+        GuiHandlerNTM.addGuiToHandler();
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }
      
