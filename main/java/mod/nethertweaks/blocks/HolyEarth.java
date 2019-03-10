@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 
 public class HolyEarth extends Cube{
 
-	public static int[] EntityIDList = {50, 51, 52, 54, 55, 58, 59, 66, 65, 98, 91, 92, 93, 95, 98, 100, 120};
+	public static int[] EntityIDList = {23, 31, 50, 51, 52, 54, 55, 58, 59, 66, 65, 98, 91, 92, 93, 95, 98, 100, 101, 102, 103, 105, 120};
 	private int EntityID;
 	private int minSpawnSec = 10;
 	private Entity ent;

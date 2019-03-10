@@ -49,34 +49,6 @@ public class ContainerNTMBase extends Container{
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
-            else if (index != 1 && index != 0)
-            {
-                if (!FurnaceRecipes.instance().getSmeltingResult(itemstack1).isEmpty())
-                {
-                    if (!this.mergeItemStack(itemstack1, 0, 1, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (TileEntityFurnace.isItemFuel(itemstack1))
-                {
-                    if (!this.mergeItemStack(itemstack1, 1, 2, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (index >= 3 && index < 30)
-                {
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false))
-                    {
-                        return ItemStack.EMPTY;
-                    }
-                }
-                else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
-                {
-                    return ItemStack.EMPTY;
-                }
-            }
             else if (!this.mergeItemStack(itemstack1, 3, 39, false))
             {
                 return ItemStack.EMPTY;
