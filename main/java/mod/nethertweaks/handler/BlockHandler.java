@@ -72,7 +72,7 @@ public class BlockHandler implements INames{
         netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
         netherLeaves = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
         netherWood = Registry.registerBlock(new NetherWood(), Constants.MOD);
-        netherSlab = Registry.registerBlock(new NetherSlab(Material.WOOD), Constants.ModIdNTM);
+        netherSlab = Registry.registerBlock(new NetherSlab(Material.WOOD), Constants.MOD);
         blockBonfire = Registry.registerBlock(new Bonfire(Material.ROCK), Constants.MOD);
         blockHolyEarth = Registry.registerBlock(new HolyEarth(), Constants.MOD);
         blockSansidian = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.5F, 0.5F, SANSIDIAN), Constants.MOD);

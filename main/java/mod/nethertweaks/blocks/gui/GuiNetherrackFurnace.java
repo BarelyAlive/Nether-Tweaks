@@ -26,6 +26,17 @@ public class GuiNetherrackFurnace extends GuiContainer {
 		ySize = 165;
 	}
 	
+	/**
+     * Draws the screen and all the components in it.
+     */
+	@Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
+	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
 		/*
