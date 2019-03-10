@@ -8,10 +8,11 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.sfhcore.Constants;
 
 public class GuiCondenser extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation("NetherTweaksMod:textures/gui/GuiCondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiCondenser.png");
 	private TileEntityCondenser entity;
 	
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileEntityCondenser tileEntity) {
