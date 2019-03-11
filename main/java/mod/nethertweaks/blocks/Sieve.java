@@ -1,5 +1,11 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
@@ -14,6 +20,7 @@ import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.StackUtils;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -33,7 +40,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Sieve extends BlockContainer{
+public class Sieve extends BlockContainer implements IVariantProvider{
 	
 	public Sieve() {
 		super(Material.WOOD);
@@ -105,4 +112,10 @@ public class Sieve extends BlockContainer{
 		return new TileEntitySieve();
 	}
 	
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
+        return ret;
+    }
 }
