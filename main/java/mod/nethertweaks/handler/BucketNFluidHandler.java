@@ -8,10 +8,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidRegistry.FluidRegisterEvent;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -33,7 +36,7 @@ public class BucketNFluidHandler {
 		public static Block blockDemonWater;
 				
 		//Buckets
-		public static Item bucketDemonWater;
+		public static ItemStack bucketDemonWater;
 		public static Item bucketWood;
 		public static Item bucketWoodWater;
 		public static Item bucketWoodDemonWater;
@@ -60,7 +63,8 @@ public class BucketNFluidHandler {
 		//Demon Water if necessary
 		
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
-		bucketDemonWater = UniversalBucket.getItemFromBlock(blockDemonWater);
+		ForgeModContainer.getInstance().universalBucket = new UniversalBucket(1000, new ItemStack(blockDemonWater, 1), false);
+		bucketDemonWater = FluidUtil.getFilledBucket(new FluidStack(fluidDemonWater, 1000));
 		
 		//Regular Buckets
 		bucketStone = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETSTONE, null), Constants.MOD);
