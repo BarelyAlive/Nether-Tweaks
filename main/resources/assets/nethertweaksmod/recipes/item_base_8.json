@@ -14,6 +14,7 @@
     }
   },
   "result": {
-    "item": "item_base_8"
+    "item": "item_base",
+    "data": 8
   }
 }
