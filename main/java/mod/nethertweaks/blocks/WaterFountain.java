@@ -49,6 +49,7 @@ public class WaterFountain extends Block implements IVariantProvider{
 		setHardness(2.0f);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         RegisterTileEntity.add(this, new TileEntityWaterFountain());
+        setUnlocalizedName(INames.WATERFOUNTAIN);
     }
     
     /*

@@ -7,6 +7,7 @@ import java.util.Random;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.WorldGenNetherTree;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -51,6 +52,7 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable, I
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        this.setUnlocalizedName(INames.NETHERSAPLING);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)

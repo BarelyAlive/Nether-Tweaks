@@ -55,7 +55,8 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 	        super();
 	        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 	        this.setTickRandomly(true);
-	        setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+	        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+	        this.setUnlocalizedName(INames.NETHERLEAVES);
 	        this.setHardness(0.2F);
 	        this.setLightOpacity(1);
 	        this.setSoundType(SoundType.PLANT);
