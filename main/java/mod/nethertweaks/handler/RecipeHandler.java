@@ -29,50 +29,6 @@ public class RecipeHandler {
 	}
 	
 	private static void loadSmelting(){
-		//Crafting Rezepte
-		
-		/*
-		if(Config.endTeleport){
-			GameRegistry.addShapedRecipe(Konstanten.ENDERINFUSEDFRAME, "XYX", "Y Y", "XYX", x, Blocks.OBSIDIAN, y, Items.ENDER_PEARL);
-			GameRegistry.addShapedRecipe(Konstanten.ENDBOX, "XXX", "XYX", "XXX", x, Blocks.END_STONE, y, Konstanten.ENDERINFUSEDFRAME);
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockEndTeleport), "XXX", "XYX", "XXX", x, Konstanten.ENDBOX, y, Konstanten.PORTALCORE);
-			GameRegistry.addShapedRecipe(Konstanten.PORTALCORE, "XYX", "YZY", "XYX", x, new ItemStack(ItemHandler.itemBase, 1, 5), y, Items.GOLD_INGOT, z, Items.NETHER_STAR);
-		}
-		
-		GameRegistry.addShapelessRecipe(Konstanten.BLACKDYE, Items.POTIONITEM, Items.COAL);
-		GameRegistry.addShapedRecipe(Konstanten.SALTBLOCK, "XX", "XX", x, Konstanten.SALT);
-		GameRegistry.addShapelessRecipe(new ItemStack(Konstanten.SALT.getItem(), 4), Konstanten.SALTBLOCK);
-		GameRegistry.addShapedRecipe(new ItemStack(Blocks.TORCH, 64), "X", "Y", x, Konstanten.HELLFAYAH, y, Items.STICK);
-		if(Config.condenser){
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, Items.BUCKET);
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, BucketNFluidHandler.bucketStone);
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockCondenser, 1), "XXX", "XYX", "XXX", x, Blocks.NETHERRACK, y, BucketNFluidHandler.bucketWood);
-		}
-		GameRegistry.addShapedRecipe(new ItemStack(ItemHandler.itemPickaxeNetherbrick), "XXX", " Y ", " Y ", x, Items.NETHERBRICK, y, Items.BONE);
-		if(Config.netherrackFurnace)
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockNetherrackFurnace), "XXX", "X X", "XXX", x, Blocks.NETHERRACK);
-		if(Config.blockBonfire){
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockBonfire, 1), " YZ", "XXX",x, Blocks.NETHERRACK, y, Items.IRON_SWORD, z, Items.FLINT_AND_STEEL);
-			GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockBonfire, 1), " YZ", "XXX",x, Blocks.NETHERRACK, y, Items.IRON_SWORD, z, ItemHandler.itemFlintAndBlaze);
-		}
-		GameRegistry.addShapedRecipe(new ItemStack(ItemHandler.itemFlintAndBlaze), "X", "Y", x, Items.BLAZE_ROD, y, Items.FLINT);
-		GameRegistry.addShapelessRecipe(new ItemStack(BlockHandler.netherWood, 4), BlockHandler.netherLog);
-		GameRegistry.addShapedRecipe(Konstanten.SIEVEWEB, "XXX", "XXX", "XXX", x, BlockHandler.blockMeanVine);
-		
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreIronDust), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 16));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreGoldDust), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 9));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreIronSand), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 3));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreGoldSand), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 2));
-
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreIronGravel), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 1));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.oreGoldGravel), "XX", "XX", x, new ItemStack(ItemHandler.itemBase, 1, 0));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.itemDoorNTMObsidian), "XX", "XX", "XX", x, Blocks.OBSIDIAN);
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.netherSlab), "XXX", x, BlockHandler.netherWood);
-		GameRegistry.addShapedRecipe(Konstanten.CHARCOALBLOCK, "XXX", "XXX", "XXX", x, new ItemStack(Items.COAL, 1, 1));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketDemonWater);
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketStoneDemonWater);
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketWoodDemonWater);
-		*/
 		
 		//Schmelz-Rezepte
 		

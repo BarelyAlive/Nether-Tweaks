@@ -24,6 +24,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
+import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.InventoryRenderHelper;
 import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;
@@ -63,7 +64,7 @@ public class BucketNFluidHandler {
 		//Demon Water if necessary
 		
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
-		ForgeModContainer.getInstance().universalBucket = new UniversalBucket(1000, new ItemStack(blockDemonWater, 1), false);
+		FluidHelper.addUniversalBucketForFluid(fluidDemonWater, blockDemonWater);
 		bucketDemonWater = FluidUtil.getFilledBucket(new FluidStack(fluidDemonWater, 1000));
 		
 		//Regular Buckets

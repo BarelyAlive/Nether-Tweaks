@@ -71,11 +71,9 @@ public class NetherTweaksMod {
         BucketNFluidHandler.registerBuckets();
         if(event.getSide().isClient())
         	BucketNFluidHandler.doHelper();
-        NTMCompostHandler.load();
-        NTMDryHandler.load();
-        NTMSieveHandler.load();
         MinecraftForge.TERRAIN_GEN_BUS.register(whNTM);
         MinecraftForge.EVENT_BUS.register(whNTM);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
     }
     
     @EventHandler
@@ -86,22 +84,21 @@ public class NetherTweaksMod {
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();
+        
+        //needs to be checked
+        Ores.registerOres();
+        Ores.registerNames();
+        Ores.registerRecipes();
     }
      
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
     	//mod ores
-        Ores.registerNames();
-        Ores.registerRecipes();
         new GuiHandler(NetherTweaksMod.instance);
         GuiHandlerNTM.addGuiToHandler();
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
         //Compatibility
         MinefactoryReloaded.loadCompatibility();
 		ThermalExpansion.loadCompatibility();
-		Ores.registerOres();
-        Ores.registerNames();
-        Ores.registerRecipes();
     }
      
 }
