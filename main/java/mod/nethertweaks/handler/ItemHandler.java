@@ -66,14 +66,14 @@ public class ItemHandler implements INames{
             itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE), Constants.MOD);
-            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON), Constants.MOD);
+            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE).setUnlocalizedName(INames.PICKAXENETHERRACK), Constants.MOD);
+            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON).setUnlocalizedName(INames.PICKAXENETHERBRICK), Constants.MOD);
              
-            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD), Constants.MOD);
-            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD), Constants.MOD);
-            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON), Constants.MOD);
-            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND), Constants.MOD);
-            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE), Constants.MOD);
+            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD).setUnlocalizedName(INames.HAMMERWOOD), Constants.MOD);
+            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD).setUnlocalizedName(INames.HAMMERGOLD), Constants.MOD);
+            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON).setUnlocalizedName(INames.HAMMERIRON), Constants.MOD);
+            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND).setUnlocalizedName(INames.HAMMERDIAMOND), Constants.MOD);
+            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE).setUnlocalizedName(INames.HAMMERSTONE), Constants.MOD);
             
             itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), Constants.MOD);
             
