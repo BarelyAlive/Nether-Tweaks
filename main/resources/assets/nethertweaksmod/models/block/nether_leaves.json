@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "nethertweaksmod:blocks/block_for_tre_leav"
+        "all": "nethertweaksmod:blocks/for_tre_leav"
     }
 }
