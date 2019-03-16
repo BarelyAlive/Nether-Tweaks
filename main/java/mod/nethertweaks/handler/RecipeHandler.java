@@ -28,7 +28,7 @@ public class RecipeHandler {
 		oreRegistration();
 	}
 	
-	private static void loadSmelting(){
+	public static void loadSmelting(){
 		
 		//Schmelz-Rezepte
 		
@@ -46,7 +46,7 @@ public class RecipeHandler {
 	}
 	
 	//Ore-Dictionary
-	private static void oreRegistration()
+	public static void oreRegistration()
     {
 		OreDictionary.registerOre("treeSapling", BlockHandler.netherSapling);
 		OreDictionary.registerOre("treeLeaves", BlockHandler.netherLeaves);
