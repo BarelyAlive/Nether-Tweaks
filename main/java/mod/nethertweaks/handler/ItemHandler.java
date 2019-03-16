@@ -43,8 +43,8 @@ public class ItemHandler implements INames{
     public static CookedJerky itemCookedJerky;
          
     //Werkzeuge
-    public static PickaxeNTM itemPickaxeNetherrack;
-    public static PickaxeNTM itemPickaxeNetherbrick;
+    public static Item itemPickaxeNetherrack;
+    public static Item itemPickaxeNetherbrick;
     public static Item itemHammerWood;
     public static Item itemHammerGold;
     public static Item itemHammerIron;
@@ -55,7 +55,7 @@ public class ItemHandler implements INames{
         public static void registerItems(){
         	
         	//Multi ID Item
-        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 18, INames.ITEMBASE), 51, Constants.MOD);
+        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 20, INames.ITEMBASE), Constants.MOD);
     		oreMaterial = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.OREMATERIAL), Constants.MOD);
             
         	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
@@ -66,8 +66,8 @@ public class ItemHandler implements INames{
             itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE).setUnlocalizedName(INames.PICKAXENETHERRACK), Constants.MOD);
-            itemPickaxeNetherbrick = (PickaxeNTM) Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON).setUnlocalizedName(INames.PICKAXENETHERBRICK), Constants.MOD);
+            itemPickaxeNetherrack = Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE).setUnlocalizedName(INames.PICKAXENETHERRACK), Constants.MOD);
+            itemPickaxeNetherbrick = Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON).setUnlocalizedName(INames.PICKAXENETHERBRICK), Constants.MOD);
              
             itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD).setUnlocalizedName(INames.HAMMERWOOD), Constants.MOD);
             itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD).setUnlocalizedName(INames.HAMMERGOLD), Constants.MOD);
