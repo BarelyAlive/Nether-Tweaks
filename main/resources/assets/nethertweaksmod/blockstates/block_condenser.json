@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "nethertweaksmod:block_condenser" },
-        "facing=south": { "model": "nethertweaksmod:block_condenser", "y": 180 },
-        "facing=west":  { "model": "nethertweaksmod:block_condenser", "y": 270 },
-        "facing=east":  { "model": "nethertweaksmod:block_condenser", "y": 90 }
-    }
-}

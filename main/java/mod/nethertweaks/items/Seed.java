@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class Seed extends CustomItem{
 	
-public Seed(String name) {
+	public Seed(String name) {
 		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 5, name);
 	}
 
