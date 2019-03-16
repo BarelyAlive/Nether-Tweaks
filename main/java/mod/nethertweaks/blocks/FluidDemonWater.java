@@ -15,5 +15,6 @@ public class FluidDemonWater extends Fluid{
 		setDensity(2000);
         setViscosity(2000);
 		FluidRegistry.registerFluid(this);
+		setUnlocalizedName(INames.DEMONWATERFLUID);
 	}
 }
