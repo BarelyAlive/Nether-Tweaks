@@ -64,12 +64,6 @@ public class BucketNFluidHandler {
 		
 		//Buckets
 		
-		//Demon Water if necessary
-
-		
-		//bucketDemonWater = FluidUtil.getFilledBucket(new FluidStack(fluidDemonWater, 1000)).getItem();
-		//bucketDemonWater.setUnlocalizedName(INames.BUCKETDEMONWATER);
-		
 		bucketDemonWater = new CustomBucket(blockDemonWater, INames.BUCKETDEMONWATER, new ItemStack(Items.BUCKET));
 		bucketDemonWater = Registry.registerItem(bucketDemonWater, Constants.MOD);
 		
