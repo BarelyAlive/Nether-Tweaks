@@ -6,8 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class Konstanten {
-
-    public final static String VERSION ="1.6.5";
 	
 	//itemBase
 	public static final ItemStack GOLDCHUNK = new ItemStack(ItemHandler.itemBase, 1, 0);
