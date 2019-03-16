@@ -33,7 +33,7 @@ public class MeanVine extends BlockVine implements IVariantProvider{
 	/**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
-    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity entity)
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {
     	if(!(entity instanceof EntityItem)){
         entity.attackEntityFrom(DamageSource.CACTUS, 1.0F);

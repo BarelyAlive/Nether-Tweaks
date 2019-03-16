@@ -41,7 +41,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.ItemFluidContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class WaterFountain extends Block{
+public class WaterFountain extends Block implements IVariantProvider{
     
     public WaterFountain() {
         super(Material.ROCK);

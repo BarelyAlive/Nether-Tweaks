@@ -7,8 +7,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class FluidDemonWater extends Fluid{
 
-	private static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/blockDemonWater_still");
-	private static ResourceLocation flowing = new ResourceLocation("nethertweaksmod:blocks/blockDemonWater_flow");
+	private static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_still");
+	private static ResourceLocation flowing = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_flow");
 	
 	public FluidDemonWater() {
 		super(INames.DEMONWATERFLUID, still, flowing);

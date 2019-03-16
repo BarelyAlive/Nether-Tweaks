@@ -37,7 +37,7 @@ import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
 import mod.sfhcore.handler.GuiHandler;
  
-@Mod(modid="nethertweaksmod", name=Constants.MOD, version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
+@Mod(modid="nethertweaksmod", name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
 public class NetherTweaksMod {
      
     @Instance(value=Constants.MOD)

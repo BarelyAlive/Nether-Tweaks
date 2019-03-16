@@ -31,6 +31,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +48,6 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 		setUnlocalizedName(INames.SIEVE);
 		setResistance(15.0f);
 		setHardness(2.0f);
-		GameRegistry.registerTileEntity(TileEntitySieve.class, INames.TESIEVE);
         RegisterTileEntity.add(this, new TileEntitySieve());
 	}
 	
@@ -110,6 +110,11 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntitySieve();
+	}
+	
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 	
 	public List<Pair<Integer, String>> getVariants()
