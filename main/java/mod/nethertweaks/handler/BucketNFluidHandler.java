@@ -31,10 +31,7 @@ public class BucketNFluidHandler {
 		//Fluids
 		public static Fluid fluidDemonWater;
 		public static Block blockDemonWater;
-		
-		//Material
-		public static Material demonWater;
-		
+				
 		//Buckets
 		public static Item bucketDemonWater;
 		public static Item bucketWood;
