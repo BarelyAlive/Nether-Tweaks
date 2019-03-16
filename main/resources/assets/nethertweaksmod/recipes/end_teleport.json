@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "nethertweaksmod:end_box"
+    },
+    "Y": {
+      "item": "nethertweaksmod:item_base_7"
+    }
+  },
+  "result": {
+    "item": "nethertweaksmod:end_teleport"
+  }
+}

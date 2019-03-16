@@ -7,13 +7,13 @@
   ],
   "key": {
     "Y": {
-      "item": "enderpearl"
+      "item": "minecraft:ender_pearl"
     },
     "X": {
-      "item": "obsidian"
+      "item": "minecraft:obsidian"
     }
   },
   "result": {
-    "item": "nethertweaksmod:stwh_frame"
+    "item": "item_base_8"
   }
 }

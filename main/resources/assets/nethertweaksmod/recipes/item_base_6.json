@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "potionitem"
+    },
+    "Y": {
+      "item": "coal"
+    }
+  },
+  "result": {
+    "item": "nethertweaksmod:item_base_6"
+  }
+}

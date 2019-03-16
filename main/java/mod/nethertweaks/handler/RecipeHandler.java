@@ -21,10 +21,6 @@ import mod.nethertweaks.Konstanten;
 
 
 public class RecipeHandler {
-
-	private final static char x = 'X';
-	private final static char y = 'Y';
-	private final static char z = 'Z';
 	
 	public static void loadRecipes(){
 		//Crafting Rezepte

@@ -98,6 +98,12 @@ public class NetherTweaksMod {
         new GuiHandler(NetherTweaksMod.instance);
         GuiHandlerNTM.addGuiToHandler();
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
+        //Compatibility
+        MinefactoryReloaded.loadCompatibility();
+		ThermalExpansion.loadCompatibility();
+		Ores.registerOres();
+        Ores.registerNames();
+        Ores.registerRecipes();
     }
      
 }

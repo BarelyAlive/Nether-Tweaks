@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "XXX",
     "XYX",
-    "Y Y",
-    "XYX"
+    "XXX"
   ],
   "key": {
     "Y": {
-      "item": "enderpearl"
+      "item": "nethertweaksmod:ender_infused_frame"
     },
     "X": {
-      "item": "obsidian"
+      "item": "end_stone"
     }
   },
   "result": {
-    "item": "nethertweaksmod:stwh_frame"
+    "item": "nethertweaksmod:item_base_4"
   }
 }

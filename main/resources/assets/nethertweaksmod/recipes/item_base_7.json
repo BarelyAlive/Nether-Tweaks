@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YZY",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "nethertweaksmod:item_base_5"
+    },
+    "Y": {
+      "item": "gold_ingot"
+    },
+    "Z": {
+      "item": "nether_star"
+    }
+  },
+  "result": {
+    "item": "nethertweaksmod:item_base_7"
+  }
+}
