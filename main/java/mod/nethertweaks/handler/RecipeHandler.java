@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import scala.tools.nsc.doc.model.ModelFactory.NonTemplateMemberImpl;
 import io.netty.channel.nio.NioTask;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
@@ -108,6 +109,11 @@ public class RecipeHandler {
     	OreDictionary.registerOre("bucketWater", BucketNFluidHandler.bucketStoneWater);
     	OreDictionary.registerOre("bucketWater", BucketNFluidHandler.bucketWoodWater);
     	OreDictionary.registerOre("bucketWater", Items.WATER_BUCKET);
+    	OreDictionary.registerOre("bucket", BucketNFluidHandler.bucketStone);
+    	OreDictionary.registerOre("bucket", BucketNFluidHandler.bucketWood);
+    	OreDictionary.registerOre("bucket", Items.BUCKET);
+    	OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
+    	OreDictionary.registerOre("lighter", ItemHandler.itemFlintAndBlaze);
     }
    
     public static void addOreRecipes()

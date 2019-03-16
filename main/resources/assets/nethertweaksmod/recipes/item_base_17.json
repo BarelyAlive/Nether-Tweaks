@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X"
+    "XXX",
+    "XXX",
+    "XXX"
   ],
   "key": {
     "X": {
-      "item": "block_basic",
-      "data": 3
+      "item": "mean_vine"
     }
   },
   "result": {
     "item": "item_base",
-    "data": 13,
-    "count": 9
+    "data": 17
   }
 }

@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "item": "nethertweaksmod:item_base",
+      "item": "item_base",
       "data": 5
     },
     "Y": {
@@ -18,7 +18,7 @@
     }
   },
   "result": {
-    "item": "nethertweaksmod:item_base",
+    "item": "item_base",
     "data": 7
   }
 }

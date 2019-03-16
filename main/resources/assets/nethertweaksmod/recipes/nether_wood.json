@@ -5,13 +5,10 @@
   ],
   "key": {
     "X": {
-      "item": "block_basic",
-      "data": 3
+      "item": "nether_log"
     }
   },
   "result": {
-    "item": "item_base",
-    "data": 13,
-    "count": 9
+    "item": "nether_wood"
   }
 }
