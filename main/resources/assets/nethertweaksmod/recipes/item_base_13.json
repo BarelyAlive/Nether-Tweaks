@@ -1,18 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
-    "XXX",
-    "XXX"
+    "X"
   ],
   "key": {
     "X": {
-      "item": "nethertweaksmod:item_base_13"
+      "item": "nethertweaksmod:block_basic",
+      "data": 3
     }
   },
   "result": {
-    "item": "nethertweaksmod:block_basic_3",
-    "data": 3,
+    "item": "nethertweaksmod:item_base",
+    "data": 13,
     "count": 9
   }
 }

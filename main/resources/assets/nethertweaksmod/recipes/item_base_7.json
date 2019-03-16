@@ -7,16 +7,18 @@
   ],
   "key": {
     "X": {
-      "item": "nethertweaksmod:item_base_5"
+      "item": "nethertweaksmod:item_base",
+      "data": 5
     },
     "Y": {
-      "item": "gold_ingot"
+      "item": "minecraft:gold_ingot"
     },
     "Z": {
-      "item": "nether_star"
+      "item": "minecraft:nether_star"
     }
   },
   "result": {
-    "item": "nethertweaksmod:item_base_7"
+    "item": "nethertweaksmod:item_base",
+    "data": 7
   }
 }

@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
-    "XYX",
-    "XXX"
+    "X",
+    "Y"
   ],
   "key": {
     "X": {
       "item": "nethertweaksmod:item_base",
-      "data": 4
+      "data": 10
     },
     "Y": {
       "item": "nethertweaksmod:item_base",
-      "data": 7
+      "data": 10
     }
   },
   "result": {
-    "item": "nethertweaksmod:end_teleport"
+    "item": "minecraft:torch",
+    "count": 64
   }
 }

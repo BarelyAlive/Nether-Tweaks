@@ -7,13 +7,15 @@
   ],
   "key": {
     "Y": {
-      "item": "nethertweaksmod:ender_infused_frame"
+      "item": "nethertweaksmod:item_base",
+      "data": 8
     },
     "X": {
-      "item": "end_stone"
+      "item": "minecraft:end_stone"
     }
   },
   "result": {
-    "item": "nethertweaksmod:item_base_4"
+    "item": "nethertweaksmod:item_base",
+    "data": 4
   }
 }

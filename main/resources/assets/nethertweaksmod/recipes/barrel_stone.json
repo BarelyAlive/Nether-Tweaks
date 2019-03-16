@@ -8,11 +8,11 @@
   "key": {
     "Y": {
       "type": "forge:ore_dict",
-      "item": "cobblestone_slab"
+      "ore": "cobblestone_slab"
     },
     "X": {
       "type": "forge:ore_dict",
-      "item": "cobblestone"
+      "ore": "cobblestone"
     }
   },
   "result": {
