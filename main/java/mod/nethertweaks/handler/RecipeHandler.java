@@ -99,8 +99,8 @@ public class RecipeHandler {
     	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustObsidian", Konstanten.OBSIDIANDUST);
     	OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
-    	OreDictionary.registerOre("oreHellfayah", Konstanten.HELLFAYAHORE);
-    	OreDictionary.registerOre("blockHellfayah", Konstanten.HELLFAYAHBLOCK);
+    	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 0));
+    	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 1));
     	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.netherWood));
     	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.netherSlab));
     	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.netherLog));

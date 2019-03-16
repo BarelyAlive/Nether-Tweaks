@@ -47,8 +47,8 @@ public class BucketNFluidHandler {
 		public static Item bucketStoneDemonWater;
 		public static Item bucketStoneMilk;
 		
-		private static ResourceLocation still = new ResourceLocation(Constants.TEX + "DemonWater_still");
-		private static ResourceLocation flow  = new ResourceLocation(Constants.TEX + "DemonWater_flow");
+		private static ResourceLocation still = new ResourceLocation(Constants.TEX + "block_demon_water_still");
+		private static ResourceLocation flow  = new ResourceLocation(Constants.TEX + "block_demon_water_flow");
 
 	
 	public static void registerBuckets(){
@@ -62,12 +62,11 @@ public class BucketNFluidHandler {
 		
 		//Demon Water if necessary
 		
-		if(Config.iwantvanillaWater == false){
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
 		bucketDemonWater = UniversalBucket.getItemFromBlock(blockDemonWater);
-		}
 		
 		//Regular Buckets
+		bucketStone = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETSTONE, null), Constants.MOD);
 		
 		bucketStoneWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETSTONEWATER, new ItemStack(bucketStone)), Constants.MOD);
 		
@@ -78,6 +77,7 @@ public class BucketNFluidHandler {
 		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone)), Constants.MOD);
 				
 		//Same with Wood
+		bucketWood = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETWOOD, null), Constants.MOD);
 		
 		bucketWoodWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETWOODWATER, new ItemStack(bucketWood)), Constants.MOD);
 		
