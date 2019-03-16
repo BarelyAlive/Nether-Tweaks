@@ -1,17 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X"
+    "XX",
+    "XX"
   ],
   "key": {
     "X": {
-      "item": "block_basic",
-      "data": 2
+      "item": "item_base",
+      "data": 16
     }
   },
   "result": {
-    "item": "item_base",
-    "data": 13,
-    "count": 9
+    "item": "ore_iron_dust"
   }
 }

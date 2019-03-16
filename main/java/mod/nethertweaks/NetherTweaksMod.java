@@ -81,9 +81,7 @@ public class NetherTweaksMod {
     @EventHandler
     public void load(FMLInitializationEvent event){
         //Block & Item recipes
-        RecipeHandler.loadRecipes();
-        RecipeHandler.oreRegistration();
-        RecipeHandler.addOreRecipes();
+        RecipeHandler.load();
         //handler recipes
         NTMCompostHandler.load();
         NTMDryHandler.load();

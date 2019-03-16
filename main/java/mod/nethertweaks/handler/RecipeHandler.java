@@ -23,7 +23,12 @@ import mod.nethertweaks.Konstanten;
 
 public class RecipeHandler {
 	
-	public static void loadRecipes(){
+	public static void load() {
+		loadSmelting();
+		oreRegistration();
+	}
+	
+	private static void loadSmelting(){
 		//Crafting Rezepte
 		
 		/*
@@ -64,8 +69,7 @@ public class RecipeHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.itemDoorNTMObsidian), "XX", "XX", "XX", x, Blocks.OBSIDIAN);
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.netherSlab), "XXX", x, BlockHandler.netherWood);
 		GameRegistry.addShapedRecipe(Konstanten.CHARCOALBLOCK, "XXX", "XXX", "XXX", x, new ItemStack(Items.COAL, 1, 1));
-		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, 
-		BucketNFluidHandler.bucketDemonWater);
+		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketDemonWater);
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketStoneDemonWater);
 		GameRegistry.addShapedRecipe(new ItemStack(BlockHandler.blockFreezer), "XYZ", x, Items.REDSTONE, y, BlockHandler.blockCondenser, z, BucketNFluidHandler.bucketWoodDemonWater);
 		*/
@@ -86,7 +90,7 @@ public class RecipeHandler {
 	}
 	
 	//Ore-Dictionary
-	public static void oreRegistration()
+	private static void oreRegistration()
     {
 		OreDictionary.registerOre("treeSapling", BlockHandler.netherSapling);
 		OreDictionary.registerOre("treeLeaves", BlockHandler.netherLeaves);
@@ -106,6 +110,9 @@ public class RecipeHandler {
     	OreDictionary.registerOre("oreIron", BlockHandler.oreIronDust);
     	OreDictionary.registerOre("oreIron", BlockHandler.oreIronGravel);
     	OreDictionary.registerOre("oreIron", BlockHandler.oreIronSand);
+    	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketStoneDemonWater);
+    	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketWoodDemonWater);
+    	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketDemonWater);
     	OreDictionary.registerOre("bucketWater", BucketNFluidHandler.bucketStoneWater);
     	OreDictionary.registerOre("bucketWater", BucketNFluidHandler.bucketWoodWater);
     	OreDictionary.registerOre("bucketWater", Items.WATER_BUCKET);
@@ -116,7 +123,7 @@ public class RecipeHandler {
     	OreDictionary.registerOre("lighter", ItemHandler.itemFlintAndBlaze);
     }
    
-    public static void addOreRecipes()
+    private static void addOreRecipes()
     {
     	/*
     	GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.SALTBLOCK, "XX", "XX", x, "dustSalt"));

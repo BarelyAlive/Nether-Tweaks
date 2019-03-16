@@ -6,9 +6,8 @@ import net.minecraft.util.IStringSerializable;
 
 public enum EnumBlockBasic implements IStringSerializable
 {
-    OREHELLFAYAH,
-    CHARCOALBLOCK,
-    HELLFAYAHBLOCK,
+    ORE_HELLFAYAH,
+    HELLFAYAH_BLOCK,
     BLOCKSALT;
 
     @Override

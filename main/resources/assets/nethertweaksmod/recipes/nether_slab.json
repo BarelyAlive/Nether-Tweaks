@@ -1,17 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X"
+    "XXX"
   ],
   "key": {
     "X": {
-      "item": "block_basic",
-      "data": 2
+      "item": "nether_wood"
     }
   },
   "result": {
-    "item": "item_base",
-    "data": 13,
-    "count": 9
+    "item": "nether_slab",
+    "count": 6
   }
 }

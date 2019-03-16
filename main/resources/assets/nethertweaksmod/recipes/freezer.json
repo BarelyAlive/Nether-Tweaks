@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYZ"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:redstone"
+    },
+    "Y": {
+      "item": "condenser"
+    },
+    "Z": {
+      "type": "forge:ore_dict",
+      "ore": "bucketDW"
+    }
+  },
+  "result": {
+    "item": "freezer"
+  }
+}

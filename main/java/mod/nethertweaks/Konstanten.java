@@ -87,9 +87,8 @@ public class Konstanten {
 	
 	//Block BAsic
     public static final ItemStack HELLFAYAHORE = new ItemStack(BlockHandler.blockBasic, 1, 0);
-    public static final ItemStack CHARCOALBLOCK = new ItemStack(BlockHandler.blockBasic, 1, 1);
-    public static final ItemStack HELLFAYAHBLOCK = new ItemStack(BlockHandler.blockBasic, 1, 2);
-    public static final ItemStack SALTBLOCK = new ItemStack(BlockHandler.blockBasic, 1, 3);
+    public static final ItemStack HELLFAYAHBLOCK = new ItemStack(BlockHandler.blockBasic, 1, 1);
+    public static final ItemStack SALTBLOCK = new ItemStack(BlockHandler.blockBasic, 1, 2);
     
     //Ore blocks
     public static final ItemStack OREGRAVELCOPPER = new ItemStack(BlockHandler.oreGravel, 1, 0);

@@ -65,7 +65,7 @@ public class BlockHandler implements INames{
     //Registering all the blocks
     public static void registerBlocks(){
 		
-    	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 5, Constants.MOD);
+    	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 3, Constants.MOD);
 
         dust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
         endteleport = Registry.registerBlock(new EndTeleport(), Constants.MOD);
