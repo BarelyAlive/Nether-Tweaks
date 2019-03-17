@@ -34,6 +34,7 @@ public class ItemHandler implements INames{
     public static Item itemFlintAndBlaze;
     public static Item itemSanctuaryCrystal;
     public static Item itemLightCrystal;
+    public static Item enderCrystal;
     
     //Multi ID Item
 	public static Item itemBase;
@@ -64,6 +65,7 @@ public class ItemHandler implements INames{
             itemCactusSeeds = Registry.registerItem(new Seed(INames.CACTUSSEED), Constants.MOD);
             itemSanctuaryCrystal = Registry.registerItem(new Crystal(INames.SANCTUARYCRYSTAL), Constants.MOD);
             itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
+            enderCrystal = Registry.registerItem(new Crystal(ENDERCRYSTAL), Constants.MOD);
             
             //Werkzeuge
             itemPickaxeNetherrack = Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE).setUnlocalizedName(INames.PICKAXENETHERRACK), Constants.MOD);

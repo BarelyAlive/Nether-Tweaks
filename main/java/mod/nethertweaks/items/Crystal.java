@@ -10,11 +10,14 @@ import net.minecraft.block.Block;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -182,8 +185,27 @@ public class Crystal extends CustomItem{
 		if(!player.capabilities.isCreativeMode){
 			player.inventory.clearMatchingItems(this, 0, 1, null);
 		}
-	}
 		return EnumActionResult.SUCCESS;
+	}
+		
+		if(player.getActiveItemStack().getItem() == ItemHandler.enderCrystal) {
+			ItemStack itemstack = player.getHeldItem(hand);
+	
+	        worldIn.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+	        player.getCooldownTracker().setCooldown(this, 20);
+	
+	        if (!worldIn.isRemote)
+	        {
+	            EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, player);
+	            entityenderpearl.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+	            worldIn.spawnEntity(entityenderpearl);
+	        }
+	
+	        player.addStat(StatList.getObjectUseStats(this));
+	        return EnumActionResult.SUCCESS;
+		}else{
+			return EnumActionResult.FAIL;
+		}
 	}
 
 }
