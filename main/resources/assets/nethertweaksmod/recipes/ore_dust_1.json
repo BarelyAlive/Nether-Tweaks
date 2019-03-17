@@ -7,11 +7,11 @@
   "key": {
     "X": {
       "item": "ore_material",
-      "data": 35
+      "data": 33
     }
   },
   "result": {
-    "item": "ore_gravel",
+    "item": "ore_dust",
       "data": 1
   }
 }

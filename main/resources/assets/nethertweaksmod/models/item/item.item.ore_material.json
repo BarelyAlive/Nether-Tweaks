@@ -88,178 +88,164 @@
       },
       "16": {
         "textures": {
-          "layer0": "nethertweaksmod:items/chunk_saltpeter"
+          "layer0": "nethertweaksmod:items/crushed_copper"
         }
       },
       "17": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_copper"
+          "layer0": "nethertweaksmod:items/crushed_tin"
         }
       },
       "18": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_tin"
+          "layer0": "nethertweaksmod:items/crushed_lead"
         }
       },
       "19": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_lead"
+          "layer0": "nethertweaksmod:items/crushed_nickel"
         }
       },
       "20": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_nickel"
+          "layer0": "nethertweaksmod:items/crushed_platinum"
         }
       },
       "21": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_platinum"
+          "layer0": "nethertweaksmod:items/crushed_silver"
         }
       },
       "22": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_silver"
+          "layer0": "nethertweaksmod:items/crushed_uranium"
         }
       },
       "23": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_uranium"
+          "layer0": "nethertweaksmod:items/crushed_osmium"
         }
       },
       "24": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_osmium"
+          "layer0": "nethertweaksmod:items/crushed_draconium"
         }
       },
       "25": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_draconium"
+          "layer0": "nethertweaksmod:items/crushed_sulfur"
         }
       },
       "26": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_sulfur"
+          "layer0": "nethertweaksmod:items/crushed_aluminum"
         }
       },
       "27": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_aluminum"
+          "layer0": "nethertweaksmod:items/crushed_silicon"
         }
       },
       "28": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_silicon"
+          "layer0": "nethertweaksmod:items/crushed_amber"
         }
       },
       "29": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_amber"
+          "layer0": "nethertweaksmod:items/crushed_cinnabar"
         }
       },
       "30": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_cinnabar"
+          "layer0": "nethertweaksmod:items/crushed_certus_quartz"
         }
       },
       "31": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_certus_quartz"
+          "layer0": "nethertweaksmod:items/crushed_salt"
         }
       },
       "32": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_salt"
+          "layer0": "nethertweaksmod:items/pile_copper"
         }
       },
       "33": {
         "textures": {
-          "layer0": "nethertweaksmod:items/crushed_saltpeter"
+          "layer0": "nethertweaksmod:items/pile_tin"
         }
       },
       "34": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_copper"
+          "layer0": "nethertweaksmod:items/pile_lead"
         }
       },
       "35": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_tin"
+          "layer0": "nethertweaksmod:items/pile_nickel"
         }
       },
       "36": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_lead"
+          "layer0": "nethertweaksmod:items/pile_platinum"
         }
       },
       "37": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_nickel"
+          "layer0": "nethertweaksmod:items/pile_silver"
         }
       },
       "38": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_platinum"
+          "layer0": "nethertweaksmod:items/pile_uranium"
         }
       },
       "39": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_silver"
+          "layer0": "nethertweaksmod:items/pile_osmium"
         }
       },
       "40": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_uranium"
+          "layer0": "nethertweaksmod:items/pile_draconium"
         }
       },
       "41": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_osmium"
+          "layer0": "nethertweaksmod:items/pile_sulfur"
         }
       },
       "42": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_draconium"
+          "layer0": "nethertweaksmod:items/pile_aluminum"
         }
       },
       "43": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_sulfur"
+          "layer0": "nethertweaksmod:items/pile_silicon"
         }
       },
       "44": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_aluminum"
+          "layer0": "nethertweaksmod:items/pile_amber"
         }
       },
       "45": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_silicon"
+          "layer0": "nethertweaksmod:items/pile_cinnabar"
         }
       },
       "46": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_amber"
+          "layer0": "nethertweaksmod:items/pile_certus_quartz"
         }
       },
       "47": {
         "textures": {
-          "layer0": "nethertweaksmod:items/pile_cinnabar"
-        }
-      },
-      "48": {
-        "textures": {
-          "layer0": "nethertweaksmod:items/pile_certus_quartz"
-        }
-      },
-      "49": {
-        "textures": {
           "layer0": "nethertweaksmod:items/pile_salt"
         }
-      },
-      "50": {
-        "textures": {
-          "layer0": "nethertweaksmod:items/pile_saltpeter"
-        }
+      }
       }
     }
   }
