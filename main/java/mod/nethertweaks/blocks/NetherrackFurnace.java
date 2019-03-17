@@ -69,6 +69,7 @@ public class NetherrackFurnace extends BlockContainer {
         return Item.getItemFromBlock(BlockHandler.netherrackfurnace);
     }
 
+    @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         this.setDefaultFacing(worldIn, pos, state);

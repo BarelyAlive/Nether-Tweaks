@@ -46,7 +46,6 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 		setResistance(17.5f);
 		setHardness(3.5f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        RegisterTileEntity.add(this, new TileEntityFreezer(INames.TEFREEZER));
 	}
 
 	@Override
@@ -102,8 +101,14 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new TileEntityFreezer("freezer");
 	}
+	
+	@Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    {
+        this.setDefaultFacing(worldIn, pos, state);
+    }
 
-	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
+    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
     {
         if (!worldIn.isRemote)
         {

@@ -50,7 +50,6 @@ public class Barrel extends BlockContainer
 		setResistance(10.0f);
 		setHardness(2.0f);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        RegisterTileEntity.add(this, new TileEntityBarrel(INames.TEBARREL));
 	}
 
 	public Barrel(Material material) {
