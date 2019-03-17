@@ -20,12 +20,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.blocks.HolyEarth;
-import mod.nethertweaks.blocks.gui.GuiHandlerNTM;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.compatibility.Ores;
 import mod.nethertweaks.compatibility.ThermalExpansion;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
@@ -97,7 +97,7 @@ public class NetherTweaksMod {
     public void PostInit(FMLPostInitializationEvent event){
     	//mod ores
         new GuiHandler(NetherTweaksMod.instance);
-        GuiHandlerNTM.addGuiToHandler();
+        GuiLoadHandler.addGuiToHandler();
         //Compatibility
         MinefactoryReloaded.loadCompatibility();
 		ThermalExpansion.loadCompatibility();

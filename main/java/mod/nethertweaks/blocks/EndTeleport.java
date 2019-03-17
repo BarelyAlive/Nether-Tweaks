@@ -102,16 +102,4 @@ public class EndTeleport extends Cube{
         }
 		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
-	
-	/*
-	@Override
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		icons[0] = iconRegister.registerIcon("NetherTweaksMod:endteleport_bottom");
-		icons[1] = iconRegister.registerIcon("NetherTweaksMod:endteleport_top");
-		icons[2] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[3] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[4] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-		icons[5] = iconRegister.registerIcon("NetherTweaksMod:endteleport_side");
-	}
-	*/
 }
