@@ -167,9 +167,6 @@ public class Ores implements INames{
 		
 		/*
 		if(OreDictionary.doesOreNameExist("oreCopper")){
-			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 0));
-			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 17));
-			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 0), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 34));
 			
 			GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0f);
             GameRegistry.addSmelting(new ItemStack(oreSand, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0f);
@@ -177,9 +174,6 @@ public class Ores implements INames{
             
 		}
 		if(OreDictionary.doesOreNameExist("oreTin")){
-			GameRegistry.addShapedRecipe(new ItemStack(oreGravel, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 1));
-			GameRegistry.addShapedRecipe(new ItemStack(oreSand, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 18));
-			GameRegistry.addShapedRecipe(new ItemStack(oreDust, 1, 1), "XX", "XX", 'X', new ItemStack(oreMaterial, 1, 35));
 			
             GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0f);
             GameRegistry.addSmelting(new ItemStack(oreSand, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0f);
