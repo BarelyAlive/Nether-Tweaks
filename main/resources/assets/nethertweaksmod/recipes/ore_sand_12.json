@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "ore_material",
+      "data": 28
+    }
+  },
+  "result": {
+    "item": "ore_sand",
+      "data": 12
+  }
+}

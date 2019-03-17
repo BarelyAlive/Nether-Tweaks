@@ -46,117 +46,111 @@ public class Ores implements INames{
 		//Erze
 		if(OreDictionary.doesOreNameExist("oreCopper")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 34, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 32, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 16, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 0, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreTin")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 35, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 33, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 1, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreLead")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 36, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 34, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 2, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreNickel")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 37, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 35, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 3, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("orePlatinum")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 38, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 36, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 4, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreSilver")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 39, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 37, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 5, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreUranium")){
 
-	        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 40, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
+	        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 38, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 6, 20);
 	        
 		}
 		if(OreDictionary.doesOreNameExist("oreOsmium")){
 
-	        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 41, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
+	        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 39, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 7, 20);
 	        
 		}if(OreDictionary.doesOreNameExist("oreDraconium")){
 
 			//Draconic Evo
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 42, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 40, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 8, 20);
 			
 		}
 		if(OreDictionary.doesOreNameExist("oreSulfur")){
 			//Sulfur
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 43, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 41, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 9, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreAluminum")){
 			//Aluminum
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 44, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 42, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 10, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreSilicon")){
 			
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 45, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 43, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 11, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreAmber")){
 			//Amber
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 46, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 44, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 12, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreCinnabar")){
 			//Cinnabar
-			NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 47, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
+			NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 45, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 13, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
 			//AppEng2
-            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 48, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
+            NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 46, 20);
+			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
 			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 14, 20);
             
 		}
 		
 		//Salt
-        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 49, 20);
-		NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 32, 20);
+        NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 47, 20);
+		NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
 		NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 15, 20);
 		
-		if(OreDictionary.doesOreNameExist("oreSaltpeter")){
-			//Saltpeter
-			NTMSieveHandler.register(BlockHandler.dust, 0, oreMaterial, 50, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 33, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 16, 20);
-		}
 	}
 	
 	public static void registerRecipes(){
