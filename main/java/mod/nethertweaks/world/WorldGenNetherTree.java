@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraftforge.common.IPlantable;
  
 public class WorldGenNetherTree extends WorldGenTrees
 {
@@ -98,7 +99,7 @@ public class WorldGenNetherTree extends WorldGenTrees
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)BlockHandler.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (IPlantable) BlockHandler.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
