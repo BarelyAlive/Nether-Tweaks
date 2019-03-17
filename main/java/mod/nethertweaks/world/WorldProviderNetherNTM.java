@@ -68,9 +68,7 @@ public class WorldProviderNetherNTM extends WorldProviderHell {
 		if(this.world.getWorldType() instanceof WorldTypeHellworld){
 			return new BlockPos(0,51,0);
 		}
-		else{
-			return null;
-		}
+		return super.getSpawnCoordinate();
 	}
 	
 }

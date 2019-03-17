@@ -24,7 +24,6 @@ public class WorldGeneratorNetherTweaksMod implements IWorldGenerator {
             int positionX = posX + random.nextInt(maxX);
             int positionY = minY + random.nextInt(differenzMinMaxY);
             int positionZ = posZ + random.nextInt(maxZ);
-            //(new WorldGenMinable(block, maxAderLaenge, Blocks.NETHERRACK)).generate(world, random, positionX, positionY, positionZ);
             new WorldGenMinable(Blocks.NETHERRACK.getDefaultState(), 1).generate(world, random, new BlockPos(positionX, positionY, positionZ));
         }
         

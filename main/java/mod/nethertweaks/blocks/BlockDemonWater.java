@@ -15,13 +15,29 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+class FluidDemonWater extends Fluid{
+
+	private static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_still");
+	private static ResourceLocation flowing = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_flow");
+	
+	public FluidDemonWater() {
+		super(INames.DEMONWATERFLUID, still, flowing);
+		setDensity(2000);
+        setViscosity(2000);
+		FluidRegistry.registerFluid(this);
+		setUnlocalizedName(INames.DEMONWATERFLUID);
+	}
+}
 
 public class BlockDemonWater extends BlockFluidClassic{
 
