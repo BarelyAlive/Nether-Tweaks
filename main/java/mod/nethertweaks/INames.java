@@ -77,6 +77,7 @@ public interface INames {
 	
 	public static final String SANCTUARYCRYSTAL 			= "sanctuary_crystal";
 	public static final String LIGHTCRYSTAL 				= "light_crystal";
+	public static final String ENDERCRYSTAL 				= "ender_crystal";
 	public static final String ITEMBASE 					= "item_base";
 	
 	public static final String COOKEDJERKY 					= "cooked_jerky";
