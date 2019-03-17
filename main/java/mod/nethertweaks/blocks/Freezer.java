@@ -67,7 +67,7 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	          if (FluidHelper.isFillableContainerWithRoom(item))
 	          {
 	            FluidStack fluid = FluidHelper.getFluidForFilledItem(item.getItem());
-	            if (fr.fill(fluid, false) == fluid.amount)
+	            if (fr.fill(fluid, false) <= fluid.amount)
 	            {
 	              if (playerIn.capabilities.isCreativeMode)
 	              {

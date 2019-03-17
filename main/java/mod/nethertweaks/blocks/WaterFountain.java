@@ -13,6 +13,8 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityWaterFountain;
 import mod.sfhcore.handler.RegisterTileEntity;
+import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -52,34 +54,33 @@ public class WaterFountain extends Block implements IVariantProvider{
         setUnlocalizedName(INames.WATERFOUNTAIN);
     }
     
-    /*
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
-    		EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-    	TileEntityWaterFountain wf = (TileEntityWaterFountain) world.getTileEntity(pos);
-                
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+    		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    	TileEntityWaterFountain wf = (TileEntityWaterFountain) worldIn.getTileEntity(pos);
+        ItemStack heldItem = StackUtils.getPlayerHandStack(playerIn, hand);
         if (heldItem != null)
         {
           if (heldItem.getItem() instanceof ItemFluidContainer)
           {
-            ItemStack filled = FluidContainerRegistry.fillFluidContainer(wf.getFullStack2(), heldItem);
+            ItemStack filled = FluidHelper.fillContainer(heldItem, wf.getFullStack2());
             if (filled != null)
             {
-              int a = FluidContainerRegistry.getFluidForFilledItem(filled).amount;
-              if (player.capabilities.isCreativeMode)
+              int a = FluidHelper.getFluidForFilledItem(heldItem.getItem()).amount;
+              if (playerIn.capabilities.isCreativeMode)
               {
                 wf.drain(a, true);
               }
               else if (heldItem.getCount() == 1)
               {
-            	heldItem.stackSize -= 1;
-            	player.inventory.addItemStackToInventory(filled);
+            	  StackUtils.substractFromStackSize(heldItem, 1);
+            	playerIn.inventory.addItemStackToInventory(filled);
                 wf.drain(a, true);
               }
-              else if (player.inventory.hasItemStack(filled))
+              else if (playerIn.inventory.hasItemStack(filled))
               {
-                heldItem.stackSize -= 1;
-                player.inventory.addItemStackToInventory(filled);
+            	StackUtils.substractFromStackSize(heldItem, 1);
+                playerIn.inventory.addItemStackToInventory(filled);
                 wf.drain(a, true);
               }
               return true;
@@ -88,7 +89,6 @@ public class WaterFountain extends Block implements IVariantProvider{
         }
 		return true;
     }
-    */
     
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
