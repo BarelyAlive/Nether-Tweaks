@@ -65,15 +65,17 @@ public class WorldHandler{
     
     @SubscribeEvent
     public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
+    	
     	if(event.getEntity() instanceof EntityPlayer){
     		EntityPlayer player = (EntityPlayer) event.getEntity();
+        	System.out.println(player);
+        	
 	        if(player.dimension != -1 && isHellworldType == true) {
-	        	
-	        	//player.preparePlayerToSpawn();
+	        	player.preparePlayerToSpawn();
 	            player.changeDimension(-1);
 	        }
     	
-	    	if(isHellworldType == false){
+	    	if(isHellworldType == true){
 	            
 	        	if(player.dimension == 0){
 	        		player.changeDimension(Config.nethDim);

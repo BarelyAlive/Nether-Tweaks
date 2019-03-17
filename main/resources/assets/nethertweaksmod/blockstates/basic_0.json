@@ -7,17 +7,17 @@
   },
   "variants": {
     "type": {
-      "orehellfayah": {
+      "ore_hellfayah": {
         "textures": {
           "all": "nethertweaksmod:blocks/ore_hellfayah"
         }
       },
-      "charcoalblock": {
+      "charcoal_block": {
         "textures": {
           "all": "nethertweaksmod:blocks/charcoal_block"
         }
       },
-      "hellfayahblock": {
+      "hellfayah_block": {
         "textures": {
           "all": "nethertweaksmod:blocks/hellfayah_block"
         }
