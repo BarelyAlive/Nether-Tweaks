@@ -54,9 +54,9 @@ public class NetherrackFurnace extends BlockContainer {
         this.isBurning = isBurning;
         setResistance(17.5F);
         setHardness(3.5F);
-        if(getUnlocalizedName() == INames.NETHERRACKFURNACE)
+        if(getUnlocalizedName().substring(5) == INames.NETHERRACKFURNACE)
         	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        if(getUnlocalizedName() == INames.NETHERRACKFURNACE_LIT)
+        if(getUnlocalizedName().substring(5) == INames.NETHERRACKFURNACE_LIT)
         	setLightLevel(13.0F);
     }
 
