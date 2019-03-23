@@ -118,7 +118,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 		}
 		if(block.getDefaultState().getMaterial() == Material.LAVA){
 			if(block instanceof BlockFluidClassic) {
-				int lavatime = 12800;
+				int lavatime = maxworkTime / 10 * 8;
 				int lavaheat = FluidRegistry.LAVA.getTemperature();
 				int blockheat = BlockFluidClassic.getTemperature(world, pos);
 				if(maxworkTime > lavatime) {

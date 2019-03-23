@@ -30,6 +30,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -98,19 +99,30 @@ public class TileEntityCondenser extends TileEntityBase{
 	return;
 	}
 	
-	public int checkHeatSource(){
+	public boolean checkHeatSource(){
 		World world = getWorld();
 		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		if(Config.dryTimeCondenser != 2400)
-			return maxworkTime = Config.dryTimeCondenser;
 		if(block.getDefaultState().getMaterial() == Material.FIRE){
-			return maxworkTime = 1800;
+			maxworkTime = ((maxworkTime / 10) * 9);
+			return true;
 		}
 		if(block.getDefaultState().getMaterial() == Material.LAVA){
-			return maxworkTime = 1200;
-		}else {
-			return maxworkTime = 2400;
+			if(block instanceof BlockFluidClassic) {
+				int lavatime = ((maxworkTime / 10) * 8);
+				int lavaheat = FluidRegistry.LAVA.getTemperature();
+				int blockheat = BlockFluidClassic.getTemperature(world, pos);
+				if(maxworkTime > lavatime) {
+					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
+					if(lavatime > heattime) {
+						maxworkTime = heattime;
+					}else {
+						maxworkTime = lavatime;			
+					}
+				}
+			}
+			return true;
 		}
+		return false;
 	}
 	
 	public void checkInv(){
