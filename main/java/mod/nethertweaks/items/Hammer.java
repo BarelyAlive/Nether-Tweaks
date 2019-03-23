@@ -79,11 +79,6 @@ public class Hammer extends ItemTool {
 				worldIn.spawnEntity(entityItem);
 			}
 			
-			if(block == Blocks.OBSIDIAN) {
-				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(ItemHandler.itemBase, 4, 14));
-				worldIn.spawnEntity(entityItem);
-			}
-			
 			if(stack.getItemDamage() < stack.getMaxDamage()){
 				stack.damageItem(1, player);
 			}else{

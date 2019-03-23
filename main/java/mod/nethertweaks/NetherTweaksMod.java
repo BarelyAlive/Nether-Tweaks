@@ -21,8 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.blocks.HolyEarth;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
-import mod.nethertweaks.compatibility.Ores;
-import mod.nethertweaks.compatibility.ThermalExpansion;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiLoadHandler;
@@ -30,6 +28,7 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
+import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
 import mod.nethertweaks.world.WorldHandler;
@@ -83,14 +82,10 @@ public class NetherTweaksMod {
         //handler recipes
         NTMCompostHandler.load();
         NTMDryHandler.load();
-        NTMSieveHandler.load();
-        
+        NTMSieveHandler.load();       
         //needs to be checked
         RecipeHandler.oreRegistration();
-        Ores.registerOres();
-        Ores.registerNames();
-        Ores.registerRecipes();
-
+        OreHandler.init();
     }
      
     @EventHandler
@@ -100,7 +95,5 @@ public class NetherTweaksMod {
         GuiLoadHandler.addGuiToHandler();
         //Compatibility
         MinefactoryReloaded.loadCompatibility();
-		ThermalExpansion.loadCompatibility();
-    }
-     
+    }     
 }

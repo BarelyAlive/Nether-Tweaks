@@ -1,10 +1,7 @@
-package mod.nethertweaks.compatibility;
+package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.CubeFalling;
@@ -20,7 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-public class Ores implements INames{
+public class OreHandler implements INames{
 	
     public static Item rawSilicon = Item.REGISTRY.getObject(new ResourceLocation("GalacticraftCore", "basicItem.rawSilicon"));
     public static Item crystalCertusQuartz = Item.REGISTRY.getObject(new ResourceLocation("appliedenergistics2", "crystalCertusQuartz"));
@@ -32,7 +29,13 @@ public class Ores implements INames{
     
     public static Item oreMaterial;
     
-	public static void registerOres(){
+    public static void init() {
+    	registerOres();
+    	registerNames();
+    	registerRecipes();
+    }
+    
+	private static void registerOres(){
 		
 		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, OREGRAVEL), Constants.MOD);
 		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, ORESAND), Constants.MOD);
@@ -153,7 +156,7 @@ public class Ores implements INames{
 		
 	}
 	
-	public static void registerRecipes(){
+	private static void registerRecipes(){
 		//ore blocks
 		
 		if(OreDictionary.doesOreNameExist("oreCopper")){
@@ -267,7 +270,7 @@ public class Ores implements INames{
 		
 	}
 	
-	public static void registerNames(){
+	private static void registerNames(){
     	
 		if(OreDictionary.doesOreNameExist("oreCopper")){
 	    	OreDictionary.registerOre("oreCopper", new ItemStack(oreGravel, 1, 0));
