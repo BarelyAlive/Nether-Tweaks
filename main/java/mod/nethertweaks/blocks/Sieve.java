@@ -111,11 +111,6 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 		return new TileEntitySieve();
 	}
 	
-	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
-	
 	public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();

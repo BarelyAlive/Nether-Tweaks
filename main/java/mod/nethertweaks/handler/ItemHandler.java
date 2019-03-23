@@ -86,5 +86,4 @@ public class ItemHandler implements INames{
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 20000);
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 20000);
         }
-     
 }
