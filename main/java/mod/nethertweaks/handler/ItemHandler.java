@@ -82,8 +82,8 @@ public class ItemHandler implements INames{
         }
         
         public static void addItemBurnTime() {
-        	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 20000);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 20000);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 20000);
+        	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 18000);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 6400);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 64000);
         }
 }
