@@ -16,7 +16,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
     public FlintAndBlaze()
     {
     	this.setUnlocalizedName(INames.FLINTNBLAZE);
-        this.maxStackSize = 1;
+        this.setMaxStackSize(1);
         this.setMaxDamage(128);
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }

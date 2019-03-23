@@ -36,7 +36,7 @@ public class Crystal extends CustomItem{
 	public static final Block bob = Blocks.OBSIDIAN;
 	
 	public Crystal(String name) {
-		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 5, name);
+		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 1, name);
 	}
 	
 	@Override
