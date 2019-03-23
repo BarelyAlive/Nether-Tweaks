@@ -38,8 +38,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -115,11 +117,22 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 			return true;
 		}
 		if(block.getDefaultState().getMaterial() == Material.LAVA){
+			if(block instanceof BlockFluidClassic) {
+				int lavatime = 12800;
+				int lavaheat = FluidRegistry.LAVA.getTemperature();
+				int blockheat = BlockFluidClassic.getTemperature(world, pos);
+				if(maxworkTime > lavatime) {
+					int heattime = Math.floorDiv(lavaheat, blockheat);
+					if(lavatime > heattime) {
+						maxworkTime = heattime;
+					}
+				}else {
+					maxworkTime = lavatime;			
+				}
+			}
 			return true;
 		}
-		else{
-			return false;
-		}
+		return false;
 	}
 
     /**

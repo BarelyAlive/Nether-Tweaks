@@ -19,6 +19,7 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.sfhcore.handler.RegisterTileEntity;
+import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -37,14 +38,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Sieve extends BlockContainer implements IVariantProvider{
 	
 	public Sieve() {
-		super(Material.WOOD);
+		super(Material.ROCK);
 		setUnlocalizedName(INames.SIEVE);
 		setResistance(15.0f);
 		setHardness(2.0f);
@@ -68,6 +71,11 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 			{
 				sieve.addSievable(Block.getBlockFromItem(held.getItem()), held.getItemDamage());
 				removeCurrentItem(playerIn);
+			}
+			if(FluidHelper.hasFluidAmount(FluidRegistry.WATER, held, 1000))
+			{
+				sieve.addSievable(Blocks.WATER, 0);
+				FluidUtil.getFluidHandler(held).drain(1000, true);
 			}
 		}else
 		{

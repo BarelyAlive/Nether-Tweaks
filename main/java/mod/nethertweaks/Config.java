@@ -72,7 +72,8 @@ public class Config {
         burnTimeFurnace = Config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
         dryTimeCondenser = Config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
         freezeTimeFreezer = Config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
-        HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth?", HolyEarth.EntityIDList).getIntList();
+        HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
+        HolyEarth.EntityWaterID = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
         sieveDifficulty = Config.get("Tweak", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
 
         disableMaceDust = Config.get("Recipes", "Disable Dust Recipe in TE Pulverizer?", false).getBoolean();
