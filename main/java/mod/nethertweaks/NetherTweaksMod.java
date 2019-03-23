@@ -77,7 +77,7 @@ public class NetherTweaksMod {
     
     @EventHandler
     public void load(FMLInitializationEvent event){
-        //will likely be removed in the future
+        //will likely be remove
         RecipeHandler.loadSmelting();
         //handler recipes
         NTMCompostHandler.load();

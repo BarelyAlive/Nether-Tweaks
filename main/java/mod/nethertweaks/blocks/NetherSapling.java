@@ -46,13 +46,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NetherSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
 {
-    public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.<BlockPlanks.EnumType>create("type", BlockPlanks.EnumType.class);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public NetherSapling()
     {
-        this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, BlockPlanks.EnumType.OAK).withProperty(STAGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         this.setUnlocalizedName(INames.NETHERSAPLING);
     }
@@ -144,20 +143,19 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable, I
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(TYPE, BlockPlanks.EnumType.byMetadata(meta & 7)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+        return this.getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
     	int i = 0;
-        i = i | ((BlockPlanks.EnumType)state.getValue(TYPE)).getMetadata();
         i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
         return i;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {TYPE, STAGE});
+        return new BlockStateContainer(this, new IProperty[] {STAGE});
     }
     
     @Override
