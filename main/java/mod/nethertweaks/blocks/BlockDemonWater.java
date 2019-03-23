@@ -25,19 +25,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-class FluidDemonWater extends Fluid{
-
-	private static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_still");
-	private static ResourceLocation flowing = new ResourceLocation("nethertweaksmod:blocks/block_demon_water_flow");
-	
-	public FluidDemonWater() {
-		super(INames.DEMONWATERFLUID, still, flowing);
-		setDensity(2000);
-        setViscosity(2000);
-		FluidRegistry.registerFluid(this);
-		setUnlocalizedName(INames.DEMONWATERFLUID);
-	}
-}
 
 public class BlockDemonWater extends BlockFluidClassic{
 

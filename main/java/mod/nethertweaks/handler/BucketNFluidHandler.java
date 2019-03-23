@@ -23,6 +23,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.BlockDemonWater;
+import mod.nethertweaks.blocks.FluidDemonWater;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.helper.FluidHelper;
@@ -48,15 +49,12 @@ public class BucketNFluidHandler {
 		public static Item bucketStoneLava;
 		public static Item bucketStoneDemonWater;
 		public static Item bucketStoneMilk;
-		
-		private static ResourceLocation still = new ResourceLocation(Constants.TEX + "block_demon_water_still");
-		private static ResourceLocation flow  = new ResourceLocation(Constants.TEX + "block_demon_water_flow");
 
 	
 	public static void registerBuckets(){
 		
 		//Fluids
-		fluidDemonWater = new Fluid(INames.DEMONWATERFLUID, still, flow).setUnlocalizedName(INames.DEMONWATERFLUID);
+		fluidDemonWater = new FluidDemonWater();
 		FluidRegistry.registerFluid(fluidDemonWater);
 		blockDemonWater = Registry.registerBlock(new BlockDemonWater(fluidDemonWater, Material.WATER), Constants.MOD);
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
