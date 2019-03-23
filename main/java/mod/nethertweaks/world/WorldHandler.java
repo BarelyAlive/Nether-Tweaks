@@ -86,5 +86,24 @@ public class WorldHandler{
 	        }
     	}
     }
-     
+    
+    @SubscribeEvent
+    public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){
+    	if(!event.getWorld().isRemote){
+    	
+	    	if(event.getTarget() instanceof EntityCow){
+	    		int zahl = event.getEntityPlayer().inventory.getSlotFor(event.getItemStack());
+	    		
+		    	if(event.getItemStack().getItem() == BucketNFluidHandler.bucketStone){
+		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
+		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneMilk, 1));
+		    	}else
+		    	
+		    	if(event.getItemStack().getItem() == BucketNFluidHandler.bucketWood){
+		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
+		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodMilk, 1));
+		    	}
+	    	}
+    	}
+    }
 }
