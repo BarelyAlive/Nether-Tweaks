@@ -125,9 +125,9 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
 					if(lavatime > heattime) {
 						maxworkTime = heattime;
+					}else {
+						maxworkTime = lavatime;			
 					}
-				}else {
-					maxworkTime = lavatime;			
 				}
 			}
 			return true;
