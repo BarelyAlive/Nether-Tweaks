@@ -14,10 +14,10 @@ tile.nether_log.name=Forgotten Tree Log
 tile.nether_leaves.name=Forgotten Tree Leaves
 tile.nether_wood.name=Forgotten Tree Planks
 tile.nether_sapling.name=Forgotten Tree Sapling
-tile.Holy_Earth.name=Blessed Earth
+tile.holy_earth.name=Holy Earth
 tile.barrel.name=Barrel
-tile.barrel_Stone.name=Barrel
-tile.netherrack_Furnace_lit.name=Netherrack Furnace
+tile.barrel_stone.name=Barrel
+tile.netherrack_furnace_lit.name=Netherrack Furnace
 tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.ore_iron_gravel.name=Iron Ore
@@ -85,7 +85,12 @@ item.pickaxe_netherrack.name=Netherrack Pickaxe
 item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 
 item.bucket_demon_water.name=Demon Water Bucket
+item.bucket_wood.name=Wood Bucket
+item.bucket_wood_water.name=Water Bucket
 item.bucket_wood_demon_water.name=Demon Water Bucket
+item.bucket_stone.name=Stone Bucket
+item.bucket_stone_water.name=Water Bucket
+item.bucket_stone_lava.name=Lava Bucket
 item.bucket_stone_demon_water.name=Demon Water Bucket
 
 item.chunk_gold.name=Gold Chunk
