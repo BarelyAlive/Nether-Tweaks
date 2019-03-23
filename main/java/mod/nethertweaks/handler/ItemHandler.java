@@ -12,7 +12,6 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
-import mod.nethertweaks.blocks.itemblocks.ItemBlockNetherrackFurnace;
 import mod.nethertweaks.items.CookedJerky;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
