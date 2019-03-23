@@ -91,7 +91,6 @@ public class NetherTweaksMod {
     @EventHandler
     public void PostInit(FMLPostInitializationEvent event){
     	//mod ores
-        new GuiHandler(NetherTweaksMod.instance);
         GuiLoadHandler.addGuiToHandler();
         //Compatibility
         MinefactoryReloaded.loadCompatibility();

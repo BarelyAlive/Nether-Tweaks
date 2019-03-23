@@ -17,9 +17,11 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class GuiLoadHandler{
 	
+	protected static GuiHandler gh = new GuiHandler(NetherTweaksMod.instance);
+	
 	public static void addGuiToHandler() {
-		GuiHandler.addGUIRelation(TileEntityCondenser.class, ContainerCondenser.class);
-		GuiHandler.addGUIRelation(TileEntityFreezer.class, ContainerFreezer.class);
-		GuiHandler.addGUIRelation(TileEntityNetherrackFurnace.class, ContainerNetherrackFurnace.class);
+		gh.addGUIRelation(TileEntityCondenser.class, ContainerCondenser.class);
+		gh.addGUIRelation(TileEntityFreezer.class, ContainerFreezer.class);
+		gh.addGUIRelation(TileEntityNetherrackFurnace.class, ContainerNetherrackFurnace.class);
 	}
 }
