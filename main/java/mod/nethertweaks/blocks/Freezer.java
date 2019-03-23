@@ -38,7 +38,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Freezer extends BlockContainer implements IVariantProvider{
 	
-    public static final PropertyDirection FACING = BlockHorizontal.FACING;
+    private static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
 	public Freezer() {
 		super(Material.ROCK);

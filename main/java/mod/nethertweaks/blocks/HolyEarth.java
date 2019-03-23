@@ -37,7 +37,7 @@ public class HolyEarth extends Cube{
 	public static int[] EntityIDList = {4, 23, 31, 50, 51, 52, 54, 55, 58, 59, 66, 65, 68, 98, 91, 92, 93, 94, 95, 98, 100, 101, 102, 103, 105, 120};
 	public static int[]EntityWaterID = {4, 23, 68, 94};
 	private int EntityID;
-	private int minSpawnSec = 10;
+	private int minSpawnSec = 60;
 	private Entity ent;
 	private int spawnTick = 0;
 	private int spawnSec;
