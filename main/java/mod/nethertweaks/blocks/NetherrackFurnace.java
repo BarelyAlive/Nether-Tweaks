@@ -55,7 +55,7 @@ public class NetherrackFurnace extends BlockContainer {
         setResistance(17.5F);
         setHardness(3.5F);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        setRegistryName(INames.NETHERRACKFURNACE_LIT);
+        setRegistryName(INames.NETHERRACKFURNACE);
     }
 
     /**

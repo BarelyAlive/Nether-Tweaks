@@ -1,8 +1,22 @@
 {
-    "parent": "block/orientable",
     "textures": {
         "top": "nethertweaksmod:blocks/netherrack_furnace",
         "front": "nethertweaksmod:blocks/netherrack_furnace_front",
         "side": "nethertweaksmod:blocks/netherrack_furnace"
+    },
+    "defaults": {
+       "model": "block/orientable"
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0 },
+            "south": { "y": 180 },
+            "west": { "y": 270 },
+            "eat": { "y": 90 }
+        },
+        "is_burning": {
+            "true": { "textures": { "front": "nethertweaksmod:blocks/netherrack_furnace_front" } },
+            "false": { "textures": { "front": "nethertweaksmod:blocks/netherrack_furnace_front_off" } }
+        }
     }
 }

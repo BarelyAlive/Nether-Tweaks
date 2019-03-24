@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "nethertweaksmod:netherrack_furnace" },
-        "facing=south": { "model": "nethertweaksmod:netherrack_furnace", "y": 180 },
-        "facing=west":  { "model": "nethertweaksmod:netherrack_furnace", "y": 270 },
-        "facing=east":  { "model": "nethertweaksmod:netherrack_furnace", "y": 90 }
-    }
-}

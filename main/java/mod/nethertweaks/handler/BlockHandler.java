@@ -78,7 +78,7 @@ public class BlockHandler implements INames{
 		
     	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 3, Constants.MOD);
 
-        dust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
+        dust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
         endteleport = Registry.registerBlock(new EndTeleport().setUnlocalizedName(ENDTELEPORT).setRegistryName(Constants.MOD, ENDTELEPORT), Constants.MOD);
         netherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
         netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
@@ -96,14 +96,14 @@ public class BlockHandler implements INames{
         
         //Ore
         
-        oreGoldGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0f, 0.4f, OREGOLDGRAVEL), Constants.MOD);
-        oreIronGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0f, 0.4f, OREIRONGRAVEL), Constants.MOD);
+        oreGoldGravel = Registry.registerBlock(new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, OREGOLDGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        oreIronGravel = Registry.registerBlock(new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, OREIRONGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
         
-        oreGoldSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREGOLDSAND), Constants.MOD);
-        oreIronSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREIRONSAND), Constants.MOD);
+        oreGoldSand = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREGOLDSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        oreIronSand = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREIRONSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
         
-        oreGoldDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREGOLDDUST), Constants.MOD);
-        oreIronDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0f, 0.4f, OREIRONDUST), Constants.MOD);
+        oreGoldDust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREGOLDDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        oreIronDust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREIRONDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
         
         oreGravel = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, OREGRAVEL)), 16, Constants.MOD);
         oreSand = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, ORESAND)), 16, Constants.MOD);

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/multitexture_9"
+      "layer0": "nethertweaksmod:items/hellfayah"
     }
 }
