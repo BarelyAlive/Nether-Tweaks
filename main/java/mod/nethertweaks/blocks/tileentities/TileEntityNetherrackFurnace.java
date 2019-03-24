@@ -182,6 +182,50 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
         }
     }
     
+    @Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return compound;
+	}
+	
+	//standard stuff
+	
+		/**
+	     * Don't rename this method to canInteractWith due to conflicts with Container
+	     */
+	    public boolean isUsableByPlayer(EntityPlayer player)
+	    {
+	        if (this.world.getTileEntity(this.pos) != this)
+	        {
+	            return false;
+	        }
+	        else
+	        {
+	            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+	        }
+	    }
+
+	    public void openInventory(EntityPlayer player)
+	    {
+	    }
+
+	    public void closeInventory(EntityPlayer player)
+	    {
+	    }
+	    
+	    public String getGuiID()
+	    {
+	        return "nethertweaksmod:GuiNetherrackFurnace";
+	    }
+    
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerNetherrackFurnace(playerInventory, this);

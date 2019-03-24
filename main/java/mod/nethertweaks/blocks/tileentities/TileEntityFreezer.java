@@ -2,6 +2,8 @@ package mod.nethertweaks.blocks.tileentities;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Freezer;
+import mod.nethertweaks.blocks.container.ContainerCondenser;
+import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -10,7 +12,9 @@ import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
@@ -193,4 +197,38 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 		return compound;
 	}
 	
+	//standard stuff
+	
+		/**
+	     * Don't rename this method to canInteractWith due to conflicts with Container
+	     */
+	    public boolean isUsableByPlayer(EntityPlayer player)
+	    {
+	        if (this.world.getTileEntity(this.pos) != this)
+	        {
+	            return false;
+	        }
+	        else
+	        {
+	            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+	        }
+	    }
+
+	    public void openInventory(EntityPlayer player)
+	    {
+	    }
+
+	    public void closeInventory(EntityPlayer player)
+	    {
+	    }
+	    
+	    public String getGuiID()
+	    {
+	        return "nethertweaksmod:GuiFreezer";
+	    }
+
+	    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+	    {
+	        return new ContainerFreezer(playerInventory, this);
+	    }
 }

@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.sfhcore.helper.FluidHelper;
@@ -201,4 +202,39 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
+	
+	//standard stuff
+	
+	/**
+     * Don't rename this method to canInteractWith due to conflicts with Container
+     */
+    public boolean isUsableByPlayer(EntityPlayer player)
+    {
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+    public void openInventory(EntityPlayer player)
+    {
+    }
+
+    public void closeInventory(EntityPlayer player)
+    {
+    }
+    
+    public String getGuiID()
+    {
+        return "nethertweaksmod:GuiCondenser";
+    }
+
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        return new ContainerCondenser(playerInventory, this);
+    }
 }
