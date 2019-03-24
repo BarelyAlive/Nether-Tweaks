@@ -46,7 +46,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
 	private int mb;
 	public FluidTank tank = new FluidTank(fluid, mb);
-	public List<Fluid> lf = new ArrayList<Fluid>();
+	private List<Fluid> lf = new ArrayList<Fluid>();
 	
 	public TileEntityFreezer(String field) {
 		super(3, field, 16000);
