@@ -108,7 +108,6 @@ public class BlockHandler implements INames{
         //Tile Entity
         condenser = Registry.registerBlock(new Condenser(), Constants.MOD);
         netherrackfurnace = Registry.registerBlock(new NetherrackFurnace().setUnlocalizedName(NETHERRACKFURNACE), Constants.MOD);
-        RegisterTileEntity.add(netherrackfurnace, new TileEntityNetherrackFurnace(TENETHERRACKFURNACE));
         
         barrel = Registry.registerBlock(new Barrel(), Constants.MOD);
         barrelstone = Registry.registerBlock(new BarrelStone(), Constants.MOD);

@@ -232,11 +232,6 @@ public class NetherrackFurnace extends BlockContainer {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
     }
 
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
-        return new ItemStack(BlockHandler.netherrackfurnace);
-    }
-
     /**
      * The type of render function called. 3 for standard block models, 2 for TESR's, 1 for liquids, -1 is no render
      */
