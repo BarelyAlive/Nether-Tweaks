@@ -112,7 +112,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	
 	private void drainFromItem(){
 		if(FluidUtil.getFluidHandler(machineItemStacks.get(1)) != null) {
-			FluidUtil.getFluidHandler(machineItemStacks.get(1)).fill(tank.getFluid(), true);
+			FluidUtil.tryFluidTransfer(FluidUtil.getFluidHandler(machineItemStacks.get(2)), tank, Integer.MAX_VALUE, true);
 			if(machineItemStacks.get(2).isEmpty()) {
 				StackUtils.substractFromStackSize(machineItemStacks.get(1), 1);
 				machineItemStacks.add(2, machineItemStacks.get(1));

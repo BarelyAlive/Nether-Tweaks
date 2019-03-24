@@ -98,7 +98,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
     private void fillFromItem(){
     	if(!machineItemStacks.get(2).isEmpty()) {
     		if(FluidUtil.getFluidContained(machineItemStacks.get(2)).getFluid() == FluidRegistry.WATER){
-        		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), 16000, true);
+        		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), Integer.MAX_VALUE, true);
         	}
         	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 0) {
         		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
