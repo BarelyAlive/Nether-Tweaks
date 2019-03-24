@@ -287,6 +287,6 @@ public class NetherrackFurnace extends BlockContainer {
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, new IProperty[] {FACING, isBurning});
     }
 }
