@@ -1,11 +1,16 @@
 package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
+import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
 import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
+import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.BlockDoorCustom;
@@ -74,7 +79,7 @@ public class BlockHandler implements INames{
     	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 3, Constants.MOD);
 
         dust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
-        endteleport = Registry.registerBlock(new EndTeleport(), Constants.MOD);
+        endteleport = Registry.registerBlock(new EndTeleport().setUnlocalizedName(ENDTELEPORT).setRegistryName(Constants.MOD, ENDTELEPORT), Constants.MOD);
         netherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
         netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
         netherLeaves = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
@@ -106,13 +111,26 @@ public class BlockHandler implements INames{
 
          
         //Tile Entity
-        condenser = Registry.registerBlock(new Condenser(), Constants.MOD);
-        netherrackfurnace = Registry.registerBlock(new NetherrackFurnace().setUnlocalizedName(NETHERRACKFURNACE), Constants.MOD);
+        condenser = new Condenser();
+        netherrackfurnace = new NetherrackFurnace().setUnlocalizedName(NETHERRACKFURNACE);
+        barrel = new Barrel();
+        barrelstone = new BarrelStone();
+        sieve = new Sieve();
+        freezer = new Freezer();
         
-        barrel = Registry.registerBlock(new Barrel(), Constants.MOD);
-        barrelstone = Registry.registerBlock(new BarrelStone(), Constants.MOD);
-        sieve = Registry.registerBlock(new Sieve(), Constants.MOD);
-        freezer = Registry.registerBlock(new Freezer(), Constants.MOD);
+        RegisterTileEntity.add(condenser, new TileEntityCondenser(TECONDENSER));
+        RegisterTileEntity.add(netherrackfurnace, new TileEntityNetherrackFurnace(TENETHERRACKFURNACE));
+        RegisterTileEntity.add(barrel, new TileEntityBarrel(TEBARREL));
+        RegisterTileEntity.add(barrelstone, new TileEntityBarrel(TEBARRELSTONE));
+        RegisterTileEntity.add(sieve, new TileEntitySieve());
+        RegisterTileEntity.add(freezer, new TileEntityFreezer(TEFREEZER));
+        
+        condenser = Registry.registerBlock(condenser, Constants.MOD);
+        netherrackfurnace = Registry.registerBlock(netherrackfurnace, Constants.MOD);
+        barrel = Registry.registerBlock(barrel, Constants.MOD);
+        barrelstone = Registry.registerBlock(barrelstone, Constants.MOD);
+        sieve = Registry.registerBlock(sieve, Constants.MOD);
+        freezer = Registry.registerBlock(freezer, Constants.MOD);
         
     }
     
