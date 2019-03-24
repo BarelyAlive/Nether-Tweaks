@@ -46,12 +46,12 @@ public class NetherrackFurnace extends BlockContainer {
      
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static boolean keepInventory;
-    public static PropertyBool isBurning = PropertyBool.create("isBurning");
+    public static final PropertyBool ISBURNING = PropertyBool.create("is_burning");
 
     public NetherrackFurnace()
     {
         super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(isBurning, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
@@ -108,7 +108,7 @@ public class NetherrackFurnace extends BlockContainer {
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (stateIn.getValue(isBurning))
+        if (stateIn.getValue(ISBURNING))
         {
             EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
             double d0 = (double)pos.getX() + 0.5D;
@@ -172,7 +172,7 @@ public class NetherrackFurnace extends BlockContainer {
     	else {
     		worldIn.getBlockState(pos).getBlock().setLightLevel(0.0F);
     	}
-        worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(isBurning, active));
+        worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
     }
 
     /**
@@ -287,6 +287,6 @@ public class NetherrackFurnace extends BlockContainer {
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING, isBurning});
+        return new BlockStateContainer(this, new IProperty[] {FACING, ISBURNING});
     }
 }
