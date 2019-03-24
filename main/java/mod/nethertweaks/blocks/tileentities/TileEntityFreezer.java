@@ -196,39 +196,14 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
-	
-	//standard stuff
-	
-		/**
-	     * Don't rename this method to canInteractWith due to conflicts with Container
-	     */
-	    public boolean isUsableByPlayer(EntityPlayer player)
-	    {
-	        if (this.world.getTileEntity(this.pos) != this)
-	        {
-	            return false;
-	        }
-	        else
-	        {
-	            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-	        }
-	    }
-
-	    public void openInventory(EntityPlayer player)
-	    {
-	    }
-
-	    public void closeInventory(EntityPlayer player)
-	    {
-	    }
 	    
 	    public String getGuiID()
-	    {
-	        return "nethertweaksmod:GuiFreezer";
-	    }
+    {
+        return "nethertweaksmod:GuiFreezer";
+    }
 
-	    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
-	    {
-	        return new ContainerFreezer(playerInventory, this);
-	    }
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        return new ContainerFreezer(playerInventory, this);
+    }
 }

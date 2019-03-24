@@ -55,11 +55,13 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 
 	@Override
     public void update() {
-		drainFromItem();
-		if(checkInv() && workTime < maxworkTime) {
-			workTime++;
+		if(!world.isRemote) {
+			drainFromItem();
+			if(checkInv() && workTime < maxworkTime) {
+				workTime++;
+			}
+			dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
 		}
-		dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
 	}
 	
 	public void dry(Item material, Item bucket){
@@ -202,31 +204,6 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
-	
-	//standard stuff
-	
-	/**
-     * Don't rename this method to canInteractWith due to conflicts with Container
-     */
-    public boolean isUsableByPlayer(EntityPlayer player)
-    {
-        if (this.world.getTileEntity(this.pos) != this)
-        {
-            return false;
-        }
-        else
-        {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-        }
-    }
-
-    public void openInventory(EntityPlayer player)
-    {
-    }
-
-    public void closeInventory(EntityPlayer player)
-    {
-    }
     
     public String getGuiID()
     {
