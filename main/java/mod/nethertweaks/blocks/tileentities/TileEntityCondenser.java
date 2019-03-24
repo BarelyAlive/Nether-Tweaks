@@ -42,10 +42,10 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 		
 	private static final int MAX_CAPACITY = 16000;
-	float volume;
 	private int amount;
-	public FluidStack fluid;
-	public FluidTank tank = new FluidTank(fluid, (int) volume);
+	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
+	private int mb;
+	public FluidTank tank = new FluidTank(fluid, mb);
 	
     public TileEntityCondenser(String field) {
 		super(2, field, 16000);
@@ -116,5 +116,89 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 			}
 		}
     }
+	
+	@Override
+	public int fill(FluidStack resource, boolean doFill) {
+		//Simulate the fill to see if there is room for incoming liquids.
+				int capacity = MAX_CAPACITY - fluid.amount;
 
+				if (!doFill)
+				{
+					if (fluid.amount == 0)
+					{
+						return resource.amount;
+					}
+
+					if (resource.getFluid() == fluid.getFluid())
+					{
+						if (capacity >= resource.amount)
+						{
+							return resource.amount;
+						}else
+						{
+							return capacity;
+						}
+					}
+				}else
+					//Really fill
+				{
+					if (fluid.amount == 0)
+					{
+						if (resource.getFluid() != fluid.getFluid())
+						{
+							fluid =  new FluidStack(resource.getFluid(),resource.amount);
+						}else
+						{
+							fluid.amount = resource.amount;
+						}
+						mb = fluid.amount / MAX_CAPACITY;
+						return resource.amount;
+					}
+
+					if (resource.getFluid() == fluid.getFluid())
+					{
+						if (capacity >= resource.amount)
+						{
+							fluid.amount += resource.amount;
+							mb = fluid.amount / MAX_CAPACITY;
+							return resource.amount;
+						}else
+						{
+							fluid.amount = MAX_CAPACITY;
+							mb = MAX_CAPACITY;
+							return capacity;
+						}
+					}
+				}
+
+				return 0;
+	}
+
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		if (resource.getFluid() == FluidRegistry.WATER)
+		      return new FluidStack(FluidRegistry.WATER, resource.amount);
+		    else return null;
+	}
+
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain) {
+		return new FluidStack(FluidRegistry.WATER, maxDrain);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		this.mb = compound.getInteger("volume");
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("volume", this.mb);
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return super.writeToNBT(compound);
+	}
 }

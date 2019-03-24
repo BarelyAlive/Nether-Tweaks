@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,10 +35,10 @@ import scala.Int;
 public class TileEntityFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
 	private static final int MAX_CAPACITY = 16000;
-	float volume;
 	private int amount;
-	public FluidStack fluid;
-	public FluidTank tank = new FluidTank(fluid, (int) volume);
+	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
+	private int mb;
+	public FluidTank tank = new FluidTank(fluid, mb);
 	
 	public TileEntityFreezer(String field) {
 		super(1, field, 16000);
@@ -130,7 +131,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						}
 					}
 				}else
-					//Really fill the barrel.
+					//Really fill
 				{
 					if (fluid.amount == 0)
 					{
@@ -141,8 +142,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						{
 							fluid.amount = resource.amount;
 						}
-						volume = (float)fluid.amount / (float)MAX_CAPACITY;
-						//needsUpdate = true;
+						mb = fluid.amount / MAX_CAPACITY;
 						return resource.amount;
 					}
 
@@ -151,13 +151,12 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						if (capacity >= resource.amount)
 						{
 							fluid.amount += resource.amount;
-							volume = (float)fluid.amount / (float)MAX_CAPACITY;
+							mb = fluid.amount / MAX_CAPACITY;
 							return resource.amount;
 						}else
 						{
 							fluid.amount = MAX_CAPACITY;
-							volume = 1.0f;
-							//needsUpdate = true;
+							mb = MAX_CAPACITY;
 							return capacity;
 						}
 					}
@@ -176,6 +175,22 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {
 		return new FluidStack(FluidRegistry.WATER, maxDrain);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		this.mb = compound.getInteger("volume");
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("volume", this.mb);
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return super.writeToNBT(compound);
 	}
 	
 }
