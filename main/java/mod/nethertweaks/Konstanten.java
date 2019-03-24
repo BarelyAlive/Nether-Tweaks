@@ -14,18 +14,15 @@ public class Konstanten {
 	public static final ItemStack CRUSHEDIRON = new ItemStack(ItemHandler.itemBase, 1, 3);
 	public static final ItemStack ENDBOX = new ItemStack(ItemHandler.itemBase, 1, 4);
 	public static final ItemStack ENDERCRYSTAL = new ItemStack(ItemHandler.itemBase, 1, 5);
-	public static final ItemStack BLACKDYE = new ItemStack(ItemHandler.itemBase, 1, 6);
-	public static final ItemStack PORTALCORE = new ItemStack(ItemHandler.itemBase, 1, 7);
-	public static final ItemStack ENDERINFUSEDFRAME = new ItemStack(ItemHandler.itemBase, 1, 8);
-	public static final ItemStack GOLDPILE = new ItemStack(ItemHandler.itemBase, 1, 9);
-	public static final ItemStack HELLFAYAH = new ItemStack(ItemHandler.itemBase, 1, 10);
-	public static final ItemStack POWDEROFLIGHT = new ItemStack(ItemHandler.itemBase, 1, 11);
-	public static final ItemStack PATCHWORKFLESH = new ItemStack(ItemHandler.itemBase, 1, 12);
-	public static final ItemStack SALT = new ItemStack(ItemHandler.itemBase, 1, 13);
-	public static final ItemStack OBSIDIANDUST = new ItemStack(ItemHandler.itemBase, 1, 14);
-	public static final ItemStack SIEVEWEB = new ItemStack(ItemHandler.itemBase, 1,15);
-	public static final ItemStack IRONPILE = new ItemStack(ItemHandler.itemBase, 1, 16);
-	public static final ItemStack STONEBAR = new ItemStack(ItemHandler.itemBase, 1, 17);
+	public static final ItemStack PORTALCORE = new ItemStack(ItemHandler.itemBase, 1, 6);
+	public static final ItemStack ENDERINFUSEDFRAME = new ItemStack(ItemHandler.itemBase, 1, 7);
+	public static final ItemStack GOLDPILE = new ItemStack(ItemHandler.itemBase, 1, 8);
+	public static final ItemStack HELLFAYAH = new ItemStack(ItemHandler.itemBase, 1, 9);
+	public static final ItemStack POWDEROFLIGHT = new ItemStack(ItemHandler.itemBase, 1, 10);
+	public static final ItemStack SALT = new ItemStack(ItemHandler.itemBase, 1, 11);
+	public static final ItemStack SIEVEWEB = new ItemStack(ItemHandler.itemBase, 1, 12);
+	public static final ItemStack IRONPILE = new ItemStack(ItemHandler.itemBase, 1, 13);
+	public static final ItemStack STONEBAR = new ItemStack(ItemHandler.itemBase, 1, 14);
 	
 	
 	//ItemStack Ore Material
