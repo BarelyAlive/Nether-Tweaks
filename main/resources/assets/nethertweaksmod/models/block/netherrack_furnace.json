@@ -1,8 +1,16 @@
 {
-    "parent": "block/orientable",
     "textures": {
         "top": "nethertweaksmod:blocks/netherrack_furnace",
         "front": "nethertweaksmod:blocks/netherrack_furnace_front_off",
         "side": "nethertweaksmod:blocks/netherrack_furnace"
+    },
+    "variants": {
+        "normal": { "model": "block/orientable" },
+        "inventory": { "model": "block/orientable" },
+        "facing=north": { "model": "block/orientable" },
+        "facing=south": { "model": "block/orientable", "y": 180 },
+        "facing=west":  { "model": "block/orientable", "y": 270 },
+        "facing=east":  { "model": "block/orientable", "y": 90 }
     }
+    
 }

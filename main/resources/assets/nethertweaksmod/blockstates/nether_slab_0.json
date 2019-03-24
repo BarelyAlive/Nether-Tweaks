@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "nethertweaksmod:nether_slab" },
-        "half=top": { "model": "nethertweaksmod:nether_slab_upper" }
-    }
-}

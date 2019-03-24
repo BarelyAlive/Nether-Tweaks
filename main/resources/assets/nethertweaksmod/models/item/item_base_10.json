@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/multitexture_10"
+      "layer0": "nethertweaksmod:items/item_light_pulver"
     }
 }
