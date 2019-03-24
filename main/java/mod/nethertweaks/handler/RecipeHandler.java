@@ -32,7 +32,6 @@ public class RecipeHandler {
 		
 		//Schmelz-Rezepte
 		
-		GameRegistry.addSmelting(Konstanten.PATCHWORKFLESH, new ItemStack(Items.LEATHER), 1.0F);
 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.itemCookedJerky), 1.0F);
 		GameRegistry.addSmelting(BlockHandler.netherLog, new ItemStack(Items.COAL, 1, 1), 0.0F);
 		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.itemLightCrystal), 2.0F);
@@ -53,7 +52,6 @@ public class RecipeHandler {
 		OreDictionary.registerOre("vine", BlockHandler.meanvine);
     	OreDictionary.registerOre("itemSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
-    	OreDictionary.registerOre("dustObsidian", Konstanten.OBSIDIANDUST);
     	OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
     	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 0));
     	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 1));
