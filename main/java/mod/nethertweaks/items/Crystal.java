@@ -45,31 +45,33 @@ public class Crystal extends CustomItem{
 	}
 	
 	/**
-     * Called when a Block is right-clicked with this Item
+     * Called when the equipped item is right clicked.
      */
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-		if(player.isSneaking()){
-			if(player.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
-				player.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketDemonWater));
+    	ItemStack itemstack = playerIn.getHeldItem(handIn);
+    	
+		if(playerIn.isSneaking()){
+			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
+				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
+				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketDemonWater));
 			}
-			if(player.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketStoneWater))){
-					player.inventory.clearMatchingItems(BucketNFluidHandler.bucketStoneWater, 0, 1, null);
-					player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneDemonWater));
+			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketStoneWater))){
+					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.bucketStoneWater, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneDemonWater));
 			}
-			if(player.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketWoodWater))){
-				player.inventory.clearMatchingItems(BucketNFluidHandler.bucketWoodWater, 0, 1, null);
-				player.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodDemonWater));
+			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketWoodWater))){
+				playerIn.inventory.clearMatchingItems(BucketNFluidHandler.bucketWoodWater, 0, 1, null);
+				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodDemonWater));
 			}
 		}
 		
-		if (player.isSneaking() && player.getActiveItemStack().getItem() == ItemHandler.itemSanctuaryCrystal){
+		if (playerIn.getHeldItem(handIn).getUnlocalizedName().contains("sanctuary_crystal")){
 			
 		
 		//Structure ok?
-		RayTraceResult rtr = new RayTraceResult(player);
-		pos = rtr.getBlockPos();
+		RayTraceResult rtr = new RayTraceResult(playerIn);
+		BlockPos pos = rtr.getBlockPos();
 		
 		//enchantment table
 		Block[] block = new Block[25];
@@ -111,7 +113,7 @@ public class Crystal extends CustomItem{
 			
 			for(int i = 0; i < 7; i++){
 				if(worldIn.getBlockState(pos.add(x+zahl, y-1, z+zahl2)) != Blocks.DIRT.getDefaultState()){
-					return EnumActionResult.FAIL;
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 				}
 				zahl++;
 			}
@@ -122,49 +124,47 @@ public class Crystal extends CustomItem{
 		
 		if(block[0] == Blocks.ENCHANTING_TABLE){
 			
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z+3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x-3, y+2, z-3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x, y+2, z-3), Blocks.FIRE.getDefaultState());
 			for(int i = 0; i < 600; i++){
 				System.out.println();
 			}
-			worldIn.playSound(player, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
+			worldIn.playSound(playerIn, pos, new net.minecraft.util.SoundEvent(new ResourceLocation("ambient.weather.thunder")), SoundCategory.WEATHER, 1.0f, 1.0f);
 			worldIn.setBlockState(pos.add(x+3, y+2, z-3), Blocks.FIRE.getDefaultState());
-		}else{
-			return EnumActionResult.FAIL;
 		}
 		
 	}else{
-		return EnumActionResult.FAIL;
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	}
 		//Auswirkungen
 		int zahl = -3;
@@ -182,30 +182,27 @@ public class Crystal extends CustomItem{
 				
 		}
 		
-		if(!player.capabilities.isCreativeMode){
-			player.inventory.clearMatchingItems(this, 0, 1, null);
+		if(!playerIn.capabilities.isCreativeMode){
+			playerIn.inventory.clearMatchingItems(this, 0, 1, null);
 		}
-		return EnumActionResult.SUCCESS;
 	}
 		
-		if(player.getActiveItemStack().getItem() == ItemHandler.enderCrystal) {
-			ItemStack itemstack = player.getHeldItem(hand);
-	
-	        worldIn.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-	        player.getCooldownTracker().setCooldown(this, 20);
+		if(playerIn.getHeldItem(handIn).getUnlocalizedName().contains("ender_crystal")) {
+				
+	        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+	        playerIn.getCooldownTracker().setCooldown(this, 20);
 	
 	        if (!worldIn.isRemote)
 	        {
-	            EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, player);
-	            entityenderpearl.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+	            EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, playerIn);
+	            entityenderpearl.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
 	            worldIn.spawnEntity(entityenderpearl);
 	        }
 	
-	        player.addStat(StatList.getObjectUseStats(this));
-	        return EnumActionResult.SUCCESS;
-		}else{
-			return EnumActionResult.FAIL;
+	        playerIn.addStat(StatList.getObjectUseStats(this));
+	        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		}
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	}
 
 }
