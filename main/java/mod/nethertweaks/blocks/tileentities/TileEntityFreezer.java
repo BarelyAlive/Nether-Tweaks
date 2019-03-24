@@ -45,7 +45,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	public FluidTank tank = new FluidTank(fluid, mb);
 	
 	public TileEntityFreezer(String field) {
-		super(1, field, 16000);
+		super(3, field, 16000);
 		maxworkTime = Config.freezeTimeFreezer;
 	}
 	
@@ -96,13 +96,15 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
     }
     
     private void fillFromItem(){
-    	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).getFluid() == FluidRegistry.WATER){
-    		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), 16000, true);
-    	}
-    	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 0) {
-    		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
-    		StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
-    		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
+    	if(!machineItemStacks.get(2).isEmpty()) {
+    		if(FluidUtil.getFluidContained(machineItemStacks.get(2)).getFluid() == FluidRegistry.WATER){
+        		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), 16000, true);
+        	}
+        	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 0) {
+        		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
+        		StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
+        		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
+        	}
     	}
     }
 

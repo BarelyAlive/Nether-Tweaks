@@ -49,7 +49,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	public FluidTank tank = new FluidTank(fluid, mb);
 	
     public TileEntityCondenser(String field) {
-		super(2, field, 16000);
+		super(3, field, 16000);
 		this.maxworkTime = Config.dryTimeCondenser;
 	}
 
