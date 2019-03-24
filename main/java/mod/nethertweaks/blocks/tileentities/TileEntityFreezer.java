@@ -179,10 +179,10 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		super.readFromNBT(compound);
 	}
 	
 	@Override
@@ -190,7 +190,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 		compound.setInteger("volume", this.mb);
 		compound.setInteger("worktime", workTime);
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
-		return super.writeToNBT(compound);
+		return compound;
 	}
 	
 }

@@ -188,10 +188,10 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		super.readFromNBT(compound);
 	}
 	
 	@Override
@@ -199,6 +199,6 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 		compound.setInteger("volume", this.mb);
 		compound.setInteger("worktime", workTime);
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
-		return super.writeToNBT(compound);
+		return compound;
 	}
 }
