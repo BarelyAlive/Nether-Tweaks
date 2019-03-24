@@ -100,7 +100,7 @@ public class NTMCompostHandler {
 		register(Item.getItemFromBlock(Blocks.DOUBLE_PLANT), 0, 0.10f);
 		//lilac
 		register(Item.getItemFromBlock(Blocks.DOUBLE_PLANT), 1, 0.10f);
-		//rose buse
+		//rose bush
 		register(Item.getItemFromBlock(Blocks.DOUBLE_PLANT), 4, 0.10f);
 		//peony
 		register(Item.getItemFromBlock(Blocks.DOUBLE_PLANT), 5, 0.10f);
