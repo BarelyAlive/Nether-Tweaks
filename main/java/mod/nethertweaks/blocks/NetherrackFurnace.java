@@ -166,13 +166,16 @@ public class NetherrackFurnace extends BlockContainer {
 
     public static void setState(boolean active, World worldIn, BlockPos pos)
     {	
-    	if(active) {
-    		worldIn.getBlockState(pos).getBlock().setLightLevel(13.0F);
+    	if(worldIn.getBlockState(pos) != Blocks.AIR.getDefaultState()) {
+    		if(active) {
+        		worldIn.getBlockState(pos).getBlock().setLightLevel(13.0F);
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        	}
+        	else {
+        		worldIn.getBlockState(pos).getBlock().setLightLevel(0.0F);
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        	}
     	}
-    	else {
-    		worldIn.getBlockState(pos).getBlock().setLightLevel(0.0F);
-    	}
-        worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
     }
 
     /**
