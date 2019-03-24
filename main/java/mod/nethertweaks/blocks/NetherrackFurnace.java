@@ -30,7 +30,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -233,6 +232,7 @@ public class NetherrackFurnace extends BlockContainer {
     /**
      * Called when the block is right clicked by a player.
      */
+    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (worldIn.isRemote)
@@ -243,9 +243,9 @@ public class NetherrackFurnace extends BlockContainer {
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityFurnace)
+            if (tileentity instanceof TileEntityNetherrackFurnace)
             {
-                playerIn.displayGUIChest((TileEntityFurnace)tileentity);
+                playerIn.displayGUIChest((TileEntityNetherrackFurnace)tileentity);
                 playerIn.addStat(StatList.FURNACE_INTERACTION);
             }
 

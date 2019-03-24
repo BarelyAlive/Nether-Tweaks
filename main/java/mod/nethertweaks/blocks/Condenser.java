@@ -11,6 +11,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -28,6 +29,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
@@ -52,16 +54,31 @@ public class Condenser extends BlockContainer implements IVariantProvider{
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
     
+    /**
+     * Called when the block is right clicked by a player.
+     */
+    /**
+     * Called when the block is right clicked by a player.
+     */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-    		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-    	if(!worldIn.isRemote) {
-            if(worldIn.getTileEntity(pos) != null && !worldIn.provider.isSurfaceWorld()) {
-                playerIn.openGui(NetherTweaksMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
             return true;
         }
-        return true;
+        else
+        {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
+            if (tileentity instanceof TileEntityCondenser)
+            {
+                playerIn.displayGUIChest((TileEntityCondenser)tileentity);
+                playerIn.addStat(StatList.FURNACE_INTERACTION);
+            }
+
+            return true;
+        }
     }
     
     @Override
