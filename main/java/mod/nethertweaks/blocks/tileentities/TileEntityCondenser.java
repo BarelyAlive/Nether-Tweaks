@@ -1,5 +1,8 @@
 package mod.nethertweaks.blocks.tileentities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
@@ -13,6 +16,7 @@ import mod.sfhcore.tileentities.TileEntityBase;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.entity.layers.LayerWolfCollar;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -34,11 +38,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 		
@@ -47,10 +53,13 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
 	private int mb;
 	public FluidTank tank = new FluidTank(fluid, mb);
+	public List<Fluid> lf = new ArrayList<Fluid>();
 	
     public TileEntityCondenser(String field) {
 		super(3, field, 16000);
 		this.maxworkTime = Config.dryTimeCondenser;
+		this.lf.add(FluidRegistry.WATER);
+		setAcceptedFluids(lf);
 	}
 
 	@Override
@@ -119,75 +128,6 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 			}
 		}
     }
-	
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		//Simulate the fill to see if there is room for incoming liquids.
-				int capacity = MAX_CAPACITY - fluid.amount;
-
-				if (!doFill)
-				{
-					if (fluid.amount == 0)
-					{
-						return resource.amount;
-					}
-
-					if (resource.getFluid() == fluid.getFluid())
-					{
-						if (capacity >= resource.amount)
-						{
-							return resource.amount;
-						}else
-						{
-							return capacity;
-						}
-					}
-				}else
-					//Really fill
-				{
-					if (fluid.amount == 0)
-					{
-						if (resource.getFluid() != fluid.getFluid())
-						{
-							fluid =  new FluidStack(resource.getFluid(),resource.amount);
-						}else
-						{
-							fluid.amount = resource.amount;
-						}
-						mb = fluid.amount / MAX_CAPACITY;
-						return resource.amount;
-					}
-
-					if (resource.getFluid() == fluid.getFluid())
-					{
-						if (capacity >= resource.amount)
-						{
-							fluid.amount += resource.amount;
-							mb = fluid.amount / MAX_CAPACITY;
-							return resource.amount;
-						}else
-						{
-							fluid.amount = MAX_CAPACITY;
-							mb = MAX_CAPACITY;
-							return capacity;
-						}
-					}
-				}
-
-				return 0;
-	}
-
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		if (resource.getFluid() == FluidRegistry.WATER)
-		      return new FluidStack(FluidRegistry.WATER, resource.amount);
-		    else return null;
-	}
-
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		return new FluidStack(FluidRegistry.WATER, maxDrain);
-	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
@@ -205,6 +145,12 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 		return compound;
 	}
     
+	@Override
+	public IFluidTankProperties[] getTankProperties() {
+		IFluidTankProperties[] prop = new IFluidTankProperties[fluid.amount];
+		return prop;
+		}
+	
     public String getGuiID()
     {
         return "nethertweaksmod:GuiCondenser";
