@@ -62,8 +62,14 @@ public class BlockHandler implements INames{
         
         public static Block blockBasic;
     
+    public static void init() {
+    	registerBlocks();
+    	registerItemBlocks();
+    }
+        
+        
     //Registering all the blocks
-    public static void registerBlocks(){
+    private static void registerBlocks(){
 		
     	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 3, Constants.MOD);
 
@@ -110,7 +116,6 @@ public class BlockHandler implements INames{
         sieve = Registry.registerBlock(new Sieve(), Constants.MOD);
         freezer = Registry.registerBlock(new Freezer(), Constants.MOD);
         
-        registerItemBlocks();
     }
     
     //Just an extra method after the register block thing to prevent errors

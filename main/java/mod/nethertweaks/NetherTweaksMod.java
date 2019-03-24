@@ -65,11 +65,9 @@ public class NetherTweaksMod {
         //Config
         Config.loadConfigs(event);
         //Registry
-        BlockHandler.registerBlocks();
-        ItemHandler.registerItems();
-        BucketNFluidHandler.registerBuckets();
-        if(event.getSide().isClient())
-        	BucketNFluidHandler.doHelper();
+        BlockHandler.init();
+        ItemHandler.init();
+        BucketNFluidHandler.init();
         MinecraftForge.TERRAIN_GEN_BUS.register(whNTM);
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
@@ -77,14 +75,12 @@ public class NetherTweaksMod {
     
     @EventHandler
     public void load(FMLInitializationEvent event){
-        //will likely be remove
-        RecipeHandler.loadSmelting();
         //handler recipes
         NTMCompostHandler.load();
         NTMDryHandler.load();
         NTMSieveHandler.load();       
         //needs to be checked
-        RecipeHandler.oreRegistration();
+        RecipeHandler.load();
         OreHandler.init();
     }
      

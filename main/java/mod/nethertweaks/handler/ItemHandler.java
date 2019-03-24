@@ -40,7 +40,7 @@ public class ItemHandler implements INames{
 	public static Item oreMaterial;
     
 	//food
-    public static CookedJerky itemCookedJerky;
+    public static Item itemCookedJerky;
          
     //Werkzeuge
     public static Item itemPickaxeNetherrack;
@@ -51,14 +51,19 @@ public class ItemHandler implements INames{
     public static Item itemHammerDiamond;
     public static Item itemHammerStone;
     
+    
+    	public static void init() {
+    		registerItems();
+    		addItemBurnTime();
+    	}
     	
-        public static void registerItems(){
+        private static void registerItems(){
         	
         	//Multi ID Item
-        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 20, INames.ITEMBASE), Constants.MOD);
+        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 15, INames.ITEMBASE), Constants.MOD);
     		oreMaterial = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.OREMATERIAL), Constants.MOD);
             
-        	itemCookedJerky = (CookedJerky) Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
+        	itemCookedJerky = Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
             seedGrass = Registry.registerItem(new Seed(INames.SEEDGRASS), Constants.MOD);
             mushroomSpores = Registry.registerItem(new Seed(INames.MUSHROOMSPORES), Constants.MOD);
             itemCactusSeeds = Registry.registerItem(new Seed(INames.CACTUSSEED), Constants.MOD);
@@ -81,7 +86,7 @@ public class ItemHandler implements INames{
             addItemBurnTime();          
         }
         
-        public static void addItemBurnTime() {
+        private static void addItemBurnTime() {
         	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 18000);
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 6400);
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 64000);
