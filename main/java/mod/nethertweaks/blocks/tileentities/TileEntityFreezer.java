@@ -33,7 +33,7 @@ import scala.Int;
 
 public class TileEntityFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
-	public static final int MAX_CAPACITY = 16000;
+	private static final int MAX_CAPACITY = 16000;
 	float volume;
 	private int amount;
 	public FluidStack fluid;
@@ -45,7 +45,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	}
 	
 	World world;
-	ItemStack ice = new ItemStack(Blocks.ICE);
+	ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
     @Override
 	public void update() {
@@ -74,16 +74,16 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 
     public void freezeItem()
     {
-        if (this.canFreeze() && !world.isRemote)
+        if (!world.isRemote)
         {
             if (this.machineItemStacks.get(0).isEmpty())
             {
-                this.machineItemStacks.get(0) = ice;
+                this.machineItemStacks.add(0, ice);
                 return;
             }
-            else if (this.machineItemStacks.get(0).getItem().getContainerItem(machineItemStacks.get(0)).getItem() == ice)
+            else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
             {
-                StackUtils.addToStackSize(new ItemStack(ice, 1), 1);// Forge BugFix: Results may have multiple items
+                StackUtils.addToStackSize(ice, 1);// Forge BugFix: Results may have multiple items
                 return;
             }
         }

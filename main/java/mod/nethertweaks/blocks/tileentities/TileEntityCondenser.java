@@ -41,7 +41,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 		
-	public static final int MAX_CAPACITY = 16000;
+	private static final int MAX_CAPACITY = 16000;
 	float volume;
 	private int amount;
 	public FluidStack fluid;
@@ -54,17 +54,17 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 
 	@Override
     public void update() {
-			dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
-	}
-	
-	public void dry(Item material, Item bucket){
+		drainFromItem();
 		if(checkInv() && workTime < maxworkTime) {
 			workTime++;
 		}
+		dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
+	}
+	
+	public void dry(Item material, Item bucket){
 		if(workTime == maxworkTime)
 		{
 			tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
-			
 			workTime = 0;
 		}
 	return;
@@ -106,5 +106,15 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 		workTime = 0;
 		return false;
 	}
+	
+	private void drainFromItem(){
+		if(FluidUtil.getFluidHandler(machineItemStacks.get(1)) != null) {
+			FluidUtil.getFluidHandler(machineItemStacks.get(1)).fill(tank.getFluid(), true);
+			if(machineItemStacks.get(2).isEmpty()) {
+				StackUtils.substractFromStackSize(machineItemStacks.get(1), 1);
+				machineItemStacks.add(2, machineItemStacks.get(1));
+			}
+		}
+    }
 
 }
