@@ -41,7 +41,7 @@ import scala.Int;
 
 public class TileEntityFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
-	private static final int MAX_CAPACITY = 16000;
+	private final int MAX_CAPACITY = 16000;
 	private int amount;
 	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
 	private int mb;
