@@ -19,6 +19,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
@@ -50,18 +52,20 @@ public class BucketNFluidHandler {
 		public static Item bucketStoneDemonWater;
 		public static Item bucketStoneMilk;
 
-	
-	public static void registerBuckets(){
+	public static void init() {
+		registerBuckets();
+		doHelper();
+	}
+		
+	private static void registerBuckets(){
 		
 		//Fluids
 		fluidDemonWater = new FluidDemonWater();
 		FluidRegistry.registerFluid(fluidDemonWater);
 		blockDemonWater = Registry.registerBlock(new BlockDemonWater(fluidDemonWater, Material.WATER), Constants.MOD);
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
-
 		
 		//Buckets
-		
 		bucketDemonWater = new CustomBucket(blockDemonWater, INames.BUCKETDEMONWATER, new ItemStack(Items.BUCKET));
 		bucketDemonWater = Registry.registerItem(bucketDemonWater, Constants.MOD);
 		
@@ -86,7 +90,8 @@ public class BucketNFluidHandler {
 		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood)).setUnlocalizedName(INames.BUCKETWOODMILK), Constants.MOD);		
 	}
 	
-	public static void doHelper(){
+	@SideOnly(Side.CLIENT)
+	private static void doHelper(){
 		InventoryRenderHelper.fluidRender(BucketNFluidHandler.blockDemonWater, "nethertweaksmod");
     }
 }

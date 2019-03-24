@@ -144,7 +144,7 @@ public class NTMSieveHandler {
 		register(BlockHandler.dust, 0, Items.REDSTONE, 0, 8);		
 		register(BlockHandler.dust, 0, Items.GUNPOWDER, 0, 15);
 		
-		register(BlockHandler.dust, 0, ItemHandler.itemBase, 0, 9);
-		register(BlockHandler.dust, 0, ItemHandler.itemBase, 0, 18);
+		register(BlockHandler.dust, 0, ItemHandler.itemBase, 8, 9);
+		register(BlockHandler.dust, 0, ItemHandler.itemBase, 13, 18);
 	}
 }

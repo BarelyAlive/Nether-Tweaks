@@ -14,7 +14,9 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,14 +46,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherrackFurnace extends BlockContainer {
      
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private final boolean isBurning;
     private static boolean keepInventory;
+    public static PropertyBool isBurning = PropertyBool.create("isBurning");
 
-    public NetherrackFurnace(boolean isBurning)
+    public NetherrackFurnace()
     {
         super(Material.ROCK);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        this.isBurning = isBurning;
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(isBurning, false));
         setResistance(17.5F);
         setHardness(3.5F);
         if(getUnlocalizedName().substring(5) == INames.NETHERRACKFURNACE)
@@ -110,7 +111,8 @@ public class NetherrackFurnace extends BlockContainer {
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        if (this.isBurning)
+    	TileEntityNetherrackFurnace te = (TileEntityNetherrackFurnace) worldIn.getTileEntity(pos);
+        if (te.isWorking())
         {
             EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
             double d0 = (double)pos.getX() + 0.5D;
@@ -167,28 +169,7 @@ public class NetherrackFurnace extends BlockContainer {
 
     public static void setState(boolean active, World worldIn, BlockPos pos)
     {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        keepInventory = true;
-
-        if (active)
-        {
-            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace_lit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-        }
-        else
-        {
-            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, BlockHandler.netherrackfurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-        }
-
-        keepInventory = false;
-
-        if (tileentity != null)
-        {
-            tileentity.validate();
-            worldIn.setTileEntity(pos, tileentity);
-        }
+        worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(isBurning, active));
     }
 
     /**

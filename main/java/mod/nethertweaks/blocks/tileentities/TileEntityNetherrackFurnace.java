@@ -55,38 +55,16 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 
 	@Override
     public void update() {
-    	boolean flag = this.isWorking();
-        boolean flag1 = false;
-
+		
         if (!world.isRemote)
         {
-            checkHeatSource();
-            if (!isWorking() && canSmelt())
+            if (canSmelt())
             {
-            	if(workTime == 0)
-            		workTime++;
-            	world.notifyBlockUpdate(pos, BlockHandler.netherrackfurnace_lit.getDefaultState(), BlockHandler.netherrackfurnace_lit.getDefaultState(), 3);
-                if (isWorking())
-                {
-                    flag1 = true;
-
-
-                        if (machineItemStacks.get(0).getCount() == 0)
-                        {
-                            machineItemStacks.set(0, machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)));
-                        }
-                }
-            }
-
-            if (isWorking() && canSmelt())
-            {
-                ++workTime;
-
+                workTime++;
                 if (workTime == maxworkTime)
                 {
                     workTime = 0;
                     smeltItem();
-                    flag1 = true;
                 }
             }
             else
@@ -94,18 +72,14 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
                 workTime = 0;
             }
         }
-            else if (!isWorking() && workTime > 0)
-            {
-                workTime = MathHelper.clamp(workTime - 2, 0, maxworkTime);
-            }else if(isWorking() && !canSmelt()){
-            	workTime = 0;
-            }
 
-            if (flag != isWorking())
-            {
-                flag1 = true;
-                NetherrackFurnace.setState(isWorking(), world, pos);
-            }
+        if (isWorking())
+        {
+            NetherrackFurnace.setState(true, world, pos);
+        }
+        else {
+        	NetherrackFurnace.setState(false, world, pos);
+        }
     } 
     
    
@@ -140,18 +114,21 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
      */
     private boolean canSmelt()
     {
-        if (this.machineItemStacks.get(0) == null)
+    	if(!checkHeatSource()) {
+    		return false;
+    	}
+        if (this.machineItemStacks.get(0).isEmpty())
         {
             return false;
         }
         else
         {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
-            if (itemstack == null) return false;
-            if (this.machineItemStacks.get(1) == null) return true;
+            if (itemstack.isEmpty()) return false;
+            if (this.machineItemStacks.get(1).isEmpty()) return true;
             if (!this.machineItemStacks.get(1).isItemEqual(itemstack)) return false;
             int result = machineItemStacks.get(1).getCount() + itemstack.getCount();
-            return result <= getInventoryStackLimit() && result <= this.machineItemStacks.get(1).getMaxStackSize(); //Forge BugFix: Make it respect stack sizes properly.
+            return result <= getInventoryStackLimit() && result <= this.machineItemStacks.get(1).getMaxStackSize();
         }
     }
 
@@ -160,26 +137,42 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
      */
     public void smeltItem()
     {
-        if (canSmelt())
+        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
+
+        if (this.machineItemStacks.get(1).isEmpty())
         {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
-
-            if (this.machineItemStacks.get(1) == null)
-            {
-                this.machineItemStacks.set(1, itemstack.copy());
-            }
-            else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
-            {
-                StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount()); // Forge BugFix: Results may have multiple items
-            }
-
-            this.machineItemStacks.get(0).setCount(this.machineItemStacks.get(0).getCount()-1);
-
-            if (this.machineItemStacks.get(0).getCount() <= 0)
-            {
-                this.machineItemStacks.set(0, null);
-            }
+            this.machineItemStacks.set(1, itemstack.copy());
         }
+        else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
+        {
+            StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount()); // Forge BugFix: Results may have multiple items
+        }
+
+        StackUtils.substractFromStackSize(this.machineItemStacks.get(0), 1);
+
+        if (this.machineItemStacks.get(0).getCount() <= 0)
+        {
+            this.machineItemStacks.set(0, ItemStack.EMPTY);
+        }
+    }
+    
+    @Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return compound;
+	}
+	    
+    public String getGuiID()
+    {
+        return "nethertweaksmod:GuiNetherrackFurnace";
     }
     
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

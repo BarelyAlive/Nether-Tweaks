@@ -1,6 +1,5 @@
 fluid.tile.demon_water=Demon Water
 
-tile.flesh.name=Flesh Block
 tile.block_demon_water.name=Demon Water
 tile.condenser.name=Condenser
 tile.water_fountain.name=Water Fountain
@@ -168,19 +167,15 @@ item.item_base_2.name=Crushed Gold
 item.item_base_3.name=Crushed Iron
 item.item_base_4.name=End Box
 item.item_base_5.name=Ender Crystal
-item.item_base_6.name=Black Dye
-item.item_base_7.name=Portal Core
-item.item_base_8.name=Ender Infused Frame
-item.item_base_9.name=Gold Pile
-item.item_base_10.name=Hellfayah
-item.item_base_11.name=Steel Ingot
-item.item_base_12.name=Pulver of Light
-item.item_base_14.name=Obsidian Dust
-item.item_base_15.name=Dirt Pile
-item.item_base_16.name=Salt
-item.item_base_17.name=Sieve Web
-item.item_base_18.name=Iron Pile
-item.item_base_19.name=Stone Bar
+item.item_base_6.name=Portal Core
+item.item_base_7.name=Ender Infused Frame
+item.item_base_8.name=Gold Pile
+item.item_base_9.name=Hellfayah
+item.item_base_10.name=Pulver of Light
+item.item_base_11.name=Salt
+item.item_base_12.name=Sieve Web
+item.item_base_13.name=Iron Pile
+item.item_base_14.name=Stone Bar
 
 tile.block_basic_0.name=Hellfayah Ore
 tile.block_basic_1.name=Hellfayah Block

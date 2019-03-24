@@ -4,10 +4,13 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
+import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
 import mod.sfhcore.helper.FluidHelper;
+import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
+import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,68 +36,39 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileEntityCondenser extends TileEntityBase{
-	
-	public Item[] buckets = {Items.BUCKET, BucketNFluidHandler.bucketStone, BucketNFluidHandler.bucketWood};
-	private boolean canDry = false;
-	private int a = 0;
+public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
+		
+	private static final int MAX_CAPACITY = 16000;
+	private int amount;
+	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
+	private int mb;
+	public FluidTank tank = new FluidTank(fluid, mb);
 	
     public TileEntityCondenser(String field) {
-		super(2, field);
+		super(2, field, 16000);
 		this.maxworkTime = Config.dryTimeCondenser;
 	}
 
 	@Override
     public void update() {
-    	checkInv();
-		if(canDry){
+		if(!world.isRemote) {
+			drainFromItem();
+			if(checkInv() && workTime < maxworkTime) {
+				workTime++;
+			}
 			dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
 		}
 	}
 	
 	public void dry(Item material, Item bucket){
-		if(!canDry){
-			a = 0;
+		if(workTime == maxworkTime)
+		{
+			tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
 			workTime = 0;
-		}
-		if(canDry) {
-			a = 0;
-			a = machineItemStacks.get(1).getCount();
-			checkHeatSource();
-		}
-		else {
-			return;
-		}
-		if(a >= NTMDryHandler.getItem(material, material.getDamage(machineItemStacks.get(1))).value) {
-			if(canDry && workTime == 0) {
-			int amount = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
-			decrStackSize(1, amount);
-			}
-			if(canDry) {
-				workTime++;
-				if(workTime == maxworkTime)
-				{
-					if(bucket.equals(Items.BUCKET)){
-						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(Items.WATER_BUCKET, 1));
-					}
-					if(bucket == BucketNFluidHandler.bucketStone){
-						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(BucketNFluidHandler.bucketStoneWater, 1));
-							
-					}
-					if(bucket == BucketNFluidHandler.bucketWood){
-						decrStackSize(0, 1);
-						setInventorySlotContents(0, new ItemStack(BucketNFluidHandler.bucketWoodWater, 1));
-					}
-					FluidHelper.fillContainer(machineItemStacks.get(0), FluidRegistry.WATER, 1000);
-					canDry = false;
-					workTime = 0;
-				}
-			}
 		}
 	return;
 	}
@@ -125,45 +99,119 @@ public class TileEntityCondenser extends TileEntityBase{
 		return false;
 	}
 	
-	public void checkInv(){
-		boolean canDry1 = false;
-		boolean canDry2 = false;
-		canDry = false;
-		if(machineItemStacks.get(0) != null && machineItemStacks.get(1) != null){
-			if(machineItemStacks.get(0).getCount() < 2){
-				
-				if(NTMDryHandler.containsItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage())){
-					int wert = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
-					if(machineItemStacks.get(1).getCount() >= wert){
-					canDry1 = true;
-					}
-				}else{
-					canDry1 = false;
-					canDry2 = false;
-					return;
-				}
-				
-				for (Item item : buckets){
-					if (item == machineItemStacks.get(0).getItem()){
-						canDry2 = true;
-						break;
-					}
-				}
-				if(FluidHelper.isFillableContainerWithRoom(machineItemStacks.get(0))){
-					canDry2 = true;
-				}
-			}else
-			{
-				canDry = false;
-			}
-			if(canDry1 && canDry2){
-				canDry = true;
-			}else
-			{
-				canDry = false;
-			}
-			return;
+	public boolean checkInv(){
+		if(NTMDryHandler.containsItem(machineItemStacks.get(0))) {
+			amount = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
+			StackUtils.substractFromStackSize(machineItemStacks.get(0), 1);
+			checkHeatSource();
+			return true;
 		}
+		workTime = 0;
+		return false;
+	}
+	
+	private void drainFromItem(){
+		if(FluidUtil.getFluidHandler(machineItemStacks.get(1)) != null) {
+			FluidUtil.getFluidHandler(machineItemStacks.get(1)).fill(tank.getFluid(), true);
+			if(machineItemStacks.get(2).isEmpty()) {
+				StackUtils.substractFromStackSize(machineItemStacks.get(1), 1);
+				machineItemStacks.add(2, machineItemStacks.get(1));
+			}
+		}
+    }
+	
+	@Override
+	public int fill(FluidStack resource, boolean doFill) {
+		//Simulate the fill to see if there is room for incoming liquids.
+				int capacity = MAX_CAPACITY - fluid.amount;
+
+				if (!doFill)
+				{
+					if (fluid.amount == 0)
+					{
+						return resource.amount;
+					}
+
+					if (resource.getFluid() == fluid.getFluid())
+					{
+						if (capacity >= resource.amount)
+						{
+							return resource.amount;
+						}else
+						{
+							return capacity;
+						}
+					}
+				}else
+					//Really fill
+				{
+					if (fluid.amount == 0)
+					{
+						if (resource.getFluid() != fluid.getFluid())
+						{
+							fluid =  new FluidStack(resource.getFluid(),resource.amount);
+						}else
+						{
+							fluid.amount = resource.amount;
+						}
+						mb = fluid.amount / MAX_CAPACITY;
+						return resource.amount;
+					}
+
+					if (resource.getFluid() == fluid.getFluid())
+					{
+						if (capacity >= resource.amount)
+						{
+							fluid.amount += resource.amount;
+							mb = fluid.amount / MAX_CAPACITY;
+							return resource.amount;
+						}else
+						{
+							fluid.amount = MAX_CAPACITY;
+							mb = MAX_CAPACITY;
+							return capacity;
+						}
+					}
+				}
+
+				return 0;
 	}
 
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		if (resource.getFluid() == FluidRegistry.WATER)
+		      return new FluidStack(FluidRegistry.WATER, resource.amount);
+		    else return null;
+	}
+
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain) {
+		return new FluidStack(FluidRegistry.WATER, maxDrain);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.mb = compound.getInteger("volume");
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("volume", this.mb);
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return compound;
+	}
+    
+    public String getGuiID()
+    {
+        return "nethertweaksmod:GuiCondenser";
+    }
+
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        return new ContainerCondenser(playerInventory, this);
+    }
 }

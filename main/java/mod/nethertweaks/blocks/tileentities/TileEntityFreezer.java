@@ -2,15 +2,22 @@ package mod.nethertweaks.blocks.tileentities;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Freezer;
+import mod.nethertweaks.blocks.container.ContainerCondenser;
+import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
+import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -25,25 +32,31 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Int;
 
 public class TileEntityFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
+	private static final int MAX_CAPACITY = 16000;
+	private int amount;
+	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
+	private int mb;
+	public FluidTank tank = new FluidTank(fluid, mb);
+	
 	public TileEntityFreezer(String field) {
 		super(1, field, 16000);
 		maxworkTime = Config.freezeTimeFreezer;
 	}
-
-	public static final int MAX_CAPACITY = 16000;
-	float volume;
-	public FluidStack fluid;
-	public FluidTank tank = new FluidTank(fluid, (int) volume);
+	
 	World world;
+	ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
     @Override
 	public void update() {
 		world = getWorld();
+		
+		fillFromItem();
 		
 		if(canFreeze()) {
 			workTime++;
@@ -56,38 +69,41 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 	
 	private boolean canFreeze()
     {
-        if (world.getRedstonePower(pos, EnumFacing.DOWN) == 0)
+        if (world.getRedstonePower(pos, EnumFacing.DOWN) > 0 && tank.getCapacity() >= 1000)
         {
-            return false;
+        	tank.drain(1000, true);
+        	return true;
         }
-        else
-        {
-            ItemStack itemstack = new ItemStack(Blocks.ICE);
-            if (this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)) == null) return true;
-            if (!this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)).isItemEqual(itemstack)) return false;
-            int result = machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)).getCount() + itemstack.getCount();
-            return result <= getInventoryStackLimit() && result <= this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)).getCount(); //Forge BugFix: Make it respect stack sizes properly.
-        }
+        return false;
     }
 
     public void freezeItem()
     {
-        if (this.canFreeze() && !world.isRemote)
+        if (!world.isRemote)
         {
-        	ItemStack itemstack = new ItemStack(Blocks.ICE);
-
-            if (this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)) == null)
+            if (this.machineItemStacks.get(0).isEmpty())
             {
-                this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.set(0, itemstack.copy()));
+                this.machineItemStacks.add(0, ice);
                 return;
             }
-            else if (this.machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)).getItem() == itemstack.getItem())
+            else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
             {
-                StackUtils.addToStackSize(machineItemStacks.get(1).getItem().getContainerItem(machineItemStacks.get(0)), itemstack.getCount());// Forge BugFix: Results may have multiple items
+                StackUtils.addToStackSize(ice, 1);// Forge BugFix: Results may have multiple items
                 return;
             }
         }
         
+    }
+    
+    private void fillFromItem(){
+    	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).getFluid() == FluidRegistry.WATER){
+    		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), 16000, true);
+    	}
+    	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 0) {
+    		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
+    		StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
+    		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
+    	}
     }
 
 	@Override
@@ -119,7 +135,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						}
 					}
 				}else
-					//Really fill the barrel.
+					//Really fill
 				{
 					if (fluid.amount == 0)
 					{
@@ -130,9 +146,7 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						{
 							fluid.amount = resource.amount;
 						}
-						volume = (float)fluid.amount / (float)MAX_CAPACITY;
-												world.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
-						//needsUpdate = true;
+						mb = fluid.amount / MAX_CAPACITY;
 						return resource.amount;
 					}
 
@@ -141,13 +155,12 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 						if (capacity >= resource.amount)
 						{
 							fluid.amount += resource.amount;
-							volume = (float)fluid.amount / (float)MAX_CAPACITY;
+							mb = fluid.amount / MAX_CAPACITY;
 							return resource.amount;
 						}else
 						{
 							fluid.amount = MAX_CAPACITY;
-							volume = 1.0f;
-							//needsUpdate = true;
+							mb = MAX_CAPACITY;
 							return capacity;
 						}
 					}
@@ -168,4 +181,29 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 		return new FluidStack(FluidRegistry.WATER, maxDrain);
 	}
 	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		this.mb = compound.getInteger("volume");
+		this.workTime = compound.getInteger("worktime");
+		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		compound.setInteger("volume", this.mb);
+		compound.setInteger("worktime", workTime);
+		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
+		return compound;
+	}
+	    
+	    public String getGuiID()
+    {
+        return "nethertweaksmod:GuiFreezer";
+    }
+
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        return new ContainerFreezer(playerInventory, this);
+    }
 }
