@@ -68,6 +68,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 			drainFromItem();
 			if(checkInv() && workTime < maxworkTime) {
 				workTime++;
+				return;
 			}
 			dry(machineItemStacks.get(1).getItem(), machineItemStacks.get(0).getItem());
 		}

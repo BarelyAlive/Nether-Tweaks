@@ -71,15 +71,14 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             {
                 workTime = 0;
             }
-            
-            //Aktualisiere Block
-            if (isWorking())
-            {
-                NetherrackFurnace.setState(true, world, pos);
-            }
-            else {
-            	NetherrackFurnace.setState(false, world, pos);
-            }
+        }
+
+        if (isWorking())
+        {
+            NetherrackFurnace.setState(true, world, pos);
+        }
+        else {
+        	NetherrackFurnace.setState(false, world, pos);
         }
     } 
     
