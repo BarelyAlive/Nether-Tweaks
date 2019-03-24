@@ -18,10 +18,13 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class GuiLoadHandler{
 	
 	protected static GuiHandler gh = new GuiHandler(NetherTweaksMod.instance);
+	public static int condenser_id;
+	public static int freezer_id;
+	public static int netherrack_furnace_id;
 	
 	public static void addGuiToHandler() {
-		gh.addGUIRelation(TileEntityCondenser.class, ContainerCondenser.class);
-		gh.addGUIRelation(TileEntityFreezer.class, ContainerFreezer.class);
-		gh.addGUIRelation(TileEntityNetherrackFurnace.class, ContainerNetherrackFurnace.class);
+		condenser_id = gh.addGUIRelation(TileEntityCondenser.class, ContainerCondenser.class);
+		freezer_id = gh.addGUIRelation(TileEntityFreezer.class, ContainerFreezer.class);
+		netherrack_furnace_id = gh.addGUIRelation(TileEntityNetherrackFurnace.class, ContainerNetherrackFurnace.class);
 	}
 }
