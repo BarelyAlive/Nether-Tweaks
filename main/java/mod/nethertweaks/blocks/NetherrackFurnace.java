@@ -54,10 +54,8 @@ public class NetherrackFurnace extends BlockContainer {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(isBurning, false));
         setResistance(17.5F);
         setHardness(3.5F);
-        if(getUnlocalizedName().substring(5) == INames.NETHERRACKFURNACE)
-        	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-        if(getUnlocalizedName().substring(5) == INames.NETHERRACKFURNACE_LIT)
-        	setLightLevel(13.0F);
+        setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        setRegistryName(INames.NETHERRACKFURNACE_LIT);
     }
 
     /**
@@ -167,7 +165,13 @@ public class NetherrackFurnace extends BlockContainer {
     }
 
     public static void setState(boolean active, World worldIn, BlockPos pos)
-    {
+    {	
+    	if(active) {
+    		worldIn.getBlockState(pos).getBlock().setLightLevel(13.0F);
+    	}
+    	else {
+    		worldIn.getBlockState(pos).getBlock().setLightLevel(0.0F);
+    	}
         worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(isBurning, active));
     }
 
