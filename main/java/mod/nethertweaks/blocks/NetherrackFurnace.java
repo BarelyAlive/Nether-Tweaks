@@ -122,6 +122,21 @@ public class NetherrackFurnace extends CubeContainerBase {
             return true;
         }
     }
+    
+    public static void setState(boolean active, World worldIn, BlockPos pos)
+    {	
+    	IBlockState b = worldIn.getBlockState(pos);
+    	if(b != Blocks.AIR.getDefaultState()) {
+    		if(active && b.getValue(ISBURNING) == false) {
+        		b.getBlock().setLightLevel(13.0F);
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        	}
+    		if(!active && b.getValue(ISBURNING) == true) {
+        		b.getBlock().setLightLevel(0.0F);
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        	}
+    	}
+    }
 
     protected BlockStateContainer createBlockState()
     {

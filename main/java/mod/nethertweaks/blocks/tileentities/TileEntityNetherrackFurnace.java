@@ -52,7 +52,6 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 		maxworkTime = Config.burnTimeFurnace;
 	}
 
-
 	@Override
     public void update() {
 		
@@ -73,13 +72,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             }
         }
 
-        if (isWorking())
-        {
-            NetherrackFurnace.setState(true, world, pos);
-        }
-        else {
-        	NetherrackFurnace.setState(false, world, pos);
-        }
+        NetherrackFurnace.setState(isWorking(), world, pos);
     } 
     
    

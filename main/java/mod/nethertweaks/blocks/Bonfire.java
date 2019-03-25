@@ -87,6 +87,7 @@ public class Bonfire extends Block{
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+		if(worldIn.isRemote)
 		player.sendMessage(new TextComponentString("Your point of rest is lost!"));
 		
 	    player.setSpawnPoint(null, true);

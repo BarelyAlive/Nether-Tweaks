@@ -47,12 +47,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
-		
-	private final int MAX_CAPACITY = 16000;
+	
 	private int amount;
-	private FluidStack fluid = new FluidStack(FluidRegistry.WATER, 0);
-	private int mb;
-	public FluidTank tank = new FluidTank(fluid, mb);
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
     public TileEntityCondenser(String field) {
