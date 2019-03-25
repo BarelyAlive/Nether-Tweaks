@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "nethertweaksmod:block/condenser",
-        "front": "nethertweaksmod:block/condenser_front",
-        "side": "nethertweaksmod:block/condenser"
-    }
-}

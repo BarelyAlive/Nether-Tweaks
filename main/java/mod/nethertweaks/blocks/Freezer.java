@@ -8,8 +8,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.sfhcore.blocks.CubeContainerBase;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -26,8 +27,10 @@ import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
@@ -40,12 +43,13 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Freezer extends BlockContainer implements IVariantProvider{
+public class Freezer extends CubeContainerBase{
 	
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
+    private static boolean keepInventory;
 	
 	public Freezer() {
-		super(Material.ROCK);
+		super(Material.ROCK, new TileEntityFreezer("freezer"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setUnlocalizedName(INames.FREEZER);
 		setResistance(17.5f);
@@ -96,102 +100,6 @@ public class Freezer extends BlockContainer implements IVariantProvider{
 	    }
         return true;
 	}
-
-	@Override
-	public boolean hasTileEntity() {
-		return true;
-	}
-	
-	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityFreezer("freezer");
-	}
-	
-	@Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-    {
-        this.setDefaultFacing(worldIn, pos, state);
-    }
-
-    private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!worldIn.isRemote)
-        {
-            IBlockState iblockstate = worldIn.getBlockState(pos.north());
-            IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
-            IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
-            IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
-
-            if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
-            {
-                enumfacing = EnumFacing.SOUTH;
-            }
-            else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
-            {
-                enumfacing = EnumFacing.NORTH;
-            }
-            else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
-            {
-                enumfacing = EnumFacing.EAST;
-            }
-            else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
-            {
-                enumfacing = EnumFacing.WEST;
-            }
-
-            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
-        }
-    }
-	
-	@Override
-    public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-            ret.add(new ImmutablePair<Integer, String>(0, "type=normal"));
-        return ret;
-    }
-	
-	/**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    public IBlockState getStateFromMeta(int meta)
-    {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
-
-        return this.getDefaultState().withProperty(FACING, enumfacing);
-    }
-
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
-    }
-	
-	/**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
-    public IBlockState withRotation(IBlockState state, Rotation rot)
-    {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
-    }
-
-    /**
-     * Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
-     */
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
-    {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
-    }
 	
 	protected BlockStateContainer createBlockState()
     {

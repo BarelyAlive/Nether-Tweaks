@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "nethertweaksmod:blocks/netherrack_furnace",
-        "front": "nethertweaksmod:blocks/netherrack_furnace_front",
-        "side": "nethertweaksmod:blocks/netherrack_furnace"
-    }
-}

@@ -1,7 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:condenser" },
-        "inventory": { "model": "nethertweaksmod:condenser" },
         "facing=north": { "model": "nethertweaksmod:condenser" },
         "facing=south": { "model": "nethertweaksmod:condenser", "y": 180 },
         "facing=west":  { "model": "nethertweaksmod:condenser", "y": 270 },

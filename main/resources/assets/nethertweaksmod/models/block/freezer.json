@@ -1,14 +1,10 @@
 {
-    "parent": "block/cube",
+    "parent": "block/orientable",
     "textures": {
         "top": "nethertweaksmod:blocks/freezer_top",
         "front": "nethertweaksmod:blocks/freezer_front",
         "side": "nethertweaksmod:blocks/netherrack_furnace",
         "up": "nethertweaksmod:blocks/freezer_top",
-        "down": "nethertweaksmod:blocks/freezer_top",
-        "north": "nethertweaksmod:blocks/freezer_front",
-        "south": "nethertweaksmod:blocks/netherrack_furnace",
-        "west": "nethertweaksmod:blocks/netherrack_furnace",
-        "east": "nethertweaksmod:blocks/netherrack_furnace"
+        "down": "nethertweaksmod:blocks/netherrack_furnace"
     }
 }
