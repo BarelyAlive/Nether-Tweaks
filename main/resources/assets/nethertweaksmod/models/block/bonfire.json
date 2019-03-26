@@ -1,5 +1,4 @@
 {
-    "ambientocclusion": false,
     "textures": {
         "nrack": "blocks/netherrack",
         "iron": "blocks/iron_block",

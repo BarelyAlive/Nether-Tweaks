@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:bonfire", "uvlock": true }
+        "normal": { "model": "nethertweaksmod:bonfire"}
     }
 }
