@@ -112,7 +112,7 @@ public class BlockHandler implements INames{
          
         //Tile Entity
         condenser = new Condenser();
-        netherrackfurnace = new NetherrackFurnace().setUnlocalizedName(NETHERRACKFURNACE);
+        netherrackfurnace = new NetherrackFurnace();
         barrel = new Barrel();
         barrelstone = new BarrelStone();
         sieve = new Sieve();

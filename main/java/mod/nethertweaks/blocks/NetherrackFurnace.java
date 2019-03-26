@@ -9,7 +9,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.sfhcore.blocks.CubeContainerBase;
+import mod.sfhcore.blocks.CubeContainerHorizontal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -43,7 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class NetherrackFurnace extends CubeContainerBase {
+public class NetherrackFurnace extends CubeContainerHorizontal {
      
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static boolean keepInventory;

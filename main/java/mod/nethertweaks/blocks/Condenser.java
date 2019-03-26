@@ -12,7 +12,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
-import mod.sfhcore.blocks.CubeContainerBase;
+import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -43,7 +43,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class Condenser extends CubeContainerBase{
+public class Condenser extends CubeContainerHorizontal{
      
     private static boolean keepInventory;
     public static final PropertyDirection FACING = BlockHorizontal.FACING;

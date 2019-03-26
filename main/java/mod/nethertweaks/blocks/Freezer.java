@@ -10,7 +10,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
-import mod.sfhcore.blocks.CubeContainerBase;
+import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -43,7 +43,7 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Freezer extends CubeContainerBase{
+public class Freezer extends CubeContainerHorizontal{
 	
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static boolean keepInventory;
@@ -100,9 +100,4 @@ public class Freezer extends CubeContainerBase{
 	    }
         return true;
 	}
-	
-	protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
-    }
 }
