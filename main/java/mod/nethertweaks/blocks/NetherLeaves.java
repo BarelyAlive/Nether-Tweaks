@@ -11,7 +11,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.NetherLog.EnumAxis;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
