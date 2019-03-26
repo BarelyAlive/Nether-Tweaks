@@ -11,6 +11,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.RegisterTileEntity;
@@ -60,9 +61,6 @@ public class Condenser extends CubeContainerHorizontal{
     /**
      * Called when the block is right clicked by a player.
      */
-    /**
-     * Called when the block is right clicked by a player.
-     */
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -74,15 +72,13 @@ public class Condenser extends CubeContainerHorizontal{
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityCondenser)
-            {
-                playerIn.displayGUIChest((TileEntityCondenser)tileentity);
-                playerIn.addStat(StatList.FURNACE_INTERACTION);
+            if(worldIn.getTileEntity(pos) != null) {
+                playerIn.openGui(NetherTweaksMod.instance, GuiLoadHandler.condenser_id, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
 
             return true;
         }
-    }    
+    }  
     
 	protected BlockStateContainer createBlockState()
     {

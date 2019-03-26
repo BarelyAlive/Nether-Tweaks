@@ -9,7 +9,9 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -113,10 +115,8 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityNetherrackFurnace)
-            {
-                playerIn.displayGUIChest((TileEntityNetherrackFurnace)tileentity);
-                playerIn.addStat(StatList.FURNACE_INTERACTION);
+            if(worldIn.getTileEntity(pos) != null) {
+                playerIn.openGui(NetherTweaksMod.instance, GuiLoadHandler.netherrack_furnace_id, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
 
             return true;
