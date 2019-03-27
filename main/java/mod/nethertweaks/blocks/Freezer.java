@@ -51,7 +51,6 @@ public class Freezer extends CubeContainerHorizontal{
 	public Freezer() {
 		super(Material.ROCK, new TileEntityFreezer("freezer"));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		this.setUnlocalizedName(INames.FREEZER);
 		setRegistryName(INames.FREEZER);
 		setUnlocalizedName(INames.FREEZER);
 		setResistance(17.5f);
