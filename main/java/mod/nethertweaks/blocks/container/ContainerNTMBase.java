@@ -5,6 +5,7 @@ import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -14,10 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerNTMBase extends Container{
 
-	private TileEntityBase tileEntity;
+	private IInventory tileEntity;
 	
-	public ContainerNTMBase(InventoryPlayer inventoryPlayer, TileEntityBase te) {
-		tileEntity = te;
+	public ContainerNTMBase(InventoryPlayer inventoryPlayer, IInventory tileEntity2) {
+		tileEntity = tileEntity2;
 
 	}
 

@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -17,9 +18,9 @@ import mod.sfhcore.Constants;
 public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize, ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiNetherrackFurnace.png");
-	private TileEntityNetherrackFurnace entity;
+	private IInventory entity;
 	
-	public GuiNetherrackFurnace(InventoryPlayer inventoryPlayer, TileEntityNetherrackFurnace tileEntity) {
+	public GuiNetherrackFurnace(InventoryPlayer inventoryPlayer, IInventory tileEntity) {
         super(new ContainerNetherrackFurnace(inventoryPlayer, tileEntity));
         entity = tileEntity;
    		xSize = 175;
