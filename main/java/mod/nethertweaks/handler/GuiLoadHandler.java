@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class GuiLoadHandler{
 	
-	protected static GuiHandler gh = new GuiHandler(NetherTweaksMod.instance);
+	public static GuiHandler gh = new GuiHandler(NetherTweaksMod.instance);
 	public static int condenser_id;
 	public static int freezer_id;
 	public static int netherrack_furnace_id;

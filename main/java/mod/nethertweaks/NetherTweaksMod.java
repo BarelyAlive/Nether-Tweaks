@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -59,7 +60,7 @@ public class NetherTweaksMod {
     public WorldHandler whNTM = new WorldHandler();
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
-    @EventHandler
+    @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event){
         
         //Config
@@ -71,9 +72,12 @@ public class NetherTweaksMod {
         MinecraftForge.TERRAIN_GEN_BUS.register(whNTM);
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
+        //GUI
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiLoadHandler.gh);
+        GuiLoadHandler.addGuiToHandler();
     }
     
-    @EventHandler
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event){
         //handler recipes
         NTMCompostHandler.load();
@@ -84,10 +88,8 @@ public class NetherTweaksMod {
         OreHandler.init();
     }
      
-    @EventHandler
+    @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event){
-    	//mod ores
-        GuiLoadHandler.addGuiToHandler();
         //Compatibility
         MinefactoryReloaded.loadCompatibility();
     }     
