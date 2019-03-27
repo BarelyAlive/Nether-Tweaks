@@ -59,6 +59,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         setHardness(3.5F);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         setRegistryName(INames.NETHERRACKFURNACE);
+        setUnlocalizedName(INames.NETHERRACKFURNACE);
     }
 
     @SideOnly(Side.CLIENT)
@@ -101,26 +102,18 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         }
     }
     
-    /**
-     * Called when the block is right clicked by a player.
-     */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if(worldIn.getTileEntity(pos) != null) {
-                playerIn.openGui(NetherTweaksMod.instance, GuiLoadHandler.netherrack_furnace_id, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-
-            return true;
-        }
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(world.isRemote) {
+			return true;
+		}
+		TileEntity te = world.getTileEntity(pos);
+		if(!(te instanceof TileEntityNetherrackFurnace)) {
+			return false;
+		}
+		player.openGui(NetherTweaksMod.instance, GuiLoadHandler.netherrack_furnace_id, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
     }
     
     public static void setState(boolean active, World worldIn, BlockPos pos)
@@ -138,6 +131,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	}
     }
 
+    @Override
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {FACING, ISBURNING});

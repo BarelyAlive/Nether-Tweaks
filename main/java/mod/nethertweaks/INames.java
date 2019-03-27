@@ -11,7 +11,6 @@ public interface INames {
 	//blocks
 	public static final String CONDENSER 					= "condenser";
 	public static final String NETHERRACKFURNACE 			= "netherrack_furnace";
-	public static final String NETHERRACKFURNACE_LIT 		= "netherrack_furnace_lit";
 	public static final String BARREL						= "barrel_wood";
 	public static final String BARRELSTONE 					= "barrel_stone";
 	public static final String FREEZER 						= "freezer";

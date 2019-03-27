@@ -11,6 +11,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
@@ -52,36 +53,24 @@ public class Condenser extends CubeContainerHorizontal{
     public Condenser() {
         super(Material.ROCK, new TileEntityCondenser("condenser"));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setRegistryName(INames.CONDENSER);
         setUnlocalizedName(INames.CONDENSER);
         setResistance(30.0f);
         setHardness(4.0f);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     }
     
-    /**
-     * Called when the block is right clicked by a player.
-     */
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if(worldIn.getTileEntity(pos) != null) {
-                playerIn.openGui(NetherTweaksMod.instance, GuiLoadHandler.condenser_id, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-
-            return true;
-        }
-    }  
-    
-	protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+			EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(world.isRemote) {
+			return true;
+		}
+		TileEntity te = world.getTileEntity(pos);
+		if(!(te instanceof TileEntityCondenser)) {
+			return false;
+		}
+		player.openGui(NetherTweaksMod.instance, GuiLoadHandler.condenser_id, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
     }
 }
