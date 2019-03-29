@@ -60,35 +60,29 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 	@Override
     public void update() {
 		
-        if (!world.isRemote)
+        if (!this.world.isRemote)
         {
-        	System.out.println("Bin noch nicht am smelten!");
             if (canSmelt())
             {
                 ++this.workTime;
-            	System.out.println(this.workTime);
-                if (workTime == this.maxworkTime)
+                if (this.workTime == 20)
                 {
-                	System.out.println("Bin am smelten!");
                     smeltItem();
                     this.workTime = 0;
-                    System.out.println("Habe gesmeltet");
                 }
             }
             else
             {
             	this.workTime = 0;
             }
+            NetherrackFurnace.setState(isWorking(), this.world, this.pos);
         }
-
-        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
     }
     
     public boolean checkHeatSource(){ 
 		World world = getWorld();
 		IBlockState block = world.getBlockState(this.pos.add(0, -1, 0));
 		if(block.getMaterial() == Material.FIRE){
-			System.out.println("Feuer ist da");
 			return true;
 		}
 		if(block.getMaterial() == Material.LAVA){
@@ -126,7 +120,6 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
         {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
 
-            System.out.println(itemstack);
             if (itemstack.isEmpty())
             {
                 return false;
@@ -135,7 +128,6 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             {
                 ItemStack itemstack1 = this.machineItemStacks.get(1);
 
-                System.out.println(itemstack1);
                 if (itemstack1.isEmpty())
                 {
                     return true;

@@ -31,6 +31,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -113,25 +114,37 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
   				TileEntity te = world.getTileEntity(pos);
 
   				if(te instanceof TileEntityNetherrackFurnace)
-  				player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+  					player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
   			}
   		}
   		return true;
     }
     
     public static void setState(boolean active, World worldIn, BlockPos pos)
-    {	
+    {
     	IBlockState b = worldIn.getBlockState(pos);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+    	
     	if(b != Blocks.AIR.getDefaultState()) {
     		if(active && b.getValue(ISBURNING) == false) {
-        		b.getBlock().setLightLevel(13.0F);
-        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, true));
-        	}
-    		if(!active && b.getValue(ISBURNING) == true) {
+    	   		b.getBlock().setLightLevel(0.875F);
+    	        b = b.withProperty(ISBURNING, true);
+    	        worldIn.setBlockState(pos, b, 3);
+    	        worldIn.setBlockState(pos, b, 3);
+    		}
+    		else if(!active && b.getValue(ISBURNING) == true) {
         		b.getBlock().setLightLevel(0.0F);
-        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, false));
+        		b = b.withProperty(ISBURNING, false);
+    	        worldIn.setBlockState(pos, b, 3);
+    	        worldIn.setBlockState(pos, b, 3);
         	}
     	}
+    	
+        if (tileentity != null)
+        {
+            tileentity.validate();
+            worldIn.setTileEntity(pos, tileentity);
+        }
     }
 
     @Override
