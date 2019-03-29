@@ -92,6 +92,6 @@ public class BucketNFluidHandler {
 	
 	@SideOnly(Side.CLIENT)
 	private static void doHelper(){
-		InventoryRenderHelper.fluidRender(BucketNFluidHandler.blockDemonWater, "nethertweaksmod");
+		InventoryRenderHelper.fluidRender(blockDemonWater, "nethertweaksmod");
     }
 }
