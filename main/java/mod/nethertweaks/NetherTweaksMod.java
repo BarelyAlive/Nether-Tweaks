@@ -25,7 +25,6 @@ import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
-import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
 import mod.nethertweaks.handler.NTMDryHandler;
@@ -62,8 +61,7 @@ public class NetherTweaksMod {
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
     @Mod.EventHandler
-    public void PreInit(FMLPreInitializationEvent event){
-        
+    public void PreInit(FMLPreInitializationEvent event){       
         //Config
         Config.loadConfigs(event);
         //Registry
@@ -75,7 +73,6 @@ public class NetherTweaksMod {
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
-        //GuiLoadHandler.addGuiToHandler();
     }
     
     @Mod.EventHandler
@@ -86,11 +83,12 @@ public class NetherTweaksMod {
         NTMSieveHandler.load();       
         //needs to be checked
         RecipeHandler.load();
-        OreHandler.init();
     }
      
     @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event){
+    	//Ores from other mods
+        OreHandler.init();
         //Compatibility
         MinefactoryReloaded.loadCompatibility();
     }     

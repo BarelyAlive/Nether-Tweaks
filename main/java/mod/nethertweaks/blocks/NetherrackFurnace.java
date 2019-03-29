@@ -9,7 +9,6 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.block.Block;
@@ -143,5 +142,5 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityNetherrackFurnace("netherrack_furnace");
-}
+    }
 }

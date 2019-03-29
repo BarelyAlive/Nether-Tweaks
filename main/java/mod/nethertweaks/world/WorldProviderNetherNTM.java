@@ -38,11 +38,6 @@ public class WorldProviderNetherNTM extends WorldProviderHell {
 	}
 	
 	@Override
-	public void onPlayerAdded(EntityPlayerMP player) {
-		player.changeDimension(-1);
-	}
-	
-	@Override
 	public void setSpawnPoint(BlockPos pos){
 		if(this.world.getWorldType() instanceof WorldTypeHellworld){
 			world.getWorldInfo().setSpawn(new BlockPos(0,50,0));

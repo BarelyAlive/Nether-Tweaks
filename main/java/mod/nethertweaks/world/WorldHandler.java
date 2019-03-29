@@ -1,9 +1,9 @@
 package mod.nethertweaks.world;
  
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -34,10 +34,46 @@ import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetWaterColor;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+
+import mod.nethertweaks.Config;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.RecipeHandler;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.WorldProviderHell;
+import net.minecraft.world.WorldProviderSurface;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
+import net.minecraftforge.event.terraingen.BiomeEvent.GetWaterColor;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class WorldHandler{
      
-    boolean isHellworldType;
+	protected static boolean isHellworldType = false;
+	final String key = "ntm.firstSpawn";
          
     @SubscribeEvent
     public void changeDimensionByWorldType(WorldTypeEvent event) throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException {
@@ -64,28 +100,43 @@ public class WorldHandler{
     
     
     @SubscribeEvent
-    public void perfectJoin(net.minecraftforge.event.entity.EntityJoinWorldEvent event){
-    	
-    	if(event.getEntity() instanceof EntityPlayer){
-    		EntityPlayer player = (EntityPlayer) event.getEntity();
-        	System.out.println(player);
-        	
-	        if(player.dimension != -1 && isHellworldType == true) {
-	        	player.preparePlayerToSpawn();
-	            player.changeDimension(-1);
-	        }
-    	
-	    	if(isHellworldType == true){
-	            
-	        	if(player.dimension == 0){
-	        		player.changeDimension(Config.nethDim);
-	        	}
-	        	if(player.dimension == 1){
-	        		player.changeDimension(Config.endDim);
-	        	}
-	        }
-    	}
-    }
+	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
+		if(event.player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !event.player.world.isRemote) {
+			event.player.changeDimension(-1);
+		}
+		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
+			event.player.changeDimension(Config.nethDim);
+		}
+	}
+	
+	@SubscribeEvent
+	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
+		EntityPlayer player = event.player;
+		
+		boolean isRemote = event.player.world.isRemote;
+		NBTTagCompound tag = player.getEntityData();
+		
+		if(!(this.isHellworldType)) return;
+		if(isRemote) return;
+		if(!tag.hasKey(key))		teleportPlayer(player);
+		if(!tag.getBoolean(key))	teleportPlayer(player);
+		return;
+	}
+	
+	private void teleportPlayer(EntityPlayer player2) {
+		
+		EntityPlayerMP player = (EntityPlayerMP) player2;
+		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
+			player2.setPortal(player2.getPosition());
+			player2.setSpawnChunk(player2.getPosition(), true, -1);
+		}
+			
+		player2.getEntityData().setBoolean(key, true);
+		
+		if(player2.dimension != -1) player2.changeDimension(-1);
+		
+		
+}
     
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){

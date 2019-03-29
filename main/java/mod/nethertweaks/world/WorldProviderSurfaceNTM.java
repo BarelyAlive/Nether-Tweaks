@@ -14,6 +14,11 @@ public class WorldProviderSurfaceNTM extends WorldProviderSurface {
 	}
 	
 	@Override
+	public void onPlayerAdded(EntityPlayerMP player) {
+		player.changeDimension(-1);
+	}
+	
+	@Override
 	public boolean canRespawnHere() {
 		return false;
 	}
