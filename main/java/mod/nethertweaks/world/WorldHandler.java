@@ -74,6 +74,7 @@ public class WorldHandler{
      
 	protected static boolean isHellworldType = false;
 	final String key = "ntm.firstSpawn";
+	final String key2 = "ntm.secondSpawn";
 	final String coodX = "ntm.cood.x";
 	final String coodY = "ntm.cood.y";
 	final String coodZ = "ntm.cood.z";
@@ -88,7 +89,7 @@ public class WorldHandler{
     @SubscribeEvent
 	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
 		if(event.player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !event.player.world.isRemote) {
-			event.player.changeDimension(-1);
+			teleportPlayer(event.player);
 		}
 		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
 			if(Config.nethDim != 0)
@@ -107,25 +108,34 @@ public class WorldHandler{
 		if(isRemote) return;
 		if(!tag.hasKey(key))		teleportPlayer(player);
 		if(!tag.getBoolean(key))	teleportPlayer(player);
-		if(tag.getBoolean(key) && player.addedToChunk) {
-			player.setSpawnChunk(player.getPosition(), true, -1);
-			player.getEntityData().setInteger(coodX, player.getPosition().getX());
-			player.getEntityData().setInteger(coodY, player.getPosition().getY());
-			player.getEntityData().setInteger(coodZ, player.getPosition().getZ());
-		}
 		return;
 	}
 	
 	private void teleportPlayer(EntityPlayer player2) {
 		
 		EntityPlayerMP player = (EntityPlayerMP) player2;
+		
+		if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
+			if(player2.getEntityData().getBoolean(key)) {
+				player2.getEntityData().setBoolean(key2, true);
+			}
+		}
+		
 		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
 			player2.setPortal(player2.getPosition());
+			player2.getEntityData().setBoolean(key, true);
 		}
-			
-		player2.getEntityData().setBoolean(key, true);
-		
+				
 		if(player2.dimension != -1) player2.changeDimension(-1);
+		
+		if(player2.getEntityData().getBoolean(key2) && player.addedToChunk) {
+			BlockPos pos = new BlockPos(player2);
+			
+			player.setSpawnChunk(pos, true, -1);
+			player.getEntityData().setInteger(coodX, pos.getX());
+			player.getEntityData().setInteger(coodY, pos.getY());
+			player.getEntityData().setInteger(coodZ, pos.getZ());
+		}
 }
     
     @SubscribeEvent
