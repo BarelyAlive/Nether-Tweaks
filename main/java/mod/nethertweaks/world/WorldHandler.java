@@ -74,30 +74,16 @@ public class WorldHandler{
      
 	protected static boolean isHellworldType = false;
 	final String key = "ntm.firstSpawn";
-         
-    @SubscribeEvent
-    public void changeDimensionByWorldType(WorldTypeEvent event) throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException {
-         
-        if(event.getWorldType() instanceof WorldTypeHellworld) {
-             
-            this.isHellworldType = true;
-             
-            DimensionManager.unregisterDimension(0);
-            DimensionType.register("Overworld", "Provider", 0, WorldProviderSurfaceNTM.class, true);
-            DimensionManager.registerDimension(0, DimensionType.getById(0));
-             
-            DimensionManager.unregisterDimension(-1);
-            DimensionType.register("Nether", "Provider", -1, WorldProviderNetherNTM.class, true);
-            DimensionManager.registerDimension(-1, DimensionType.getById(-1));
-             
-            DimensionManager.unregisterDimension(1);
-            DimensionType.register("End", "Provider", 1, WorldProviderEndNTM.class, true);
-            DimensionManager.registerDimension(1, DimensionType.getById(1));
-             
-        }
-         
-    }    
+	final String coodX = "ntm.cood.x";
+	final String coodY = "ntm.cood.y";
+	final String coodZ = "ntm.cood.z";
     
+    @SubscribeEvent
+    public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
+    	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld && pre.player.addedToChunk) {
+    		teleportPlayer(pre.player);
+		}
+    }
     
     @SubscribeEvent
 	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
@@ -105,6 +91,7 @@ public class WorldHandler{
 			event.player.changeDimension(-1);
 		}
 		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
+			if(Config.nethDim != 0)
 			event.player.changeDimension(Config.nethDim);
 		}
 	}
@@ -116,10 +103,16 @@ public class WorldHandler{
 		boolean isRemote = event.player.world.isRemote;
 		NBTTagCompound tag = player.getEntityData();
 		
-		if(!(this.isHellworldType)) return;
+		if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld)) return;
 		if(isRemote) return;
 		if(!tag.hasKey(key))		teleportPlayer(player);
 		if(!tag.getBoolean(key))	teleportPlayer(player);
+		if(tag.getBoolean(key) && player.addedToChunk) {
+			player.setSpawnChunk(player.getPosition(), true, -1);
+			player.getEntityData().setInteger(coodX, player.getPosition().getX());
+			player.getEntityData().setInteger(coodY, player.getPosition().getY());
+			player.getEntityData().setInteger(coodZ, player.getPosition().getZ());
+		}
 		return;
 	}
 	
@@ -128,14 +121,11 @@ public class WorldHandler{
 		EntityPlayerMP player = (EntityPlayerMP) player2;
 		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
 			player2.setPortal(player2.getPosition());
-			player2.setSpawnChunk(player2.getPosition(), true, -1);
 		}
 			
 		player2.getEntityData().setBoolean(key, true);
 		
 		if(player2.dimension != -1) player2.changeDimension(-1);
-		
-		
 }
     
     @SubscribeEvent

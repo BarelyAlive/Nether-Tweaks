@@ -75,10 +75,11 @@ public class Bonfire extends Block{
 		
 		if(playerIn.onGround && !worldIn.isRemote && playerIn.dimension == -1){
 		    ITextComponent name = playerIn.getDisplayName();
-		    playerIn.setSpawnChunk(pos, true, -1);
 		    int x = (int) playerIn.posX;
 		    int y = (int) playerIn.posY;
 		    int z = (int) playerIn.posZ;
+		    BlockPos posPlayer = new BlockPos(playerIn);
+		    playerIn.setSpawnPoint(pos, true);
 		    playerIn.sendMessage(new TextComponentString(name + " rested at X: " + x + " Y: " + y +" Z: " + z + "!"));
 		}
 		
@@ -90,7 +91,8 @@ public class Bonfire extends Block{
 		if(worldIn.isRemote)
 		player.sendMessage(new TextComponentString("Your point of rest is lost!"));
 		
-	    player.setSpawnPoint(null, true);
+		BlockPos posPlayer = new BlockPos(player.getEntityData().getInteger("cood.x"), player.getEntityData().getInteger("cood.y"), player.getEntityData().getInteger("cood.z"));
+	    player.setSpawnPoint(posPlayer, true);
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 	
