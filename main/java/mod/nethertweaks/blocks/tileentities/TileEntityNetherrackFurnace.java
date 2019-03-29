@@ -112,6 +112,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
+     * Aaaaaaaaaaaaaaaaaaaand if there's a source of heat beneath it
      */
     private boolean canSmelt()
     {
@@ -184,7 +185,6 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     
     @Override
 	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
 	}
