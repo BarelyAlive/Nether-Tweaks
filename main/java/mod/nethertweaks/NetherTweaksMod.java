@@ -24,6 +24,7 @@ import mod.nethertweaks.blocks.HolyEarth;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.GuiLoadHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.NTMCompostHandler;
@@ -73,8 +74,8 @@ public class NetherTweaksMod {
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(), 1);
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiLoadHandler.gh);
-        GuiLoadHandler.addGuiToHandler();
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
+        //GuiLoadHandler.addGuiToHandler();
     }
     
     @Mod.EventHandler

@@ -5,8 +5,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
@@ -14,17 +16,20 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.sfhcore.Constants;
+import mod.sfhcore.blocks.container.ContainerBase;
 
 public class GuiNetherrackFurnace extends GuiContainer {
-	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiNetherrackFurnace.png");
-	private IInventory entity;
+	private int xSize = 175, ySize = 165;
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD, "textures/gui/guinetherrackfurnace.png");
+	private TileEntityNetherrackFurnace entity;
+	private InventoryPlayer inv;
+	private BlockPos pos;
 	
-	public GuiNetherrackFurnace(InventoryPlayer inventoryPlayer, IInventory tileEntity) {
-        super(new ContainerNetherrackFurnace(inventoryPlayer, tileEntity));
-        entity = tileEntity;
-   		xSize = 175;
-		ySize = 165;
+	public GuiNetherrackFurnace(ContainerBase container, InventoryPlayer inventory) {
+        super(container);
+        this.inv = inventory;
+        this.entity = (TileEntityNetherrackFurnace) container.tileentity;
+        this.pos = entity.getPos();
 	}
 	
 	/**
@@ -50,7 +55,7 @@ public class GuiNetherrackFurnace extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
+        this.mc.getTextureManager().bindTexture(backgroundimage);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

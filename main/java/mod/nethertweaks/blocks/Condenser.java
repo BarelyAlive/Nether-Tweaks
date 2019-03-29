@@ -51,7 +51,7 @@ public class Condenser extends CubeContainerHorizontal{
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     public Condenser() {
-        super(Material.ROCK, new TileEntityCondenser("condenser"));
+        super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setRegistryName(INames.CONDENSER);
         setUnlocalizedName(INames.CONDENSER);
@@ -70,7 +70,7 @@ public class Condenser extends CubeContainerHorizontal{
 		if(!(te instanceof TileEntityCondenser)) {
 			return false;
 		}
-		player.openGui(NetherTweaksMod.instance, GuiLoadHandler.condenser_id, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
 }

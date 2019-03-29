@@ -11,6 +11,7 @@ import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -36,6 +37,9 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.datafix.FixTypes;
+import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -47,9 +51,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityNetherrackFurnace extends TileEntityBase{
     
+	
     public TileEntityNetherrackFurnace(String field) {
 		super(2, field);
-		maxworkTime = Config.burnTimeFurnace;
+		this.maxworkTime = Config.burnTimeFurnace;
 	}
 
 	@Override
@@ -57,43 +62,46 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 		
         if (!world.isRemote)
         {
+        	System.out.println("Bin noch nicht am smelten!");
             if (canSmelt())
             {
-                workTime++;
-                if (workTime == maxworkTime)
+                ++this.workTime;
+            	System.out.println(this.workTime);
+                if (workTime == this.maxworkTime)
                 {
+                	System.out.println("Bin am smelten!");
                     smeltItem();
-                    workTime = 0;
+                    this.workTime = 0;
+                    System.out.println("Habe gesmeltet");
                 }
             }
             else
             {
-                workTime = 0;
+            	this.workTime = 0;
             }
         }
 
-        NetherrackFurnace.setState(isWorking(), world, pos);
-    } 
+        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+    }
     
-   
-    
-    public boolean checkHeatSource(){
+    public boolean checkHeatSource(){ 
 		World world = getWorld();
-		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		if(block.getDefaultState().getMaterial() == Material.FIRE){
+		IBlockState block = world.getBlockState(this.pos.add(0, -1, 0));
+		if(block.getMaterial() == Material.FIRE){
+			System.out.println("Feuer ist da");
 			return true;
 		}
-		if(block.getDefaultState().getMaterial() == Material.LAVA){
+		if(block.getMaterial() == Material.LAVA){
 			if(block instanceof BlockFluidClassic) {
-				int lavatime = maxworkTime / 10 * 8;
+				int lavatime = this.maxworkTime / 10 * 8;
 				int lavaheat = FluidRegistry.LAVA.getTemperature();
-				int blockheat = BlockFluidClassic.getTemperature(world, pos);
-				if(maxworkTime > lavatime) {
+				int blockheat = BlockFluidClassic.getTemperature(world, this.pos);
+				if(this.maxworkTime > lavatime) {
 					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
 					if(lavatime > heattime) {
-						maxworkTime = heattime;
+						this.maxworkTime = heattime;
 					}else {
-						maxworkTime = lavatime;			
+						this.maxworkTime = lavatime;			
 					}
 				}
 			}
@@ -110,18 +118,41 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     	if(!checkHeatSource()) {
     		return false;
     	}
-        if (this.machineItemStacks.get(0).isEmpty())
+    	if (((ItemStack)this.machineItemStacks.get(0)).isEmpty())
         {
             return false;
         }
         else
         {
             ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
-            if (itemstack.isEmpty()) return false;
-            if (this.machineItemStacks.get(1).isEmpty()) return true;
-            if (!this.machineItemStacks.get(1).isItemEqual(itemstack)) return false;
-            int result = machineItemStacks.get(1).getCount() + itemstack.getCount();
-            return result <= getInventoryStackLimit() && result <= this.machineItemStacks.get(1).getMaxStackSize();
+
+            System.out.println(itemstack);
+            if (itemstack.isEmpty())
+            {
+                return false;
+            }
+            else
+            {
+                ItemStack itemstack1 = this.machineItemStacks.get(1);
+
+                System.out.println(itemstack1);
+                if (itemstack1.isEmpty())
+                {
+                    return true;
+                }
+                else if (!itemstack1.isItemEqual(itemstack))
+                {
+                    return false;
+                }
+                else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+                {
+                    return true;
+                }
+                else
+                {
+                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                }
+            }
         }
     }
 
@@ -131,21 +162,23 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     public void smeltItem()
     {
         ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
-
+        
         if (this.machineItemStacks.get(1).isEmpty())
         {
             this.machineItemStacks.set(1, itemstack.copy());
         }
         else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
         {
-            StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount()); // Forge BugFix: Results may have multiple items
+            StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount());
         }
-
-        StackUtils.substractFromStackSize(this.machineItemStacks.get(0), 1);
 
         if (this.machineItemStacks.get(0).getCount() <= 0)
         {
             this.machineItemStacks.set(0, ItemStack.EMPTY);
+        }
+        else
+        {
+            StackUtils.substractFromStackSize(this.machineItemStacks.get(0), 1);
         }
     }
     
@@ -158,16 +191,18 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("worktime", workTime);
+		compound.setInteger("worktime", this.workTime);
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
-	    
+	
+	@Override
     public String getGuiID()
     {
         return "nethertweaksmod:GuiNetherrackFurnace";
     }
     
+    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerNetherrackFurnace(playerInventory, this);

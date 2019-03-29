@@ -53,7 +53,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
     public NetherrackFurnace()
     {
-        super(Material.ROCK, new TileEntityNetherrackFurnace("netherrack_furnace"));
+        super(Material.ROCK);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);
@@ -105,15 +105,18 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     @Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(world.isRemote) {
-			return true;
-		}
-		TileEntity te = world.getTileEntity(pos);
-		if(!(te instanceof TileEntityNetherrackFurnace)) {
-			return false;
-		}
-		player.openGui(NetherTweaksMod.instance, GuiLoadHandler.netherrack_furnace_id, world, pos.getX(), pos.getY(), pos.getZ());
-		return true;
+    	if (!world.isRemote) {
+			// ...
+ 			if (player.isSneaking()) {
+ 				// ...
+  			} else {
+  				TileEntity te = world.getTileEntity(pos);
+
+  				if(te instanceof TileEntityNetherrackFurnace)
+  				player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+  			}
+  		}
+  		return true;
     }
     
     public static void setState(boolean active, World worldIn, BlockPos pos)
@@ -122,11 +125,11 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	if(b != Blocks.AIR.getDefaultState()) {
     		if(active && b.getValue(ISBURNING) == false) {
         		b.getBlock().setLightLevel(13.0F);
-        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, true));
         	}
     		if(!active && b.getValue(ISBURNING) == true) {
         		b.getBlock().setLightLevel(0.0F);
-        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, active));
+        		worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ISBURNING, false));
         	}
     	}
     }
@@ -136,4 +139,9 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     {
         return new BlockStateContainer(this, new IProperty[] {FACING, ISBURNING});
     }
+    
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityNetherrackFurnace("netherrack_furnace");
+}
 }

@@ -17,7 +17,8 @@ public class ContainerNTMBase extends Container{
 
 	private IInventory tileEntity;
 	
-	public ContainerNTMBase(InventoryPlayer inventoryPlayer, IInventory tileEntity2) {
+	public ContainerNTMBase(InventoryPlayer playerInv, IInventory tileEntity2) {
+		super();
 		tileEntity = tileEntity2;
 
 	}

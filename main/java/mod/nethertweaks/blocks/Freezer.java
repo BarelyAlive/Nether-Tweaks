@@ -49,7 +49,7 @@ public class Freezer extends CubeContainerHorizontal{
     private static boolean keepInventory;
 	
 	public Freezer() {
-		super(Material.ROCK, new TileEntityFreezer("freezer"));
+		super(Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setRegistryName(INames.FREEZER);
 		setUnlocalizedName(INames.FREEZER);
@@ -63,7 +63,7 @@ public class Freezer extends CubeContainerHorizontal{
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if(!worldIn.isRemote) {
             if(worldIn.getTileEntity(pos) != null) {
-                playerIn.openGui(NetherTweaksMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
 	      if (worldIn.getTileEntity(pos) instanceof TileEntityFreezer && playerIn.inventory.getCurrentItem() != null)
 	      {
