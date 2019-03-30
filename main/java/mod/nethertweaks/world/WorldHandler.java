@@ -78,6 +78,8 @@ public class WorldHandler{
 	public final static String coodY = "ntm.cood.y";
 	public final static String coodZ = "ntm.cood.z";
     
+	//HELLWORLD
+	
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
     	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld && pre.player.addedToChunk) {
@@ -147,6 +149,8 @@ public class WorldHandler{
 			player2.changeDimension(-1);
 		}
 	}
+	
+	//Enitity Interaction
     
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){
@@ -167,6 +171,8 @@ public class WorldHandler{
 	    	}
     	}
     }
+    
+    //WORLD DATA
     
     @SubscribeEvent
 	public void LoadPlayerList(WorldEvent.Load event) {

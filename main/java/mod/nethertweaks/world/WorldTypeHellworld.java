@@ -18,7 +18,7 @@ public class WorldTypeHellworld extends WorldType {
 	
 	public WorldTypeHellworld(String par2Str) {
 		super(par2Str);
-	}	
+	}
 	
 	@Override
 	public int getMinimumSpawnHeight(World world) {
