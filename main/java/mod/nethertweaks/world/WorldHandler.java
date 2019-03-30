@@ -72,7 +72,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class WorldHandler{
      
-	protected static boolean isHellworldType = false;
 	public final static String key = "ntm.firstSpawn";
 	public final static String key2 = "ntm.secondSpawn";
 	public final static String coodX = "ntm.cood.x";
@@ -147,7 +146,7 @@ public class WorldHandler{
 		{
 			player2.changeDimension(-1);
 		}
-}
+	}
     
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){
@@ -172,32 +171,24 @@ public class WorldHandler{
     @SubscribeEvent
 	public void LoadPlayerList(WorldEvent.Load event) {
 		if(!(event.getWorld().isRemote)) {
-			InMWorldSaveData worldsave;
-			worldsave = InMWorldSaveData.get(event.getWorld());
-			HandlerNetwork.setMaximalNetwork(worldsave.getMaximalNetwork());
-			HandlerNetwork.setCurrentNetwork(worldsave.getCurrentNetwork());
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
 		}
 	}
 	
 	@SubscribeEvent
 	public void UnloadPlayerList(WorldEvent.Unload event) {
 		if(!(event.getWorld().isRemote)) {
-			InMWorldSaveData worldsave;
-			worldsave = InMWorldSaveData.get(event.getWorld());
-			
-			worldsave.setMaximalNetwork(HandlerNetwork.getMaximalNetwork());
-			worldsave.setCurrentNetwork(HandlerNetwork.getCurrentNetwork());
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
 		}
 	}
 	
 	@SubscribeEvent
 	public void SavePlayerList(WorldEvent.Save event) {
 		if(!(event.getWorld().isRemote)) {
-			InMWorldSaveData worldsave;
-			worldsave = InMWorldSaveData.get(event.getWorld());
-			
-			worldsave.setMaximalNetwork(HandlerNetwork.getMaximalNetwork());
-			worldsave.setCurrentNetwork(HandlerNetwork.getCurrentNetwork());
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
 		}
 	}
 }

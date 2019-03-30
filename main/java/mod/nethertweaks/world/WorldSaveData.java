@@ -2,9 +2,11 @@ package mod.nethertweaks.world;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import net.minecraft.world.storage.*;
 
@@ -33,14 +35,25 @@ public class WorldSaveData extends WorldSavedData {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		String key;
-		NBTTagList nbtList = nbt.getTagList("InM.Network", 10);
+		long lBits;
+		long mBits;
+		UUID index;
+		int x, y, z;
+		NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
 		
 		for(int i = 0; i < nbtList.tagCount(); i++) {
 			NBTTagCompound tag = (NBTTagCompound) nbtList.getCompoundTagAt(i);
-			key = tag.getString("InM.network_name");
-			this.current_network.put(key, tag.getLong("InM.current_network"));
-			this.maximal_network.put(key, tag.getLong("InM.maximal_network"));
+			
+			lBits = tag.getLong("NTM.leastSignificantBits");
+			mBits = tag.getLong("NTM.mostSignificantBits");
+			index = new UUID(mBits, lBits);
+			
+			x = tag.getInteger("NTM.PosX");
+			y = tag.getInteger("NTM.PosY");
+			z = tag.getInteger("NTM.PosZ");
+			
+			WorldDataNTM.spawnLocas.put(index, new BlockPos(x, y, z));
+			
 		}
 	}
 
@@ -48,54 +61,24 @@ public class WorldSaveData extends WorldSavedData {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		
 		NBTTagList tagList = new NBTTagList();
-		
-		for(String key : this.maximal_network.keySet()) {
+		for(Map.Entry<UUID, BlockPos> entry : WorldDataNTM.spawnLocas.entrySet()) {
 			
 			NBTTagCompound tag = new NBTTagCompound();
 			
-			if(this.maximal_network.get(key) == 0) {
-				tag.setLong("InM.maximal_network", (long)0);
-			} else {
-				tag.setLong("InM.maximal_network", this.maximal_network.get(key));
-			}
+			tag.setLong("NTM.leastSignificantBits", entry.getKey().getLeastSignificantBits());
+			tag.setLong("NTM.mostSignificantBits", entry.getKey().getMostSignificantBits());
 			
-			if(this.current_network.containsKey(key)) {
-				if(this.current_network.get(key) == 0) {
-					tag.setLong("InM.current_network", (long)0);
-				} else {
-					tag.setLong("InM.current_network", this.current_network.get(key));
-				}
-			} else {
-				tag.setLong("InM.current_network", (long)0);
-			}
-			
-			tag.setString("InM.network_name", key);
+			tag.setInteger("NTM.PosX", entry.getValue().getX());
+			tag.setInteger("NTM.PosY", entry.getValue().getY());
+			tag.setInteger("NTM.PosZ", entry.getValue().getZ());
 			
 			tagList.appendTag(tag);
 			
 		}
 		
-		nbt.setTag("InM.Network", tagList);
+		nbt.setTag("NTM.Network", tagList);
 		
 		return nbt;
 	}
 	
-	public Map<String, Long> getMaximalNetwork() {
-		return this.maximal_network;
-	}
-	
-	public void setMaximalNetwork(Map<String, Long> network) {
-		this.maximal_network = network;
-		this.markDirty();
-	}
-
-	public Map<String, Long> getCurrentNetwork() {
-		return this.current_network;
-	}
-	
-	public void setCurrentNetwork(Map<String, Long> network) {
-		this.current_network = network;
-		this.markDirty();
-	}
-
 }
