@@ -14,11 +14,11 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
  
-public class WorldGeneratorNetherTweaksMod implements IWorldGenerator{
+public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private int frequency;
 	
-	public WorldGeneratorNetherTweaksMod(IBlockState state, int blockCount, int frequency) {
+	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {
 		super();
 		this.frequency = frequency;
 	}

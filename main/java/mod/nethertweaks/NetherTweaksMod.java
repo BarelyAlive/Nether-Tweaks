@@ -31,7 +31,7 @@ import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
-import mod.nethertweaks.world.WorldGeneratorNetherTweaksMod;
+import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
@@ -69,7 +69,7 @@ public class NetherTweaksMod {
         ItemHandler.init();
         BucketNFluidHandler.init();
         MinecraftForge.EVENT_BUS.register(whNTM);
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNetherTweaksMod(BlockHandler.blockBasic.getDefaultState(), 16, 16), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.blockBasic.getDefaultState(), 16, 16), 1);
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
     }

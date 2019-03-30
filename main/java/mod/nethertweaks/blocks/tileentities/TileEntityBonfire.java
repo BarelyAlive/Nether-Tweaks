@@ -43,7 +43,7 @@ public class TileEntityBonfire extends TileEntity{
 			int y = player.getEntityData().getInteger(WorldHandler.coodY);
 			int z = player.getEntityData().getInteger(WorldHandler.coodZ);
 			
-			player.setSpawnPoint(new BlockPos(x, y, z), true);
+			player.bedLocation = new BlockPos(x, y, z);
 			
 			for(Map.Entry<UUID, BlockPos> entryG : WorldDataNTM.spawnLocas.entrySet()) {
 				if(entry == entryG) {
@@ -74,6 +74,8 @@ public class TileEntityBonfire extends TileEntity{
 			    player.sendMessage(new TextComponentString(player.getName() + " rested at X: " + player.getPosition() + "!"));
 		}
 		addGlobalEntry(getUUID(player), pos);
+		
+		player.bedLocation = pos;
 	}
 	
 	public BlockPos getSpawnLocationForPlayer(EntityPlayer player)

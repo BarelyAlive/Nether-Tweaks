@@ -88,13 +88,13 @@ public class WorldHandler{
     }
     
     @SubscribeEvent
-    public void setSpawn(net.minecraftforge.event.entity.EntityEvent.EnteringChunk pre) {
+    public void setSpawn(net.minecraftforge.event.entity.living.LivingSpawnEvent pre) {
     	if(pre.getEntity() instanceof EntityPlayerSP) {
     		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
     		BlockPos playerPos = new BlockPos(player2);
-    		if(pre.getEntity().world.getBlockState(playerPos) == Blocks.PORTAL) {
-    			if(player2.getEntityData().getBoolean(key) && player2.dimension == -1 && player2.onGround) {
-        			player2.setSpawnPoint(playerPos, true);
+    		if(player2.prevTimeInPortal > 0.0f) {
+    			if(player2.dimension == -1 && player2.onGround) {
+        			player2.bedLocation = playerPos;
         			player2.getEntityData().setInteger(coodX, playerPos.getX());
         			player2.getEntityData().setInteger(coodY, playerPos.getY());
         			player2.getEntityData().setInteger(coodZ, playerPos.getZ());
