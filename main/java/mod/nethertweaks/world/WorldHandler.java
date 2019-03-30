@@ -73,11 +73,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class WorldHandler{
      
 	protected static boolean isHellworldType = false;
-	final String key = "ntm.firstSpawn";
-	final String key2 = "ntm.secondSpawn";
-	final String coodX = "ntm.cood.x";
-	final String coodY = "ntm.cood.y";
-	final String coodZ = "ntm.cood.z";
+	public final static String key = "ntm.firstSpawn";
+	public final static String key2 = "ntm.secondSpawn";
+	public final static String coodX = "ntm.cood.x";
+	public final static String coodY = "ntm.cood.y";
+	public final static String coodZ = "ntm.cood.z";
     
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
@@ -88,8 +88,8 @@ public class WorldHandler{
     
     @SubscribeEvent
     public void setSpawn(net.minecraftforge.event.entity.EntityEvent.EnteringChunk pre) {
-    	if(pre.getEntity() instanceof EntityPlayer) {
-    		EntityPlayer player2 = (EntityPlayer) pre.getEntity();
+    	if(pre.getEntity() instanceof EntityPlayerSP) {
+    		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
     		BlockPos playerPos = new BlockPos(player2);
     		if(pre.getEntity().world.getBlockState(playerPos) == Blocks.PORTAL) {
     			if(player2.getEntityData().getBoolean(key) && player2.dimension == -1 && player2.onGround) {
@@ -168,4 +168,36 @@ public class WorldHandler{
 	    	}
     	}
     }
+    
+    @SubscribeEvent
+	public void LoadPlayerList(WorldEvent.Load event) {
+		if(!(event.getWorld().isRemote)) {
+			InMWorldSaveData worldsave;
+			worldsave = InMWorldSaveData.get(event.getWorld());
+			HandlerNetwork.setMaximalNetwork(worldsave.getMaximalNetwork());
+			HandlerNetwork.setCurrentNetwork(worldsave.getCurrentNetwork());
+		}
+	}
+	
+	@SubscribeEvent
+	public void UnloadPlayerList(WorldEvent.Unload event) {
+		if(!(event.getWorld().isRemote)) {
+			InMWorldSaveData worldsave;
+			worldsave = InMWorldSaveData.get(event.getWorld());
+			
+			worldsave.setMaximalNetwork(HandlerNetwork.getMaximalNetwork());
+			worldsave.setCurrentNetwork(HandlerNetwork.getCurrentNetwork());
+		}
+	}
+	
+	@SubscribeEvent
+	public void SavePlayerList(WorldEvent.Save event) {
+		if(!(event.getWorld().isRemote)) {
+			InMWorldSaveData worldsave;
+			worldsave = InMWorldSaveData.get(event.getWorld());
+			
+			worldsave.setMaximalNetwork(HandlerNetwork.getMaximalNetwork());
+			worldsave.setCurrentNetwork(HandlerNetwork.getCurrentNetwork());
+		}
+	}
 }

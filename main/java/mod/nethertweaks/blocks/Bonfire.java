@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tileentities.TileEntityBonfire;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -74,13 +75,12 @@ public class Bonfire extends Block{
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
 		if(playerIn.onGround && !worldIn.isRemote && playerIn.dimension == -1){
-		    ITextComponent name = playerIn.getDisplayName();
-		    int x = (int) playerIn.posX;
-		    int y = (int) playerIn.posY;
-		    int z = (int) playerIn.posZ;
-		    BlockPos posPlayer = new BlockPos(playerIn);
-		    playerIn.setSpawnPoint(pos, true);
-		    playerIn.sendMessage(new TextComponentString(name + " rested at X: " + x + " Y: " + y +" Z: " + z + "!"));
+		    TileEntity bonfire = worldIn.getTileEntity(pos);
+		    
+		    if(bonfire instanceof TileEntityBonfire)
+		    {
+		    	((TileEntityBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
+		    }
 		}
 		
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
@@ -88,11 +88,12 @@ public class Bonfire extends Block{
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		if(worldIn.isRemote)
-		player.sendMessage(new TextComponentString("Your point of rest is lost!"));
-		
-		BlockPos posPlayer = new BlockPos(player.getEntityData().getInteger("cood.x"), player.getEntityData().getInteger("cood.y"), player.getEntityData().getInteger("cood.z"));
-	    player.setSpawnPoint(posPlayer, true);
+		TileEntity bonfire = worldIn.getTileEntity(pos);
+	    
+	    if(bonfire instanceof TileEntityBonfire)
+	    {
+	    	((TileEntityBonfire) bonfire).deleteSpawnLocationsIfDestroyed();
+	    }
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 	
@@ -142,5 +143,15 @@ public class Bonfire extends Block{
     public boolean isFullCube(IBlockState state)
     {
         return false;
+    }
+    
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+    	return true;
+    }
+    
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+    	return new TileEntityBonfire();
     }
 }
