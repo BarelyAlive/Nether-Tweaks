@@ -87,6 +87,21 @@ public class WorldHandler{
     }
     
     @SubscribeEvent
+    public void setSpawn(net.minecraftforge.event.entity.EntityEvent.EnteringChunk pre) {
+    	if(pre.getEntity() instanceof EntityPlayer) {
+    		EntityPlayer player2 = (EntityPlayer) pre.getEntity();
+    		if(player2.getEntityData().getBoolean(key2) && player2.dimension == -1 && player2.onGround) {
+    			BlockPos pos = new BlockPos(player2);
+    			player2.respawnPlayer();
+    			player2.setSpawnPoint(pos, true);
+    			player2.getEntityData().setInteger(coodX, pos.getX());
+    			player2.getEntityData().setInteger(coodY, pos.getY());
+    			player2.getEntityData().setInteger(coodZ, pos.getZ());
+    		}
+    	}
+    }
+    
+    @SubscribeEvent
 	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
 		if(event.player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !event.player.world.isRemote) {
 			teleportPlayer(event.player);
@@ -105,7 +120,6 @@ public class WorldHandler{
 		NBTTagCompound tag = player.getEntityData();
 		
 		if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-		if(isRemote) return;
 		if(!tag.hasKey(key))		teleportPlayer(player);
 		if(!tag.getBoolean(key))	teleportPlayer(player);
 		return;
@@ -114,6 +128,8 @@ public class WorldHandler{
 	private void teleportPlayer(EntityPlayer player2) {
 		
 		EntityPlayerMP player = (EntityPlayerMP) player2;
+		
+		System.out.println(player2.getEntityData().hasKey(key2));
 		
 		if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
 			if(player2.getEntityData().getBoolean(key)) {
@@ -126,15 +142,9 @@ public class WorldHandler{
 			player2.getEntityData().setBoolean(key, true);
 		}
 				
-		if(player2.dimension != -1) player2.changeDimension(-1);
-		
-		if(player2.getEntityData().getBoolean(key2) && player.addedToChunk) {
-			BlockPos pos = new BlockPos(player2);
-			
-			player.setSpawnChunk(pos, true, -1);
-			player.getEntityData().setInteger(coodX, pos.getX());
-			player.getEntityData().setInteger(coodY, pos.getY());
-			player.getEntityData().setInteger(coodZ, pos.getZ());
+		if(player2.dimension != -1)
+		{
+			player2.changeDimension(-1);
 		}
 }
     

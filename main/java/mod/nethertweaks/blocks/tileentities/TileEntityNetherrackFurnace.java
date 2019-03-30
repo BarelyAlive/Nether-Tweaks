@@ -65,7 +65,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
             if (canSmelt())
             {
                 ++this.workTime;
-                if (this.workTime == 20)
+                if (this.workTime == maxworkTime)
                 {
                     smeltItem();
                     this.workTime = 0;
