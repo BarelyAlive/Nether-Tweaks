@@ -12,8 +12,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import mod.nethertweaks.api.SieveReward;
 import mod.nethertweaks.handler.NTMSieveHandler;
-import mod.nethertweaks.vars.SieveReward;
 
 public class TileEntitySieve extends TileEntity{
 	private static final float MIN_RENDER_CAPACITY = 0.70f;

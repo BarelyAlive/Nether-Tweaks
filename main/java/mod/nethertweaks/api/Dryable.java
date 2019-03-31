@@ -1,17 +1,17 @@
-package mod.nethertweaks.vars;
+package mod.nethertweaks.api;
 
 import net.minecraft.item.Item;
 
-public class Compostable {
+public class Dryable {
 	
-	//compost Helper
+	//Dry Helper
 	
 	public String unlocalizedName;
 	public Item item;
 	public int meta;
-	public float value;
+	public int value;
 	
-	public Compostable(Item item, int meta, float value)
+	public Dryable(Item item, int meta, int value)
 	{
 		this.item = item;
 		this.meta = meta;

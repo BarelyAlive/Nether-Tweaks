@@ -8,8 +8,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Hashtable;
 
+import mod.nethertweaks.api.Dryable;
 import mod.nethertweaks.items.*;
-import mod.nethertweaks.vars.Dryable;
 
 public class NTMDryHandler {
 	

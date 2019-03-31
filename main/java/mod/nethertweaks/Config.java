@@ -10,26 +10,10 @@ public class Config {
 	//Booleans
 	public static boolean isEndPortalCraftable;
 	public static boolean disableStairwaytoHeaven;
-	public static boolean disableBonfire;
-	public static boolean disableMaceDust;
 	public static boolean disableHammers;
 	
-	//Blöcke
-	public static boolean endTeleport;
-	public static boolean bonfire;
-	public static boolean sansidian;
-	public static boolean condenser;
-	public static boolean netherrackFurnace;
-	public static boolean barrel;
-	public static boolean sieve;
-	public static boolean freezer;
-	
 	//Items
-	public static boolean flintnblaze;
-	public static boolean sancCrystal;
 	public static boolean lightCrystal;
-	public static boolean nRackPick;
-	public static boolean nBrickPick;
 	public static boolean cookJerky;
 	
 	//Ores
@@ -75,23 +59,12 @@ public class Config {
         HolyEarth.EntityIDList = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
         HolyEarth.EntityWaterID = Config.get("Tweak", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
         sieveDifficulty = Config.get("Tweak", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
-
-        disableMaceDust = Config.get("Recipes", "Disable Dust Recipe in TE Pulverizer?", false).getBoolean();
                 
         StwtHDimension = Config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
         nethDim = Config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();
         endDim = Config.get("World", "To which Dimension shall an end portal send you back?", 0).getInt();
 
-        //Blocks
-        endTeleport = Config.get("Blocks", "Set to false to disable Stairway to Heaven recipe?", true).getBoolean();
-        bonfire = Config.get("Blocks", "Set to false to disable Bonfire recipe?", true).getBoolean();
-        sansidian = Config.get("Blocks", "Set to false to disable sansidian recipe?", true).getBoolean();
-        condenser = Config.get("Blocks", "Set to false to disable condenser recipe?", true).getBoolean();
-        netherrackFurnace = Config.get("Blocks", "Set to false to disable Netherrack Furnace recipe?", true).getBoolean();
-        barrel = Config.get("Blocks", "Set to false to disable Barrel recipe?", true).getBoolean();
-        sieve = Config.get("Blocks", "Set to false to disable Sieve recipe?", true).getBoolean();
-        freezer = Config.get("Blocks", "Set to false to disable Freezer recipe?", true).getBoolean();
-        
+        //Blocks        
         oreCopper = Config.get("Blocks", "Set to false to disable Copper Ore recipe?", true).getBoolean();
     	oreTin = Config.get("Blocks", "Set to false to disable Tin Ore recipe?", true).getBoolean();
     	oreLead = Config.get("Blocks", "Set to false to disable Lead recipe?", true).getBoolean();
@@ -110,13 +83,7 @@ public class Config {
     	oreSalt = Config.get("Blocks", "Set to false to disable Salt Ore recipe?", true).getBoolean();
     	
         //Items
-        disableHammers = Config.get("Items", "Disable Hammers?", false).getBoolean();
-        
-        flintnblaze = Config.get("Items", "Set to false to disable Flint and Blaze recipe?", true).getBoolean();
-        sancCrystal = Config.get("Items", "Set to false to disable Sanctuary Crystal recipe?", true).getBoolean();
         lightCrystal = Config.get("Items", "Set to false to disable Light Crystal recipe?", true).getBoolean();
-        nRackPick = Config.get("Items", "Set to false to disable Netherrack Pickaxe recipe?", true).getBoolean();
-        nBrickPick = Config.get("Items", "Set to false to disable Netherbrick Pickaxe recipe?", true).getBoolean();
         cookJerky = Config.get("Items", "Set to false to disable Cooked Jerky recipe?", true).getBoolean();
 		
         Config.save();
