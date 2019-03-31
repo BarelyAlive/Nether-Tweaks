@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
@@ -100,5 +101,16 @@ public class Freezer extends CubeContainerHorizontal{
 	      }
 	    }
         return true;
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+	    return new BlockStateContainer(this, new IProperty[] {FACING});
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	    return new TileEntityFreezer(INames.TEFREEZER);
 	}
 }

@@ -12,7 +12,7 @@ import mod.sfhcore.Constants;
 
 public class GuiCondenser extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiCondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/guicondenser.png");
 	private TileEntityCondenser entity;
 	
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileEntityCondenser tileEntity) {
@@ -50,9 +50,12 @@ public class GuiCondenser extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
-        if(this.entity.isWorking()){
+        if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
-        	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
+        	x += 57;
+        	y += 36;
+        	int k_inv = 12 - k;
+        	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
         }
     }
     

@@ -17,6 +17,7 @@ import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.container.ContainerBase;
+import mod.sfhcore.tileentities.TileEntityBase;
 
 public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize = 175, ySize = 165;
@@ -25,16 +26,16 @@ public class GuiNetherrackFurnace extends GuiContainer {
 	private InventoryPlayer inv;
 	private BlockPos pos;
 	
-	public GuiNetherrackFurnace(ContainerBase container, InventoryPlayer inventory) {
+	public GuiNetherrackFurnace(ContainerBase container, InventoryPlayer inventory, TileEntityNetherrackFurnace te) {
         super(container);
         this.inv = inventory;
-        this.entity = (TileEntityNetherrackFurnace) container.tileentity;
+        this.entity = te;
         this.pos = entity.getPos();
 	}
 	
 	/**
      * Draws the screen and all the components in it.
-     */
+     * /
 	@Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
@@ -42,6 +43,7 @@ public class GuiNetherrackFurnace extends GuiContainer {
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
     }
+    */
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
@@ -60,9 +62,12 @@ public class GuiNetherrackFurnace extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
-        if(this.entity.isWorking()){
+        if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
-        	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
+        	x += 57;
+        	y += 36;
+        	int k_inv = 12 - k;
+        	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
         }
         
     }

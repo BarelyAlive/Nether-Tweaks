@@ -27,6 +27,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -62,14 +63,28 @@ public class Condenser extends CubeContainerHorizontal{
     @Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(world.isRemote) {
-			return true;
-		}
-		TileEntity te = world.getTileEntity(pos);
-		if(!(te instanceof TileEntityCondenser)) {
-			return false;
-		}
-		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+    	if (!world.isRemote) {
+			// ...
+ 			if (player.isSneaking()) {
+ 				// ...
+  			} else {
+  				TileEntity te = world.getTileEntity(pos);
+  				
+  				if(te instanceof TileEntityCondenser)
+  					player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+  			}
+  		}
 		return true;
+    }
+    
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[] {FACING});
+    }
+    
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityCondenser(INames.TECONDENSER);
     }
 }

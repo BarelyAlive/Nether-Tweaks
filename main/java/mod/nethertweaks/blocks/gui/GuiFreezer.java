@@ -12,7 +12,7 @@ import mod.sfhcore.Constants;
 
 public class GuiFreezer extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/GuiFreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/guifreezer.png");
 	private TileEntityFreezer entity;
 	
 	public GuiFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer tileEntity) {
@@ -50,9 +50,26 @@ public class GuiFreezer extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
-        if(this.entity.isWorking()){
+        int x_old = x;
+        int y_old = y;
+        if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
-        	drawTexturedModalRect(guiLeft + 58, guiTop + 36 + 12 -k, 176, 12-k, 14, k+2);
+        	x += 28;
+        	y += 17;
+        	int k_inv = 12 - k;
+        	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
+        }
+        
+        x = x_old;
+        y = y_old;
+        
+        if(this.entity.tank.amount != 0)
+        {
+    		int k = this.entity.tank.amount * 64 / this.entity.MAX_CAPACITY;
+        	x += 134;
+        	y += 6;
+        	int k_inv = 64 - k;
+        	drawTexturedModalRect(x, y + k_inv, 176, 14 + k_inv, 16, k);
         }
     }
     

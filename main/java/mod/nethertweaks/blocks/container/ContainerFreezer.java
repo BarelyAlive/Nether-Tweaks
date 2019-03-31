@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks.container;
 
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,15 +11,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerFreezer extends ContainerNTMBase {
+public class ContainerFreezer extends ContainerBase {
 	
 	private TileEntityFreezer tileEntity;
 	
 	public ContainerFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer te) {
-		super(inventoryPlayer, te);
+		super(te);
 		tileEntity = te;
 		
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 57, 17));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 27, 48));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 81, 12));
+		addSlotToContainer(new Slot(tileEntity, 2, 81, 48));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {

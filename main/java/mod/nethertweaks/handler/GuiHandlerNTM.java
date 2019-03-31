@@ -1,7 +1,13 @@
 package mod.nethertweaks.handler;
 
+import mod.nethertweaks.blocks.container.ContainerCondenser;
+import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.blocks.gui.GuiCondenser;
+import mod.nethertweaks.blocks.gui.GuiFreezer;
 import mod.nethertweaks.blocks.gui.GuiNetherrackFurnace;
+import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +23,10 @@ public class GuiHandlerNTM implements IGuiHandler {
 		switch (ID) {
 		case 0:
 			return new ContainerNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+		case 1:
+			return new ContainerCondenser(player.inventory, (TileEntityCondenser)world.getTileEntity(new BlockPos(x, y, z)));
+		case 2:
+			return new ContainerFreezer(player.inventory, (TileEntityFreezer)world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;
 		}
@@ -27,7 +37,11 @@ public class GuiHandlerNTM implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		switch (ID) {
 		case 0:
-			return new GuiNetherrackFurnace((ContainerBase) getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+			return new GuiNetherrackFurnace((ContainerBase) getServerGuiElement(ID, player, world, x, y, z), player.inventory, (TileEntityNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
+		case 1:
+			return new GuiCondenser(player.inventory, (TileEntityCondenser) world.getTileEntity(new BlockPos(x, y, z)));
+		case 2:
+			return new GuiFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;
 		}
