@@ -12,11 +12,6 @@
           "all": "nethertweaksmod:blocks/ore_hellfayah"
         }
       },
-      "charcoalblock": {
-        "textures": {
-          "all": "nethertweaksmod:blocks/charcoal_block"
-        }
-      },
       "hellfayahblock": {
         "textures": {
           "all": "nethertweaksmod:blocks/hellfayah_block"

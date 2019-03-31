@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketSpawnPosition;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -86,27 +87,28 @@ public class WorldHandler{
     	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(pre.player);
     		BlockPos posplayer = new BlockPos(pre.player.getEntityData().getInteger(coodX), pre.player.getEntityData().getInteger(coodY), pre.player.getEntityData().getInteger(coodZ));
-    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(pre.player.getPosition().down(32).east(32).south(32), pre.player.getPosition().up(32).west(32).north(32));
     		
-    		for(BlockPos pos : posi)
-    		{
-    			pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
-    		}
+    		pre.player.setLocationAndAngles(posplayer.getX(), posplayer.getY(), posplayer.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
 		}
     }
     
     @SubscribeEvent
-    public void setSpawn(net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn pre) {
-    	if(pre.getEntity() instanceof EntityPlayerSP) {
-    		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
-    		BlockPos playerPos = new BlockPos(player2);
-    			if(player2.dimension == -1 && player2.onGround) {
-        			player2.bedLocation = playerPos;
-        			player2.getEntityData().setInteger(coodX, playerPos.getX());
-        			player2.getEntityData().setInteger(coodY, playerPos.getY());
-        			player2.getEntityData().setInteger(coodZ, playerPos.getZ());
-        		}
-    	}	
+    public void setSpawn(net.minecraftforge.event.world.BlockEvent.PortalSpawnEvent pre) {
+    	
+    	BlockPos portalPos = pre.getPos();
+    	MinecraftServer server = pre.getWorld().getMinecraftServer();
+    	server.getPlayerList().sendPacketToAllPlayers(new SPacketSpawnPosition(portalPos));
+    	
+//    	if(pre. instanceof EntityPlayerSP) {
+//    		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
+//    		BlockPos playerPos = new BlockPos(player2);
+//    			if(player2.dimension == -1 && player2.onGround) {
+//        			player2.bedLocation = playerPos;
+//        			player2.getEntityData().setInteger(coodX, playerPos.getX());
+//        			player2.getEntityData().setInteger(coodY, playerPos.getY());
+//        			player2.getEntityData().setInteger(coodZ, playerPos.getZ());
+//        		}
+//    	}	
     }
     
     @SubscribeEvent
