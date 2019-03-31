@@ -12,6 +12,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBonfire;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -35,15 +36,16 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Bonfire extends Block{
+public class Bonfire extends BlockContainer {
 	
-	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	//public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
 	public Bonfire(Material bed) {
 		super(bed);
 		setLightLevel(15);
 		setUnlocalizedName(INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	
 	int l = 0;
@@ -74,9 +76,9 @@ public class Bonfire extends Block{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		
-		if(playerIn.onGround && !worldIn.isRemote && playerIn.dimension == -1){
+		if(playerIn.onGround && playerIn.dimension == -1){
 		    TileEntity bonfire = worldIn.getTileEntity(pos);
-		    
+		    		    
 		    if(bonfire instanceof TileEntityBonfire)
 		    {
 		    	((TileEntityBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
@@ -97,6 +99,7 @@ public class Bonfire extends Block{
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 	
+	/*
 	@Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
@@ -133,11 +136,12 @@ public class Bonfire extends Block{
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
         }
     }
+    */
     
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {
-        return BlockRenderLayer.CUTOUT;
+        return BlockRenderLayer.TRANSLUCENT;
     }
 
     public boolean isFullCube(IBlockState state)
@@ -151,7 +155,8 @@ public class Bonfire extends Block{
     }
     
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createNewTileEntity(World world, int meta) {
     	return new TileEntityBonfire();
     }
+
 }

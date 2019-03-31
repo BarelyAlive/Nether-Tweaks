@@ -86,15 +86,23 @@ public class WorldHandler{
     public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
     	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(pre.player);
-    		BlockPos posplayer = pre.player.getPosition();
-    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(32).east(32).south(32), posplayer.up(32).west(32).north(32));
-    		
-    		for(BlockPos pos : posi)
+    		if (!WorldDataNTM.spawnLocas.containsKey(pre.player.getUUID(pre.player.getGameProfile())))
     		{
-    			if (pre.player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
-    			{
-    				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
-    			}
+	    		BlockPos posplayer = pre.player.getPosition();
+	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(32).east(32).south(32), posplayer.up(32).west(32).north(32));
+	    		
+	    		for(BlockPos pos : posi)
+	    		{
+	    			if (pre.player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+	    			{
+	    				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+	    			}
+	    		}
+    		}
+    		else
+    		{
+    			BlockPos pos = WorldDataNTM.spawnLocas.get(pre.player.getUUID(pre.player.getGameProfile()));
+				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
     		}
 		}
     }
@@ -143,22 +151,20 @@ public class WorldHandler{
 	}
 	
 	private void teleportPlayer(EntityPlayer player2) {
-		
 		EntityPlayerMP player = (EntityPlayerMP) player2;
 		
-		System.out.println(player2.getEntityData().hasKey(key2));
 		
-		if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
-			if(player2.getEntityData().getBoolean(key)) {
-				player2.getEntityData().setBoolean(key2, true);
-				player2.setPortal(player2.getPosition());
+			if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
+				if(player2.getEntityData().getBoolean(key)) {
+					player2.getEntityData().setBoolean(key2, true);
+					player2.setPortal(player2.getPosition());
+				}
 			}
-		}
-		
-		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
-			player2.setPortal(player2.getPosition());
-			player2.getEntityData().setBoolean(key, true);
-		}
+			
+			if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
+				player2.setPortal(player2.getPosition());
+				player2.getEntityData().setBoolean(key, true);
+			}
 				
 		if(player2.dimension != -1)
 		{

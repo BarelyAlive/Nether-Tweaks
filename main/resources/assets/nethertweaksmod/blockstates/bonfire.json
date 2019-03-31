@@ -1,5 +1,9 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:bonfire"}
+        "normal": { "model": "nethertweaksmod:bonfire"},
+        "facing=north": { "model": "nethertweaksmod:bonfire"},
+        "facing=south": { "model": "nethertweaksmod:bonfire"},
+        "facing=east": { "model": "nethertweaksmod:bonfire"},
+        "facing=west": { "model": "nethertweaksmod:bonfire"}
     }
 }
