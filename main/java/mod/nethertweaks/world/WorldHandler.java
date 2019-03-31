@@ -75,7 +75,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class WorldHandler{
      
 	public final static String key = "ntm.firstSpawn";
-	public final static String key2 = "ntm.secondSpawn";
 	public final static String coodX = "ntm.cood.x";
 	public final static String coodY = "ntm.cood.y";
 	public final static String coodZ = "ntm.cood.z";
@@ -108,25 +107,6 @@ public class WorldHandler{
     }
     
     @SubscribeEvent
-    public void setSpawn(net.minecraftforge.event.world.BlockEvent.PortalSpawnEvent pre) {
-    	
-    	BlockPos portalPos = pre.getPos();
-    	MinecraftServer server = pre.getWorld().getMinecraftServer();
-    	server.getPlayerList().sendPacketToAllPlayers(new SPacketSpawnPosition(portalPos));
-    	
-//    	if(pre. instanceof EntityPlayerSP) {
-//    		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
-//    		BlockPos playerPos = new BlockPos(player2);
-//    			if(player2.dimension == -1 && player2.onGround) {
-//        			player2.bedLocation = playerPos;
-//        			player2.getEntityData().setInteger(coodX, playerPos.getX());
-//        			player2.getEntityData().setInteger(coodY, playerPos.getY());
-//        			player2.getEntityData().setInteger(coodZ, playerPos.getZ());
-//        		}
-//    	}	
-    }
-    
-    @SubscribeEvent
 	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
 		if(event.player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !event.player.world.isRemote) {
 			teleportPlayer(event.player);
@@ -152,19 +132,11 @@ public class WorldHandler{
 	
 	private void teleportPlayer(EntityPlayer player2) {
 		EntityPlayerMP player = (EntityPlayerMP) player2;
-		
-		
-			if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
-				if(player2.getEntityData().getBoolean(key)) {
-					player2.getEntityData().setBoolean(key2, true);
-					player2.setPortal(player2.getPosition());
-				}
-			}
 			
-			if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
-				player2.setPortal(player2.getPosition());
-				player2.getEntityData().setBoolean(key, true);
-			}
+		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
+			player2.setPortal(player2.getPosition());
+			player2.getEntityData().setBoolean(key, true);
+		}
 				
 		if(player2.dimension != -1)
 		{
