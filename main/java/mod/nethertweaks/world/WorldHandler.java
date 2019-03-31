@@ -93,7 +93,6 @@ public class WorldHandler{
     		{
     			if (pre.player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
     			{
-    				System.out.println(pos);
     				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
     			}
     		}
