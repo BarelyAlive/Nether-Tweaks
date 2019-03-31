@@ -82,38 +82,42 @@ public class WorldHandler{
 	//HELLWORLD
 	
     @SubscribeEvent
-    public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
-    	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld) {
-    		teleportPlayer(pre.player);
-    		if (!WorldDataNTM.spawnLocas.containsKey(pre.player.getUUID(pre.player.getGameProfile())))
+    public void respawn(PlayerEvent.PlayerRespawnEvent event) {
+		EntityPlayer player = event.player;
+    	
+    	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+    		teleportPlayer(player);
+    		if (!WorldDataNTM.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
-	    		BlockPos posplayer = pre.player.getPosition();
-	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(32).east(32).south(32), posplayer.up(32).west(32).north(32));
+	    		BlockPos posplayer = player.getPosition();
+	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(64).east(64).south(64), posplayer.up(64).west(64).north(64));
 	    		
 	    		for(BlockPos pos : posi)
 	    		{
-	    			if (pre.player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 	    			{
-	    				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+	    				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
 	    			}
 	    		}
     		}
     		else
     		{
-    			BlockPos pos = WorldDataNTM.spawnLocas.get(pre.player.getUUID(pre.player.getGameProfile()));
-				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+    			BlockPos pos = WorldDataNTM.spawnLocas.get(player.getUUID(player.getGameProfile()));
+				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
     		}
 		}
     }
     
     @SubscribeEvent
 	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
-		if(event.player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !event.player.world.isRemote) {
-			teleportPlayer(event.player);
+    	EntityPlayer player = event.player;
+    	
+		if(player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !player.world.isRemote) {
+			teleportPlayer(player);
 		}
-		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
+		else if(!(player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !player.world.isRemote) {
 			if(Config.nethDim != 0)
-				event.player.changeDimension(Config.nethDim);
+				player.changeDimension(Config.nethDim);
 		}
 	}
 	
@@ -121,10 +125,10 @@ public class WorldHandler{
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 		
-		boolean isRemote = event.player.world.isRemote;
+		boolean isRemote = player.world.isRemote;
 		NBTTagCompound tag = player.getEntityData();
 		
-		if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld)) return;
+		if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
 		if(!player.getEntityData().hasKey(key)){
 			player.setPortal(player.getPosition());
 			player.getEntityData().setBoolean(key, true);
