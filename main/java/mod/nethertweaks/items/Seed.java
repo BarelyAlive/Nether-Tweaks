@@ -21,6 +21,7 @@ public class Seed extends CustomItem{
 	
 	public Seed(String name) {
 		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 0, name);
+		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 
 	/**

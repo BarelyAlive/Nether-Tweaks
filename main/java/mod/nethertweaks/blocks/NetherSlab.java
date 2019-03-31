@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -39,6 +40,7 @@ public class NetherSlab extends Block implements IVariantProvider{
 		this.fullBlock = this.isDouble();
         this.setLightOpacity(255);
         this.setUnlocalizedName(INames.NETHERSLAB);
+		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	
 	@Override

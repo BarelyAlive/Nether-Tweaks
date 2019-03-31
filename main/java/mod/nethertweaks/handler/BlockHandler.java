@@ -38,7 +38,7 @@ public class BlockHandler {
     public static final Block FREEZER = new Freezer();
      
     //Blocks
-    public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, INames.DUST);
+    public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, INames.DUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     public static final Block STWH = new EndTeleport();
     public static final Block NETHERSAPLING = new NetherSapling();
     public static final Block NETHERLOG = new NetherLog();
@@ -60,15 +60,15 @@ public class BlockHandler {
     public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.ORESAND));
     public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.OREDUST));
     
-    public static final Block OREGRAVEL = ITEMOREGRAVEL.getBlock();
-    public static final Block ORESAND = ITEMORESAND.getBlock();
-    public static final Block OREDUST = ITEMOREDUST.getBlock();
+    public static final Block OREGRAVEL = ITEMOREGRAVEL.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block ORESAND = ITEMORESAND.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREDUST = ITEMOREDUST.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     
     public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, INames.BLOCKBASIC));
-    public static final Block BLOCKBASIC = ITEMBLOCKBASIC.getBlock();
+    public static final Block BLOCKBASIC = ITEMBLOCKBASIC.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     
-    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK).setUnlocalizedName(INames.DOORNTMSTONE);
-    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON).setUnlocalizedName(INames.DOORNTMOBSIDIAN);
+    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK).setUnlocalizedName(INames.DOORNTMSTONE).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON).setUnlocalizedName(INames.DOORNTMOBSIDIAN).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     
     public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, INames.ITEMDOORNTMSTONE, NetherTweaksMod.tabNetherTweaksMod);
     public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, INames.ITEMDOORNTMOBSIDIAN, NetherTweaksMod.tabNetherTweaksMod);
