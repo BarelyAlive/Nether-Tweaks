@@ -125,19 +125,20 @@ public class WorldHandler{
 		NBTTagCompound tag = player.getEntityData();
 		
 		if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-		if(!tag.hasKey(key))		teleportPlayer(player);
-		if(!tag.getBoolean(key))	teleportPlayer(player);
+		if(!player.getEntityData().hasKey(key)){
+			player.setPortal(player.getPosition());
+			player.getEntityData().setBoolean(key, true);
+		}
+		if(!player.getEntityData().getBoolean(key))
+		{
+			player.setPortal(player.getPosition());
+			player.getEntityData().setBoolean(key, true);
+		}
 		return;
 	}
 	
 	private void teleportPlayer(EntityPlayer player2) {
-		EntityPlayerMP player = (EntityPlayerMP) player2;
-			
-		if(!player2.getEntityData().hasKey(key) || !player2.getEntityData().getBoolean(key)){
-			player2.setPortal(player2.getPosition());
-			player2.getEntityData().setBoolean(key, true);
-		}
-				
+		
 		if(player2.dimension != -1)
 		{
 			player2.changeDimension(-1);
