@@ -26,6 +26,7 @@ import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.WorldType;
+import net.minecraft.world.Teleporter.PortalPosition;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -82,24 +83,29 @@ public class WorldHandler{
 	
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
-    	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld && pre.player.addedToChunk) {
+    	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(pre.player);
+    		BlockPos posplayer = new BlockPos(pre.player.getEntityData().getInteger(coodX), pre.player.getEntityData().getInteger(coodY), pre.player.getEntityData().getInteger(coodZ));
+    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(pre.player.getPosition().down(32).east(32).south(32), pre.player.getPosition().up(32).west(32).north(32));
+    		
+    		for(BlockPos pos : posi)
+    		{
+    			pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+    		}
 		}
     }
     
     @SubscribeEvent
-    public void setSpawn(net.minecraftforge.event.entity.living.LivingSpawnEvent pre) {
+    public void setSpawn(net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn pre) {
     	if(pre.getEntity() instanceof EntityPlayerSP) {
     		EntityPlayerSP player2 = (EntityPlayerSP) pre.getEntity();
     		BlockPos playerPos = new BlockPos(player2);
-    		if(player2.prevTimeInPortal > 0.0f) {
     			if(player2.dimension == -1 && player2.onGround) {
         			player2.bedLocation = playerPos;
         			player2.getEntityData().setInteger(coodX, playerPos.getX());
         			player2.getEntityData().setInteger(coodY, playerPos.getY());
         			player2.getEntityData().setInteger(coodZ, playerPos.getZ());
         		}
-    		}
     	}	
     }
     
