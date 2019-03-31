@@ -133,7 +133,7 @@ public class WorldHandler{
 		}
 		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
 			if(Config.nethDim != 0)
-				event.player.changeDimension(Config.nethDim, new TeleporterNTM(((EntityPlayerMP) event.player).getServerWorld()));
+				event.player.changeDimension(Config.nethDim);
 		}
 	}
 	
