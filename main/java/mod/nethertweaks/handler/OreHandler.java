@@ -37,9 +37,9 @@ public class OreHandler implements INames{
     
 	private static void registerOres(){
 		
-		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, OREGRAVEL), Constants.MOD);
-		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, ORESAND), Constants.MOD);
-		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, OREDUST), Constants.MOD);
+		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, OREGRAVEL), Constants.MOD);
+		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, ORESAND), Constants.MOD);
+		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, OREDUST), Constants.MOD);
 		
 		oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, OREMATERIAL);
 		

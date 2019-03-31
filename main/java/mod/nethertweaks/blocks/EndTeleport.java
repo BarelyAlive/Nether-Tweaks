@@ -38,7 +38,7 @@ public class EndTeleport extends Cube{
 	int dimension;
 	
 	public EndTeleport() {
-		super(Material.ROCK, 75.0F, 16.0F, 1, INames.ENDTELEPORT);
+		super(Material.ROCK, 75.0F, 16.0F, 1, NetherTweaksMod.tabNetherTweaksMod, INames.ENDTELEPORT);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
