@@ -7,6 +7,7 @@ import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
 import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
+import mod.nethertweaks.blocks.tileentities.TileEntityBonfire;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
@@ -73,10 +74,22 @@ public class BlockHandler {
     public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, INames.ITEMDOORNTMOBSIDIAN, NetherTweaksMod.tabNetherTweaksMod);
     
     public static void init() {
+    	registerTileEntities();
     	registerBlocks();
     	registerItemBlocks();
     }
-        
+    
+    private static void registerTileEntities()
+    {
+    	//Tile Entity
+    	RegisterTileEntity.add(BONFIRE, new TileEntityBonfire());
+        RegisterTileEntity.add(CONDENSER, new TileEntityCondenser(INames.TECONDENSER));
+        RegisterTileEntity.add(NETHERRACKFURNACE, new TileEntityNetherrackFurnace(INames.TENETHERRACKFURNACE));
+        RegisterTileEntity.add(BARREL, new TileEntityBarrel(INames.TEBARREL));
+        RegisterTileEntity.add(BARRELSTONE, new TileEntityBarrel(INames.TEBARRELSTONE));
+        RegisterTileEntity.add(SIEVE, new TileEntitySieve());
+        RegisterTileEntity.add(FREEZER, new TileEntityFreezer(INames.TEFREEZER));
+    }
         
     //Registering all the blocks
     private static void registerBlocks()
@@ -112,15 +125,6 @@ public class BlockHandler {
         Registry.registerBlock(ITEMOREGRAVEL, 16, Constants.MOD);
         Registry.registerBlock(ITEMORESAND, 16, Constants.MOD);
         Registry.registerBlock(ITEMOREDUST, 16, Constants.MOD);
-
-         
-        //Tile Entity        
-        RegisterTileEntity.add(CONDENSER, new TileEntityCondenser(INames.TECONDENSER));
-        RegisterTileEntity.add(NETHERRACKFURNACE, new TileEntityNetherrackFurnace(INames.TENETHERRACKFURNACE));
-        RegisterTileEntity.add(BARREL, new TileEntityBarrel(INames.TEBARREL));
-        RegisterTileEntity.add(BARRELSTONE, new TileEntityBarrel(INames.TEBARRELSTONE));
-        RegisterTileEntity.add(SIEVE, new TileEntitySieve());
-        RegisterTileEntity.add(FREEZER, new TileEntityFreezer(INames.TEFREEZER));
         
         Registry.registerBlock(CONDENSER, Constants.MOD);
         Registry.registerBlock(NETHERRACKFURNACE, Constants.MOD);
