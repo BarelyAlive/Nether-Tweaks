@@ -24,69 +24,69 @@ import mod.sfhcore.SFHCore;
 import mod.sfhcore.handler.CustomFuelhandler;
 import mod.sfhcore.items.CustomItem;
 
-public class ItemHandler implements INames{
+public class ItemHandler{
  
 	//ITEMS
-    public static Item seedGrass;
-    public static Item mushroomSpores;
-    public static Item itemCactusSeeds;
-    public static Item itemFlintAndBlaze;
-    public static Item itemSanctuaryCrystal;
-    public static Item itemLightCrystal;
-    public static Item enderCrystal;
+    public static final Item SEEDGRASS = new Seed(INames.SEEDGRASS);
+    public static final Item MUSHROOMSPORES = new Seed(INames.MUSHROOMSPORES);
+    public static final Item CACTUSSEEDS = new Seed(INames.CACTUSSEED);
+    public static final Item FLINTANDBLAZE = new FlintAndBlaze();
+    public static final Item SANCTUARYCRYSTAL = new Crystal(INames.SANCTUARYCRYSTAL);
+    public static final Item LIGHTCRYSTAL = new Crystal(INames.LIGHTCRYSTAL);
+    public static final Item ENDERCRYSTAl = new Crystal(INames.ENDERCRYSTAL);
     
     //Multi ID Item
-	public static Item itemBase;
-	public static Item oreMaterial;
+	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 15, INames.ITEMBASE);
+	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.OREMATERIAL);
     
 	//food
-    public static Item itemCookedJerky;
+    public static final Item COOKEDJERKY = new CookedJerky(6, 1.0F, true);
          
     //Werkzeuge
-    public static Item itemPickaxeNetherrack;
-    public static Item itemPickaxeNetherbrick;
-    public static Item itemHammerWood;
-    public static Item itemHammerGold;
-    public static Item itemHammerIron;
-    public static Item itemHammerDiamond;
-    public static Item itemHammerStone;
+    public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
+    public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
+    public static final Item HAMMERWOOD = new Hammer(2.0F, ToolMaterial.WOOD);
+    public static final Item HAMMERGOLD = new Hammer(2.0F, ToolMaterial.GOLD);
+    public static final Item HAMMERIRON = new Hammer(4.0F, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND = new Hammer(5.0F, ToolMaterial.DIAMOND);
+    public static final Item HAMMERSTONE = new Hammer(3.0F, ToolMaterial.STONE);
     
     
-    	public static void init() {
+    	public static void init()
+    	{
     		registerItems();
     		addItemBurnTime();
     	}
     	
-        private static void registerItems(){
-        	
+        private static void registerItems()
+        {
         	//Multi ID Item
-        	itemBase = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 15, INames.ITEMBASE), Constants.MOD);
-    		oreMaterial = Registry.registerItem(new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, INames.OREMATERIAL), Constants.MOD);
+        	Registry.registerItem(ITEMBASE, Constants.MOD);
+    		Registry.registerItem(OREMATERIAL, Constants.MOD);
             
-        	itemCookedJerky = Registry.registerItem(new CookedJerky(6, 1.0F, true), COOKEDJERKY);
-            seedGrass = Registry.registerItem(new Seed(INames.SEEDGRASS), Constants.MOD);
-            mushroomSpores = Registry.registerItem(new Seed(INames.MUSHROOMSPORES), Constants.MOD);
-            itemCactusSeeds = Registry.registerItem(new Seed(INames.CACTUSSEED), Constants.MOD);
-            itemSanctuaryCrystal = Registry.registerItem(new Crystal(INames.SANCTUARYCRYSTAL), Constants.MOD);
-            itemLightCrystal = Registry.registerItem(new Crystal(INames.LIGHTCRYSTAL), Constants.MOD);
-            enderCrystal = Registry.registerItem(new Crystal(ENDERCRYSTAL), Constants.MOD);
+        	Registry.registerItem(COOKEDJERKY, Constants.MOD);
+            Registry.registerItem(SEEDGRASS, Constants.MOD);
+            Registry.registerItem(MUSHROOMSPORES, Constants.MOD);
+            Registry.registerItem(CACTUSSEEDS, Constants.MOD);
+            Registry.registerItem(SANCTUARYCRYSTAL, Constants.MOD);
+            Registry.registerItem(LIGHTCRYSTAL, Constants.MOD);
+            Registry.registerItem(ENDERCRYSTAl, Constants.MOD);
             
             //Werkzeuge
-            itemPickaxeNetherrack = Registry.registerItem(new PickaxeNTM(ToolMaterial.STONE).setUnlocalizedName(INames.PICKAXENETHERRACK), Constants.MOD);
-            itemPickaxeNetherbrick = Registry.registerItem(new PickaxeNTM(ToolMaterial.IRON).setUnlocalizedName(INames.PICKAXENETHERBRICK), Constants.MOD);
+            Registry.registerItem(PICKAXENETHERRACK, Constants.MOD);
+            Registry.registerItem(PICKAXENETHERBRICK, Constants.MOD);
              
-            itemHammerWood = Registry.registerItem(new Hammer(2.0F, ToolMaterial.WOOD).setUnlocalizedName(INames.HAMMERWOOD), Constants.MOD);
-            itemHammerGold = Registry.registerItem(new Hammer(2.0F, ToolMaterial.GOLD).setUnlocalizedName(INames.HAMMERGOLD), Constants.MOD);
-            itemHammerIron = Registry.registerItem(new Hammer(4.0F, ToolMaterial.IRON).setUnlocalizedName(INames.HAMMERIRON), Constants.MOD);
-            itemHammerDiamond = Registry.registerItem(new Hammer(5.0F, ToolMaterial.DIAMOND).setUnlocalizedName(INames.HAMMERDIAMOND), Constants.MOD);
-            itemHammerStone = Registry.registerItem(new Hammer(3.0F, ToolMaterial.STONE).setUnlocalizedName(INames.HAMMERSTONE), Constants.MOD);
+            Registry.registerItem(HAMMERWOOD, Constants.MOD);
+            Registry.registerItem(HAMMERGOLD, Constants.MOD);
+            Registry.registerItem(HAMMERIRON, Constants.MOD);
+            Registry.registerItem(HAMMERDIAMOND, Constants.MOD);
+            Registry.registerItem(HAMMERSTONE, Constants.MOD);
             
-            itemFlintAndBlaze = Registry.registerItem(new FlintAndBlaze(), Constants.MOD);
-            
-            addItemBurnTime();          
+            Registry.registerItem(FLINTANDBLAZE, Constants.MOD); 
         }
         
-        private static void addItemBurnTime() {
+        private static void addItemBurnTime()
+        {
         	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 18000);
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 6400);
         	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 64000);

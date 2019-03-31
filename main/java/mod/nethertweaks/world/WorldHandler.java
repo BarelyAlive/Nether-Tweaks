@@ -110,7 +110,7 @@ public class WorldHandler{
 		}
 		else if(!(event.player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !event.player.world.isRemote) {
 			if(Config.nethDim != 0)
-			event.player.changeDimension(Config.nethDim);
+				event.player.changeDimension(Config.nethDim, new TeleporterNTM(((EntityPlayerMP) event.player).getServerWorld()));
 		}
 	}
 	
@@ -136,6 +136,7 @@ public class WorldHandler{
 		if(!player2.getEntityData().hasKey(key2) || !player2.getEntityData().getBoolean(key2)) {
 			if(player2.getEntityData().getBoolean(key)) {
 				player2.getEntityData().setBoolean(key2, true);
+				player2.setPortal(player2.getPosition());
 			}
 		}
 		
@@ -146,7 +147,7 @@ public class WorldHandler{
 				
 		if(player2.dimension != -1)
 		{
-			player2.changeDimension(-1);
+			player2.changeDimension(-1, new TeleporterNTM(player.getServerWorld()));
 		}
 	}
 	

@@ -11,6 +11,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.RecipeHandler;
+import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -41,6 +42,8 @@ public class EndTeleport extends Cube{
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
+		setUnlocalizedName(INames.ENDTELEPORT);
+		setRegistryName(Constants.MOD, INames.ENDTELEPORT);
 		this.setTickRandomly(true);
 	}
 	

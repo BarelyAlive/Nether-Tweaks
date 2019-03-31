@@ -32,38 +32,38 @@ public class RecipeHandler {
 		
 		//Schmelz-Rezepte
 		
-		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.itemCookedJerky), 1.0F);
-		GameRegistry.addSmelting(BlockHandler.netherLog, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.itemLightCrystal), 2.0F);
+		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
+		GameRegistry.addSmelting(BlockHandler.NETHERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.LIGHTCRYSTAL), 2.0F);
 		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F); //1 weil soll gemined werden
-		GameRegistry.addSmelting(BlockHandler.oreIronGravel, new ItemStack(Items.IRON_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.oreGoldGravel, new ItemStack(Items.GOLD_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.oreIronDust, new ItemStack(Items.IRON_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.oreGoldDust, new ItemStack(Items.GOLD_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.oreIronSand, new ItemStack(Items.IRON_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.oreGoldSand, new ItemStack(Items.GOLD_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREIRONGRAVEL, new ItemStack(Items.IRON_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREGOLDGRAVEL, new ItemStack(Items.GOLD_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREIRONDUST, new ItemStack(Items.IRON_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREGOLDDUST, new ItemStack(Items.GOLD_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREIRONSAND, new ItemStack(Items.IRON_INGOT), 2.0F);
+		GameRegistry.addSmelting(BlockHandler.OREGOLDSAND, new ItemStack(Items.GOLD_INGOT), 2.0F);
 	}
 	
 	//Ore-Dictionary
 	public static void oreRegistration()
     {
-		OreDictionary.registerOre("treeSapling", BlockHandler.netherSapling);
-		OreDictionary.registerOre("treeLeaves", BlockHandler.netherLeaves);
-		OreDictionary.registerOre("vine", BlockHandler.meanvine);
+		OreDictionary.registerOre("treeSapling", BlockHandler.NETHERSAPLING);
+		OreDictionary.registerOre("treeLeaves", BlockHandler.NETHERLEAVES);
+		OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
     	OreDictionary.registerOre("itemSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
     	OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
-    	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 0));
-    	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.blockBasic, 1, 1));
-    	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.netherWood));
-    	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.netherSlab));
-    	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.netherLog));
-    	OreDictionary.registerOre("oreGold", BlockHandler.oreGoldDust);
-    	OreDictionary.registerOre("oreGold", BlockHandler.oreGoldGravel);
-    	OreDictionary.registerOre("oreGold", BlockHandler.oreGoldSand);
-    	OreDictionary.registerOre("oreIron", BlockHandler.oreIronDust);
-    	OreDictionary.registerOre("oreIron", BlockHandler.oreIronGravel);
-    	OreDictionary.registerOre("oreIron", BlockHandler.oreIronSand);
+    	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
+    	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
+    	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.NETHERWOOD));
+    	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.NETHERSLAB));
+    	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.NETHERLOG));
+    	OreDictionary.registerOre("oreGold", BlockHandler.OREGOLDDUST);
+    	OreDictionary.registerOre("oreGold", BlockHandler.OREGOLDGRAVEL);
+    	OreDictionary.registerOre("oreGold", BlockHandler.OREGOLDSAND);
+    	OreDictionary.registerOre("oreIron", BlockHandler.OREIRONDUST);
+    	OreDictionary.registerOre("oreIron", BlockHandler.OREIRONGRAVEL);
+    	OreDictionary.registerOre("oreIron", BlockHandler.OREIRONSAND);
     	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketStoneDemonWater);
     	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketWoodDemonWater);
     	OreDictionary.registerOre("bucketDW", BucketNFluidHandler.bucketDemonWater);
@@ -74,7 +74,7 @@ public class RecipeHandler {
     	OreDictionary.registerOre("bucket", BucketNFluidHandler.bucketWood);
     	OreDictionary.registerOre("bucket", Items.BUCKET);
     	OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
-    	OreDictionary.registerOre("lighter", ItemHandler.itemFlintAndBlaze);
+    	OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
     }
    
     private static void addOreRecipes()

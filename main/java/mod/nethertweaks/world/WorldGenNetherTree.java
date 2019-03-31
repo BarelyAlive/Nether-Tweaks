@@ -22,8 +22,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class WorldGenNetherTree extends WorldGenAbstractTree
 {
-    private static final IBlockState DEFAULT_TRUNK = BlockHandler.netherLog.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = BlockHandler.netherLeaves.getDefaultState();
+    private static final IBlockState DEFAULT_TRUNK = BlockHandler.NETHERLOG.getDefaultState();
+    private static final IBlockState DEFAULT_LEAF = BlockHandler.NETHERLEAVES.getDefaultState();
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -106,7 +106,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)BlockHandler.netherSapling) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)BlockHandler.NETHERSAPLING) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;
@@ -256,7 +256,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
     {
-        this.setBlockAndNotifyAdequately(worldIn, pos, BlockHandler.meanvine.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+        this.setBlockAndNotifyAdequately(worldIn, pos, BlockHandler.MEANVINE.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
     }
 
     private void addHangingVine(World worldIn, BlockPos pos, PropertyBool prop)

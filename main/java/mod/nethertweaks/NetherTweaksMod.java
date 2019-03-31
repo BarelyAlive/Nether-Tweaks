@@ -69,7 +69,7 @@ public class NetherTweaksMod {
         ItemHandler.init();
         BucketNFluidHandler.init();
         MinecraftForge.EVENT_BUS.register(whNTM);
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.blockBasic.getDefaultState(), 16, 16), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
     }

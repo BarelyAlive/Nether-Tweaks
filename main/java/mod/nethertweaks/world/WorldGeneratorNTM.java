@@ -33,7 +33,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	}
  
     private void generateNether(World world, Random random, int posX, int posZ) {
-        erzGenerationNether(BlockHandler.blockBasic, world, random, posX, posZ, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
+        erzGenerationNether(BlockHandler.BLOCKBASIC, world, random, posX, posZ, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
     }
  
     public void erzGenerationNether(Block block, World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY){

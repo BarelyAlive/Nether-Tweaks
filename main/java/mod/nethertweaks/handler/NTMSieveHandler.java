@@ -97,7 +97,7 @@ public class NTMSieveHandler {
 		
 		//Dirt!
 		register(Blocks.DIRT, 0, Items.WHEAT_SEEDS, 0, 15);
-		register(Blocks.DIRT, 0, ItemHandler.seedGrass, 0, 15);
+		register(Blocks.DIRT, 0, ItemHandler.SEEDGRASS, 0, 15);
 		register(Blocks.DIRT, 0, Items.MELON_SEEDS, 0, 32);
 		register(Blocks.DIRT, 0, Items.PUMPKIN_SEEDS, 0, 32);
 		register(Blocks.DIRT, 0, Item.getItemFromBlock(Blocks.REEDS), 0, 32);
@@ -127,24 +127,24 @@ public class NTMSieveHandler {
 			register(Blocks.GRAVEL, 0, sap.getItem(), sap.getItemDamage(), 90);
 		}
 		
-		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 0, 11);
-		register(Blocks.GRAVEL, 0, ItemHandler.itemBase, 1, 5);
+		register(Blocks.GRAVEL, 0, ItemHandler.ITEMBASE, 0, 11);
+		register(Blocks.GRAVEL, 0, ItemHandler.ITEMBASE, 1, 5);
 
 		
 		//Sand!
 		register(Blocks.SAND, 0, Items.DYE, 3, 32); //Cocoa beans
-		register(Blocks.SAND, 0, ItemHandler.itemCactusSeeds, 0, 32);
-		register(Blocks.SAND, 0, ItemHandler.mushroomSpores, 0, 128);
+		register(Blocks.SAND, 0, ItemHandler.CACTUSSEEDS, 0, 32);
+		register(Blocks.SAND, 0, ItemHandler.MUSHROOMSPORES, 0, 128);
 		
-		register(Blocks.SAND, 0, ItemHandler.itemBase, 2, 11);
-		register(Blocks.SAND, 0, ItemHandler.itemBase, 3, 5);
+		register(Blocks.SAND, 0, ItemHandler.ITEMBASE, 2, 11);
+		register(Blocks.SAND, 0, ItemHandler.ITEMBASE, 3, 5);
 		
 		//Dust!
-		register(BlockHandler.dust, 0, Items.DYE, 15, 5); //Bone Meal
-		register(BlockHandler.dust, 0, Items.REDSTONE, 0, 8);		
-		register(BlockHandler.dust, 0, Items.GUNPOWDER, 0, 15);
+		register(BlockHandler.DUST, 0, Items.DYE, 15, 5); //Bone Meal
+		register(BlockHandler.DUST, 0, Items.REDSTONE, 0, 8);		
+		register(BlockHandler.DUST, 0, Items.GUNPOWDER, 0, 15);
 		
-		register(BlockHandler.dust, 0, ItemHandler.itemBase, 8, 9);
-		register(BlockHandler.dust, 0, ItemHandler.itemBase, 13, 18);
+		register(BlockHandler.DUST, 0, ItemHandler.ITEMBASE, 8, 9);
+		register(BlockHandler.DUST, 0, ItemHandler.ITEMBASE, 13, 18);
 	}
 }

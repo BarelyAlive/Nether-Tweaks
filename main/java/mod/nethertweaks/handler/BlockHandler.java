@@ -24,48 +24,53 @@ import mod.sfhcore.items.block.ItemDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class BlockHandler implements INames{
+public class BlockHandler {
 	
-		//Tile Entity
-        public static Block condenser;
-        public static Block netherrackfurnace;
-        public static Block netherrackfurnace_lit;
-        public static Block barrel;
-        public static Block barrelstone;
-        public static Block freezer;
-         
-        //Blocks
-        public static Block dust;
-        public static Block endteleport;
-        public static Block netherSapling;
-        public static Block netherLog;
-        public static Block netherLeaves;
-        public static Block netherWood;
-        public static Block netherSlab;
-        public static Block bonfire;
-        public static Block holyearth;
-        public static Block sansidian;
-        public static Block meanvine;
-        public static Block sieve;
-        public static Block oreGoldGravel;
-        public static Block oreIronGravel;
-        public static Block oreGoldSand;
-        public static Block oreIronSand;
-        public static Block oreGoldDust;
-        public static Block oreIronDust;
-        public static Block oreGravel;
-        public static Block oreSand;
-        public static Block oreDust;
-        
-        public static Block doorNTMStone;
-        public static Block doorNTMObsidian;
-        
-        public static Item itemDoorNTMStone;
-        public static Item itemDoorNTMObsidian;
-        
-        public static Block blockBasic;
+	//Tile Entity
+    public static final Block CONDENSER = new Condenser();
+    public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
+    public static final Block BARREL = new Barrel();
+    public static final Block BARRELSTONE = new BarrelStone();
+    public static final Block FREEZER = new Freezer();
+     
+    //Blocks
+    public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, INames.DUST);
+    public static final Block STWH = new EndTeleport();
+    public static final Block NETHERSAPLING = new NetherSapling();
+    public static final Block NETHERLOG = new NetherLog();
+    public static final Block NETHERLEAVES = new NetherLeaves();
+    public static final Block NETHERWOOD = new NetherWood();
+    public static final Block NETHERSLAB = new NetherSlab(Material.WOOD);
+    public static final Block BONFIRE = new Bonfire(Material.ROCK);
+    public static final Block HOLYEARTH = new HolyEarth();
+    public static final Block MEANVINE = new MeanVine();
+    public static final Block SIEVE = new Sieve();
+    public static final Block OREGOLDGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, INames.OREGOLDGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREIRONGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, INames.OREIRONGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREGOLDSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, INames.OREGOLDSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREIRONSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, INames.OREIRONSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREGOLDDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, INames.OREGOLDDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREIRONDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, INames.OREIRONDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    
+    public static final ItemBlock ITEMOREGRAVEL = new ItemBlockEnumFalling(new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, INames.OREGRAVEL));
+    public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.ORESAND));
+    public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.OREDUST));
+    
+    public static final Block OREGRAVEL = ITEMOREGRAVEL.getBlock();
+    public static final Block ORESAND = ITEMORESAND.getBlock();
+    public static final Block OREDUST = ITEMOREDUST.getBlock();
+    
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, INames.BLOCKBASIC));
+    public static final Block BLOCKBASIC = ITEMBLOCKBASIC.getBlock();
+    
+    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK).setUnlocalizedName(INames.DOORNTMSTONE);
+    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON).setUnlocalizedName(INames.DOORNTMOBSIDIAN);
+    
+    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, INames.ITEMDOORNTMSTONE, NetherTweaksMod.tabNetherTweaksMod);
+    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, INames.ITEMDOORNTMOBSIDIAN, NetherTweaksMod.tabNetherTweaksMod);
     
     public static void init() {
     	registerBlocks();
@@ -74,72 +79,61 @@ public class BlockHandler implements INames{
         
         
     //Registering all the blocks
-    private static void registerBlocks(){
-		
-    	blockBasic = Registry.registerBlock(new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, BLOCKBASIC)), 3, Constants.MOD);
+    private static void registerBlocks()
+    {
+    	Registry.registerBlock(ITEMBLOCKBASIC, 3, Constants.MOD);
 
-        dust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 0.4F, 0.3F, DUST), Constants.MOD);
-        endteleport = Registry.registerBlock(new EndTeleport().setUnlocalizedName(ENDTELEPORT).setRegistryName(Constants.MOD, ENDTELEPORT), Constants.MOD);
-        netherSapling = Registry.registerBlock(new NetherSapling(), Constants.MOD);
-        netherLog = Registry.registerBlock(new NetherLog(), Constants.MOD);
-        netherLeaves = Registry.registerBlock(new NetherLeaves(), Constants.MOD);
-        netherWood = Registry.registerBlock(new NetherWood(), Constants.MOD);
-        netherSlab = Registry.registerBlock(new NetherSlab(Material.WOOD), Constants.MOD);
-        bonfire = Registry.registerBlock(new Bonfire(Material.ROCK), Constants.MOD);
-        holyearth = Registry.registerBlock(new HolyEarth(), Constants.MOD);
-        sansidian = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.5F, 0.5F, SANSIDIAN), Constants.MOD);
-        meanvine = Registry.registerBlock(new MeanVine(), Constants.MOD);
+        Registry.registerBlock(DUST, Constants.MOD);
+        Registry.registerBlock(STWH, Constants.MOD);
+        Registry.registerBlock(NETHERSAPLING, Constants.MOD);
+        Registry.registerBlock(NETHERLOG, Constants.MOD);
+        Registry.registerBlock(NETHERLEAVES, Constants.MOD);
+        Registry.registerBlock(NETHERWOOD, Constants.MOD);
+        Registry.registerBlock(NETHERSLAB, Constants.MOD);
+        Registry.registerBlock(BONFIRE, Constants.MOD);
+        Registry.registerBlock(HOLYEARTH, Constants.MOD);
+        Registry.registerBlock(MEANVINE, Constants.MOD);
         
-        doorNTMStone = Registry.registerBlock(new BlockDoorCustom(Material.ROCK).setUnlocalizedName(DOORNTMSTONE), Constants.MOD);
-        doorNTMObsidian = Registry.registerBlock(new BlockDoorCustom(Material.IRON).setUnlocalizedName(DOORNTMOBSIDIAN), Constants.MOD);
+        Registry.registerBlock(DOORNTMSTONE, Constants.MOD);
+        Registry.registerBlock(DOORNTMOBSIDIAN, Constants.MOD);
         
         
         //Ore
         
-        oreGoldGravel = Registry.registerBlock(new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, OREGOLDGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
-        oreIronGravel = Registry.registerBlock(new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, OREIRONGRAVEL).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        Registry.registerBlock(OREGOLDGRAVEL, Constants.MOD);
+        Registry.registerBlock(OREIRONGRAVEL, Constants.MOD);
         
-        oreGoldSand = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREGOLDSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
-        oreIronSand = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREIRONSAND).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        Registry.registerBlock(OREGOLDSAND, Constants.MOD);
+        Registry.registerBlock(OREIRONSAND, Constants.MOD);
         
-        oreGoldDust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREGOLDDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
-        oreIronDust = Registry.registerBlock(new CubeFalling(1, Material.SAND, 2.0f, 0.4f, OREIRONDUST).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
+        Registry.registerBlock(OREGOLDDUST, Constants.MOD);
+        Registry.registerBlock(OREIRONDUST, Constants.MOD);
         
-        oreGravel = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, OREGRAVEL)), 16, Constants.MOD);
-        oreSand = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, ORESAND)), 16, Constants.MOD);
-        oreDust = Registry.registerBlock(new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, OREDUST)), 16, Constants.MOD);
+        Registry.registerBlock(ITEMOREGRAVEL, 16, Constants.MOD);
+        Registry.registerBlock(ITEMORESAND, 16, Constants.MOD);
+        Registry.registerBlock(ITEMOREDUST, 16, Constants.MOD);
 
          
-        //Tile Entity
-        condenser = new Condenser();
-        netherrackfurnace = new NetherrackFurnace();
-        barrel = new Barrel();
-        barrelstone = new BarrelStone();
-        sieve = new Sieve();
-        freezer = new Freezer();
+        //Tile Entity        
+        RegisterTileEntity.add(CONDENSER, new TileEntityCondenser(INames.TECONDENSER));
+        RegisterTileEntity.add(NETHERRACKFURNACE, new TileEntityNetherrackFurnace(INames.TENETHERRACKFURNACE));
+        RegisterTileEntity.add(BARREL, new TileEntityBarrel(INames.TEBARREL));
+        RegisterTileEntity.add(BARRELSTONE, new TileEntityBarrel(INames.TEBARRELSTONE));
+        RegisterTileEntity.add(SIEVE, new TileEntitySieve());
+        RegisterTileEntity.add(FREEZER, new TileEntityFreezer(INames.TEFREEZER));
         
-        RegisterTileEntity.add(condenser, new TileEntityCondenser(TECONDENSER));
-        RegisterTileEntity.add(netherrackfurnace, new TileEntityNetherrackFurnace(TENETHERRACKFURNACE));
-        RegisterTileEntity.add(barrel, new TileEntityBarrel(TEBARREL));
-        RegisterTileEntity.add(barrelstone, new TileEntityBarrel(TEBARRELSTONE));
-        RegisterTileEntity.add(sieve, new TileEntitySieve());
-        RegisterTileEntity.add(freezer, new TileEntityFreezer(TEFREEZER));
-        
-        condenser = Registry.registerBlock(condenser, Constants.MOD);
-        netherrackfurnace = Registry.registerBlock(netherrackfurnace, Constants.MOD);
-        barrel = Registry.registerBlock(barrel, Constants.MOD);
-        barrelstone = Registry.registerBlock(barrelstone, Constants.MOD);
-        sieve = Registry.registerBlock(sieve, Constants.MOD);
-        freezer = Registry.registerBlock(freezer, Constants.MOD);
-        
+        Registry.registerBlock(CONDENSER, Constants.MOD);
+        Registry.registerBlock(NETHERRACKFURNACE, Constants.MOD);
+        Registry.registerBlock(BARREL, Constants.MOD);
+        Registry.registerBlock(BARRELSTONE, Constants.MOD);
+        Registry.registerBlock(SIEVE, Constants.MOD);
+        Registry.registerBlock(FREEZER, Constants.MOD);      
     }
     
     //Just an extra method after the register block thing to prevent errors
-    private static void registerItemBlocks(){
-    	
-    	//itemDoors
-        itemDoorNTMStone = Registry.registerItem(new ItemDoor(doorNTMStone, ITEMDOORNTMSTONE, NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
-        itemDoorNTMObsidian = Registry.registerItem(new ItemDoor(doorNTMObsidian, ITEMDOORNTMOBSIDIAN, NetherTweaksMod.tabNetherTweaksMod), Constants.MOD);
-    	
+    private static void registerItemBlocks()
+    {
+        Registry.registerItem(ITEMDOORNTMSTONE, Constants.MOD);
+        Registry.registerItem(ITEMDOORNTMOBSIDIAN, Constants.MOD);
     }
 }

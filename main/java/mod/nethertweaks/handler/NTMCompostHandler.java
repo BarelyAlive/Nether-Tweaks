@@ -64,7 +64,7 @@ public class NTMCompostHandler {
 		//rotten flesh
 		register(Items.ROTTEN_FLESH, 0, 0.10f);
 		//cookedJerky
-		register(ItemHandler.itemCookedJerky, 0, 0.2f);
+		register(ItemHandler.COOKEDJERKY, 0, 0.2f);
 		
 		//spider eye
 		register(Items.SPIDER_EYE, 0, 0.08f);

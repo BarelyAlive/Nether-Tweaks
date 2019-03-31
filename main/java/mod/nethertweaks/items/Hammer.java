@@ -1,6 +1,7 @@
 package mod.nethertweaks.items;
 
 import ibxm.Player;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
 import mod.nethertweaks.handler.BlockHandler;
@@ -34,7 +35,7 @@ public class Hammer extends ItemTool {
 	public Hammer(float effective, ToolMaterial tool) {
 		
 		super(effective, effective, tool, blocksEffectiveAgainst);
-		
+		this.setUnlocalizedName(getNameByMaterial(tool));
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setMaxStackSize(1);	
 	}
@@ -60,7 +61,7 @@ public class Hammer extends ItemTool {
 			}
 			
 			if(block == Blocks.SAND) {
-				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(BlockHandler.dust, 1));
+				entityItem = new EntityItem(worldIn, pos.getX()+0.5D, pos.getY()+0.5D, pos.getZ()+0.5D, new ItemStack(BlockHandler.DUST, 1));
 				worldIn.spawnEntity(entityItem);
 			}
 			
@@ -88,4 +89,28 @@ public class Hammer extends ItemTool {
 		return true;
 	}
 	
+	private String getNameByMaterial(ToolMaterial tool)
+	{
+		if(tool == ToolMaterial.DIAMOND)
+		{
+			return INames.HAMMERDIAMOND;
+		}
+		if(tool == ToolMaterial.IRON)
+		{
+			return INames.HAMMERIRON;
+		}
+		if(tool == ToolMaterial.GOLD)
+		{
+			return INames.HAMMERGOLD;
+		}
+		if(tool == ToolMaterial.STONE)
+		{
+			return INames.HAMMERSTONE;
+		}
+		if(tool == ToolMaterial.WOOD)
+		{
+			return INames.HAMMERWOOD;
+		}
+		return null;
+	}
 }
