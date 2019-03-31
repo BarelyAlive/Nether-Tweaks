@@ -52,7 +52,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
     public TileEntityCondenser(String field) {
-		super(3, field, 16000);
+		super(3, field, 16);
 		this.maxworkTime = Config.dryTimeCondenser;
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
@@ -73,7 +73,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	public void dry(Item material, Item bucket){
 		if(workTime == maxworkTime)
 		{
-			tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
+			//tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
 			workTime = 0;
 		}
 	return;
@@ -117,6 +117,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	}
 	
 	private void drainFromItem(){
+		/*
 		if(FluidUtil.getFluidHandler(machineItemStacks.get(1)) != null) {
 			FluidUtil.tryFluidTransfer(FluidUtil.getFluidHandler(machineItemStacks.get(2)), tank, Integer.MAX_VALUE, true);
 			if(machineItemStacks.get(2).isEmpty()) {
@@ -124,6 +125,7 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 				machineItemStacks.add(2, machineItemStacks.get(1));
 			}
 		}
+		*/
     }
 
 	@Override

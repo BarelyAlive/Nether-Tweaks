@@ -17,6 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -36,6 +37,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Int;
 
@@ -60,19 +62,19 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 		fillFromItem();
 		
 		if(canFreeze()) {
-			workTime++;
-			if(workTime == maxworkTime) {
-				freezeItem();
+			this.workTime++;
+			System.out.println(workTime);
+			if(workTime >= this.maxworkTime) {
 				workTime = 0;
+				freezeItem();
 			}
 		}
 	}
 	
 	private boolean canFreeze()
     {
-        if (world.getRedstonePower(pos, EnumFacing.DOWN) > 0 && tank.getCapacity() >= 1000)
+        if (world.isBlockPowered(pos) && this.tank.amount >= 1000)
         {
-        	tank.drain(1000, true);
         	return true;
         }
         return false;
@@ -80,32 +82,54 @@ public class TileEntityFreezer extends TileEntityFluidBase implements net.minecr
 
     public void freezeItem()
     {
-        if (!world.isRemote)
+    	this.tank.amount -= 1000;
+        if (this.machineItemStacks.get(0).isEmpty())
         {
-            if (this.machineItemStacks.get(0).isEmpty())
-            {
-                this.machineItemStacks.add(0, ice);
-                return;
-            }
-            else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
-            {
-                StackUtils.addToStackSize(ice, 1);// Forge BugFix: Results may have multiple items
-                return;
-            }
+            this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
+            return;
         }
-        
+        else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
+        {
+        	ItemStack output = this.getStackInSlot(0);
+        	StackUtils.addToStackSize(output, 1);
+        	this.setInventorySlotContents(0, output);
+            return;
+        }
     }
     
     private void fillFromItem(){
-    	if(!machineItemStacks.get(2).isEmpty()) {
-    		if(FluidUtil.getFluidContained(machineItemStacks.get(2)).getFluid() == FluidRegistry.WATER){
-        		FluidUtil.tryFluidTransfer(tank, FluidUtil.getFluidHandler(machineItemStacks.get(2)), Integer.MAX_VALUE, true);
-        	}
-        	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 0) {
-        		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
-        		StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
-        		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
-        	}
+    	if(
+    			!machineItemStacks.get(2).isEmpty() 
+    		&& (
+    				machineItemStacks.get(1).isEmpty() 
+    			|| (
+    					machineItemStacks.get(2).getItem().getContainerItem().equals(machineItemStacks.get(1).getItem()) 
+    				&& this.machineItemStacks.get(1).getCount() < this.machineItemStacks.get(1).getMaxStackSize()
+    				)
+    			)
+    		) {
+    		FluidStack input_stack = FluidUtil.getFluidContained(machineItemStacks.get(2));
+    		if (input_stack != null)
+    		{
+	    		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(machineItemStacks.get(2));
+	    		if(input_stack.getFluid() == FluidRegistry.WATER){
+	        		int accepted_amount = this.fill(input_stack, true);
+	        		input_handler.drain(accepted_amount, true);
+	    		}
+	        	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 1000) {
+	        		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
+	        		{
+	        			StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
+	        		}
+	            	if(!machineItemStacks.get(1).isEmpty()) {
+	            		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
+	            	}
+	            	else
+	            	{
+	            		machineItemStacks.set(1, new ItemStack(Items.BUCKET));
+	            	}
+	        	}
+    		}
     	}
     }
 

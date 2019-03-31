@@ -9,6 +9,7 @@
     }
   },
   "result": {
-    "item": "nether_wood"
+    "item": "nether_wood",
+    "count": 4
   }
 }

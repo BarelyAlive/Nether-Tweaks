@@ -60,12 +60,20 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 	@Override
     public void update() {
 		
+		if (canSmelt())
+		{
+            ++this.workTime;
+            if (this.workTime >= maxworkTime && this.world.isRemote)
+            {
+            	this.workTime = 0;
+            }
+		}
+		
         if (!this.world.isRemote)
         {
             if (canSmelt())
             {
-                ++this.workTime;
-                if (this.workTime == maxworkTime)
+                if (this.workTime >= maxworkTime)
                 {
                     smeltItem();
                     this.workTime = 0;
