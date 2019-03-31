@@ -147,7 +147,7 @@ public class WorldHandler{
 				
 		if(player2.dimension != -1)
 		{
-			player2.changeDimension(-1, new TeleporterNTM(player.getServerWorld()));
+			player2.changeDimension(-1);
 		}
 	}
 	

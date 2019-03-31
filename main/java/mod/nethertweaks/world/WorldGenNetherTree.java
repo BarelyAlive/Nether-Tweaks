@@ -33,23 +33,24 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
     /** The metadata value of the leaves to use in tree generation. */
     private final IBlockState metaLeaves;
 
-    public WorldGenNetherTree(boolean p_i2027_1_)
+    public WorldGenNetherTree(boolean notify)
     {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
+        this(notify, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
     }
 
-    public WorldGenNetherTree(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)
+    public WorldGenNetherTree(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean vinesGrow)
     {
-        super(p_i46446_1_);
-        this.minTreeHeight = p_i46446_2_;
-        this.metaWood = p_i46446_3_;
-        this.metaLeaves = p_i46446_4_;
-        this.vinesGrow = p_i46446_5_;
+        super(notify);
+        this.minTreeHeight = minTreeHeight;
+        this.metaWood = metaWood;
+        this.metaLeaves = metaLeaves;
+        this.vinesGrow = vinesGrow;
     }
     
     //have to override this to prevent vanilla from generating dirt
     @Override
-    protected void setDirtAt(World worldIn, BlockPos pos) {
+    protected void setDirtAt(World worldIn, BlockPos pos)
+    {
     	if (worldIn.getBlockState(pos).getBlock() != Blocks.NETHERRACK)
         {
             this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.NETHERRACK.getDefaultState());
