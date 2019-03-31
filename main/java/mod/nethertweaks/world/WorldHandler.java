@@ -86,9 +86,16 @@ public class WorldHandler{
     public void respawn(PlayerEvent.PlayerRespawnEvent pre) {
     	if(pre.player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(pre.player);
-    		BlockPos posplayer = new BlockPos(pre.player.getEntityData().getInteger(coodX), pre.player.getEntityData().getInteger(coodY), pre.player.getEntityData().getInteger(coodZ));
+    		BlockPos posplayer = pre.player.getPosition();
+    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(32).east(32).south(32), posplayer.up(32).west(32).north(32));
     		
-    		pre.player.setLocationAndAngles(posplayer.getX(), posplayer.getY(), posplayer.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+    		for(BlockPos pos : posi)
+    		{
+    			if (pre.player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+    			{
+    				pre.player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), pre.player.rotationYaw, pre.player.rotationPitch);
+    			}
+    		}
 		}
     }
     
