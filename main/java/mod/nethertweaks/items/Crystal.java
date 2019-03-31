@@ -174,7 +174,7 @@ public class Crystal extends CustomItem{
 			//rows
 				
 			for(int i = 0; i < 7; i++){
-				worldIn.setBlockState(pos.add(x+zahl, y-1, z+zahl2), BlockHandler.holyearth.getDefaultState());
+				worldIn.setBlockState(pos.add(x+zahl, y-1, z+zahl2), BlockHandler.HOLYEARTH.getDefaultState());
 				zahl++;
 			}
 			zahl = -3;

@@ -106,56 +106,56 @@ public class HolyEarth extends Cube{
 		case 0:
 			Block block = world.getBlockState(pos.add(-1, 0, 0)).getBlock();
 			if(block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, 0), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, 0), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 1:
 			Block block2 = world.getBlockState(pos.add(0, 0, -1)).getBlock();
 			if(block2.equals(Blocks.DIRT) || block2.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(0, 0, -1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(0, 0, -1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 2:
 			Block block3 = world.getBlockState(pos.add(+1, 0, 0)).getBlock();
 			if(block3.equals(Blocks.DIRT) || block3.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, 0), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, 0), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 3:
 			Block block4 = world.getBlockState(pos.add(0, 0, +1)).getBlock();
 			if(block4.equals(Blocks.DIRT) || block4.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(0, 0, +1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(0, 0, +1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 4:
 			Block block5 = world.getBlockState(pos.add(-1, 0, -1)).getBlock();
 			if(block5.equals(Blocks.DIRT) || block5.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, -1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, -1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 5:
 			Block block6 = world.getBlockState(pos.add(+1, 0, -1)).getBlock();
 			if(block6.equals(Blocks.DIRT) || block6.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, -1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, -1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 6:
 			Block block7 = world.getBlockState(pos.add(-1, 0, +1)).getBlock();
 			if(block7.equals(Blocks.DIRT) || block7.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(-1, 0, +1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(-1, 0, +1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		
 		case 7:
 			Block block8 = world.getBlockState(pos.add(+1, 0, +1)).getBlock();
 			if(block8.equals(Blocks.DIRT) || block8.equals(Blocks.GRASS)){
-			world.setBlockState(pos.add(+1, 0, +1), BlockHandler.holyearth.getDefaultState());
+			world.setBlockState(pos.add(+1, 0, +1), BlockHandler.HOLYEARTH.getDefaultState());
 			}
 			return;
 		

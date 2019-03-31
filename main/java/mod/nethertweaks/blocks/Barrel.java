@@ -161,13 +161,13 @@ public class Barrel extends BlockContainer
 						if (barrel.fluid.getFluid() == FluidRegistry.WATER)
 						{
 							//Dust turns water into clay!
-							if(item.getItem() == Item.getItemFromBlock(BlockHandler.dust))
+							if(item.getItem() == Item.getItemFromBlock(BlockHandler.DUST))
 							{
 								barrel.setMode(BarrelMode.CLAY);
 								useItem(playerIn);
 							}
 							
-							if(item.getItem() == ItemHandler.itemLightCrystal){
+							if(item.getItem() == ItemHandler.LIGHTCRYSTAL){
 								barrel.fluid = new FluidStack(BucketNFluidHandler.fluidDemonWater, 1000);
 								barrel.setMode(BarrelMode.FLUID);
 							}
@@ -180,7 +180,7 @@ public class Barrel extends BlockContainer
 							}
 
 							//Mushroom stew + Water = Witch Water!
-							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == ItemHandler.mushroomSpores)
+							if(item.getItem() == Items.MUSHROOM_STEW || item.getItem() == ItemHandler.MUSHROOMSPORES)
 							{
 								barrel.setMode(BarrelMode.SPORED);
 								useItem(playerIn);
@@ -201,7 +201,7 @@ public class Barrel extends BlockContainer
 						}
 						
 						if(barrel.fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
-							if(item.getItem() == Item.getItemFromBlock(BlockHandler.netherSapling)){
+							if(item.getItem() == Item.getItemFromBlock(BlockHandler.NETHERSAPLING)){
 								barrel.setMode(BarrelMode.OAK);
 								useItem(playerIn);
 							}
