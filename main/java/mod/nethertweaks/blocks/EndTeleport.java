@@ -61,16 +61,18 @@ public class EndTeleport extends Cube{
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
-			playerIn.changeDimension(1);
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isBlockLoaded(pos)) {
+			if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
+				playerIn.changeDimension(1);
+			} else {
+				if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
+					playerIn.changeDimension(Config.StwtHDimension);
+				}
+			} 
 		}
-		else{
-			if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
-				playerIn.changeDimension(Config.StwtHDimension);
-			}
-		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+		return false;
 	}
 
 	@Override

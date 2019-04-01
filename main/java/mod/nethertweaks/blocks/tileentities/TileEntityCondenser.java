@@ -82,25 +82,27 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	public boolean checkHeatSource(){
 		World world = getWorld();
 		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		if(block.getDefaultState().getMaterial() == Material.FIRE){
-			maxworkTime = ((maxworkTime / 10) * 9);
-			return true;
-		}
-		if(block.getDefaultState().getMaterial() == Material.LAVA){
-			if(block instanceof BlockFluidClassic) {
-				int lavatime = ((maxworkTime / 10) * 8);
-				int lavaheat = FluidRegistry.LAVA.getTemperature();
-				int blockheat = BlockFluidClassic.getTemperature(world, pos);
-				if(maxworkTime > lavatime) {
-					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-					if(lavatime > heattime) {
-						maxworkTime = heattime;
-					}else {
-						maxworkTime = lavatime;			
+		if (world.isBlockLoaded(pos)) {
+			if (block.getDefaultState().getMaterial() == Material.FIRE) {
+				maxworkTime = ((maxworkTime / 10) * 9);
+				return true;
+			}
+			if (block.getDefaultState().getMaterial() == Material.LAVA) {
+				if (block instanceof BlockFluidClassic) {
+					int lavatime = ((maxworkTime / 10) * 8);
+					int lavaheat = FluidRegistry.LAVA.getTemperature();
+					int blockheat = BlockFluidClassic.getTemperature(world, pos);
+					if (maxworkTime > lavatime) {
+						int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
+						if (lavatime > heattime) {
+							maxworkTime = heattime;
+						} else {
+							maxworkTime = lavatime;
+						}
 					}
 				}
-			}
-			return true;
+				return true;
+			} 
 		}
 		return false;
 	}

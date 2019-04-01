@@ -56,43 +56,36 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (playerIn == null)
-		{
-			return false;
-		}
-
-		TileEntitySieve sieve = (TileEntitySieve) worldIn.getTileEntity(pos);
-
-		if (sieve.mode == SieveMode.EMPTY && playerIn.inventory.getCurrentItem() != null)
-		{
-			ItemStack held = playerIn.inventory.getCurrentItem();
-			
-			if (NTMSieveHandler.Contains(Block.getBlockFromItem(held.getItem()), held.getItemDamage()))
-			{
-				sieve.addSievable(Block.getBlockFromItem(held.getItem()), held.getItemDamage());
-				removeCurrentItem(playerIn);
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isBlockLoaded(pos)) {
+			if (playerIn == null) {
+				return false;
 			}
-			if(FluidHelper.hasFluidAmount(FluidRegistry.WATER, held, 1000))
-			{
-				sieve.addSievable(Blocks.WATER, 0);
-				FluidUtil.getFluidHandler(held).drain(1000, true);
-			}
-		}else
-		{
-			if (worldIn.isRemote)
-			{
-				sieve.ProcessContents(false);
-			}else
-			{
-				if (sieve.mode != SieveMode.EMPTY)
-				{
-					sieve.ProcessContents(false);				
+			TileEntitySieve sieve = (TileEntitySieve) worldIn.getTileEntity(pos);
+			if (sieve.mode == SieveMode.EMPTY && playerIn.inventory.getCurrentItem() != null) {
+				ItemStack held = playerIn.inventory.getCurrentItem();
+
+				if (NTMSieveHandler.Contains(Block.getBlockFromItem(held.getItem()), held.getItemDamage())) {
+					sieve.addSievable(Block.getBlockFromItem(held.getItem()), held.getItemDamage());
+					removeCurrentItem(playerIn);
+				}
+				if (FluidHelper.hasFluidAmount(FluidRegistry.WATER, held, 1000)) {
+					sieve.addSievable(Blocks.WATER, 0);
+					FluidUtil.getFluidHandler(held).drain(1000, true);
+				}
+			} else {
+				if (worldIn.isRemote) {
+					sieve.ProcessContents(false);
+				} else {
+					if (sieve.mode != SieveMode.EMPTY) {
+						sieve.ProcessContents(false);
+					}
 				}
 			}
+			return true;
 		}
-
-		return true;
+		return false;
 	}
 	
 	private void removeCurrentItem(EntityPlayer player)

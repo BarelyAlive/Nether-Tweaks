@@ -90,24 +90,26 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     public boolean checkHeatSource(){ 
 		World world = getWorld();
 		IBlockState block = world.getBlockState(this.pos.add(0, -1, 0));
-		if(block.getMaterial() == Material.FIRE){
-			return true;
-		}
-		if(block.getMaterial() == Material.LAVA){
-			if(block instanceof BlockFluidClassic) {
-				int lavatime = this.maxworkTime / 10 * 8;
-				int lavaheat = FluidRegistry.LAVA.getTemperature();
-				int blockheat = BlockFluidClassic.getTemperature(world, this.pos);
-				if(this.maxworkTime > lavatime) {
-					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-					if(lavatime > heattime) {
-						this.maxworkTime = heattime;
-					}else {
-						this.maxworkTime = lavatime;			
+		if (world.isBlockLoaded(pos)) {
+			if (block.getMaterial() == Material.FIRE) {
+				return true;
+			}
+			if (block.getMaterial() == Material.LAVA) {
+				if (block instanceof BlockFluidClassic) {
+					int lavatime = this.maxworkTime / 10 * 8;
+					int lavaheat = FluidRegistry.LAVA.getTemperature();
+					int blockheat = BlockFluidClassic.getTemperature(world, this.pos);
+					if (this.maxworkTime > lavatime) {
+						int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
+						if (lavatime > heattime) {
+							this.maxworkTime = heattime;
+						} else {
+							this.maxworkTime = lavatime;
+						}
 					}
 				}
-			}
-			return true;
+				return true;
+			} 
 		}
 		return false;
 	}

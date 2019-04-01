@@ -1,0 +1,20 @@
+ChangeLog NTM 2.0.0
+
+* Bonfire is individual now, which means that every bonfire saves on it's own.
+  Example: If you last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
+* Condensers now have water tanks so you can input any combination of dryable items.
+* Freezers now have water tanks too and can have a redstone signal from anything
+* Condensers and netherrack furnaces do respect the temperature of the (hot) fluid below for their worktime
+* Condenser and freezer now have a new GUI
+* Holy Earth now spawns 1.12.2 mobs and works a little bit slower
+* FlintNBlaze now is twice as durable
+* Tidied code up
+* Added API for support of condenser items (water), barrel items (compost) and sievable things
+* Fixed Spawn and respawn in Hellworld
+* Fixed a Bug that could cause server damage
+* Fixed incorrect Ores
+* Fixed netherrack furnace lag caused block set spam
+- Removed Saltpeter support
++ Ender Crystal is back!
++ Prismarine shards are now sievable
++ Added networking

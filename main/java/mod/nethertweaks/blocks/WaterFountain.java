@@ -55,38 +55,34 @@ public class WaterFountain extends Block implements IVariantProvider{
     
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-    		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-    	TileEntityWaterFountain wf = (TileEntityWaterFountain) worldIn.getTileEntity(pos);
-        ItemStack heldItem = StackUtils.getPlayerHandStack(playerIn, hand);
-        if (heldItem != null)
-        {
-          if (heldItem.getItem() instanceof ItemFluidContainer)
-          {
-            ItemStack filled = FluidHelper.fillContainer(heldItem, wf.getFullStack2());
-            if (filled != null)
-            {
-              int a = FluidHelper.getFluidForFilledItem(heldItem.getItem()).amount;
-              if (playerIn.capabilities.isCreativeMode)
-              {
-                wf.drain(a, true);
-              }
-              else if (heldItem.getCount() == 1)
-              {
-            	  StackUtils.substractFromStackSize(heldItem, 1);
-            	playerIn.inventory.addItemStackToInventory(filled);
-                wf.drain(a, true);
-              }
-              else if (playerIn.inventory.hasItemStack(filled))
-              {
-            	StackUtils.substractFromStackSize(heldItem, 1);
-                playerIn.inventory.addItemStackToInventory(filled);
-                wf.drain(a, true);
-              }
-              return true;
-            }
-          }
-        }
-		return true;
+    		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+    	if (worldIn.isBlockLoaded(pos)) {
+			TileEntityWaterFountain wf = (TileEntityWaterFountain) worldIn.getTileEntity(pos);
+			ItemStack heldItem = StackUtils.getPlayerHandStack(playerIn, hand);
+			if (heldItem != null) {
+				if (heldItem.getItem() instanceof ItemFluidContainer) {
+					ItemStack filled = FluidHelper.fillContainer(heldItem, wf.getFullStack2());
+					if (filled != null) {
+						int a = FluidHelper.getFluidForFilledItem(heldItem.getItem()).amount;
+						if (playerIn.capabilities.isCreativeMode) {
+							wf.drain(a, true);
+						} else if (heldItem.getCount() == 1) {
+							StackUtils.substractFromStackSize(heldItem, 1);
+							playerIn.inventory.addItemStackToInventory(filled);
+							wf.drain(a, true);
+						} else if (playerIn.inventory.hasItemStack(filled)) {
+							StackUtils.substractFromStackSize(heldItem, 1);
+							playerIn.inventory.addItemStackToInventory(filled);
+							wf.drain(a, true);
+						}
+						return true;
+					}
+				}
+			}
+			return true;
+		}
+		return false;
     }
     
     @Override

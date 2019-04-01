@@ -29,6 +29,4 @@ public class WorldTypeHellworld extends WorldType {
 	public int getSpawnFuzz(WorldServer world, MinecraftServer server) {
 		return 100;
 	}
-		
-	
 }

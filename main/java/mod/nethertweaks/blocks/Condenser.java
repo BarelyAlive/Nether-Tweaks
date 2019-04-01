@@ -62,19 +62,23 @@ public class Condenser extends CubeContainerHorizontal{
     
     @Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			EnumFacing side, float hitX, float hitY, float hitZ) {
-    	if (!world.isRemote) {
-			// ...
- 			if (player.isSneaking()) {
- 				// ...
-  			} else {
-  				TileEntity te = world.getTileEntity(pos);
-  				
-  				if(te instanceof TileEntityCondenser)
-  					player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
-  			}
-  		}
-		return true;
+			EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+    	if (world.isBlockLoaded(pos)) {
+			if (!world.isRemote) {
+				// ...
+				if (player.isSneaking()) {
+					// ...
+				} else {
+					TileEntity te = world.getTileEntity(pos);
+
+					if (te instanceof TileEntityCondenser)
+						player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+				}
+			}
+			return true;
+		}
+    	return false;
     }
     
     @Override

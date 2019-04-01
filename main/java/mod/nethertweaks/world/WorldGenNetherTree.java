@@ -51,7 +51,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
     @Override
     protected void setDirtAt(World worldIn, BlockPos pos)
     {
-    	if (worldIn.getBlockState(pos).getBlock() != Blocks.NETHERRACK)
+    	if (worldIn.getBlockState(pos) != Blocks.NETHERRACK.getDefaultState())
         {
             this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.NETHERRACK.getDefaultState());
         }

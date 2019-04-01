@@ -1,76 +1,17 @@
 package mod.nethertweaks.world;
  
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import mod.nethertweaks.Config;
-import mod.nethertweaks.handler.RecipeHandler;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntityAnimal;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketSpawnPosition;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderEnd;
-import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldProviderSurface;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.Teleporter.PortalPosition;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.terraingen.WorldTypeEvent;
-import net.minecraftforge.event.terraingen.BiomeEvent.GetWaterColor;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-
-import mod.nethertweaks.Config;
-import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.RecipeHandler;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderEnd;
-import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldProviderSurface;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import net.minecraftforge.event.terraingen.WorldTypeEvent;
-import net.minecraftforge.event.terraingen.BiomeEvent.GetWaterColor;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  
 public class WorldHandler{
      
@@ -138,7 +79,7 @@ public class WorldHandler{
 			player.setPortal(player.getPosition());
 			player.getEntityData().setBoolean(key, true);
 		}
-		return;
+		teleportPlayer(player);	
 	}
 	
 	private void teleportPlayer(EntityPlayer player2) {

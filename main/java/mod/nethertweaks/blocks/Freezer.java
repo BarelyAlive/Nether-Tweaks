@@ -61,46 +61,45 @@ public class Freezer extends CubeContainerHorizontal{
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote) {
-            if(worldIn.getTileEntity(pos) != null) {
-                playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-	      if (worldIn.getTileEntity(pos) instanceof TileEntityFreezer && playerIn.inventory.getCurrentItem() != null)
-	      {
-	        TileEntityFreezer fr = (TileEntityFreezer)worldIn.getTileEntity(pos);
-	        IFluidTankProperties[] tank = fr.getTankProperties();
-	        ItemStack item = playerIn.inventory.getCurrentItem();
-	        if (item != null)
-	        {
-	          FluidStack fluid = FluidHelper.getFluidForFilledItem(item.getItem());
-	          if (FluidHelper.isFillableContainerWithRoom(item) && fr.fill(fluid, false) <= fluid.amount)
-	          {
-	              if (playerIn.capabilities.isCreativeMode)
-	              {
-	                fr.fill(fluid, true);
-	              }
-	              else
-	              {
-	                ItemStack c = null;
-	                if (item.getItem().hasContainerItem(item)) {
-	                  c = item.getItem().getContainerItem(item);
-	                }
-	                if ((c == null) || (item.getCount() == 1) || (playerIn.inventory.hasItemStack(c)))
-	                {
-	                  fr.fill(fluid, true);
-	                  if (item.getCount() == 1) {
-	                    playerIn.inventory.setInventorySlotContents(0, c);
-	                  } else if (item.getCount() > 1) {
-	                    StackUtils.substractFromStackSize(item, 1);;
-	                  }
-	                }
-	              }
-	          }
-	        }
-	      }
-	    }
-        return true;
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (worldIn.isBlockLoaded(pos)) {
+			if (!worldIn.isRemote) {
+				if (worldIn.getTileEntity(pos) != null) {
+					playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+				}
+				if (worldIn.getTileEntity(pos) instanceof TileEntityFreezer
+						&& playerIn.inventory.getCurrentItem() != null) {
+					TileEntityFreezer fr = (TileEntityFreezer) worldIn.getTileEntity(pos);
+					IFluidTankProperties[] tank = fr.getTankProperties();
+					ItemStack item = playerIn.inventory.getCurrentItem();
+					if (item != null) {
+						FluidStack fluid = FluidHelper.getFluidForFilledItem(item.getItem());
+						if (FluidHelper.isFillableContainerWithRoom(item) && fr.fill(fluid, false) <= fluid.amount) {
+							if (playerIn.capabilities.isCreativeMode) {
+								fr.fill(fluid, true);
+							} else {
+								ItemStack c = null;
+								if (item.getItem().hasContainerItem(item)) {
+									c = item.getItem().getContainerItem(item);
+								}
+								if ((c == null) || (item.getCount() == 1) || (playerIn.inventory.hasItemStack(c))) {
+									fr.fill(fluid, true);
+									if (item.getCount() == 1) {
+										playerIn.inventory.setInventorySlotContents(0, c);
+									} else if (item.getCount() > 1) {
+										StackUtils.substractFromStackSize(item, 1);
+										;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 
 	@Override

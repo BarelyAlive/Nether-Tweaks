@@ -12,12 +12,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
  
 public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private int frequency;
-	private WorldGenNetherTree tree = new WorldGenNetherTree(true);
+	private WorldGenerator tree = new WorldGenNetherTree(true);
 	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.BLOCKBASIC.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
 	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {

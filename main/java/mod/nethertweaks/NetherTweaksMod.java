@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,6 +32,8 @@ import mod.nethertweaks.handler.NTMDryHandler;
 import mod.nethertweaks.handler.NTMSieveHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
+import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.nethertweaks.network.NetworkNTM;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
@@ -43,6 +46,16 @@ public class NetherTweaksMod {
     @Instance(value=Constants.MOD)
     public static NetherTweaksMod instance;
     
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel("nethertweaksmod");
+    static
+    {
+    	// Network
+        int id = 0;
+        INSTANCE.registerMessage(NetworkHandlerNTM.class, NetworkNTM.class, id++, Side.SERVER);
+        
+    	FluidRegistry.enableUniversalBucket();
+    }
+    
     //Creative Tabs
     public static CreativeTabs tabNetherTweaksMod = new CreativeTabs("tab_nether_tweaks_mod"){
          
@@ -52,10 +65,6 @@ public class NetherTweaksMod {
             return Konstanten.HELLFAYAH;
             }
         };
-        
-    static {
-    	FluidRegistry.enableUniversalBucket();
-    }
     
     public WorldHandler whNTM = new WorldHandler();
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
