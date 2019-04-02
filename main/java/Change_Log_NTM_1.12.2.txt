@@ -10,6 +10,7 @@ ChangeLog NTM 2.0.0
 * FlintNBlaze now is twice as durable
 * Tidied code up
 * Added API for support of condenser items (water), barrel items (compost) and sievable things
+* Changed icon of creative tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
 * Fixed incorrect Ores

@@ -1,5 +1,7 @@
 package mod.nethertweaks.world;
  
+import com.ibm.icu.impl.Differ;
+
 import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import net.minecraft.entity.passive.EntityCow;
@@ -25,13 +27,19 @@ public class WorldHandler{
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
+		int range = 32;
     	
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(player);
     		if (!WorldDataNTM.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
-	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(64).east(64).south(64), posplayer.up(64).west(64).north(64));
+	    		int yDifferenz = 0;
+	    		if (posplayer.getY() < 32)
+	    		{
+	    			yDifferenz = 32 - posplayer.getY();
+	    		}
+	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 	    		
 	    		for(BlockPos pos : posi)
 	    		{
