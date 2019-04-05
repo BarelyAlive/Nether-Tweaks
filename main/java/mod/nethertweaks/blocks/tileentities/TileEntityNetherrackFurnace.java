@@ -189,6 +189,7 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
 	public void readFromNBT(NBTTagCompound compound) {
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		super.readFromNBT(compound);
 	}
 	
 	@Override
