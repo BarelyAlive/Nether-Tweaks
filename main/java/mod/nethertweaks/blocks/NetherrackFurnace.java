@@ -38,6 +38,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -53,7 +54,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
     public NetherrackFurnace()
     {
-        super(Material.ROCK);
+        super(Material.ROCK, new ResourceLocation("nethertweaksmod", INames.NETHERRACKFURNACE));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);

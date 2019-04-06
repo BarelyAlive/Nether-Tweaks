@@ -27,6 +27,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -43,7 +44,7 @@ public class HolyEarth extends Cube{
 	private int spawnSec;
 	
 	public HolyEarth() {
-		super(Material.GRASS, 3.0F, 0.6F, 1, NetherTweaksMod.tabNetherTweaksMod, INames.HOLYEARTH);
+		super(Material.GRASS, 3.0F, 0.6F, 1, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.HOLYEARTH));
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(15);
 	}

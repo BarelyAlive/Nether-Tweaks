@@ -13,13 +13,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class Seed extends CustomItem{
 	
-	public Seed(String name) {
+	public Seed(ResourceLocation name) {
 		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 0, name);
 		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}

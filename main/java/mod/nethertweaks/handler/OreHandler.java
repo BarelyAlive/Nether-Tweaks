@@ -19,15 +19,15 @@ import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 public class OreHandler implements INames{
 	
-    public static Item rawSilicon = Item.REGISTRY.getObject(new ResourceLocation("GalacticraftCore", "basicItem.rawSilicon"));
-    public static Item crystalCertusQuartz = Item.REGISTRY.getObject(new ResourceLocation("appliedenergistics2", "crystalCertusQuartz"));
-    public static Item blizzpowder = Item.REGISTRY.getObject(new ResourceLocation("ThermalFoundation", "material"));
+    public static final Item rawSilicon = Item.REGISTRY.getObject(new ResourceLocation("galacticraftcore", "basicItem.rawSilicon"));
+    public static final Item crystalCertusQuartz = Item.REGISTRY.getObject(new ResourceLocation("appliedenergistics2", "crystalCertusQuartz"));
+    public static final Item blizzpowder = Item.REGISTRY.getObject(new ResourceLocation("thermalfoundation", "material"));
     
-    public static Block oreGravel;
-    public static Block oreSand;
-    public static Block oreDust;
+    public static final Block OREGRAVEL = new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.OREGRAVEL));
+    public static final Block ORESAND = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.ORESAND));
+    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.OREDUST));
     
-    public static Item oreMaterial;
+    public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, new ResourceLocation("nethertweaksmod", OREMATERIAL));
     
     public static void init() {
     	registerOres();
@@ -37,11 +37,10 @@ public class OreHandler implements INames{
     
 	private static void registerOres(){
 		
-		oreGravel = Registry.registerBlock(new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, OREGRAVEL));
-		oreSand = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, ORESAND));
-		oreDust = Registry.registerBlock(new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, OREDUST));
+		Registry.registerBlock(OREGRAVEL);
+		Registry.registerBlock(ORESAND);
+		Registry.registerBlock(OREDUST);
 		
-		oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, OREMATERIAL);
 		
 		//Nicht Erze
 		if(blizzpowder != null) NTMSieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);
@@ -161,196 +160,196 @@ public class OreHandler implements INames{
 		
 		if(OreDictionary.doesOreNameExist("oreCopper")){
 			
-			GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
+			GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 0), OreDictionary.getOres("ingotCopper").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreTin")){
 			
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 1), OreDictionary.getOres("ingotTin").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreLead")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 2), OreDictionary.getOres("ingotLead").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreNickel")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel , 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL , 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 3), OreDictionary.getOres("ingotNickel").get(0), 2.0F);
 		}
 		if(OreDictionary.doesOreNameExist("orePlatinum")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 4), OreDictionary.getOres("ingotPlatinum").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreSilver")){
 
-			GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
+			GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 5), OreDictionary.getOres("ingotSilver").get(0), 2.0F);
             
             
 		}
 		if(OreDictionary.doesOreNameExist("oreUranium")){
 			
-	        GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
-	        GameRegistry.addSmelting(new ItemStack(oreSand, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
-	        GameRegistry.addSmelting(new ItemStack(oreDust, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
+	        GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
+	        GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
+	        GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 7), OreDictionary.getOres("ingotUranium").get(0), 2.0F);
 	        
 	        
 		}
 		if(OreDictionary.doesOreNameExist("oreDraconium")){
 			
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 8), OreDictionary.getOres("ingotDraconium").get(0), 2.0F);
             
 			
 		}
 		if(OreDictionary.doesOreNameExist("oreSulfur")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 9), OreDictionary.getOres("dustSulfur").get(0), 2.0F);
             
             
 		}
 		if(OreDictionary.doesOreNameExist("oreAluminum")){
 			
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 10), OreDictionary.getOres("ingotAluminum").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreSilicon")){
 			
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 11), OreDictionary.getOres("itemSilicon").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreAmber")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 12), OreDictionary.getOres("gemAmber").get(0), 2.0F);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreCinnabar")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 13), OreDictionary.getOres("crystalCinnabar").get(0), 2.0F);
             
             
 		}
 		if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
 
-            GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreSand, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
-            GameRegistry.addSmelting(new ItemStack(oreDust, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
+            GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 14), OreDictionary.getOres("crystalCertusQuartz").get(0), 2.0F);
                     
 		}
 		
 		//Salt
 		
-		GameRegistry.addSmelting(new ItemStack(oreGravel, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
-        GameRegistry.addSmelting(new ItemStack(oreSand, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
-        GameRegistry.addSmelting(new ItemStack(oreDust, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
+		GameRegistry.addSmelting(new ItemStack(OREGRAVEL, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
+        GameRegistry.addSmelting(new ItemStack(ORESAND, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
+        GameRegistry.addSmelting(new ItemStack(OREDUST, 1, 15), new ItemStack(ItemHandler.ITEMBASE, 1, 16), 2.0F);
 		
 	}
 	
 	private static void registerNames(){
     	
 		if(OreDictionary.doesOreNameExist("oreCopper")){
-	    	OreDictionary.registerOre("oreCopper", new ItemStack(oreGravel, 1, 0));
-	    	OreDictionary.registerOre("oreCopper", new ItemStack(oreSand, 1, 0));
-	    	OreDictionary.registerOre("oreCopper", new ItemStack(oreDust, 1, 0));
+	    	OreDictionary.registerOre("oreCopper", new ItemStack(OREGRAVEL, 1, 0));
+	    	OreDictionary.registerOre("oreCopper", new ItemStack(ORESAND, 1, 0));
+	    	OreDictionary.registerOre("oreCopper", new ItemStack(OREDUST, 1, 0));
 		}
 		if(OreDictionary.doesOreNameExist("oreTin")){
-	    	OreDictionary.registerOre("oreTin", new ItemStack(oreGravel, 1, 1));
-	    	OreDictionary.registerOre("oreTin", new ItemStack(oreSand, 1, 1));
-	    	OreDictionary.registerOre("oreTin", new ItemStack(oreDust, 1, 1));
+	    	OreDictionary.registerOre("oreTin", new ItemStack(OREGRAVEL, 1, 1));
+	    	OreDictionary.registerOre("oreTin", new ItemStack(ORESAND, 1, 1));
+	    	OreDictionary.registerOre("oreTin", new ItemStack(OREDUST, 1, 1));
     	}
     	if(OreDictionary.doesOreNameExist("oreLead")){
-	    	OreDictionary.registerOre("oreLead", new ItemStack(oreGravel, 1, 2));
-	    	OreDictionary.registerOre("oreLead", new ItemStack(oreSand, 1, 2));
-	    	OreDictionary.registerOre("oreLead", new ItemStack(oreDust, 1, 2));
+	    	OreDictionary.registerOre("oreLead", new ItemStack(OREGRAVEL, 1, 2));
+	    	OreDictionary.registerOre("oreLead", new ItemStack(ORESAND, 1, 2));
+	    	OreDictionary.registerOre("oreLead", new ItemStack(OREDUST, 1, 2));
     	}
     	if(OreDictionary.doesOreNameExist("oreNickel")){
-	    	OreDictionary.registerOre("oreNickel", new ItemStack(oreGravel , 1, 3));
-	    	OreDictionary.registerOre("oreNickel", new ItemStack(oreSand, 1, 3));
-	    	OreDictionary.registerOre("oreNickel", new ItemStack(oreDust, 1, 3));
+	    	OreDictionary.registerOre("oreNickel", new ItemStack(OREGRAVEL , 1, 3));
+	    	OreDictionary.registerOre("oreNickel", new ItemStack(ORESAND, 1, 3));
+	    	OreDictionary.registerOre("oreNickel", new ItemStack(OREDUST, 1, 3));
     	}
     	if(OreDictionary.doesOreNameExist("orePlatinum")){
-	    	OreDictionary.registerOre("orePlatinum", new ItemStack(oreGravel, 1, 4));
-	    	OreDictionary.registerOre("orePlatinum", new ItemStack(oreSand, 1, 4));
-	    	OreDictionary.registerOre("orePlatinum", new ItemStack(oreDust, 1, 4));
+	    	OreDictionary.registerOre("orePlatinum", new ItemStack(OREGRAVEL, 1, 4));
+	    	OreDictionary.registerOre("orePlatinum", new ItemStack(ORESAND, 1, 4));
+	    	OreDictionary.registerOre("orePlatinum", new ItemStack(OREDUST, 1, 4));
     	}
     	if(OreDictionary.doesOreNameExist("oreSilver")){
-	    	OreDictionary.registerOre("oreSilver", new ItemStack(oreGravel, 1, 5));
-	    	OreDictionary.registerOre("oreSilver", new ItemStack(oreSand, 1, 5));
-	    	OreDictionary.registerOre("oreSilver", new ItemStack(oreDust, 1, 5));
+	    	OreDictionary.registerOre("oreSilver", new ItemStack(OREGRAVEL, 1, 5));
+	    	OreDictionary.registerOre("oreSilver", new ItemStack(ORESAND, 1, 5));
+	    	OreDictionary.registerOre("oreSilver", new ItemStack(OREDUST, 1, 5));
     	}
     	if(OreDictionary.doesOreNameExist("oreUranium")){
-	    	OreDictionary.registerOre("oreUranium", new ItemStack(oreGravel, 1, 6));
-	    	OreDictionary.registerOre("oreUranium", new ItemStack(oreSand, 1, 6));
-	    	OreDictionary.registerOre("oreUranium", new ItemStack(oreDust, 1, 6));
+	    	OreDictionary.registerOre("oreUranium", new ItemStack(OREGRAVEL, 1, 6));
+	    	OreDictionary.registerOre("oreUranium", new ItemStack(ORESAND, 1, 6));
+	    	OreDictionary.registerOre("oreUranium", new ItemStack(OREDUST, 1, 6));
     	}
     	if(OreDictionary.doesOreNameExist("oreOsmium")){
-			OreDictionary.registerOre("oreOsmium", new ItemStack(oreGravel, 1, 7));
-			OreDictionary.registerOre("oreOsmium", new ItemStack(oreSand, 1, 7));
-			OreDictionary.registerOre("oreOsmium", new ItemStack(oreDust, 1, 7));
+			OreDictionary.registerOre("oreOsmium", new ItemStack(OREGRAVEL, 1, 7));
+			OreDictionary.registerOre("oreOsmium", new ItemStack(ORESAND, 1, 7));
+			OreDictionary.registerOre("oreOsmium", new ItemStack(OREDUST, 1, 7));
     	}
 		if(OreDictionary.doesOreNameExist("oreDraconium")){
-	    	OreDictionary.registerOre("oreDraconium", new ItemStack(oreGravel, 1, 8));
-	    	OreDictionary.registerOre("oreDraconium", new ItemStack(oreSand, 1, 8));
-			OreDictionary.registerOre("oreDraconium", new ItemStack(oreDust, 1, 8));
+	    	OreDictionary.registerOre("oreDraconium", new ItemStack(OREGRAVEL, 1, 8));
+	    	OreDictionary.registerOre("oreDraconium", new ItemStack(ORESAND, 1, 8));
+			OreDictionary.registerOre("oreDraconium", new ItemStack(OREDUST, 1, 8));
 		}
     	if(OreDictionary.doesOreNameExist("oreSulfur")){
-	    	OreDictionary.registerOre("oreSulfur", new ItemStack(oreGravel, 1, 9));
-	    	OreDictionary.registerOre("oreSulfur", new ItemStack(oreSand, 1, 9));
-			OreDictionary.registerOre("oreSulfur", new ItemStack(oreDust, 1, 9));
+	    	OreDictionary.registerOre("oreSulfur", new ItemStack(OREGRAVEL, 1, 9));
+	    	OreDictionary.registerOre("oreSulfur", new ItemStack(ORESAND, 1, 9));
+			OreDictionary.registerOre("oreSulfur", new ItemStack(OREDUST, 1, 9));
     	}
     	if(OreDictionary.doesOreNameExist("oreAluminum")){
-	    	OreDictionary.registerOre("oreAluminum", new ItemStack(oreGravel, 1, 10));
-	    	OreDictionary.registerOre("oreAluminum", new ItemStack(oreSand, 1, 10));
-			OreDictionary.registerOre("oreAluminum", new ItemStack(oreDust, 1, 10));
+	    	OreDictionary.registerOre("oreAluminum", new ItemStack(OREGRAVEL, 1, 10));
+	    	OreDictionary.registerOre("oreAluminum", new ItemStack(ORESAND, 1, 10));
+			OreDictionary.registerOre("oreAluminum", new ItemStack(OREDUST, 1, 10));
     	}
     	if(OreDictionary.doesOreNameExist("oreSilicon")){
-	    	OreDictionary.registerOre("oreSilicon", new ItemStack(oreGravel, 1, 11));
-	    	OreDictionary.registerOre("oreSilicon", new ItemStack(oreSand, 1, 11));
-			OreDictionary.registerOre("oreSilicon", new ItemStack(oreDust, 1, 11));
+	    	OreDictionary.registerOre("oreSilicon", new ItemStack(OREGRAVEL, 1, 11));
+	    	OreDictionary.registerOre("oreSilicon", new ItemStack(ORESAND, 1, 11));
+			OreDictionary.registerOre("oreSilicon", new ItemStack(OREDUST, 1, 11));
     	}
     	if(OreDictionary.doesOreNameExist("oreAmber")){
-	    	OreDictionary.registerOre("oreAmber", new ItemStack(oreGravel, 1, 12));
-	    	OreDictionary.registerOre("oreAmber", new ItemStack(oreSand, 1, 12));
-			OreDictionary.registerOre("oreAmber", new ItemStack(oreDust, 1, 12));
+	    	OreDictionary.registerOre("oreAmber", new ItemStack(OREGRAVEL, 1, 12));
+	    	OreDictionary.registerOre("oreAmber", new ItemStack(ORESAND, 1, 12));
+			OreDictionary.registerOre("oreAmber", new ItemStack(OREDUST, 1, 12));
     	}
     	if(OreDictionary.doesOreNameExist("oreCinnabar")){
-	    	OreDictionary.registerOre("oreCinnabar", new ItemStack(oreGravel, 1, 13));
-	    	OreDictionary.registerOre("oreCinnabar", new ItemStack(oreSand, 1, 13));
-			OreDictionary.registerOre("oreCinnabar", new ItemStack(oreDust, 1, 13));
+	    	OreDictionary.registerOre("oreCinnabar", new ItemStack(OREGRAVEL, 1, 13));
+	    	OreDictionary.registerOre("oreCinnabar", new ItemStack(ORESAND, 1, 13));
+			OreDictionary.registerOre("oreCinnabar", new ItemStack(OREDUST, 1, 13));
     	}
     	if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
-	    	OreDictionary.registerOre("oreCertusQuartz", new ItemStack(oreGravel, 1, 14));
-	    	OreDictionary.registerOre("oreCertusQuartz", new ItemStack(oreSand, 1, 14));
-			OreDictionary.registerOre("oreCertusQuartz", new ItemStack(oreDust, 1, 14));
+	    	OreDictionary.registerOre("oreCertusQuartz", new ItemStack(OREGRAVEL, 1, 14));
+	    	OreDictionary.registerOre("oreCertusQuartz", new ItemStack(ORESAND, 1, 14));
+			OreDictionary.registerOre("oreCertusQuartz", new ItemStack(OREDUST, 1, 14));
     	}
     	if(OreDictionary.doesOreNameExist("oreSalt")){
-	    	OreDictionary.registerOre("oreSalt", new ItemStack(oreGravel, 1, 15));
-	    	OreDictionary.registerOre("oreSalt", new ItemStack(oreSand, 1, 15));
-			OreDictionary.registerOre("oreSalt", new ItemStack(oreDust, 1, 15));
+	    	OreDictionary.registerOre("oreSalt", new ItemStack(OREGRAVEL, 1, 15));
+	    	OreDictionary.registerOre("oreSalt", new ItemStack(ORESAND, 1, 15));
+			OreDictionary.registerOre("oreSalt", new ItemStack(OREDUST, 1, 15));
     	}
     	if(rawSilicon != null){
     		OreDictionary.registerOre("itemSilicon", new ItemStack(rawSilicon, 1, 2));

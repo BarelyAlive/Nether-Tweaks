@@ -19,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -29,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherWood extends Cube implements IVariantProvider{
 	    
 	public NetherWood() {
-		super(Material.WOOD, 2.0F, 10.0F, 0, NetherTweaksMod.tabNetherTweaksMod, INames.NETHERWOOD);
+		super(Material.WOOD, 2.0F, 10.0F, 0, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.NETHERWOOD));
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	

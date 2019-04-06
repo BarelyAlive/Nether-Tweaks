@@ -40,6 +40,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -51,7 +52,7 @@ public class Condenser extends CubeContainerHorizontal{
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     public Condenser() {
-        super(Material.ROCK);
+        super(Material.ROCK, new ResourceLocation("nethertweaksmod", INames.CONDENSER));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setRegistryName("nethertweaksmod", INames.CONDENSER);
         setUnlocalizedName(INames.CONDENSER);

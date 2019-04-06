@@ -66,28 +66,28 @@ public class BucketNFluidHandler {
 		FluidRegistry.addBucketForFluid(fluidDemonWater);
 		
 		//Buckets
-		bucketDemonWater = new CustomBucket(blockDemonWater, INames.BUCKETDEMONWATER, new ItemStack(Items.BUCKET));
+		bucketDemonWater = new CustomBucket(blockDemonWater, new ResourceLocation("nethertweaksmod", INames.BUCKETDEMONWATER), new ItemStack(Items.BUCKET));
 		bucketDemonWater = Registry.registerItem(bucketDemonWater);
 		
 		//Regular Buckets
-		bucketStone = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETSTONE, null));
+		bucketStone = Registry.registerItem(new CustomBucket(Blocks.AIR, new ResourceLocation("nethertweaksmod", INames.BUCKETSTONE), null));
 		
-		bucketStoneWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETSTONEWATER, new ItemStack(bucketStone)));
+		bucketStoneWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation("nethertweaksmod", INames.BUCKETSTONEWATER), new ItemStack(bucketStone)));
 		
-		bucketStoneLava = Registry.registerItem(new CustomBucket(Blocks.FLOWING_LAVA, INames.BUCKETSTONELAVA, new ItemStack(bucketStone)));
+		bucketStoneLava = Registry.registerItem(new CustomBucket(Blocks.FLOWING_LAVA, new ResourceLocation("nethertweaksmod", INames.BUCKETSTONELAVA), new ItemStack(bucketStone)));
 				
-		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDEMONWATER, new ItemStack(bucketStone)));
+		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, new ResourceLocation("nethertweaksmod", INames.BUCKETSTONEDEMONWATER), new ItemStack(bucketStone)));
 				
-		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone), INames.BUCKETSTONEMILK));
+		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone), new ResourceLocation("nethertweaksmod", INames.BUCKETSTONEMILK)));
 				
 		//Same with Wood
-		bucketWood = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETWOOD, null));
+		bucketWood = Registry.registerItem(new CustomBucket(Blocks.AIR, new ResourceLocation("nethertweaksmod", INames.BUCKETWOOD), null));
 		
-		bucketWoodWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, INames.BUCKETWOODWATER, new ItemStack(bucketWood)));
+		bucketWoodWater = Registry.registerItem(new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation("nethertweaksmod", INames.BUCKETWOODWATER), new ItemStack(bucketWood)));
 		
-		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETWOODDEMONWATER, new ItemStack(bucketWood)));
+		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, new ResourceLocation("nethertweaksmod", INames.BUCKETWOODDEMONWATER), new ItemStack(bucketWood)));
 		
-		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood), INames.BUCKETWOODMILK));		
+		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood), new ResourceLocation("nethertweaksmod", INames.BUCKETWOODMILK)));		
 	}
 	
 	@SideOnly(Side.CLIENT)

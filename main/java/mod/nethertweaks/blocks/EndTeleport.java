@@ -28,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -38,7 +39,7 @@ public class EndTeleport extends Cube{
 	int dimension;
 	
 	public EndTeleport() {
-		super(Material.ROCK, 75.0F, 16.0F, 1, NetherTweaksMod.tabNetherTweaksMod, INames.ENDTELEPORT);
+		super(Material.ROCK, 75.0F, 16.0F, 1, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.ENDTELEPORT));
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);

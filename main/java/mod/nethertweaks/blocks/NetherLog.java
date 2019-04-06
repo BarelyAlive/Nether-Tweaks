@@ -26,6 +26,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -36,7 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
         
     public NetherLog() {
-    	super(Material.WOOD);
+    	super(Material.WOOD, new ResourceLocation("nethertweaksmod", INames.NETHERLOG));
     	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     	setHardness(2);
     	setResistance(10);
