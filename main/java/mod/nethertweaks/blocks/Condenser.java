@@ -54,7 +54,6 @@ public class Condenser extends CubeContainerHorizontal{
     public Condenser() {
         super(Material.ROCK, new ResourceLocation("nethertweaksmod", INames.CONDENSER));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setRegistryName("nethertweaksmod", INames.CONDENSER);
         setUnlocalizedName(INames.CONDENSER);
         setResistance(30.0f);
         setHardness(4.0f);
