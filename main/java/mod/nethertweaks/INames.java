@@ -1,6 +1,8 @@
 package mod.nethertweaks;
 
 public interface INames {
+	
+	public final static String NTM = "nethertweaksmod";
 
 	//Fluids
 	public static final String DEMONWATERFLUID				= "fluid_demon_water";

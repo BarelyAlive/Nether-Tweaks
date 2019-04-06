@@ -29,8 +29,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class BlockHandler {
-	
+public class BlockHandler implements INames{
+		
 	//Tile Entity
     public static final Block CONDENSER = new Condenser();
     public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
@@ -40,7 +40,7 @@ public class BlockHandler {
     public static final Block BONFIRE = new Bonfire();
      
     //Blocks
-    public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.DUST));
+    public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DUST));
     public static final Block STWH = new EndTeleport();
     public static final Block NETHERSAPLING = new NetherSapling();
     public static final Block NETHERLOG = new NetherLog();
@@ -51,29 +51,29 @@ public class BlockHandler {
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
     
-    public static final Block OREGOLDGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREGOLDGRAVEL));
-    public static final Block OREIRONGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREIRONGRAVEL));
-    public static final Block OREGOLDSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREGOLDSAND));
-    public static final Block OREIRONSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREIRONSAND));
-    public static final Block OREGOLDDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREGOLDDUST));
-    public static final Block OREIRONDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREIRONDUST));
+    public static final Block OREGOLDGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDGRAVEL));
+    public static final Block OREIRONGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONGRAVEL));
+    public static final Block OREGOLDSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDSAND));
+    public static final Block OREIRONSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONSAND));
+    public static final Block OREGOLDDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDDUST));
+    public static final Block OREIRONDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONDUST));
     
-    public static final Block OREGRAVEL = new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, new ResourceLocation("nethertweaksmod", INames.OREGRAVEL), NetherTweaksMod.tabNTM);
-    public static final Block ORESAND = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation("nethertweaksmod", INames.ORESAND), NetherTweaksMod.tabNTM);
-    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation("nethertweaksmod", INames.OREDUST), NetherTweaksMod.tabNTM);
+    public static final Block OREGRAVEL = new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREGRAVEL), NetherTweaksMod.tabNTM);
+    public static final Block ORESAND = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.ORESAND), NetherTweaksMod.tabNTM);
+    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREDUST), NetherTweaksMod.tabNTM);
     
     public static final ItemBlock ITEMOREGRAVEL = new ItemBlockEnumFalling((BlockEnumFalling) OREGRAVEL);
     public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling((BlockEnumFalling) ORESAND);
     public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling((BlockEnumFalling) OREDUST);
     
-    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation("nethertweaksmod", INames.BLOCKBASIC), NetherTweaksMod.tabNTM);
+    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), NetherTweaksMod.tabNTM);
     public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC);
     
-    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.DOORNTMSTONE));
-    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.DOORNTMOBSIDIAN));
+    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMSTONE));
+    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMOBSIDIAN));
     
-    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, new ResourceLocation("nethertweaksmod", INames.ITEMDOORNTMSTONE), NetherTweaksMod.tabNTM);
-    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, new ResourceLocation("nethertweaksmod", INames.ITEMDOORNTMOBSIDIAN), NetherTweaksMod.tabNTM);
+    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, new ResourceLocation(NTM, INames.ITEMDOORNTMSTONE), NetherTweaksMod.tabNTM);
+    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, new ResourceLocation(NTM, INames.ITEMDOORNTMOBSIDIAN), NetherTweaksMod.tabNTM);
     
     public static void init() {
     	registerTileEntities();

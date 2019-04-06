@@ -25,20 +25,20 @@ import mod.sfhcore.SFHCore;
 import mod.sfhcore.handler.CustomFuelhandler;
 import mod.sfhcore.items.CustomItem;
 
-public class ItemHandler{
- 
+public class ItemHandler implements INames{
+	 
 	//ITEMS
-    public static final Item SEEDGRASS = new Seed(new ResourceLocation("nethertweaksmod", INames.SEEDGRASS));
-    public static final Item MUSHROOMSPORES = new Seed(new ResourceLocation("nethertweaksmod", INames.MUSHROOMSPORES));
-    public static final Item CACTUSSEEDS = new Seed(new ResourceLocation("nethertweaksmod", INames.CACTUSSEED));
+    public static final Item SEEDGRASS = new Seed(new ResourceLocation(NTM, INames.SEEDGRASS));
+    public static final Item MUSHROOMSPORES = new Seed(new ResourceLocation(NTM, INames.MUSHROOMSPORES));
+    public static final Item CACTUSSEEDS = new Seed(new ResourceLocation(NTM, INames.CACTUSSEED));
     public static final Item FLINTANDBLAZE = new FlintAndBlaze();
-    public static final Item SANCTUARYCRYSTAL = new Crystal(new ResourceLocation("nethertweaksmod", INames.SANCTUARYCRYSTAL));
-    public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation("nethertweaksmod", INames.LIGHTCRYSTAL));
-    public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation("nethertweaksmod", INames.ENDERCRYSTAL));
+    public static final Item SANCTUARYCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.SANCTUARYCRYSTAL));
+    public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
+    public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
     
     //Multi ID Item
-	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 15, new ResourceLocation("nethertweaksmod", INames.ITEMBASE));
-	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation("nethertweaksmod", INames.OREMATERIAL));
+	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 15, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
     public static final Item COOKEDJERKY = new CookedJerky(6, 1.0F, true);
