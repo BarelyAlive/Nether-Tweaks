@@ -34,8 +34,8 @@ public class NetherSlab extends Block implements IVariantProvider{
     protected static final AxisAlignedBB AABB_BOTTOM_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     protected static final AxisAlignedBB AABB_TOP_HALF = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
 	
-	public NetherSlab(Material materialIn) {
-		super(materialIn);
+	public NetherSlab() {
+		super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM));
 		this.fullBlock = this.isDouble();
         this.setLightOpacity(255);
