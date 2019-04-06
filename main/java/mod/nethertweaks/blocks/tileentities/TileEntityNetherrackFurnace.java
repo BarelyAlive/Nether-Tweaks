@@ -211,5 +211,4 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     {
         return new ContainerNetherrackFurnace(playerInventory, this);
     }
-	
 }
