@@ -20,8 +20,8 @@ import mod.sfhcore.blocks.base.BlockEnum;
 import mod.sfhcore.blocks.base.BlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
+import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.handler.RegisterTileEntity;
-import mod.sfhcore.items.block.ItemDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -57,16 +57,16 @@ public class BlockHandler {
     public static final Block OREGOLDDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod, INames.OREGOLDDUST);
     public static final Block OREIRONDUST = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod, INames.OREIRONDUST);
     
-    public static final ItemBlock ITEMOREGRAVEL = new ItemBlockEnumFalling(new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, INames.OREGRAVEL, NetherTweaksMod.tabNetherTweaksMod));
-    public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.ORESAND, NetherTweaksMod.tabNetherTweaksMod));
-    public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling(new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.OREDUST, NetherTweaksMod.tabNetherTweaksMod));
+    public static final Block OREGRAVEL = new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, INames.OREGRAVEL, NetherTweaksMod.tabNetherTweaksMod).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block ORESAND = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.ORESAND, NetherTweaksMod.tabNetherTweaksMod).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, INames.OREDUST, NetherTweaksMod.tabNetherTweaksMod).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
     
-    public static final Block OREGRAVEL = ITEMOREGRAVEL.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-    public static final Block ORESAND = ITEMORESAND.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
-    public static final Block OREDUST = ITEMOREDUST.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final ItemBlock ITEMOREGRAVEL = new ItemBlockEnumFalling((BlockEnumFalling) OREGRAVEL);
+    public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling((BlockEnumFalling) ORESAND);
+    public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling((BlockEnumFalling) OREDUST);
     
-    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(new BlockEnum(Material.ROCK, EnumBlockBasic.class, INames.BLOCKBASIC, NetherTweaksMod.tabNetherTweaksMod));
-    public static final Block BLOCKBASIC = ITEMBLOCKBASIC.getBlock().setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, INames.BLOCKBASIC, NetherTweaksMod.tabNetherTweaksMod).setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC);
     
     public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK, NetherTweaksMod.tabNetherTweaksMod, INames.DOORNTMSTONE);
     public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON, NetherTweaksMod.tabNetherTweaksMod, INames.DOORNTMOBSIDIAN);

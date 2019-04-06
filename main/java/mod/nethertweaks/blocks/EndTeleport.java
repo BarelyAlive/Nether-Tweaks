@@ -43,7 +43,6 @@ public class EndTeleport extends Cube{
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
 		setUnlocalizedName(INames.ENDTELEPORT);
-		setRegistryName(Constants.MOD, INames.ENDTELEPORT);
 		this.setTickRandomly(true);
 	}
 	

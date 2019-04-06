@@ -78,7 +78,7 @@ public class BucketNFluidHandler {
 				
 		bucketStoneDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETSTONEDEMONWATER, new ItemStack(bucketStone)));
 				
-		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone)).setUnlocalizedName(INames.BUCKETSTONEMILK));
+		bucketStoneMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketStone), INames.BUCKETSTONEMILK));
 				
 		//Same with Wood
 		bucketWood = Registry.registerItem(new CustomBucket(Blocks.AIR, INames.BUCKETWOOD, null));
@@ -87,7 +87,7 @@ public class BucketNFluidHandler {
 		
 		bucketWoodDemonWater = Registry.registerItem(new CustomBucket(blockDemonWater, INames.BUCKETWOODDEMONWATER, new ItemStack(bucketWood)));
 		
-		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood)).setUnlocalizedName(INames.BUCKETWOODMILK));		
+		bucketWoodMilk = Registry.registerItem(new CustomBucketMilk(NetherTweaksMod.tabNetherTweaksMod, new ItemStack(bucketWood), INames.BUCKETWOODMILK));		
 	}
 	
 	@SideOnly(Side.CLIENT)
