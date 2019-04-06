@@ -52,7 +52,7 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 		setRegistryName("nethertweaksmod", INames.SIEVE);
 		setResistance(15.0f);
 		setHardness(2.0f);
-		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 	
 	@Override

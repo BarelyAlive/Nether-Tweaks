@@ -37,8 +37,8 @@ public class ItemHandler{
     public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation("nethertweaksmod", INames.ENDERCRYSTAL));
     
     //Multi ID Item
-	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 15, new ResourceLocation("nethertweaksmod", INames.ITEMBASE));
-	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, new ResourceLocation("nethertweaksmod", INames.OREMATERIAL));
+	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 15, new ResourceLocation("nethertweaksmod", INames.ITEMBASE));
+	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation("nethertweaksmod", INames.OREMATERIAL));
     
 	//food
     public static final Item COOKEDJERKY = new CookedJerky(6, 1.0F, true);

@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ItemCactusGrabber extends ItemShears{
 
 	public ItemCactusGrabber(ToolMaterial material) {
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setCreativeTab(NetherTweaksMod.tabNTM);
 		setUnlocalizedName(INames.CACTUSGRABBER);
 		setRegistryName("nethertweaksmod", INames.CACTUSGRABBER);
 		setMaxStackSize(1);

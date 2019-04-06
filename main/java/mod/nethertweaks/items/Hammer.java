@@ -37,7 +37,7 @@ public class Hammer extends ItemTool {
 		super(effective, effective, tool, blocksEffectiveAgainst);
 		this.setUnlocalizedName(getNameByMaterial(tool));
 		setRegistryName("nethertweaksmod", getNameByMaterial(tool));
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setCreativeTab(NetherTweaksMod.tabNTM);
 		setMaxStackSize(1);	
 	}
 	

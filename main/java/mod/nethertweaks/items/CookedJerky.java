@@ -8,7 +8,7 @@ public class CookedJerky extends ItemFood{
 
 	public CookedJerky(int healAmount, float saturationModifier, boolean Hundefutter) {
 		super(healAmount, saturationModifier, Hundefutter);
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setCreativeTab(NetherTweaksMod.tabNTM);
 		setUnlocalizedName(INames.COOKEDJERKY);
 		setRegistryName("nethertweaksmod", INames.COOKEDJERKY);
 	}

@@ -50,7 +50,7 @@ public class Barrel extends BlockContainer
 		setUnlocalizedName(INames.BARREL);
 		setResistance(10.0f);
 		setHardness(2.0f);
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 
 	public Barrel(Material material) {

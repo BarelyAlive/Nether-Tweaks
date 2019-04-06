@@ -57,7 +57,7 @@ public class Condenser extends CubeContainerHorizontal{
         setUnlocalizedName(INames.CONDENSER);
         setResistance(30.0f);
         setHardness(4.0f);
-        setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        setCreativeTab(NetherTweaksMod.tabNTM);
     }
     
     @Override

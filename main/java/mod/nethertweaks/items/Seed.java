@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 public class Seed extends CustomItem{
 	
 	public Seed(ResourceLocation name) {
-		super(null, 64, NetherTweaksMod.tabNetherTweaksMod, false, 0, name);
-		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		super(null, 64, NetherTweaksMod.tabNTM, false, 0, name);
+		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 
 	/**

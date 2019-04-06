@@ -36,8 +36,8 @@ public class Crystal extends CustomItem{
 	public static final Block bob = Blocks.OBSIDIAN;
 	
 	public Crystal(ResourceLocation name) {
-		super(null, 1, NetherTweaksMod.tabNetherTweaksMod, false, 1, name);
-		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		super(null, 1, NetherTweaksMod.tabNTM, false, 1, name);
+		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 	
 	@Override

@@ -19,7 +19,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
     	this.setRegistryName("nethertweaksmod", INames.FLINTNBLAZE);
         this.setMaxStackSize(1);
         this.setMaxDamage(128);
-        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        this.setCreativeTab(NetherTweaksMod.tabNTM);
     }
 
 }

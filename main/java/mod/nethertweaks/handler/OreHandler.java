@@ -23,11 +23,11 @@ public class OreHandler implements INames{
     public static final Item crystalCertusQuartz = Item.REGISTRY.getObject(new ResourceLocation("appliedenergistics2", "crystalCertusQuartz"));
     public static final Item blizzpowder = Item.REGISTRY.getObject(new ResourceLocation("thermalfoundation", "material"));
     
-    public static final Block OREGRAVEL = new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.OREGRAVEL));
-    public static final Block ORESAND = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.ORESAND));
-    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.OREDUST));
+    public static final Block OREGRAVEL = new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREGRAVEL));
+    public static final Block ORESAND = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.ORESAND));
+    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREDUST));
     
-    public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNetherTweaksMod, true, 51, new ResourceLocation("nethertweaksmod", OREMATERIAL));
+    public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation("nethertweaksmod", OREMATERIAL));
     
     public static void init() {
     	registerOres();

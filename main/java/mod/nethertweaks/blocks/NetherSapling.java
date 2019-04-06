@@ -52,7 +52,7 @@ public class NetherSapling extends BlockBush implements IPlantable, IGrowable, I
     public NetherSapling()
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
-        this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+        this.setCreativeTab(NetherTweaksMod.tabNTM);
         this.setUnlocalizedName(INames.NETHERSAPLING);
         setRegistryName("nethertweaksmod", INames.NETHERSAPLING);
     }

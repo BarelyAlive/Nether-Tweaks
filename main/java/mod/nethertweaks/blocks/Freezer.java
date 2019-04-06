@@ -56,7 +56,7 @@ public class Freezer extends CubeContainerHorizontal{
 		setUnlocalizedName(INames.FREEZER);
 		setResistance(17.5f);
 		setHardness(3.5f);
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
         
     public NetherLog() {
     	super(Material.WOOD, new ResourceLocation("nethertweaksmod", INames.NETHERLOG));
-    	setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+    	setCreativeTab(NetherTweaksMod.tabNTM);
     	setHardness(2);
     	setResistance(10);
     	setSoundType(SoundType.WOOD);

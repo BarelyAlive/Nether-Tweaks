@@ -41,7 +41,7 @@ public class NetherSlab extends Block implements IVariantProvider{
         this.setLightOpacity(255);
         this.setUnlocalizedName(INames.NETHERSLAB);
         setRegistryName("nethertweaksmod", INames.NETHERSLAB);
-		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 	
 	@Override

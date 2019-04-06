@@ -44,8 +44,8 @@ public class HolyEarth extends Cube{
 	private int spawnSec;
 	
 	public HolyEarth() {
-		super(Material.GRASS, 3.0F, 0.6F, 1, NetherTweaksMod.tabNetherTweaksMod, new ResourceLocation("nethertweaksmod", INames.HOLYEARTH));
-		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
+		super(Material.GRASS, 3.0F, 0.6F, 1, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.HOLYEARTH));
+		setCreativeTab(NetherTweaksMod.tabNTM);
 		setLightLevel(15);
 	}
 	
