@@ -46,6 +46,7 @@ public class Barrel extends BlockContainer
 	public Barrel() {
 		super(Material.WOOD);
 		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
+		setRegistryName("nethertweaksmod", INames.BARREL);
 		setUnlocalizedName(INames.BARREL);
 		setResistance(10.0f);
 		setHardness(2.0f);

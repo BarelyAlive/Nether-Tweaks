@@ -42,6 +42,7 @@ public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
     	setResistance(10);
     	setSoundType(SoundType.WOOD);
     	setUnlocalizedName(INames.NETHERLOG);
+    	setRegistryName("nethertweaksmod", INames.NETHERLOG);
 	}
     
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)

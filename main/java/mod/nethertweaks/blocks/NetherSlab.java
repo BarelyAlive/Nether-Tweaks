@@ -40,6 +40,7 @@ public class NetherSlab extends Block implements IVariantProvider{
 		this.fullBlock = this.isDouble();
         this.setLightOpacity(255);
         this.setUnlocalizedName(INames.NETHERSLAB);
+        setRegistryName("nethertweaksmod", INames.NETHERSLAB);
 		this.setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 	}
 	

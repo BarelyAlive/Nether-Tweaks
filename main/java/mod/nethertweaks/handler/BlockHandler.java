@@ -95,41 +95,41 @@ public class BlockHandler {
     //Registering all the blocks
     private static void registerBlocks()
     {
-    	Registry.registerBlock(ITEMBLOCKBASIC, 3, Constants.MOD);
+    	Registry.registerBlock(ITEMBLOCKBASIC, 3);
 
-        Registry.registerBlock(DUST, Constants.MOD);
-        Registry.registerBlock(STWH, Constants.MOD);
-        Registry.registerBlock(NETHERSAPLING, Constants.MOD);
-        Registry.registerBlock(NETHERLOG, Constants.MOD);
-        Registry.registerBlock(NETHERLEAVES, Constants.MOD);
-        Registry.registerBlock(NETHERWOOD, Constants.MOD);
-        Registry.registerBlock(NETHERSLAB, Constants.MOD);
-        Registry.registerBlock(BONFIRE, Constants.MOD);
-        Registry.registerBlock(HOLYEARTH, Constants.MOD);
-        Registry.registerBlock(MEANVINE, Constants.MOD);       
-        Registry.registerBlock(DOORNTMSTONE, Constants.MOD);
-        Registry.registerBlock(DOORNTMOBSIDIAN, Constants.MOD);
-        Registry.registerBlock(OREGOLDGRAVEL, Constants.MOD);
-        Registry.registerBlock(OREIRONGRAVEL, Constants.MOD);        
-        Registry.registerBlock(OREGOLDSAND, Constants.MOD);
-        Registry.registerBlock(OREIRONSAND, Constants.MOD);        
-        Registry.registerBlock(OREGOLDDUST, Constants.MOD);
-        Registry.registerBlock(OREIRONDUST, Constants.MOD);
-        Registry.registerBlock(ITEMOREGRAVEL, 16, Constants.MOD);
-        Registry.registerBlock(ITEMORESAND, 16, Constants.MOD);
-        Registry.registerBlock(ITEMOREDUST, 16, Constants.MOD);   
-        Registry.registerBlock(CONDENSER, Constants.MOD);
-        Registry.registerBlock(NETHERRACKFURNACE, Constants.MOD);
-        Registry.registerBlock(BARREL, Constants.MOD);
-        Registry.registerBlock(BARRELSTONE, Constants.MOD);
-        Registry.registerBlock(SIEVE, Constants.MOD);
-        Registry.registerBlock(FREEZER, Constants.MOD);      
+        Registry.registerBlock(DUST);
+        Registry.registerBlock(STWH);
+        Registry.registerBlock(NETHERSAPLING);
+        Registry.registerBlock(NETHERLOG);
+        Registry.registerBlock(NETHERLEAVES);
+        Registry.registerBlock(NETHERWOOD);
+        Registry.registerBlock(NETHERSLAB);
+        Registry.registerBlock(BONFIRE);
+        Registry.registerBlock(HOLYEARTH);
+        Registry.registerBlock(MEANVINE);       
+        Registry.registerBlock(DOORNTMSTONE);
+        Registry.registerBlock(DOORNTMOBSIDIAN);
+        Registry.registerBlock(OREGOLDGRAVEL);
+        Registry.registerBlock(OREIRONGRAVEL);        
+        Registry.registerBlock(OREGOLDSAND);
+        Registry.registerBlock(OREIRONSAND);        
+        Registry.registerBlock(OREGOLDDUST);
+        Registry.registerBlock(OREIRONDUST);
+        Registry.registerBlock(ITEMOREGRAVEL, 16);
+        Registry.registerBlock(ITEMORESAND, 16);
+        Registry.registerBlock(ITEMOREDUST, 16);   
+        Registry.registerBlock(CONDENSER);
+        Registry.registerBlock(NETHERRACKFURNACE);
+        Registry.registerBlock(BARREL);
+        Registry.registerBlock(BARRELSTONE);
+        Registry.registerBlock(SIEVE);
+        Registry.registerBlock(FREEZER);      
     }
     
     //Just an extra method after the register block thing to prevent errors
     private static void registerItemBlocks()
     {
-        Registry.registerItem(ITEMDOORNTMSTONE, Constants.MOD);
-        Registry.registerItem(ITEMDOORNTMOBSIDIAN, Constants.MOD);
+        Registry.registerItem(ITEMDOORNTMSTONE);
+        Registry.registerItem(ITEMDOORNTMOBSIDIAN);
     }
 }

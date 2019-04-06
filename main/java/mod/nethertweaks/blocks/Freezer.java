@@ -52,7 +52,7 @@ public class Freezer extends CubeContainerHorizontal{
 	public Freezer() {
 		super(Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setRegistryName(INames.FREEZER);
+		setRegistryName("nethertweaksmod", INames.FREEZER);
 		setUnlocalizedName(INames.FREEZER);
 		setResistance(17.5f);
 		setHardness(3.5f);
