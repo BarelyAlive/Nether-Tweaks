@@ -61,28 +61,28 @@ public class ItemHandler{
         private static void registerItems()
         {
         	//Multi ID Item
-        	Registry.registerItem(ITEMBASE, Constants.MOD);
-    		Registry.registerItem(OREMATERIAL, Constants.MOD);
+        	Registry.registerItem(ITEMBASE);
+    		Registry.registerItem(OREMATERIAL);
             
-        	Registry.registerItem(COOKEDJERKY, Constants.MOD);
-            Registry.registerItem(SEEDGRASS, Constants.MOD);
-            Registry.registerItem(MUSHROOMSPORES, Constants.MOD);
-            Registry.registerItem(CACTUSSEEDS, Constants.MOD);
-            Registry.registerItem(SANCTUARYCRYSTAL, Constants.MOD);
-            Registry.registerItem(LIGHTCRYSTAL, Constants.MOD);
-            Registry.registerItem(ENDERCRYSTAl, Constants.MOD);
+        	Registry.registerItem(COOKEDJERKY);
+            Registry.registerItem(SEEDGRASS);
+            Registry.registerItem(MUSHROOMSPORES);
+            Registry.registerItem(CACTUSSEEDS);
+            Registry.registerItem(SANCTUARYCRYSTAL);
+            Registry.registerItem(LIGHTCRYSTAL);
+            Registry.registerItem(ENDERCRYSTAl);
             
             //Werkzeuge
-            Registry.registerItem(PICKAXENETHERRACK, Constants.MOD);
-            Registry.registerItem(PICKAXENETHERBRICK, Constants.MOD);
+            Registry.registerItem(PICKAXENETHERRACK);
+            Registry.registerItem(PICKAXENETHERBRICK);
              
-            Registry.registerItem(HAMMERWOOD, Constants.MOD);
-            Registry.registerItem(HAMMERGOLD, Constants.MOD);
-            Registry.registerItem(HAMMERIRON, Constants.MOD);
-            Registry.registerItem(HAMMERDIAMOND, Constants.MOD);
-            Registry.registerItem(HAMMERSTONE, Constants.MOD);
+            Registry.registerItem(HAMMERWOOD);
+            Registry.registerItem(HAMMERGOLD);
+            Registry.registerItem(HAMMERIRON);
+            Registry.registerItem(HAMMERDIAMOND);
+            Registry.registerItem(HAMMERSTONE);
             
-            Registry.registerItem(FLINTANDBLAZE, Constants.MOD); 
+            Registry.registerItem(FLINTANDBLAZE); 
         }
         
         private static void addItemBurnTime()
