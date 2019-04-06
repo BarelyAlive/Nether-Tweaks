@@ -33,6 +33,7 @@ public class ItemCactusGrabber extends ItemShears{
 	public ItemCactusGrabber(ToolMaterial material) {
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
 		setUnlocalizedName(INames.CACTUSGRABBER);
+		setRegistryName("nethertweaksmod", INames.CACTUSGRABBER);
 		setMaxStackSize(1);
 	}
 	

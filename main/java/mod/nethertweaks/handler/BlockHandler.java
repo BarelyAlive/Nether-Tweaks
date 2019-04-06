@@ -36,6 +36,7 @@ public class BlockHandler {
     public static final Block BARREL = new Barrel();
     public static final Block BARRELSTONE = new BarrelStone();
     public static final Block FREEZER = new Freezer();
+    public static final Block BONFIRE = new Bonfire();
      
     //Blocks
     public static final Block DUST = new CubeFalling(1, Material.SAND, 0.4F, 0.3F, NetherTweaksMod.tabNetherTweaksMod, INames.DUST);
@@ -45,10 +46,10 @@ public class BlockHandler {
     public static final Block NETHERLEAVES = new NetherLeaves();
     public static final Block NETHERWOOD = new NetherWood();
     public static final Block NETHERSLAB = new NetherSlab(Material.WOOD);
-    public static final Block BONFIRE = new Bonfire(Material.ROCK);
     public static final Block HOLYEARTH = new HolyEarth();
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
+    
     public static final Block OREGOLDGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod, INames.OREGOLDGRAVEL);
     public static final Block OREIRONGRAVEL = new CubeFalling(1, Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod, INames.OREIRONGRAVEL);
     public static final Block OREGOLDSAND = new CubeFalling(1, Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNetherTweaksMod, INames.OREGOLDSAND);
@@ -105,27 +106,18 @@ public class BlockHandler {
         Registry.registerBlock(NETHERSLAB, Constants.MOD);
         Registry.registerBlock(BONFIRE, Constants.MOD);
         Registry.registerBlock(HOLYEARTH, Constants.MOD);
-        Registry.registerBlock(MEANVINE, Constants.MOD);
-        
+        Registry.registerBlock(MEANVINE, Constants.MOD);       
         Registry.registerBlock(DOORNTMSTONE, Constants.MOD);
         Registry.registerBlock(DOORNTMOBSIDIAN, Constants.MOD);
-        
-        
-        //Ore
-        
         Registry.registerBlock(OREGOLDGRAVEL, Constants.MOD);
-        Registry.registerBlock(OREIRONGRAVEL, Constants.MOD);
-        
+        Registry.registerBlock(OREIRONGRAVEL, Constants.MOD);        
         Registry.registerBlock(OREGOLDSAND, Constants.MOD);
-        Registry.registerBlock(OREIRONSAND, Constants.MOD);
-        
+        Registry.registerBlock(OREIRONSAND, Constants.MOD);        
         Registry.registerBlock(OREGOLDDUST, Constants.MOD);
         Registry.registerBlock(OREIRONDUST, Constants.MOD);
-        
         Registry.registerBlock(ITEMOREGRAVEL, 16, Constants.MOD);
         Registry.registerBlock(ITEMORESAND, 16, Constants.MOD);
-        Registry.registerBlock(ITEMOREDUST, 16, Constants.MOD);
-        
+        Registry.registerBlock(ITEMOREDUST, 16, Constants.MOD);   
         Registry.registerBlock(CONDENSER, Constants.MOD);
         Registry.registerBlock(NETHERRACKFURNACE, Constants.MOD);
         Registry.registerBlock(BARREL, Constants.MOD);

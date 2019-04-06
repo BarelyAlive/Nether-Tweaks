@@ -40,8 +40,8 @@ public class Bonfire extends BlockContainer {
 	
 	//public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
-	public Bonfire(Material bed) {
-		super(bed);
+	public Bonfire() {
+		super(Material.ROCK);
 		setLightLevel(15);
 		setUnlocalizedName(INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);

@@ -51,6 +51,7 @@ public class WaterFountain extends Block implements IVariantProvider{
 		setHardness(2.0f);
         setCreativeTab(NetherTweaksMod.tabNetherTweaksMod);
         setUnlocalizedName(INames.WATERFOUNTAIN);
+        setRegistryName("nethertweaksmod", INames.WATERFOUNTAIN);
     }
     
     @Override
