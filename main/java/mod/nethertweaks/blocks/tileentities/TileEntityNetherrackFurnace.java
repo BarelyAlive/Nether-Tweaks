@@ -187,13 +187,14 @@ public class TileEntityNetherrackFurnace extends TileEntityBase{
     
     @Override
 	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		super.readFromNBT(compound);
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
 		compound.setInteger("worktime", this.workTime);
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
