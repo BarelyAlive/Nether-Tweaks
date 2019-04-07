@@ -97,7 +97,7 @@ public class BlockHandler implements INames{
     //Registering all the blocks
     private static void registerBlocks()
     {
-    	Registry.registerBlock(ITEMBLOCKBASIC, 3);
+    	Registry.registerBlock(ITEMBLOCKBASIC);
         Registry.registerBlock(DUST);
         Registry.registerBlock(STWH);
         Registry.registerBlock(NETHERSAPLING);
@@ -116,9 +116,9 @@ public class BlockHandler implements INames{
         Registry.registerBlock(OREIRONSAND);        
         Registry.registerBlock(OREGOLDDUST);
         Registry.registerBlock(OREIRONDUST);
-        Registry.registerBlock(ITEMOREGRAVEL, 16);
-        Registry.registerBlock(ITEMORESAND, 16);
-        Registry.registerBlock(ITEMOREDUST, 16);   
+        Registry.registerBlock(ITEMOREGRAVEL);
+        Registry.registerBlock(ITEMORESAND);
+        Registry.registerBlock(ITEMOREDUST);   
         Registry.registerBlock(CONDENSER);
         Registry.registerBlock(NETHERRACKFURNACE);
         Registry.registerBlock(BARREL);

@@ -12,13 +12,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MinefactoryReloaded {
 	
-	public static Block rubberSapling;
-	public static boolean MFR;
+	public static final Block RUBBERSAPLING = Block.REGISTRY.getObject((new ResourceLocation("minefactoryreloaded", "rubberwood.sapling")));
 
-	public static void loadCompatibility(){
-		 rubberSapling = Block.REGISTRY.getObject((new ResourceLocation("MineFactoryReloaded", "rubberwood.sapling")));
-		 
-		 if(rubberSapling != null)
-		 NTMSieveHandler.register(Blocks.DIRT, Item.getItemFromBlock(rubberSapling), 0, 20);
+	public static void loadCompatibility()
+	{		 
+		 if(RUBBERSAPLING != null)
+		 NTMSieveHandler.register(Blocks.DIRT, Item.getItemFromBlock(RUBBERSAPLING), 0, 20);
 	}
 }
