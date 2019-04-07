@@ -21,6 +21,8 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 
 	@Override
 	public void registerHammerRecipeDefaults() {
+		HammerRegistry.register(Blocks.NETHERRACK.getDefaultState(), new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
+		HammerRegistry.register(Blocks.STONE.getDefaultState(), new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
 		HammerRegistry.register(Blocks.COBBLESTONE.getDefaultState(), new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
 		HammerRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F);
 		HammerRegistry.register(Blocks.SAND.getDefaultState(), new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);

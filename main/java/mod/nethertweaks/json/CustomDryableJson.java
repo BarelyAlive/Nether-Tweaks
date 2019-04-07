@@ -25,7 +25,7 @@ public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSeriali
         
         String name = helper.getString("name");
         int meta = helper.getNullableInteger("meta", 0);
-        int value = helper.getNullableInteger("value", 1);
+        int value = helper.getNullableInteger("millibuckets", 1);
 
         Item item = Item.getByNameOrId(name);
         
@@ -45,7 +45,7 @@ public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSeriali
         
         jsonObject.addProperty("name", src.getItem().getRegistryName().toString());
         jsonObject.addProperty("meta", new ItemStack(src.getItem()).getItemDamage());
-        jsonObject.addProperty("value", src.getValue());
+        jsonObject.addProperty("millibuckets", src.getValue());
 
         return jsonObject;
     }

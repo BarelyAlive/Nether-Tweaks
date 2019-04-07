@@ -13,7 +13,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import mod.nethertweaks.handler.SieveHandler;
-import mod.nethertweaks.vars.SieveReward;
+import mod.nethertweaks.vars.Siftable;
 
 public class TileEntitySieve extends TileEntity{
 	private static final float MIN_RENDER_CAPACITY = 0.70f;
@@ -92,13 +92,13 @@ public class TileEntitySieve extends TileEntity{
 			//give rewards!
 			if (!world.isRemote)
 			{
-				ArrayList<SieveReward> rewards = SieveHandler.getRewards(content, contentMeta);
+				ArrayList<Siftable> rewards = SieveHandler.getRewards(content, contentMeta);
 				if (rewards.size() > 0)
 				{
-					Iterator<SieveReward> it = rewards.iterator();
+					Iterator<Siftable> it = rewards.iterator();
 					while(it.hasNext())
 					{
-						SieveReward reward = it.next();
+						Siftable reward = it.next();
 
 						if (world.rand.nextInt(reward.rarity) == 0)
 						{

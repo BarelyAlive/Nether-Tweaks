@@ -3,7 +3,7 @@ package mod.nethertweaks.handler;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mod.nethertweaks.vars.SieveReward;
+import mod.nethertweaks.vars.Siftable;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,11 +13,11 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SieveHandler {
-	public static ArrayList<SieveReward> rewards = new ArrayList<SieveReward>();
+	public static ArrayList<Siftable> rewards = new ArrayList<Siftable>();
 	
 	public static void register(Block source, int sourceMeta, Item output, int outputMeta, int rarity)
 	{
-		SieveReward entry = new SieveReward(source, sourceMeta, output, outputMeta, rarity);
+		Siftable entry = new Siftable(source, sourceMeta, output, outputMeta, rarity);
 		
 		if(source != null)
 		{
@@ -30,7 +30,7 @@ public class SieveHandler {
 	
 	public static void register(Block source, Item output, int outputMeta, int rarity)
 	{
-		SieveReward entry = new SieveReward(source, output, outputMeta, rarity);
+		Siftable entry = new Siftable(source, output, outputMeta, rarity);
 		
 		if(source != null)
 		{
@@ -41,14 +41,14 @@ public class SieveHandler {
 		}
 	}
 	
-	public static ArrayList<SieveReward> getRewards(Block block, int meta)
+	public static ArrayList<Siftable> getRewards(Block block, int meta)
 	{
-		ArrayList<SieveReward> rewardList = new ArrayList();
+		ArrayList<Siftable> rewardList = new ArrayList();
 
-		Iterator<SieveReward> it = rewards.iterator();
+		Iterator<Siftable> it = rewards.iterator();
 		while(it.hasNext())
 		{
-			SieveReward reward = it.next();
+			Siftable reward = it.next();
 
 			if (reward.source == block && reward.sourceMeta == meta)
 			{
@@ -61,10 +61,10 @@ public class SieveHandler {
 	
 	public static boolean Contains(Block block, int meta)
 	{
-		Iterator<SieveReward> it = rewards.iterator();
+		Iterator<Siftable> it = rewards.iterator();
 		while(it.hasNext())
 		{
-			SieveReward reward = it.next();
+			Siftable reward = it.next();
 
 			if (reward.source == block && (reward.sourceMeta == meta || reward.ignoreMeta == true))
 			{
@@ -77,10 +77,10 @@ public class SieveHandler {
 	
 	public static boolean Contains(Block block)
 	{
-		Iterator<SieveReward> it = rewards.iterator();
+		Iterator<Siftable> it = rewards.iterator();
 		while(it.hasNext())
 		{
-			SieveReward reward = it.next();
+			Siftable reward = it.next();
 
 			if (reward.source == block && reward.ignoreMeta == true)
 			{

@@ -2,6 +2,7 @@ package mod.nethertweaks.items;
 
 import com.google.common.collect.Sets;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.interfaces.IHammer;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registry.HammerRegistry;
@@ -21,6 +22,7 @@ public class HammerBase extends ItemTool implements IHammer  {
 		this.setUnlocalizedName(loc.getResourcePath());
 		this.setRegistryName(loc);
 		this.setMaxDamage(maxUses);
+		this.setCreativeTab(NetherTweaksMod.tabNTM);
 		this.miningLevel = material.getHarvestLevel();
 	}
 
@@ -35,16 +37,17 @@ public class HammerBase extends ItemTool implements IHammer  {
 	{
 		return miningLevel;
 	}
-
-	public float getStrVsBlock(ItemStack stack, IBlockState state)
-	{
-		return HammerRegistry.registered(state.getBlock()) ? this.efficiency : 1.0F;
-	}
 	
 	@Override
 	 public boolean canHarvestBlock(IBlockState state)
     {
         return HammerRegistry.registered(state.getBlock());
+    }
+	
+	@Override
+	public float getDestroySpeed(ItemStack stack, IBlockState state)
+    {
+        return HammerRegistry.registered(state.getBlock()) ? this.efficiency : 1.0F;
     }
 	
 	private String getNameByMaterial(ToolMaterial tool)

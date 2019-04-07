@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomDryableJson;
 import mod.nethertweaks.json.CustomItemStackJson;
+import mod.nethertweaks.registry.manager.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.RegistryManager;
 import mod.nethertweaks.vars.Dryable;
@@ -35,7 +36,7 @@ import mod.sfhcore.util.ItemInfo;
 public class DryRegistry {
 	
 	private static HashMap<ItemInfo, List<Dryable>> registry = new HashMap<ItemInfo, List<Dryable>>();
-	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(ItemStack.class, new CustomDryableJson()).create();
+	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Dryable.class, new CustomDryableJson()).create();
 
 	public static void loadJson(File file)
 	{
@@ -130,8 +131,8 @@ public class DryRegistry {
 
 	public static void registerDefaults()
 	{
-		for (IHammerDefaultRegistryProvider provider : RegistryManager.getDefaultHammerRecipeHandlers()) {
-			provider.registerHammerRecipeDefaults();
+		for (ICondenserDefaultRegistryProvider provider : RegistryManager.getDefaultCondenserRecipeHandlers()) {
+			provider.registerCondenserRecipeDefaults();
 		}
 	}
 }

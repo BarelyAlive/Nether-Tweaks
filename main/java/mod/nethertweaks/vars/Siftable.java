@@ -4,7 +4,7 @@ import mod.nethertweaks.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-public class SieveReward {
+public class Siftable {
 	public Block source;
 	public int sourceMeta;
 	public boolean ignoreMeta;
@@ -12,7 +12,7 @@ public class SieveReward {
 	public int meta;
 	public int rarity;
 	
-	public SieveReward(Block source, int sourceMeta, Item item, int meta, int rarity)
+	public Siftable(Block source, int sourceMeta, Item item, int meta, int rarity)
 	{
 		this.source = source;
 		this.sourceMeta = sourceMeta;
@@ -22,7 +22,7 @@ public class SieveReward {
 		this.rarity = calculateRarity(rarity);
 	}
 	
-	public SieveReward(Block source, Item item, int meta, int rarity)
+	public Siftable(Block source, Item item, int meta, int rarity)
 	{
 		this.source = source;
 		this.sourceMeta = 0;
