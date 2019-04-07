@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
@@ -16,8 +15,9 @@ import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve.SieveMode;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.NTMCompostHandler;
-import mod.nethertweaks.handler.NTMSieveHandler;
+import mod.nethertweaks.handler.CompostHandler;
+import mod.nethertweaks.handler.SieveHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -67,7 +67,7 @@ public class Sieve extends BlockContainer implements IVariantProvider{
 			if (sieve.mode == SieveMode.EMPTY && playerIn.inventory.getCurrentItem() != null) {
 				ItemStack held = playerIn.inventory.getCurrentItem();
 
-				if (NTMSieveHandler.Contains(Block.getBlockFromItem(held.getItem()), held.getItemDamage())) {
+				if (SieveHandler.Contains(Block.getBlockFromItem(held.getItem()), held.getItemDamage())) {
 					sieve.addSievable(Block.getBlockFromItem(held.getItem()), held.getItemDamage());
 					removeCurrentItem(playerIn);
 				}

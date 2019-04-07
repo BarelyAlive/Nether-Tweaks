@@ -25,7 +25,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
@@ -35,7 +34,8 @@ import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.NTMCompostHandler;
+import mod.nethertweaks.handler.CompostHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -80,8 +80,8 @@ public class Barrel extends BlockContainer
 					//COMPOST!
 					if (barrel.getMode() == BarrelMode.EMPTY
 							|| barrel.getMode() == BarrelMode.COMPOST && !barrel.isFull()) {
-						if (NTMCompostHandler.containsItem(item.getItem(), item.getItemDamage())) {
-							barrel.addCompostItem(NTMCompostHandler.getItem(item.getItem(), item.getItemDamage()));
+						if (CompostHandler.containsItem(item.getItem(), item.getItemDamage())) {
+							barrel.addCompostItem(CompostHandler.getItem(item.getItem(), item.getItemDamage()));
 
 							if (!playerIn.capabilities.isCreativeMode) {
 								StackUtils.substractFromStackSize(item, 1);

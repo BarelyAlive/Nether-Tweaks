@@ -1,7 +1,7 @@
 package mod.nethertweaks.handler;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.CubeFalling;
@@ -43,115 +43,115 @@ public class OreHandler implements INames{
 		
 		
 		//Nicht Erze
-		if(blizzpowder != null) NTMSieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);
+		if(blizzpowder != null) SieveHandler.register(Blocks.SNOW, blizzpowder, 1025, 20);
 		
 		//Erze
 		if(OreDictionary.doesOreNameExist("oreCopper")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 32, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 16, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 0, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 32, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 16, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 0, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreTin")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 33, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 1, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 33, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 17, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 1, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreLead")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 34, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 2, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 34, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 18, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 2, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreNickel")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 35, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 3, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 35, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 19, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 3, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("orePlatinum")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 36, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 4, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 36, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 20, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 4, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreSilver")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 37, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 5, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 37, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 21, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 5, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreUranium")){
 
-	        NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 38, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 6, 20);
+	        SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 38, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 22, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 6, 20);
 	        
 		}
 		if(OreDictionary.doesOreNameExist("oreOsmium")){
 
-	        NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 39, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 7, 20);
+	        SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 39, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 23, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 7, 20);
 	        
 		}if(OreDictionary.doesOreNameExist("oreDraconium")){
 
 			//Draconic Evo
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 40, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 8, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 40, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 24, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 8, 20);
 			
 		}
 		if(OreDictionary.doesOreNameExist("oreSulfur")){
 			//Sulfur
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 41, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 9, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 41, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 25, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 9, 20);
             
 		}
 		if(OreDictionary.doesOreNameExist("oreAluminum")){
 			//Aluminum
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 42, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 10, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 42, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 26, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 10, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreSilicon")){
 			
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 43, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 11, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 43, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 27, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 11, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreAmber")){
 			//Amber
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 44, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 12, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 44, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 28, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 12, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreCinnabar")){
 			//Cinnabar
-			NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 45, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 13, 20);
+			SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 45, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 29, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 13, 20);
 		}
 		if(OreDictionary.doesOreNameExist("oreCertusQuartz")){
 			//AppEng2
-            NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 46, 20);
-			NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
-			NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 14, 20);
+            SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 46, 20);
+			SieveHandler.register(Blocks.SAND, 0, oreMaterial, 30, 20);
+			SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 14, 20);
             
 		}
 		
 		//Salt
-        NTMSieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 47, 20);
-		NTMSieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
-		NTMSieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 15, 20);
+        SieveHandler.register(BlockHandler.DUST, 0, oreMaterial, 47, 20);
+		SieveHandler.register(Blocks.SAND, 0, oreMaterial, 31, 20);
+		SieveHandler.register(Blocks.GRAVEL, 0, oreMaterial, 15, 20);
 		
 	}
 	

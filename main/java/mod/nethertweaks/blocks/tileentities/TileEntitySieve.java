@@ -12,8 +12,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import mod.nethertweaks.api.SieveReward;
-import mod.nethertweaks.handler.NTMSieveHandler;
+import mod.nethertweaks.handler.SieveHandler;
+import mod.nethertweaks.vars.SieveReward;
 
 public class TileEntitySieve extends TileEntity{
 	private static final float MIN_RENDER_CAPACITY = 0.70f;
@@ -92,7 +92,7 @@ public class TileEntitySieve extends TileEntity{
 			//give rewards!
 			if (!world.isRemote)
 			{
-				ArrayList<SieveReward> rewards = NTMSieveHandler.getRewards(content, contentMeta);
+				ArrayList<SieveReward> rewards = SieveHandler.getRewards(content, contentMeta);
 				if (rewards.size() > 0)
 				{
 					Iterator<SieveReward> it = rewards.iterator();

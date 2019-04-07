@@ -1,7 +1,7 @@
 package mod.nethertweaks.compatibility;
 
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.NTMSieveHandler;
+import mod.nethertweaks.handler.SieveHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -17,6 +17,6 @@ public class MinefactoryReloaded {
 	public static void loadCompatibility()
 	{		 
 		 if(RUBBERSAPLING != null)
-		 NTMSieveHandler.register(Blocks.DIRT, Item.getItemFromBlock(RUBBERSAPLING), 0, 20);
+		 SieveHandler.register(Blocks.DIRT, Item.getItemFromBlock(RUBBERSAPLING), 0, 20);
 	}
 }

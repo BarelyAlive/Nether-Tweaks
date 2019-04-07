@@ -4,11 +4,11 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.block.Block;

@@ -1,6 +1,5 @@
 package mod.nethertweaks.handler;
  
-import mod.nethertweaks.INames;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
@@ -12,6 +11,7 @@ import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.blocks.tileentities.TileEntitySieve;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.blocks.BlockDoorCustom;
@@ -72,8 +72,8 @@ public class BlockHandler implements INames{
     public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMSTONE));
     public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMOBSIDIAN));
     
-    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, new ResourceLocation(NTM, INames.ITEMDOORNTMSTONE), NetherTweaksMod.tabNTM);
-    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, new ResourceLocation(NTM, INames.ITEMDOORNTMOBSIDIAN), NetherTweaksMod.tabNTM);
+    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, new ResourceLocation(NTM, INames.DOORNTMSTONE), NetherTweaksMod.tabNTM);
+    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, new ResourceLocation(NTM, INames.DOORNTMOBSIDIAN), NetherTweaksMod.tabNTM);
     
     public static void init()
     {

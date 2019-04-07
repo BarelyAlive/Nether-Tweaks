@@ -1,4 +1,4 @@
-package mod.nethertweaks;
+package mod.nethertweaks.interfaces;
 
 public interface INames {
 	

@@ -29,12 +29,12 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.api.Compostable;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.NTMCompostHandler;
+import mod.nethertweaks.handler.CompostHandler;
 import mod.nethertweaks.items.*;
+import mod.nethertweaks.vars.Compostable;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 
 public class TileEntityBarrel extends TileEntityFluidBase implements net.minecraft.util.ITickable{	
@@ -589,9 +589,9 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 		{
 			if (getMode() == BarrelMode.COMPOST || getMode() == BarrelMode.EMPTY)
 			{
-				if(NTMCompostHandler.containsItem(item, meta))
+				if(CompostHandler.containsItem(item, meta))
 				{
-					this.addCompostItem(NTMCompostHandler.getItem(item, meta));
+					this.addCompostItem(CompostHandler.getItem(item, meta));
 				}
 			}
 
@@ -649,7 +649,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 		
 		if (!this.isFull() && getMode() == BarrelMode.COMPOST || getMode() == BarrelMode.EMPTY)
 		{
-			if(NTMCompostHandler.containsItem(item, meta))
+			if(CompostHandler.containsItem(item, meta))
 			{
 				return true;
 			}

@@ -9,14 +9,14 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import mod.nethertweaks.INames;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
+import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.items.CookedJerky;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
-import mod.nethertweaks.items.Hammer;
+import mod.nethertweaks.items.HammerBase;
 import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
@@ -46,11 +46,11 @@ public class ItemHandler implements INames{
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item HAMMERWOOD = new Hammer(2.0F, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD = new Hammer(2.0F, ToolMaterial.GOLD);
-    public static final Item HAMMERIRON = new Hammer(4.0F, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND = new Hammer(5.0F, ToolMaterial.DIAMOND);
-    public static final Item HAMMERSTONE = new Hammer(3.0F, ToolMaterial.STONE);
+    public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 60, ToolMaterial.WOOD);
+    public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 33, ToolMaterial.GOLD);
+    public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 251, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 1562, ToolMaterial.DIAMOND);
+    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 132, ToolMaterial.STONE);
     
     
     	public static void init()

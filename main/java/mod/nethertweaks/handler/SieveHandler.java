@@ -3,7 +3,7 @@ package mod.nethertweaks.handler;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import mod.nethertweaks.api.SieveReward;
+import mod.nethertweaks.vars.SieveReward;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class NTMSieveHandler {
+public class SieveHandler {
 	public static ArrayList<SieveReward> rewards = new ArrayList<SieveReward>();
 	
 	public static void register(Block source, int sourceMeta, Item output, int outputMeta, int rarity)

@@ -1,7 +1,7 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.items.CustomItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

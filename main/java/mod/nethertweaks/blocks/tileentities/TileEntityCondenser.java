@@ -6,10 +6,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
-import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.NTMDryHandler;
+import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.registry.DryRegistry;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -108,8 +108,8 @@ public class TileEntityCondenser extends TileEntityFluidBase implements net.mine
 	}
 	
 	public boolean checkInv(){
-		if(NTMDryHandler.containsItem(machineItemStacks.get(0))) {
-			amount = NTMDryHandler.getItem(machineItemStacks.get(1).getItem(), machineItemStacks.get(1).getItemDamage()).value;
+		if(DryRegistry.containsItem(machineItemStacks.get(0))) {
+			amount = DryRegistry.getDryable(machineItemStacks.get(1)).getValue();
 			StackUtils.substractFromStackSize(machineItemStacks.get(0), 1);
 			checkHeatSource();
 			return true;

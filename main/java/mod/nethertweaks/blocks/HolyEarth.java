@@ -2,11 +2,11 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.Cube;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

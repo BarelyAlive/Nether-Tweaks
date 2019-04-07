@@ -1,7 +1,7 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.interfaces.INames;
 import net.minecraft.item.ItemFood;
 
 public class CookedJerky extends ItemFood{

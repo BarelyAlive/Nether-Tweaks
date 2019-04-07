@@ -2,7 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.api.Compostable;
+import mod.nethertweaks.vars.Compostable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class NTMCompostHandler {
+public class CompostHandler {
 
 	//Compost Registry
 	
