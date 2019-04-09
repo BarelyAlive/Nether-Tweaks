@@ -13,19 +13,9 @@ public class Ore {
 		return name;
 	}
 	
-	private Color color;
+	public Color color;
 	
-	public String getColor()
-	{
-		return name;
-	}
-	
-	private ItemInfo result;
-	
-	public ItemInfo getResult()
-	{
-		return result;
-	}
+	public ItemInfo result;
 	
 	public Ore(String name, Color color, ItemInfo result) {
 		this.name = name;
