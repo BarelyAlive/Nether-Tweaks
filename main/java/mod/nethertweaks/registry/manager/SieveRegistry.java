@@ -135,7 +135,7 @@ public class SieveRegistry
     
     public static void registerDefaults()
     {
-    	for (ISieveDefaultRegistryProvider provider : RegistryManager.getDefaultSieveRecipeHandlers()) {
+    	for (ISieveDefaultRegistryProvider provider : NTMRegistryManager.getDefaultSieveRecipeHandlers()) {
     		provider.registerSieveRecipeDefaults();
     	}
     }

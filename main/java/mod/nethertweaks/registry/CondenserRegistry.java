@@ -28,12 +28,12 @@ import mod.nethertweaks.json.CustomDryableJson;
 import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registry.manager.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
-import mod.nethertweaks.registry.manager.RegistryManager;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.ItemInfo;
 
-public class DryRegistry {
+public class CondenserRegistry {
 	
 	private static HashMap<ItemInfo, List<Dryable>> registry = new HashMap<ItemInfo, List<Dryable>>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Dryable.class, new CustomDryableJson()).create();
@@ -131,7 +131,7 @@ public class DryRegistry {
 
 	public static void registerDefaults()
 	{
-		for (ICondenserDefaultRegistryProvider provider : RegistryManager.getDefaultCondenserRecipeHandlers()) {
+		for (ICondenserDefaultRegistryProvider provider : NTMRegistryManager.getDefaultCondenserRecipeHandlers()) {
 			provider.registerCondenserRecipeDefaults();
 		}
 	}

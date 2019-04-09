@@ -38,10 +38,10 @@ import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.network.NetworkNTM;
-import mod.nethertweaks.registry.DryRegistry;
+import mod.nethertweaks.registry.CondenserRegistry;
 import mod.nethertweaks.registry.HammerRegistry;
+import mod.nethertweaks.registry.OreRegistry;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
-import mod.nethertweaks.registry.manager.OreRegistry;
 import mod.nethertweaks.registry.manager.SieveRegistry;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
@@ -125,7 +125,7 @@ public class NetherTweaksMod {
     
     public static void loadConfigs()
     {
-    	DryRegistry.loadJson(new File(configDirectory, "DryRegistry.json"));
+    	CondenserRegistry.loadJson(new File(configDirectory, "DryRegistry.json"));
     	HammerRegistry.loadJson(new File(configDirectory, "HammerRegistry.json"));
     	SieveRegistry.loadJson(new File(configDirectory, "SieveRegistry.json"));
     	OreRegistry.loadJson(new File(configDirectory, "OreRegistry.json"));

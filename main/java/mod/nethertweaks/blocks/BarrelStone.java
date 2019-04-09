@@ -21,8 +21,7 @@ public class BarrelStone extends Barrel{
 		super(Material.ROCK);
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setHardness(4.0f);
-		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
 		setUnlocalizedName(INames.BARRELSTONE);
-		setRegistryName("nethertweaksmod", INames.BARRELSTONE);
+		setRegistryName(NetherTweaksMod.MODID, INames.BARRELSTONE);
 	}
 }

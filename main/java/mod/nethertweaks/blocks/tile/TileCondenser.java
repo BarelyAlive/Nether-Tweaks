@@ -9,7 +9,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.registry.DryRegistry;
+import mod.nethertweaks.registry.CondenserRegistry;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -108,8 +108,8 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 	}
 	
 	public boolean checkInv(){
-		if(DryRegistry.containsItem(machineItemStacks.get(0))) {
-			amount = DryRegistry.getDryable(machineItemStacks.get(1)).getValue();
+		if(CondenserRegistry.containsItem(machineItemStacks.get(0))) {
+			amount = CondenserRegistry.getDryable(machineItemStacks.get(1)).getValue();
 			StackUtils.substractFromStackSize(machineItemStacks.get(0), 1);
 			checkHeatSource();
 			return true;

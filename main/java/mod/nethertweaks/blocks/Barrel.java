@@ -45,8 +45,7 @@ public class Barrel extends BlockContainer
 	
 	public Barrel() {
 		super(Material.WOOD);
-		//setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
-		setRegistryName("nethertweaksmod", INames.BARREL);
+		setRegistryName(NetherTweaksMod.MODID, INames.BARREL);
 		setUnlocalizedName(INames.BARREL);
 		setResistance(10.0f);
 		setHardness(2.0f);
@@ -152,7 +151,7 @@ public class Barrel extends BlockContainer
 								}
 
 								if (item.getItem() == ItemHandler.LIGHTCRYSTAL) {
-									barrel.fluid = new FluidStack(BucketNFluidHandler.fluidDemonWater, 1000);
+									barrel.fluid = new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000);
 									barrel.setMode(BarrelMode.FLUID);
 								}
 
@@ -181,7 +180,7 @@ public class Barrel extends BlockContainer
 
 							}
 
-							if (barrel.fluid.getFluid() == BucketNFluidHandler.fluidDemonWater) {
+							if (barrel.fluid.getFluid() == BucketNFluidHandler.FLUIDDEMONWATER) {
 								if (item.getItem() == Item.getItemFromBlock(BlockHandler.NETHERSAPLING)) {
 									barrel.setMode(BarrelMode.OAK);
 									useItem(playerIn);

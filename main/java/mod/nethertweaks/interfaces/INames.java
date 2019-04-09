@@ -5,10 +5,10 @@ public interface INames {
 	public final static String NTM = "nethertweaksmod";
 
 	//Fluids
-	public static final String DEMONWATERFLUID				= "fluid_demon_water";
+	public static final String DEMONWATERFLUID				= "demon_water";
 	
 	//Fluidblocks
-	public static final String DEMOMWATERBLOCK				= "block_demon_water";
+	public static final String DEMOMWATERBLOCK				= "demon_water";
 	
 	//blocks
 	public static final String CONDENSER 					= "condenser";

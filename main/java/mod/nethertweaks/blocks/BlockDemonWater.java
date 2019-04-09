@@ -29,12 +29,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDemonWater extends BlockFluidClassic{
 
-        public BlockDemonWater(Fluid fluid, Material material) {
-                super(fluid, Material.WATER);
+        public BlockDemonWater() {
+                super(BucketNFluidHandler.FLUIDDEMONWATER, Material.WATER);
                 setCreativeTab(NetherTweaksMod.tabNTM);
                 setResistance(500.0F);
                 setHardness(100.0F);
                 setDensity(1000);
+                setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
                 setUnlocalizedName(INames.DEMOMWATERBLOCK);
                 setLightLevel(3);
         }
@@ -47,6 +48,6 @@ public class BlockDemonWater extends BlockFluidClassic{
         
         @Override
         public Fluid getFluid() {
-        return BucketNFluidHandler.fluidDemonWater;
+        return BucketNFluidHandler.FLUIDDEMONWATER;
         }
 }

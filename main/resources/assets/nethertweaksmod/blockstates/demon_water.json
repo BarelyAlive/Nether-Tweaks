@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "forge:fluid"
+    },
+    "variants": {
+        "demon_water": [
+            {
+                "custom": {
+                    "fluid": "demon_water"
+                }
+            }
+        ]
+    }
+}

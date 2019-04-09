@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
-import mod.nethertweaks.registry.manager.RegistryManager;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.Block;
@@ -141,7 +141,7 @@ public class HammerRegistry
 
 	public static void registerDefaults()
 	{
-		for (IHammerDefaultRegistryProvider provider : RegistryManager.getDefaultHammerRecipeHandlers()) {
+		for (IHammerDefaultRegistryProvider provider : NTMRegistryManager.getDefaultHammerRecipeHandlers()) {
 			provider.registerHammerRecipeDefaults();
 		}
 	}
