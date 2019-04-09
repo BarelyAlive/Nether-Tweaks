@@ -2,7 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.Hashtable;
 
-import mod.nethertweaks.vars.Compostable;
+import mod.nethertweaks.registry.types.Compostable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

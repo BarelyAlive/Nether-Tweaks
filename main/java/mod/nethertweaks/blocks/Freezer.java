@@ -7,10 +7,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
-import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
@@ -68,9 +67,9 @@ public class Freezer extends CubeContainerHorizontal{
 				if (worldIn.getTileEntity(pos) != null) {
 					playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 				}
-				if (worldIn.getTileEntity(pos) instanceof TileEntityFreezer
+				if (worldIn.getTileEntity(pos) instanceof TileFreezer
 						&& playerIn.inventory.getCurrentItem() != null) {
-					TileEntityFreezer fr = (TileEntityFreezer) worldIn.getTileEntity(pos);
+					TileFreezer fr = (TileFreezer) worldIn.getTileEntity(pos);
 					IFluidTankProperties[] tank = fr.getTankProperties();
 					ItemStack item = playerIn.inventory.getCurrentItem();
 					if (item != null) {
@@ -110,6 +109,6 @@ public class Freezer extends CubeContainerHorizontal{
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-	    return new TileEntityFreezer(INames.TEFREEZER);
+	    return new TileFreezer(INames.TEFREEZER);
 	}
 }

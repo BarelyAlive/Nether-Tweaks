@@ -11,7 +11,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.vars.Dryable;
+import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

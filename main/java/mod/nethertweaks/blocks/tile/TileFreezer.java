@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
+import mod.nethertweaks.blocks.tile.TileBarrel.BarrelMode;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -41,11 +41,11 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Int;
 
-public class TileEntityFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
+public class TileFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
-	public TileEntityFreezer(String field) {
+	public TileFreezer(String field) {
 		super(3, field, 16000);
 		maxworkTime = Config.freezeTimeFreezer;
 		this.lf.add(FluidRegistry.WATER);

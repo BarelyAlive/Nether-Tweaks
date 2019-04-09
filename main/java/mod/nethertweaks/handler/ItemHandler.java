@@ -17,6 +17,8 @@ import mod.nethertweaks.items.CookedJerky;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.HammerBase;
+import mod.nethertweaks.items.ItemMesh;
+import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
@@ -35,6 +37,9 @@ public class ItemHandler implements INames{
     public static final Item SANCTUARYCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.SANCTUARYCRYSTAL));
     public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
     public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
+    //NEW
+    public static final Item PEBBLE = new ItemPebble();
+    public static final Item MESH = new ItemMesh();
     
     //Multi ID Item
 	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 15, new ResourceLocation(NTM, INames.ITEMBASE));
@@ -46,11 +51,11 @@ public class ItemHandler implements INames{
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 60, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 33, ToolMaterial.GOLD);
-    public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 251, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 1562, ToolMaterial.DIAMOND);
-    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 132, ToolMaterial.STONE);
+    public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 64, ToolMaterial.WOOD);
+    public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 64, ToolMaterial.GOLD);
+    public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 512, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
+    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 128, ToolMaterial.STONE);
     
     
     	public static void init()
@@ -72,6 +77,7 @@ public class ItemHandler implements INames{
             Registry.registerItem(SANCTUARYCRYSTAL);
             Registry.registerItem(LIGHTCRYSTAL);
             Registry.registerItem(ENDERCRYSTAl);
+            Registry.registerItem(PEBBLE);
             
             //Werkzeuge
             Registry.registerItem(PICKAXENETHERRACK);

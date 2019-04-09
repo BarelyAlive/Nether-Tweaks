@@ -17,7 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.RegistryManager;
-import mod.nethertweaks.vars.HammerReward;
+import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

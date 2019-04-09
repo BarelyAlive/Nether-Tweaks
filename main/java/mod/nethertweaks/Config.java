@@ -18,26 +18,7 @@ public class Config {
 	public static boolean lightCrystal;
 	public static boolean cookJerky;
 	
-	//Ores
-	public static boolean oreCopper;
-	public static boolean oreTin;
-	public static boolean oreLead;
-	public static boolean oreNickel;
-	public static boolean orePlatinum;
-	public static boolean oreSilver;
-	public static boolean oreUranium;
-	public static boolean oreOsmium;
-	public static boolean oreDraconium;
-	public static boolean oreSulfur;
-	public static boolean oreAluminum;
-	public static boolean oreSilicon;
-	public static boolean oreAmber;
-	public static boolean oreCinnabar;
-	public static boolean oreCertusQuartz;
-	public static boolean oreSalt;
-	
 	//int
-	public static int sieveDifficulty = 0;
 	public static int StwtHDimension;
 	public static int nethDim;
 	public static int burnTimeFurnace;
@@ -46,6 +27,17 @@ public class Config {
 	public static int burnTimeHellfayah;
 	public static int burnTimeHellfayahBlock;
 	public static boolean iwantvanillaWater;
+	
+	//Ore
+	public static boolean shouldOreDictOreChunks;
+	public static boolean shouldOreDictOreDusts;
+	
+	//Sieve
+	public static boolean sievesAutoOutput;
+	public static boolean setFireToMacroUsers;
+	public static int sieveSimilarRadius;
+	public static boolean fakePlayersCanSieve;
+	public static boolean skyblockFeatures;
 	
 	public static void loadConfigs(File file){
 		Configuration config = new Configuration(file);
@@ -60,34 +52,26 @@ public class Config {
         freezeTimeFreezer = config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
         HolyEarth.EntityIDList = config.get("Tweak", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
         HolyEarth.EntityWaterID = config.get("Tweak", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
-        sieveDifficulty = config.get("Tweak", "Difficulty multiplier of the Sieve:", sieveDifficulty).getInt();
                 
         StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
         nethDim = config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();
         endDim = config.get("World", "To which Dimension shall an end portal send you back?", 0).getInt();
+        
+        //Ore
+		shouldOreDictOreChunks = config.get("Compatibilitiy", "OreDictOreChunks", true).getBoolean();
+		shouldOreDictOreDusts = config.get("Compatibilitiy", "OreDictOreDusts", true).getBoolean();
 
-        //Blocks        
-        oreCopper = config.get("Blocks", "Set to false to disable Copper Ore recipe?", true).getBoolean();
-    	oreTin = config.get("Blocks", "Set to false to disable Tin Ore recipe?", true).getBoolean();
-    	oreLead = config.get("Blocks", "Set to false to disable Lead recipe?", true).getBoolean();
-    	oreNickel = config.get("Blocks", "Set to false to disable Nickel Ore recipe?", true).getBoolean();
-    	orePlatinum = config.get("Blocks", "Set to false to disable Platinum Ore recipe?", true).getBoolean();
-    	oreSilver = config.get("Blocks", "Set to false to disable Silver Ore recipe?", true).getBoolean();
-    	oreUranium = config.get("Blocks", "Set to false to disable Uranium Ore recipe?", true).getBoolean();
-    	oreOsmium = config.get("Blocks", "Set to false to disable Osmium Ore recipe?", true).getBoolean();
-    	oreDraconium = config.get("Blocks", "Set to false to disable Draconium Ore recipe?", true).getBoolean();
-    	oreSulfur = config.get("Blocks", "Set to false to disable Sulfur Ore recipe?", true).getBoolean();
-    	oreAluminum = config.get("Blocks", "Set to false to disable Aluminum Ore recipe?", true).getBoolean();
-    	oreSilicon = config.get("Blocks", "Set to false to disable Silicon Ore recipe?", true).getBoolean();
-    	oreAmber = config.get("Blocks", "Set to false to disable Amber Ore recipe?", true).getBoolean();
-    	oreCinnabar = config.get("Blocks", "Set to false to disable Cinnabar Ore recipe?", true).getBoolean();
-    	oreCertusQuartz = config.get("Blocks", "Set to false to disable Certus Quartz Ore recipe?", true).getBoolean();
-    	oreSalt = config.get("Blocks", "Set to false to disable Salt Ore recipe?", true).getBoolean();
     	
         //Items
         lightCrystal = config.get("Items", "Set to false to disable Light Crystal recipe?", true).getBoolean();
         cookJerky = config.get("Items", "Set to false to disable Cooked Jerky recipe?", true).getBoolean();
-		
+        
+        ///Sieve
+        sievesAutoOutput = config.get("Sieving", "sievesAutoOutput", false).getBoolean();
+        setFireToMacroUsers = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
+        sieveSimilarRadius = config.get("Sieving", "sieveSimilarRadius", 2).getInt();
+        fakePlayersCanSieve = config.get("Mechanics", "fakePlayersCanSieve", false).getBoolean();
+        skyblockFeatures = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
         config.save();
 	}
 

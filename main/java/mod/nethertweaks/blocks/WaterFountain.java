@@ -9,8 +9,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import ibxm.Player;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
-import mod.nethertweaks.blocks.tileentities.TileEntityWaterFountain;
+import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileWaterFountain;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.helper.FluidHelper;
@@ -59,7 +59,7 @@ public class WaterFountain extends Block implements IVariantProvider{
     		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
     	if (worldIn.isBlockLoaded(pos)) {
-			TileEntityWaterFountain wf = (TileEntityWaterFountain) worldIn.getTileEntity(pos);
+			TileWaterFountain wf = (TileWaterFountain) worldIn.getTileEntity(pos);
 			ItemStack heldItem = StackUtils.getPlayerHandStack(playerIn, hand);
 			if (heldItem != null) {
 				if (heldItem.getItem() instanceof ItemFluidContainer) {
@@ -88,7 +88,7 @@ public class WaterFountain extends Block implements IVariantProvider{
     
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-    	TileEntityWaterFountain wf = (TileEntityWaterFountain) worldIn.getTileEntity(pos);
+    	TileWaterFountain wf = (TileWaterFountain) worldIn.getTileEntity(pos);
     	super.onBlockAdded(worldIn, pos, state);
     }
     
@@ -104,7 +104,7 @@ public class WaterFountain extends Block implements IVariantProvider{
     
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileEntityWaterFountain();
+		return new TileWaterFountain();
 	}
 
     public List<Pair<Integer, String>> getVariants()

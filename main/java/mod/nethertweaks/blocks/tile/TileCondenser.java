@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +46,12 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class TileEntityCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
+public class TileCondenser extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
 	private int amount;
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
-    public TileEntityCondenser(String field) {
+    public TileCondenser(String field) {
 		super(3, field, 16);
 		this.maxworkTime = Config.dryTimeCondenser;
 		this.lf.add(FluidRegistry.WATER);

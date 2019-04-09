@@ -1,30 +1,42 @@
 package mod.nethertweaks.network;
 
-import net.minecraft.advancements.critereon.BredAnimalsTrigger.Instance;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import mod.nethertweaks.NetherTweaksMod;
+import mod.sfhcore.Constants;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
-//The params of the IMessageHandler are <REQ, REPLY>
-//This means that the first param is the packet you are receiving, and the second is the packet you are returning.
-//The returned packet can be used as a "response" from a sent packet.
-public class NetworkHandlerNTM implements IMessageHandler<NetworkNTM, IMessage> {
-// Do note that the default constructor is required, but implicitly defined in this case
+public class NetworkHandlerNTM {
 	
-	@Override public IMessage onMessage(NetworkNTM message, MessageContext ctx) {
-		 // This is the player the packet was sent to the server from
-		 EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
-		 // The value that was sent
-		 int amount = message.getToSend();
-		 // Execute the action on the main server thread by adding it as a scheduled task
-		 serverPlayer.getServerWorld().addScheduledTask(() -> {
-			 
-		 //serverPlayer.inventory.addItemStackToInventory(new ItemStack(Items.DIAMOND, amount));
-		 });
-		 // No response packet
-		 return null;
+	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Constants.MOD);
+	private static int id = 0;
+	
+	public static void initPackets()
+	{
+		INSTANCE.registerMessage(MessageBarrelModeUpdate.MessageBarrelModeUpdateHandler.class, MessageBarrelModeUpdate.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageCompostUpdate.MessageCompostAmountUpdateHandler.class, MessageCompostUpdate.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageFluidLevelUpdate.MessageFluidLevelUpdateHandler.class, MessageFluidLevelUpdate.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageFluidUpdate.MessageFluidUpdateHandler.class, MessageFluidUpdate.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageNBTUpdate.MessageNBTUpdateHandler.class, MessageNBTUpdate.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageCheckLight.MessageCheckLightHandler.class, MessageCheckLight.class, id++, Side.CLIENT);
+	}
+	
+	public static void sendToAllAround(IMessage message, TileEntity te, int range) 
+	{
+		BlockPos pos = te.getPos();
+        INSTANCE.sendToAllAround(message, new TargetPoint(te.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), range));
+    }
+	
+	public static void sendToAllAround(IMessage message, TileEntity te) 
+	{
+        sendToAllAround(message, te, 64);
+    }
+	
+	public static void sendNBTUpdate(TileEntity te) {
+		sendToAllAround(new MessageNBTUpdate(te), te);
 	}
 }

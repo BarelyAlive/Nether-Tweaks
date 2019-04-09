@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityBonfire;
+import mod.nethertweaks.blocks.tile.TileBonfire;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -81,8 +81,8 @@ public class Bonfire extends BlockContainer {
 			if (playerIn.onGround && playerIn.dimension == -1) {
 				TileEntity bonfire = worldIn.getTileEntity(pos);
 
-				if (bonfire instanceof TileEntityBonfire) {
-					((TileEntityBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
+				if (bonfire instanceof TileBonfire) {
+					((TileBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
 				}
 			} 
 		}
@@ -94,8 +94,8 @@ public class Bonfire extends BlockContainer {
 	{
 		if (worldIn.isBlockLoaded(pos)) {
 			TileEntity bonfire = worldIn.getTileEntity(pos);
-			if (bonfire instanceof TileEntityBonfire) {
-				((TileEntityBonfire) bonfire).deleteSpawnLocationsIfDestroyed();
+			if (bonfire instanceof TileBonfire) {
+				((TileBonfire) bonfire).deleteSpawnLocationsIfDestroyed();
 			} 
 		}
 	}
@@ -157,7 +157,7 @@ public class Bonfire extends BlockContainer {
     
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-    	return new TileEntityBonfire();
+    	return new TileBonfire();
     }
 
 }

@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.container;
 
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
+import mod.nethertweaks.blocks.tile.TileBarrel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,9 +9,9 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerBarrel extends Container {
 	
-	private TileEntityBarrel tileEntity;
+	private TileBarrel tileEntity;
 	
-	public ContainerBarrel(InventoryPlayer inventoryPlayer, TileEntityBarrel te) {
+	public ContainerBarrel(InventoryPlayer inventoryPlayer, TileBarrel te) {
 		tileEntity = te;
 		
 		addSlotToContainer(new Slot(tileEntity, 0, 56, 18));

@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.container;
 
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,9 +14,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerCondenser extends ContainerBase {
 	
-	private TileEntityCondenser tileEntity;
+	private TileCondenser tileEntity;
 	
-	public ContainerCondenser(InventoryPlayer inventoryPlayer, TileEntityCondenser te) {
+	public ContainerCondenser(InventoryPlayer inventoryPlayer, TileCondenser te) {
 		super(te);
 		tileEntity = te;
 		

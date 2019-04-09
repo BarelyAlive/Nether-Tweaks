@@ -26,11 +26,11 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
-import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.BarrelMode;
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel.ExtractMode;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileBarrel.BarrelMode;
+import mod.nethertweaks.blocks.tile.TileBarrel.ExtractMode;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
@@ -70,7 +70,7 @@ public class Barrel extends BlockContainer
 			if (playerIn == null) {
 				return false;
 			}
-			TileEntityBarrel barrel = (TileEntityBarrel) worldIn.getTileEntity(pos);
+			TileBarrel barrel = (TileBarrel) worldIn.getTileEntity(pos);
 			if (barrel.getMode().canExtract == ExtractMode.Always) {
 				barrel.giveAppropriateItem();
 			} else if (playerIn.getHeldItemMainhand() != null) {
@@ -261,6 +261,6 @@ public class Barrel extends BlockContainer
 	
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityBarrel(getUnlocalizedName());
+		return new TileBarrel(getUnlocalizedName());
 	}
 }

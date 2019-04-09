@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.container;
 
-import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -17,7 +17,7 @@ public class ContainerNetherrackFurnace extends ContainerBase {
 	
 	private IInventory tileEntity;
 	
-	public ContainerNetherrackFurnace(InventoryPlayer playerInv, TileEntityNetherrackFurnace tileEntity2) {
+	public ContainerNetherrackFurnace(InventoryPlayer playerInv, TileNetherrackFurnace tileEntity2) {
 		super(tileEntity2);
 		tileEntity = tileEntity2;
 		

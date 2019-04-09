@@ -5,8 +5,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
-import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
@@ -113,7 +113,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 				} else {
 					TileEntity te = world.getTileEntity(pos);
 
-					if (te instanceof TileEntityNetherrackFurnace)
+					if (te instanceof TileNetherrackFurnace)
 						player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -157,6 +157,6 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityNetherrackFurnace("netherrack_furnace");
+        return new TileNetherrackFurnace("netherrack_furnace");
     }
 }

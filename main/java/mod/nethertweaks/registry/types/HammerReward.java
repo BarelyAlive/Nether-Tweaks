@@ -1,4 +1,4 @@
-package mod.nethertweaks.vars;
+package mod.nethertweaks.registry.types;
 
 import mod.nethertweaks.Config;
 import net.minecraft.block.Block;

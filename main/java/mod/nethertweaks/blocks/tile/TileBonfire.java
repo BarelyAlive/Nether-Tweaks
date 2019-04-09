@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,11 +22,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import scala.collection.script.Remove;
 
-public class TileEntityBonfire extends TileEntity {
+public class TileBonfire extends TileEntity {
 
 	private Map<UUID, BlockPos> spawnLocs;
 	
-	public TileEntityBonfire()
+	public TileBonfire()
 	{
 		this.spawnLocs = new HashMap<UUID, BlockPos>();
 		

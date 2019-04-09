@@ -26,13 +26,14 @@ import java.io.File;
 
 import mod.nethertweaks.blocks.HolyEarth;
 import mod.nethertweaks.compatibility.MinefactoryReloaded;
+import mod.nethertweaks.echantments.NTMEnchantments;
+import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.CompostHandler;
-import mod.nethertweaks.handler.SieveHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
@@ -40,6 +41,8 @@ import mod.nethertweaks.network.NetworkNTM;
 import mod.nethertweaks.registry.DryRegistry;
 import mod.nethertweaks.registry.HammerRegistry;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
+import mod.nethertweaks.registry.manager.OreRegistry;
+import mod.nethertweaks.registry.manager.SieveRegistry;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
@@ -47,19 +50,17 @@ import mod.sfhcore.Constants;
 import mod.sfhcore.handler.GuiHandler;
 import mod.sfhcore.util.LogUtil;
  
-@Mod(modid="nethertweaksmod", name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
+@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
 public class NetherTweaksMod {
-     
+    
+	public static final String MODID = "nethertweaksmod";
+	
     @Instance(value=Constants.MOD)
     public static NetherTweaksMod instance;
     
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel("nethertweaksmod");
     static
-    {
-    	// Network
-        int id = 0;
-        INSTANCE.registerMessage(NetworkHandlerNTM.class, NetworkNTM.class, id++, Side.SERVER);
-        
+    {      
     	FluidRegistry.enableUniversalBucket();
     }
     
@@ -80,22 +81,25 @@ public class NetherTweaksMod {
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
     @Mod.EventHandler
-    public void PreInit(FMLPreInitializationEvent event){
-    	LogUtil.setup();
-    	
-    	configDirectory = new File(event.getModConfigurationDirectory(), "nethertweaksmod");
+    public void PreInit(FMLPreInitializationEvent event){    	
+    	configDirectory = new File(event.getModConfigurationDirectory(), NetherTweaksMod.MODID);
     	configDirectory.mkdirs();
+    	
+    	LogUtil.setup(MODID, configDirectory);
     	
     	Config.loadConfigs(new File(configDirectory, "NetherTweaksMod.cfg"));
     	
         BlockHandler.init();
         ItemHandler.init();
         BucketNFluidHandler.init();
+        NTMEntities.init();
+        
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         
     	defaultRecipes = new NTMDefaultRecipes();
     	
+    	MinecraftForge.EVENT_BUS.register(new NTMEnchantments());
     	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
     	
         //GUI
@@ -107,7 +111,6 @@ public class NetherTweaksMod {
     	loadConfigs();
         //handler recipes
         CompostHandler.load();
-        SieveHandler.load();       
         //needs to be checked
         RecipeHandler.load();
     }
@@ -124,5 +127,7 @@ public class NetherTweaksMod {
     {
     	DryRegistry.loadJson(new File(configDirectory, "DryRegistry.json"));
     	HammerRegistry.loadJson(new File(configDirectory, "HammerRegistry.json"));
+    	SieveRegistry.loadJson(new File(configDirectory, "SieveRegistry.json"));
+    	OreRegistry.loadJson(new File(configDirectory, "OreRegistry.json"));
     }
 }

@@ -29,8 +29,8 @@ import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registry.manager.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.RegistryManager;
-import mod.nethertweaks.vars.Dryable;
-import mod.nethertweaks.vars.HammerReward;
+import mod.nethertweaks.registry.types.Dryable;
+import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.ItemInfo;
 
 public class DryRegistry {

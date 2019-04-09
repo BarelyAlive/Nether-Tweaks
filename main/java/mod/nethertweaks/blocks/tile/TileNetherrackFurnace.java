@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import javax.annotation.Nullable;
 
@@ -49,10 +49,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityNetherrackFurnace extends TileEntityBase{
+public class TileNetherrackFurnace extends TileEntityBase{
     
 	
-    public TileEntityNetherrackFurnace(String field) {
+    public TileNetherrackFurnace(String field) {
 		super(2, field);
 		this.maxworkTime = Config.burnTimeFurnace;
 	}

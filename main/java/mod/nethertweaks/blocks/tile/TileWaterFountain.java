@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -9,12 +9,12 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Enumeration.Val;
 import scala.Int;
 
-public class TileEntityWaterFountain extends TileEntity implements IFluidHandler, IFluidTank{
+public class TileWaterFountain extends TileEntity implements IFluidHandler, IFluidTank{
 	
 	private FluidStack fullStack2 = new FluidStack(FluidRegistry.WATER, Int.MaxValue());
 	private FluidTank tank = new FluidTank(getFullStack2(), Int.MaxValue());
 	
-	  public TileEntityWaterFountain()
+	  public TileWaterFountain()
 		{
 		  FluidStack fullStack = new FluidStack(FluidRegistry.WATER, Int.MaxValue());
 		  tank.setCanDrain(true);

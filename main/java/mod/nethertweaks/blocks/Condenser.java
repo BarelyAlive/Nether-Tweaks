@@ -8,11 +8,10 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tileentities.TileEntityBarrel;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
-import mod.nethertweaks.blocks.tileentities.TileEntityNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -72,7 +71,7 @@ public class Condenser extends CubeContainerHorizontal{
 				} else {
 					TileEntity te = world.getTileEntity(pos);
 
-					if (te instanceof TileEntityCondenser)
+					if (te instanceof TileCondenser)
 						player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -89,6 +88,6 @@ public class Condenser extends CubeContainerHorizontal{
     
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityCondenser(INames.TECONDENSER);
+        return new TileCondenser(INames.TECONDENSER);
     }
 }

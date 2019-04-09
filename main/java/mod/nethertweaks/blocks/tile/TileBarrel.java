@@ -1,4 +1,4 @@
-package mod.nethertweaks.blocks.tileentities;
+package mod.nethertweaks.blocks.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -34,10 +34,10 @@ import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.CompostHandler;
 import mod.nethertweaks.items.*;
-import mod.nethertweaks.vars.Compostable;
+import mod.nethertweaks.registry.types.Compostable;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 
-public class TileEntityBarrel extends TileEntityFluidBase implements net.minecraft.util.ITickable{	
+public class TileBarrel extends TileEntityFluidBase implements net.minecraft.util.ITickable{	
 	private static final float MIN_RENDER_CAPACITY = 0.1f;
 	private static final float MAX_RENDER_CAPACITY = 0.9f;
 	private static final int MAX_COMPOSTING_TIME = 1000;
@@ -93,7 +93,7 @@ public class TileEntityBarrel extends TileEntityFluidBase implements net.minecra
 		this.needsUpdate = true;
 	}
 
-	public TileEntityBarrel(String name)
+	public TileBarrel(String name)
 	{
 		super(1, name, 8000);
 		setMode(BarrelMode.EMPTY);

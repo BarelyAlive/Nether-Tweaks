@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.container;
 
-import mod.nethertweaks.blocks.tileentities.TileEntityFreezer;
+import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerFreezer extends ContainerBase {
 	
-	private TileEntityFreezer tileEntity;
+	private TileFreezer tileEntity;
 	
-	public ContainerFreezer(InventoryPlayer inventoryPlayer, TileEntityFreezer te) {
+	public ContainerFreezer(InventoryPlayer inventoryPlayer, TileFreezer te) {
 		super(te);
 		tileEntity = te;
 		

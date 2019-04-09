@@ -7,15 +7,15 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerCondenser;
-import mod.nethertweaks.blocks.tileentities.TileEntityCondenser;
+import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.Constants;
 
 public class GuiCondenser extends GuiContainer {
 	private int xSize, ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/guicondenser.png");
-	private TileEntityCondenser entity;
+	private TileCondenser entity;
 	
-	public GuiCondenser(InventoryPlayer inventoryPlayer, TileEntityCondenser tileEntity) {
+	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {
         super(new ContainerCondenser(inventoryPlayer, tileEntity));
         entity = tileEntity;
    		xSize = 175;
