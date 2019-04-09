@@ -34,22 +34,22 @@ public class CustomOreJson implements JsonDeserializer<Ore>, JsonSerializer<Ore>
     	return obj;
     }
 
-    @Throws(JsonParseException::class)
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Ore {
-        val helper = JsonHelper(json)
+    @Override
+    public Ore deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException{
+        JsonHelper helper = new JsonHelper(json);
 
-        val name = helper.getString("name")
-        val color = context.deserialize<Color>(json.asJsonObject.get("color"), Color::class.java)
-        val ingot =
+        String name = helper.getString("name");
+        Color color = context.deserialize(json.getAsJsonObject().get("color"), Color.class);
+        ItemInfo ingot =
                 if(json.asJsonObject.has("result")) //Backwards compat
-                    context.deserialize<ItemInfo>(json.asJsonObject.get("result"), ItemInfo::class.java)
+                    context.deserialize<ItemInfo>(json.asJsonObject.get("result"), ItemInfo.class);
                 else if(json.asJsonObject.has("ingot"))
-                    context.deserialize<ItemInfo>(json.asJsonObject.get("ingot"), ItemInfo::class.java)
+                    context.deserialize<ItemInfo>(json.asJsonObject.get("ingot"), ItemInfo.class);
                 else
                     null
-        val dust =
+        ItemInfo dust =
                 if(json.asJsonObject.has("dust"))
-                    context.deserialize<ItemInfo>(json.asJsonObject.get("dust"), ItemInfo::class.java)
+                    context.deserialize<ItemInfo>(json.asJsonObject.get("dust"), ItemInfo.class);
                 else
                     null
 
