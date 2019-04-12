@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/ender_crystal"
+      "layer0": "nethertweaksmod:items/Portal Core"
     }
 }

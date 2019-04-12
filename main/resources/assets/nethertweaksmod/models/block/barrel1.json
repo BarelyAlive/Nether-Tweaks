@@ -1,5 +1,5 @@
 {
-    "parent": "nethertwaksmod:block/barrel0",
+    "parent": "nethertweaksmod:block/barrel0",
     "textures": {
         "particle": "minecraft:blocks/stone",
         "texture": "minecraft:blocks/stone"
