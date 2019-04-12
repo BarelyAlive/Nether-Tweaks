@@ -29,10 +29,11 @@ public class ItemPebble extends Item
     
     public ItemPebble()
     {
-        setUnlocalizedName("itemPebble");
-        setRegistryName(NetherTweaksMod.MODID, "itemPebble");
+        setUnlocalizedName("item_pebble");
+        setRegistryName(NetherTweaksMod.MODID, "item_pebble");
         setCreativeTab(NetherTweaksMod.tabNTM);
         setHasSubtypes(true);
+        initModel();
     }
 
     @Override
@@ -43,7 +44,7 @@ public class ItemPebble extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list)
     {
-        for (int i = 0; i < names.size(); i++)
+        for (int i = 0; i < 4; i++)
         {
             list.add(new ItemStack(this, 1, i));
         }
@@ -77,7 +78,7 @@ public class ItemPebble extends Item
         for (int i = 0; i < names.size(); i++)
         {
             String variant = "type=" + names.get(i);
-            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation("exnihiloadscensio:itemPebble", variant));
+            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation("nethertweaksmod:item_pebble", variant));
         }
     }
     

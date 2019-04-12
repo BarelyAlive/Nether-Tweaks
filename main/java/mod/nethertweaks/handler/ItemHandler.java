@@ -46,7 +46,7 @@ public class ItemHandler implements INames{
     
     //Multi ID Item
 	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 13, new ResourceLocation(NTM, INames.ITEMBASE));
-	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation(NTM, INames.OREMATERIAL));
+	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
     public static final Item COOKEDJERKY = new CookedJerky(6, 1.0F, true);

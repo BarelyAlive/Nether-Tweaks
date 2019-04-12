@@ -14,8 +14,8 @@
       "ore": "cobblestone"
     },
     "y": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "item_base",
+      "data": 12
     }
   }
 }

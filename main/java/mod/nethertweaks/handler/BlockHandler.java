@@ -51,19 +51,10 @@ public class BlockHandler implements INames{
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
     
-    public static final Block OREGOLDGRAVEL = new CubeFalling(Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDGRAVEL));
-    public static final Block OREIRONGRAVEL = new CubeFalling(Material.GROUND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONGRAVEL));
-    public static final Block OREGOLDSAND = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDSAND));
-    public static final Block OREIRONSAND = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONSAND));
     public static final Block OREGOLDDUST = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDDUST));
     public static final Block OREIRONDUST = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONDUST));
     
-    public static final Block OREGRAVEL = new BlockEnumFalling(Material.GROUND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREGRAVEL), NetherTweaksMod.tabNTM);
-    public static final Block ORESAND = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.ORESAND), NetherTweaksMod.tabNTM);
-    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREDUST), NetherTweaksMod.tabNTM);
-    
-    public static final ItemBlock ITEMOREGRAVEL = new ItemBlockEnumFalling((BlockEnumFalling) OREGRAVEL);
-    public static final ItemBlock ITEMORESAND = new ItemBlockEnumFalling((BlockEnumFalling) ORESAND);
+    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREDUST), NetherTweaksMod.tabNTM);   
     public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling((BlockEnumFalling) OREDUST);
     
     public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), NetherTweaksMod.tabNTM);
@@ -108,15 +99,9 @@ public class BlockHandler implements INames{
         Registry.registerBlock(HOLYEARTH);
         Registry.registerBlock(MEANVINE);       
         Registry.registerBlock(DOORNTMSTONE);
-        Registry.registerBlock(DOORNTMOBSIDIAN);
-        Registry.registerBlock(OREGOLDGRAVEL);
-        Registry.registerBlock(OREIRONGRAVEL);        
-        Registry.registerBlock(OREGOLDSAND);
-        Registry.registerBlock(OREIRONSAND);        
+        Registry.registerBlock(DOORNTMOBSIDIAN);       
         Registry.registerBlock(OREGOLDDUST);
         Registry.registerBlock(OREIRONDUST);
-        Registry.registerBlock(ITEMOREGRAVEL);
-        Registry.registerBlock(ITEMORESAND);
         Registry.registerBlock(ITEMOREDUST);   
         Registry.registerBlock(CONDENSER);
         Registry.registerBlock(NETHERRACKFURNACE);

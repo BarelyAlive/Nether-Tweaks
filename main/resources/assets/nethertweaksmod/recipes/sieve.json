@@ -10,16 +10,16 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "s": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "item_base",
+      "data": 12
     },
     "x": {
       "type": "forge:ore_dict",
-      "ore": "plankWood"
+      "ore": "stone"
     },
     "y": {
       "type": "forge:ore_dict",
-      "ore": "slabWood"
+      "ore": "slabCobblestone"
     }
   }
 }
