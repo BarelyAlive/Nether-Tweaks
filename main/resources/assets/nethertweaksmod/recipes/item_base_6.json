@@ -1,21 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX",
     "XYX",
-    "XXX"
+    "YZY",
+    "XYX"
   ],
   "key": {
     "X": {
-      "item": "minecraft:potion"
+      "item": "item_base",
+      "data": 5
     },
     "Y": {
-      "item": "minecraft:coal",
-      "data": 0
+      "item": "minecraft:gold_ingot"
+    },
+    "Z": {
+      "item": "minecraft:nether_star"
     }
   },
   "result": {
     "item": "item_base",
-    "data": 6
+    "data": 7
   }
 }

@@ -80,7 +80,8 @@ public class Sieve extends Block implements ITileEntityProvider{
 
 	public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
 	
-	public Sieve() {
+	public Sieve()
+	{
 		super(Material.ROCK);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 		setUnlocalizedName(INames.SIEVE);

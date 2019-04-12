@@ -19,7 +19,7 @@ public class FluidStateMapper extends StateMapperBase implements ItemMeshDefinit
 	public FluidStateMapper(Fluid fluid) {
 		this.fluid = fluid;
 
-		this.location = new ModelResourceLocation(new ResourceLocation(NetherTweaksMod.MODID, "fluid_block"), fluid.getName());
+		this.location = new ModelResourceLocation(new ResourceLocation(NetherTweaksMod.MODID, "demon_water"), fluid.getName());
 	}
 
 	@Nonnull

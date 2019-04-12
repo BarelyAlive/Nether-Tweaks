@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.echantments.NTMEnchantments;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registry.manager.SieveRegistry;
+import mod.nethertweaks.registry.SieveRegistry;
 import mod.nethertweaks.registry.types.Siftable;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -51,30 +51,36 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileSieve extends TileEntity {
 	
-	private BlockInfo currentStack;
-	
-	public BlockInfo getCurrentStack()
-	{
-		return currentStack;
-	}
-	
-	private byte progress = 0;
-	
-	public byte getProgress()
-	{
-		return progress;
-	}
-	
-	private ItemStack meshStack;
-	
-	public ItemStack getMeshStack()
-	{
-		return meshStack;
-	}
-	
+	private BlockInfo currentStack;	
+	private byte progress = 0;	
+	private ItemStack meshStack;	
 	private long lastSieveAction = 0;
 	private UUID lastPlayer;
 	
+	public BlockInfo getCurrentStack() {
+		return currentStack;
+	}
+
+	public byte getProgress() {
+		return progress;
+	}
+
+	public ItemStack getMeshStack() {
+		return meshStack;
+	}
+
+	public long getLastSieveAction() {
+		return lastSieveAction;
+	}
+
+	public UUID getLastPlayer() {
+		return lastPlayer;
+	}
+
+	public static Random getRand() {
+		return rand;
+	}
+
 	private static Random rand = new Random();
 	
 	public TileSieve() {}

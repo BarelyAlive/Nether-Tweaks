@@ -7,12 +7,11 @@ ChangeLog NTM 2.0.0
 * Freezers now have water tanks too and can have a redstone signal from anything
 * Condensers and netherrack furnaces do respect the temperature of the (hot) fluid below for their worktime
 * Condenser and freezer now have a new GUI
-* Condenser recipes, Hammer rewards & siftable items are now editable via JSON
+* Condenser recipes, barrel recipes, Hammer rewards & siftable items are now editable via JSON
 * Holy Earth now spawns 1.12.2 mobs and works a little bit slower
 * FlintNBlaze now is twice as durable
 * Hammers are now more durable
 * Tidied code up
-* Added API for support of condenser items (water), barrel items (compost) and sievable things
 * Changed icon of creative tab
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld

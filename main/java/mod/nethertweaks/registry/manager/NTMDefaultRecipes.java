@@ -4,10 +4,18 @@ import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.items.ItemOre;
+import mod.nethertweaks.items.ItemPebble;
+import mod.nethertweaks.registry.CompostRegistry;
 import mod.nethertweaks.registry.CondenserRegistry;
+import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
+import mod.nethertweaks.registry.FluidOnTopRegistry;
+import mod.nethertweaks.registry.FluidTransformRegistry;
 import mod.nethertweaks.registry.HammerRegistry;
-import mod.nethertweaks.registry.OreRegistry;
+import mod.nethertweaks.registry.SieveRegistry;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,12 +24,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, ICondenserDefaultRegistryProvider, ISieveDefaultRegistryProvider{
+public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, ICondenserDefaultRegistryProvider, ISieveDefaultRegistryProvider, ICompostDefaultRegistryProvider,
+											IFluidBlockDefaultRegistryProvider, IFluidOnTopDefaultRegistryProvider, IFluidTransformDefaultRegistryProvider{
 
 	public NTMDefaultRecipes() {
 		NTMRegistryManager.registerHammerDefaultRecipeHandler(this);
 		NTMRegistryManager.registerCondenserDefaultRecipeHandler(this);
 		NTMRegistryManager.registerSieveDefaultRecipeHandler(this);
+		NTMRegistryManager.registerCompostDefaultRecipeHandler(this);
+		NTMRegistryManager.registerFluidBlockDefaultRecipeHandler(this);
+		NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(this);
+		NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(this);
 	}
 
 	@Override
@@ -68,12 +81,12 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.BLAZE_POWDER, 0), 0.05f, MeshType.IRON.getID());
 
 		// Ores
-		for (ItemOre ore : OreRegistry.getItemOreRegistry())
-		{
-			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.FLINT.getID());
-			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.IRON.getID());
-			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.1f, MeshType.DIAMOND.getID());
-		}
+//		for (ItemOre ore : OreRegistry.getItemOreRegistry())
+//		{
+//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.FLINT.getID());
+//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.IRON.getID());
+//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.1f, MeshType.DIAMOND.getID());
+//		}
 
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEEDGRASS, 0), 0.05f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.MUSHROOMSPORES, 0), 0.05f, MeshType.STRING.getID());
@@ -157,4 +170,104 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 			CondenserRegistry.register(sap, 125);
 		}
 	}
+	
+	public void registerCompostRecipeDefaults() {
+		IBlockState dirtState = Blocks.DIRT.getDefaultState();
+
+		CompostRegistry.register(Items.ROTTEN_FLESH, 0, 0.1f, dirtState, new Color("C45631"));
+
+		CompostRegistry.register(Blocks.SAPLING, 0, 0.125f, dirtState, new Color("35A82A"));
+		CompostRegistry.register(Blocks.SAPLING, 1, 0.125f, dirtState, new Color("2E8042"));
+		CompostRegistry.register(Blocks.SAPLING, 2, 0.125f, dirtState, new Color("6CC449"));
+		CompostRegistry.register(Blocks.SAPLING, 3, 0.125f, dirtState, new Color("22A116"));
+		CompostRegistry.register(Blocks.SAPLING, 4, 0.125f, dirtState, new Color("B8C754"));
+		CompostRegistry.register(Blocks.SAPLING, 5, 0.125f, dirtState, new Color("378030"));
+
+		CompostRegistry.register(Blocks.LEAVES, 0, 0.125f, dirtState, new Color("35A82A"));
+		CompostRegistry.register(Blocks.LEAVES, 1, 0.125f, dirtState, new Color("2E8042"));
+		CompostRegistry.register(Blocks.LEAVES, 2, 0.125f, dirtState, new Color("6CC449"));
+		CompostRegistry.register(Blocks.LEAVES, 3, 0.125f, dirtState, new Color("22A116"));
+		CompostRegistry.register(Blocks.LEAVES2, 0, 0.125f, dirtState, new Color("B8C754"));
+		CompostRegistry.register(Blocks.LEAVES2, 1, 0.125f, dirtState, new Color("378030"));
+
+		CompostRegistry.register(Items.SPIDER_EYE, 0, 0.08f, dirtState, new Color("963E44"));
+
+		CompostRegistry.register(Items.WHEAT, 0, 0.08f, dirtState, new Color("E3E162"));	
+		CompostRegistry.register(Items.WHEAT_SEEDS, 0, 0.08f, dirtState, new Color("35A82A"));
+		CompostRegistry.register(Items.BREAD, 0, 0.16f, dirtState, new Color("D1AF60"));
+
+		CompostRegistry.register(Blocks.YELLOW_FLOWER, 0, 0.10f, dirtState, new Color("FFF461"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 0, 0.10f, dirtState, new Color("FF1212"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 1, 0.10f, dirtState, new Color("33CFFF"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 2, 0.10f, dirtState, new Color("F59DFA"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 3, 0.10f, dirtState, new Color("E3E3E3"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 4, 0.10f, dirtState, new Color("FF3D12"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 5, 0.10f, dirtState, new Color("FF7E29"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 6, 0.10f, dirtState, new Color("FFFFFF"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 7, 0.10f, dirtState, new Color("F5C4FF"));
+		CompostRegistry.register(Blocks.RED_FLOWER, 8, 0.10f, dirtState, new Color("E9E9E9"));
+
+		CompostRegistry.register(Blocks.DOUBLE_PLANT, 0, 0.10f, dirtState, new Color("FFDD00"));
+		CompostRegistry.register(Blocks.DOUBLE_PLANT, 1, 0.10f, dirtState, new Color("FCC7F0"));
+		CompostRegistry.register(Blocks.DOUBLE_PLANT, 4, 0.10f, dirtState, new Color("FF1212"));
+		CompostRegistry.register(Blocks.DOUBLE_PLANT, 5, 0.10f, dirtState, new Color("F3D2FC"));
+
+		CompostRegistry.register(Blocks.BROWN_MUSHROOM, 0, 0.10f, dirtState, new Color("CFBFB6"));
+		CompostRegistry.register(Blocks.RED_MUSHROOM, 0, 0.10f, dirtState, new Color("D6A8A5"));
+
+		CompostRegistry.register(Items.PUMPKIN_PIE, 0, 0.16f, dirtState, new Color("E39A6D"));
+
+		CompostRegistry.register(Items.PORKCHOP, 0, 0.2f, dirtState, new Color("FFA091"));
+		CompostRegistry.register(Items.COOKED_PORKCHOP, 0, 0.2f, dirtState, new Color("FFFDBD"));
+
+		CompostRegistry.register(Items.BEEF, 0, 0.2f, dirtState, new Color("FF4242"));
+		CompostRegistry.register(Items.COOKED_BEEF, 0, 0.2f, dirtState, new Color("80543D"));
+
+		CompostRegistry.register(Items.CHICKEN, 0, 0.2f, dirtState, new Color("FFE8E8"));
+		CompostRegistry.register(Items.COOKED_CHICKEN, 0, 0.2f, dirtState, new Color("FA955F"));
+
+		CompostRegistry.register(Items.FISH, 0, 0.15f, dirtState, new Color("6DCFB3"));
+		CompostRegistry.register(Items.COOKED_FISH, 0, 0.15f, dirtState, new Color("D8EBE5"));
+
+		CompostRegistry.register(Items.FISH, 1, 0.15f, dirtState, new Color("FF2E4A"));
+		CompostRegistry.register(Items.COOKED_FISH, 1, 0.15f, dirtState, new Color("E87A3F"));
+
+		CompostRegistry.register(Items.FISH, 2, 0.15f, dirtState, new Color("FF771C"));
+		CompostRegistry.register(Items.FISH, 3, 0.15f, dirtState, new Color("DBFAFF"));
+
+		CompostRegistry.register(Items.APPLE, 0, 0.10f, dirtState, new Color("FFF68F"));
+		CompostRegistry.register(Items.MELON, 0, 0.04f, dirtState, new Color("FF443B"));
+		CompostRegistry.register(Blocks.MELON_BLOCK, 0, 1.0f / 6, dirtState, new Color("FF443B"));
+		CompostRegistry.register(Blocks.PUMPKIN, 0, 1.0f / 6, dirtState, new Color("FFDB66"));
+		CompostRegistry.register(Blocks.LIT_PUMPKIN, 0, 1.0f / 6, dirtState, new Color("FFDB66"));
+
+		CompostRegistry.register(Blocks.CACTUS, 0, 0.10f, dirtState, new Color("DEFFB5"));
+
+		CompostRegistry.register(Items.CARROT, 0, 0.08f, dirtState, new Color("FF9B0F"));
+		CompostRegistry.register(Items.POTATO, 0, 0.08f, dirtState, new Color("FFF1B5"));
+		CompostRegistry.register(Items.BAKED_POTATO, 0, 0.08f, dirtState, new Color("FFF1B5"));
+		CompostRegistry.register(Items.POISONOUS_POTATO, 0, 0.08f, dirtState, new Color("E0FF8A"));
+
+		CompostRegistry.register(Blocks.WATERLILY, 0, 0.10f, dirtState, new Color("269900"));
+		CompostRegistry.register(Blocks.VINE, 0, 0.10f, dirtState, new Color("23630E"));
+		CompostRegistry.register(Blocks.TALLGRASS, 1, 0.08f, dirtState, new Color("23630E"));
+		CompostRegistry.register(Items.EGG, 0, 0.08f, dirtState, new Color("FFFA66"));
+		CompostRegistry.register(Items.NETHER_WART, 0, 0.10f, dirtState, new Color("FF2B52"));
+		CompostRegistry.register(Items.REEDS, 0, 0.08f, dirtState, new Color("9BFF8A"));
+		CompostRegistry.register(Items.STRING, 0, 0.04f, dirtState, Util.whiteColor);
+	}
+	
+	public void registerFluidBlockRecipeDefaults() {
+		FluidBlockTransformerRegistry.register(FluidRegistry.WATER, new ItemInfo(new ItemStack(BlockHandler.DUST)), new ItemInfo(new ItemStack(Blocks.CLAY)));
+		FluidBlockTransformerRegistry.register(FluidRegistry.LAVA, new ItemInfo(new ItemStack(Items.REDSTONE)), new ItemInfo(new ItemStack(Blocks.NETHERRACK)));
+		FluidBlockTransformerRegistry.register(FluidRegistry.LAVA, new ItemInfo(new ItemStack(Items.GLOWSTONE_DUST)), new ItemInfo(new ItemStack(Blocks.END_STONE)));
+	}
+	
+	public void registerFluidTransformRecipeDefaults() {
+	}
+	
+	public void registerFluidOnTopRecipeDefaults() {
+		FluidOnTopRegistry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new ItemInfo(Blocks.OBSIDIAN.getDefaultState()));
+		FluidOnTopRegistry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new ItemInfo(Blocks.COBBLESTONE.getDefaultState()));
+}
 }

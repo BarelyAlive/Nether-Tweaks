@@ -52,7 +52,7 @@ public class HolyEarth extends Cube{
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if(!worldIn.isRemote && !worldIn.getBlockState(pos.add(0, 1, 0)).isOpaqueCube() 
-				&& worldIn.getBlockState(pos.add(0, 1, 0)) != BucketNFluidHandler.blockDemonWater){
+				&& worldIn.getBlockState(pos.add(0, 1, 0)) != BucketNFluidHandler.BLOCKDEMONWATER){
 			if(spawnTick <= 0){
 				spawnSec = rand.nextInt(5);
 				spawnTick = (spawnSec*20) + (minSpawnSec*20);
@@ -62,7 +62,7 @@ public class HolyEarth extends Cube{
 				EntityID = rand.nextInt(EntityIDList.length);
 
 				for(int id : EntityWaterID) {
-					if(worldIn.getBlockState(pos.add(0, 1, 0)) == BucketNFluidHandler.blockDemonWater && id == EntityID) {
+					if(worldIn.getBlockState(pos.add(0, 1, 0)) == BucketNFluidHandler.BLOCKDEMONWATER && id == EntityID) {
 						ent = EntityList.createEntityByID(EntityIDList[EntityID], worldIn);
 						ent.setLocationAndAngles(pos.getX()+0.5d, pos.getY()+1.0d, pos.getZ()+0.5d, MathHelper.wrapDegrees(180.0F), state.getBlockHardness(worldIn, pos));
 						
@@ -88,7 +88,7 @@ public class HolyEarth extends Cube{
 			}
 			spawnTick--;
 		}
-		if(worldIn.getBlockState(pos) != BucketNFluidHandler.blockDemonWater) {
+		if(worldIn.getBlockState(pos) != BucketNFluidHandler.BLOCKDEMONWATER) {
 			if(worldIn.getBlockState(pos.add(0, 1, 0)).isSideSolid(worldIn, pos, EnumFacing.UP)){
 				worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 			}

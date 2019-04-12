@@ -1,883 +1,284 @@
 package mod.nethertweaks.blocks.tile;
 
-import net.minecraft.block.Block;
+import java.util.ArrayList;
+
+import mod.nethertweaks.Config;
+import mod.nethertweaks.barrel.BarrelFluidHandler;
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.barrel.modes.block.BarrelItemHandlerBlock;
+import mod.nethertweaks.blocks.BlockBarrel;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
+import mod.nethertweaks.network.MessageCheckLight;
+import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.nethertweaks.registry.BarrelModeRegistry;
+import mod.nethertweaks.registry.BarrelModeRegistry.TriggerType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.EnumFaceDirection;
-import net.minecraft.client.renderer.texture.ITickable;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.capability.FluidTankProperties;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import mod.nethertweaks.blocks.*;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.CompostHandler;
-import mod.nethertweaks.items.*;
-import mod.nethertweaks.registry.types.Compostable;
-import mod.sfhcore.tileentities.TileEntityFluidBase;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
 
-public class TileBarrel extends TileEntityFluidBase implements net.minecraft.util.ITickable{	
-	private static final float MIN_RENDER_CAPACITY = 0.1f;
-	private static final float MAX_RENDER_CAPACITY = 0.9f;
-	private static final int MAX_COMPOSTING_TIME = 1000;
-	private static final int MAX_FLUID = 1000;
-	private static final int UPDATE_INTERVAL = 10;
+public class TileBarrel extends TileEntity implements ITickable {
 
-	private static final int MOSS_SPREAD_X_POS = 2;
-	private static final int MOSS_SPREAD_X_NEG = -2;
-	private static final int MOSS_SPREAD_Y_POS = 2;
-	private static final int MOSS_SPREAD_Y_NEG = -1;
-	private static final int MOSS_SPREAD_Z_POS = 2;
-	private static final int MOSS_SPREAD_Z_NEG = -2;
-
-	public enum BarrelMode
-	{
-		EMPTY(0, ExtractMode.None), 
-		FLUID(1, ExtractMode.None), 
-		COMPOST(2, ExtractMode.None), 
-		DIRT(3, ExtractMode.Always), 
-		CLAY(4, ExtractMode.Always), 
-		SPORED(5, ExtractMode.None), 
-		SLIME(6, ExtractMode.Always), 
-		ENDSTONE(7, ExtractMode.Always),
-		MILKED(8, ExtractMode.None), 
-		OBSIDIAN(9, ExtractMode.Always),
-		COBBLESTONE(10, ExtractMode.Always),
-		OAK(11, ExtractMode.Always);
-
-		private BarrelMode(int v, ExtractMode extract){this.value = v; this.canExtract = extract;}
-		public int value;
-		public ExtractMode canExtract;
-	}
-
-	public enum ExtractMode
-	{
-		None,
-		Always;
-	}
-
-	public FluidStack fluid;
-	private float volume;
-	private int timer;
-	private BarrelMode mode;
-
-	private boolean needsUpdate = false;
-	private int updateTimer = 0;
-
-	public BarrelMode getMode() {
+	private IBarrelMode mode;
+	private BarrelItemHandlerBlock itemHandler;
+	private BarrelFluidHandler tank;
+	private int tier;
+	
+	public IBarrelMode getMode() {
 		return mode;
 	}
-	public void setMode(BarrelMode mode) {
+
+	public BarrelItemHandlerBlock getItemHandler() {
+		return itemHandler;
+	}
+
+	public BarrelFluidHandler getTank() {
+		return tank;
+	}
+
+	public int getTier() {
+		return tier;
+	}
+
+	public TileBarrel()
+	{
+	    this((BlockBarrel) BlockHandler.BARREL);
+	}
+	
+	public TileBarrel(BlockBarrel block)
+	{
+	    this.tier = block.getTier();
+	    this.blockType = block;
+		itemHandler = new BarrelItemHandlerBlock(this);
+		tank = new BarrelFluidHandler(this);
+	}
+
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        if (mode == null || mode.getName().equals("fluid"))
+        {
+            ItemStack stack = player.getHeldItemMainhand();
+            boolean result = FluidUtil.interactWithFluidHandler(player, player.getActiveHand(), this.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side));
+
+            if (result)
+            {
+            	NetworkHandlerNTM.sendNBTUpdate(this);
+                if(getBlockType().getLightValue(state, world, pos) != world.getLight(pos))
+                {
+                    world.checkLight(pos);
+                    NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+                }
+                
+                return true;
+            }
+            
+            //Check for more fluid
+            IFluidHandler tank = (IFluidHandler) this.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+            FluidStack bucketStack = FluidUtil.getFluidContained(stack);
+            FluidStack tankStack = tank.drain(Integer.MAX_VALUE, false);
+            if (bucketStack != null && tankStack != null 
+            		&& bucketStack.getFluid() == tankStack.getFluid()
+            		&& tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
+            	tank.drain(Fluid.BUCKET_VOLUME, true);
+               	FluidUtil.getFluidHandler(stack);
+               	NetworkHandlerNTM.sendNBTUpdate(this);
+            }
+        }
+        
+        if (mode == null)
+        {
+            if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
+            {
+                ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
+                ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
+                if (modes == null)
+                    return false;
+                for (IBarrelMode possibleMode : modes)
+                {
+                    if (possibleMode.isTriggerItemStack(stack))
+                    {
+                        setMode(possibleMode.getName());
+                        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
+                        mode.onBlockActivated(world, this, pos, state, player, side, hitX, hitY, hitZ);
+                        this.markDirty();
+                        this.world.setBlockState(pos, state);
+                        
+                        if(getBlockType().getLightValue(state, world, pos) != world.getLight(pos))
+                        {
+                            world.checkLight(pos);
+                            NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+                        }
+                        
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            mode.onBlockActivated(world, this, pos, state, player, side, hitX, hitY, hitZ);
+            
+            if(getBlockType().getLightValue(state, world, pos) != world.getLight(pos))
+            {
+                world.checkLight(pos);
+                NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+            }
+            
+            return true;
+        }
+        
+        return true;
+    }
+
+	@Override
+	public void update()
+	{
+		if (world.isRemote)
+			return;
+
+		if (Config.shouldBarrelsFillWithRain && (mode == null || mode.getName() == "fluid")) {
+			BlockPos plusY = new BlockPos(pos.getX(), pos.getY()+1, pos.getZ());
+			if(world.isRainingAt(plusY)) {
+				FluidStack stack = new FluidStack(FluidRegistry.WATER, 2);
+				tank.fill(stack, true);
+			}
+		}
+		if (mode != null)
+			mode.update(this);
+        
+		if(getBlockType().getLightValue(world.getBlockState(pos), world, pos) != world.getLight(pos))
+        {
+            world.checkLight(pos);
+            NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+        }
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag)
+	{
+		tank.writeToNBT(tag);
+
+		if (mode != null)
+		{
+			NBTTagCompound barrelModeTag = new NBTTagCompound();
+			mode.writeToNBT(barrelModeTag);
+			barrelModeTag.setString("name", mode.getName());
+			tag.setTag("mode", barrelModeTag);
+		}
+
+		NBTTagCompound handlerTag = itemHandler.serializeNBT();
+		tag.setTag("itemHandler", handlerTag);
+		tag.setInteger("barrelTier", tier);
+		
+		return super.writeToNBT(tag);
+
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		tank.readFromNBT(tag);
+		if (tag.hasKey("mode"))
+		{
+			NBTTagCompound barrelModeTag = (NBTTagCompound) tag.getTag("mode");
+			this.setMode(barrelModeTag.getString("name"));
+			if (mode != null)
+				mode.readFromNBT(barrelModeTag);
+		}
+
+		if (tag.hasKey("itemHandler"))
+		{
+			itemHandler.deserializeNBT((NBTTagCompound) tag.getTag("itemHandler"));
+		}
+		
+		if(tag.hasKey("barrelTier"))
+		{
+		    tier = tag.getInteger("barrelTier");
+		}
+		super.readFromNBT(tag);
+	}
+
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+
+		return new SPacketUpdateTileEntity(this.pos, this.getBlockMetadata(), tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+	{
+		NBTTagCompound tag = pkt.getNbtCompound();
+		readFromNBT(tag);
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag()
+	{
+		NBTTagCompound tag = writeToNBT(new NBTTagCompound());
+		return tag;
+	}
+
+	public void setMode(String modeName)
+	{
+		try 
+		{
+			if (modeName.equals("null"))
+				mode = null;
+			else
+				mode = BarrelModeRegistry.getModeByName(modeName).getClass().newInstance();
+			this.markDirty();
+		} catch (Exception e)
+		{
+			e.printStackTrace(); //Naughty
+		}
+	}
+
+	public void setMode(IBarrelMode mode)
+	{
 		this.mode = mode;
-		this.needsUpdate = true;
+		this.markDirty();
 	}
 
-	public TileBarrel(String name)
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 	{
-		super(1, name, 8000);
-		setMode(BarrelMode.EMPTY);
-		volume = 0;
-		timer = 0;
-		fluid = new FluidStack(FluidRegistry.WATER, 0);
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		{
+			return (T) itemHandler;
+		}
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return (T) tank;
+
+		return super.getCapability(capability, facing);
 	}
 
 	@Override
-    public void update() {
-		//XXX Barrel state logic.
-				if (updateTimer >= UPDATE_INTERVAL)
-				{
-					updateTimer = 0;
-					if (needsUpdate)
-					{
-						needsUpdate = false;
-						world.markBlockRangeForRenderUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ(), this.pos.getX(), this.pos.getY(), this.pos.getZ());
-					}
-				}
-				else
-				{
-					updateTimer++;
-				}
-
-				switch(this.getMode())
-				{
-				case EMPTY:
-					//Handle Rain
-					if (!world.isRemote && world.isRaining() && this.pos.getY() >= world.getBiomeForCoordsBody(pos).getRainfall())
-					{
-						fluid = new FluidStack(FluidRegistry.WATER, 0);
-						setMode(BarrelMode.FLUID);
-					}
-					break;
-
-				case FLUID:
-					//WATER!
-					if (fluid.getFluid() == FluidRegistry.WATER)
-					{
-						//Handle Rain
-						if (!world.isRemote && !isFull() && world.isRaining() && this.pos.getY() >= world.getTopSolidOrLiquidBlock(pos).getY() - 1 && world.getBiomeForCoordsBody(pos).getRainfall() > 0.0f)
-						{
-							volume += world.getBiomeForCoordsBody(pos).getRainfall() / (float)1000;
-
-							if (volume > 1)
-							{
-								volume = 1;
-							}
-
-							fluid.amount = (int)(MAX_FLUID * volume);
-							needsUpdate = true;
-						}
-
-						//Check for spores.
-						if(!world.isRemote && isFull() && world.getBlockState(pos.add(0, -1, 0)) == Blocks.MYCELIUM.getDefaultState())
-						{
-							setMode(BarrelMode.SPORED);
-							needsUpdate = true;
-						}
-
-						//Turn into cobblestone?
-						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock())
-						{
-							setMode(BarrelMode.COBBLESTONE);
-						}
-
-						//Spread moss.
-						if(!world.isRemote && fluid.amount > 0 && world.getBlockState(pos).getMaterial().getCanBurn() && world.rand.nextInt(500) == 0)
-						{
-							int x = this.pos.getX() + (world.rand.nextInt(MOSS_SPREAD_X_POS - MOSS_SPREAD_X_NEG + 1) + MOSS_SPREAD_X_NEG);
-							int y = this.pos.getY() + (world.rand.nextInt(MOSS_SPREAD_Y_POS - MOSS_SPREAD_Y_NEG + 1) + MOSS_SPREAD_Y_NEG);
-							int z = this.pos.getZ() + (world.rand.nextInt(MOSS_SPREAD_Z_POS - MOSS_SPREAD_Z_NEG + 1) + MOSS_SPREAD_Z_NEG);
-							int lightLevel = world.getBlockState(pos.add(0, 1, 0)).getLightValue(getWorld(), pos);
-
-							if(!world.isAirBlock(pos) && world.getTopSolidOrLiquidBlock(pos).getY() > y && lightLevel >= 9 && lightLevel <= 11)
-							{
-								Block selected = world.getBlockState(pos).getBlock();
-								int meta = blockType.getMetaFromState(this.blockType.getDefaultState());
-
-								if (selected == Blocks.STONEBRICK && meta == 0)
-								{
-									world.setBlockState(pos, Blocks.STONEBRICK.getDefaultState(), 3);
-									drain(100, true);
-								}
-
-								if (selected == Blocks.COBBLESTONE)
-								{
-									world.setBlockState(pos, Blocks.MOSSY_COBBLESTONE.getDefaultState(), 3);
-									drain(100, true);
-								}
-							}
-						}
-						
-						if(fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
-							if(world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.LAVA.getBlock()){
-								setMode(BarrelMode.COBBLESTONE);
-							}
-						}
-					}
-
-					//LAVA!
-					if (fluid.getFluid() == FluidRegistry.LAVA)
-					{
-						//Burn the barrel it is flammable.
-						if(world.getBlockState(pos).getMaterial().getCanBurn())
-						{
-							timer++;
-							if (timer % 30 == 0)
-							{
-								world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
-							}
-
-							if (timer % 5 == 0)
-							{
-								world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double)this.pos.getX() + Math.random(), (double)this.pos.getY() + 1.2D, (double)this.pos.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);
-							}
-
-							if (timer >= 400)
-							{
-								timer = 0;
-								if (fluid.amount < 1000)
-								{
-									//burn
-									world.setBlockState(pos.add(0, 2, 0), Blocks.FIRE.getDefaultState());
-									return;
-								}
-								else
-								{
-									//spit lava on the ground
-									world.setBlockState(pos, Blocks.LAVA.getDefaultState(), 3);
-									return;
-								}	
-							}
-						}
-						
-						//Demon Water
-						if(fluid.getFluid() == BucketNFluidHandler.fluidDemonWater){
-							needsUpdate = true;
-							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-						}
-						
-						//Turn into obsidian
-						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == FluidRegistry.WATER.getBlock())
-						{
-							setMode(BarrelMode.OBSIDIAN);
-						}
-						if (isFull() && world.getBlockState(pos.add(0, 1, 0)) == BucketNFluidHandler.blockDemonWater)
-						{
-							setMode(BarrelMode.OBSIDIAN);
-						}
-					}
-					break;
-
-				case COMPOST:
-					if (volume >= 1.0F)
-					{
-						System.out.println("Bin am kompostieren");
-						timer++;
-
-						//Are we done yet?
-						if(timer >= this.MAX_COMPOSTING_TIME)
-						{
-							this.setMode(BarrelMode.DIRT);
-							timer = 0;
-							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-						}
-					}
-					break;
-
-				case MILKED:
-					timer++;
-
-					if (isDone())
-					{
-						timer = 0;
-						setMode(BarrelMode.SLIME);
-						world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-					}
-					break;
-
-				case SPORED:
-					int nearbyMYCELIUM = getNearbyBlocks(Blocks.MYCELIUM.getDefaultState());
-
-					timer += 1 + (nearbyMYCELIUM / 2);
-
-					if(!world.isRemote && nearbyMYCELIUM > 0)
-					{
-						//Spawn Mushrooms
-						for (int x = -2; x <= 2; x++)
-						{
-							for (int y = -1; y <= 1; y++)
-							{
-								for (int z = -2; z <= 2; z++)
-								{
-									if(world.getBlockState(pos.add(x, y, z)) == Blocks.MYCELIUM && world.isAirBlock(pos.add(x, y, z +1)) && world.rand.nextInt(1500) == 0)
-									{
-										int choice = world.rand.nextInt(2);
-
-										if (choice == 0)
-											world.setBlockState(pos.add(x, y+1, z), Blocks.BROWN_MUSHROOM.getDefaultState(), 3);
-										if (choice == 1)
-											world.setBlockState(pos.add(x, y+1, z), Blocks.RED_MUSHROOM.getDefaultState(), 3);
-									}
-								}
-							}
-						}
-					}
-
-				default:
-					break;
-				}
-			}
-
-			public boolean addCompostItem(Compostable item)
-			{
-				if (getMode() == BarrelMode.EMPTY)
-				{
-					setMode(BarrelMode.COMPOST);
-					timer = 0;
-				}
-
-				if (getMode() == BarrelMode.COMPOST && volume < 1.0f)
-				{
-					volume += item.value;
-
-					if (volume > 1.0f)
-					{
-						volume = 1.0f;
-					}
-
-					world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-					needsUpdate = true;
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-	}
-
-	public boolean isFull()
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing)
 	{
-		if (volume >= 1.0f)
-		{
-			return true;
-		}else
-		{
-			return false;
-		}
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
+				capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
+				super.hasCapability(capability, facing);
 	}
 
-	public boolean isDone()
-	{
-		return timer >= MAX_COMPOSTING_TIME;
-	}
-
-	public void giveAppropriateItem()
-	{
-		giveItem(getExtractItem());
-	}
-
-	private void giveItem(ItemStack item)
-	{
-		if(!world.isRemote)
-		{
-			EntityItem entityitem = new EntityItem(world, (double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 1.5D, (double)this.pos.getZ() + 0.5D, item);
-
-			double f3 = 0.05F;
-			entityitem.motionX = world.rand.nextGaussian() * f3;
-			entityitem.motionY = (0.2d);
-			entityitem.motionZ = world.rand.nextGaussian() * f3;
-
-			world.spawnEntity(entityitem);
-
-			timer = 0;
-		}
-
-		resetBarrel();
-	}
-
-	private ItemStack getExtractItem()
-	{
-		//XXX getExtractItem
-		switch (this.getMode())
-		{
-		case CLAY:
-			return new ItemStack(Blocks.CLAY, 1, 0);
-
-		case DIRT:
-			return new ItemStack(Blocks.DIRT, 1, 0);
-
-		case ENDSTONE:
-			return new ItemStack(Blocks.END_STONE, 1, 0);
-
-		case SLIME:
-			return new ItemStack(Items.SLIME_BALL, 1 + world.rand.nextInt(4));
-
-		case OBSIDIAN:
-			return new ItemStack(Blocks.OBSIDIAN, 1, 0);
-
-		case COBBLESTONE:
-			return new ItemStack(Blocks.COBBLESTONE, 1, 0);
-
-		case OAK:
-			return new ItemStack(Blocks.SAPLING, 1, world.rand.nextInt(6));
-			
-		default:
-			return null;
-		}
-	}
-	
-	public float getVolume() {
-		return volume;
-	}
-	
-	public int getTimer() {
-		return timer;
-	}
-
-	public float getAdjustedVolume()
-	{
-		float capacity = MAX_RENDER_CAPACITY - MIN_RENDER_CAPACITY;
-		float adjusted = volume * capacity;		
-		adjusted += MIN_RENDER_CAPACITY;
-		return adjusted;
-	}
-
-	private void resetBarrel()
-	{
-		fluid = new FluidStack(FluidRegistry.WATER, 0);
-		volume = 0;
-		setMode(BarrelMode.EMPTY);
-		needsUpdate = true;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-
-		switch (compound.getInteger("mode"))
-		{
-		case 0:
-			setMode(BarrelMode.EMPTY);
-			break;
-
-		case 1:
-			setMode(BarrelMode.FLUID);
-			break;
-
-		case 2:
-			setMode(BarrelMode.COMPOST);
-			break;
-
-		case 3:
-			setMode(BarrelMode.DIRT);
-			break;	
-
-		case 4:
-			setMode(BarrelMode.CLAY);
-			break;
-
-		case 5:
-			setMode(BarrelMode.SPORED);
-			break;
-
-		case 6:
-			setMode(BarrelMode.SLIME);
-			break;	
-
-		case 7:
-			setMode(BarrelMode.ENDSTONE);
-			break;	
-
-		case 8:
-			setMode(BarrelMode.MILKED);
-			break;	
-
-		case 9:
-			setMode(BarrelMode.OBSIDIAN);
-			break;
-
-		case 10:
-			setMode(BarrelMode.COBBLESTONE);
-			break;
-			
-		case 11:
-			setMode(BarrelMode.OAK);
-			break;
-			
-		}
-
-		volume = compound.getFloat("volume");
-		timer = compound.getInteger("timer");
-		
-		fluid = new FluidStack(FluidRegistry.getFluid(compound.getString("fluid")), (int)(volume * MAX_FLUID));
-		needsUpdate = true;
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		super.writeToNBT(compound);
-		compound.setInteger("mode", getMode().value);
-		compound.setFloat("volume", volume);
-		compound.setInteger("timer", timer);
-		compound.setString("fluid", fluid.getFluid().toString());
-		return compound;
-	}
-
-
-
-	//IFluidHandler!
-
-	public int getNearbyBlocks(IBlockState block)
-	{
-		int count = 0;
-
-		for (int x = -1; x <= 1; x++)
-		{
-			for (int y = -1; y <= 1; y++)
-			{
-				for (int z = -1; z <= 1; z++)
-				{
-					if(world.getBlockState(pos.add(x, y, z)) == block)
-					{
-						count++;
-					}
-				}
-			}
-		}
-
-		return count;
-	}
-
-	public int getLightLevel()
-	{
-		if (getMode() == BarrelMode.FLUID)
-		{
-			return fluid.getFluid().getLuminosity();
-		}
-
-		return 0;
-	}
-
-
-
-	//ISidedInventory!
-	@Override
-	public int getSizeInventory() {
-		return 2;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		if (slot == 0)
-		{
-			return getExtractItem();
-		}
-
-		return null;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		if (slot == 0)
-		{
-			ItemStack item = getExtractItem();
-
-			resetBarrel();
-			return item;
-		}
-
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		//XXX addItemFromPipe
-		Item item = stack.getItem();
-		int meta = stack.getItemDamage();
-		
-		if (slot == 0)
-		{
-			if (item == null)
-			{
-				resetBarrel();
-			}
-		}
-
-		if (slot == 1)
-		{
-			if (getMode() == BarrelMode.COMPOST || getMode() == BarrelMode.EMPTY)
-			{
-				if(CompostHandler.containsItem(item, meta))
-				{
-					this.addCompostItem(CompostHandler.getItem(item, meta));
-				}
-			}
-
-			if(getMode() == BarrelMode.FLUID && this.isFull())
-			{
-				if(fluid.getFluid() == FluidRegistry.WATER)
-				{
-					if (Block.getBlockFromItem(item) == BlockHandler.DUST)
-					{
-						setMode(BarrelMode.CLAY);
-					}
-				}
-
-				if(fluid.getFluid() == FluidRegistry.LAVA)
-				{
-
-					if (item == Items.GLOWSTONE_DUST)
-					{
-						setMode(BarrelMode.ENDSTONE);
-					}
-					
-				}
-				
-			}
-		}
-
-		world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 1;
-	}
-
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d) < 64;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack item) {	
-		if (slot == 1)
-		{
-			return isItemValid(item);
-		}
-
-		return false;
-	}
-
-	public boolean isItemValid(ItemStack stack)
-	{
-		///XXX isItemValid
-		Item item = stack.getItem();
-		int meta = stack.getItemDamage();
-		
-		if (!this.isFull() && getMode() == BarrelMode.COMPOST || getMode() == BarrelMode.EMPTY)
-		{
-			if(CompostHandler.containsItem(item, meta))
-			{
-				return true;
-			}
-		}
-
-		if(getMode() == BarrelMode.FLUID && this.isFull())
-		{
-			if(fluid.getFluid() == FluidRegistry.WATER)
-			{
-				if (Block.getBlockFromItem(item) == BlockHandler.DUST)
-				{
-					return true;
-				}
-			}
-
-
-			if(fluid.getFluid() == FluidRegistry.LAVA)
-			{
-				if (item == Items.REDSTONE)
-				{
-					return true;
-				}
-
-				if (item == Items.GLOWSTONE_DUST)
-				{
-					return true;
-				}
-				
-			}
-			
-		}
-
-		return false;
-	}
-	//HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-	
-	@Override
-	public ITextComponent getDisplayName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public int[] getSlotsForFace(EnumFacing side) {
-		if (side == EnumFacing.UP)
-		{
-			return new int[]{0};
-		}else if (side == EnumFacing.DOWN)
-		{
-			return new int[]{1};
-		}
-
-		return new int[0];
-	}
-	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-		if (direction == EnumFacing.UP && index == 1)
-		{
-			return isItemValid(itemStackIn);
-		}
-
-		return false;
-	}
-	@Override
-	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-		if (direction == EnumFacing.UP && index == 0)
-		{
-			if (getMode().canExtract == ExtractMode.Always)
-			{
-				return true;
-			}
-
-		}
-
-		return false;
-	}
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		IFluidTankProperties[] prop = new IFluidTankProperties[fluid.amount];
-		return prop;
-	}
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		//Simulate the fill to see if there is room for incoming liquids.
-				int capacity = MAX_FLUID - fluid.amount;
-
-				if (!doFill)
-				{
-					if (getMode() == BarrelMode.EMPTY)
-					{
-						return resource.amount;
-					}
-
-					if (getMode() == BarrelMode.FLUID && resource.getFluid() == fluid.getFluid())
-					{
-						if (capacity >= resource.amount)
-						{
-							return resource.amount;
-						}else
-						{
-							return capacity;
-						}
-					}
-				}else
-					//Really fill the barrel.
-				{
-					if (getMode() == BarrelMode.EMPTY)
-					{
-						if (resource.getFluid() != fluid.getFluid())
-						{
-							fluid =  new FluidStack(resource.getFluid(),resource.amount);
-						}else
-						{
-							fluid.amount = resource.amount;
-						}
-						setMode(BarrelMode.FLUID);
-						volume = (float)fluid.amount / (float)MAX_FLUID;
-						world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-						//needsUpdate = true;
-						return resource.amount;
-					}
-
-					if (getMode() == BarrelMode.FLUID && resource.getFluid() == fluid.getFluid())
-					{
-						if (capacity >= resource.amount)
-						{
-							fluid.amount += resource.amount;
-							volume = (float)fluid.amount / (float)MAX_FLUID;
-							//worldObj.markBlockForUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-							needsUpdate = true;
-							return resource.amount;
-						}else
-						{
-							fluid.amount = MAX_FLUID;
-							volume = 1.0f;
-							world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
-							//needsUpdate = true;
-							return capacity;
-						}
-					}
-				}
-
-				return 0;
-	}
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		if (resource == null || getMode() != BarrelMode.FLUID || !resource.isFluidEqual(fluid))
-			return null;
-
-		if (!doDrain)
-		{
-			if (fluid.amount >= resource.amount)
-			{
-				FluidStack simulated = new FluidStack(resource.getFluid(),resource.amount);
-				return simulated;
-			}else
-			{
-				FluidStack simulated = new FluidStack(resource.getFluid(),fluid.amount);
-				return simulated;
-			}
-		}else
-		{
-			if (fluid.amount > resource.amount)
-			{
-				FluidStack drained = new FluidStack(resource.getFluid(),resource.amount);
-				fluid.amount -= resource.amount;
-				volume = (float)fluid.amount / (float)MAX_FLUID;
-				//worldObj.markBlockForUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-				needsUpdate = true;
-				//System.out.println("A Server: " + worldObj.isRemote + ". Amount: " + fluid.amount);
-				return drained;
-			}else
-			{
-				FluidStack drained = new FluidStack(resource.getFluid(),fluid.amount);
-				fluid.amount = 0;
-				volume = 0;
-				setMode(BarrelMode.EMPTY);
-				timer = 0;
-				//worldObj.markBlockForUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-				needsUpdate = true;
-				//System.out.println("A Server: " + worldObj.isRemote + ". Amount: " + fluid.amount);
-				return drained;
-			}
-		}
-	}
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		if (getMode() != BarrelMode.FLUID)
-			return null;
-
-		if (!doDrain)
-		{
-			if (fluid.amount >= maxDrain)
-			{
-				FluidStack simulated = new FluidStack(fluid.getFluid(),maxDrain);
-				return simulated;
-			}else
-			{
-				FluidStack simulated = new FluidStack(fluid.getFluid(),fluid.amount);
-				return simulated;
-			}
-		}else
-		{
-			if (fluid.amount > maxDrain)
-			{
-				FluidStack drained = new FluidStack(fluid.getFluid(),maxDrain);
-				fluid.amount -= maxDrain;
-				volume = (float)fluid.amount / (float)MAX_FLUID;
-				//worldObj.markBlockForUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-				needsUpdate = true;
-				//System.out.println("B Server: " + worldObj.isRemote + ". Amount: " + fluid.amount);
-				return drained;
-			}else
-			{
-				FluidStack drained = new FluidStack(fluid.getFluid(),fluid.amount);
-				fluid.amount = 0;
-				volume = 0;
-				setMode(BarrelMode.EMPTY);
-				timer = 0;
-				//worldObj.markBlockForUpdate(this.pos.getX(), this.pos.getY(), this.pos.getZ());
-				needsUpdate = true;
-				//System.out.println("B Server: " + worldObj.isRemote + ". Amount: " + fluid.amount);
-				return drained;
-			}
-		}
-	}
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

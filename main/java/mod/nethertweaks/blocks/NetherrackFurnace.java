@@ -157,6 +157,6 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileNetherrackFurnace("netherrack_furnace");
+        return new TileNetherrackFurnace();
     }
 }

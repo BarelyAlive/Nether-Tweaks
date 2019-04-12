@@ -88,6 +88,6 @@ public class Condenser extends CubeContainerHorizontal{
     
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileCondenser(INames.TECONDENSER);
+        return new TileCondenser();
     }
 }

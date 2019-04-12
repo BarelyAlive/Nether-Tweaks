@@ -34,8 +34,8 @@ public class BlockHandler implements INames{
 	//Tile Entity
     public static final Block CONDENSER = new Condenser();
     public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
-    public static final Block BARREL = new Barrel();
-    public static final Block BARRELSTONE = new BarrelStone();
+    public static final Block BARREL = new BlockBarrel(0, Material.WOOD);
+    public static final Block BARRELSTONE = new BlockBarrel(1, Material.ROCK);
     public static final Block FREEZER = new Freezer();
     public static final Block BONFIRE = new Bonfire();
      
@@ -85,13 +85,12 @@ public class BlockHandler implements INames{
     private static void registerTileEntities()
     {
     	//Tile Entity
-    	RegisterTileEntity.add(BONFIRE, new TileBonfire());
-        RegisterTileEntity.add(CONDENSER, new TileCondenser(INames.TECONDENSER));
-        RegisterTileEntity.add(NETHERRACKFURNACE, new TileNetherrackFurnace(INames.TENETHERRACKFURNACE));
-        RegisterTileEntity.add(BARREL, new TileBarrel(INames.TEBARREL));
-        RegisterTileEntity.add(BARRELSTONE, new TileBarrel(INames.TEBARRELSTONE));
-        RegisterTileEntity.add(SIEVE, new TileSieve());
-        RegisterTileEntity.add(FREEZER, new TileFreezer(INames.TEFREEZER));
+    	RegisterTileEntity.add(BONFIRE, TileBonfire.class);
+        RegisterTileEntity.add(CONDENSER, TileCondenser.class);
+        RegisterTileEntity.add(NETHERRACKFURNACE, TileNetherrackFurnace.class);
+        RegisterTileEntity.add(BARREL, TileBarrel.class);
+        RegisterTileEntity.add(SIEVE, TileSieve.class);
+        RegisterTileEntity.add(FREEZER, TileFreezer.class);
     }
         
     //Registering all the blocks

@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "nethertweaksmod:item_mesh",
+    "data": 4
+  },
+  "pattern": [
+    "x x",
+    "xyx",
+    "x x"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:diamond"
+    },
+    "y": {
+      "item": "nethertweaksmod:item_mesh",
+      "data": 3
+    }
+  }
+}

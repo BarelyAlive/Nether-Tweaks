@@ -6,6 +6,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
@@ -52,8 +53,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TileNetherrackFurnace extends TileEntityBase{
     
 	
-    public TileNetherrackFurnace(String field) {
-		super(2, field);
+    public TileNetherrackFurnace() {
+		super(2, INames.TENETHERRACKFURNACE);
 		this.maxworkTime = Config.burnTimeFurnace;
 	}
 

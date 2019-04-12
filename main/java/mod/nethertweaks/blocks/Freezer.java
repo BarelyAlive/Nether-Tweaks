@@ -109,6 +109,6 @@ public class Freezer extends CubeContainerHorizontal{
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-	    return new TileFreezer(INames.TEFREEZER);
+	    return new TileFreezer();
 	}
 }

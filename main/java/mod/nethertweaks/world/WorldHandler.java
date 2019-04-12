@@ -107,14 +107,14 @@ public class WorldHandler{
 	    	if(event.getTarget() instanceof EntityCow){
 	    		int zahl = event.getEntityPlayer().inventory.getSlotFor(event.getItemStack());
 	    		
-		    	if(event.getItemStack().getItem() == BucketNFluidHandler.bucketStone){
+		    	if(event.getItemStack().getItem() == BucketNFluidHandler.BUCKETSTONE){
 		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
-		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneMilk, 1));
+		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEMILK, 1));
 		    	}else
 		    	
-		    	if(event.getItemStack().getItem() == BucketNFluidHandler.bucketWood){
+		    	if(event.getItemStack().getItem() == BucketNFluidHandler.BUCKETWOOD){
 		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
-		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodMilk, 1));
+		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODMILK, 1));
 		    	}
 	    	}
     	}

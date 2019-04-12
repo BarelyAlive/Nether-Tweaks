@@ -22,19 +22,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SuppressWarnings("deprecation")
 public class ItemOre extends Item {
 
-	private boolean registerIngot;
-	
-	public boolean isRegisterIngot()
-	{
-		return registerIngot;
-	}
-	
+	private boolean registerIngot;	
 	private Ore ore;
 	
+	public boolean isRegisterIngot() {
+		return registerIngot;
+	}
+
+	public void setRegisterIngot(boolean registerIngot) {
+		this.registerIngot = registerIngot;
+	}
+
 	public Ore getOre() {
 		return ore;
 	}
-	
+
+	public void setOre(Ore ore) {
+		this.ore = ore;
+	}
+
 	public ItemOre(Ore ore) {
 		super();
 

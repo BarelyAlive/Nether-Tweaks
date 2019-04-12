@@ -7,7 +7,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
-import mod.nethertweaks.blocks.tile.TileBarrel.BarrelMode;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -45,8 +45,8 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 	
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
-	public TileFreezer(String field) {
-		super(3, field, 16000);
+	public TileFreezer() {
+		super(3, INames.TEFREEZER, 16000);
 		maxworkTime = Config.freezeTimeFreezer;
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);

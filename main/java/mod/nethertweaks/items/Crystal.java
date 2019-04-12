@@ -29,6 +29,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.client.event.sound.SoundEvent.SoundSourceEvent;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 
 public class Crystal extends CustomItem{
@@ -55,15 +57,15 @@ public class Crystal extends CustomItem{
 		if(playerIn.isSneaking()){
 			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketDemonWater));
+				playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
 			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketStoneWater))){
-					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.bucketStoneWater, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketStoneDemonWater));
+			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
+					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEDMW));
 			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.bucketWoodWater))){
-				playerIn.inventory.clearMatchingItems(BucketNFluidHandler.bucketWoodWater, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.bucketWoodDemonWater));
+			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETWOODWATER))){
+				playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETWOODWATER, 0, 1, null);
+				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODDMW));
 			}
 		}
 		

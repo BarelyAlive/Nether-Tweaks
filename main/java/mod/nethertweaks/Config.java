@@ -12,12 +12,7 @@ public class Config {
 	//Booleans
 	public static boolean isEndPortalCraftable;
 	public static boolean disableStairwaytoHeaven;
-	public static boolean disableHammers;
-	
-	//Items
-	public static boolean lightCrystal;
-	public static boolean cookJerky;
-	
+		
 	//int
 	public static int StwtHDimension;
 	public static int nethDim;
@@ -38,6 +33,11 @@ public class Config {
 	public static int sieveSimilarRadius;
 	public static boolean fakePlayersCanSieve;
 	public static boolean skyblockFeatures;
+	
+	//Barrel
+	public static boolean shouldBarrelsFillWithRain;
+	public static boolean enableBarrelTransformLighting;
+	public static int compostingTicks;
 	
 	public static void loadConfigs(File file){
 		Configuration config = new Configuration(file);
@@ -60,11 +60,6 @@ public class Config {
         //Ore
 		shouldOreDictOreChunks = config.get("Compatibilitiy", "OreDictOreChunks", true).getBoolean();
 		shouldOreDictOreDusts = config.get("Compatibilitiy", "OreDictOreDusts", true).getBoolean();
-
-    	
-        //Items
-        lightCrystal = config.get("Items", "Set to false to disable Light Crystal recipe?", true).getBoolean();
-        cookJerky = config.get("Items", "Set to false to disable Cooked Jerky recipe?", true).getBoolean();
         
         ///Sieve
         sievesAutoOutput = config.get("Sieving", "sievesAutoOutput", false).getBoolean();
@@ -72,6 +67,12 @@ public class Config {
         sieveSimilarRadius = config.get("Sieving", "sieveSimilarRadius", 2).getInt();
         fakePlayersCanSieve = config.get("Mechanics", "fakePlayersCanSieve", false).getBoolean();
         skyblockFeatures = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
+        
+        //Barrel
+        shouldBarrelsFillWithRain = config.get("Mechanics", "barrelsFillWithRain", true).getBoolean();
+        compostingTicks = config.get("Composting", "ticksToFormDirt", 600).getInt();
+        enableBarrelTransformLighting = config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
+        
         config.save();
 	}
 

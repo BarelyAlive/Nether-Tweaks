@@ -17,6 +17,7 @@ import mod.nethertweaks.items.CookedJerky;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.HammerBase;
+import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.PickaxeNTM;
@@ -37,12 +38,14 @@ public class ItemHandler implements INames{
     public static final Item SANCTUARYCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.SANCTUARYCRYSTAL));
     public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
     public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
+    
     //NEW
     public static final Item PEBBLE = new ItemPebble();
     public static final Item MESH = new ItemMesh();
+    public static final Item DOLL = new ItemDoll();
     
     //Multi ID Item
-	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 15, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 13, new ResourceLocation(NTM, INames.ITEMBASE));
 	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
@@ -89,13 +92,15 @@ public class ItemHandler implements INames{
             Registry.registerItem(HAMMERDIAMOND);
             Registry.registerItem(HAMMERSTONE);
             
-            Registry.registerItem(FLINTANDBLAZE); 
+            Registry.registerItem(FLINTANDBLAZE);
+            Registry.registerItem(DOLL);
+            Registry.registerItem(MESH);
         }
         
         private static void addItemBurnTime()
         {
-        	CustomFuelhandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.bucketStoneLava), 18000);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH, 6400);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 64000);
+        	CustomFuelhandler.addFuelBurnTime(BucketNFluidHandler.BUCKETSTONELAVA.getRegistryName(), 18000);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), 6400);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), 64000);
         }
 }

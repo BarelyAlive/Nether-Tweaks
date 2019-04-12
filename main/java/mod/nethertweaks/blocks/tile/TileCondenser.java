@@ -51,8 +51,8 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 	private int amount;
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	
-    public TileCondenser(String field) {
-		super(3, field, 16);
+    public TileCondenser() {
+		super(3, INames.TECONDENSER, 16);
 		this.maxworkTime = Config.dryTimeCondenser;
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
