@@ -81,40 +81,6 @@ public class Konstanten {
     public static final ItemStack SALTBLOCK = new ItemStack(BlockHandler.BLOCKBASIC, 1, 2);
     
     //Ore blocks
-    public static final ItemStack OREGRAVELCOPPER = new ItemStack(BlockHandler.OREGRAVEL, 1, 0);
-	public static final ItemStack OREGRAVELTIN = new ItemStack(BlockHandler.OREGRAVEL, 1, 1);
-	public static final ItemStack OREGRAVELLEAD = new ItemStack(BlockHandler.OREGRAVEL, 1, 2);
-	public static final ItemStack OREGRAVELNICKEL = new ItemStack(BlockHandler.OREGRAVEL, 1, 3);
-	public static final ItemStack OREGRAVELPLATINUM = new ItemStack(BlockHandler.OREGRAVEL, 1, 4);
-	public static final ItemStack OREGRAVELSILVER = new ItemStack(BlockHandler.OREGRAVEL, 1, 5);
-	public static final ItemStack OREGRAVELURANIUM = new ItemStack(BlockHandler.OREGRAVEL, 1, 6);
-	public static final ItemStack OREGRAVELOSMIUM = new ItemStack(BlockHandler.OREGRAVEL, 1, 7);
-	public static final ItemStack OREGRAVELDRACONIUM = new ItemStack(BlockHandler.OREGRAVEL, 1, 8);
-	public static final ItemStack OREGRAVELSULFUR = new ItemStack(BlockHandler.OREGRAVEL, 1, 9);
-	public static final ItemStack OREGRAVELALUMINUM = new ItemStack(BlockHandler.OREGRAVEL, 1, 10);
-	public static final ItemStack OREGRAVELSILICON = new ItemStack(BlockHandler.OREGRAVEL, 1, 11);
-	public static final ItemStack OREGRAVELAMBER = new ItemStack(BlockHandler.OREGRAVEL, 1, 12);
-	public static final ItemStack OREGRAVELCINNABAR = new ItemStack(BlockHandler.OREGRAVEL, 1, 13);
-	public static final ItemStack OREGRAVELCERTUSQUARTZ = new ItemStack(BlockHandler.OREGRAVEL, 1, 14);
-	public static final ItemStack OREGRAVELSALT = new ItemStack(BlockHandler.OREGRAVEL, 1,15);
-	
-	public static final ItemStack ORESANDCOPPER = new ItemStack(BlockHandler.ORESAND, 1, 0);
-	public static final ItemStack ORESANDTIN = new ItemStack(BlockHandler.ORESAND, 1, 1);
-	public static final ItemStack ORESANDLEAD = new ItemStack(BlockHandler.ORESAND, 1, 2);
-	public static final ItemStack ORESANDNICKEL = new ItemStack(BlockHandler.ORESAND, 1, 3);
-	public static final ItemStack ORESANDPLATINUM = new ItemStack(BlockHandler.ORESAND, 1, 4);
-	public static final ItemStack ORESANDSILVER = new ItemStack(BlockHandler.ORESAND, 1, 5);
-	public static final ItemStack ORESANDURANIUM = new ItemStack(BlockHandler.ORESAND, 1, 6);
-	public static final ItemStack ORESANDOSMIUM = new ItemStack(BlockHandler.ORESAND, 1, 7);
-	public static final ItemStack ORESANDDRACONIUM = new ItemStack(BlockHandler.ORESAND, 1, 8);
-	public static final ItemStack ORESANDSULFUR = new ItemStack(BlockHandler.ORESAND, 1, 9);
-	public static final ItemStack ORESANDALUMINUM = new ItemStack(BlockHandler.ORESAND, 1, 10);
-	public static final ItemStack ORESANDSILICON = new ItemStack(BlockHandler.ORESAND, 1, 11);
-	public static final ItemStack ORESANDAMBER = new ItemStack(BlockHandler.ORESAND, 1, 12);
-	public static final ItemStack ORESANDCINNABAR = new ItemStack(BlockHandler.ORESAND, 1, 13);
-	public static final ItemStack ORESANDCERTUSQUARTZ = new ItemStack(BlockHandler.ORESAND, 1, 14);
-	public static final ItemStack ORESANDSALT = new ItemStack(BlockHandler.ORESAND, 1, 15);
-	
 	public static final ItemStack OREDUSTCOPPER = new ItemStack(BlockHandler.OREDUST, 1, 0);
 	public static final ItemStack OREDUSTTIN = new ItemStack(BlockHandler.OREDUST, 1, 1);
 	public static final ItemStack OREDUSTLEAD = new ItemStack(BlockHandler.OREDUST, 1, 2);
