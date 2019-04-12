@@ -1,4 +1,4 @@
-fluid.tile.demon_water=Demon Water
+fluid.demon_water=Demon Water
 
 tile.block_demon_water.name=Demon Water
 tile.condenser.name=Condenser
@@ -77,12 +77,10 @@ tile.ore_dust_15.name=Salt Ore
 
 generator.hellworld=Hellworld
 
-item.hammer.name=Wood Hammer
 item.cooked_jerky.name=Cooked Jerky
 item.pickaxe_netherrack.name=Netherrack Pickaxe
 item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 
-item.bucket_demon_water.name=Demon Water Bucket
 item.bucket_wood.name=Wood Bucket
 item.bucket_wood_water.name=Water Bucket
 item.bucket_wood_demon_water.name=Demon Water Bucket

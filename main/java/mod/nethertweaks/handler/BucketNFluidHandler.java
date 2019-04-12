@@ -52,16 +52,19 @@ public class BucketNFluidHandler {
 		public static final Item BUCKETSTONEMILK = new CustomBucketMilk(NetherTweaksMod.tabNTM, new ItemStack(BUCKETSTONE), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEMILK));
 
 	public static void init() {
-		registerBuckets();
-		doHelper();
+		registerFluids(); //1.
+		registerBuckets(); //2.
 	}
-		
-	private static void registerBuckets(){
-		
+	
+	private static void registerFluids()
+	{
 		//Fluids
 		Registry.registerBlock(BLOCKDEMONWATER);
 		((FluidDemonWater) FLUIDDEMONWATER).initModel();
 		FluidRegistry.addBucketForFluid(FLUIDDEMONWATER);
+	}
+		
+	private static void registerBuckets() {
 				
 		//Regular Buckets
 		Registry.registerItem(BUCKETSTONE);		
@@ -74,11 +77,6 @@ public class BucketNFluidHandler {
 		Registry.registerItem(BUCKETWOOD);		
 		Registry.registerItem(BUCKETWOODWATER);	
 		Registry.registerItem(BUCKETWOODDMW);
-		Registry.registerItem(BUCKETWOODMILK);		
+		Registry.registerItem(BUCKETWOODMILK);
 	}
-	
-	@SideOnly(Side.CLIENT)
-	private static void doHelper(){
-		InventoryRenderHelper.fluidRender(BLOCKDEMONWATER, NetherTweaksMod.MODID);
-    }
 }

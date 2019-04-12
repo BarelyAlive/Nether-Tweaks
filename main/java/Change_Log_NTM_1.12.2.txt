@@ -13,6 +13,7 @@ ChangeLog NTM 2.0.0
 * Hammers are now more durable
 * Tidied code up
 * Changed icon of creative tab
+* Demon Water is now as bright as lava! (makes it perfect for crops)
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage

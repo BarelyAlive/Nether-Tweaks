@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,7 +29,13 @@ public class FluidDemonWater extends Fluid{
 		setDensity(2000);
         setViscosity(2000);
 		setUnlocalizedName(INames.DEMONWATERFLUID);
+		setLuminosity(FluidRegistry.LAVA.getLuminosity());
 		FluidRegistry.registerFluid(this);
+	}
+	
+	@Override
+	public boolean doesVaporize(FluidStack fluidStack) {
+		return false;
 	}
 	
 	@SideOnly(Side.CLIENT)
