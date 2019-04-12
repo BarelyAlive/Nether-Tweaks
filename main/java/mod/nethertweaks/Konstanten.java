@@ -13,16 +13,14 @@ public class Konstanten {
 	public static final ItemStack CRUSHEDGOLD = new ItemStack(ItemHandler.ITEMBASE, 1, 2);
 	public static final ItemStack CRUSHEDIRON = new ItemStack(ItemHandler.ITEMBASE, 1, 3);
 	public static final ItemStack ENDBOX = new ItemStack(ItemHandler.ITEMBASE, 1, 4);
-	public static final ItemStack ENDERCRYSTAL = new ItemStack(ItemHandler.ITEMBASE, 1, 5);
-	public static final ItemStack PORTALCORE = new ItemStack(ItemHandler.ITEMBASE, 1, 6);
-	public static final ItemStack ENDERINFUSEDFRAME = new ItemStack(ItemHandler.ITEMBASE, 1, 7);
-	public static final ItemStack GOLDPILE = new ItemStack(ItemHandler.ITEMBASE, 1, 8);
-	public static final ItemStack HELLFAYAH = new ItemStack(ItemHandler.ITEMBASE, 1, 9);
-	public static final ItemStack POWDEROFLIGHT = new ItemStack(ItemHandler.ITEMBASE, 1, 10);
-	public static final ItemStack SALT = new ItemStack(ItemHandler.ITEMBASE, 1, 11);
-	public static final ItemStack SIEVEWEB = new ItemStack(ItemHandler.ITEMBASE, 1, 12);
-	public static final ItemStack IRONPILE = new ItemStack(ItemHandler.ITEMBASE, 1, 13);
-	public static final ItemStack STONEBAR = new ItemStack(ItemHandler.ITEMBASE, 1, 14);
+	public static final ItemStack PORTALCORE = new ItemStack(ItemHandler.ITEMBASE, 1, 5);
+	public static final ItemStack ENDERINFUSEDFRAME = new ItemStack(ItemHandler.ITEMBASE, 1, 6);
+	public static final ItemStack GOLDPILE = new ItemStack(ItemHandler.ITEMBASE, 1, 7);
+	public static final ItemStack HELLFAYAH = new ItemStack(ItemHandler.ITEMBASE, 1, 8);
+	public static final ItemStack POWDEROFLIGHT = new ItemStack(ItemHandler.ITEMBASE, 1, 9);
+	public static final ItemStack SALT = new ItemStack(ItemHandler.ITEMBASE, 1, 10);
+	public static final ItemStack IRONPILE = new ItemStack(ItemHandler.ITEMBASE, 1, 11);
+	public static final ItemStack STONEBAR = new ItemStack(ItemHandler.ITEMBASE, 1, 12);
 	
 	
 	//ItemStack Ore Material

@@ -1,6 +1,6 @@
 fluid.demon_water=Demon Water
 
-tile.block_demon_water.name=Demon Water
+tile.demon_water.name=Demon Water
 tile.condenser.name=Condenser
 tile.water_fountain.name=Water Fountain
 tile.netherrack_furnace.name=Netherrack Furnace
