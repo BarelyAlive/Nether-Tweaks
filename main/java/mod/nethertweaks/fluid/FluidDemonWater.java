@@ -10,8 +10,10 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -31,6 +33,11 @@ public class FluidDemonWater extends Fluid{
 		setUnlocalizedName(INames.DEMONWATERFLUID);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
 		FluidRegistry.registerFluid(this);
+	}
+	
+	@Override
+	public SoundEvent getEmptySound(FluidStack stack) {
+		return SoundEvents.ITEM_BUCKET_FILL;
 	}
 	
 	@Override

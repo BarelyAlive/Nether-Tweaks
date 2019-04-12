@@ -14,6 +14,7 @@ ChangeLog NTM 2.0.0
 * Tidied code up
 * Changed icon of creative tab
 * Demon Water is now as bright as lava! (makes it perfect for crops)
+* Demon Water now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage

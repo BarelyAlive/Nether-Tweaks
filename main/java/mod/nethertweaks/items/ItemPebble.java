@@ -9,6 +9,7 @@ import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -16,6 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -38,15 +41,15 @@ public class ItemPebble extends Item
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getUnlocalizedName() + "." + names.get(stack.getItemDamage());
+        return getUnlocalizedName() + "_" + names.get(stack.getItemDamage());
     }
     
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list)
-    {
-        for (int i = 0; i < 4; i++)
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+    	for (int i = 0; i < names.size(); i++)
         {
-            list.add(new ItemStack(this, 1, i));
+            items.add(new ItemStack(this, 1, i));
         }
     }
     
@@ -65,7 +68,7 @@ public class ItemPebble extends Item
             
             ProjectileStone projectile = new ProjectileStone(worldIn, playerIn);
             projectile.setStack(thrown);
-            projectile.setPositionAndRotation(playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 0.5F);
+            projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.0F, 1.0F);
             worldIn.spawnEntity(projectile);
         }
         
@@ -78,7 +81,7 @@ public class ItemPebble extends Item
         for (int i = 0; i < names.size(); i++)
         {
             String variant = "type=" + names.get(i);
-            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation("nethertweaksmod:item_pebble", variant));
+            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(new ResourceLocation(NetherTweaksMod.MODID, "item_pebble"), variant));
         }
     }
     

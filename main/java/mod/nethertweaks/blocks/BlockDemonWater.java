@@ -7,12 +7,22 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -38,6 +48,78 @@ public class BlockDemonWater extends BlockFluidClassic{
                 setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
                 setUnlocalizedName(INames.DEMOMWATERBLOCK);
                 setLightLevel(3);
+        }
+        
+        @Override
+        public boolean canDisplace(IBlockAccess world, BlockPos pos)
+        {
+        	if(world.getBlockState(pos) == BucketNFluidHandler.BLOCKDEMONWATER.getBlockState())
+        	{
+        		return true;
+        	}
+        	return false;
+        }
+        
+        @Override
+    	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    		
+    		if (world.isRemote)
+    			return;
+    		
+    		if (entity.isDead)
+    			return;
+    		
+    		if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {
+    			
+	            EntityPig entitypig = new EntityPig(world);
+	            entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
+	            entitypig.setNoAI(entitypig.isAIDisabled());
+
+	            if (entitypig.hasCustomName())
+	            {
+	                entitypig.setCustomNameTag(entitypig.getCustomNameTag());
+	                entitypig.setAlwaysRenderNameTag(entitypig.getAlwaysRenderNameTag());
+	            }
+	            entitypig.setHealth(entitypig.getMaxHealth());
+
+	           world.spawnEntity(entitypig);
+	           entity.setDead();
+    		}
+    		
+    		if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null) {
+    			
+	            EntitySkeleton skeleton = new EntitySkeleton(world);
+	            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+	            skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
+	            skeleton.setNoAI(skeleton.isAIDisabled());
+
+	            if (skeleton.hasCustomName())
+	            {
+	                skeleton.setCustomNameTag(skeleton.getCustomNameTag());
+	                skeleton.setAlwaysRenderNameTag(skeleton.getAlwaysRenderNameTag());
+	            }
+	            skeleton.setHealth(skeleton.getMaxHealth());
+
+	            world.spawnEntity(skeleton);
+	           	entity.setDead();
+    		}
+    		
+    		if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
+    			
+	            EntitySlime slime = new EntitySlime(world);
+	            slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
+	            slime.setNoAI(slime.isAIDisabled());
+
+	            if (slime.hasCustomName())
+	            {
+	                slime.setCustomNameTag(slime.getCustomNameTag());
+	                slime.setAlwaysRenderNameTag(slime.getAlwaysRenderNameTag());
+	            }
+	            slime.setHealth(slime.getMaxHealth());
+
+	            world.spawnEntity(slime);
+	            entity.setDead();
+    		}
         }
         
         @Override

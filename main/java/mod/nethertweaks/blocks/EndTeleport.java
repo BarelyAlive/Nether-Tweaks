@@ -34,17 +34,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class EndTeleport extends Cube{
+public class EndTeleport extends Block{
 	
-	int dimension;
+	private int dimension;
 	
 	public EndTeleport() {
-		super(Material.ROCK, 75.0F, 16.0F, 1, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.ENDTELEPORT));
+		super(Material.ROCK);
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
 		setUnlocalizedName(INames.ENDTELEPORT);
-		this.setTickRandomly(true);
+		setResistance(75.0F);
+		setHardness(16.0F);
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ENDTELEPORT));
+		setCreativeTab(NetherTweaksMod.tabNTM);
+		setTickRandomly(true);
 	}
 	
 	@Override

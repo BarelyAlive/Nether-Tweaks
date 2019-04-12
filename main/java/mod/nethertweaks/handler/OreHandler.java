@@ -20,11 +20,9 @@ import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 public class OreHandler implements INames{
     
-    public static final Block OREGRAVEL = new CubeFalling(16, Material.GROUND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREGRAVEL));
-    public static final Block ORESAND = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.ORESAND));
-    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.OREDUST));
+    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.OREDUST));
     
-    public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 51, new ResourceLocation("nethertweaksmod", OREMATERIAL));
+    public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NetherTweaksMod.MODID, OREMATERIAL));
     
     public static void init() {
     	registerOres();
@@ -32,8 +30,6 @@ public class OreHandler implements INames{
     
 	private static void registerOres(){
 		
-		Registry.registerBlock(OREGRAVEL);
-		Registry.registerBlock(ORESAND);
 		Registry.registerBlock(OREDUST);		
 	}
 }
