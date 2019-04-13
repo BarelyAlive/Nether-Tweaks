@@ -29,16 +29,10 @@ public interface INames {
 	public static final String BONFIRE 						= "bonfire";
 	public static final String MEANVINE 					= "mean_vine";
 	public static final String SIEVE 						= "sieve";
-	
-	public static final String OREGRAVEL 					= "ore_gravel";
-	public static final String ORESAND 						= "ore_sand";
+
 	public static final String OREDUST 						= "ore_dust";
 	
-	public static final String OREGOLDGRAVEL 				= "ore_gold_gravel";
-	public static final String OREGOLDSAND					= "ore_gold_sand";
 	public static final String OREGOLDDUST 					= "ore_gold_dust";
-	public static final String OREIRONGRAVEL 				= "ore_iron_gravel";
-	public static final String OREIRONSAND 					= "ore_iron_sand";
 	public static final String OREIRONDUST 					= "ore_iron_dust";
 	
 	public static final String BLOCKBASIC 					= "block_basic";
@@ -67,13 +61,11 @@ public interface INames {
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
 	public static final String OREMATERIAL 					= "ore_material";
 	public static final String CACTUSGRABBER 				= "item_cactus_grabber";
-	public static final String LENS 						= "lens";
 	public static final String SEEDGRASS 					= "seed_grass";
 	public static final String MUSHROOMSPORES 				= "mushroom_spores";
 	public static final String CACTUSSEED 					= "cactus_seed";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";
 	
-	public static final String SANCTUARYCRYSTAL 			= "sanctuary_crystal";
 	public static final String LIGHTCRYSTAL 				= "light_crystal";
 	public static final String ENDERCRYSTAL 				= "ender_crystal";
 	public static final String ITEMBASE 					= "item_base";

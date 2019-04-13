@@ -20,56 +20,23 @@ public class Konstanten {
 	
 	
 	//ItemStack Ore Material
-	public static final ItemStack CHUNKCOPPER = new ItemStack(ItemHandler.OREMATERIAL, 1, 0);
-	public static final ItemStack CHUNKTIN = new ItemStack(ItemHandler.OREMATERIAL, 1, 1);
-	public static final ItemStack CHUNKLEAD = new ItemStack(ItemHandler.OREMATERIAL, 1, 2);
-	public static final ItemStack CHUNKNICKEL = new ItemStack(ItemHandler.OREMATERIAL, 1, 3);
-	public static final ItemStack CHUNKPLATINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 4);
-	public static final ItemStack CHUNKSILVER = new ItemStack(ItemHandler.OREMATERIAL, 1, 5);
-	public static final ItemStack CHUNKURANIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 6);
-	public static final ItemStack CHUNKOSMIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 7);
-	public static final ItemStack CHUNKDRACONIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 8);
-	public static final ItemStack CHUNKSULFUR = new ItemStack(ItemHandler.OREMATERIAL, 1, 9);
-	public static final ItemStack CHUNKALUMINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 10);
-	public static final ItemStack CHUNKSILICON = new ItemStack(ItemHandler.OREMATERIAL, 1, 11);
-	public static final ItemStack CHUNKAMBER = new ItemStack(ItemHandler.OREMATERIAL, 1, 12);
-	public static final ItemStack CHUNKCINNABAR = new ItemStack(ItemHandler.OREMATERIAL, 1, 13);
-	public static final ItemStack CHUNKCERTUSQUARTZ = new ItemStack(ItemHandler.OREMATERIAL, 1, 14);
-	public static final ItemStack CHUNKSALT = new ItemStack(ItemHandler.OREMATERIAL, 1,15);
 	
-	public static final ItemStack CRUSHEDCOPPER = new ItemStack(ItemHandler.OREMATERIAL, 1, 16);
-	public static final ItemStack CRUSHEDTIN = new ItemStack(ItemHandler.OREMATERIAL, 1, 17);
-	public static final ItemStack CRUSHEDLEAD = new ItemStack(ItemHandler.OREMATERIAL, 1, 18);
-	public static final ItemStack CRUSHEDNICKEL = new ItemStack(ItemHandler.OREMATERIAL, 1, 19);
-	public static final ItemStack CRUSHEDPLATINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 20);
-	public static final ItemStack CRUSHEDSILVER = new ItemStack(ItemHandler.OREMATERIAL, 1, 21);
-	public static final ItemStack CRUSHEDURANIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 22);
-	public static final ItemStack CRUSHEDOSMIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 23);
-	public static final ItemStack CRUSHEDDRACONIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 24);
-	public static final ItemStack CRUSHEDSULFUR = new ItemStack(ItemHandler.OREMATERIAL, 1, 25);
-	public static final ItemStack CRUSHEDALUMINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 26);
-	public static final ItemStack CRUSHEDSILICON = new ItemStack(ItemHandler.OREMATERIAL, 1, 27);
-	public static final ItemStack CRUSHEDAMBER = new ItemStack(ItemHandler.OREMATERIAL, 1, 28);
-	public static final ItemStack CRUSHEDCINNABAR = new ItemStack(ItemHandler.OREMATERIAL, 1, 29);
-	public static final ItemStack CRUSHEDCERTUSQUARTZ = new ItemStack(ItemHandler.OREMATERIAL, 1, 30);
-	public static final ItemStack CRUSHEDSALT = new ItemStack(ItemHandler.OREMATERIAL, 1, 32);
-	
-	public static final ItemStack PILECOPPER = new ItemStack(ItemHandler.OREMATERIAL, 1, 33);
-	public static final ItemStack PILETIN = new ItemStack(ItemHandler.OREMATERIAL, 1, 34);
-	public static final ItemStack PILELEAD = new ItemStack(ItemHandler.OREMATERIAL, 1, 35);
-	public static final ItemStack PILENICKEL = new ItemStack(ItemHandler.OREMATERIAL, 1, 36);
-	public static final ItemStack PILEPLATINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 37);
-	public static final ItemStack PILESILVER = new ItemStack(ItemHandler.OREMATERIAL, 1, 38);
-	public static final ItemStack PILEURANIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 39);
-	public static final ItemStack PILEOSMIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 40);
-	public static final ItemStack PILEDRACONIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 41);
-	public static final ItemStack PILESULFUR = new ItemStack(ItemHandler.OREMATERIAL, 1, 42);
-	public static final ItemStack PILEALUMINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 43);
-	public static final ItemStack PILESILICON = new ItemStack(ItemHandler.OREMATERIAL, 1, 44);
-	public static final ItemStack PILEAMBER = new ItemStack(ItemHandler.OREMATERIAL, 1, 45);
-	public static final ItemStack PILECINNABAR = new ItemStack(ItemHandler.OREMATERIAL, 1, 46);
-	public static final ItemStack PILECERTUSQUARTZ = new ItemStack(ItemHandler.OREMATERIAL, 1, 47);
-	public static final ItemStack PILESALT = new ItemStack(ItemHandler.OREMATERIAL, 1, 48);
+	public static final ItemStack CRUSHEDCOPPER = new ItemStack(ItemHandler.OREMATERIAL, 1, 0);
+	public static final ItemStack CRUSHEDTIN = new ItemStack(ItemHandler.OREMATERIAL, 1, 1);
+	public static final ItemStack CRUSHEDLEAD = new ItemStack(ItemHandler.OREMATERIAL, 1, 2);
+	public static final ItemStack CRUSHEDNICKEL = new ItemStack(ItemHandler.OREMATERIAL, 1, 3);
+	public static final ItemStack CRUSHEDPLATINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 4);
+	public static final ItemStack CRUSHEDSILVER = new ItemStack(ItemHandler.OREMATERIAL, 1, 5);
+	public static final ItemStack CRUSHEDURANIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 6);
+	public static final ItemStack CRUSHEDOSMIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 7);
+	public static final ItemStack CRUSHEDDRACONIUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 8);
+	public static final ItemStack CRUSHEDSULFUR = new ItemStack(ItemHandler.OREMATERIAL, 1, 9);
+	public static final ItemStack CRUSHEDALUMINUM = new ItemStack(ItemHandler.OREMATERIAL, 1, 10);
+	public static final ItemStack CRUSHEDSILICON = new ItemStack(ItemHandler.OREMATERIAL, 1, 11);
+	public static final ItemStack CRUSHEDAMBER = new ItemStack(ItemHandler.OREMATERIAL, 1, 12);
+	public static final ItemStack CRUSHEDCINNABAR = new ItemStack(ItemHandler.OREMATERIAL, 1, 13);
+	public static final ItemStack CRUSHEDCERTUSQUARTZ = new ItemStack(ItemHandler.OREMATERIAL, 1, 14);
+	public static final ItemStack CRUSHEDSALT = new ItemStack(ItemHandler.OREMATERIAL, 1, 15);
 	
 	//Block BAsic
     public static final ItemStack HELLFAYAHORE = new ItemStack(BlockHandler.BLOCKBASIC, 1, 0);

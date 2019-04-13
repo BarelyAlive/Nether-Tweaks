@@ -254,6 +254,7 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		CompostRegistry.register(Items.EGG, 0, 0.08f, dirtState, new Color("FFFA66"));
 		CompostRegistry.register(Items.NETHER_WART, 0, 0.10f, dirtState, new Color("FF2B52"));
 		CompostRegistry.register(Items.REEDS, 0, 0.08f, dirtState, new Color("9BFF8A"));
+		CompostRegistry.register(BlockHandler.MEANVINE, 0, 0.10f, dirtState, new Color("800080"));
 		CompostRegistry.register(Items.STRING, 0, 0.04f, dirtState, Util.whiteColor);
 	}
 	
