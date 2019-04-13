@@ -1,50 +1,54 @@
 {
-    "parent": "item/generated",
+    "forge_marker": 1,
+    "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+    },
     "variants": {
         "type": {
           "0": {
             "textures": {
-              "all": "nethertweaksmod:items/crushed_gold"
+              "layer0": "nethertweaksmod:items/crushed_gold"
             }
           },
           "1": {
             "textures": {
-              "all": "nethertweaksmod:items/crushed_iron"
+              "layer0": "nethertweaksmod:items/crushed_iron"
             }
           },
           "2": {
             "textures": {
-              "all": "nethertweaksmod:items/end_box"
+              "layer0": "nethertweaksmod:items/end_box"
             }
           },
           "3": {
             "textures": {
-              "all": "nethertweaksmod:items/portal_core"
+              "layer0": "nethertweaksmod:items/portal_core"
             }
           },
           "4": {
             "textures": {
-              "all": "nethertweaksmod:items/item_ender_infused_frame"
+              "layer0": "nethertweaksmod:items/item_ender_infused_frame"
             }
           },
           "5": {
             "textures": {
-              "all": "nethertweaksmod:items/hellfayah"
+              "layer0": "nethertweaksmod:items/hellfayah"
             }
           },
           "6": {
             "textures": {
-              "all": "nethertweaksmod:items/item_light_pulver"
+              "layer0": "nethertweaksmod:items/item_light_pulver"
             }
           },
           "7": {
             "textures": {
-              "all": "nethertweaksmod:items/salt"
+              "layer0": "nethertweaksmod:items/salt"
             }
           },
           "8": {
             "textures": {
-              "all": "nethertweaksmod:items/stone_bar"
+              "layer0": "nethertweaksmod:items/stone_bar"
             }
           }
         }

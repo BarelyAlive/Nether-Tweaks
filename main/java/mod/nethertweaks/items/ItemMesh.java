@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemMesh extends Item implements IVariantProvider{
+public class ItemMesh extends Item{
 	
 	private final String name = "item_mesh";
 	
@@ -31,6 +31,7 @@ public class ItemMesh extends Item implements IVariantProvider{
 		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, "item_mesh"));
 		this.setMaxStackSize(1);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
+		this.initModel();
 	}
 	
 	@Override
@@ -57,15 +58,11 @@ public class ItemMesh extends Item implements IVariantProvider{
 	    return true;
 	}
 	
-	public String getName(ItemStack stack)
-	{
-		return name + "_" + MeshType.getMeshTypeByID(stack.getItemDamage()).getName().toLowerCase();
-	}
-	
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-	    return "item." + getName(stack);
-	}
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book)
+    {
+        return stack.getCount() == 1;
+    }
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
@@ -74,12 +71,11 @@ public class ItemMesh extends Item implements IVariantProvider{
         }
 	}
 
-	@Override
-    public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        for (MeshType type : MeshType.values())
-            ret.add(new ImmutablePair<Integer, String>(type.getID(), type.getName().toLowerCase()));
-        return ret;
-    }
+    @SideOnly(Side.CLIENT)
+    public void initModel() {
+        ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_string"), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(this, 2, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_flint"), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(this, 3, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_iron"), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(this, 4, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_diamond"), "inventory"));
+	}
 }

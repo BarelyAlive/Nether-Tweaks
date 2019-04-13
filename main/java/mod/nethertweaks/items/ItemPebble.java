@@ -38,11 +38,6 @@ public class ItemPebble extends Item
         setHasSubtypes(true);
         initModel();
     }
-
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return getUnlocalizedName() + "_" + names.get(stack.getItemDamage());
-    }
     
     @SideOnly(Side.CLIENT)
     @Override
