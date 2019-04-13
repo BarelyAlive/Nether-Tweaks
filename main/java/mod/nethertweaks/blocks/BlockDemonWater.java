@@ -21,6 +21,7 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -47,7 +48,7 @@ public class BlockDemonWater extends BlockFluidClassic{
                 setDensity(1000);
                 setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
                 setUnlocalizedName(INames.DEMOMWATERBLOCK);
-                setLightLevel(3);
+                setLightLevel(15);
         }
         
         @Override
@@ -105,7 +106,7 @@ public class BlockDemonWater extends BlockFluidClassic{
     		}
     		
     		if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
-    			
+    			    			
 	            EntitySlime slime = new EntitySlime(world);
 	            slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 	            slime.setNoAI(slime.isAIDisabled());
