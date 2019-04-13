@@ -50,16 +50,16 @@ public class ItemHandler implements INames{
 	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
-    public static final Item COOKEDJERKY = new CookedJerky(6, 1.0F, true);
+    public static final Item COOKEDJERKY = new CookedJerky();
          
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
     public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 64, ToolMaterial.WOOD);
     public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 64, ToolMaterial.GOLD);
+    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 128, ToolMaterial.STONE);
     public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 512, ToolMaterial.IRON);
     public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
-    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 128, ToolMaterial.STONE);
     
     
     	public static void init()

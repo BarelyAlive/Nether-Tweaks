@@ -53,27 +53,17 @@ public class BlockDemonWater extends BlockFluidClassic{
     }
     
     @Override
+    public boolean canSpawnInBlock() {
+    	return true;
+    }
+    
+    @Override
     public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
     	if(type.equals(SpawnPlacementType.IN_WATER))
     	{
     		return true;
     	}
 		return false;
-    }
-    
-    @Override
-    public boolean canSpawnInBlock() {
-    	return true;
-    }
-    
-    @Override
-    public boolean canDisplace(IBlockAccess world, BlockPos pos)
-    {
-    	if(world.getBlockState(pos) == BucketNFluidHandler.BLOCKDEMONWATER.getBlockState())
-    	{
-    		return true;
-    	}
-    	return false;
     }
     
     @Override
@@ -89,8 +79,7 @@ public class BlockDemonWater extends BlockFluidClassic{
 			if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {
 
 				EntityPig entitypig = new EntityPig(world);
-				entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
-						entity.rotationPitch);
+				entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 				entitypig.setNoAI(entitypig.isAIDisabled());
 
 				if (entitypig.hasCustomName()) {
@@ -109,8 +98,7 @@ public class BlockDemonWater extends BlockFluidClassic{
 
 				EntitySkeleton skeleton = new EntitySkeleton(world);
 				skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-				skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
-						entity.rotationPitch);
+				skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 				skeleton.setNoAI(skeleton.isAIDisabled());
 
 				if (skeleton.hasCustomName()) {
@@ -128,8 +116,7 @@ public class BlockDemonWater extends BlockFluidClassic{
 			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
 
 				EntitySlime slime = new EntitySlime(world);
-				slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
-						entity.rotationPitch);
+				slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 				slime.setNoAI(slime.isAIDisabled());
 
 				if (slime.hasCustomName()) {

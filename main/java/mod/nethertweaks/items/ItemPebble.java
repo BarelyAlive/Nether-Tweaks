@@ -32,11 +32,11 @@ public class ItemPebble extends Item
     
     public ItemPebble()
     {
-        setUnlocalizedName("item_pebble");
-        setRegistryName(NetherTweaksMod.MODID, "item_pebble");
-        setCreativeTab(NetherTweaksMod.tabNTM);
-        setHasSubtypes(true);
-        initModel();
+        this.setHasSubtypes(true);
+        this.setUnlocalizedName("item_pebble");
+        this.setRegistryName(NetherTweaksMod.MODID, "item_pebble");
+        this.setCreativeTab(NetherTweaksMod.tabNTM);
+        this.initModel();
     }
     
     @SideOnly(Side.CLIENT)
