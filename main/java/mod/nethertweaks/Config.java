@@ -10,7 +10,6 @@ public class Config {
 	
 	public static int endDim;
 	//Booleans
-	public static boolean isEndPortalCraftable;
 	public static boolean disableStairwaytoHeaven;
 		
 	//int
@@ -32,12 +31,17 @@ public class Config {
 	public static boolean setFireToMacroUsers;
 	public static int sieveSimilarRadius;
 	public static boolean fakePlayersCanSieve;
-	public static boolean skyblockFeatures;
+	public static boolean hellworldFeatures;
 	
 	//Barrel
 	public static boolean shouldBarrelsFillWithRain;
 	public static boolean enableBarrelTransformLighting;
 	public static int compostingTicks;
+	
+	//Demon Water
+	public static boolean spawnPig;
+	public static boolean spawnSkeleton;
+	public static boolean spawnSlime;
 	
 	public static void loadConfigs(File file){
 		Configuration config = new Configuration(file);
@@ -50,8 +54,8 @@ public class Config {
         burnTimeFurnace = config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
         dryTimeCondenser = config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
         freezeTimeFreezer = config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
-        HolyEarth.EntityIDList = config.get("Tweak", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
-        HolyEarth.EntityWaterID = config.get("Tweak", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
+        HolyEarth.EntityIDList = config.get("Mobs", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
+        HolyEarth.EntityWaterID = config.get("Mobs", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
                 
         StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
         nethDim = config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();
@@ -66,12 +70,17 @@ public class Config {
         setFireToMacroUsers = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
         sieveSimilarRadius = config.get("Sieving", "sieveSimilarRadius", 2).getInt();
         fakePlayersCanSieve = config.get("Mechanics", "fakePlayersCanSieve", false).getBoolean();
-        skyblockFeatures = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
+        hellworldFeatures = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
         
         //Barrel
         shouldBarrelsFillWithRain = config.get("Mechanics", "barrelsFillWithRain", true).getBoolean();
         compostingTicks = config.get("Composting", "ticksToFormDirt", 600).getInt();
         enableBarrelTransformLighting = config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
+        
+        //Demon Water
+        spawnPig = config.get("Mobs", "Can Demon Water transform pigmans?", true).getBoolean();
+        spawnSkeleton = config.get("Mobs", "Can Demon Water transform wither skeletons", true).getBoolean();
+        spawnSlime = config.get("Mobs", "Can Demon Water transform magma slimes?", true).getBoolean();
         
         config.save();
 	}

@@ -15,6 +15,9 @@ ChangeLog NTM 2.0.0
 * Changed icon of creative tab
 * Demon Water is now as bright as lava! (makes it perfect for crops)
 * Demon Water now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
+* Mobs like turtles etc. can now spawn in Demon Water
+* More and better config options!
+* Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage

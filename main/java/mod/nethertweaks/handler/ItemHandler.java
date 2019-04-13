@@ -9,6 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
@@ -100,7 +101,7 @@ public class ItemHandler implements INames{
         private static void addItemBurnTime()
         {
         	CustomFuelhandler.addFuelBurnTime(BucketNFluidHandler.BUCKETSTONELAVA.getRegistryName(), 18000);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), 6400);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), 64000);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), Config.burnTimeHellfayah);
+        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), Config.burnTimeHellfayahBlock);
         }
 }

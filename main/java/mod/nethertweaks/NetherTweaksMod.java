@@ -2,7 +2,6 @@ package mod.nethertweaks;
  
 import java.io.File;
 
-import mod.nethertweaks.echantments.NTMEnchantments;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -82,8 +81,7 @@ public class NetherTweaksMod {
         BlockHandler.init();
         ItemHandler.init();
         BucketNFluidHandler.init();
-        NTMEntities.init();
-        
+        NTMEntities.init();        
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         

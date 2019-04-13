@@ -28,8 +28,8 @@ public class FluidDemonWater extends Fluid{
 	
 	public FluidDemonWater() {
 		super(INames.DEMONWATERFLUID, still, flow);
-		setDensity(2000);
-        setViscosity(2000);
+		setDensity(FluidRegistry.WATER.getDensity());
+        setViscosity(FluidRegistry.WATER.getViscosity());
 		setUnlocalizedName(INames.DEMONWATERFLUID);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
 		FluidRegistry.registerFluid(this);

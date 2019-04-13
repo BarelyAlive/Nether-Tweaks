@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -15,6 +16,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -40,97 +42,112 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDemonWater extends BlockFluidClassic{
 
-        public BlockDemonWater() {
-                super(BucketNFluidHandler.FLUIDDEMONWATER, Material.WATER);
-                setCreativeTab(NetherTweaksMod.tabNTM);
-                setResistance(500.0F);
-                setHardness(100.0F);
-                setDensity(1000);
-                setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
-                setUnlocalizedName(INames.DEMOMWATERBLOCK);
-                setLightLevel(15);
-        }
-        
-        @Override
-        public boolean canDisplace(IBlockAccess world, BlockPos pos)
-        {
-        	if(world.getBlockState(pos) == BucketNFluidHandler.BLOCKDEMONWATER.getBlockState())
-        	{
-        		return true;
-        	}
-        	return false;
-        }
-        
-        @Override
-    	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-    		
-    		if (world.isRemote)
-    			return;
-    		
-    		if (entity.isDead)
-    			return;
-    		
-    		if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {
-    			
-	            EntityPig entitypig = new EntityPig(world);
-	            entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
-	            entitypig.setNoAI(entitypig.isAIDisabled());
+    public BlockDemonWater()
+    {
+        super(BucketNFluidHandler.FLUIDDEMONWATER, Material.WATER);
+        setCreativeTab(NetherTweaksMod.tabNTM);
+        setResistance(500.0F);
+        setHardness(100.0F);
+        setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
+        setUnlocalizedName(INames.DEMOMWATERBLOCK);
+        setLightLevel(15);
+    }
+    
+    @Override
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
+    	if(type.equals(SpawnPlacementType.IN_WATER))
+    	{
+    		return true;
+    	}
+		return false;
+    }
+    
+    @Override
+    public boolean canDisplace(IBlockAccess world, BlockPos pos)
+    {
+    	if(world.getBlockState(pos) == BucketNFluidHandler.BLOCKDEMONWATER.getBlockState())
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+    
+    @Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+		
+		if (world.isRemote)
+			return;
+		
+		if (entity.isDead)
+			return;
+		
+		if (Config.spawnPig) {
+			if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {
 
-	            if (entitypig.hasCustomName())
-	            {
-	                entitypig.setCustomNameTag(entitypig.getCustomNameTag());
-	                entitypig.setAlwaysRenderNameTag(entitypig.getAlwaysRenderNameTag());
-	            }
-	            entitypig.setHealth(entitypig.getMaxHealth());
+				EntityPig entitypig = new EntityPig(world);
+				entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
+						entity.rotationPitch);
+				entitypig.setNoAI(entitypig.isAIDisabled());
 
-	           world.spawnEntity(entitypig);
-	           entity.setDead();
-    		}
-    		
-    		if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null) {
-    			
-	            EntitySkeleton skeleton = new EntitySkeleton(world);
-	            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-	            skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
-	            skeleton.setNoAI(skeleton.isAIDisabled());
+				if (entitypig.hasCustomName()) {
+					entitypig.setCustomNameTag(entitypig.getCustomNameTag());
+					entitypig.setAlwaysRenderNameTag(entitypig.getAlwaysRenderNameTag());
+				}
+				entitypig.setHealth(entitypig.getMaxHealth());
 
-	            if (skeleton.hasCustomName())
-	            {
-	                skeleton.setCustomNameTag(skeleton.getCustomNameTag());
-	                skeleton.setAlwaysRenderNameTag(skeleton.getAlwaysRenderNameTag());
-	            }
-	            skeleton.setHealth(skeleton.getMaxHealth());
+				world.spawnEntity(entitypig);
+				entity.setDead();
+			} 
+		}
+		
+		if (Config.spawnSkeleton) {
+			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null) {
 
-	            world.spawnEntity(skeleton);
-	           	entity.setDead();
-    		}
-    		
-    		if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
-    			    			
-	            EntitySlime slime = new EntitySlime(world);
-	            slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
-	            slime.setNoAI(slime.isAIDisabled());
+				EntitySkeleton skeleton = new EntitySkeleton(world);
+				skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+				skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
+						entity.rotationPitch);
+				skeleton.setNoAI(skeleton.isAIDisabled());
 
-	            if (slime.hasCustomName())
-	            {
-	                slime.setCustomNameTag(slime.getCustomNameTag());
-	                slime.setAlwaysRenderNameTag(slime.getAlwaysRenderNameTag());
-	            }
-	            slime.setHealth(slime.getMaxHealth());
+				if (skeleton.hasCustomName()) {
+					skeleton.setCustomNameTag(skeleton.getCustomNameTag());
+					skeleton.setAlwaysRenderNameTag(skeleton.getAlwaysRenderNameTag());
+				}
+				skeleton.setHealth(skeleton.getMaxHealth());
 
-	            world.spawnEntity(slime);
-	            entity.setDead();
-    		}
-        }
-        
-        @Override
-        public IBlockState getStateFromMeta(int meta)
-        {
-            return getBlockState().getBaseState().withProperty(LEVEL, meta);
-        }
-        
-        @Override
-        public Fluid getFluid() {
-        return BucketNFluidHandler.FLUIDDEMONWATER;
-        }
+				world.spawnEntity(skeleton);
+				entity.setDead();
+			} 
+		}
+			
+		if (Config.spawnSlime) {
+			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
+
+				EntitySlime slime = new EntitySlime(world);
+				slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw,
+						entity.rotationPitch);
+				slime.setNoAI(slime.isAIDisabled());
+
+				if (slime.hasCustomName()) {
+					slime.setCustomNameTag(slime.getCustomNameTag());
+					slime.setAlwaysRenderNameTag(slime.getAlwaysRenderNameTag());
+				}
+				slime.setHealth(slime.getMaxHealth());
+
+				world.spawnEntity(slime);
+				entity.setDead();
+			} 
+		}
+    }
+    
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getBlockState().getBaseState().withProperty(LEVEL, meta);
+    }
+    
+    @Override
+    public Fluid getFluid() {
+    return BucketNFluidHandler.FLUIDDEMONWATER;
+    }
 }
