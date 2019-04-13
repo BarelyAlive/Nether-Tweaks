@@ -45,7 +45,6 @@ public class BlockDemonWater extends BlockFluidClassic{
     public BlockDemonWater()
     {
         super(BucketNFluidHandler.FLUIDDEMONWATER, Material.WATER);
-        setCreativeTab(NetherTweaksMod.tabNTM);
         setResistance(500.0F);
         setHardness(100.0F);
         setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
@@ -60,6 +59,11 @@ public class BlockDemonWater extends BlockFluidClassic{
     		return true;
     	}
 		return false;
+    }
+    
+    @Override
+    public boolean canSpawnInBlock() {
+    	return true;
     }
     
     @Override
