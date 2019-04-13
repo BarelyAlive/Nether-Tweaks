@@ -13,6 +13,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import mod.nethertweaks.Config;
+import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registry.SieveRegistry;
 import mod.nethertweaks.registry.types.Siftable;
@@ -26,7 +28,6 @@ import java.util.UUID;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
@@ -80,7 +81,12 @@ public class TileSieve extends TileEntity {
 	public static Random getRand() {
 		return rand;
 	}
-
+	
+	public MeshType getMeshType()
+	{
+		return this.world.getBlockState(this.pos).getValue(Sieve.MESH);
+	}
+	
 	private static Random rand = new Random();
 	
 	public TileSieve() {}

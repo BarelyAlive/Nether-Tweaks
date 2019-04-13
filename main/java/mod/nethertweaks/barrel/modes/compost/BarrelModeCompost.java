@@ -134,7 +134,7 @@ public class BarrelModeCompost implements IBarrelMode {
 		}
 		else if (progress >= 1)
 		{
-			Util.dropItemInWorld(barrel, player, new ItemStack(compostState.getBlock(), 1, compostState.getBlock().getMetaFromState(compostState)), 0.02f);
+			Util.dropItemInWorld(barrel, player, new ItemStack(Blocks.DIRT), 0.02f);//new ItemStack(compostState.getBlock(), 1, compostState.getBlock().getMetaFromState(compostState)), 0.02f);
 			removeItem(barrel);		
 			return true;
 		}

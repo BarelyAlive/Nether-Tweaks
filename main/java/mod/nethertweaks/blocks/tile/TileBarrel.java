@@ -280,5 +280,10 @@ public class TileBarrel extends TileEntity implements ITickable {
 				capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
 				super.hasCapability(capability, facing);
 	}
+	
+	@Override
+	public boolean hasFastRenderer() {
+		return true;
+	}
 
 }

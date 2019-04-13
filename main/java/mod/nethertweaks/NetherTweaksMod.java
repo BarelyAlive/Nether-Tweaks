@@ -2,6 +2,10 @@ package mod.nethertweaks;
  
 import java.io.File;
 
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.client.renderers.RenderBarrel;
+import mod.nethertweaks.client.renderers.RenderSieve;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -12,6 +16,7 @@ import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registry.BarrelLiquidBlacklistRegistry;
+import mod.nethertweaks.registry.BarrelModeRegistry;
 import mod.nethertweaks.registry.CompostRegistry;
 import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.FluidOnTopRegistry;
@@ -27,18 +32,22 @@ import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.RegistryManager;
  
 @Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
 public class NetherTweaksMod {
@@ -81,18 +90,22 @@ public class NetherTweaksMod {
         BlockHandler.init();
         ItemHandler.init();
         BucketNFluidHandler.init();
-        NTMEntities.init();        
+        NTMEntities.init();
+        
         MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         
     	defaultRecipes = new NTMDefaultRecipes();
     	
     	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
+    	MinecraftForge.EVENT_BUS.register(this);
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
 		
 		NetworkHandlerNTM.initPackets();
+		
+		BarrelModeRegistry.registerDefaults();
     }
     
     @Mod.EventHandler
@@ -107,6 +120,13 @@ public class NetherTweaksMod {
     	//Ores from other mods
         OreHandler.init();
         //Compatibility
+    }
+    
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
     }
     
     public static void loadConfigs()

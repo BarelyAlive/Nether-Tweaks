@@ -6,6 +6,7 @@ import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.Util;
@@ -87,7 +88,7 @@ public class BarrelModeBlock implements IBarrelMode {
 		if (handler.getStackInSlot(0) != null) {
 			Util.dropItemInWorld(barrel, player, handler.getStackInSlot(0), 0.02);
 			handler.setBarrel(barrel);
-			handler.setStackInSlot(0, null);
+			handler.setStackInSlot(0, ItemStack.EMPTY);
 			barrel.setMode("null");
 			NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
 			return true;

@@ -2,7 +2,9 @@ package mod.nethertweaks.barrel;
 
 import java.util.List;
 
+import mod.nethertweaks.blocks.BlockBarrel;
 import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.client.renderers.SpriteColor;
 import mod.sfhcore.texturing.Color;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -50,5 +52,10 @@ public interface IBarrelMode {
 	public boolean canFillWithFluid(TileBarrel barrel);
 	
 	public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip);
+
+	public default SpriteColor getSpriteColor(TileBarrel te)
+	{
+		return new SpriteColor(this.getTextureForRender(te), this.getColorForRender());
+	}
 
 }
