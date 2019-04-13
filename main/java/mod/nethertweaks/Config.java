@@ -2,15 +2,12 @@ package mod.nethertweaks;
 
 import java.io.File;
 
-import mod.nethertweaks.blocks.HolyEarth;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
 	
 	public static int endDim;
-	//Booleans
-	public static boolean disableStairwaytoHeaven;
 		
 	//int
 	public static int StwtHDimension;
@@ -43,7 +40,8 @@ public class Config {
 	public static boolean spawnSkeleton;
 	public static boolean spawnSlime;
 	
-	public static void loadConfigs(File file){
+	public static void loadConfigs(File file)
+	{
 		Configuration config = new Configuration(file);
 		config.load();
         
@@ -54,8 +52,6 @@ public class Config {
         burnTimeFurnace = config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
         dryTimeCondenser = config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
         freezeTimeFreezer = config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
-        HolyEarth.EntityIDList = config.get("Mobs", "Which mobs can be spawned by Blessed Earth (non water)?", HolyEarth.EntityIDList).getIntList();
-        HolyEarth.EntityWaterID = config.get("Mobs", "Which mobs can be spawned by Blessed Earth (water only)?", HolyEarth.EntityWaterID).getIntList();
                 
         StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
         nethDim = config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();

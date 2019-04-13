@@ -25,6 +25,9 @@ ChangeLog NTM 2.0.0
 * Fixed incorrect Ores
 * Fixed netherrack furnace lag caused block set spam
 - Removed Saltpeter support
+- Removed Holy Earth
+- Removed Sanctuary Crystal
 + Ender Crystal is back!
 + Prismarine shards are now sievable
 + Added networking
++ Added Dolls for spawning otherwise unobtainable animals

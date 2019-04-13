@@ -47,7 +47,6 @@ public class BlockHandler implements INames{
     public static final Block NETHERLEAVES = new NetherLeaves();
     public static final Block NETHERWOOD = new NetherWood();
     public static final Block NETHERSLAB = new NetherSlab();
-    public static final Block HOLYEARTH = new HolyEarth();
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
     
@@ -96,7 +95,6 @@ public class BlockHandler implements INames{
         Registry.registerBlock(NETHERWOOD);
         Registry.registerBlock(NETHERSLAB);
         Registry.registerBlock(BONFIRE);
-        Registry.registerBlock(HOLYEARTH);
         Registry.registerBlock(MEANVINE);       
         Registry.registerBlock(DOORNTMSTONE);
         Registry.registerBlock(DOORNTMOBSIDIAN);       
