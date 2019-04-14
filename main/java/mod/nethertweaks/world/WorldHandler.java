@@ -35,9 +35,9 @@ public class WorldHandler{
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
-	    		if (posplayer.getY() < 32)
+	    		if (posplayer.getY() < range)
 	    		{
-	    			yDifferenz = 32 - posplayer.getY();
+	    			yDifferenz = range - posplayer.getY();
 	    		}
 	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 	    		
@@ -45,7 +45,8 @@ public class WorldHandler{
 	    		{
 	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 	    			{
-	    				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
+	    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+	    				//player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
 	    			}
 	    		}
     		}
@@ -77,24 +78,24 @@ public class WorldHandler{
 		boolean isRemote = player.world.isRemote;
 		NBTTagCompound tag = player.getEntityData();
 		
-		if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-		if(!player.getEntityData().hasKey(key)){
-			player.setPortal(player.getPosition());
-			player.getEntityData().setBoolean(key, true);
-		}
-		if(!player.getEntityData().getBoolean(key))
-		{
-			player.setPortal(player.getPosition());
-			player.getEntityData().setBoolean(key, true);
-		}
 		teleportPlayer(player);	
 	}
 	
-	private void teleportPlayer(EntityPlayer player2) {
+	private void teleportPlayer(EntityPlayer player) {
 		
-		if(player2.dimension != -1)
+		if(player.dimension != -1)
 		{
-			player2.changeDimension(-1);
+			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
+			if(!player.getEntityData().hasKey(key)){
+				player.setPortal(player.getPosition());
+				player.getEntityData().setBoolean(key, true);
+			}
+			if(!player.getEntityData().getBoolean(key))
+			{
+				player.setPortal(player.getPosition());
+				player.getEntityData().setBoolean(key, true);
+			}
+			player.changeDimension(-1);
 		}
 	}
 	
