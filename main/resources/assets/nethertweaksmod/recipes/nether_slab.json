@@ -5,11 +5,11 @@
   ],
   "key": {
     "X": {
-      "item": "nether_wood"
+      "item": "item_nether_wood"
     }
   },
   "result": {
-    "item": "nether_slab",
+    "item": "item_nether_slab",
     "count": 6
   }
 }

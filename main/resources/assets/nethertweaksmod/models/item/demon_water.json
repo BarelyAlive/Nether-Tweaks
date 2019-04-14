@@ -4,13 +4,6 @@
         "model": "forge:fluid"
     },
     "variants": {
-        "inventory": [
-               {
-                "custom": {
-                    "fluid": "demon_water"
-                }
-            }
-        ],
         "demon_water": [
             {
                 "custom": {

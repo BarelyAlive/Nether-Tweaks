@@ -1,0 +1,45 @@
+{
+  "forge_marker": "1",
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "inventory": {
+      "0": { "textures": { "layer0": "nethertweaksmod:items/crushed_copper" } },
+      "1": { "textures": { "layer0": "nethertweaksmod:items/crushed_tin" } },
+      "2": { "textures": { "layer0": "nethertweaksmod:items/crushed_lead" } },
+      "3": { "textures": { "layer0": "nethertweaksmod:items/crushed_nickel" } },
+      "4": { "textures": { "layer0": "nethertweaksmod:items/crushed_platinum" } },
+      "5": { "textures": { "layer0": "nethertweaksmod:items/crushed_silver" } },
+      "6": { "textures": { "layer0": "nethertweaksmod:items/crushed_uranium" } },
+      "7": { "textures": { "layer0": "nethertweaksmod:items/crushed_osmium" } },
+      "8": { "textures": { "layer0": "nethertweaksmod:items/crushed_draconium" } },
+      "9": { "textures": { "layer0": "nethertweaksmod:items/crushed_sulfur" } },
+      "10": { "textures": { "layer0": "nethertweaksmod:items/crushed_aluminum" } },
+      "11": { "textures": { "layer0": "nethertweaksmod:items/crushed_silicon" } },
+      "12": { "textures": { "layer0": "nethertweaksmod:items/crushed_amber" } },
+      "13": { "textures": { "layer0": "nethertweaksmod:items/crushed_cinnabar" } },
+      "14": { "textures": { "layer0": "nethertweaksmod:items/crushed_certus_quartz" } },
+      "15": { "textures": { "layer0": "nethertweaksmod:items/crushed_salt" } }
+    },
+    "type": {
+      "0": { "textures": { "layer0": "nethertweaksmod:items/crushed_copper" } },
+      "1": { "textures": { "layer0": "nethertweaksmod:items/crushed_tin" } },
+      "2": { "textures": { "layer0": "nethertweaksmod:items/crushed_lead" } },
+      "3": { "textures": { "layer0": "nethertweaksmod:items/crushed_nickel" } },
+      "4": { "textures": { "layer0": "nethertweaksmod:items/crushed_platinum" } },
+      "5": { "textures": { "layer0": "nethertweaksmod:items/crushed_silver" } },
+      "6": { "textures": { "layer0": "nethertweaksmod:items/crushed_uranium" } },
+      "7": { "textures": { "layer0": "nethertweaksmod:items/crushed_osmium" } },
+      "8": { "textures": { "layer0": "nethertweaksmod:items/crushed_draconium" } },
+      "9": { "textures": { "layer0": "nethertweaksmod:items/crushed_sulfur" } },
+      "10": { "textures": { "layer0": "nethertweaksmod:items/crushed_aluminum" } },
+      "11": { "textures": { "layer0": "nethertweaksmod:items/crushed_silicon" } },
+      "12": { "textures": { "layer0": "nethertweaksmod:items/crushed_amber" } },
+      "13": { "textures": { "layer0": "nethertweaksmod:items/crushed_cinnabar" } },
+      "14": { "textures": { "layer0": "nethertweaksmod:items/crushed_certus_quartz" } },
+      "15": { "textures": { "layer0": "nethertweaksmod:items/crushed_salt" } }
+    }
+  }
+}
