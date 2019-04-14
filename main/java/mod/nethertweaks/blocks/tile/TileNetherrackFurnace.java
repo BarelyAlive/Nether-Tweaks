@@ -192,7 +192,6 @@ public class TileNetherrackFurnace extends TileEntityBase{
 		super.readFromNBT(compound);
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override

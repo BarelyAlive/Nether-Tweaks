@@ -137,7 +137,6 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override

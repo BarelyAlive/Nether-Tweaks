@@ -146,7 +146,6 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override
