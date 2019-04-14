@@ -38,7 +38,7 @@ import mod.sfhcore.util.ItemInfo;
 
 public class HellmartRegistry {
 	
-	private static HashMap<ItemInfo, List<HellmartData>> registry = new HashMap<ItemInfo, List<HellmartData>>();
+	private static HashMap<Integer, List<HellmartData>> registry = new HashMap<Integer, List<HellmartData>>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(HellmartData.class, new CustomHellmartDataJson()).create();
 
 	public static void loadJson(File file)
@@ -94,48 +94,16 @@ public class HellmartRegistry {
 		DEFAULT, SEEDS, SAPLING, ANIMAL
 	}
 
-	private static final ArrayList<HellmartData> items = new ArrayList<HellmartData>();
-
-	private static void registerItems(HellmartData data) {
-		items.add(data);
+	private static void registerItems(int item, List<HellmartData> data) {
+		registry.put(item, data);
 	}
 
-	public static HellmartData getData(int i) {
-		return items.get(i);
+	public static List<HellmartData> getData(int i) {
+		return registry.get(i);
 	}
 
 	public static int getSize() {
-		return items.size();
-	}
-	
-
-	private static ItemStack getCurrency(int config, CurrencyType currencyType) {
-		switch(config) {
-			case 1:
-				return new ItemStack(Items.DIAMOND);
-			case 2:
-				return new ItemStack(Items.GOLD_INGOT);
-			case 3:
-				return new ItemStack(Items.GOLD_NUGGET);
-			case 4:
-				return new ItemStack(Items.IRON_INGOT);
-			case 5:
-				if(currencyType.equals(CurrencyType.ANIMAL))
-					return new ItemStack(Items.EGG);
-				if(currencyType.equals(CurrencyType.SEEDS))
-					return new ItemStack(Items.WHEAT_SEEDS);
-				if(currencyType.equals(CurrencyType.SAPLING))
-					return new ItemStack(Blocks.SAPLING);
-				else
-					return null;
-			case 6:
-				return new ItemStack(Items.APPLE);
-			case 7:
-				return new ItemStack(Items.DYE);
-			case 0:
-			default:
-				return new ItemStack(Items.EMERALD);
-		}
+		return registry.size();
 	}
 	
 	public static void register(ItemInfo key, HellmartData data)

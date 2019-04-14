@@ -9,6 +9,7 @@ import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileBonfire;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
@@ -38,6 +39,7 @@ public class BlockHandler implements INames{
     public static final Block BARRELSTONE = new BlockBarrel(1, Material.ROCK);
     public static final Block FREEZER = new Freezer();
     public static final Block BONFIRE = new Bonfire();
+    public static final Block HELLMART = new Hellmart();
      
     //Blocks
     public static final Block DUST = new CubeFalling(Material.SAND, 0.4F, 0.3F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DUST));
@@ -81,6 +83,7 @@ public class BlockHandler implements INames{
         RegisterTileEntity.add(BARREL, TileBarrel.class);
         RegisterTileEntity.add(SIEVE, TileSieve.class);
         RegisterTileEntity.add(FREEZER, TileFreezer.class);
+        RegisterTileEntity.add(HELLMART, TileHellmart.class);
     }
         
     //Registering all the blocks
@@ -106,7 +109,8 @@ public class BlockHandler implements INames{
         Registry.registerBlock(BARREL);
         Registry.registerBlock(BARRELSTONE);
         Registry.registerBlock(SIEVE);
-        Registry.registerBlock(FREEZER);      
+        Registry.registerBlock(FREEZER);
+        Registry.registerBlock(HELLMART);
     }
     
     //Just an extra method after the register block thing to prevent errors

@@ -16,7 +16,7 @@ public class TileHellmart extends TileEntity {
 		super();
 	}
 
-	private int stockNum = 0;
+	private int stockNum = 14;
 	private ItemStackHandler itemstackhandler = new ItemStackHandler();
 
 	@Override
