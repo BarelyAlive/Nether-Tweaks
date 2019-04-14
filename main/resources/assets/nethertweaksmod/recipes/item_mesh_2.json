@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "nethertwaksmod:item_mesh",
+    "item": "item_mesh",
     "data": 2
   },
   "pattern": [
@@ -14,7 +14,7 @@
       "item": "minecraft:flint"
     },
     "y": {
-      "item": "nethertwaksmod:item_mesh",
+      "item": "item_mesh",
       "data": 1
     }
   }

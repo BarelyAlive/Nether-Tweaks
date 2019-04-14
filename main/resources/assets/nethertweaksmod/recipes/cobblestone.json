@@ -9,7 +9,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
-      "item": "nethertweakmod:item_pebble",
+      "item": "item_pebble",
       "data": 0
     }
   }
