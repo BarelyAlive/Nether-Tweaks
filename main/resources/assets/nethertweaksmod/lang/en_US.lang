@@ -81,8 +81,8 @@ item.seed_0.name=Mushroom Spores
 item.seed_1.name=Grass Seeds
 item.seed_2.name=Cactus Seeds
 item.flint_and_blaze.name=Flint and Blaze
-item.sanctuary_crystal.name=Sanctuary Crystal
-item.light_crystal.name=Crystal of Light
+item.crystal_0.name=Crystal of Light
+item.crystal_1.name=Ender Crystal
 
 item.item_base_0.name=Crushed Gold
 item.item_base_1.name=Crushed Iron

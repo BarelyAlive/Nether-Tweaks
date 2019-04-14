@@ -36,7 +36,7 @@ import net.minecraftforge.fml.common.Loader;
 public class Crystal extends CustomItem{
 		
 	public Crystal(ResourceLocation name) {
-		super(1, NetherTweaksMod.tabNTM, name);
+		super(null, 1, NetherTweaksMod.tabNTM, true, 2, name);
 	}
 	
 	@Override
@@ -51,24 +51,26 @@ public class Crystal extends CustomItem{
     {
     	ItemStack itemstack = playerIn.getHeldItem(handIn);
     	
-		if(playerIn.isSneaking()){
-			if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
-				playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
+    	switch (itemstack.getItemDamage()) {
+		case 0:
+			if(playerIn.isSneaking()){
+				if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
+					playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
+				}
+				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
+						playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
+						playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEDMW));
+				}
+				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETWOODWATER))){
+					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETWOODWATER, 0, 1, null);
+					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODDMW));
+				}
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
-					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEDMW));
-			}
-			if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETWOODWATER))){
-				playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETWOODWATER, 0, 1, null);
-				playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODDMW));
-			}
-		}		
-		else
-		{
-				
-	        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			break;	
+		case 1:
+			worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 	        playerIn.getCooldownTracker().setCooldown(this, 20);
 	
 	        if (!worldIn.isRemote)
@@ -80,6 +82,8 @@ public class Crystal extends CustomItem{
 	
 	        playerIn.addStat(StatList.getObjectUseStats(this));
 	        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		default:
+			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	}

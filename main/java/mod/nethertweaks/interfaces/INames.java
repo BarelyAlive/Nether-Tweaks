@@ -67,8 +67,7 @@ public interface INames {
 	public static final String STRING 						= "string";
 	public static final String SEED							= "seed";	
 	
-	public static final String LIGHTCRYSTAL 				= "light_crystal";
-	public static final String ENDERCRYSTAL 				= "ender_crystal";
+	public static final String CRYSTAL 						= "crystal";
 	public static final String ITEMBASE 					= "item_base";
 	
 	public static final String COOKEDJERKY 					= "cooked_jerky";

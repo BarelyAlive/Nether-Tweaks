@@ -34,8 +34,7 @@ public class ItemHandler implements INames{
 	//ITEMS
     public static final Item SEED= new Seed(new ResourceLocation(NTM, INames.SEED));
     public static final Item FLINTANDBLAZE = new FlintAndBlaze();
-    public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
-    public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
+    public static final Item CRYSTAL = new Crystal(new ResourceLocation(NTM, INames.CRYSTAL));
     
     //NEW
     public static final Item PEBBLE = new ItemPebble();
@@ -74,8 +73,7 @@ public class ItemHandler implements INames{
         
     	Registry.registerItem(COOKEDJERKY);
         Registry.registerItem(SEED);;
-        Registry.registerItem(LIGHTCRYSTAL);
-        Registry.registerItem(ENDERCRYSTAl);
+        Registry.registerItem(CRYSTAL);
         Registry.registerItem(PEBBLE);
         
         //Werkzeuge
