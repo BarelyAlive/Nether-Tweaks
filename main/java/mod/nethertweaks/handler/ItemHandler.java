@@ -62,45 +62,45 @@ public class ItemHandler implements INames{
     public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
     
     
-    	public static void init()
-    	{
-    		registerItems();
-    		addItemBurnTime();
-    	}
-    	
-        private static void registerItems()
-        {
-        	//Multi ID Item
-        	Registry.registerItem(ITEMBASE);
-    		Registry.registerItem(OREMATERIAL);
-            
-        	Registry.registerItem(COOKEDJERKY);
-            Registry.registerItem(SEEDGRASS);
-            Registry.registerItem(MUSHROOMSPORES);
-            Registry.registerItem(CACTUSSEEDS);
-            Registry.registerItem(LIGHTCRYSTAL);
-            Registry.registerItem(ENDERCRYSTAl);
-            Registry.registerItem(PEBBLE);
-            
-            //Werkzeuge
-            Registry.registerItem(PICKAXENETHERRACK);
-            Registry.registerItem(PICKAXENETHERBRICK);
-             
-            Registry.registerItem(HAMMERWOOD);
-            Registry.registerItem(HAMMERGOLD);
-            Registry.registerItem(HAMMERIRON);
-            Registry.registerItem(HAMMERDIAMOND);
-            Registry.registerItem(HAMMERSTONE);
-            
-            Registry.registerItem(FLINTANDBLAZE);
-            Registry.registerItem(DOLL);
-            Registry.registerItem(MESH);
-        }
+	public static void init()
+	{
+		registerItems();
+		addItemBurnTime();
+	}
+	
+    private static void registerItems()
+    {
+    	//Multi ID Item
+    	Registry.registerItem(ITEMBASE);
+		Registry.registerItem(OREMATERIAL);
         
-        private static void addItemBurnTime()
-        {
-        	CustomFuelhandler.addFuelBurnTime(BucketNFluidHandler.BUCKETSTONELAVA.getRegistryName(), 18000);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), Config.burnTimeHellfayah);
-        	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), Config.burnTimeHellfayahBlock);
-        }
+    	Registry.registerItem(COOKEDJERKY);
+        Registry.registerItem(SEEDGRASS);
+        Registry.registerItem(MUSHROOMSPORES);
+        Registry.registerItem(CACTUSSEEDS);
+        Registry.registerItem(LIGHTCRYSTAL);
+        Registry.registerItem(ENDERCRYSTAl);
+        Registry.registerItem(PEBBLE);
+        
+        //Werkzeuge
+        Registry.registerItem(PICKAXENETHERRACK);
+        Registry.registerItem(PICKAXENETHERBRICK);
+         
+        Registry.registerItem(HAMMERWOOD);
+        Registry.registerItem(HAMMERGOLD);
+        Registry.registerItem(HAMMERIRON);
+        Registry.registerItem(HAMMERDIAMOND);
+        Registry.registerItem(HAMMERSTONE);
+        
+        Registry.registerItem(FLINTANDBLAZE);
+        Registry.registerItem(DOLL);
+        Registry.registerItem(MESH);
+    }
+    
+    private static void addItemBurnTime()
+    {
+    	CustomFuelhandler.addFuelBurnTime(BucketNFluidHandler.BUCKETSTONELAVA.getRegistryName(), 18000);
+    	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), Config.burnTimeHellfayah);
+    	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), Config.burnTimeHellfayahBlock);
+    }
 }
