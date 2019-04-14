@@ -1,12 +1,18 @@
 package mod.nethertweaks.items;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.Lists;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityEnderPearl;
@@ -26,7 +32,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemPebble extends Item
+public class ItemPebble extends Item implements IVariantProvider
 {
     private static List<String> names = Lists.newArrayList("stone", "granite", "diorite", "andesite");
     
@@ -36,7 +42,6 @@ public class ItemPebble extends Item
         this.setUnlocalizedName("item_pebble");
         this.setRegistryName(NetherTweaksMod.MODID, "item_pebble");
         this.setCreativeTab(NetherTweaksMod.tabNTM);
-        this.initModel();
     }
     
     @SideOnly(Side.CLIENT)
@@ -70,18 +75,20 @@ public class ItemPebble extends Item
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
     }
     
-    @SideOnly(Side.CLIENT)
-    public void initModel()
-    {
-        for (int i = 0; i < names.size(); i++)
-        {
-            String variant = "type=" + names.get(i);
-            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(new ResourceLocation(NetherTweaksMod.MODID, "item_pebble"), variant));
-        }
-    }
-    
     public static ItemStack getPebbleStack(String name)
     {
         return new ItemStack(ItemHandler.PEBBLE, 1, names.indexOf(name));
+    }
+    
+    @Override
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        
+        for(int i = 0; i < names.size(); i++)
+		{
+			ret.add(new ImmutablePair<Integer, String>(i, "type=" + names.get(i)));
+		}
+        return ret;
     }
 }

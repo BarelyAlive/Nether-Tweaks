@@ -25,6 +25,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -172,9 +173,10 @@ public class ItemDoll extends Item {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		for (int i = 0; i < names.size(); i++)
-			list.add(new ItemStack(this, 1, i));
+			items.add(new ItemStack(this, 1, i));
 	}
 
 }

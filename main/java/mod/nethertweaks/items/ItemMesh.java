@@ -15,23 +15,23 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemMesh extends Item{
+public class ItemMesh extends Item implements IVariantProvider{
 	
 	private final String name = "item_mesh";
 	
 	public ItemMesh() {
 		super();
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("item_mesh");
-		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, "item_mesh"));
+		this.setUnlocalizedName(name);
+		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, name));
 		this.setMaxStackSize(1);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
-		this.initModel();
 	}
 	
 	@Override
@@ -66,16 +66,20 @@ public class ItemMesh extends Item{
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		for (int i = 1 ; i < MeshType.values().length ; i++) { //0 is the "none" case.
+		for (int i = 1 ; i < MeshType.values().length; i++) { //0 is the "none" case.
 			items.add(new ItemStack(this, 1, i));
         }
 	}
 
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_string"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(this, 2, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_flint"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(this, 3, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_iron"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(this, 4, new ModelResourceLocation(new ResourceLocation("nethertweaksmod:item_mesh_diamond"), "inventory"));
-	}
+	@Override
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        
+        for(int i = 1; i < MeshType.values().length; i++)
+		{
+			ret.add(new ImmutablePair<Integer, String>(i, "mesh=" + MeshType.getMeshTypeByID(i).getName()));
+		}
+        return ret;
+    }
 }

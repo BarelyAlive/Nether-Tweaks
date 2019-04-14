@@ -1,3 +1,3 @@
 {
-    "parent": "nethertweaksmod:block/mesh_base"
+  "parent": "nethertweaksmod:block/mesh_string"
 }

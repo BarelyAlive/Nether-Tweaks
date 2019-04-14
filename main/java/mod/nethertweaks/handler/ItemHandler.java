@@ -36,7 +36,6 @@ public class ItemHandler implements INames{
     public static final Item MUSHROOMSPORES = new Seed(new ResourceLocation(NTM, INames.MUSHROOMSPORES));
     public static final Item CACTUSSEEDS = new Seed(new ResourceLocation(NTM, INames.CACTUSSEED));
     public static final Item FLINTANDBLAZE = new FlintAndBlaze();
-    public static final Item SANCTUARYCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.SANCTUARYCRYSTAL));
     public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
     public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
     
@@ -78,7 +77,6 @@ public class ItemHandler implements INames{
             Registry.registerItem(SEEDGRASS);
             Registry.registerItem(MUSHROOMSPORES);
             Registry.registerItem(CACTUSSEEDS);
-            Registry.registerItem(SANCTUARYCRYSTAL);
             Registry.registerItem(LIGHTCRYSTAL);
             Registry.registerItem(ENDERCRYSTAl);
             Registry.registerItem(PEBBLE);

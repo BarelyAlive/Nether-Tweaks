@@ -311,6 +311,7 @@ public class NetherLeaves extends BlockLeaves implements net.minecraftforge.comm
 	    	return 0;
 	    }
 		
+		@Override
 		public List<Pair<Integer, String>> getVariants()
 	    {
 	        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();        
