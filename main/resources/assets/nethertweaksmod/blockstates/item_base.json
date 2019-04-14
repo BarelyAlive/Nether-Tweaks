@@ -50,7 +50,12 @@
             "textures": {
               "layer0": "nethertweaksmod:items/stone_bar"
             }
+          },
+        "9": {
+            "textures": {
+              "layer0": "nethertweaksmod:items/mean_vine_string"
+            }
           }
         }
-     }
+    }
 }

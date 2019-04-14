@@ -68,7 +68,7 @@ public class ItemPebble extends Item implements IVariantProvider
             
             ProjectileStone projectile = new ProjectileStone(worldIn, playerIn);
             projectile.setStack(thrown);
-            projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 4.0F, 1.0F);
+            projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(projectile);
         }
         

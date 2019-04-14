@@ -32,3 +32,5 @@ ChangeLog NTM 2.0.0
 + Added networking
 + Added Dolls for spawning otherwise unobtainable animals
 + Added Market for buying dolls and if desired other stuff (editable via JSON)
++ Added mean vine strings (works as normal string (recipes))
++ Added pebbles (can be thrown for damage)

@@ -34,9 +34,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 
 public class Crystal extends CustomItem{
-	
-	public static final Block bob = Blocks.OBSIDIAN;
-	
+		
 	public Crystal(ResourceLocation name) {
 		super(1, NetherTweaksMod.tabNTM, name);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);

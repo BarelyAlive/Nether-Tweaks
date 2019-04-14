@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "minecraft:cobblestone"
+    "item": "minecraft:stone",
+    "data": 1
   },
   "pattern": [
     "xx",
