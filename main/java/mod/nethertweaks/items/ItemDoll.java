@@ -3,9 +3,14 @@ package mod.nethertweaks.items;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -33,8 +38,9 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDoll extends Item {
+public class ItemDoll extends Item implements IVariantProvider{
 	
+	public static final String BLANK = "blank";
 	public static final String BAT = "bat";
 	public static final String CHICKEN = "chicken";
 	public static final String COW = "cow";
@@ -61,6 +67,7 @@ public class ItemDoll extends Item {
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setHasSubtypes(true);
 		
+		names.add(BLANK);
 		names.add(BAT);
 		names.add(CHICKEN);
 		names.add(COW);
@@ -179,4 +186,15 @@ public class ItemDoll extends Item {
 			items.add(new ItemStack(this, 1, i));
 	}
 
+	@Override
+	public List<Pair<Integer, String>> getVariants()
+    {
+        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        
+        for(int i = 1; i < names.size(); i++)
+		{
+			ret.add(new ImmutablePair<Integer, String>(i, "type=" + names.get(i)));
+		}
+        return ret;
+    }
 }

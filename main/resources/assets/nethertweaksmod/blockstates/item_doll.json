@@ -1,0 +1,89 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "inventory": [
+      {}
+    ],
+    "type": {
+      "blank": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll"
+        }
+      },
+      "bat": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_bat"
+        }
+      },
+      "chicken": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_chicken"
+        }
+      },
+      "cow": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_cow"
+        }
+      },
+      "donkey": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_donkey"
+        }
+      },
+      "horse": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_horse"
+        }
+      },
+      "red_mooshroom": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_red_mooshroom"
+        }
+      },
+      "mule": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_mule"
+        }
+      },
+      "ocelot": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_ocelot"
+        }
+    },
+    "parrot": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_parrot"
+        }
+      },
+      "rabbit": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_rabbit"
+        }
+      },
+      "sheep": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_sheep"
+        }
+      },
+      "llama": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_llama"
+        }
+      },
+      "polar_bear": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_polar_bear"
+        }
+      },
+      "wolf": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_wolf"
+        }
+      }
+  }
+}
+}

@@ -29,6 +29,7 @@ public interface INames {
 	public static final String BONFIRE 						= "bonfire";
 	public static final String MEANVINE 					= "mean_vine";
 	public static final String SIEVE 						= "sieve";
+	public static final String HELLMART 					= "hellmart";
 
 	public static final String OREDUST 						= "ore_dust";
 	
@@ -45,6 +46,7 @@ public interface INames {
 	public static final String TEFREEZER					= "tileentity_freezer";
 	public static final String TESIEVE						= "tileentity_sieve";
 	public static final String TEWATERFOUNTAIN				= "tileentity_water_fountain";
+	public static final String TEHELLMART					= "tileentity_hellmart";
 	
 	//items
 	public static final String BUCKETDEMONWATER				= "bucket_demon_water";

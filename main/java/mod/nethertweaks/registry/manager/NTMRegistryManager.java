@@ -16,6 +16,7 @@ public class NTMRegistryManager {
 	private static ArrayList<IFluidOnTopDefaultRegistryProvider> defaultFluidOnTopRecipeHandlers = new ArrayList<IFluidOnTopDefaultRegistryProvider>();
 	private static ArrayList<IOreDefaultRegistryProvider> defaultOreRecipeHandlers = new ArrayList<IOreDefaultRegistryProvider>();
 	private static ArrayList<ICondenserDefaultRegistryProvider> defaultCondenserRecipeHandlers = new ArrayList<ICondenserDefaultRegistryProvider>();
+	private static ArrayList<IHellmartDefaultRegistryProvider> defaultHellmartRecipeHandlers = new ArrayList<IHellmartDefaultRegistryProvider>();
 	
 	public static ArrayList<ICondenserDefaultRegistryProvider> getDefaultCondenserRecipeHandlers() {
 		return defaultCondenserRecipeHandlers;
@@ -48,6 +49,10 @@ public class NTMRegistryManager {
 	public static ArrayList<IOreDefaultRegistryProvider> getDefaultOreRecipeHandlers() {
 		return defaultOreRecipeHandlers;
 	}
+	
+	public static ArrayList<IHellmartDefaultRegistryProvider> getDefaultHellmartRecipeHandlers() {
+		return defaultHellmartRecipeHandlers;
+	}
 
 	public static void registerSieveDefaultRecipeHandler(ISieveDefaultRegistryProvider provider) {
 		defaultSieveRecipeHandlers.add(provider);
@@ -79,5 +84,9 @@ public class NTMRegistryManager {
 	
 	public static void registerCondenserDefaultRecipeHandler(ICondenserDefaultRegistryProvider provider) {
 		defaultCondenserRecipeHandlers.add(provider);
+	}
+	
+	public static void registerHellmartDefaultRecipeHandler(IHellmartDefaultRegistryProvider provider) {
+		defaultHellmartRecipeHandlers.add(provider);
 	}
 }

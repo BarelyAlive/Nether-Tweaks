@@ -25,7 +25,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, ICondenserDefaultRegistryProvider, ISieveDefaultRegistryProvider, ICompostDefaultRegistryProvider,
-											IFluidBlockDefaultRegistryProvider, IFluidOnTopDefaultRegistryProvider, IFluidTransformDefaultRegistryProvider{
+											IFluidBlockDefaultRegistryProvider, IFluidOnTopDefaultRegistryProvider, IFluidTransformDefaultRegistryProvider, IHellmartDefaultRegistryProvider{
 
 	public NTMDefaultRecipes() {
 		NTMRegistryManager.registerHammerDefaultRecipeHandler(this);
@@ -35,6 +35,7 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		NTMRegistryManager.registerFluidBlockDefaultRecipeHandler(this);
 		NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(this);
 		NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(this);
+		NTMRegistryManager.registerHellmartDefaultRecipeHandler(this);
 	}
 
 	@Override
