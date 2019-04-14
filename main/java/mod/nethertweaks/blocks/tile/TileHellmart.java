@@ -1,5 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
+import mod.nethertweaks.network.NetworkHandlerNTM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +17,7 @@ public class TileHellmart extends TileEntity {
 		super();
 	}
 
-	private int stockNum = 14;
+	private int stockNum = 0;
 	private ItemStackHandler itemstackhandler = new ItemStackHandler();
 
 	@Override
@@ -42,6 +43,7 @@ public class TileHellmart extends TileEntity {
 		super.readFromNBT(tagCompound);
 		this.stockNum = tagCompound.getInteger("StockNum");
 		itemstackhandler.deserializeNBT((NBTTagCompound) tagCompound.getTag("Items"));
+		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 
 	@Override

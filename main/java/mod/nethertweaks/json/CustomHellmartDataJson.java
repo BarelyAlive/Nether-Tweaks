@@ -45,7 +45,7 @@ public class CustomHellmartDataJson implements JsonDeserializer<HellmartData>, J
     {
         JsonObject jsonObject = new JsonObject();
         
-        jsonObject.addProperty("item_name", src.getItem().getItem().getRegistryName().toString());
+        jsonObject.addProperty("item_name", src.getItem().getItem().getRegistryName().toString() + ":" + src.getItem().getItemDamage());
         jsonObject.addProperty("currency_name", src.getCurrency().getItem().getRegistryName().toString());
         jsonObject.addProperty("price", src.getPrice());
 

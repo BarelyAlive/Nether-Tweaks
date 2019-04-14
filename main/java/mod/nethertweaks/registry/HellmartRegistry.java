@@ -50,15 +50,14 @@ public class HellmartRegistry {
 			try
 			{
 				FileReader fr = new FileReader(file);
-				HashMap<String, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<ItemInfo, ArrayList<HellmartData>>>(){}.getType());
+				HashMap<Integer, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Integer, ArrayList<HellmartData>>>(){}.getType());
 
-				Iterator<String> it = gsonInput.keySet().iterator();
+				Iterator<Integer> it = gsonInput.keySet().iterator();
 
 				while (it.hasNext())
 				{
-					String s = (String) it.next();
-					ItemInfo stack = new ItemInfo(s);
-					registry.put(stack, gsonInput.get(s));
+					int s = it.next();
+					registry.put(s, gsonInput.get(s));
 				}
 			}
 			catch (Exception e)
@@ -88,25 +87,20 @@ public class HellmartRegistry {
 			e.printStackTrace();
 		}
 	}
-	
-	//Value is how much it needs to get 1B of water
-	private enum CurrencyType {
-		DEFAULT, SEEDS, SAPLING, ANIMAL
-	}
 
 	private static void registerItems(int item, List<HellmartData> data) {
 		registry.put(item, data);
 	}
 
-	public static List<HellmartData> getData(int i) {
-		return registry.get(i);
+	public static HellmartData getData(int i) {
+		return registry.get(i).get(0);
 	}
 
 	public static int getSize() {
 		return registry.size();
 	}
 	
-	public static void register(ItemInfo key, HellmartData data)
+	public static void register(int key, HellmartData data)
 	{	
 		List<HellmartData> rewards = registry.get(key);
 
@@ -118,16 +112,6 @@ public class HellmartRegistry {
 		rewards.add(new HellmartData(data.getItem(), data.getCurrency(), data.getPrice()));
 		
 		registry.put(key, rewards);
-	}
-	
-	public static boolean containsItem(ItemStack stack)
-	{
-		return registry.containsKey(ItemInfo.getItemInfoFromStack(stack));
-	}
-
-	public static boolean containsItem(Item item, int meta)
-	{
-		return registry.containsKey(new ItemInfo(item, meta));
 	}
 	
 	public static List<HellmartData> getHellmartDataList(ItemStack stack)

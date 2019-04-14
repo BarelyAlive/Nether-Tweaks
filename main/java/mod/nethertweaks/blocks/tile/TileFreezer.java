@@ -8,6 +8,7 @@ import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -145,6 +146,7 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override

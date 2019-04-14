@@ -7,6 +7,7 @@ import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
 import net.minecraft.block.Block;
@@ -191,6 +192,7 @@ public class TileNetherrackFurnace extends TileEntityBase{
 		super.readFromNBT(compound);
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override

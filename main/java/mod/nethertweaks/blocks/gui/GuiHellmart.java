@@ -29,6 +29,7 @@ public class GuiHellmart extends GuiContainer {
 	public GuiHellmart(InventoryPlayer inventoryplayer, TileHellmart tileEntityMarket) {
 		super(new ContainerHellmart(inventoryplayer, tileEntityMarket));
 		this.tileEntityMarket = tileEntityMarket;
+		tileEntityMarket.setBrowsingInfo(HellmartRegistry.getSize() -1);
 	}
 
 	@Override

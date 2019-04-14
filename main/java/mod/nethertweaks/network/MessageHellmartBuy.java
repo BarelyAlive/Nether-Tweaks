@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class MessageHellmartBuy implements IMessage, IMessageHandler<MessageHellmartBuy, IMessage> {
+public class MessageHellmartBuy implements IMessage{
 	private int itemNum;
 	private int x;
 	private int y;
@@ -48,30 +48,33 @@ public class MessageHellmartBuy implements IMessage, IMessageHandler<MessageHell
 		buf.writeBoolean(this.shouldClear);
 	}
 
-	@Override
-	public IMessage onMessage(MessageHellmartBuy message, MessageContext ctx) {
-		final EntityPlayerMP player = ctx.getServerHandler().player;
-		player.getServerWorld().addScheduledTask(() -> {
-			final TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-			if((tile_entity instanceof TileHellmart)) {
-				final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
-				final HellmartData data = HellmartRegistry.getData(message.itemNum);
-				final int price = data.getPrice();
-
-				if(message.shouldClear) {
-					tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-							.setCount(0);
+	public static class MessageHellmartBuyHandler implements IMessageHandler<MessageHellmartBuy, IMessage>
+    {
+		@Override
+		public IMessage onMessage(MessageHellmartBuy message, MessageContext ctx) {
+			final EntityPlayerMP player = ctx.getServerHandler().player;
+			player.getServerWorld().addScheduledTask(() -> {
+				final TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+				if((tile_entity instanceof TileHellmart)) {
+					final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
+					final HellmartData data = HellmartRegistry.getData(message.itemNum);
+					final int price = data.getPrice();
+	
+					if(message.shouldClear) {
+						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+								.setCount(0);
+					}
+					else {
+						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+								.shrink(price);
+					}
+	
+					final EntityItem var14 =
+							new EntityItem(player.world, player.posX, player.posY + 1.0D, player.posZ, data.getItem().copy());
+					player.world.spawnEntity(var14);
 				}
-				else {
-					tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-							.shrink(price);
-				}
-
-				final EntityItem var14 =
-						new EntityItem(player.world, player.posX, player.posY + 1.0D, player.posZ, data.getItem().copy());
-				player.world.spawnEntity(var14);
-			}
-		});
-		return null;
-	}
+			});
+			return null;
+		}
+    }
 }

@@ -40,7 +40,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDoll extends Item implements IVariantProvider{
 	
-	public static final String BLANK = "blank";
 	public static final String BAT = "bat";
 	public static final String CHICKEN = "chicken";
 	public static final String COW = "cow";
@@ -67,7 +66,6 @@ public class ItemDoll extends Item implements IVariantProvider{
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setHasSubtypes(true);
 		
-		names.add(BLANK);
 		names.add(BAT);
 		names.add(CHICKEN);
 		names.add(COW);
@@ -191,7 +189,7 @@ public class ItemDoll extends Item implements IVariantProvider{
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
         
-        for(int i = 1; i < names.size(); i++)
+        for(int i = 0; i < names.size(); i++)
 		{
 			ret.add(new ImmutablePair<Integer, String>(i, "type=" + names.get(i)));
 		}

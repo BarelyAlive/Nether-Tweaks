@@ -9,11 +9,6 @@
       {}
     ],
     "type": {
-      "blank": {
-        "textures": {
-          "layer0": "nethertweaksmod:items/doll"
-        }
-      },
       "bat": {
         "textures": {
           "layer0": "nethertweaksmod:items/doll_bat"

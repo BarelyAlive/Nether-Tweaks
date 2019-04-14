@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "nethertweaksmod:blocks/netherrack_furnace",
+        "side": "nethertweaksmod:blocks/hellmart"
+    }
+}

@@ -23,6 +23,10 @@ public class NetworkHandlerNTM {
 		INSTANCE.registerMessage(MessageFluidUpdate.MessageFluidUpdateHandler.class, MessageFluidUpdate.class, id++, Side.CLIENT);
 		INSTANCE.registerMessage(MessageNBTUpdate.MessageNBTUpdateHandler.class, MessageNBTUpdate.class, id++, Side.CLIENT);
 		INSTANCE.registerMessage(MessageCheckLight.MessageCheckLightHandler.class, MessageCheckLight.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageHellmartClosed.MessageHellmartClosedHandler.class, MessageHellmartClosed.class, id++, Side.CLIENT);
+		INSTANCE.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, id++, Side.SERVER);
+		INSTANCE.registerMessage(MessageHellmartClosed.MessageHellmartClosedHandler.class, MessageHellmartClosed.class, id++, Side.SERVER);
 	}
 	
 	public static void sendToAllAround(IMessage message, TileEntity te, int range) 

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class MessageHellmartClosed implements IMessage, IMessageHandler<MessageHellmartClosed, IMessage> {
+public class MessageHellmartClosed implements IMessage{
 	private int x;
 	private int y;
 	private int z;
@@ -37,27 +37,31 @@ public class MessageHellmartClosed implements IMessage, IMessageHandler<MessageH
 		buf.writeInt(this.y);
 		buf.writeInt(this.z);
 	}
+	
 
-	@Override
-	public IMessage onMessage(MessageHellmartClosed message, MessageContext ctx) {
-		EntityPlayerMP player = ctx.getServerHandler().player;
-		player.getServerWorld().addScheduledTask(() -> {
-			TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-			if((tile_entity instanceof TileHellmart)) {
-				TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
-
-				if(!tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-						.isEmpty()) {
-					player.entityDropItem(tileEntityMarket
-							.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0), 1.0F);
-					tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-							.setCount(0);
+	public static class MessageHellmartClosedHandler implements IMessageHandler<MessageHellmartClosed, IMessage>
+    {
+		@Override
+		public IMessage onMessage(MessageHellmartClosed message, MessageContext ctx) {
+			EntityPlayerMP player = ctx.getServerHandler().player;
+			player.getServerWorld().addScheduledTask(() -> {
+				TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+				if((tile_entity instanceof TileHellmart)) {
+					TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
+	
+					if(!tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+							.isEmpty()) {
+						player.entityDropItem(tileEntityMarket
+								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0), 1.0F);
+						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+								.setCount(0);
+					}
 				}
-			}
-
-			final IBlockState state = player.world.getBlockState(new BlockPos(message.x, message.y, message.z));
-			player.world.notifyBlockUpdate(new BlockPos(message.x, message.y, message.z), state, state, 3);
-		});
-		return null;
-	}
+	
+				final IBlockState state = player.world.getBlockState(new BlockPos(message.x, message.y, message.z));
+				player.world.notifyBlockUpdate(new BlockPos(message.x, message.y, message.z), state, state, 3);
+			});
+			return null;
+		}
+    }
 }

@@ -9,6 +9,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registry.CondenserRegistry;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -136,6 +137,7 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 	
 	@Override

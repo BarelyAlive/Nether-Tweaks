@@ -273,23 +273,22 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 	public void registerFluidOnTopRecipeDefaults() {
 		FluidOnTopRegistry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new ItemInfo(Blocks.OBSIDIAN.getDefaultState()));
 		FluidOnTopRegistry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new ItemInfo(Blocks.COBBLESTONE.getDefaultState()));
-}
-
-	@Override
+	}
+	
 	public void registerHellmartRecipeDefaults() {
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 0), new HellmartData(new ItemInfo(ItemHandler.DOLL, 0).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 1), new HellmartData(new ItemInfo(ItemHandler.DOLL, 1).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 2), new HellmartData(new ItemInfo(ItemHandler.DOLL, 2).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 3), new HellmartData(new ItemInfo(ItemHandler.DOLL, 3).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 4), new HellmartData(new ItemInfo(ItemHandler.DOLL, 4).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 5), new HellmartData(new ItemInfo(ItemHandler.DOLL, 5).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 6), new HellmartData(new ItemInfo(ItemHandler.DOLL, 6).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 7), new HellmartData(new ItemInfo(ItemHandler.DOLL, 7).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 8), new HellmartData(new ItemInfo(ItemHandler.DOLL, 8).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 9), new HellmartData(new ItemInfo(ItemHandler.DOLL, 9).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 10), new HellmartData(new ItemInfo(ItemHandler.DOLL, 10).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 11), new HellmartData(new ItemInfo(ItemHandler.DOLL, 11).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 12), new HellmartData(new ItemInfo(ItemHandler.DOLL, 12).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(new ItemInfo(ItemHandler.DOLL, 13), new HellmartData(new ItemInfo(ItemHandler.DOLL, 13).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(0, new HellmartData(new ItemInfo(ItemHandler.DOLL, 0).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(1, new HellmartData(new ItemInfo(ItemHandler.DOLL, 1).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(2, new HellmartData(new ItemInfo(ItemHandler.DOLL, 2).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(3, new HellmartData(new ItemInfo(ItemHandler.DOLL, 3).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(4, new HellmartData(new ItemInfo(ItemHandler.DOLL, 4).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(5, new HellmartData(new ItemInfo(ItemHandler.DOLL, 5).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(6, new HellmartData(new ItemInfo(ItemHandler.DOLL, 6).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(7, new HellmartData(new ItemInfo(ItemHandler.DOLL, 7).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(8, new HellmartData(new ItemInfo(ItemHandler.DOLL, 8).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(9, new HellmartData(new ItemInfo(ItemHandler.DOLL, 9).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(10, new HellmartData(new ItemInfo(ItemHandler.DOLL, 10).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(11, new HellmartData(new ItemInfo(ItemHandler.DOLL, 11).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(12, new HellmartData(new ItemInfo(ItemHandler.DOLL, 12).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		HellmartRegistry.register(13, new HellmartData(new ItemInfo(ItemHandler.DOLL, 13).getItemStack(), new ItemStack(Items.EMERALD), 10));
 	}
 }
