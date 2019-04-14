@@ -29,7 +29,8 @@ import net.minecraftforge.oredict.OreDictionary;
 public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, ICondenserDefaultRegistryProvider, ISieveDefaultRegistryProvider, ICompostDefaultRegistryProvider,
 											IFluidBlockDefaultRegistryProvider, IFluidOnTopDefaultRegistryProvider, IFluidTransformDefaultRegistryProvider, IHellmartDefaultRegistryProvider{
 
-	public NTMDefaultRecipes() {
+	public NTMDefaultRecipes()
+	{
 		NTMRegistryManager.registerHammerDefaultRecipeHandler(this);
 		NTMRegistryManager.registerCondenserDefaultRecipeHandler(this);
 		NTMRegistryManager.registerSieveDefaultRecipeHandler(this);
@@ -41,7 +42,8 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 	}
 
 	@Override
-	public void registerSieveRecipeDefaults() {
+	public void registerSieveRecipeDefaults()
+	{
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), ItemPebble.getPebbleStack("stone"), 1f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), ItemPebble.getPebbleStack("stone"), 1f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), ItemPebble.getPebbleStack("stone"), 0.5f, MeshType.STRING.getID());
@@ -82,6 +84,9 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 
 		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.GLOWSTONE_DUST, 0), 0.0625f, MeshType.IRON.getID());
 		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.BLAZE_POWDER, 0), 0.05f, MeshType.IRON.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.GLOWSTONE_DUST, 0), 0.125f, MeshType.DIAMOND.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.BLAZE_POWDER, 0), 0.1f, MeshType.DIAMOND.getID());
 
 		// Ores
 //		for (ItemOre ore : OreRegistry.getItemOreRegistry())
@@ -91,13 +96,14 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 //			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.1f, MeshType.DIAMOND.getID());
 //		}
 
-		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEEDGRASS, 0), 0.05f, MeshType.STRING.getID());
-		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.MUSHROOMSPORES, 0), 0.05f, MeshType.STRING.getID());
-		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.CACTUSSEEDS, 0), 0.05f, MeshType.STRING.getID());
+		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 0), 0.05f, MeshType.STRING.getID());
+		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 1), 0.05f, MeshType.STRING.getID());
+		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 2), 0.05f, MeshType.STRING.getID());
 	}
 
 	@Override
-	public void registerHammerRecipeDefaults() {
+	public void registerHammerRecipeDefaults()
+	{
 		HammerRegistry.register(Blocks.NETHERRACK.getDefaultState(), new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
 		HammerRegistry.register(Blocks.STONE.getDefaultState(), new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
 		HammerRegistry.register(Blocks.COBBLESTONE.getDefaultState(), new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
@@ -107,7 +113,8 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 
 
 	@Override
-	public void registerCondenserRecipeDefaults() {
+	public void registerCondenserRecipeDefaults()
+	{
 		CondenserRegistry.register(new ItemStack(Items.ROTTEN_FLESH, 1, 0), 112);
 		CondenserRegistry.register(new ItemStack(Items.APPLE, 1, 0), 42);
 		CondenserRegistry.register(new ItemStack(Items.CHORUS_FRUIT, 1, 0), 42);
@@ -174,7 +181,8 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		}
 	}
 	
-	public void registerCompostRecipeDefaults() {
+	public void registerCompostRecipeDefaults()
+	{
 		IBlockState dirtState = Blocks.DIRT.getDefaultState();
 
 		CompostRegistry.register(Items.ROTTEN_FLESH, 0, 0.1f, dirtState, new Color("C45631"));
@@ -261,21 +269,25 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		CompostRegistry.register(Items.STRING, 0, 0.04f, dirtState, Util.whiteColor);
 	}
 	
-	public void registerFluidBlockRecipeDefaults() {
+	public void registerFluidBlockRecipeDefaults()
+	{
 		FluidBlockTransformerRegistry.register(FluidRegistry.WATER, new ItemInfo(new ItemStack(BlockHandler.DUST)), new ItemInfo(new ItemStack(Blocks.CLAY)));
 		FluidBlockTransformerRegistry.register(FluidRegistry.LAVA, new ItemInfo(new ItemStack(Items.REDSTONE)), new ItemInfo(new ItemStack(Blocks.NETHERRACK)));
 		FluidBlockTransformerRegistry.register(FluidRegistry.LAVA, new ItemInfo(new ItemStack(Items.GLOWSTONE_DUST)), new ItemInfo(new ItemStack(Blocks.END_STONE)));
 	}
 	
-	public void registerFluidTransformRecipeDefaults() {
+	public void registerFluidTransformRecipeDefaults()
+	{
 	}
 	
-	public void registerFluidOnTopRecipeDefaults() {
+	public void registerFluidOnTopRecipeDefaults()
+	{
 		FluidOnTopRegistry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new ItemInfo(Blocks.OBSIDIAN.getDefaultState()));
 		FluidOnTopRegistry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new ItemInfo(Blocks.COBBLESTONE.getDefaultState()));
 	}
 	
-	public void registerHellmartRecipeDefaults() {
+	public void registerHellmartRecipeDefaults()
+	{
 		HellmartRegistry.register(0, new HellmartData(new ItemInfo(ItemHandler.DOLL, 0).getItemStack(), new ItemStack(Items.EMERALD), 10));
 		HellmartRegistry.register(1, new HellmartData(new ItemInfo(ItemHandler.DOLL, 1).getItemStack(), new ItemStack(Items.EMERALD), 10));
 		HellmartRegistry.register(2, new HellmartData(new ItemInfo(ItemHandler.DOLL, 2).getItemStack(), new ItemStack(Items.EMERALD), 10));

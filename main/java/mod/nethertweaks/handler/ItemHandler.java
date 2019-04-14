@@ -32,9 +32,7 @@ import mod.sfhcore.items.CustomItem;
 public class ItemHandler implements INames{
 	 
 	//ITEMS
-    public static final Item SEEDGRASS = new Seed(new ResourceLocation(NTM, INames.SEEDGRASS));
-    public static final Item MUSHROOMSPORES = new Seed(new ResourceLocation(NTM, INames.MUSHROOMSPORES));
-    public static final Item CACTUSSEEDS = new Seed(new ResourceLocation(NTM, INames.CACTUSSEED));
+    public static final Item SEED= new Seed(new ResourceLocation(NTM, INames.SEED));
     public static final Item FLINTANDBLAZE = new FlintAndBlaze();
     public static final Item LIGHTCRYSTAL = new Crystal(new ResourceLocation(NTM, INames.LIGHTCRYSTAL));
     public static final Item ENDERCRYSTAl = new Crystal(new ResourceLocation(NTM, INames.ENDERCRYSTAL));
@@ -75,9 +73,7 @@ public class ItemHandler implements INames{
 		Registry.registerItem(OREMATERIAL);
         
     	Registry.registerItem(COOKEDJERKY);
-        Registry.registerItem(SEEDGRASS);
-        Registry.registerItem(MUSHROOMSPORES);
-        Registry.registerItem(CACTUSSEEDS);
+        Registry.registerItem(SEED);;
         Registry.registerItem(LIGHTCRYSTAL);
         Registry.registerItem(ENDERCRYSTAl);
         Registry.registerItem(PEBBLE);

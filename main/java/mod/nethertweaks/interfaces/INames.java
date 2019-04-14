@@ -63,11 +63,9 @@ public interface INames {
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
 	public static final String OREMATERIAL 					= "ore_material";
 	public static final String CACTUSGRABBER 				= "item_cactus_grabber";
-	public static final String SEEDGRASS 					= "seed_grass";
-	public static final String MUSHROOMSPORES 				= "mushroom_spores";
-	public static final String CACTUSSEED 					= "cactus_seed";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";
 	public static final String STRING 						= "string";
+	public static final String SEED							= "seed";	
 	
 	public static final String LIGHTCRYSTAL 				= "light_crystal";
 	public static final String ENDERCRYSTAL 				= "ender_crystal";

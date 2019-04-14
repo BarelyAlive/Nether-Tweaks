@@ -6,9 +6,19 @@
   },
   "variants": {
     "type": {
-      "normal": {
+      "0": {
         "textures": {
           "layer0": "nethertweaksmod:items/mushroom_spores"
+        }
+      },
+      "1": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/seed_grass"
+        }
+      },
+      "2": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/item_cactus_seeds"
         }
       }
     }
