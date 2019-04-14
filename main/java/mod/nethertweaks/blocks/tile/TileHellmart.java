@@ -43,7 +43,6 @@ public class TileHellmart extends TileEntity {
 		super.readFromNBT(tagCompound);
 		this.stockNum = tagCompound.getInteger("StockNum");
 		itemstackhandler.deserializeNBT((NBTTagCompound) tagCompound.getTag("Items"));
-		NetworkHandlerNTM.sendNBTUpdate(this);
 	}
 
 	@Override
