@@ -22,6 +22,7 @@ import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.FluidOnTopRegistry;
 import mod.nethertweaks.registry.FluidTransformRegistry;
 import mod.nethertweaks.registry.HammerRegistry;
+import mod.nethertweaks.registry.HellmartRegistry;
 import mod.nethertweaks.registry.SieveRegistry;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
 import mod.nethertweaks.world.WorldGeneratorNTM;
@@ -139,5 +140,6 @@ public class NetherTweaksMod {
 		SieveRegistry.loadJson(new File(configDirectory, "SieveRegistry.json"));
 		FluidTransformRegistry.loadJson(new File(configDirectory, "FluidTransformRegistry.json"));
 		BarrelLiquidBlacklistRegistry.loadJson(new File(configDirectory, "BarrelLiquidBlacklistRegistry.json"));
+		HellmartRegistry.loadJson(new File(configDirectory, "HellmartRegistry.json"));
     }
 }

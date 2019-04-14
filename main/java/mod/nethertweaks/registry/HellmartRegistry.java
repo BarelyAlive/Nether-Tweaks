@@ -38,7 +38,7 @@ import mod.sfhcore.util.ItemInfo;
 
 public class HellmartRegistry {
 	
-	private static HashMap<String, List<HellmartData>> registry = new HashMap<String, List<HellmartData>>();
+	private static HashMap<ItemInfo, List<HellmartData>> registry = new HashMap<ItemInfo, List<HellmartData>>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(HellmartData.class, new CustomHellmartDataJson()).create();
 
 	public static void loadJson(File file)
@@ -50,7 +50,7 @@ public class HellmartRegistry {
 			try
 			{
 				FileReader fr = new FileReader(file);
-				HashMap<String, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<String, ArrayList<HellmartData>>>(){}.getType());
+				HashMap<String, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<ItemInfo, ArrayList<HellmartData>>>(){}.getType());
 
 				Iterator<String> it = gsonInput.keySet().iterator();
 
@@ -138,7 +138,7 @@ public class HellmartRegistry {
 		}
 	}
 	
-	public static void register(String key, HellmartData data)
+	public static void register(ItemInfo key, HellmartData data)
 	{	
 		List<HellmartData> rewards = registry.get(key);
 
@@ -152,19 +152,24 @@ public class HellmartRegistry {
 		registry.put(key, rewards);
 	}
 	
-	public static boolean containsItem(String id)
+	public static boolean containsItem(ItemStack stack)
 	{
-		return registry.containsKey(id);
+		return registry.containsKey(ItemInfo.getItemInfoFromStack(stack));
+	}
+
+	public static boolean containsItem(Item item, int meta)
+	{
+		return registry.containsKey(new ItemInfo(item, meta));
 	}
 	
-	public static List<HellmartData> getHellmartDataList(String id)
+	public static List<HellmartData> getHellmartDataList(ItemStack stack)
 	{
-		return registry.getOrDefault(id, Collections.EMPTY_LIST);
+		return registry.getOrDefault(new ItemInfo(stack), Collections.EMPTY_LIST);
 	}
 	
 	public static HellmartData getHellmartData(ItemStack stack)
 	{
-		List<HellmartData> rewards = getHellmartDataList(stack.getItem().getRegistryName().toString());
+		List<HellmartData> rewards = getHellmartDataList(stack);
 
 		for (HellmartData reward : rewards)
 		{

@@ -1,11 +1,12 @@
 package mod.nethertweaks.registry.types;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class HellmartData {
     private final ItemStack item;
     private final ItemStack currency;
-    private final int price;
+    private final int price; 
 
     public HellmartData(ItemStack item, ItemStack currency, int price) {
         this.item = item;

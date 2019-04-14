@@ -4,12 +4,12 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.pam.harvestcraft.tileentities.MarketItems;
-
 import mod.nethertweaks.blocks.container.ContainerHellmart;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.network.MessageHellmartBuy;
+import mod.nethertweaks.network.MessageHellmartClosed;
 import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.nethertweaks.registry.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public class GuiHellmart extends GuiContainer {
-	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/market.png");
+	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
 
 	private int itemNum;
 
@@ -60,13 +60,13 @@ public class GuiHellmart extends GuiContainer {
 		if(guibutton.id == 0) {
 			itemNum--;
 			if(itemNum < 0) {
-				itemNum = MarketItems.getSize() - 1;
+				itemNum = HellmartRegistry.getSize() - 1;
 			}
 			this.tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 1) {
 			itemNum++;
-			if(itemNum > MarketItems.getSize() - 1) {
+			if(itemNum > HellmartRegistry.getSize() - 1) {
 				itemNum = 0;
 			}
 			this.tileEntityMarket.setBrowsingInfo(itemNum);
@@ -75,7 +75,7 @@ public class GuiHellmart extends GuiContainer {
 			ItemStack buySlot = tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
 					.getStackInSlot(0);
 			if(buySlot != null) {
-				final HellmartData data = MarketItems.getData(itemNum);
+				final HellmartData data = HellmartRegistry.getData(itemNum);
 				if(buySlot.getItem() == data.getCurrency().getItem()) {
 					if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
 						int price = data.getPrice();
@@ -103,7 +103,7 @@ public class GuiHellmart extends GuiContainer {
 
 	@Override
 	public void onGuiClosed() {
-		NetworkHandlerNTM.INSTANCE.sendToServer(new MessageMarketClosed(this.tileEntityMarket.getPos().getX(),
+		NetworkHandlerNTM.INSTANCE.sendToServer(new MessageHellmartClosed(this.tileEntityMarket.getPos().getX(),
 				this.tileEntityMarket.getPos().getY(), this.tileEntityMarket.getPos().getZ()));
 		super.onGuiClosed();
 	}
@@ -119,7 +119,7 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glEnable(GL11.GL_LIGHTING);
 		itemRender.zLevel = 100.0F;
 
-		HellmartData data = MarketItems.getData(itemNum);
+		HellmartData data = HellmartRegistry.getData(itemNum);
 
 		ItemStack item = data.getItem();
 		itemRender.renderItemAndEffectIntoGUI(item, 73, 16);
@@ -143,7 +143,7 @@ public class GuiHellmart extends GuiContainer {
 	public void drawScreen(int par1, int par2, float par3) {
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
-		ItemStack item = MarketItems.getData(itemNum).getItem();
+		ItemStack item = HellmartRegistry.getData(itemNum).getItem();
 
 		if(this.isPointInRegion(73, 16, 16, 16, par1, par2)) {
 			this.renderToolTip(item, par1, par2);

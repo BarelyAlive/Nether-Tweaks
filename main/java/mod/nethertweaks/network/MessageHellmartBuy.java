@@ -2,6 +2,8 @@ package mod.nethertweaks.network;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.registry.HellmartRegistry;
+import mod.nethertweaks.registry.types.HellmartData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
@@ -53,7 +55,7 @@ public class MessageHellmartBuy implements IMessage, IMessageHandler<MessageHell
 			final TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 			if((tile_entity instanceof TileHellmart)) {
 				final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
-				final HellmartData data = MarketItems.getData(message.itemNum);
+				final HellmartData data = HellmartRegistry.getData(message.itemNum);
 				final int price = data.getPrice();
 
 				if(message.shouldClear) {
