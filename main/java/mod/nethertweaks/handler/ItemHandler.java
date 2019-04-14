@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,7 +15,6 @@ import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.items.CookedJerky;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.HammerBase;
@@ -49,7 +49,8 @@ public class ItemHandler implements INames{
 	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
-    public static final Item COOKEDJERKY = new CookedJerky();
+    public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true)
+    		.setUnlocalizedName(INames.COOKEDJERKY).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
          
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);

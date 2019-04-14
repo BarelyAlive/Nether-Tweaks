@@ -31,22 +31,20 @@ public class Seed extends CustomItem{
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		Block block = worldIn.getBlockState(pos).getBlock(); //worldIn.getBlockState(rtr.getBlockPos()).getBlock();
+		Block block = worldIn.getBlockState(pos).getBlock();
 		
-		if(this.getUnlocalizedName().equals("item." + INames.MUSHROOMSPORES))
-		{
+		switch (this.getRegistryName().getResourcePath()) {
+		case INames.MUSHROOMSPORES:
 			if(block == Blocks.DIRT || block == Blocks.GRASS){
 				worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
 			}
-		}
-		else if(this.getUnlocalizedName().equals("item." + INames.SEEDGRASS))
-		{
+			break;
+		case INames.SEEDGRASS:
 			if(block == Blocks.DIRT){
 				worldIn.setBlockState(pos, Blocks.GRASS.getDefaultState());
 			}
-		}
-		else if(this.getUnlocalizedName().equals("item." + INames.CACTUSSEED))
-		{
+			break;
+		case INames.CACTUSSEED:
 			Block block1 = worldIn.getBlockState(pos.add(1, 1, 0)).getBlock();
 			Block block2 = worldIn.getBlockState(pos.add(0, 1, 1)).getBlock();
 			Block block3 = worldIn.getBlockState(pos.add(-1, 1, 0)).getBlock();
@@ -64,6 +62,9 @@ public class Seed extends CustomItem{
 					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
 				}
 			}
+			break;
+		default:
+			break;
 		}
 		
 		return EnumActionResult.SUCCESS;

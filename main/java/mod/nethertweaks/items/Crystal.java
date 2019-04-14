@@ -37,7 +37,6 @@ public class Crystal extends CustomItem{
 		
 	public Crystal(ResourceLocation name) {
 		super(1, NetherTweaksMod.tabNTM, name);
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 	
 	@Override

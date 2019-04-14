@@ -37,7 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
         
     public NetherLog() {
-    	super(Material.WOOD, new ResourceLocation("nethertweaksmod", INames.NETHERLOG));
+    	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERLOG));
     	setCreativeTab(NetherTweaksMod.tabNTM);
     	setHardness(2);
     	setResistance(10);
@@ -45,9 +45,9 @@ public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
     	setUnlocalizedName(INames.NETHERLOG);
 	}
     
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-    {
-        int i = 4;
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    	int i = 4;
         int j = 5;
 
         if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))

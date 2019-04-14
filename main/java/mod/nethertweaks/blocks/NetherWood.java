@@ -27,22 +27,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetherWood extends Cube implements IVariantProvider{
+public class NetherWood extends Cube{
 	    
 	public NetherWood() {
-		super(Material.WOOD, 2.0F, 10.0F, 0, NetherTweaksMod.tabNTM, new ResourceLocation("nethertweaksmod", INames.NETHERWOOD));
-        setCreativeTab(NetherTweaksMod.tabNTM);
+		super(Material.WOOD, 2.0F, 10.0F, 0, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERWOOD));
 	}
 	
 	@Override
 	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
 	}
-	
-	public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "normal"));
-        return ret;
-    }
 }
