@@ -31,13 +31,14 @@ import mod.nethertweaks.registry.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.IHellmartDefaultRegistryProvider;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.nethertweaks.registry.types.Dryable;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.util.ItemInfo;
 
 public class HellmartRegistry {
 	
-	private static HashMap<ItemInfo, List<HellmartData>> registry = new HashMap<ItemInfo, List<HellmartData>>();
+	private static HashMap<String, List<HellmartData>> registry = new HashMap<String, List<HellmartData>>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(HellmartData.class, new CustomHellmartDataJson()).create();
 
 	public static void loadJson(File file)
@@ -135,6 +136,42 @@ public class HellmartRegistry {
 			default:
 				return new ItemStack(Items.EMERALD);
 		}
+	}
+	
+	public static void register(String key, HellmartData data)
+	{	
+		List<HellmartData> rewards = registry.get(key);
+
+		if (rewards == null)
+		{
+			rewards = new ArrayList<>();
+		}
+
+		rewards.add(new HellmartData(data.getItem(), data.getCurrency(), data.getPrice()));
+		
+		registry.put(key, rewards);
+	}
+	
+	public static boolean containsItem(String id)
+	{
+		return registry.containsKey(id);
+	}
+	
+	public static List<HellmartData> getHellmartDataList(String id)
+	{
+		return registry.getOrDefault(id, Collections.EMPTY_LIST);
+	}
+	
+	public static HellmartData getHellmartData(ItemStack stack)
+	{
+		List<HellmartData> rewards = getHellmartDataList(stack.getItem().getRegistryName().toString());
+
+		for (HellmartData reward : rewards)
+		{
+			return reward;
+		}
+
+		return null;
 	}
 	
 	public static void registerDefaults()
