@@ -76,7 +76,6 @@ public class Config {
         spawnPig = config.get("Mobs", "Can Demon Water transform pigmans?", true).getBoolean();
         spawnSkeleton = config.get("Mobs", "Can Demon Water transform wither skeletons", true).getBoolean();
         spawnSlime = config.get("Mobs", "Can Demon Water transform magma slimes?", true).getBoolean();
-        healAnimals = config.get("Mobs", "Can Demon Water heal animals?", true).getBoolean();
         
         config.save();
 	}

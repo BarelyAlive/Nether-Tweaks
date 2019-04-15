@@ -3,6 +3,8 @@ package mod.nethertweaks.items;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -57,26 +59,25 @@ public class ItemPebble extends Item implements IVariantProvider
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-    	ItemStack stack = playerIn.getHeldItem(handIn);
-    	
-    	stack.setCount(stack.getCount()-1);
-        
-        worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-        
-        if (!worldIn.isRemote)
-        {
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, @Nonnull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
+
+        stack.shrink(1);
+        world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+        if (!world.isRemote) {
             ItemStack thrown = stack.copy();
             thrown.setCount(1);
-            
-            ProjectileStone projectile = new ProjectileStone(worldIn, playerIn);
+
+            ProjectileStone projectile = new ProjectileStone(world, player);
             projectile.setStack(thrown);
-            projectile.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.spawnEntity(projectile);
+            projectile.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 0.5F);
+            world.spawnEntity(projectile);
         }
-        
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-    }
+
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+}
     
     public static ItemStack getPebbleStack(String name)
     {

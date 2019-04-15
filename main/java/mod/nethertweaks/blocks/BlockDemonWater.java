@@ -133,19 +133,6 @@ public class BlockDemonWater extends BlockFluidClassic{
 				entity.setDead();
 			} 
 		}
-		
-		if(Config.healAnimals)
-		{
-			if(!(entity instanceof EntityMob) && !(entity instanceof EntityPlayer))
-			{
-				if(entity instanceof EntityLivingBase)
-				{
-					EntityLivingBase living = (EntityLivingBase) entity;
-					
-					living.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100));
-				}
-			}
-    	}
     }
     
     @Override
