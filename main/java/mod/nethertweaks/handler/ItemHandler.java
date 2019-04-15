@@ -26,7 +26,7 @@ import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.SFHCore;
-import mod.sfhcore.handler.CustomFuelhandler;
+import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
 
 public class ItemHandler implements INames{
@@ -48,7 +48,7 @@ public class ItemHandler implements INames{
 	//food
     public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true)
     		.setUnlocalizedName(INames.COOKEDJERKY).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
-         
+    
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
@@ -93,8 +93,8 @@ public class ItemHandler implements INames{
     
     private static void addItemBurnTime()
     {
-    	CustomFuelhandler.addFuelBurnTime(BucketNFluidHandler.BUCKETSTONELAVA.getRegistryName(), 18000);
-    	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAH.getItem().getRegistryName(), Config.burnTimeHellfayah);
-    	CustomFuelhandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK.getItem().getRegistryName(), Config.burnTimeHellfayahBlock);
+    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.BUCKETSTONELAVA), 18000);
+    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAH, 12800);
+    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 128000);
     }
 }

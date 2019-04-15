@@ -89,8 +89,8 @@ public class NetherTweaksMod {
     	Config.loadConfigs(new File(configDirectory, "NetherTweaksMod.cfg"));
     	
         BlockHandler.init();
-        ItemHandler.init();
         BucketNFluidHandler.init();
+        ItemHandler.init();
         NTMEntities.init();
         
         MinecraftForge.EVENT_BUS.register(whNTM);
