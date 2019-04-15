@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -51,6 +52,12 @@ public class ItemMesh extends Item implements IVariantProvider{
 	            return 0;
 	    }
 	}
+	
+	@Override
+    public String getUnlocalizedName(ItemStack stack) {
+    	return "item." + name + "_" + MeshType.getMeshTypeByID(stack.getItemDamage());
+
+    }
 	
 	@Override
 	public boolean isEnchantable(ItemStack stack)

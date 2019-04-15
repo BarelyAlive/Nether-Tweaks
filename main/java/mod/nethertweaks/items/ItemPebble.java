@@ -14,6 +14,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,8 +42,8 @@ public class ItemPebble extends Item implements IVariantProvider
     public ItemPebble()
     {
         this.setHasSubtypes(true);
-        this.setUnlocalizedName("item_pebble");
-        this.setRegistryName(NetherTweaksMod.MODID, "item_pebble");
+        this.setUnlocalizedName(INames.PEBBLE);
+        this.setRegistryName(NetherTweaksMod.MODID, INames.PEBBLE);
         this.setCreativeTab(NetherTweaksMod.tabNTM);
     }
     
@@ -77,7 +78,13 @@ public class ItemPebble extends Item implements IVariantProvider
         }
 
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-}
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+    	return "item." + INames.PEBBLE + "_" + stack.getItemDamage();
+
+    }
     
     public static ItemStack getPebbleStack(String name)
     {

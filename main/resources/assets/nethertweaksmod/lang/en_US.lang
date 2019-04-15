@@ -12,10 +12,14 @@ tile.nether_log.name=Forgotten Tree Log
 tile.nether_leaves.name=Forgotten Tree Leaves
 tile.nether_wood.name=Forgotten Tree Planks
 tile.nether_sapling.name=Forgotten Tree Sapling
-tile.barrel_0.name=Barrel
-tile.barrel_1.name=Barrel
+tile.barrel0.name=Barrel
+tile.barrel1.name=Barrel
 tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
+tile.hellmart.name=Hellmart
+
+item.door_ntm_stone.name=Stone Door
+item.door_ntm_obsidian.name=Obsidian Door
 
 tile.ore_iron_dust.name=Iron Ore
 tile.ore_gold_dust.name=Gold Ore
@@ -45,10 +49,12 @@ item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 item.bucket_wood.name=Wood Bucket
 item.bucket_wood_water.name=Water Bucket
 item.bucket_wood_demon_water.name=Demon Water Bucket
+item.bucket_wood_milk.name=Milk Bucket
 item.bucket_stone.name=Stone Bucket
 item.bucket_stone_water.name=Water Bucket
 item.bucket_stone_lava.name=Lava Bucket
 item.bucket_stone_demon_water.name=Demon Water Bucket
+item.bucket_stone_milk.name=Milk Bucket
 
 item.ore_gold_pile.name=Gold Pile
 item.ore_iron_pile.name=Iron Pile
@@ -92,6 +98,16 @@ item.item_base_6.name=Pulver of Light
 item.item_base_7.name=Salt
 item.item_base_8.name=Stone Bar
 item.item_base_9.name=String
+
+item.item_mesh_string.name=String Mesh
+item.item_mesh_flint.name=Flint Mesh
+item.item_mesh_iron.name=Iron Mesh
+item.item_mesh_diamond.name=Diamond Mesh
+
+item.item_pebble_0.name=Stone Pebble
+item.item_pebble_1.name=Granite Pebble
+item.item_pebble_2.name=Diorite Pebble
+item.item_pebble_3.name=Andesite Pebble
 
 tile.block_basic_0.name=Hellfayah Ore
 tile.block_basic_1.name=Hellfayah Block
