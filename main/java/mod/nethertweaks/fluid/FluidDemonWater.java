@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -29,6 +30,7 @@ public class FluidDemonWater extends Fluid{
 	public FluidDemonWater() {
 		super(INames.DEMONWATERFLUID, still, flow);
 		setDensity(FluidRegistry.WATER.getDensity());
+		setTemperature(0);
         setViscosity(FluidRegistry.WATER.getViscosity());
 		setUnlocalizedName(INames.DEMONWATERFLUID);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
@@ -42,7 +44,7 @@ public class FluidDemonWater extends Fluid{
 	
 	@Override
 	public boolean doesVaporize(FluidStack fluidStack) {
-		return false;
+		return Config.doesDMWVaporize;
 	}
 	
 	@SideOnly(Side.CLIENT)

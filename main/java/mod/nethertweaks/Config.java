@@ -6,10 +6,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Config {
-	
-	public static int endDim;
-		
+			
 	//int
+	public static int endDim;
 	public static int StwtHDimension;
 	public static int nethDim;
 	public static int burnTimeFurnace;
@@ -17,7 +16,6 @@ public class Config {
 	public static int freezeTimeFreezer;
 	public static int burnTimeHellfayah;
 	public static int burnTimeHellfayahBlock;
-	public static boolean iwantvanillaWater;
 	
 	//Ore
 	public static boolean shouldOreDictOreChunks;
@@ -39,14 +37,14 @@ public class Config {
 	public static boolean spawnPig;
 	public static boolean spawnSkeleton;
 	public static boolean spawnSlime;
+	public static boolean doesDMWVaporize = false;
+	public static boolean healAnimals;
 	
 	public static void loadConfigs(File file)
 	{
 		Configuration config = new Configuration(file);
 		config.load();
-        
-        iwantvanillaWater = config.get("Blocks", "Is water placable in the nether?", false).getBoolean();
-        
+                
         burnTimeHellfayah = config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock = config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace = config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
@@ -74,9 +72,11 @@ public class Config {
         enableBarrelTransformLighting = config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
         
         //Demon Water
+        doesDMWVaporize = config.get("World", "Can Demon Water vaporize in nether?", false).getBoolean();
         spawnPig = config.get("Mobs", "Can Demon Water transform pigmans?", true).getBoolean();
         spawnSkeleton = config.get("Mobs", "Can Demon Water transform wither skeletons", true).getBoolean();
         spawnSlime = config.get("Mobs", "Can Demon Water transform magma slimes?", true).getBoolean();
+        healAnimals = config.get("Mobs", "Can Demon Water heal animals?", true).getBoolean();
         
         config.save();
 	}

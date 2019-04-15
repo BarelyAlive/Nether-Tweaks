@@ -12,10 +12,8 @@ tile.nether_log.name=Forgotten Tree Log
 tile.nether_leaves.name=Forgotten Tree Leaves
 tile.nether_wood.name=Forgotten Tree Planks
 tile.nether_sapling.name=Forgotten Tree Sapling
-tile.holy_earth.name=Holy Earth
-tile.barrel.name=Barrel
-tile.barrel_stone.name=Barrel
-tile.netherrack_furnace_lit.name=Netherrack Furnace
+tile.barrel_0.name=Barrel
+tile.barrel_1.name=Barrel
 tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 

@@ -2,23 +2,24 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "XYX",
-    "YZY",
+    "XZX",
     "XYX"
   ],
   "key": {
     "X": {
-      "item": "item_base",
-      "data": 5
+      "item": "minecraft:glowstone_dust"
     },
     "Y": {
-      "item": "minecraft:gold_ingot"
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
     },
     "Z": {
-      "item": "minecraft:nether_star"
+      "type": "forge:ore_dict",
+      "ore": "sand"
     }
   },
   "result": {
     "item": "item_base",
-    "data": 7
+    "data": 6
   }
 }

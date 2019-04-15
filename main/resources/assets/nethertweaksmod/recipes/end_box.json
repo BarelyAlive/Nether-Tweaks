@@ -1,20 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "XXX",
     "XYX",
-    "Y Y",
-    "XYX"
+    "XXX"
   ],
   "key": {
     "Y": {
-      "item": "minecraft:ender_pearl"
+      "item": "item_base",
+      "data": 4
     },
     "X": {
-      "item": "minecraft:obsidian"
+      "item": "minecraft:end_stone"
     }
   },
   "result": {
     "item": "item_base",
-    "data": 8
+    "data": 2
   }
 }

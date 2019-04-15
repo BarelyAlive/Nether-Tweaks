@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    " Y "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "Y": {
+      "type": "forge:ore_dict",
+      "ore": "slabWood"
+    }
+  },
+  "result": {
+    "item": "bucket_stone"
+  }
+}

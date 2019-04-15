@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YZY",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:ender_eye",
+      "data": 1
+    },
+    "Y": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    },
+    "Z": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "crystal",
+    "data": 1
+  }
+}

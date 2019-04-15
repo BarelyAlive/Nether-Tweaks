@@ -47,10 +47,13 @@ public class ItemPebble extends Item implements IVariantProvider
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-    	for (int i = 0; i < names.size(); i++)
-        {
-            items.add(new ItemStack(this, 1, i));
-        }
+    	if(tab.equals(this.getCreativeTab()))
+		{
+    		for (int i = 0; i < names.size(); i++)
+            {
+                items.add(new ItemStack(this, 1, i));
+            }
+		}
     }
     
     @Override

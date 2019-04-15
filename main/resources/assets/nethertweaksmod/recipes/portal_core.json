@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YZY",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "crystal",
+      "data": 1
+    },
+    "Y": {
+      "item": "minecraft:gold_ingot"
+    },
+    "Z": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "item_base",
+    "data": 3
+  }
+}

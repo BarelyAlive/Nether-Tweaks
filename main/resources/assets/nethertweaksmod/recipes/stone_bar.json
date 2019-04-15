@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X",
+    "X "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "cobblestone"
+    }
+  },
+  "result": {
+    "item": "item_base",
+    "data": 8,
+    "count": 2
+  }
+}

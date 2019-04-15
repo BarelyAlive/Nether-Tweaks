@@ -66,9 +66,11 @@ public class ItemMesh extends Item implements IVariantProvider{
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		for (int i = 1 ; i < MeshType.values().length; i++) { //0 is the "none" case.
-			items.add(new ItemStack(this, 1, i));
-        }
+		if (tab.equals(this.getCreativeTab())) {
+			for (int i = 1; i < MeshType.values().length; i++) { //0 is the "none" case.
+				items.add(new ItemStack(this, 1, i));
+			} 
+		}
 	}
 
 	@Override

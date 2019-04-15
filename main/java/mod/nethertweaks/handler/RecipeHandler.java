@@ -57,6 +57,7 @@ public class RecipeHandler {
     	OreDictionary.registerOre("oreIron", BlockHandler.OREIRONDUST);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETSTONEDMW);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETWOODDMW);
+    	OreDictionary.registerOre("listAllDMW", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
     	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
     	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
     	OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
@@ -66,28 +67,7 @@ public class RecipeHandler {
     	OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
     	OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
     }
-   
-    private static void addOreRecipes()
-    {
-    	/*
-    	GameRegistry.addRecipe(new ShapedOreRecipe(BucketNFluidHandler.bucketStone, "X X", " X ", x, "cobblestone"));
-    	GameRegistry.addRecipe(new ShapedOreRecipe(BucketNFluidHandler.bucketWood, "X X", " Y ", x, "plankWood", y, "slabWood"));
-    	GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.POWDEROFLIGHT, "XYX", "XZX", "XYX", x, Items.GLOWSTONE_DUST, y, "itemSalt", z, "sand"));
-    	
-		GameRegistry.addRecipe(new ShapelessOreRecipe(Konstanten.SALT, "bucketWater"));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.ENDERCRYSTAL, "XYX", "YZY", "XYX", x, Items.ENDER_EYE, y, "gemDiamond", z, Blocks.OBSIDIAN));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ItemHandler.itemPickaxeNetherrack, "XXX", " Y ", " Y ", x, Blocks.NETHERRACK, y, "stickWood"));
-				
-		GameRegistry.addRecipe(new ShapelessOreRecipe(Konstanten.HELLFAYAHBLOCK, "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah", "itemHellfayah"));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Konstanten.HELLFAYAH.getItem(), 9), "blockHellfayah"));		
-		
+    	/*						
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockHandler.waterFountain), "XYX", "X X", "XYX", x, Blocks.COBBLESTONE, y, "bucketWater"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockHandler.itemDoorNTMStone), "XX", "XX", "XX", x, "cobblestone"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ItemHandler.itemCactusGrabber, "XYX", " X ", " X ", x, "stickWood", y, Items.FLINT));
-		GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.STONEBAR, "X ", " X", x, "cobblestone"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(Konstanten.STONEBAR, " X", "X ", x, "cobblestone"));
 		*/
-
-    }
 }

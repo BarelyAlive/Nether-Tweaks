@@ -18,15 +18,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.ResourceLocation;
@@ -59,7 +63,7 @@ public class BlockDemonWater extends BlockFluidClassic{
     
     @Override
     public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
-    	if(type.equals(SpawnPlacementType.IN_WATER))
+    	if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(this.getDefaultState()))
     	{
     		return true;
     	}
@@ -109,7 +113,7 @@ public class BlockDemonWater extends BlockFluidClassic{
 
 				world.spawnEntity(skeleton);
 				entity.setDead();
-			} 
+			}
 		}
 			
 		if (Config.spawnSlime) {
@@ -129,6 +133,19 @@ public class BlockDemonWater extends BlockFluidClassic{
 				entity.setDead();
 			} 
 		}
+		
+		if(Config.healAnimals)
+		{
+			if(!(entity instanceof EntityMob) && !(entity instanceof EntityPlayer))
+			{
+				if(entity instanceof EntityLivingBase)
+				{
+					EntityLivingBase living = (EntityLivingBase) entity;
+					
+					living.addPotionEffect(new PotionEffect(Potion.getPotionById(10), 100));
+				}
+			}
+    	}
     }
     
     @Override
