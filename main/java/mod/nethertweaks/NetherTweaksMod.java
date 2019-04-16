@@ -120,12 +120,14 @@ public class NetherTweaksMod {
     public void PostInit(FMLPostInitializationEvent event){
     	//Ores from other mods
         OreHandler.init();
-        //Compatibility
     }
     
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event)
     {
+    	//Mobs
+    	whNTM.addWaterMobs();
+    	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
     }

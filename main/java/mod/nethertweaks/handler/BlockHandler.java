@@ -15,8 +15,8 @@ import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
-import mod.sfhcore.blocks.BlockDoorCustom;
 import mod.sfhcore.blocks.CubeFalling;
+import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
 import mod.sfhcore.blocks.base.BlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
@@ -30,8 +30,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class BlockHandler implements INames{
-		
+public class BlockHandler implements INames
+{	
 	//Tile Entity
     public static final Block CONDENSER = new Condenser();
     public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
@@ -60,18 +60,13 @@ public class BlockHandler implements INames{
     
     public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), NetherTweaksMod.tabNTM);
     public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC);
-    
-    public static final Block DOORNTMSTONE = new BlockDoorCustom(Material.ROCK, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMSTONE));
-    public static final Block DOORNTMOBSIDIAN = new BlockDoorCustom(Material.IRON, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DOORNTMOBSIDIAN));
-    
-    public static final Item ITEMDOORNTMSTONE = new ItemDoor(DOORNTMSTONE, new ResourceLocation(NTM, INames.DOORNTMSTONE), NetherTweaksMod.tabNTM);
-    public static final Item ITEMDOORNTMOBSIDIAN = new ItemDoor(DOORNTMOBSIDIAN, new ResourceLocation(NTM, INames.DOORNTMOBSIDIAN), NetherTweaksMod.tabNTM);
+        
+    public static final Block STONEDOOR = new CustomDoor(ItemHandler.ITEMSTONEDOOR, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));
     
     public static void init()
     {
     	registerTileEntities();
     	registerBlocks();
-    	registerItemBlocks();
     }
     
     private static void registerTileEntities()
@@ -98,9 +93,8 @@ public class BlockHandler implements INames{
         Registry.registerBlock(NETHERWOOD);
         Registry.registerBlock(NETHERSLAB);
         Registry.registerBlock(BONFIRE);
-        Registry.registerBlock(MEANVINE);       
-        Registry.registerBlock(DOORNTMSTONE);
-        Registry.registerBlock(DOORNTMOBSIDIAN);       
+        Registry.registerBlock(MEANVINE);
+        Registry.registerBlock(STONEDOOR);
         Registry.registerBlock(OREGOLDDUST);
         Registry.registerBlock(OREIRONDUST);
         Registry.registerBlock(ITEMOREDUST);   
@@ -111,12 +105,5 @@ public class BlockHandler implements INames{
         Registry.registerBlock(SIEVE);
         Registry.registerBlock(FREEZER);
         Registry.registerBlock(HELLMART);
-    }
-    
-    //Just an extra method after the register block thing to prevent errors
-    private static void registerItemBlocks()
-    {
-        Registry.registerItem(ITEMDOORNTMSTONE);
-        Registry.registerItem(ITEMDOORNTMOBSIDIAN);
     }
 }

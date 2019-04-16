@@ -26,6 +26,8 @@ import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
 import mod.sfhcore.Registry;
 import mod.sfhcore.SFHCore;
+import mod.sfhcore.blocks.CustomDoor;
+import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
 
@@ -58,11 +60,14 @@ public class ItemHandler implements INames{
     public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 512, ToolMaterial.IRON);
     public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
     
+    //itemblocks
+    public static final Item ITEMSTONEDOOR = new ItemDoor(BlockHandler.STONEDOOR, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
     
 	public static void init()
 	{
 		registerItems();
 		addItemBurnTime();
+		registerItemBlocks();
 	}
 	
     private static void registerItems()
@@ -89,6 +94,12 @@ public class ItemHandler implements INames{
         Registry.registerItem(FLINTANDBLAZE);
         Registry.registerItem(DOLL);
         Registry.registerItem(MESH);
+    }
+    
+    //Just an extra method after the register block thing to prevent errors
+    private static void registerItemBlocks()
+    {
+        Registry.registerItem(ITEMSTONEDOOR);
     }
     
     private static void addItemBurnTime()

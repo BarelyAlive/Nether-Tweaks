@@ -4,16 +4,25 @@ import com.ibm.icu.impl.Differ;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter.PortalPosition;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeHell;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
  
 public class WorldHandler{
      
@@ -23,6 +32,11 @@ public class WorldHandler{
 	public final static String coodZ = "ntm.cood.z";
     
 	//HELLWORLD
+	
+	public static void addWaterMobs()
+	{
+		EntityRegistry.addSpawn(EntitySquid.class, 50, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
+	}
 	
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {

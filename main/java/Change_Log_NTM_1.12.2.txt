@@ -19,6 +19,7 @@ ChangeLog NTM 2.0.0
 * Mobs like turtles etc. can now spawn in Demon Water
 * More and better config options!
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
+* Squids now spawn in the nether
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
