@@ -106,6 +106,6 @@ public class ItemHandler implements INames{
     {
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.BUCKETSTONELAVA), 18000);
     	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAH, Config.burnTimeHellfayah);
-    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, Config.burnTimeHellfayahBlock);
+    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

@@ -55,11 +55,11 @@ public class BlockHandler implements INames
     public static final Block OREGOLDDUST = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREGOLDDUST));
     public static final Block OREIRONDUST = new CubeFalling(Material.SAND, 2.0f, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.OREIRONDUST));
     
-    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREDUST), NetherTweaksMod.tabNTM, 2.0F, 0.4F);   
-    public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling((BlockEnumFalling) OREDUST);
+    public static final Block OREDUST = new BlockEnumFalling(Material.SAND, EnumBlockOreNTM.class, new ResourceLocation(NTM, INames.OREDUST), 2.0F, 0.4F);   
+    public static final ItemBlock ITEMOREDUST = new ItemBlockEnumFalling((BlockEnumFalling) OREDUST, NetherTweaksMod.tabNTM);
     
-    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), NetherTweaksMod.tabNTM, 20.0f, 2.0f);
-    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC);
+    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f);
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC, NetherTweaksMod.tabNTM);
         
     public static Block STONEDOOR = new CustomDoor(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE), 30.0F, 2.0F);
     

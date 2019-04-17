@@ -78,7 +78,6 @@ public class NetherTweaksMod {
             }
         };
     
-    public WorldHandler whNTM = new WorldHandler();
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
     @Mod.EventHandler
@@ -95,27 +94,27 @@ public class NetherTweaksMod {
         ItemHandler.init();
         NTMEntities.init();
         
-        MinecraftForge.EVENT_BUS.register(whNTM);
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
-        
-    	defaultRecipes = new NTMDefaultRecipes();
     	
+        MinecraftForge.EVENT_BUS.register(new WorldHandler());
     	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
     	MinecraftForge.EVENT_BUS.register(this);
     	
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
-		
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());		
 		NetworkHandlerNTM.initPackets();
 		
-		BarrelModeRegistry.registerDefaults();
     }
     
     @Mod.EventHandler
     public void load(FMLInitializationEvent event){
-    	loadConfigs();
+    	loadJasons();
         //needs to be checked
         RecipeHandler.load();
+        
+    	defaultRecipes = new NTMDefaultRecipes();
+		BarrelModeRegistry.registerDefaults();
+
     }
      
     @Mod.EventHandler
@@ -130,13 +129,13 @@ public class NetherTweaksMod {
     public void registerModels(ModelRegistryEvent event)
     {
     	//Mobs
-    	whNTM.addWaterMobs();
+    	WorldHandler.addWaterMobs();
     	
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
     }
     
-    public static void loadConfigs()
+    private static void loadJasons()
     {
     	CompostRegistry.loadJson(new File(configDirectory, "CompostRegistry.json"));
 		CompostRegistry.recommendAllFood(new File(configDirectory, "RecommendedFoodRegistry.json"));
