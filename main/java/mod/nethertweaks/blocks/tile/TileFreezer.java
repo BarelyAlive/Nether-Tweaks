@@ -64,7 +64,6 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 		
 		if(canFreeze()) {
 			this.workTime++;
-			System.out.println(workTime);
 			if(workTime >= this.maxworkTime) {
 				workTime = 0;
 				freezeItem();
