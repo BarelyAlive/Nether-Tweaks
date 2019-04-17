@@ -17,6 +17,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class Hellmart extends BlockContainer {
+
+	public Hellmart()
+	{
+		super(Material.ROCK);
+		setSoundType(SoundType.STONE);
+		setCreativeTab(NetherTweaksMod.tabNTM);
+		setUnlocalizedName(INames.HELLMART);
+		setRegistryName(NetherTweaksMod.MODID, INames.HELLMART);
+		setHardness(2.0F);
+	}
+	
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.SOLID;
@@ -25,15 +36,6 @@ public class Hellmart extends BlockContainer {
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
-	}
-
-	public Hellmart() {
-		super(Material.WOOD);
-		setSoundType(SoundType.WOOD);
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
-		setUnlocalizedName(INames.HELLMART);
-		setRegistryName(NetherTweaksMod.MODID, INames.HELLMART);
-		this.setHardness(1.0F);
 	}
 
 	@Override

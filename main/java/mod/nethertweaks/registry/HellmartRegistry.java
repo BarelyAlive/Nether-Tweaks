@@ -50,14 +50,15 @@ public class HellmartRegistry {
 			try
 			{
 				FileReader fr = new FileReader(file);
-				HashMap<Integer, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Integer, ArrayList<HellmartData>>>(){}.getType());
+				HashMap<String, ArrayList<HellmartData>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<String, ArrayList<HellmartData>>>(){}.getType());
 
-				Iterator<Integer> it = gsonInput.keySet().iterator();
+				Iterator<String> it = gsonInput.keySet().iterator();
 
 				while (it.hasNext())
-				{
-					int s = it.next();
-					registry.put(s, gsonInput.get(s));
+				{					
+					String s = (String) it.next();
+					
+					registry.put(Integer.parseInt(s), gsonInput.get(s));
 				}
 			}
 			catch (Exception e)
