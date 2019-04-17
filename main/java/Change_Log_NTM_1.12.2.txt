@@ -26,7 +26,6 @@ ChangeLog NTM 2.0.0
 * Fixed incorrect Ores
 * Fixed netherrack furnace lag caused block set spam
 * Doors are back!
-- Removed Saltpeter support
 - Removed Holy Earth
 - Removed Sanctuary Crystal
 + Ender Crystal is back!

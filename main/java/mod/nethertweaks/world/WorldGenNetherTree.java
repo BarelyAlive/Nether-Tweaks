@@ -40,7 +40,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
 
     public WorldGenNetherTree(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean vinesGrow)
     {
-        super(notify);
+        super(false);
         this.minTreeHeight = minTreeHeight;
         this.metaWood = metaWood;
         this.metaLeaves = metaLeaves;

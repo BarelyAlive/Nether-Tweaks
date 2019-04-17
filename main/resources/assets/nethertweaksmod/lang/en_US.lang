@@ -34,10 +34,10 @@ tile.ore_dust_osmium.name=Osmium Ore
 tile.ore_dust_draconium.name=Draconium Ore
 tile.ore_dust_sulfur.name=Sulfur Ore
 tile.ore_dust_aluminum.name=Aluminum Ore
-tile.ore_dust_slicon.name=Silicon Ore
+tile.ore_dust_silicon.name=Silicon Ore
 tile.ore_dust_amber.name=Amber Ore
 tile.ore_dust_cinnabar.name=Cinnabar Ore
-tile.ore_dust_certus_quartz.name=Certus Quartz Ore
+tile.ore_dust_certusquartz.name=Certus Quartz Ore
 tile.ore_dust_salt.name=Salt Ore
 
 generator.hellworld=Hellworld

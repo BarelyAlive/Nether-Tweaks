@@ -1,5 +1,8 @@
 package mod.nethertweaks.registry.manager;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
@@ -18,13 +21,17 @@ import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.Util;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, ICondenserDefaultRegistryProvider, ISieveDefaultRegistryProvider, ICompostDefaultRegistryProvider,
 											IFluidBlockDefaultRegistryProvider, IFluidOnTopDefaultRegistryProvider, IFluidTransformDefaultRegistryProvider, IHellmartDefaultRegistryProvider{
@@ -39,6 +46,15 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(this);
 		NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(this);
 		NTMRegistryManager.registerHellmartDefaultRecipeHandler(this);
+		
+		registerCompostRecipeDefaults();
+		registerCondenserRecipeDefaults();
+		registerFluidBlockRecipeDefaults();
+		registerFluidOnTopRecipeDefaults();
+		registerFluidTransformRecipeDefaults();
+		registerHammerRecipeDefaults();
+		registerHellmartRecipeDefaults();
+		registerSieveRecipeDefaults();
 	}
 
 	@Override
@@ -99,6 +115,35 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 0), 0.05f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 1), 0.05f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 2), 0.05f, MeshType.STRING.getID());
+		
+		if(Item.REGISTRY.containsKey(new ResourceLocation("minefactoryreloaded", "rubberwood.sapling"))){
+			ItemStack rubber = new ItemStack(Block.REGISTRY.getObject(new ResourceLocation("minefactoryreloaded", "rubberwood.sapling")));
+			SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(rubber), 0.05f, MeshType.FLINT.getID());
+            SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(rubber), 0.05f, MeshType.IRON.getID());
+            SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(rubber), 0.05f, MeshType.DIAMOND.getID());
+		}
+		
+		getLeavesSapling().forEach((leaves, sapling) -> {
+            BlockLeaves blockLeaves = ((BlockLeaves) leaves.getBlock());
+            float chance = 20.0f / 100f;
+
+            SieveRegistry.register(leaves, new ItemInfo(sapling.getBlockState()), Math.min(chance * 1, 1.0f), MeshType.STRING.getID());
+            SieveRegistry.register(leaves, new ItemInfo(sapling.getBlockState()), Math.min(chance * 2, 1.0f), MeshType.FLINT.getID());
+            SieveRegistry.register(leaves, new ItemInfo(sapling.getBlockState()), Math.min(chance * 3, 1.0f), MeshType.IRON.getID());
+            SieveRegistry.register(leaves, new ItemInfo(sapling.getBlockState()), Math.min(chance * 4, 1.0f), MeshType.DIAMOND.getID());
+
+            //Apple
+            SieveRegistry.register(leaves, new ItemInfo(Items.APPLE, 0), 0.05f, MeshType.STRING.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.APPLE, 0), 0.10f, MeshType.FLINT.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.APPLE, 0), 0.15f, MeshType.IRON.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.APPLE, 0), 0.20f, MeshType.DIAMOND.getID());
+
+            //Golden Apple
+            SieveRegistry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE, 0), 0.001f, MeshType.STRING.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE, 0), 0.003f, MeshType.FLINT.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE, 0), 0.005f, MeshType.IRON.getID());
+            SieveRegistry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE, 0), 0.01f, MeshType.DIAMOND.getID());
+		});
 	}
 
 	@Override
@@ -179,8 +224,30 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		for(ItemStack sap : OreDictionary.getOres("vine")){
 			CondenserRegistry.register(sap, 125);
 		}
+		
+		for (ItemStack stack: OreDictionary.getOres("listAllfruit")) {
+			//Register any missed items
+			CondenserRegistry.register(stack, 63);
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllveggie")) {
+			//Register any missed items
+			CondenserRegistry.register(stack, 63);
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllGrain")) {
+			//Register any missed items
+			CondenserRegistry.register(stack, 42);
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllseed")) {
+			//Register any missed items
+			CondenserRegistry.register(stack, 42);
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllmeatraw")) {
+			//Register any missed items
+			CondenserRegistry.register(stack, 63);
+		}
 	}
 	
+	@Override
 	public void registerCompostRecipeDefaults()
 	{
 		IBlockState dirtState = Blocks.DIRT.getDefaultState();
@@ -267,8 +334,30 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		CompostRegistry.register(Items.REEDS, 0, 0.08f, dirtState, new Color("9BFF8A"));
 		CompostRegistry.register(BlockHandler.MEANVINE, 0, 0.10f, dirtState, new Color("800080"));
 		CompostRegistry.register(Items.STRING, 0, 0.04f, dirtState, Util.whiteColor);
+		
+		for (ItemStack stack: OreDictionary.getOres("listAllfruit")) {
+			//Register any missed items
+			CompostRegistry.register(stack.getItem(), stack.getItemDamage(), 0.10f, dirtState, new Color("35A82A"));
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllveggie")) {
+			//Register any missed items
+			CompostRegistry.register(stack.getItem(), stack.getItemDamage(), 0.10f, dirtState, new Color("FFF1B5"));
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllGrain")) {
+			//Register any missed items
+			CompostRegistry.register(stack.getItem(), stack.getItemDamage(), 0.08f, dirtState, new Color("E3E162"));
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllseed")) {
+			//Register any missed items
+			CompostRegistry.register(stack.getItem(), stack.getItemDamage(), 0.08f, dirtState, new Color("35A82A"));
+		}
+		for (ItemStack stack: OreDictionary.getOres("listAllmeatraw")) {
+			//Register any missed items
+			CompostRegistry.register(stack.getItem(), stack.getItemDamage(), 0.15f, dirtState, new Color("FFA091"));
+		}
 	}
 	
+	@Override
 	public void registerFluidBlockRecipeDefaults()
 	{
 		FluidBlockTransformerRegistry.register(FluidRegistry.WATER, new ItemInfo(new ItemStack(BlockHandler.DUST)), new ItemInfo(new ItemStack(Blocks.CLAY)));
@@ -276,31 +365,35 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		FluidBlockTransformerRegistry.register(FluidRegistry.LAVA, new ItemInfo(new ItemStack(Items.GLOWSTONE_DUST)), new ItemInfo(new ItemStack(Blocks.END_STONE)));
 	}
 	
+	@Override
 	public void registerFluidTransformRecipeDefaults()
 	{
 	}
 	
+	@Override
 	public void registerFluidOnTopRecipeDefaults()
 	{
 		FluidOnTopRegistry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new ItemInfo(Blocks.OBSIDIAN.getDefaultState()));
 		FluidOnTopRegistry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new ItemInfo(Blocks.COBBLESTONE.getDefaultState()));
 	}
 	
+	@Override
 	public void registerHellmartRecipeDefaults()
 	{
-		HellmartRegistry.register(0, new HellmartData(new ItemInfo(ItemHandler.DOLL, 0).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(1, new HellmartData(new ItemInfo(ItemHandler.DOLL, 1).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(2, new HellmartData(new ItemInfo(ItemHandler.DOLL, 2).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(3, new HellmartData(new ItemInfo(ItemHandler.DOLL, 3).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(4, new HellmartData(new ItemInfo(ItemHandler.DOLL, 4).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(5, new HellmartData(new ItemInfo(ItemHandler.DOLL, 5).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(6, new HellmartData(new ItemInfo(ItemHandler.DOLL, 6).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(7, new HellmartData(new ItemInfo(ItemHandler.DOLL, 7).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(8, new HellmartData(new ItemInfo(ItemHandler.DOLL, 8).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(9, new HellmartData(new ItemInfo(ItemHandler.DOLL, 9).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(10, new HellmartData(new ItemInfo(ItemHandler.DOLL, 10).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(11, new HellmartData(new ItemInfo(ItemHandler.DOLL, 11).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(12, new HellmartData(new ItemInfo(ItemHandler.DOLL, 12).getItemStack(), new ItemStack(Items.EMERALD), 10));
-		HellmartRegistry.register(13, new HellmartData(new ItemInfo(ItemHandler.DOLL, 13).getItemStack(), new ItemStack(Items.EMERALD), 10));
+		for (int i = 0; i < 14; i++) {
+			HellmartRegistry.register(i, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, i), new ItemStack(Items.EMERALD), 10));
+		}
 	}
+	
+	private static Map<BlockInfo, BlockInfo> getLeavesSapling(){
+        Map<BlockInfo, BlockInfo> saplingMap = new LinkedHashMap<>();
+        saplingMap.put(new BlockInfo(Blocks.LEAVES, 0), new BlockInfo(Blocks.SAPLING, 0));
+        saplingMap.put(new BlockInfo(Blocks.LEAVES, 1), new BlockInfo(Blocks.SAPLING, 1));
+        saplingMap.put(new BlockInfo(Blocks.LEAVES, 2), new BlockInfo(Blocks.SAPLING, 2));
+        saplingMap.put(new BlockInfo(Blocks.LEAVES, 3), new BlockInfo(Blocks.SAPLING, 3));
+        saplingMap.put(new BlockInfo(Blocks.LEAVES2, 0), new BlockInfo(Blocks.SAPLING, 4));
+        saplingMap.put(new BlockInfo(Blocks.LEAVES2, 1), new BlockInfo(Blocks.SAPLING, 5));
+
+        return saplingMap;
+}
 }

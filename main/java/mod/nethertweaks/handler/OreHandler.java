@@ -20,7 +20,7 @@ import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
 public class OreHandler implements INames{
     
-    public static final Block OREDUST = new CubeFalling(16, Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.OREDUST));
+    public static final Block OREDUST = new CubeFalling(Material.SAND, 2.0F, 0.4f, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.OREDUST));
     
     public static final Item oreMaterial = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NetherTweaksMod.MODID, OREMATERIAL));
     

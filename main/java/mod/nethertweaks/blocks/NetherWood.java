@@ -30,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherWood extends Cube{
 	    
 	public NetherWood() {
-		super(Material.WOOD, 2.0F, 10.0F, 0, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERWOOD));
+		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERWOOD));
 	}
 	
 	@Override

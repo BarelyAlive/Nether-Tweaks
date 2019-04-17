@@ -18,6 +18,7 @@ import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registry.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registry.BarrelModeRegistry;
 import mod.nethertweaks.registry.CompostRegistry;
+import mod.nethertweaks.registry.CondenserRegistry;
 import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.FluidOnTopRegistry;
 import mod.nethertweaks.registry.FluidTransformRegistry;
@@ -145,6 +146,7 @@ public class NetherTweaksMod {
 		SieveRegistry.loadJson(new File(configDirectory, "SieveRegistry.json"));
 		FluidTransformRegistry.loadJson(new File(configDirectory, "FluidTransformRegistry.json"));
 		BarrelLiquidBlacklistRegistry.loadJson(new File(configDirectory, "BarrelLiquidBlacklistRegistry.json"));
+		CondenserRegistry.loadJson(new File(configDirectory, "CondenserRegistry.json"));
 		HellmartRegistry.loadJson(new File(configDirectory, "HellmartRegistry.json"));
     }
 }
