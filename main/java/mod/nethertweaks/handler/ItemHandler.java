@@ -34,9 +34,9 @@ import mod.sfhcore.items.CustomItem;
 public class ItemHandler implements INames{
 	 
 	//ITEMS
-    public static final Item SEED= new Seed(new ResourceLocation(NTM, INames.SEED));
+    public static final Item SEED = new Seed();
     public static final Item FLINTANDBLAZE = new FlintAndBlaze();
-    public static final Item CRYSTAL = new Crystal(new ResourceLocation(NTM, INames.CRYSTAL));
+    public static final Item CRYSTAL = new Crystal();
     
     //NEW
     public static final Item PEBBLE = new ItemPebble();
@@ -61,7 +61,7 @@ public class ItemHandler implements INames{
     public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
     
     //itemblocks
-    public static final Item ITEMSTONEDOOR = new ItemDoor(BlockHandler.STONEDOOR, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
+    public static Item ITEMSTONEDOOR = new ItemDoor(NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
     
 	public static void init()
 	{
@@ -105,7 +105,7 @@ public class ItemHandler implements INames{
     private static void addItemBurnTime()
     {
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.BUCKETSTONELAVA), 18000);
-    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAH, 12800);
-    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, 128000);
+    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAH, Config.burnTimeHellfayah);
+    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAHBLOCK, Config.burnTimeHellfayahBlock);
     }
 }

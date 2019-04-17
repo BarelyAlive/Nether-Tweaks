@@ -25,6 +25,7 @@ ChangeLog NTM 2.0.0
 * Fixed a Bug that could cause server damage
 * Fixed incorrect Ores
 * Fixed netherrack furnace lag caused block set spam
+* Doors are back!
 - Removed Saltpeter support
 - Removed Holy Earth
 - Removed Sanctuary Crystal

@@ -4,6 +4,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.items.CustomItem;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
@@ -35,8 +36,8 @@ import net.minecraftforge.fml.common.Loader;
 
 public class Crystal extends CustomItem{
 		
-	public Crystal(ResourceLocation name) {
-		super(null, 1, NetherTweaksMod.tabNTM, true, 2, name);
+	public Crystal() {
+		super(null, 1, NetherTweaksMod.tabNTM, true, 2, new ResourceLocation(NetherTweaksMod.MODID, INames.CRYSTAL));
 	}
 	
 	@Override

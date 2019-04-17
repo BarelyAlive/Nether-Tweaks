@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class HammerBase extends ItemTool implements IHammer  {
 
-	int miningLevel;
+	private int miningLevel;
 
 	public HammerBase(ResourceLocation loc, int maxUses, ToolMaterial material)
 	{
@@ -49,29 +49,4 @@ public class HammerBase extends ItemTool implements IHammer  {
     {
         return HammerRegistry.registered(state.getBlock()) ? this.efficiency : 1.0F;
     }
-	
-	private String getNameByMaterial(ToolMaterial tool)
-	{
-		if(tool == ToolMaterial.DIAMOND)
-		{
-			return INames.HAMMERDIAMOND;
-		}
-		if(tool == ToolMaterial.IRON)
-		{
-			return INames.HAMMERIRON;
-		}
-		if(tool == ToolMaterial.GOLD)
-		{
-			return INames.HAMMERGOLD;
-		}
-		if(tool == ToolMaterial.STONE)
-		{
-			return INames.HAMMERSTONE;
-		}
-		if(tool == ToolMaterial.WOOD)
-		{
-			return INames.HAMMERWOOD;
-		}
-		return null;
-	}
 }

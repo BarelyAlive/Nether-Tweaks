@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 
 public class Seed extends CustomItem{
 	
-	public Seed(ResourceLocation name) {
+	public Seed() {
 		super(null, 64, NetherTweaksMod.tabNTM, true, 3, new ResourceLocation(NetherTweaksMod.MODID, INames.SEED));
 	}
 

@@ -29,6 +29,8 @@ import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
+import mod.sfhcore.blocks.CustomDoor;
+import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -120,6 +122,8 @@ public class NetherTweaksMod {
     public void PostInit(FMLPostInitializationEvent event){
     	//Ores from other mods
         OreHandler.init();
+        ((ItemDoor)ItemHandler.ITEMSTONEDOOR).setDoor(BlockHandler.STONEDOOR);
+        ((CustomDoor)BlockHandler.STONEDOOR).setDoor(ItemHandler.ITEMSTONEDOOR);
     }
     
     @SubscribeEvent
