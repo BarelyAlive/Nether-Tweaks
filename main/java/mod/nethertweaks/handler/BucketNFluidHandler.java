@@ -53,7 +53,7 @@ public class BucketNFluidHandler {
 	public static void init() {
 		registerFluids(); //1.
 		registerBuckets(); //2.
-		additions();
+		additions(); //3.
 	}
 	
 	private static void registerFluids()

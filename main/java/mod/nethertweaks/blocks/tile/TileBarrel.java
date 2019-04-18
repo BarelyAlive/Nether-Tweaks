@@ -259,7 +259,6 @@ public class TileBarrel extends TileEntity implements ITickable {
 		this.markDirty();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing)
 	{

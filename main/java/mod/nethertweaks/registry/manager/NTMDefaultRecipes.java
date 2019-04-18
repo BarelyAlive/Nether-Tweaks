@@ -104,14 +104,34 @@ public class NTMDefaultRecipes implements IHammerDefaultRegistryProvider, IConde
 		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.GLOWSTONE_DUST, 0), 0.125f, MeshType.DIAMOND.getID());
 		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemInfo(Items.BLAZE_POWDER, 0), 0.1f, MeshType.DIAMOND.getID());
 
-		// Ores
-//		for (ItemOre ore : OreRegistry.getItemOreRegistry())
-//		{
-//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.FLINT.getID());
-//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.2f, MeshType.IRON.getID());
-//			SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ore, 1, 0), 0.1f, MeshType.DIAMOND.getID());
-//		}
-
+		//Ores
+		SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ItemHandler.ITEMBASE, 1, 1), 0.1f, MeshType.FLINT.getID());
+		SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ItemHandler.ITEMBASE, 1, 1), 0.15f, MeshType.IRON.getID());
+		SieveRegistry.register(Blocks.GRAVEL.getDefaultState(), new ItemStack(ItemHandler.ITEMBASE, 1, 1), 0.25f, MeshType.DIAMOND.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 0), 0.05f, MeshType.FLINT.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 0), 0.075f, MeshType.IRON.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.05f, MeshType.FLINT.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.075f, MeshType.IRON.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 2), 0.05f, MeshType.FLINT.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 2), 0.075f, MeshType.IRON.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 3), 0.05f, MeshType.FLINT.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 3), 0.75f, MeshType.IRON.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 4), 0.05f, MeshType.IRON.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 4), 0.10f, MeshType.DIAMOND.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.15f, MeshType.DIAMOND.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.05f, MeshType.IRON.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.10f, MeshType.DIAMOND.getID());
+		
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.05f, MeshType.IRON.getID());
+		SieveRegistry.register(BlockHandler.DUST.getDefaultState(), new ItemStack(ItemHandler.OREMATERIAL, 1, 1), 0.10f, MeshType.DIAMOND.getID());
+		
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 0), 0.05f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 1), 0.05f, MeshType.STRING.getID());
 		SieveRegistry.register(Blocks.DIRT.getDefaultState(), new ItemInfo(ItemHandler.SEED, 2), 0.05f, MeshType.STRING.getID());

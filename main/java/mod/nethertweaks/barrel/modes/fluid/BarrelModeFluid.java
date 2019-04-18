@@ -132,7 +132,6 @@ public class BarrelModeFluid implements IBarrelMode {
 		return (float) (amount / Fluid.BUCKET_VOLUME);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void update(TileBarrel barrel) {
 		// Fluids on top.

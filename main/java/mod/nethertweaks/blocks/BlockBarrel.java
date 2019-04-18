@@ -65,8 +65,8 @@ public class BlockBarrel extends Block implements ITileEntityProvider {
 		
 		super.breakBlock(world, pos, state);
 	}
-	@SuppressWarnings("deprecation")
-    @Override
+	
+	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 	    TileEntity te = world.getTileEntity(pos);
