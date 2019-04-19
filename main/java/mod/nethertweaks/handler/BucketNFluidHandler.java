@@ -38,22 +38,23 @@ public class BucketNFluidHandler {
 		//Fluids
 		public static final Fluid FLUIDDEMONWATER = new FluidDemonWater();
 		public static final Block BLOCKDEMONWATER = new BlockDemonWater();
-				
+						
 		//Buckets
 		public static Item BUCKETWOOD = new CustomBucket(Blocks.AIR, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOOD), ItemStack.EMPTY, NetherTweaksMod.tabNTM);
 		public static Item BUCKETWOODWATER = new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODWATER), new ItemStack(BUCKETWOOD), NetherTweaksMod.tabNTM);
 		public static Item BUCKETWOODDMW = new CustomBucket(BLOCKDEMONWATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODDEMONWATER), new ItemStack(BUCKETWOOD), NetherTweaksMod.tabNTM);
 		public static Item BUCKETWOODMILK = new CustomBucketMilk(NetherTweaksMod.tabNTM, new ItemStack(BUCKETWOOD), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODMILK));
+		
 		public static Item BUCKETSTONE = new CustomBucket(Blocks.AIR, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONE), ItemStack.EMPTY, NetherTweaksMod.tabNTM);
 		public static Item BUCKETSTONEWATER = new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEWATER), new ItemStack(BUCKETSTONE), NetherTweaksMod.tabNTM);
 		public static Item BUCKETSTONELAVA = new CustomBucket(Blocks.FLOWING_LAVA, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONELAVA), new ItemStack(BUCKETSTONE), NetherTweaksMod.tabNTM);
 		public static Item BUCKETSTONEDMW = new CustomBucket(BLOCKDEMONWATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEDEMONWATER), new ItemStack(BUCKETSTONE), NetherTweaksMod.tabNTM);
 		public static Item BUCKETSTONEMILK = new CustomBucketMilk(NetherTweaksMod.tabNTM, new ItemStack(BUCKETSTONE), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEMILK));
 
-	public static void init() {
+	public static void init()
+	{
 		registerFluids(); //1.
 		registerBuckets(); //2.
-		additions(); //3.
 	}
 	
 	private static void registerFluids()
@@ -64,8 +65,8 @@ public class BucketNFluidHandler {
 		FluidRegistry.addBucketForFluid(FLUIDDEMONWATER);
 	}
 		
-	private static void registerBuckets() {
-				
+	private static void registerBuckets()
+	{			
 		//Stone
 		Registry.registerItem(BUCKETSTONE);		
 		Registry.registerItem(BUCKETSTONEWATER);
@@ -78,17 +79,5 @@ public class BucketNFluidHandler {
 		Registry.registerItem(BUCKETWOODWATER);	
 		Registry.registerItem(BUCKETWOODDMW);
 		Registry.registerItem(BUCKETWOODMILK);
-	}
-	
-	private static void additions() {
-		((CustomBucket) BUCKETWOOD).addBucket(BLOCKDEMONWATER, FLUIDDEMONWATER, new ItemStack(BUCKETWOODDMW));
-		((CustomBucket) BUCKETWOOD).addBucket(Blocks.FLOWING_WATER, FluidRegistry.WATER, new ItemStack(BUCKETWOODWATER));
-		((CustomBucket) BUCKETWOOD).addBucket(Blocks.WATER, FluidRegistry.WATER, new ItemStack(BUCKETWOODWATER));
-		
-		((CustomBucket) BUCKETSTONE).addBucket(BLOCKDEMONWATER, FLUIDDEMONWATER, new ItemStack(BUCKETSTONEDMW));
-		((CustomBucket) BUCKETSTONE).addBucket(Blocks.FLOWING_WATER, FluidRegistry.WATER, new ItemStack(BUCKETSTONEWATER));
-		((CustomBucket) BUCKETSTONE).addBucket(Blocks.WATER, FluidRegistry.WATER, new ItemStack(BUCKETSTONEWATER));
-		((CustomBucket) BUCKETSTONE).addBucket(Blocks.FLOWING_LAVA, FluidRegistry.LAVA, new ItemStack(BUCKETSTONELAVA));
-		((CustomBucket) BUCKETSTONE).addBucket(Blocks.LAVA, FluidRegistry.LAVA, new ItemStack(BUCKETSTONELAVA));
 	}
 }
