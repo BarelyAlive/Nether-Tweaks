@@ -69,10 +69,10 @@ public class EndTeleport extends Block{
 	{
 		if (worldIn.isBlockLoaded(pos)) {
 			if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
-				playerIn.changeDimension(1);
+				playerIn.changeDimension(Config.StwtHDimension);
 			} else {
 				if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
-					playerIn.changeDimension(Config.StwtHDimension);
+					playerIn.changeDimension(Config.endDim);
 				}
 			} 
 		}

@@ -39,11 +39,14 @@ public class Config {
 	public static boolean spawnSlime;
 	public static boolean doesDMWVaporize = false;
 	public static boolean healAnimals;
+	public static int[] allowedDims = {-1, 1};
 	
 	public static void loadConfigs(File file)
 	{
 		Configuration config = new Configuration(file);
 		config.load();
+		
+		allowedDims = config.get("WorldType", "Allowed dimensions in Hellworld", allowedDims).getIntList();
                 
         burnTimeHellfayah = config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock = config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
@@ -51,9 +54,9 @@ public class Config {
         dryTimeCondenser = config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
         freezeTimeFreezer = config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
                 
-        StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 0).getInt();
-        nethDim = config.get("World", "To which dimension shall the nether portal send you back?", 0).getInt();
-        endDim = config.get("World", "To which Dimension shall an end portal send you back?", 0).getInt();
+        StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 1).getInt();
+        nethDim = config.get("World", "To which dimension shall the nether portal send you back?", -1).getInt();
+        endDim = config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
         
         //Ore
 		shouldOreDictOreChunks = config.get("Compatibilitiy", "OreDictOreChunks", true).getBoolean();

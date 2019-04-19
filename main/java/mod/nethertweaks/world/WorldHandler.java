@@ -10,11 +10,13 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter.PortalPosition;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeHell;
 import net.minecraftforge.common.BiomeDictionary;
@@ -60,7 +62,6 @@ public class WorldHandler{
 	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 	    			{
 	    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-	    				//player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
 	    			}
 	    		}
     		}
@@ -72,27 +73,34 @@ public class WorldHandler{
 		}
     }
     
+    private boolean unallowDim(World world, int dim)
+    {
+    	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
+    	{
+			for (int i : Config.allowedDims) {
+				if (i != dim)
+					return true;
+			} 
+		}
+		return false;
+    }
+    
     @SubscribeEvent
-	public void changeToNether(PlayerEvent.PlayerChangedDimensionEvent event) {
+	public void changeToHomeDim(PlayerEvent.PlayerChangedDimensionEvent event)
+    {
     	EntityPlayer player = event.player;
     	
-		if(player.world.getWorldType() instanceof WorldTypeHellworld  && event.toDim == 0 && !player.world.isRemote) {
+		if (unallowDim(player.world, event.toDim))
 			teleportPlayer(player);
-		}
-		else if(!(player.world.getWorldType() instanceof WorldTypeHellworld) && event.fromDim == -1 && !player.world.isRemote) {
-			if(Config.nethDim != 0)
-				player.changeDimension(Config.nethDim);
-		}
 	}
 	
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
-		
-		boolean isRemote = player.world.isRemote;
-		NBTTagCompound tag = player.getEntityData();
-		
-		teleportPlayer(player);	
+				
+		if (unallowDim(player.getEntityWorld(), player.dimension)) {
+			teleportPlayer(player);
+		}	
 	}
 	
 	private void teleportPlayer(EntityPlayer player) {
@@ -100,12 +108,7 @@ public class WorldHandler{
 		if(player.dimension != -1)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-			if(!player.getEntityData().hasKey(key)){
-				player.setPortal(player.getPosition());
-				player.getEntityData().setBoolean(key, true);
-			}
-			if(!player.getEntityData().getBoolean(key))
-			{
+			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key)){
 				player.setPortal(player.getPosition());
 				player.getEntityData().setBoolean(key, true);
 			}
@@ -113,23 +116,26 @@ public class WorldHandler{
 		}
 	}
 	
-	//Enitity Interaction
-    
+	//Enitity Interaction   
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){
-    	if(!event.getWorld().isRemote){
-    	
-	    	if(event.getTarget() instanceof EntityCow){
-	    		int zahl = event.getEntityPlayer().inventory.getSlotFor(event.getItemStack());
+    	if(!event.getWorld().isRemote)
+    	{
+	    	if(event.getTarget() instanceof EntityCow)
+	    	{
+	    		ItemStack stack = event.getItemStack();
+	    		Item item = stack.getItem();
+	    		EntityPlayer player = event.getEntityPlayer();
 	    		
-		    	if(event.getItemStack().getItem() == BucketNFluidHandler.BUCKETSTONE){
-		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
-		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEMILK, 1));
-		    	}else
-		    	
-		    	if(event.getItemStack().getItem() == BucketNFluidHandler.BUCKETWOOD){
-		    			event.getEntityPlayer().inventory.decrStackSize(zahl, 1);
-		    			event.getEntityPlayer().inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODMILK, 1));
+		    	if(item == BucketNFluidHandler.BUCKETSTONE)
+		    	{
+		    		stack.shrink(1);
+		    		player.setHeldItem(event.getHand(), new ItemStack(BucketNFluidHandler.BUCKETSTONEMILK));
+		    	}
+		    	else if(item == BucketNFluidHandler.BUCKETWOOD)
+		    	{
+		    		stack.shrink(1);
+		    		player.setHeldItem(event.getHand(), new ItemStack(BucketNFluidHandler.BUCKETWOODMILK));
 		    	}
 	    	}
     	}

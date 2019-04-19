@@ -42,14 +42,12 @@ public interface INames {
 	public static final String TENETHERRACKFURNACE			= "tileentity_netherrack_Furnace";
 	public static final String TECONDENSER 					= "tileentity_condenser";
 	public static final String TEBARREL 					= "tileentity_barrel";
-	public static final String TEBARRELSTONE 				= "tileentity_barrel_stone";
 	public static final String TEFREEZER					= "tileentity_freezer";
 	public static final String TESIEVE						= "tileentity_sieve";
 	public static final String TEWATERFOUNTAIN				= "tileentity_water_fountain";
 	public static final String TEHELLMART					= "tileentity_hellmart";
 	
 	//items
-	public static final String BUCKETDEMONWATER				= "bucket_demon_water";
 	public static final String BUCKETSTONE 					= "bucket_stone";
 	public static final String BUCKETSTONEWATER 			= "bucket_stone_water";
 	public static final String BUCKETSTONEDEMONWATER		= "bucket_stone_demon_water";
