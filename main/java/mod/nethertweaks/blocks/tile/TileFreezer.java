@@ -8,6 +8,7 @@ import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.network.MessageNBTUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
@@ -26,6 +27,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -58,17 +61,19 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 	
     @Override
 	public void update() {
-		world = getWorld();
-		
-		fillFromItem();
-		
-		if(canFreeze()) {
-			this.workTime++;
-			if(workTime >= this.maxworkTime) {
-				workTime = 0;
-				freezeItem();
+    	if (!this.getWorld().isRemote)
+    	{
+    		world = getWorld();
+			NetworkHandlerNTM.INSTANCE.sendToAll(new MessageNBTUpdate(this));
+			fillFromItem();
+			if(canFreeze()) {
+				this.workTime++;
+				if(workTime >= this.maxworkTime) {
+					workTime = 0;
+					freezeItem();
+				}
 			}
-		}
+    	}
 	}
 	
 	private boolean canFreeze()
@@ -103,7 +108,11 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
     		&& (
     				machineItemStacks.get(1).isEmpty() 
     			|| (
-    					machineItemStacks.get(2).getItem().getContainerItem().equals(machineItemStacks.get(1).getItem()) 
+    					(
+    							machineItemStacks.get(2).getItem().getContainerItem() != null
+    							&&
+    							machineItemStacks.get(2).getItem().getContainerItem().equals(machineItemStacks.get(1).getItem()) 
+    					)
     				&& this.machineItemStacks.get(1).getCount() < this.machineItemStacks.get(1).getMaxStackSize()
     				)
     			)
@@ -133,29 +142,27 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
     	}
     }
 
+    /*
 	@Override
 	public IFluidTankProperties[] getTankProperties() {
 		IFluidTankProperties[] prop = new IFluidTankProperties[fluid.amount];
 		return prop;
 		}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		this.mb = compound.getInteger("volume");
-		this.workTime = compound.getInteger("worktime");
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("volume", this.mb);
-		compound.setInteger("worktime", workTime);
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
+	*/
 	    
-	    public String getGuiID()
+	public String getGuiID()
     {
         return "nethertweaksmod:GuiFreezer";
     }

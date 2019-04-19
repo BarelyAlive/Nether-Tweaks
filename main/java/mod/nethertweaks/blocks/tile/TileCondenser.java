@@ -134,24 +134,30 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
+		/*
 		this.mb = compound.getInteger("volume");
 		this.workTime = compound.getInteger("worktime");
+		*/
 		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+		/*
 		compound.setInteger("volume", this.mb);
 		compound.setInteger("worktime", workTime);
+		*/
 		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
 		return compound;
 	}
     
+	/*
 	@Override
 	public IFluidTankProperties[] getTankProperties() {
 		IFluidTankProperties[] prop = new IFluidTankProperties[fluid.amount];
 		return prop;
 		}
+	*/
 	
     public String getGuiID()
     {
