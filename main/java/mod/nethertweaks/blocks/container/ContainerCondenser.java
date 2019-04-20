@@ -20,8 +20,8 @@ public class ContainerCondenser extends ContainerBase {
 		super(te);
 		tileEntity = te;
 		
-		addSlotToContainer(new Slot(tileEntity, 0, 57, 17));
-		addSlotToContainer(new Slot(tileEntity, 1, 57, 53));
+		addSlotToContainer(new Slot(tileEntity, 0, 26, 48));
+		addSlotToContainer(new SlotOneItem(tileEntity, 1, 80, 30));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
@@ -32,6 +32,11 @@ public class ContainerCondenser extends ContainerBase {
 			addSlotToContainer(new Slot(inventoryPlayer, i, 9 + i * 18, 142));
 		}
 
+	}
+	
+	@Override
+	public void updateProgressBar(int id, int data) {
+		this.tileentity.setField(id, data);
 	}
 	
 }

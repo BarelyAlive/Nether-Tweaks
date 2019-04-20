@@ -50,12 +50,26 @@ public class GuiCondenser extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
+        int x_old = x;
+        int y_old = y;
         if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
-        	x += 57;
-        	y += 36;
+        	x += 28;
+        	y += 19;
         	int k_inv = 12 - k;
         	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
+        }
+        
+        x = x_old;
+        y = y_old;
+        
+        if(this.entity.tank.amount != 0)
+        {
+    		int k = this.entity.tank.amount * 64 / this.entity.MAX_CAPACITY;
+        	x += 134;
+        	y += 6;
+        	int k_inv = 64 - k;
+        	drawTexturedModalRect(x, y + k_inv, 176, 14 + k_inv, 16, k);
         }
     }
     

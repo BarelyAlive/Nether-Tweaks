@@ -10,6 +10,7 @@ import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.network.MessageNBTUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.nethertweaks.registry.CompostRegistry;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityBase;
@@ -61,9 +62,9 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
 	
     @Override
 	public void update() {
-    	if (!this.getWorld().isRemote)
+		this.world = getWorld();
+    	if (!this.world.isRemote)
     	{
-    		world = getWorld();
 			NetworkHandlerNTM.INSTANCE.sendToAll(new MessageNBTUpdate(this));
 			fillFromItem();
 			if(canFreeze()) {
@@ -141,26 +142,41 @@ public class TileFreezer extends TileEntityFluidBase implements net.minecraftfor
     		}
     	}
     }
-
-    /*
+    
 	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		IFluidTankProperties[] prop = new IFluidTankProperties[fluid.amount];
-		return prop;
+	public boolean isItemValidForSlot(int index, ItemStack stack) {
+		ItemStack slot;
+		IFluidHandlerItem handler;
+		switch(index)
+		{
+		case 2:
+			slot = this.getStackInSlot(1);
+			if ((slot.getCount() + stack.getCount()) > 1)
+			{
+				return false;
+			}
+			if (stack.getItem().equals(Items.WATER_BUCKET))
+			{
+				return true;
+			}
+			handler = FluidUtil.getFluidHandler(stack);
+			if(handler != null)
+			{
+				return true;
+			}
+			break;
 		}
-
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
+		return false;
 	}
 	
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
-		return compound;
+	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
+		if (index < 2)
+		{
+			return true;
+		}
+		return false;
 	}
-	*/
 	    
 	public String getGuiID()
     {

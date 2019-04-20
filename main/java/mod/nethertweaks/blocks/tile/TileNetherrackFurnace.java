@@ -48,6 +48,7 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -61,7 +62,6 @@ public class TileNetherrackFurnace extends TileEntityBase{
 
 	@Override
     public void update() {
-		
 		if (canSmelt())
 		{
             ++this.workTime;
@@ -202,6 +202,40 @@ public class TileNetherrackFurnace extends TileEntityBase{
 		return compound;
 	}
 	
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack) {
+		ItemStack slot;
+		ItemStack result;
+		IFluidHandlerItem handler;
+		switch(index)
+		{
+		case 0:
+			slot = this.getStackInSlot(1);
+			if ((slot.getCount() + stack.getCount()) > slot.getMaxStackSize())
+			{
+				return false;
+			}
+			/*
+			result = FurnaceRecipes.instance().getSmeltingResult(stack);
+			if (result == ItemStack.EMPTY)
+			{
+				return false;
+			}
+			*/
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
+		if (index == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+	    
 	@Override
     public String getGuiID()
     {
