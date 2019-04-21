@@ -176,24 +176,24 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         final ItemMeshDefinition ORES = stack -> {
             switch (stack.getItemDamage()) {
                 case 0:
-                    return new ModelResourceLocation("exnihilocreatio:item_ore", "type=piece");
+                    return new ModelResourceLocation("nethertweaksmod:item_ore", "type=piece");
                 case 1:
-                    return new ModelResourceLocation("exnihilocreatio:item_ore", "type=chunk");
+                    return new ModelResourceLocation("nethertweaksmod:item_ore", "type=chunk");
                 case 2:
-                    return new ModelResourceLocation("exnihilocreatio:item_ore", "type=dust");
+                    return new ModelResourceLocation("nethertweaksmod:item_ore", "type=dust");
                 case 3:
-                    return new ModelResourceLocation("exnihilocreatio:item_ore", "type=ingot");
+                    return new ModelResourceLocation("nethertweaksmod:item_ore", "type=ingot");
                 default:
-                    return new ModelResourceLocation(stack.getItem().getRegistryName() == null ? new ResourceLocation("exnihilocreatio:item_ore") : stack.getItem().getRegistryName(), "inventory");
+                    return new ModelResourceLocation(stack.getItem().getRegistryName() == null ? new ResourceLocation("nethertweaksmod:item_ore") : stack.getItem().getRegistryName(), "inventory");
             }
         };
         for (ItemOre ore : itemOreRegistry) {
             ModelLoader.setCustomMeshDefinition(ore, ORES);
             ModelBakery.registerItemVariants(ore,
-                    new ModelResourceLocation("exnihilocreatio:item_ore", "type=piece"),
-                    new ModelResourceLocation("exnihilocreatio:item_ore", "type=chunk"),
-                    new ModelResourceLocation("exnihilocreatio:item_ore", "type=dust"),
-                    new ModelResourceLocation("exnihilocreatio:item_ore", "type=ingot"));
+                    new ModelResourceLocation("nethertweaksmod:item_ore", "type=piece"),
+                    new ModelResourceLocation("nethertweaksmod:item_ore", "type=chunk"),
+                    new ModelResourceLocation("nethertweaksmod:item_ore", "type=dust"),
+                    new ModelResourceLocation("nethertweaksmod:item_ore", "type=ingot"));
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(ore, ORES);
         }
     }
