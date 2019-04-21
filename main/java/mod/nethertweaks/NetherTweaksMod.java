@@ -12,7 +12,6 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes3;
@@ -123,8 +122,6 @@ public class NetherTweaksMod {
     @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event)
     {
-    	//Ores from other mods
-        OreHandler.init();
         ((ItemDoor)ItemHandler.ITEMSTONEDOOR).setDoor(BlockHandler.STONEDOOR);
         ((CustomDoor)BlockHandler.STONEDOOR).setDoor(ItemHandler.ITEMSTONEDOOR);
     }

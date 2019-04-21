@@ -34,3 +34,6 @@ ChangeLog NTM 2.0.0
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
 + Added mean vine strings (works as normal string (recipes))
 + Added pebbles (can be thrown for damage)
++ Added support for WAILA, Moo Fluids, the one probe, draconic evolution, Applied Energistics, Forestry,
+    Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and without crashes),
+    Thermal Foundation, Tinkers Construct, Integrated Dynamics and many more
