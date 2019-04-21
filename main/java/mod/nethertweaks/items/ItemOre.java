@@ -22,14 +22,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemOre extends Item {
 
 	private boolean registerIngot;	
+	private boolean registerDust;
 	private Ore ore;
 	
 	public boolean isRegisterIngot() {
 		return registerIngot;
 	}
 
+	public boolean isRegisterDust() {
+		// TODO Auto-generated method stub
+		return registerDust;
+	}
+
 	public void setRegisterIngot(boolean registerIngot) {
 		this.registerIngot = registerIngot;
+	}
+
+	public void setRegisterDust(boolean registerDust) {
+		this.registerDust = registerDust;
 	}
 
 	public Ore getOre() {

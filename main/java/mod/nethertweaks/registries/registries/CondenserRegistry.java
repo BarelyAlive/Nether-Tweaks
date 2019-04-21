@@ -28,7 +28,6 @@ import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomDryableJson;
 import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.ItemInfo;

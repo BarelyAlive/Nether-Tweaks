@@ -8,7 +8,9 @@ import java.lang.reflect.Type;
 
 public class CustomColorJson implements JsonDeserializer<Color>, JsonSerializer<Color>
 {
-    @Override
+    public static final CustomColorJson INSTANCE = new CustomColorJson();
+
+	@Override
     public Color deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException{
         if (json.isJsonPrimitive()) {
             JsonPrimitive prim = json.getAsJsonPrimitive();

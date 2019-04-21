@@ -16,7 +16,9 @@ import net.minecraft.item.Item;
 
 public class CustomItemInfoJson implements JsonDeserializer<ItemInfo>, JsonSerializer<ItemInfo>
 {
-    @Override
+    public static final CustomItemInfoJson INSTANCE = new CustomItemInfoJson();
+
+	@Override
     public JsonElement serialize(ItemInfo src, Type typeOfSrc, JsonSerializationContext context)
     {
         JsonObject obj = new JsonObject();

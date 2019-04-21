@@ -29,7 +29,6 @@ import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomHellmartDataJson;
 import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.manager.IHammerDefaultRegistryProvider;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.nethertweaks.registry.types.HammerReward;

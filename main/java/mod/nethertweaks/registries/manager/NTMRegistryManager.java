@@ -11,6 +11,7 @@ import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
 import mod.nethertweaks.registries.registries.FluidTransformRegistry;
 import mod.nethertweaks.registries.registries.HammerRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
+import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 
 public final class NTMRegistryManager {

@@ -16,7 +16,9 @@ import net.minecraft.block.Block;
 
 public class CustomBlockInfoJson implements JsonDeserializer<BlockInfo>, JsonSerializer<BlockInfo>
 {
-    @Override
+    public static final CustomBlockInfoJson INSTANCE = new CustomBlockInfoJson();
+
+	@Override
     public JsonElement serialize(BlockInfo src, Type typeOfSrc, JsonSerializationContext context)
     {
         JsonObject obj = new JsonObject();

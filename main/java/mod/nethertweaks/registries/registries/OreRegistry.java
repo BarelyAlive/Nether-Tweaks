@@ -4,10 +4,16 @@ import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import mod.nethertweaks.Config;
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.api.IOreRegistry;
+import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.json.CustomBlockInfoJson;
 import mod.nethertweaks.json.CustomColorJson;
 import mod.nethertweaks.json.CustomItemInfoJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.base.BaseRegistryList;
+import mod.nethertweaks.registry.types.Ore;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
@@ -30,6 +36,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileReader;
 import java.util.*;
+
+import javax.annotation.Nonnull;
 
 public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
@@ -88,8 +96,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
      *              Otherwise, the hunk will be smelted into this.
      * @return Ore, containing the base Ore object.
      */
-    @NotNull
-    public Ore register(@NotNull String name, @NotNull Color color, ItemInfo info, Map<String, String> translations, String oredictName) {
+    @Nonnull
+    public Ore register(@Nonnull String name, @Nonnull Color color, ItemInfo info, Map<String, String> translations, String oredictName) {
         Ore ore = new Ore(name, color, info, null, translations, oredictName);
         register(ore);
 
@@ -131,15 +139,15 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
     public void doRecipes() {
         for (ItemOre ore : itemOreRegistry) {
-            ResourceLocation group = new ResourceLocation(ExNihiloCreatio.MODID, "exores");
-            ResourceLocation baseName = new ResourceLocation(ExNihiloCreatio.MODID, "ore_compression_");
-            ResourceLocation recipeLocation = new ResourceLocation(baseName.getNamespace(), baseName.getPath() + ore.getOre().getName());
+            ResourceLocation group = new ResourceLocation(NetherTweaksMod.MODID, "exores");
+            ResourceLocation baseName = new ResourceLocation(NetherTweaksMod.MODID, "ore_compression_");
+            ResourceLocation recipeLocation = new ResourceLocation(baseName.getResourceDomain(), baseName.getResourcePath() + ore.getOre().getName());
 
             GameRegistry.addShapedRecipe(recipeLocation, group,
                     new ItemStack(ore, 1, EnumOreSubtype.CHUNK.getMeta()),
                     "xx", "xx", 'x', new ItemStack(ore, 1, EnumOreSubtype.PIECE.getMeta()));
 
-            if (ModConfig.compatibility.preventUnidict && Loader.isModLoaded("unidict")) {
+            if (Config.preventUnidict && Loader.isModLoaded("unidict")) {
                 UniDict.getConfig().recipesToIgnore.add(recipeLocation);
             }
 
@@ -192,12 +200,12 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
     public void registerToGameRegistry(IForgeRegistry<Item> itemRegistry) {
 
-        String bChunk = ModConfig.ore.chunkBaseOreDictName, bDust = ModConfig.ore.dustBaseOreDictName, bPiece = ModConfig.ore.pieceBaseOreDictName, bIngot = ModConfig.ore.ingotBaseOreDictName;
+        String bChunk = Config.chunkBaseOreDictName, bDust = Config.dustBaseOreDictName, bPiece = Config.pieceBaseOreDictName, bIngot = Config.ingotBaseOreDictName;
 
         for (ItemOre itemOre : itemOreRegistry) {
             itemRegistry.register(itemOre);
 
-            String oreName = itemOre.getOre().getOredictName() != null ? itemOre.getOre().getOredictName() : StringUtils.capitalize(itemOre.getOre().getName());
+            String oreName = itemOre.getOre().getName() != null ? itemOre.getOre().getName() : StringUtils.capitalize(itemOre.getOre().getName());
 
             OreDictionary.registerOre(bChunk + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.CHUNK.getMeta()));
             OreDictionary.registerOre(bPiece + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.PIECE.getMeta()));
@@ -209,7 +217,7 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         }
     }
 
-    public ItemOre getOreItem(@NotNull String name) {
+    public ItemOre getOreItem(@Nonnull String name) {
         for (ItemOre itemOre : itemOreRegistry) {
             if (itemOre.getOre().getName().equals(name)) {
                 return itemOre;
@@ -219,7 +227,7 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         return null;
     }
 
-    public boolean isRegistered(@NotNull String name) {
+    public boolean isRegistered(@Nonnull String name) {
         for (Ore ore : registry) {
             if (ore.getName().equals(name)) {
                 return true;
@@ -229,17 +237,17 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
     }
 
     @Override
-    public List<?> getRecipeList() {
-        return Lists.newLinkedList();
+    public List<ItemOre> getRecipeList() {
+        return this.itemOreRegistry;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public List<ItemOre> getItemOreRegistry() {
         return itemOreRegistry;
     }
 
-    @NotNull
+    @Nonnull
     @Override
     public Set<ItemOre> getSieveBlackList() {
         return sieveBlackList;
