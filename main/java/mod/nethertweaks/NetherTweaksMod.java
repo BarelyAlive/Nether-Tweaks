@@ -70,7 +70,7 @@ public class NetherTweaksMod {
     public static File configDirectory;
     
     //Creative Tabs
-    public static CreativeTabs tabNTM = new CreativeTabs("tab_nether_tweaks_mod"){
+    public static final CreativeTabs tabNTM = new CreativeTabs("tab_nether_tweaks_mod"){
          
         @Override
         @SideOnly(Side.CLIENT)

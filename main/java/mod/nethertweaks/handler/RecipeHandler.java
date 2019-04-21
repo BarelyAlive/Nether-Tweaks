@@ -35,8 +35,6 @@ public class RecipeHandler {
 		GameRegistry.addSmelting(BlockHandler.NETHERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
 		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
 		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F); //1 weil soll gemined werden
-		GameRegistry.addSmelting(BlockHandler.OREIRONDUST, new ItemStack(Items.IRON_INGOT), 2.0F);
-		GameRegistry.addSmelting(BlockHandler.OREGOLDDUST, new ItemStack(Items.GOLD_INGOT), 2.0F);
 	}
 	
 	//Ore-Dictionary
@@ -53,8 +51,6 @@ public class RecipeHandler {
     	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.NETHERWOOD));
     	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.NETHERSLAB));
     	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.NETHERLOG));
-    	OreDictionary.registerOre("oreGold", BlockHandler.OREGOLDDUST);
-    	OreDictionary.registerOre("oreIron", BlockHandler.OREIRONDUST);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETSTONEDMW);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETWOODDMW);
     	OreDictionary.registerOre("listAllDMW", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));

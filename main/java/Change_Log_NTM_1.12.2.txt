@@ -2,7 +2,7 @@ ChangeLog NTM 2.0.0
 
 * Bonfire is individual now, which means that every bonfire saves on it's own.
   Example: If you last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
-* Bonfire now teleports players to different Bonfires
+* Bonfire now teleports players you to different Bonfires
 * Condensers now have water tanks so you can input any combination of dryable items.
 * Freezers now have water tanks too and can have a redstone signal from any side
 * Condensers and netherrack furnaces do respect the temperature of the (hot) fluid below for their worktime

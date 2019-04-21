@@ -45,7 +45,6 @@ public class ItemHandler implements INames{
     
     //Multi ID Item
 	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 10, new ResourceLocation(NTM, INames.ITEMBASE));
-	public static final Item OREMATERIAL = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 16, new ResourceLocation(NTM, INames.OREMATERIAL));
     
 	//food
     public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true)
@@ -67,38 +66,31 @@ public class ItemHandler implements INames{
 	{
 		registerItems();
 		addItemBurnTime();
-		registerItemBlocks();
 	}
 	
     private static void registerItems()
     {
     	//Multi ID Item
     	Registry.registerItem(ITEMBASE);
-		Registry.registerItem(OREMATERIAL);
-        
-    	Registry.registerItem(COOKEDJERKY);
-        Registry.registerItem(SEED);;
+        Registry.registerItem(SEED);
         Registry.registerItem(CRYSTAL);
         Registry.registerItem(PEBBLE);
+        Registry.registerItem(MESH);
+        Registry.registerItem(DOLL);
+
+    	Registry.registerItem(COOKEDJERKY);
         
         //Werkzeuge
         Registry.registerItem(PICKAXENETHERRACK);
         Registry.registerItem(PICKAXENETHERBRICK);
-         
+        
         Registry.registerItem(HAMMERWOOD);
         Registry.registerItem(HAMMERGOLD);
         Registry.registerItem(HAMMERIRON);
         Registry.registerItem(HAMMERDIAMOND);
         Registry.registerItem(HAMMERSTONE);
         
-        Registry.registerItem(FLINTANDBLAZE);
-        Registry.registerItem(DOLL);
-        Registry.registerItem(MESH);
-    }
-    
-    //Just an extra method after the register block thing to prevent errors
-    private static void registerItemBlocks()
-    {
+        Registry.registerItem(FLINTANDBLAZE);        
         Registry.registerItem(ITEMSTONEDOOR);
     }
     
