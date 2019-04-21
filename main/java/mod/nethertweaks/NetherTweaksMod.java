@@ -15,17 +15,18 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.RecipeHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registry.BarrelLiquidBlacklistRegistry;
-import mod.nethertweaks.registry.BarrelModeRegistry;
-import mod.nethertweaks.registry.CompostRegistry;
-import mod.nethertweaks.registry.CondenserRegistry;
-import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
-import mod.nethertweaks.registry.FluidOnTopRegistry;
-import mod.nethertweaks.registry.FluidTransformRegistry;
-import mod.nethertweaks.registry.HammerRegistry;
-import mod.nethertweaks.registry.HellmartRegistry;
-import mod.nethertweaks.registry.SieveRegistry;
-import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
+import mod.nethertweaks.registries.manager.NTMDefaultRecipes3;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
+import mod.nethertweaks.registries.registries.BarrelModeRegistry;
+import mod.nethertweaks.registries.registries.CompostRegistry;
+import mod.nethertweaks.registries.registries.CondenserRegistry;
+import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
+import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registries.registries.FluidTransformRegistry;
+import mod.nethertweaks.registries.registries.HammerRegistry;
+import mod.nethertweaks.registries.registries.HellmartRegistry;
+import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
@@ -66,7 +67,7 @@ public class NetherTweaksMod {
     	FluidRegistry.enableUniversalBucket();
     }
     
-    public static NTMDefaultRecipes defaultRecipes;
+    public static NTMDefaultRecipes3 defaultRecipes;
     public static File configDirectory;
     
     //Creative Tabs
@@ -82,7 +83,8 @@ public class NetherTweaksMod {
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          
     @Mod.EventHandler
-    public void PreInit(FMLPreInitializationEvent event){    	
+    public void PreInit(FMLPreInitializationEvent event)
+    {    	
     	configDirectory = new File(event.getModConfigurationDirectory(), NetherTweaksMod.MODID);
     	configDirectory.mkdirs();
     	
@@ -104,22 +106,23 @@ public class NetherTweaksMod {
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());		
 		NetworkHandlerNTM.initPackets();
-		
     }
     
     @Mod.EventHandler
-    public void load(FMLInitializationEvent event){
-    	loadJasons();
+    public void load(FMLInitializationEvent event)
+    {
+    	loadJasonVorhees();
         //needs to be checked
         RecipeHandler.load();
         
-    	defaultRecipes = new NTMDefaultRecipes();
+    	defaultRecipes = new NTMDefaultRecipes3();
 		BarrelModeRegistry.registerDefaults();
 
     }
      
     @Mod.EventHandler
-    public void PostInit(FMLPostInitializationEvent event){
+    public void PostInit(FMLPostInitializationEvent event)
+    {
     	//Ores from other mods
         OreHandler.init();
         ((ItemDoor)ItemHandler.ITEMSTONEDOOR).setDoor(BlockHandler.STONEDOOR);
@@ -136,17 +139,21 @@ public class NetherTweaksMod {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
     }
     
-    private static void loadJasons()
+    private static void loadJasonVorhees()
     {
-    	CompostRegistry.loadJson(new File(configDirectory, "CompostRegistry.json"));
-		CompostRegistry.recommendAllFood(new File(configDirectory, "RecommendedFoodRegistry.json"));
-		HammerRegistry.loadJson(new File(configDirectory, "HammerRegistry.json"));
-		FluidBlockTransformerRegistry.loadJson(new File(configDirectory, "FluidBlockTransformerRegistry.json"));
-		FluidOnTopRegistry.loadJson(new File(configDirectory, "FluidOnTopRegistry.json"));
-		SieveRegistry.loadJson(new File(configDirectory, "SieveRegistry.json"));
-		FluidTransformRegistry.loadJson(new File(configDirectory, "FluidTransformRegistry.json"));
-		BarrelLiquidBlacklistRegistry.loadJson(new File(configDirectory, "BarrelLiquidBlacklistRegistry.json"));
 		CondenserRegistry.loadJson(new File(configDirectory, "CondenserRegistry.json"));
 		HellmartRegistry.loadJson(new File(configDirectory, "HellmartRegistry.json"));
+		
+		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(configDirectory, "CompostRegistry.json"));
+        NTMRegistryManager.SIEVE_REGISTRY.loadJson(new File(configDirectory, "SieveRegistry.json"));
+        NTMRegistryManager.HAMMER_REGISTRY.loadJson(new File(configDirectory, "HammerRegistry.json"));
+        NTMRegistryManager.HEAT_REGISTRY.loadJson(new File(configDirectory, "HeatRegistry.json"));
+        NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.loadJson(new File(configDirectory, "BarrelLiquidBlacklistRegistry.json"));
+        NTMRegistryManager.FLUID_ON_TOP_REGISTRY.loadJson(new File(configDirectory, "FluidOnTopRegistry.json"));
+        NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.loadJson(new File(configDirectory, "FluidTransformRegistry.json"));
+        NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.loadJson(new File(configDirectory, "FluidBlockTransformerRegistry.json"));
+        NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.loadJson(new File(configDirectory, "FluidItemFluidRegistry.json"));
+        NTMRegistryManager.CRUCIBLE_STONE_REGISTRY.loadJson(new File(configDirectory, "CrucibleRegistryStone.json"));
+        NTMRegistryManager.MILK_ENTITY_REGISTRY.loadJson(new File(configDirectory, "MilkEntityRegistry.json"));
     }
 }

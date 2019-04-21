@@ -35,9 +35,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class EndTeleport extends Block{
-	
-	private int dimension;
-	
+		
 	public EndTeleport() {
 		super(Material.ROCK);
 		setCreativeTab(NetherTweaksMod.tabNTM);
@@ -47,7 +45,6 @@ public class EndTeleport extends Block{
 		setResistance(75.0F);
 		setHardness(16.0F);
 		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ENDTELEPORT));
-		setCreativeTab(NetherTweaksMod.tabNTM);
 		setTickRandomly(true);
 	}
 	

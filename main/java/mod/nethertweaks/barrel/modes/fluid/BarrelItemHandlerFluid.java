@@ -1,86 +1,115 @@
 package mod.nethertweaks.barrel.modes.fluid;
 
+import javax.annotation.Nonnull;
+
 import mod.nethertweaks.barrel.modes.mobspawn.BarrelModeMobSpawn;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registry.FluidBlockTransformerRegistry;
-import mod.sfhcore.util.ItemInfo;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.EntityInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelItemHandlerFluid extends ItemStackHandler {
-	
-	private TileBarrel barrel;
-	
-	public void setBarrel(TileBarrel barrel) {
-		this.barrel = barrel;
+
+    private TileBarrel barrel;
+
+    public TileBarrel getBarrel() {
+		return barrel;
 	}
 
 	public BarrelItemHandlerFluid(TileBarrel barrel) {
-		super(1);
-		this.barrel = barrel;
-	}
-    
+        super(1);
+        this.barrel = barrel;
+    }
+
     @Override
-    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
-    {
+    @Nonnull
+    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
         FluidTank tank = barrel.getTank();
-        
+
         if (tank.getFluid() == null)
             return stack;
-        
-        if (FluidBlockTransformerRegistry.canBlockBeTransformedWithThisFluid(tank.getFluid().getFluid(), stack) && tank.getFluidAmount() == tank.getCapacity())
-        {
-            ItemInfo info = FluidBlockTransformerRegistry.getBlockForTransformation(tank.getFluid().getFluid(), stack);
-            
-            if (info != null)
-            {               
-                if (!simulate)
-                {
+
+        // Fluid to block transformations
+        if (NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.canBlockBeTransformedWithThisFluid(tank.getFluid().getFluid(), stack) && tank.getFluidAmount() == tank.getCapacity()) {
+            FluidBlockTransformer transformer = NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.getTransformation(tank.getFluid().getFluid(), stack);
+
+            if (transformer != null) {
+                BlockInfo info = transformer.getOutput();
+                int spawnCount = transformer.getSpawnCount();
+                if (!simulate) {
                     tank.drain(tank.getCapacity(), true);
                     barrel.setMode("block");
                     NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
-                    
+
                     barrel.getMode().addItem(info.getItemStack(), barrel);
-                }
-                
-                if(stack.getItem().hasContainerItem(stack))
-                {
-                    
+                    if(spawnCount > 0){
+                        int spawnRange = transformer.getSpawnRange();
+                        EntityInfo entityInfo = transformer.getToSpawn();
+                        for(int i=0; i<spawnCount; i++){
+                            entityInfo.spawnEntityNear(barrel.getPos(), spawnRange, barrel.getWorld());
+                        }
+                    }
                 }
 
                 ItemStack ret = stack.copy();
-                ret.setCount(ret.getCount() -1);
-                
-                return ret.getCount() == 0 ? null : ret;
+                ret.shrink(1);
+
+                return ret.isEmpty() ? ItemStack.EMPTY : ret;
             }
-            
+
         }
-        
-        if (stack != null && tank.getFluidAmount() == tank.getCapacity() && stack.getItem() instanceof ItemDoll
-				&& ((ItemDoll) stack.getItem()).getSpawnFluid(stack) == tank.getFluid().getFluid()) {
-			if (!simulate) {
-				barrel.getTank().drain(Fluid.BUCKET_VOLUME, true);
-				barrel.setMode("mobspawn");				
-				((BarrelModeMobSpawn) barrel.getMode()).setDollStack(stack);
-				NetworkHandlerNTM.sendNBTUpdate(barrel);
-			}
-			ItemStack ret = stack.copy();
-			ret.setCount(ret.getCount() -1);
-			
-			return ret;
-		}
-        
+
+        // Fluid to Fluid transformations
+        String fluidItemFluidOutput = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(tank.getFluid().getFluid(), stack);
+        if (fluidItemFluidOutput != null && tank.getFluidAmount() == tank.getCapacity()) {
+            if (!simulate) {
+                tank.drain(tank.getCapacity(), true);
+                barrel.setMode("fluid");
+                NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+                tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
+                NetworkHandlerNTM.sendNBTUpdate(barrel);
+            }
+            ItemStack ret = stack.copy();
+            ret.shrink(1);
+
+            return ret.isEmpty() ? ItemStack.EMPTY : ret;
+        }
+
+
+        // Checks for mobspawn
+        if (!stack.isEmpty() && tank.getFluidAmount() == tank.getCapacity() && stack.getItem() instanceof ItemDoll
+                && ((ItemDoll) stack.getItem()).getSpawnFluid(stack) == tank.getFluid().getFluid()) {
+            if (!simulate) {
+                barrel.getTank().drain(Fluid.BUCKET_VOLUME, true);
+                barrel.setMode("mobspawn");
+                ((BarrelModeMobSpawn) barrel.getMode()).setDollStack(stack);
+                NetworkHandlerNTM.sendNBTUpdate(barrel);
+            }
+            ItemStack ret = stack.copy();
+            ret.shrink(1);
+
+            return ret;
+        }
+
         return stack;
     }
-    
+
     @Override
-    public ItemStack extractItem(int slot, int amount, boolean simulate)
-    {
-        return null;
+    @Nonnull
+    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+        return ItemStack.EMPTY;
     }
+
+	public void setBarrel(TileBarrel barrel2) {
+		this.barrel = barrel2;
+	}
 }

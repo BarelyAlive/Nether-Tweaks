@@ -1,12 +1,13 @@
 package mod.nethertweaks.registry.types;
 
+import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 
 public class FluidFluidBlock {
 
 	private String fluidInBarrel;
 	private String fluidOnTop;
-	private ItemInfo result;
+	private BlockInfo result;
 	
 	public String getFluidInBarrel() {
 		return fluidInBarrel;
@@ -16,11 +17,11 @@ public class FluidFluidBlock {
 		return fluidOnTop;
 	}
 
-	public ItemInfo getResult() {
+	public BlockInfo getResult() {
 		return result;
 	}
 
-	public FluidFluidBlock(String fluidInBarrel, String fluidOnTop, ItemInfo result) {
+	public FluidFluidBlock(String fluidInBarrel, String fluidOnTop, BlockInfo result) {
 		super();
 		this.fluidInBarrel = fluidInBarrel;
 		this.fluidOnTop = fluidOnTop;

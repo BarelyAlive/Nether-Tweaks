@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
@@ -113,8 +114,10 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 				} else {
 					TileEntity te = world.getTileEntity(pos);
 
-					if (te instanceof TileNetherrackFurnace)
-						player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+					if(!(te instanceof TileNetherrackFurnace)) {
+						return false;
+					}
+					player.openGui(NetherTweaksMod.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
 			return true;

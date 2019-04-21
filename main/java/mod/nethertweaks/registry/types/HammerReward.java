@@ -13,14 +13,14 @@ public class HammerReward {
 	
 	private float chance;
 	
-	private float fortuneChance;
+	private double fortuneChance;
 	
-	public HammerReward(ItemStack stack, int miningLevel, float chance, float fortuneChance)
+	public HammerReward(ItemStack stack, int miningLevel, float chance, double fortuneChance2)
 	{
 		this.stack = stack;
 		this.miningLevel = miningLevel;
 		this.chance = chance;
-		this.fortuneChance = fortuneChance;
+		this.fortuneChance = fortuneChance2;
 	}
 	
 	public ItemStack getItemStack()
@@ -38,7 +38,7 @@ public class HammerReward {
 		return chance;
 	}
 	
-	public float getFortuneChance()
+	public double getFortuneChance()
 	{
 		return fortuneChance;
 	}

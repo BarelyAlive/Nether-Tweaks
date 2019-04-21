@@ -8,7 +8,7 @@ import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registry.CompostRegistry;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Compostable;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
@@ -34,24 +34,28 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelModeCompost implements IBarrelMode {
 
-	private float fillAmount = 0;
-	private Color color = new Color("EEA96D");
-	
-	public void setColor(Color color) {
-		this.color = color;
-	}
+    private final Color whiteColor = new Color(1f, 1f, 1f, 1f);
+    private final BarrelItemHandlerCompost handler;
+    private float fillAmount = 0;
+    private Color color = new Color("EEA96D");
+    private Color originalColor;
+    private float progress = 0;
+    private IBlockState compostState;
 
-	private Color whiteColor = new Color(1f, 1f, 1f, 1f);
-	private Color originalColor;
-	private float progress = 0;
-	private IBlockState compostState;
-	
-	public float getFillAmount() {
+    public float getFillAmount() {
 		return fillAmount;
 	}
 
 	public void setFillAmount(float fillAmount) {
 		this.fillAmount = fillAmount;
+	}
+
+	public Color getOriginalColor() {
+		return originalColor;
+	}
+
+	public void setOriginalColor(Color originalColor) {
+		this.originalColor = originalColor;
 	}
 
 	public float getProgress() {
@@ -62,264 +66,217 @@ public class BarrelModeCompost implements IBarrelMode {
 		this.progress = progress;
 	}
 
-	public Color getColor() {
-		return color;
-	}
-
-	public Color getWhiteColor() {
-		return whiteColor;
-	}
-
-	public Color getOriginalColor() {
-		return originalColor;
-	}
-
 	public IBlockState getCompostState() {
 		return compostState;
 	}
 
-	private BarrelItemHandlerCompost handler;
-	
-	public BarrelModeCompost()
-	{
-		handler = new BarrelItemHandlerCompost(null);
+	public void setColor(Color color) {
+		this.color = color;
 	}
-	
-	@Override
-	public boolean onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (fillAmount == 0)
-		{
-			if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
-			{
-				ItemInfo info = ItemInfo.getItemInfoFromStack(player.getHeldItem(EnumHand.MAIN_HAND));
-				if (CompostRegistry.containsItem(info))
-				{
-					Compostable comp = CompostRegistry.getItem(info);
-					compostState = Block.getBlockFromItem(comp.getCompostBlock().getItem())
-							.getStateFromMeta(comp.getCompostBlock().getMeta());
-					NetworkHandlerNTM.sendNBTUpdate(barrel);
-				}
-			}
-		}
-		if (fillAmount < 1 && compostState != null)
-		{
-			if (player.getHeldItem(EnumHand.MAIN_HAND) != null)
-			{
-				ItemInfo info = ItemInfo.getItemInfoFromStack(player.getHeldItem(EnumHand.MAIN_HAND));
-				Compostable comp = CompostRegistry.getItem(info);
-				IBlockState testState = Block.getBlockFromItem(comp.getCompostBlock().getItem())
-						.getStateFromMeta(comp.getCompostBlock().getMeta());
-				
-				if (CompostRegistry.containsItem(info) && compostState.equals(testState))
-				{
-					Compostable compost = CompostRegistry.getItem(info);
-					
-					if (fillAmount == 0)
-						color = compost.getColor();
-					else
-						color = Color.average(color, compost.getColor(), compost.getValue());
-					
-					fillAmount += compost.getValue();
-					if (fillAmount > 1)
-						fillAmount = 1;
-					if (!player.capabilities.isCreativeMode)
-						player.getHeldItem(EnumHand.MAIN_HAND).setCount(player.getHeldItem(EnumHand.MAIN_HAND).getCount() -1);
-					NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
-					barrel.markDirty();
-					return true;
-				}
-			}
-		}
-		else if (progress >= 1)
-		{
-			Util.dropItemInWorld(barrel, player, new ItemStack(Blocks.DIRT), 0.02f);//new ItemStack(compostState.getBlock(), 1, compostState.getBlock().getMetaFromState(compostState)), 0.02f);
-			removeItem(barrel);		
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public void removeItem(TileBarrel barrel)
-	{
-		progress = 0;
-		fillAmount = 0;
-		color = new Color("EEA96D");
-		handler.setStackInSlot(0, null);
-		compostState = null;
-		NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
-		barrel.setMode("null");
-		IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
-		NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
-		barrel.getWorld().setBlockState(barrel.getPos(), state);
-	}
-	
-	public boolean addItem(ItemStack stack, TileBarrel barrel)
-	{
-		if (fillAmount < 1)
-		{
-			if (stack != null)
-			{
-				ItemInfo info = ItemInfo.getItemInfoFromStack(stack);
-				Compostable comp = CompostRegistry.getItem(info);
-				IBlockState testState = Block.getBlockFromItem(comp.getCompostBlock().getItem())
-						.getStateFromMeta(comp.getCompostBlock().getMeta());
-				
-				if (CompostRegistry.containsItem(info) && compostState == null)
-				{
-					compostState = testState;
-				}
-				
-				if (CompostRegistry.containsItem(info) && compostState.equals(testState))
-				{
-					Compostable compost = CompostRegistry.getItem(info);
-					
-					if (fillAmount == 0)
-						color = compost.getColor();
-					else
-						color = Color.average(color, compost.getColor(), compost.getValue());
-					
-					fillAmount += compost.getValue();
-					if (fillAmount > 1)
-						fillAmount = 1;
-					NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
-					barrel.markDirty();
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-    
+
+	public BarrelModeCompost() {
+        handler = new BarrelItemHandlerCompost(null);
+    }
+
+    @SuppressWarnings("deprecation")
     @Override
-    public void update(TileBarrel barrel)
-    {
-        if (fillAmount >= 1 && progress < 1)
-        {
-            if (progress == 0)
-            {
+    public void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (fillAmount == 0) {
+            if (!player.getHeldItem(hand).isEmpty()) {
+                ItemInfo info = new ItemInfo(player.getHeldItem(hand));
+                if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info)) {
+                    Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+                    compostState = comp.getCompostBlock().getBlockState();
+                    NetworkHandlerNTM.sendNBTUpdate(barrel);
+                }
+            }
+        }
+        if (fillAmount < 1 && compostState != null) {
+            if (!player.getHeldItem(hand).isEmpty()) {
+                ItemStack stack = player.getHeldItem(hand);
+                ItemInfo info = new ItemInfo(player.getHeldItem(hand));
+                Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+
+                if (!comp.getCompostBlock().isValid()) return;
+
+                IBlockState testState = comp.getCompostBlock().getBlockState();
+
+                if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState.equals(testState)) {
+                    Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+                    Color compColor = compost.getColor();
+
+                    boolean isFirst = fillAmount == 0;
+
+                    fillAmount += compost.getValue();
+                    if (fillAmount > 1)
+                        fillAmount = 1;
+                    if (!player.capabilities.isCreativeMode) {
+                        player.getHeldItem(hand).shrink(1);
+                    }
+                    NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, compColor, stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
+                    barrel.markDirty();
+                }
+            }
+        } else if (progress >= 1) {
+            Util.dropItemInWorld(barrel, player, new ItemStack(compostState == null ? Blocks.AIR : compostState.getBlock(), 1, compostState == null ? 0 : compostState.getBlock().getMetaFromState(compostState)), 0.02f);
+            removeItem(barrel);
+        }
+
+    }
+
+    public void removeItem(TileBarrel barrel) {
+        progress = 0;
+        fillAmount = 0;
+        color = new Color("EEA96D");
+        handler.setStackInSlot(0, ItemStack.EMPTY);
+        compostState = null;
+        NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress,0.0f,  barrel.getPos(), false), barrel);
+        barrel.setMode("null");
+        IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
+        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+        barrel.getWorld().setBlockState(barrel.getPos(), state);
+    }
+
+    @SuppressWarnings("deprecation")
+    public void addItem(ItemStack stack, TileBarrel barrel) {
+        if (fillAmount < 1) {
+            if (stack != null && !stack.isEmpty()) {
+                ItemInfo info = new ItemInfo(stack);
+                Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+                IBlockState testState = comp.getCompostBlock().getBlockState();
+
+                if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState == null) {
+                    compostState = testState;
+                }
+
+                if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState.equals(testState)) {
+                    Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+
+                    boolean isFirst = fillAmount == 0;
+                    fillAmount += compost.getValue();
+                    if (fillAmount > 1)
+                        fillAmount = 1;
+                    NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, comp.getColor(), stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
+                    // NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
+                    barrel.markDirty();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void update(TileBarrel barrel) {
+        if (fillAmount >= 1 && progress < 1) {
+            if (progress == 0) {
                 originalColor = color;
             }
-            
+
             progress += 1.0 / Config.compostingTicks;
-            
             color = Color.average(originalColor, whiteColor, progress);
-            
-            NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
-            
+
+            // TODO: maybe don't send it _every_ tick
+            NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress, 0.0f, barrel.getPos(), false), barrel);
+
             barrel.markDirty();
         }
-        
-        if (progress >= 1 && compostState != null)
-        {
+
+        if (progress >= 1 && compostState != null) {
             barrel.setMode("block");
             NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
-            
+
             barrel.getMode().addItem(new ItemStack(compostState.getBlock(), 1, compostState.getBlock().getMetaFromState(compostState)), barrel);
         }
     }
-    
-	@Override
-	public String getName()
-	{
-		return "compost";
-	}
-	
-	@Override
-	public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
-		if (compostState != null)
-			currenttip.add("Composting "+compostState.getBlock().getLocalizedName());
-		if (progress == 0) {
-			currenttip.add(Math.round(fillAmount*100)+"% full");
-		}
-		else {
-			currenttip.add(Math.round(progress*100)+"% complete");
-		}
-		return currenttip;
-	}
 
-	@Override
-	public boolean isTriggerItemStack(ItemStack stack)
-	{
-		return CompostRegistry.containsItem(stack);
-	}
-	
-	@Override
-	public boolean isTriggerFluidStack(FluidStack stack)
-	{
-		return false;
-	}
+    @Override
+    public String getName() {
+        return "compost";
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag) 
-	{
-		tag.setFloat("fillAmount", fillAmount);
-		tag.setInteger("color", color.toInt());
-		if (originalColor != null)
-			tag.setInteger("originalColor", originalColor.toInt());
-		tag.setFloat("progress", progress);
-		if (compostState != null)
-		{
-			tag.setString("block", Block.REGISTRY.getNameForObject(compostState.getBlock()).toString());
-			tag.setInteger("meta", compostState.getBlock().getMetaFromState(compostState));
-		}
+    @Override
+    public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
+        if (compostState != null)
+            currenttip.add("Composting " + compostState.getBlock().getLocalizedName());
+        if (progress == 0) {
+            currenttip.add(Math.round(fillAmount * 100) + "% full");
+        } else {
+            currenttip.add(Math.round(progress * 100) + "% complete");
+        }
+        return currenttip;
+    }
 
-	}
+    @Override
+    public boolean isTriggerItemStack(ItemStack stack) {
+        return NTMRegistryManager.COMPOST_REGISTRY.containsItem(stack);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag) 
-	{
-		fillAmount = tag.getFloat("fillAmount");
-		this.color = new Color(tag.getInteger("color"));
-		if (tag.hasKey("originalColor"))
-			this.originalColor = new Color(tag.getInteger("originalColor"));
-		this.progress = tag.getFloat("progress");
-		if (tag.hasKey("block"))
-		{
-			Block block = Block.REGISTRY.getObject(new ResourceLocation(tag.getString("block")));
-			compostState = block.getStateFromMeta(tag.getInteger("meta"));
-		}
-	}
+    @Override
+    public boolean isTriggerFluidStack(FluidStack stack) {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTextureForRender(TileBarrel barrel)
-	{
-		if (compostState == null)
-			return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes()
-					.getTexture(Blocks.DIRT.getDefaultState());
-		return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes()
-		.getTexture(compostState);
-	}
-	
-	@Override
-	public float getFilledLevelForRender(TileBarrel barrel)
-	{
-		return fillAmount;
-	}
-	
-	@Override
-	public Color getColorForRender()
-	{
-		return color;
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        tag.setFloat("fillAmount", fillAmount);
+        tag.setInteger("color", color.toInt());
+        if (originalColor != null)
+            tag.setInteger("originalColor", originalColor.toInt());
+        tag.setFloat("progress", progress);
+        if (compostState != null) {
+            tag.setString("block", Block.REGISTRY.getNameForObject(compostState.getBlock()).toString());
+            tag.setInteger("meta", compostState.getBlock().getMetaFromState(compostState));
+        }
 
-	@Override
-	public ItemStackHandler getHandler(TileBarrel barrel) 
-	{
-		handler.setBarrel(barrel);
-		return handler;
-	}
+    }
 
-	@Override
-	public FluidTank getFluidHandler(TileBarrel barrel) {
-		return null;
-	}
-	
-	@Override
-	public boolean canFillWithFluid(TileBarrel barrel) {
-		return false;
-	}
-	
+    @SuppressWarnings("deprecation")
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        fillAmount = tag.getFloat("fillAmount");
+        this.color = new Color(tag.getInteger("color"));
+        if (tag.hasKey("originalColor"))
+            this.originalColor = new Color(tag.getInteger("originalColor"));
+        this.progress = tag.getFloat("progress");
+        if (tag.hasKey("block")) {
+            Block block = Block.REGISTRY.getObject(new ResourceLocation(tag.getString("block")));
+            compostState = block.getStateFromMeta(tag.getInteger("meta"));
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
+        if (compostState == null)
+            return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes()
+                    .getTexture(Blocks.DIRT.getDefaultState());
+        return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes()
+                .getTexture(compostState);
+    }
+
+    @Override
+    public float getFilledLevelForRender(TileBarrel barrel) {
+        return fillAmount * 0.9375F;
+    }
+
+    @Override
+    public Color getColorForRender() {
+        return color;
+    }
+
+    @Override
+    public ItemStackHandler getHandler(TileBarrel barrel) {
+        handler.setBarrel(barrel);
+        return handler;
+    }
+
+    @Override
+    public FluidTank getFluidHandler(TileBarrel barrel) {
+        return null;
+    }
+
+    @Override
+    public boolean canFillWithFluid(TileBarrel barrel) {
+        return false;
+    }
+
 }

@@ -17,7 +17,6 @@ import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.container.ContainerBase;
-import mod.sfhcore.tileentities.TileEntityBase;
 
 public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize = 175, ySize = 165;
@@ -26,8 +25,8 @@ public class GuiNetherrackFurnace extends GuiContainer {
 	private InventoryPlayer inv;
 	private BlockPos pos;
 	
-	public GuiNetherrackFurnace(ContainerBase container, InventoryPlayer inventory, TileNetherrackFurnace te) {
-        super(container);
+	public GuiNetherrackFurnace(InventoryPlayer inventory, TileNetherrackFurnace te) {
+        super(new ContainerNetherrackFurnace(inventory, te));
         this.inv = inventory;
         this.entity = te;
         this.pos = entity.getPos();

@@ -16,6 +16,7 @@ public class Config {
 	public static int freezeTimeFreezer;
 	public static int burnTimeHellfayah;
 	public static int burnTimeHellfayahBlock;
+	public static int normalDropPercent;
 	
 	//Ore
 	public static boolean shouldOreDictOreChunks;
@@ -27,6 +28,14 @@ public class Config {
 	public static int sieveSimilarRadius;
 	public static boolean fakePlayersCanSieve;
 	public static boolean hellworldFeatures;
+	public static boolean flattenSieveRecipes;
+	public static boolean hasteIncreaseSpeed;
+	public static boolean enableSieveEfficiency;
+	public static int sieveEfficiencyMaxLevel;
+	public static boolean enableSieveFortune;
+	public static int sieveFortuneMaxLevel;
+	public static boolean enableSieveLuckOfTheSea;
+	public static int sieveLuckOfTheSeaMaxLevel;
 	
 	//Barrel
 	public static boolean shouldBarrelsFillWithRain;
@@ -39,7 +48,13 @@ public class Config {
 	public static boolean spawnSlime;
 	public static boolean doesDMWVaporize = false;
 	public static boolean healAnimals;
+	
 	public static int[] allowedDims = {-1, 1};
+	public static boolean isHellworld;
+	
+	//JSON
+	public static boolean enableJSONLoading;
+	public static int woodBarrelMaxTemp;
 	
 	public static void loadConfigs(File file)
 	{
@@ -53,7 +68,7 @@ public class Config {
         burnTimeFurnace = config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
         dryTimeCondenser = config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
         freezeTimeFreezer = config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
-                
+                        
         StwtHDimension = config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 1).getInt();
         nethDim = config.get("World", "To which dimension shall the nether portal send you back?", -1).getInt();
         endDim = config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
@@ -68,6 +83,14 @@ public class Config {
         sieveSimilarRadius = config.get("Sieving", "sieveSimilarRadius", 2).getInt();
         fakePlayersCanSieve = config.get("Mechanics", "fakePlayersCanSieve", false).getBoolean();
         hellworldFeatures = config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
+        flattenSieveRecipes = config.get("Sieving", "If enablednall mesh tiers can obtain the same", false).getBoolean();
+        hasteIncreaseSpeed = config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
+        enableSieveEfficiency = config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
+        sieveEfficiencyMaxLevel = config.get("Sieving", "Max Level for sieve efficiency enchanting", 5).getInt();
+        enableSieveFortune = config.get("Sieving", "Enable sieve fortune enchanting?", true).getBoolean();
+        sieveFortuneMaxLevel = config.get("Sieving", "Max Level for sieve fortune enchanting", 3).getInt();
+        enableSieveLuckOfTheSea = config.get("Sieving", "Enable sieve lock of the sea enchanting?", true).getBoolean();
+        sieveLuckOfTheSeaMaxLevel = config.get("Sieving", "Max Level for sieve luck of the sea enchanting", 3).getInt();
         
         //Barrel
         shouldBarrelsFillWithRain = config.get("Mechanics", "barrelsFillWithRain", true).getBoolean();
@@ -79,6 +102,13 @@ public class Config {
         spawnPig = config.get("Mobs", "Can Demon Water transform pigmans?", true).getBoolean();
         spawnSkeleton = config.get("Mobs", "Can Demon Water transform wither skeletons", true).getBoolean();
         spawnSlime = config.get("Mobs", "Can Demon Water transform magma slimes?", true).getBoolean();
+        
+        isHellworld = config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
+        normalDropPercent = config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
+        woodBarrelMaxTemp = config.get("World", "Hwo hot can a fluid be in a wodden barrel?", 301).getInt();
+        
+        //JSON
+        enableJSONLoading = config.get("JSON", "Enable use of JSON configuration?", true).getBoolean();
         
         config.save();
 	}

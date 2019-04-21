@@ -11,12 +11,11 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.network.MessageNBTUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registry.CompostRegistry;
-import mod.nethertweaks.registry.CondenserRegistry;
+import mod.nethertweaks.registries.registries.CompostRegistry;
+import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
-import mod.sfhcore.tileentities.TileEntityBase;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -224,7 +223,7 @@ public class TileCondenser extends TileEntityFluidBase implements net.minecraftf
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		if (index == 0)
 		{
-			if (CompostRegistry.containsItem(stack))
+			if (CondenserRegistry.containsItem(stack))
 			{
 				return true;
 			}

@@ -1,28 +1,54 @@
 package mod.nethertweaks.registry.types;
 
-import mod.sfhcore.util.ItemInfo;
+import javax.annotation.Nullable;
 
-public class FluidBlockTransformer {
-	
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.EntityInfo;
+import net.minecraft.item.crafting.Ingredient;
+
+public class FluidBlockTransformer
+{
 	private String fluidName;
-	private ItemInfo input;
-	private ItemInfo output;
+	private Ingredient input;
+	private BlockInfo output;
+	private EntityInfo toSpawn = EntityInfo.EMPTY;
+	private int spawnCount = 4;
+	private int spawnRange = 4;
+	
+	public FluidBlockTransformer copy()
+	{
+		FluidBlockTransformer cp = new FluidBlockTransformer(this.fluidName, this.input, this.output, this.toSpawn.getName(), this.spawnCount, this.spawnRange);
+		return cp;
+	}
 	
 	public String getFluidName() {
 		return fluidName;
 	}
-	public ItemInfo getInput() {
+
+	public Ingredient getInput() {
 		return input;
 	}
-	public ItemInfo getOutput() {
+
+	public BlockInfo getOutput() {
 		return output;
 	}
-	
-	public FluidBlockTransformer(String fluidName, ItemInfo input, ItemInfo output) {
-		super();
-		this.fluidName = fluidName;
-		this.input = input;
-		this.output = output;
+
+	public EntityInfo getToSpawn() {
+		return toSpawn;
+	}
+
+	public int getSpawnCount() {
+		return spawnCount;
+	}
+
+	public int getSpawnRange() {
+		return spawnRange;
+	}
+
+	@Override
+	public String toString() {
+		return "FluidBlockTransformer [fluidName=" + fluidName + ", input=" + input + ", output=" + output
+				+ ", toSpawn=" + toSpawn + ", spawnCount=" + spawnCount + ", spawnRange=" + spawnRange + "]";
 	}
 
 	@Override
@@ -32,8 +58,12 @@ public class FluidBlockTransformer {
 		result = prime * result + ((fluidName == null) ? 0 : fluidName.hashCode());
 		result = prime * result + ((input == null) ? 0 : input.hashCode());
 		result = prime * result + ((output == null) ? 0 : output.hashCode());
+		result = prime * result + spawnCount;
+		result = prime * result + spawnRange;
+		result = prime * result + ((toSpawn == null) ? 0 : toSpawn.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -58,6 +88,26 @@ public class FluidBlockTransformer {
 				return false;
 		} else if (!output.equals(other.output))
 			return false;
+		if (spawnCount != other.spawnCount)
+			return false;
+		if (spawnRange != other.spawnRange)
+			return false;
+		if (toSpawn == null) {
+			if (other.toSpawn != null)
+				return false;
+		} else if (!toSpawn.equals(other.toSpawn))
+			return false;
 		return true;
 	}
+
+	public FluidBlockTransformer(String fluidName, Ingredient input, BlockInfo output, @Nullable String entityName, int spawnCount, int spawnRange)
+	{
+		this.fluidName = fluidName;
+		this.input = input;
+		this.output = output;
+		this.toSpawn = new EntityInfo(entityName);
+		this.spawnCount = spawnCount;
+		this.spawnRange = spawnRange;
+	}
+
 }

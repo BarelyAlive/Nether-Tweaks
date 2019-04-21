@@ -18,7 +18,7 @@ public class ContainerNetherrackFurnace extends ContainerBase {
 	private IInventory tileEntity;
 	
 	public ContainerNetherrackFurnace(InventoryPlayer playerInv, TileNetherrackFurnace tileEntity2) {
-		super(tileEntity2);
+		super(new TileNetherrackFurnace());
 		tileEntity = tileEntity2;
 		
 		addSlotToContainer(new Slot(tileEntity, 0, 57, 17));

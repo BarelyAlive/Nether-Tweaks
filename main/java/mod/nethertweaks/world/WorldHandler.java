@@ -35,11 +35,6 @@ public class WorldHandler{
     
 	//HELLWORLD
 	
-	public static void addWaterMobs()
-	{
-		EntityRegistry.addSpawn(EntitySquid.class, 50, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
-	}
-	
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
@@ -73,18 +68,6 @@ public class WorldHandler{
 		}
     }
     
-    private boolean unallowDim(World world, int dim)
-    {
-    	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
-    	{
-			for (int i : Config.allowedDims) {
-				if (i != dim)
-					return true;
-			} 
-		}
-		return false;
-    }
-    
     @SubscribeEvent
 	public void changeToHomeDim(PlayerEvent.PlayerChangedDimensionEvent event)
     {
@@ -101,19 +84,6 @@ public class WorldHandler{
 		if (unallowDim(player.getEntityWorld(), player.dimension)) {
 			teleportPlayer(player);
 		}	
-	}
-	
-	private void teleportPlayer(EntityPlayer player) {
-		
-		if(player.dimension != -1)
-		{
-			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key)){
-				player.setPortal(player.getPosition());
-				player.getEntityData().setBoolean(key, true);
-			}
-			player.changeDimension(-1);
-		}
 	}
 	
 	//Enitity Interaction   
@@ -165,5 +135,37 @@ public class WorldHandler{
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 		}
+	}
+	
+	//*********************************************************************************************************************
+	
+	private void teleportPlayer(EntityPlayer player) {
+		
+		if(player.dimension != -1)
+		{
+			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
+			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key)){
+				player.setPortal(player.getPosition());
+				player.getEntityData().setBoolean(key, true);
+			}
+			player.changeDimension(-1);
+		}
+	}
+	
+	private boolean unallowDim(World world, int dim)
+    {
+    	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
+    	{
+			for (int i : Config.allowedDims) {
+				if (i != dim)
+					return true;
+			} 
+		}
+		return false;
+    }
+	
+	public static void addWaterMobs()
+	{
+		EntityRegistry.addSpawn(EntitySquid.class, 50, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
 	}
 }

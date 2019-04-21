@@ -42,7 +42,7 @@ public class GuiHandlerNTM implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		switch (ID) {
 		case 0:
-			return new GuiNetherrackFurnace((ContainerBase) getServerGuiElement(ID, player, world, x, y, z), player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiNetherrackFurnace(player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
 		case 1:
 			return new GuiCondenser(player.inventory, (TileCondenser) world.getTileEntity(new BlockPos(x, y, z)));
 		case 2:

@@ -9,7 +9,7 @@ import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.StackUtils;
-import mod.sfhcore.tileentities.TileEntityBase;
+import mod.sfhcore.tileentities.TEBaseInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -52,7 +52,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileNetherrackFurnace extends TileEntityBase{
+public class TileNetherrackFurnace extends TEBaseInventory{
     
 	
     public TileNetherrackFurnace() {
