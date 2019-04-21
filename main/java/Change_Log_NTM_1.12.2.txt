@@ -4,32 +4,31 @@ ChangeLog NTM 2.0.0
   Example: If you last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
 * Bonfire now teleports players to different Bonfires
 * Condensers now have water tanks so you can input any combination of dryable items.
-* Freezers now have water tanks too and can have a redstone signal from anything
+* Freezers now have water tanks too and can have a redstone signal from any side
 * Condensers and netherrack furnaces do respect the temperature of the (hot) fluid below for their worktime
 * Condenser and freezer now have a new GUI
 * Condenser recipes, barrel recipes, Hammer rewards & siftable items are now editable via JSON
+* Condenser, Freezer & Netherrack Furnace now work with hoppers n stuff. 1. & 2. output fluid to sides
 * FlintNBlaze now is twice as durable
 * Hammers are now more durable
-* Tidied code up
 * Freed id space
 * Changed icon of creative tab
 * Demon Water is now as bright as lava! (makes it perfect for crop fields)
 * Demon Water now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
-* Different texture for demon water
-* Mobs like turtles etc. can now spawn in Demon Water
+* New color for Demon Water for making it not look like p*** anymore
+* Mobs like squids etc. can now spawn in Demon Water
 * More and better config options!
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
-* Fixed incorrect Ores
 * Fixed netherrack furnace lag caused block set spam
 * Doors are back!
 - Removed Holy Earth
 - Removed Sanctuary Crystal
+- Removed Water Fountain due to the new thirst system
 + Ender Crystal is back!
 + Prismarine shards are now sievable
-+ Added networking
 + Added Dolls for spawning otherwise unobtainable animals
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
 + Added mean vine strings (works as normal string (recipes))

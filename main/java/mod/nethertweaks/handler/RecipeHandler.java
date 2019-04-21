@@ -28,7 +28,7 @@ public class RecipeHandler {
 		oreRegistration();
 	}
 	
-	public static void loadSmelting()
+	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte		
 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
@@ -40,7 +40,7 @@ public class RecipeHandler {
 	}
 	
 	//Ore-Dictionary
-	public static void oreRegistration()
+	private static void oreRegistration()
     {
 		OreDictionary.registerOre("treeSapling", BlockHandler.NETHERSAPLING);
 		OreDictionary.registerOre("treeLeaves", BlockHandler.NETHERLEAVES);
@@ -67,7 +67,4 @@ public class RecipeHandler {
     	OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
     	OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
     }
-    	/*						
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockHandler.waterFountain), "XYX", "X X", "XYX", x, Blocks.COBBLESTONE, y, "bucketWater"));
-		*/
 }
