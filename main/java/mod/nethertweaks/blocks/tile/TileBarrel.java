@@ -33,6 +33,8 @@ import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.BlockBarrel;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.modules.MooFluidsEtc;
+import mod.nethertweaks.modules.MooFluid.*;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCheckLight;
 import mod.nethertweaks.network.NetworkHandlerNTM;
@@ -278,7 +280,7 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
         long currentTime = world.getTotalWorldTime(); //Get the current time, shouldn't be affected by in-game /time command
         if (currentTime < this.entityWalkCooldown) return; // Cooldown hasn't elapsed, do nothing
 
-        if(MooFluidsEtc.isLoaded() && ModConfig.compatibility.moofluids_compat.enableMooFluids){
+        if(MooFluidsEtc.isLoaded() && Config.enableMooFluid){
             IAbstractCow cow = AbstractCowFactory.getCow(entityIn);
             if(cow != null){
                 this.moofluidsEntityWalk(world, cow);
@@ -304,7 +306,7 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
             return;
 
         // Amount to fill
-        int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), ModConfig.compatibility.moofluids_compat.fillAmount);
+        int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), Config.fillAmount);
 
         // Cow needs to cool down more
         if(cow.getAvailableFluid() < amount)

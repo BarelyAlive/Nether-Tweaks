@@ -1,6 +1,7 @@
 package mod.nethertweaks;
 
 import java.io.File;
+import java.util.List;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -56,6 +57,12 @@ public class Config {
 	public static boolean enableJSONLoading;
 	public static int woodBarrelMaxTemp;
 	
+	// Mod-Compatibility
+	public static boolean enableMooFluid;
+	public static List<String> fluidList;
+	public static boolean fluidListIsBlackList;
+	public static int fillAmount;
+	
 	public static void loadConfigs(File file)
 	{
 		Configuration config = new Configuration(file);
@@ -109,6 +116,10 @@ public class Config {
         
         //JSON
         enableJSONLoading = config.get("JSON", "Enable use of JSON configuration?", true).getBoolean();
+        
+        // Mod-Compatibility
+        enableMooFluid = config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();
+        fillAmount = config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
         
         config.save();
 	}
