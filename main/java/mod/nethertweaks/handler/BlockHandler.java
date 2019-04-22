@@ -66,13 +66,13 @@ public class BlockHandler implements INames
     private static void registerTileEntities()
     {
     	//Tile Entity
-    	RegisterTileEntity.add(BONFIRE, TileBonfire.class);
-        RegisterTileEntity.add(CONDENSER, TileCondenser.class);
-        RegisterTileEntity.add(NETHERRACKFURNACE, TileNetherrackFurnace.class);
-        RegisterTileEntity.add(BARREL, TileBarrel.class);
-        RegisterTileEntity.add(SIEVE, TileSieve.class);
-        RegisterTileEntity.add(FREEZER, TileFreezer.class);
-        RegisterTileEntity.add(HELLMART, TileHellmart.class);
+    	Registry.registerTileEntity(BONFIRE, TileBonfire.class);
+        Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+        Registry.registerTileEntity(NETHERRACKFURNACE, TileNetherrackFurnace.class);
+        Registry.registerTileEntity(BARREL, TileBarrel.class);
+        Registry.registerTileEntity(SIEVE, TileSieve.class);
+        Registry.registerTileEntity(FREEZER, TileFreezer.class);
+        Registry.registerTileEntity(HELLMART, TileHellmart.class);
     }
         
     //Registering all the blocks

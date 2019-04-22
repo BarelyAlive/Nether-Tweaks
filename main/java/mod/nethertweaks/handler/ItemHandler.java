@@ -46,7 +46,7 @@ public class ItemHandler implements INames{
     //Multi ID Item
 	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 10, new ResourceLocation(NTM, INames.ITEMBASE));
     
-	//food
+	//Food
     public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true)
     		.setUnlocalizedName(INames.COOKEDJERKY).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
     
@@ -97,7 +97,7 @@ public class ItemHandler implements INames{
     private static void addItemBurnTime()
     {
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.BUCKETSTONELAVA), 18000);
-    	CustomFuelHandler.addFuelBurnTime(Konstanten.HELLFAYAH, Config.burnTimeHellfayah);
+    	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

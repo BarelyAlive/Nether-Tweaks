@@ -10,7 +10,6 @@ import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.network.MessageNBTUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;

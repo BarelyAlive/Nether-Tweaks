@@ -14,7 +14,6 @@ import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registry.types.Dryable;
-import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TileEntityFluidBase;
 import net.minecraft.block.Block;
