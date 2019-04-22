@@ -1,8 +1,9 @@
 package mod.nethertweaks.enchantments;
 
 import mod.nethertweaks.Config;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemMesh;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,7 +14,7 @@ public class EnchantmentLuckOfTheSea extends Enchantment {
     public EnchantmentLuckOfTheSea() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("sieve_luck_of_the_sea");
-        this.setRegistryName("sieve_luck_of_the_sea");
+        this.setRegistryName(NetherTweaksMod.MODID, "sieve_luck_of_the_sea");
 
         if(Config.enableSieveLuckOfTheSea)
             Registry.registerEnchantment(this);

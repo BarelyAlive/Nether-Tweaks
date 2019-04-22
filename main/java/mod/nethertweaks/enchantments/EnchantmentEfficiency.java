@@ -1,8 +1,9 @@
 package mod.nethertweaks.enchantments;
 
 import mod.nethertweaks.Config;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemMesh;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -13,7 +14,7 @@ public class EnchantmentEfficiency extends Enchantment {
     public EnchantmentEfficiency() {
         super(Rarity.COMMON, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("sieve_efficiency");
-        this.setRegistryName("sieve_efficiency");
+        this.setRegistryName(NetherTweaksMod.MODID, "sieve_efficiency");
 
         if(Config.enableSieveEfficiency)
             Registry.registerEnchantment(this);

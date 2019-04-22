@@ -24,7 +24,7 @@ import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.Constants;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import mod.sfhcore.SFHCore;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;

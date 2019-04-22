@@ -1,8 +1,9 @@
 package mod.nethertweaks.enchantments;
 
 import mod.nethertweaks.Config;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemMesh;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -12,7 +13,7 @@ public class EnchantmentFortune extends Enchantment {
     public EnchantmentFortune() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("sieve_fortune");
-        this.setRegistryName("sieve_fortune");
+        this.setRegistryName(NetherTweaksMod.MODID, "sieve_fortune");
 
         if(Config.enableSieveFortune)
             Registry.registerEnchantment(this);

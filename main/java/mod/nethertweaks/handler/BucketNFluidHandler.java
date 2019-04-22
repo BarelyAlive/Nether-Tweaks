@@ -27,7 +27,7 @@ import mod.nethertweaks.blocks.BlockDemonWater;
 import mod.nethertweaks.fluid.FluidDemonWater;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import mod.sfhcore.helper.FluidHelper;
 import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;

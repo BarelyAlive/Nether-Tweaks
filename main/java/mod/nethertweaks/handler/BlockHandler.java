@@ -14,7 +14,7 @@ import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
-import mod.sfhcore.Registry;
+import mod.sfhcore.handler.Registry;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
