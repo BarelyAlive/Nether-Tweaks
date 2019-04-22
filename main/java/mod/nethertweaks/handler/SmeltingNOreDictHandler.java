@@ -21,7 +21,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
 
 
-public class RecipeHandler {
+public class SmeltingNOreDictHandler {
 	
 	public static void load() {
 		loadSmelting();
@@ -34,7 +34,7 @@ public class RecipeHandler {
 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
 		GameRegistry.addSmelting(BlockHandler.NETHERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
 		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
-		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F); //1 weil soll gemined werden
+		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
 	}
 	
 	//Ore-Dictionary

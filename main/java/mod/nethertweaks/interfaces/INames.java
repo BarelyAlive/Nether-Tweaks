@@ -33,9 +33,6 @@ public interface INames {
 
 	public static final String OREDUST 						= "ore_dust";
 	
-	public static final String OREGOLDDUST 					= "ore_gold_dust";
-	public static final String OREIRONDUST 					= "ore_iron_dust";
-	
 	public static final String BLOCKBASIC 					= "block_basic";
 	
 	//Tile ENtities
@@ -44,7 +41,6 @@ public interface INames {
 	public static final String TEBARREL 					= "tileentity_barrel";
 	public static final String TEFREEZER					= "tileentity_freezer";
 	public static final String TESIEVE						= "tileentity_sieve";
-	public static final String TEWATERFOUNTAIN				= "tileentity_water_fountain";
 	public static final String TEHELLMART					= "tileentity_hellmart";
 	
 	//items
@@ -59,7 +55,6 @@ public interface INames {
 	public static final String BUCKETWOODMILK				= "bucket_wood_milk";
 	
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
-	public static final String OREMATERIAL 					= "ore_material";
 	public static final String CACTUSGRABBER 				= "item_cactus_grabber";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";
 	public static final String STRING 						= "string";

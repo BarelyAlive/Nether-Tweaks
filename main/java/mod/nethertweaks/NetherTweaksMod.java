@@ -12,7 +12,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.RecipeHandler;
+import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes3;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
@@ -112,7 +112,7 @@ public class NetherTweaksMod {
     {
     	loadJasonVorhees();
         //needs to be checked
-        RecipeHandler.load();
+        SmeltingNOreDictHandler.load();
         
     	defaultRecipes = new NTMDefaultRecipes3();
 		BarrelModeRegistry.registerDefaults();

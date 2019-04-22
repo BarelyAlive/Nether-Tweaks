@@ -9,7 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.handler.RecipeHandler;
+import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.Cube;

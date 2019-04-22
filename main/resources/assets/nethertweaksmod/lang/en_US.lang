@@ -2,7 +2,6 @@ fluid.demon_water=Demon Water
 
 tile.demon_water.name=Demon Water
 tile.condenser.name=Condenser
-tile.water_fountain.name=Water Fountain
 tile.netherrack_furnace.name=Netherrack Furnace
 tile.end_teleport.name=Stairway to Heaven
 tile.dust.name=Dust
@@ -21,25 +20,6 @@ tile.hellmart.name=Hellmart
 item.door_ntm_stone.name=Stone Door
 item.door_ntm_obsidian.name=Obsidian Door
 
-tile.ore_iron_dust.name=Iron Ore
-tile.ore_gold_dust.name=Gold Ore
-tile.ore_dust_copper.name=Copper Ore
-tile.ore_dust_tin.name=Tin Ore
-tile.ore_dust_lead.name=Lead Ore
-tile.ore_dust_nickel.name=Nickel Ore
-tile.ore_dust_platinum.name=Platinum Ore
-tile.ore_dust_silver.name=Silver Ore
-tile.ore_dust_uranium.name=Uranium Ore
-tile.ore_dust_osmium.name=Osmium Ore
-tile.ore_dust_draconium.name=Draconium Ore
-tile.ore_dust_sulfur.name=Sulfur Ore
-tile.ore_dust_aluminum.name=Aluminum Ore
-tile.ore_dust_silicon.name=Silicon Ore
-tile.ore_dust_amber.name=Amber Ore
-tile.ore_dust_cinnabar.name=Cinnabar Ore
-tile.ore_dust_certusquartz.name=Certus Quartz Ore
-tile.ore_dust_salt.name=Salt Ore
-
 generator.hellworld=Hellworld
 
 item.cooked_jerky.name=Cooked Jerky
@@ -56,25 +36,6 @@ item.bucket_stone_lava.name=Lava Bucket
 item.bucket_stone_demon_water.name=Demon Water Bucket
 item.bucket_stone_milk.name=Milk Bucket
 
-item.ore_gold_pile.name=Gold Pile
-item.ore_iron_pile.name=Iron Pile
-item.ore_material_0.name=Copper Pile
-item.ore_material_1.name=Tin Pile
-item.ore_material_2.name=Lead Pile
-item.ore_material_3.name=Nickel Pile
-item.ore_material_4.name=Platinum Pile
-item.ore_material_5.name=Silver Pile
-item.ore_material_6.name=Uranium Pile
-item.ore_material_7.name=Osmium Pile
-item.ore_material_8.name=Draconium Pile
-item.ore_material_9.name=Sulfur Pile
-item.ore_material_10.name=Aluminum Pile
-item.ore_material_11.name=Silicon Pile
-item.ore_material_12.name=Amber Pile
-item.ore_material_13.name=Cinnabar Pile
-item.ore_material_14.name=Certus Quartz Pile
-item.ore_material_15.name=Salt Pile
-
 item.hammer_wood.name=Wood Hammer
 item.hammer_gold.name=Gold Hammer
 item.hammer_iron.name=Iron Hammer
@@ -84,7 +45,9 @@ item.hammer_stone.name=Stone Hammer
 item.seed_0.name=Mushroom Spores
 item.seed_1.name=Grass Seeds
 item.seed_2.name=Cactus Seeds
+
 item.flint_and_blaze.name=Flint and Blaze
+
 item.crystal_0.name=Crystal of Light
 item.crystal_1.name=Ender Crystal
 
