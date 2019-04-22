@@ -11,7 +11,9 @@ import java.lang.reflect.Type;
 
 public class CustomIngredientJson implements JsonDeserializer<Ingredient>, JsonSerializer<Ingredient> {
 
-    @Override
+    public static final CustomIngredientJson INSTANCE = new CustomIngredientJson();
+
+	@Override
     public Ingredient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
     {
         if (json.isJsonPrimitive() && ((JsonPrimitive)json).isString()) {

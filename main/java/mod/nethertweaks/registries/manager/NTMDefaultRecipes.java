@@ -42,6 +42,10 @@ public class NTMDefaultRecipes {
         public void registerRecipeDefaults(@Nonnull SieveRegistry registry) {
             compat.registerSieve(registry);
         }
+
+		@Override
+		public void registerSieveRecipeDefaults() {
+		}
     }
 
     private static class HammerDefaults implements IHammerDefaultRegistryProvider {

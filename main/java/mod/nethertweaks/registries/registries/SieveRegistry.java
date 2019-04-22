@@ -49,7 +49,6 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
         );
     }
 
-
     public void register(@Nonnull ItemStack itemStack, @Nonnull StackInfo drop, float chance, int meshLevel) {
         if (itemStack.isEmpty()) {
             return;

@@ -75,5 +75,6 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
         defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
     }
 
+    public abstract List<?> getRecipeList();
     public abstract void clearRegistry();
 }
