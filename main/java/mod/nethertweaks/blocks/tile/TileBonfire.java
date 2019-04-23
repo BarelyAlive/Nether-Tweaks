@@ -32,11 +32,6 @@ public class TileBonfire extends TileEntity {
 		
 	}
 	
-	private enum BonfireAction{
-		ADD,
-		REMOVEALL;
-	}
-	
 	public void deleteSpawnLocationsIfDestroyed() {
 		/*
 		for(Map.Entry<UUID, BlockPos> entry : spawnLocs.entrySet())
@@ -101,7 +96,8 @@ public class TileBonfire extends TileEntity {
 	}
 	
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+	{
 		NBTTagList tagList = new NBTTagList();
 		for(Map.Entry<UUID, BlockPos> entry : WorldDataNTM.spawnLocas.entrySet()) {
 			
@@ -116,14 +112,15 @@ public class TileBonfire extends TileEntity {
 			
 			tagList.appendTag(tag);
 			
-		}
-		
+		}	
 		nbt.setTag("BonFireList", tagList);
 		return super.writeToNBT(nbt);
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
+		super.readFromNBT(nbt);
 		long lBits;
 		long mBits;
 		UUID index;
@@ -141,9 +138,7 @@ public class TileBonfire extends TileEntity {
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			WorldDataNTM.spawnLocas.put(index, new BlockPos(x, y, z));
-			
+			WorldDataNTM.spawnLocas.put(index, new BlockPos(x, y, z));			
 		}
-		super.readFromNBT(nbt);
 	}
 }

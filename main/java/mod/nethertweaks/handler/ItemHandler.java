@@ -60,7 +60,7 @@ public class ItemHandler implements INames{
     public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
     
     //itemblocks
-    public static Item ITEMSTONEDOOR = new ItemDoor(NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
+    public static final Item ITEMSTONEDOOR = new ItemDoor(NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
     
 	public static void init()
 	{

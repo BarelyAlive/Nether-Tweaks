@@ -116,14 +116,11 @@ public class NetherTweaksMod {
         
     	defaultRecipes = new NTMDefaultRecipes3();
 		BarrelModeRegistry.registerDefaults();
-
     }
      
     @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event)
     {
-        ((ItemDoor)ItemHandler.ITEMSTONEDOOR).setDoor(BlockHandler.STONEDOOR);
-        ((CustomDoor)BlockHandler.STONEDOOR).setDoor(ItemHandler.ITEMSTONEDOOR);
     }
     
     @SubscribeEvent
