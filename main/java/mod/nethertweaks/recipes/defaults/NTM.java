@@ -14,11 +14,13 @@ import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
+import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
 import mod.nethertweaks.registries.registries.FluidTransformRegistry;
 import mod.nethertweaks.registries.registries.HammerRegistry;
+import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
@@ -36,7 +38,8 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class NTM implements IRecipeDefaults {
+public class NTM implements IRecipeDefaults
+{
     private final String MODID = NetherTweaksMod.MODID;
 
     public String getMODID() {
@@ -103,8 +106,8 @@ public class NTM implements IRecipeDefaults {
     }
 
     @Override
-    public void registerSieve(SieveRegistry registry) {
-
+    public void registerSieve(SieveRegistry registry)
+    {
         //Stone Pebble
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(1f), MeshType.STRING.getID());
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(1f), MeshType.STRING.getID());
@@ -174,7 +177,8 @@ public class NTM implements IRecipeDefaults {
 
         // Gold from nether rack
         ItemOre gold = oreRegistry.getOreItem("gold");
-        if (gold != null) {
+        if (gold != null)
+        {
             registry.register(new BlockInfo(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.FLINT.getID());
             registry.register(new BlockInfo(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.IRON.getID());
             registry.register(new BlockInfo(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.4f), MeshType.DIAMOND.getID());
@@ -223,17 +227,20 @@ public class NTM implements IRecipeDefaults {
             }
         }
         // Seeds
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
         }
 
-        if(Item.REGISTRY.containsKey(ModItems.rubberSeed.getRegistryName())){
-            registry.register("dirt", new ItemInfo(ModItems.rubberSeed), getDropChance(0.05f), MeshType.FLINT.getID());
-            registry.register("dirt", new ItemInfo(ModItems.rubberSeed), getDropChance(0.05f), MeshType.IRON.getID());
-            registry.register("dirt", new ItemInfo(ModItems.rubberSeed), getDropChance(0.05f), MeshType.DIAMOND.getID());
+        if(Item.REGISTRY.containsKey(ItemHandler.SEED.getRegistryName()))
+        {
+            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.FLINT.getID());
+            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.IRON.getID());
+            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.DIAMOND.getID());
         }
 
-        getLeavesSapling().forEach((leaves, sapling) -> {
+        getLeavesSapling().forEach((leaves, sapling) ->
+        {
             float chance = 20f / 100f;
 
             registry.register(leaves, sapling, Math.min(chance * 1, 1.0f), MeshType.STRING.getID());
@@ -292,9 +299,9 @@ public class NTM implements IRecipeDefaults {
         }
 
         // TODO Move HeatRegistry to Ingredient
-        // registry.register(new OreStoringIngredient("blockUranium", 20);
-        // registry.register(new OreStoringIngredient("blockBlaze", 10);
-        // registry.register(new OreStoringIngredient("torch", 1); // Torch OreDict
+//        registry.register(new OreStoringIngredient("blockUranium", 20);
+//        registry.register(new OreStoringIngredient("blockBlaze", 10);
+//        registry.register(new OreStoringIngredient("torch", 1); // Torch OreDict
     }
 
     @Override
@@ -306,13 +313,15 @@ public class NTM implements IRecipeDefaults {
     }
 
     @Override
-    public void registerFluidOnTop(FluidOnTopRegistry registry) {
+    public void registerFluidOnTop(FluidOnTopRegistry registry)
+    {
         registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
         registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.COBBLESTONE.getDefaultState()));
     }
 
     @Override
-    public void registerOreChunks(OreRegistry registry) {
+    public void registerOreChunks(OreRegistry registry)
+    {
         registry.register("gold", new Color("FFFF00"), new ItemInfo(Items.GOLD_INGOT, 0), OreDictUtil.getOreDictEntry("dustGold"));
         registry.register("iron", new Color("BF8040"), new ItemInfo(Items.IRON_INGOT, 0), OreDictUtil.getOreDictEntry("dustIron"));
 
@@ -335,7 +344,8 @@ public class NTM implements IRecipeDefaults {
     }
 
     @Override
-    public void registerFluidBlockTransform(FluidBlockTransformerRegistry registry) {
+    public void registerFluidBlockTransform(FluidBlockTransformerRegistry registry)
+    {
         registry.register(FluidRegistry.WATER, "dust", new ItemInfo(new ItemStack(Blocks.CLAY)));
         registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(new ItemStack(Blocks.NETHERRACK)));
         registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(new ItemStack(Blocks.END_STONE)));
@@ -345,7 +355,7 @@ public class NTM implements IRecipeDefaults {
             registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(new ItemStack(Blocks.RED_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
         }
         else {
-            // No milk, fall back to witch water
+            // No milk, fall back to demon water
             registry.register(BucketNFluidHandler.FLUIDDEMONWATER, new ItemInfo(new ItemStack(Blocks.BROWN_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
             registry.register(BucketNFluidHandler.FLUIDDEMONWATER, new ItemInfo(new ItemStack(Blocks.RED_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
         }
@@ -356,7 +366,8 @@ public class NTM implements IRecipeDefaults {
     }
 
     @Override
-    public void registerFluidItemFluid(FluidItemFluidRegistry registry) {
+    public void registerFluidItemFluid(FluidItemFluidRegistry registry)
+    {
     }
 
     @Override

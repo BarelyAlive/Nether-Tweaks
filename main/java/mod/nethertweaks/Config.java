@@ -62,6 +62,7 @@ public class Config {
 	public static List<String> fluidList;
 	public static boolean fluidListIsBlackList;
 	public static int fillAmount;
+	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
 	
 	public static void loadConfigs(File file)
 	{
@@ -120,6 +121,7 @@ public class Config {
         // Mod-Compatibility
         enableMooFluid = config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();
         fillAmount = config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
+        rubberSeed = config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Uzelezz Comment");
         
         config.save();
 	}

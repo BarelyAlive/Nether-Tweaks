@@ -22,8 +22,9 @@ ChangeLog NTM 2.0.0
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
-* Fixed netherrack furnace lag caused block set spam
+* Fixed netherrack furnace lag caused by block set spam
 * Doors are back!
+- Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
 - Removed Water Fountain due to the new thirst system
@@ -34,5 +35,5 @@ ChangeLog NTM 2.0.0
 + Added mean vine strings (works as normal string (recipes))
 + Added pebbles (can be thrown for damage)
 + Added support for WAILA, Moo Fluids, the one probe, draconic evolution, Applied Energistics, Forestry,
-    Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and without crashes),
+    Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and hopefully without crashes),
     Thermal Foundation, Tinkers Construct, Integrated Dynamics and many more
