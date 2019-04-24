@@ -11,8 +11,10 @@ import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.json.CustomBlockInfoJson;
 import mod.nethertweaks.json.CustomColorJson;
 import mod.nethertweaks.json.CustomItemInfoJson;
+import mod.nethertweaks.json.CustomOreJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryList;
+import mod.nethertweaks.registry.types.EnumOreSubtype;
 import mod.nethertweaks.registry.types.Ore;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
@@ -32,6 +34,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
+import wanion.unidict.UniDict;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileReader;
@@ -129,7 +133,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
     }
 
     @Override
-    protected void registerEntriesFromJSON(FileReader fr) {
+    protected void registerEntriesFromJSON(FileReader fr)
+    {
         List<Ore> gsonInput = gson.fromJson(fr, new TypeToken<List<Ore>>() {
         }.getType());
         for (Ore ore : gsonInput) {
@@ -139,13 +144,13 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
     public void doRecipes() {
         for (ItemOre ore : itemOreRegistry) {
-            ResourceLocation group = new ResourceLocation(NetherTweaksMod.MODID, "exores");
+            ResourceLocation group = new ResourceLocation(NetherTweaksMod.MODID, "ntmores");
             ResourceLocation baseName = new ResourceLocation(NetherTweaksMod.MODID, "ore_compression_");
             ResourceLocation recipeLocation = new ResourceLocation(baseName.getResourceDomain(), baseName.getResourcePath() + ore.getOre().getName());
 
             GameRegistry.addShapedRecipe(recipeLocation, group,
-                    new ItemStack(ore, 1, EnumOreSubtype.CHUNK.getMeta()),
-                    "xx", "xx", 'x', new ItemStack(ore, 1, EnumOreSubtype.PIECE.getMeta()));
+                    new ItemStack(ore, 1, EnumOreSubtype.CHUNK.ordinal()),
+                    "xx", "xx", 'x', new ItemStack(ore, 1, EnumOreSubtype.PIECE.ordinal()));
 
             if (Config.preventUnidict && Loader.isModLoaded("unidict")) {
                 UniDict.getConfig().recipesToIgnore.add(recipeLocation);
@@ -162,8 +167,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
                 smeltingResult = ore.getOre().getResult().getItemStack();
             }
 
-            FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ore, 1, EnumOreSubtype.CHUNK.getMeta()), smeltingResult, 0.7f);
-            FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ore, 1, EnumOreSubtype.DUST.getMeta()), smeltingResult, 0.7f);
+            FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ore, 1, EnumOreSubtype.CHUNK.ordinal()), smeltingResult, 0.7f);
+            FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ore, 1, EnumOreSubtype.DUST.ordinal()), smeltingResult, 0.7f);
         }
     }
 
@@ -207,13 +212,13 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
             String oreName = itemOre.getOre().getName() != null ? itemOre.getOre().getName() : StringUtils.capitalize(itemOre.getOre().getName());
 
-            OreDictionary.registerOre(bChunk + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.CHUNK.getMeta()));
-            OreDictionary.registerOre(bPiece + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.PIECE.getMeta()));
+            OreDictionary.registerOre(bChunk + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.CHUNK.ordinal()));
+            OreDictionary.registerOre(bPiece + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.PIECE.ordinal()));
 
             if (itemOre.isRegisterDust())
-                OreDictionary.registerOre(bDust + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.DUST.getMeta()));
+                OreDictionary.registerOre(bDust + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.DUST.ordinal()));
             if (itemOre.isRegisterIngot())
-                OreDictionary.registerOre(bIngot + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.INGOT.getMeta()));
+                OreDictionary.registerOre(bIngot + oreName, new ItemStack(itemOre, 1, EnumOreSubtype.INGOT.ordinal()));
         }
     }
 

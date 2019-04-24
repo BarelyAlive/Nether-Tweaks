@@ -1,5 +1,7 @@
 package mod.nethertweaks.registry.types;
 
+import java.util.Map;
+
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 
@@ -7,37 +9,44 @@ public class Ore {
 	
 	
 	private String name;	
-	public Color color;	
-	public ItemInfo result;
+	private Color color;	
+	private ItemInfo result;
+	private ItemInfo dustResult;
 	
-	public String getName() {
-		return name;
+	public ItemInfo getDustResult() {
+		return dustResult;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	private String oredictName;
+	private Map<String, String> translations;
+
+	public Map<String, String> getTranslations() {
+		return translations;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
 	public ItemInfo getResult() {
 		return result;
 	}
 
-	public void setResult(ItemInfo result) {
-		this.result = result;
+	public String getOredictName() {
+		return oredictName;
 	}
 
-	public Ore(String name, Color color, ItemInfo result) {
+	public Ore(String name, Color color, ItemInfo result, ItemInfo dustResult, Map<String, String> translations, String oredictName) {
 		this.name = name;
 		this.color = color;
 		this.result = result;
+		this.dustResult = dustResult;
+		this.oredictName = oredictName;
+		this.translations = translations;
 	}
 
 }

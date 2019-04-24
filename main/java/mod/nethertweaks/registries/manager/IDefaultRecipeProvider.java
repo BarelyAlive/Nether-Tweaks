@@ -2,12 +2,15 @@ package mod.nethertweaks.registries.manager;
 
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
+import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
 import mod.nethertweaks.registries.registries.FluidTransformRegistry;
 import mod.nethertweaks.registries.registries.HammerRegistry;
+import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
+import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registries.registries.base.BaseRegistry;
 
