@@ -64,6 +64,8 @@ public class Config {
 	public static int fillAmount;
 	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
+	public static boolean generalItemHandlerCompat;
+	public static boolean dankNullIntegration;
 	
 	public static void loadConfigs(File file)
 	{
@@ -124,6 +126,8 @@ public class Config {
         fillAmount = config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
         rubberSeed = config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Uzelezz Comment");
         oreDictPreferenceOrder = config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine");
+        generalItemHandlerCompat = config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
+        dankNullIntegration = config.get("DankNullIntegration", "Enable Dank-Null Integration?", false).getBoolean();
         
         config.save();
 	}

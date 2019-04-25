@@ -85,7 +85,7 @@ public class Sieve extends Block{
         int slot = 0;
         int maxSlot = cap.getSlots();
         if(Loader.isModLoaded("danknull") &&
-                ModConfig.compatibility.dankNullIntegration &&
+                Config.dankNullIntegration &&
                 DankNullUtils.isDankNull(heldItem)){
             slot = DankNullUtils.getSelectedStackIndex(DankNullUtils.getInventoryFromHeld(player));
             maxSlot = slot + 1;
