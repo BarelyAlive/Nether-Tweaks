@@ -170,4 +170,10 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
     public boolean isRegistered(@Nonnull BlockInfo stackInfo) {
         return registry.keySet().stream().anyMatch(ingredient -> ingredient.test(stackInfo.getItemStack()));
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

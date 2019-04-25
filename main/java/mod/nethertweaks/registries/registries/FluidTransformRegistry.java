@@ -104,4 +104,10 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
         }
         return fluidTransformers;
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

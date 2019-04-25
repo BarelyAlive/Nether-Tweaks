@@ -54,5 +54,11 @@ public class BarrelLiquidBlacklistRegistry extends BaseRegistryMap<Integer, List
                 register(integer, string);
             }
         });
-    }    
+    }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}    
 }

@@ -61,4 +61,10 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         }.getType());
         registry.addAll(gsonInput);
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

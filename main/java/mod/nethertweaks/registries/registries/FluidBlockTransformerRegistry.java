@@ -152,4 +152,10 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
         }.getType());
         registry.addAll(gsonInput);
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

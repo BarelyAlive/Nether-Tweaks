@@ -102,4 +102,10 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         }.getType());
         registry.addAll(gsonInput);
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

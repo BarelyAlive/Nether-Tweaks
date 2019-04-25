@@ -155,4 +155,10 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
         map.putAll(oreRegistry);
         return map;
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

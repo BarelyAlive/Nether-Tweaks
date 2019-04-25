@@ -188,4 +188,10 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
     public static boolean canSieve(int dropLevel, int meshLevel){
         return Config.flattenSieveRecipes ? meshLevel >= dropLevel : meshLevel == dropLevel;
     }
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
