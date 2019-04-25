@@ -24,6 +24,7 @@ import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
+import mod.nethertweaks.util.OreDictUtil;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;

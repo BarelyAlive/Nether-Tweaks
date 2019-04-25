@@ -63,6 +63,7 @@ public class Config {
 	public static boolean fluidListIsBlackList;
 	public static int fillAmount;
 	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
+	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	public static void loadConfigs(File file)
 	{
@@ -122,6 +123,7 @@ public class Config {
         enableMooFluid = config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();
         fillAmount = config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
         rubberSeed = config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Uzelezz Comment");
+        oreDictPreferenceOrder = config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine");
         
         config.save();
 	}
