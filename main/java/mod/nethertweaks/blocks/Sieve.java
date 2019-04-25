@@ -22,6 +22,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import p455w0rd.danknull.util.DankNullUtils;
 
 import javax.annotation.Nonnull;
 
@@ -37,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
 public class Sieve extends Block{
 
     public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
@@ -77,13 +77,19 @@ public class Sieve extends Block{
 
         // Inserting blocks
         IItemHandler cap = null;
-        //if(Config.generalItemHandlerCompat)
+        if(Config.generalItemHandlerCompat)
             cap = heldItem.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         if(cap == null)
             cap = new ItemStackItemHandler(heldItem);
 
         int slot = 0;
         int maxSlot = cap.getSlots();
+        if(Loader.isModLoaded("danknull") &&
+                ModConfig.compatibility.dankNullIntegration &&
+                DankNullUtils.isDankNull(heldItem)){
+            slot = DankNullUtils.getSelectedStackIndex(DankNullUtils.getInventoryFromHeld(player));
+            maxSlot = slot + 1;
+        }
         for(;slot < maxSlot; slot++){
             ItemStack stack = cap.getStackInSlot(slot);
             if(!stack.isEmpty() && stack.getItem() instanceof ItemMesh){
