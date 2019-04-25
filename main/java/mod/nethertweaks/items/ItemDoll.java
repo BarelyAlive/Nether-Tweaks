@@ -83,7 +83,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 	}
 	
 	public Fluid getSpawnFluid(ItemStack stack) {
-		return BucketNFluidHandler.FLUIDDEMONWATER;
+		return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
 	}
 	
 	/**

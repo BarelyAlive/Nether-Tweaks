@@ -22,17 +22,17 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class FluidDemonWater extends Fluid{
+public class FluidLiquidImpossibility extends Fluid{
 
-	public static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/demon_water_still");
-	public static ResourceLocation flow = new ResourceLocation("nethertweaksmod:blocks/demon_water_flow");
+	public static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
+	public static ResourceLocation flow = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
 	
-	public FluidDemonWater() {
-		super(INames.DEMONWATERFLUID, still, flow);
+	public FluidLiquidImpossibility() {
+		super(INames.FLUIDLIQUIDIMPOSSIBILITY, still, flow);
 		setDensity(FluidRegistry.WATER.getDensity());
-		setTemperature(300);
+		setTemperature(0);
         setViscosity(FluidRegistry.WATER.getViscosity());
-		setUnlocalizedName(INames.DEMONWATERFLUID);
+		setUnlocalizedName(INames.FLUIDLIQUIDIMPOSSIBILITY);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
 		FluidRegistry.registerFluid(this);
 	}
@@ -49,7 +49,7 @@ public class FluidDemonWater extends Fluid{
 	
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
-		Block block = BucketNFluidHandler.BLOCKDEMONWATER;
+		Block block = BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY;
 		
 		FluidStateMapper mapper = new FluidStateMapper(this);
 		

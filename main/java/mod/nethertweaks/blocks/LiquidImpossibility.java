@@ -44,16 +44,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class BlockDemonWater extends BlockFluidClassic{
+public class LiquidImpossibility extends BlockFluidClassic{
 
-    public BlockDemonWater()
+    public LiquidImpossibility()
     {
-        super(BucketNFluidHandler.FLUIDDEMONWATER, Material.WATER);
-        setResistance(500.0F);
-        setHardness(100.0F);
-        setRegistryName(NetherTweaksMod.MODID, INames.DEMOMWATERBLOCK);
-        setUnlocalizedName(INames.DEMOMWATERBLOCK);
+        super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
+        setResistance(3000.0F);
+        setHardness(300.0F);
+        setRegistryName(NetherTweaksMod.MODID, INames.BLOCKLIQUIDIMPOSSIBILITY);
+        setUnlocalizedName(INames.BLOCKLIQUIDIMPOSSIBILITY);
         setLightLevel(15);
+        setTemperature(0);
     }
     
     @Override
@@ -143,6 +144,6 @@ public class BlockDemonWater extends BlockFluidClassic{
     
     @Override
     public Fluid getFluid() {
-    return BucketNFluidHandler.FLUIDDEMONWATER;
+    return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
     }
 }

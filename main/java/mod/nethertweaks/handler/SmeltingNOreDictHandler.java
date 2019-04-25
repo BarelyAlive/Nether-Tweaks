@@ -53,7 +53,7 @@ public class SmeltingNOreDictHandler {
     	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.NETHERLOG));
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETSTONEDMW);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETWOODDMW);
-    	OreDictionary.registerOre("listAllDMW", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
+    	OreDictionary.registerOre("listAllDMW", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
     	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
     	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
     	OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);

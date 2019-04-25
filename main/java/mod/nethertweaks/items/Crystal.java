@@ -57,7 +57,7 @@ public class Crystal extends CustomItem{
 			if(playerIn.isSneaking()){
 				if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 					playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDEMONWATER, 1000)));
+					playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 				}
 				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
 						playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
