@@ -3,18 +3,9 @@ package mod.nethertweaks.registries.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
-import mod.nethertweaks.registries.registries.CompostRegistry;
-import mod.nethertweaks.registries.registries.CrucibleRegistry;
-import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
-import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
-import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
-import mod.nethertweaks.registries.registries.FluidTransformRegistry;
-import mod.nethertweaks.registries.registries.HammerRegistry;
-import mod.nethertweaks.registries.registries.HeatRegistry;
-import mod.nethertweaks.registries.registries.MilkEntityRegistry;
-import mod.nethertweaks.registries.registries.OreRegistry;
-import mod.nethertweaks.registries.registries.SieveRegistry;
+import mod.nethertweaks.api.*;
+import mod.nethertweaks.registries.manager.NTMDefaultRecipes.MilkEntityDefaults;
+import mod.nethertweaks.registries.registries.*;
 
 public final class NTMRegistryManager {
 
@@ -31,6 +22,9 @@ public final class NTMRegistryManager {
     public static final List<IOreDefaultRegistryProvider> ORE_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<IMilkEntityDefaultRegistryProvider> MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<IBarrelLiquidBlacklistDefaultRegistryProvider> BARREL_LIQUID_BLACKLIST_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+    public static final List<ICondenserDefaultRegistryProvider> CONDENSER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+    public static final List<IHellmartDefaultRegistryProvider> HELLMART_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+    
     //endregion
 
     public static final CompostRegistry COMPOST_REGISTRY = new CompostRegistry();
@@ -45,6 +39,8 @@ public final class NTMRegistryManager {
     public static final FluidItemFluidRegistry FLUID_ITEM_FLUID_REGISTRY = new FluidItemFluidRegistry();
     public static final CrucibleRegistry CRUCIBLE_STONE_REGISTRY = new CrucibleRegistry(CRUCIBLE_STONE_DEFAULT_REGISTRY_PROVIDERS);
     public static final MilkEntityRegistry MILK_ENTITY_REGISTRY = new MilkEntityRegistry();
+    public static final CondenserRegistry CONDENSER_REGISTRY = new CondenserRegistry();
+    public static final HellmartRegistry HELLMART_REGISTRY = new HellmartRegistry();
 
     //region >>>> DEFAULT RECIPE REGISTERS
 
@@ -92,8 +88,9 @@ public final class NTMRegistryManager {
         BARREL_LIQUID_BLACKLIST_DEFAULT_REGISTRY_PROVIDERS.add(provider);
     }
 
-    public static void registerMilkEntityDefaultRecipeHandler(IMilkEntityDefaultRegistryProvider provider) {
-        MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS.add(provider);
-    }
+	public static void registerMilkEntityDefaultRecipeHandler(MilkEntityDefaults milkEntityDefaults) {
+		MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS.add(milkEntityDefaults);
+	}
+
     //endregion
 }

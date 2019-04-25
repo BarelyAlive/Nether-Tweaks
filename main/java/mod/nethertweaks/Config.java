@@ -66,6 +66,11 @@ public class Config {
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	public static boolean generalItemHandlerCompat;
 	public static boolean dankNullIntegration;
+	public static boolean preventUnidict;
+	public static String chunkBaseOreDictName;
+	public static String dustBaseOreDictName;
+	public static String pieceBaseOreDictName;
+	public static String ingotBaseOreDictName;
 	
 	public static void loadConfigs(File file)
 	{
@@ -128,6 +133,12 @@ public class Config {
         oreDictPreferenceOrder = config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine");
         generalItemHandlerCompat = config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
         dankNullIntegration = config.get("DankNullIntegration", "Enable Dank-Null Integration?", false).getBoolean();
+        preventUnidict = config.get("PreventUnidict", "Enable Unidictionary?", true).getBoolean();
+    	chunkBaseOreDictName = config.get("ChunkBaseName", "Base Name for Chunks", "Chunk").getString();
+    	dustBaseOreDictName = config.get("DustBaseName", "Base Name for Dusts", "Dust").getString();
+    	pieceBaseOreDictName = config.get("PieceBaseName", "Base Name for Pieces", "Piece").getString();
+    	ingotBaseOreDictName = config.get("IngotBaseName", "Base Name for Ingots", "Ingot").getString();
+        
         
         config.save();
 	}

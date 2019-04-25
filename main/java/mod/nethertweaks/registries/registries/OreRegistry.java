@@ -246,14 +246,21 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         return this.itemOreRegistry;
     }
 
+    /**
+     * 
+     * 	TODO
+     * 
+     *  Register Funktions in Implement
+     */
+    
     @Nonnull
-    @Override
+    //@Override
     public List<ItemOre> getItemOreRegistry() {
         return itemOreRegistry;
     }
 
     @Nonnull
-    @Override
+    //@Override
     public Set<ItemOre> getSieveBlackList() {
         return sieveBlackList;
     }

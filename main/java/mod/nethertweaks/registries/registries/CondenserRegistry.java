@@ -130,7 +130,7 @@ public class CondenserRegistry {
 
 	public static void registerDefaults()
 	{
-		for (ICondenserDefaultRegistryProvider provider : NTMRegistryManager.getDefaultCondenserRecipeHandlers()) {
+		for (ICondenserDefaultRegistryProvider provider : NTMRegistryManager.CONDENSER_DEFAULT_REGISTRY_PROVIDERS) {
 			provider.registerCondenserRecipeDefaults();
 		}
 	}

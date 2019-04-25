@@ -133,7 +133,7 @@ public class HellmartRegistry {
 	
 	public static void registerDefaults()
 	{
-		for (IHellmartDefaultRegistryProvider provider : NTMRegistryManager.getDefaultHellmartRecipeHandlers()) {
+		for (IHellmartDefaultRegistryProvider provider : NTMRegistryManager.HELLMART_DEFAULT_REGISTRY_PROVIDERS) {
 			provider.registerHellmartRecipeDefaults();
 		}
 	}
