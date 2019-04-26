@@ -42,8 +42,8 @@ public class BlockBarrel extends Block implements ITileEntityProvider
         super(material);
         this.tier = tier;
         this.setHardness(2.0f);
-        this.setUnlocalizedName(INames.BARREL);
-        this.setRegistryName(NetherTweaksMod.MODID, INames.BARREL);
+        this.setUnlocalizedName(INames.BARREL + tier);
+        this.setRegistryName(NetherTweaksMod.MODID, INames.BARREL + tier);
         this.setCreativeTab(NetherTweaksMod.tabNTM);
     }
 
