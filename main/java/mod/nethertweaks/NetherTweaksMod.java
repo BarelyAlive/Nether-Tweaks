@@ -1,6 +1,8 @@
 package mod.nethertweaks;
  
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileSieve;
@@ -13,7 +15,9 @@ import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
+import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.nethertweaks.recipes.defaults.TinkersConstruct;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -32,6 +36,7 @@ import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
+import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -40,6 +45,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -64,10 +70,11 @@ public class NetherTweaksMod {
     static
     {      
     	FluidRegistry.enableUniversalBucket();
-    }
-    
+    }    
     public static NTMDefaultRecipes defaultRecipes;
     public static File configDirectory;
+    // List of loaded modules
+    public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
     
     //Creative Tabs
     public static final CreativeTabs tabNTM = new CreativeTabs("tab_nether_tweaks_mod"){
@@ -83,7 +90,22 @@ public class NetherTweaksMod {
          
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
-    {    	
+    {
+    	if(Loader.isModLoaded("appliedenergistics2"))
+            this.loadedModules.add(new AppliedEnergistics2());
+        if(Loader.isModLoaded("forestry"))
+            this.loadedModules.add(new Forestry());
+        if(Loader.isModLoaded("tconstruct") && Config.doTinkersConstructCompat)
+        	this.loadedModules.add(new TinkersConstruct());
+        if(Loader.isModLoaded("moofluids") ||
+                Loader.isModLoaded("minimoos") ||
+                Loader.isModLoaded("fluidcows"))
+        	this.loadedModules.add(new MooFluidsEtc());
+        if(Loader.isModLoaded("oreberries") && Config.enableOreBerrySeeds)
+        	this.loadedModules.add(new OreBerries());
+        if(Loader.isModLoaded("magneticraft") && Config.magneticraftHammersCompat)
+        	this.loadedModules.add(Magneticraft.INSTANCE);
+    	
     	configDirectory = new File(event.getModConfigurationDirectory(), NetherTweaksMod.MODID);
     	configDirectory.mkdirs();
     	

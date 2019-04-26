@@ -45,6 +45,7 @@ item.hammer_stone.name=Stone Hammer
 item.seed_0.name=Mushroom Spores
 item.seed_1.name=Grass Seeds
 item.seed_2.name=Cactus Seeds
+item.seed_3.name=Rubber Seeds
 
 item.flint_and_blaze.name=Flint and Blaze
 

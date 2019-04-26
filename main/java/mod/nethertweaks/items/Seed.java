@@ -43,7 +43,7 @@ public class Seed extends CustomItem
 		for(String s : Config.rubberSeed){
             Block block = Block.getBlockFromName(s);
             if(block instanceof IPlantable)
-                plants.add((IPlantable) block);
+                addPlant((IPlantable) block);
 		}
 	}
 	
