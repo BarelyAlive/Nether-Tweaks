@@ -27,7 +27,8 @@ public class FluidLiquidImpossibility extends Fluid{
 	public static ResourceLocation still = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
 	public static ResourceLocation flow = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
 	
-	public FluidLiquidImpossibility() {
+	public FluidLiquidImpossibility()
+	{
 		super(INames.FLUIDLIQUIDIMPOSSIBILITY, still, flow);
 		setDensity(FluidRegistry.WATER.getDensity());
 		setTemperature(0);
@@ -44,7 +45,7 @@ public class FluidLiquidImpossibility extends Fluid{
 	
 	@Override
 	public boolean doesVaporize(FluidStack fluidStack) {
-		return Config.doesDMWVaporize;
+		return Config.doesLIVaporize;
 	}
 	
 	@SideOnly(Side.CLIENT)

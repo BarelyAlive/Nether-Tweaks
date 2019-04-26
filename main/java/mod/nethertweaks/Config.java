@@ -47,7 +47,7 @@ public class Config {
 	public static boolean spawnPig;
 	public static boolean spawnSkeleton;
 	public static boolean spawnSlime;
-	public static boolean doesDMWVaporize = false;
+	public static boolean doesLIVaporize = false;
 	public static boolean healAnimals;
 	
 	public static int[] allowedDims = {-1, 1};
@@ -114,7 +114,7 @@ public class Config {
         enableBarrelTransformLighting = config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
         
         //Demon Water
-        doesDMWVaporize = config.get("World", "Can Demon Water vaporize in nether?", false).getBoolean();
+        doesLIVaporize = config.get("World", "Can Liquid Impossibility vaporize in nether?", false).getBoolean();
         spawnPig = config.get("Mobs", "Can Demon Water transform pigmans?", true).getBoolean();
         spawnSkeleton = config.get("Mobs", "Can Demon Water transform wither skeletons", true).getBoolean();
         spawnSlime = config.get("Mobs", "Can Demon Water transform magma slimes?", true).getBoolean();

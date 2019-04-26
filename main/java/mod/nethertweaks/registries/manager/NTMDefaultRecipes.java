@@ -15,10 +15,12 @@ import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 
-public class NTMDefaultRecipes {
+public class NTMDefaultRecipes
+{
     private static final CompatDefaultRecipes compat = new CompatDefaultRecipes();
 
-    public static void registerDefaults() {
+    public static void registerDefaults()
+    {
         NTMRegistryManager.registerSieveDefaultRecipeHandler(new SieveDefaults());
         NTMRegistryManager.registerHammerDefaultRecipeHandler(new HammerDefaults());
         NTMRegistryManager.registerCompostDefaultRecipeHandler(new CompostDefaults());
