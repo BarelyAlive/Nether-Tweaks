@@ -49,6 +49,7 @@ public class BlockHandler implements INames
     public static final Block NETHERLEAVES = new NetherLeaves();
     public static final Block NETHERWOOD = new NetherWood();
     public static final Block NETHERSLAB = new NetherSlab();
+    public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
     
@@ -86,6 +87,7 @@ public class BlockHandler implements INames
         Registry.registerBlock(NETHERLEAVES);
         Registry.registerBlock(NETHERWOOD);
         Registry.registerBlock(NETHERSLAB);
+        Registry.registerBlock(NETHERRACKGRAVEL);
         Registry.registerBlock(BONFIRE);
         Registry.registerBlock(MEANVINE);
         Registry.registerBlock(STONEDOOR);  

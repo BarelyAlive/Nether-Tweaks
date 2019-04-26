@@ -26,6 +26,7 @@ public interface INames {
 	public static final String NETHERWOOD					= "nether_wood";
 	public static final String NETHERSLAB					= "nether_slab";
 	public static final String NETHERLOG 					= "nether_log";
+	public static final String NETHERRACKGRAVEL				= "netherrack_gravel";
 	public static final String BONFIRE 						= "bonfire";
 	public static final String MEANVINE 					= "mean_vine";
 	public static final String SIEVE 						= "sieve";
