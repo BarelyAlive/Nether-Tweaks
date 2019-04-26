@@ -14,7 +14,7 @@ import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.network.NetworkHandlerNTM;
-import mod.nethertweaks.registries.manager.NTMDefaultRecipes3;
+import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
@@ -66,7 +66,7 @@ public class NetherTweaksMod {
     	FluidRegistry.enableUniversalBucket();
     }
     
-    public static NTMDefaultRecipes3 defaultRecipes;
+    public static NTMDefaultRecipes defaultRecipes;
     public static File configDirectory;
     
     //Creative Tabs
@@ -114,7 +114,7 @@ public class NetherTweaksMod {
         //needs to be checked
         SmeltingNOreDictHandler.load();
         
-    	defaultRecipes = new NTMDefaultRecipes3();
+    	defaultRecipes = new NTMDefaultRecipes();
 		BarrelModeRegistry.registerDefaults();
     }
      
