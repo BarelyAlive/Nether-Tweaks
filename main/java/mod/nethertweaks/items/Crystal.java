@@ -61,11 +61,11 @@ public class Crystal extends CustomItem{
 				}
 				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
 						playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
-						playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONEDMW));
+						playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONELI));
 				}
 				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETWOODWATER))){
 					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETWOODWATER, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODDMW));
+					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODLI));
 				}
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 			}

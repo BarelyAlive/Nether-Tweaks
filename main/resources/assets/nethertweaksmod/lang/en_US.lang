@@ -1,6 +1,6 @@
-fluid.demon_water=Demon Water
+fluid.liquid_impossibility=Liquid Impossibility
 
-tile.demon_water.name=Demon Water
+tile.liquid_impossibility.name=Liquid Impossibility
 tile.condenser.name=Condenser
 tile.netherrack_furnace.name=Netherrack Furnace
 tile.end_teleport.name=Stairway to Heaven
@@ -28,12 +28,12 @@ item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 
 item.bucket_wood.name=Wood Bucket
 item.bucket_wood_water.name=Water Bucket
-item.bucket_wood_demon_water.name=Demon Water Bucket
+item.bucket_wood_liquid_impossibility.name=Liquid Impossibility Bucket
 item.bucket_wood_milk.name=Milk Bucket
 item.bucket_stone.name=Stone Bucket
 item.bucket_stone_water.name=Water Bucket
 item.bucket_stone_lava.name=Lava Bucket
-item.bucket_stone_demon_water.name=Demon Water Bucket
+item.bucket_stone_liquid_impossibility.name=Liquid Impossibility Bucket
 item.bucket_stone_milk.name=Milk Bucket
 
 item.hammer_wood.name=Wood Hammer
