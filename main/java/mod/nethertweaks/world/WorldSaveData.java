@@ -38,7 +38,8 @@ public class WorldSaveData extends WorldSavedData {
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		long lBits;
 		long mBits;
 		UUID index;
@@ -56,14 +57,13 @@ public class WorldSaveData extends WorldSavedData {
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			WorldSaveData.spawnLocas.put(index, new BlockPos(x, y, z));
-			
+			WorldSaveData.spawnLocas.put(index, new BlockPos(x, y, z));			
 		}
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+	{	
 		NBTTagList tagList = new NBTTagList();
 		for(Map.Entry<UUID, BlockPos> entry : WorldSaveData.spawnLocas.entrySet()) {
 			

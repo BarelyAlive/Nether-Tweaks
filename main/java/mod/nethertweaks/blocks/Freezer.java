@@ -11,7 +11,6 @@ import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
-import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

@@ -7,7 +7,6 @@ import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
-import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TEBaseInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
@@ -50,6 +49,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class TileNetherrackFurnace extends TEBaseInventory{
     
@@ -173,7 +173,7 @@ public class TileNetherrackFurnace extends TEBaseInventory{
         }
         else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
         {
-            StackUtils.addToStackSize(machineItemStacks.get(1), itemstack.getCount());
+            machineItemStacks.get(1).grow(itemstack.getCount());
         }
 
         if (this.machineItemStacks.get(0).getCount() <= 0)
@@ -182,7 +182,7 @@ public class TileNetherrackFurnace extends TEBaseInventory{
         }
         else
         {
-            StackUtils.substractFromStackSize(this.machineItemStacks.get(0), 1);
+            this.machineItemStacks.get(0).shrink(1);
         }
     }
     

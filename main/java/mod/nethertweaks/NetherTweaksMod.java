@@ -90,10 +90,11 @@ public class NetherTweaksMod
     {     
         @Override
         @SideOnly(Side.CLIENT)
-        public ItemStack getTabIconItem() {
+        public ItemStack getTabIconItem()
+        {
             return Konstanten.HELLFAYAH;
-            }
-        };
+        }
+    };
     
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          

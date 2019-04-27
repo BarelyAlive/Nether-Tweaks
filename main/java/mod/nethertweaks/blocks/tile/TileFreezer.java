@@ -8,7 +8,6 @@ import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
-import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.tileentities.TEBaseFluidInventory;
@@ -94,7 +93,7 @@ public class TileFreezer extends TEBaseFluidInventory implements net.minecraftfo
         else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
         {
         	ItemStack output = this.getStackInSlot(0);
-        	StackUtils.addToStackSize(output, 1);
+        	output.shrink(1);
         	this.setInventorySlotContents(0, output);
             return;
         }
@@ -126,10 +125,10 @@ public class TileFreezer extends TEBaseFluidInventory implements net.minecraftfo
 	        	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 1000) {
 	        		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
 	        		{
-	        			StackUtils.substractFromStackSize(machineItemStacks.get(2), 1);
+	        			machineItemStacks.get(2).shrink(1);
 	        		}
 	            	if(!machineItemStacks.get(1).isEmpty()) {
-	            		StackUtils.addToStackSize(machineItemStacks.get(1), 1);
+	            		machineItemStacks.get(1).shrink(1);
 	            	}
 	            	else
 	            	{

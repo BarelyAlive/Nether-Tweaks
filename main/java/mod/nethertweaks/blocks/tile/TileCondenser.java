@@ -12,7 +12,6 @@ import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registry.types.Dryable;
-import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.tileentities.TEBaseFluidInventory;
@@ -133,7 +132,7 @@ public class TileCondenser extends TEBaseFluidInventory implements net.minecraft
 			this.tank.amount += amount;
 		}
 		
-		StackUtils.substractFromStackSize(material, 1);
+		material.shrink(1);
 		return;
 	}
 	
