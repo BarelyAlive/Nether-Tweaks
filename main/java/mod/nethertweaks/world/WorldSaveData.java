@@ -12,7 +12,11 @@ import net.minecraft.world.storage.*;
 
 public class WorldSaveData extends WorldSavedData {
 	
+	//Strings
 	public final static String key = "NTMWorldSaveData";
+	
+	//Bonfire
+	public static Map<UUID, BlockPos> spawnLocas = new HashMap<UUID, BlockPos>();
 	
 	public WorldSaveData(String key) {
 		super(key);
@@ -52,7 +56,7 @@ public class WorldSaveData extends WorldSavedData {
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			WorldDataNTM.spawnLocas.put(index, new BlockPos(x, y, z));
+			WorldSaveData.spawnLocas.put(index, new BlockPos(x, y, z));
 			
 		}
 	}
@@ -61,7 +65,7 @@ public class WorldSaveData extends WorldSavedData {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		
 		NBTTagList tagList = new NBTTagList();
-		for(Map.Entry<UUID, BlockPos> entry : WorldDataNTM.spawnLocas.entrySet()) {
+		for(Map.Entry<UUID, BlockPos> entry : WorldSaveData.spawnLocas.entrySet()) {
 			
 			NBTTagCompound tag = new NBTTagCompound();
 			

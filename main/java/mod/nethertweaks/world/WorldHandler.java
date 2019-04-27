@@ -42,7 +42,7 @@ public class WorldHandler{
     	
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(player);
-    		if (!WorldDataNTM.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
+    		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
@@ -62,7 +62,7 @@ public class WorldHandler{
     		}
     		else
     		{
-    			BlockPos pos = WorldDataNTM.spawnLocas.get(player.getUUID(player.getGameProfile()));
+    			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
 				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
     		}
 		}
