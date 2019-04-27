@@ -3,8 +3,10 @@ package mod.nethertweaks.registries.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.recipes.defaults.*;
 import mod.nethertweaks.registries.registries.*;
+import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 
 public class CompatDefaultRecipes
@@ -27,7 +29,7 @@ public class CompatDefaultRecipes
         MODS.add(new ExtraBees());
         MODS.add(new MagicBees());
         MODS.add(new BinniesBotany());
-        for(IExNihiloCreatioModule module : ExNihiloCreatio.loadedModules){
+        for(ISFHCoreModule module : NetherTweaksMod.loadedModules){
             if(module instanceof IRecipeDefaults)
                 MODS.add((IRecipeDefaults) module);
         }
