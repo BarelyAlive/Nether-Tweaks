@@ -104,7 +104,7 @@ public class NetherTweaksMod
         
     	LogUtil.setup(MODID, configDirectory);
     	
-    	configDirectory = new File(event.getModConfigurationDirectory(), NetherTweaksMod.MODID);
+    	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
     	configDirectory.mkdirs();
     	
     	NTMCapabilities.init();
