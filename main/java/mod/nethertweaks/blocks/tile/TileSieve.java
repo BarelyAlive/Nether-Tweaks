@@ -4,7 +4,9 @@ import com.google.common.base.Objects;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Sieve;
-import mod.nethertweaks.enchantments.NTMEnchantments;
+import mod.nethertweaks.enchantments.EnchantmentEfficiency;
+import mod.nethertweaks.enchantments.EnchantmentFortune;
+import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Siftable;
 import mod.sfhcore.network.NetworkHandler;
@@ -152,19 +154,19 @@ public class TileSieve extends TileEntity {
                 lastPlayer = player.getUniqueID();
             }
 
-            int efficiency = EnchantmentHelper.getEnchantmentLevel(NTMEnchantments.EFFICIENCY, meshStack);
+            int efficiency = EnchantmentHelper.getEnchantmentLevel(EnchantmentEfficiency.EFFICIENCY, meshStack);
             efficiency += EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, meshStack);
             if(Config.hasteIncreaseSpeed && player != null && player.isPotionActive(MobEffects.HASTE)){
                 efficiency *= 1.0F + (float)(player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
             }
 
-            int fortune = EnchantmentHelper.getEnchantmentLevel(NTMEnchantments.FORTUNE, meshStack);
+            int fortune = EnchantmentHelper.getEnchantmentLevel(EnchantmentFortune.FORTUNE, meshStack);
             fortune += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, meshStack);
             if (player != null) {
                 fortune += player.getLuck();
             }
 
-            int luckOfTheSea = EnchantmentHelper.getEnchantmentLevel(NTMEnchantments.LUCK_OF_THE_SEA, meshStack);
+            int luckOfTheSea = EnchantmentHelper.getEnchantmentLevel(EnchantmentLuckOfTheSea.LUCK_OF_THE_SEA, meshStack);
             luckOfTheSea += EnchantmentHelper.getEnchantmentLevel(Enchantments.LUCK_OF_THE_SEA, meshStack);
 
             if (luckOfTheSea > 0 && player != null) {

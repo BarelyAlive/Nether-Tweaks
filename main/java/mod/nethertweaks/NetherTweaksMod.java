@@ -19,6 +19,7 @@ import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
+import mod.nethertweaks.handler.MessageHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.recipes.defaults.TinkersConstruct;
@@ -76,6 +77,7 @@ public class NetherTweaksMod
     static
     {      
     	FluidRegistry.enableUniversalBucket();
+    	MessageHandler.init();
     }
     
     public static NTMDefaultRecipes defaultRecipes;
@@ -122,7 +124,6 @@ public class NetherTweaksMod
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());		
-		NetworkHandler.initPackets();
     }
     
     @Mod.EventHandler

@@ -9,7 +9,9 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class EnchantmentLuckOfTheSea extends Enchantment {
+public class EnchantmentLuckOfTheSea extends Enchantment
+{
+	public static final EnchantmentLuckOfTheSea LUCK_OF_THE_SEA = new EnchantmentLuckOfTheSea();
 
     public EnchantmentLuckOfTheSea() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});

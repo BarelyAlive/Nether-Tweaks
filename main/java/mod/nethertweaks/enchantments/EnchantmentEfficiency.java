@@ -9,7 +9,9 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class EnchantmentEfficiency extends Enchantment {
+public class EnchantmentEfficiency extends Enchantment
+{
+	public static final EnchantmentEfficiency EFFICIENCY = new EnchantmentEfficiency();
 
     public EnchantmentEfficiency() {
         super(Rarity.COMMON, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});

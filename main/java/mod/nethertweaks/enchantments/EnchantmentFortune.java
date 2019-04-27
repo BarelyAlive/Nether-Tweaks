@@ -9,7 +9,10 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
-public class EnchantmentFortune extends Enchantment {
+public class EnchantmentFortune extends Enchantment
+{
+	public static final EnchantmentFortune FORTUNE = new EnchantmentFortune();
+	
     public EnchantmentFortune() {
         super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("sieve_fortune");
