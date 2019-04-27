@@ -8,9 +8,9 @@ import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.network.MessageNBTUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.StackUtils;
+import mod.sfhcore.network.MessageNBTUpdate;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.tileentities.TEBaseFluidInventory;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -62,7 +62,7 @@ public class TileFreezer extends TEBaseFluidInventory implements net.minecraftfo
 		this.world = getWorld();
     	if (!this.world.isRemote)
     	{
-			NetworkHandlerNTM.INSTANCE.sendToAll(new MessageNBTUpdate(this));
+			NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
 			fillFromItem();
 			if(canFreeze()) {
 				this.workTime++;

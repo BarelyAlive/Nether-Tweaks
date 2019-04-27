@@ -21,7 +21,6 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.recipes.defaults.TinkersConstruct;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
@@ -42,6 +41,7 @@ import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.modules.ISFHCoreModule;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -122,7 +122,7 @@ public class NetherTweaksMod
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());		
-		NetworkHandlerNTM.initPackets();
+		NetworkHandler.initPackets();
     }
     
     @Mod.EventHandler

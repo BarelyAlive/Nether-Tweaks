@@ -5,10 +5,10 @@ import javax.annotation.Nullable;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageFluidUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
@@ -58,10 +58,10 @@ public class BarrelFluidHandler extends FluidTank {
 
         int amount = super.fill(resource, doFill);
         if (amount > 0) {
-            NetworkHandlerNTM.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
             if (this.fluid != null && this.barrel.getMode() == null) {
                 this.barrel.setMode("fluid");
-                NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
+                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
             }
         }
         return amount;
@@ -71,11 +71,11 @@ public class BarrelFluidHandler extends FluidTank {
     public FluidStack drain(FluidStack resource, boolean doDrain) {
         FluidStack stack = super.drain(resource, doDrain);
         if (stack != null && stack.amount > 0) {
-            NetworkHandlerNTM.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
         }
         if (fluid == null && barrel.getMode() != null && barrel.getMode().getName().equals("fluid")) {
             barrel.setMode("null");
-            NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
         }
         return stack;
     }
@@ -84,11 +84,11 @@ public class BarrelFluidHandler extends FluidTank {
     public FluidStack drain(int maxDrain, boolean doDrain) {
         FluidStack stack = super.drain(maxDrain, doDrain);
         if (stack != null && stack.amount > 0) {
-            NetworkHandlerNTM.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
         }
         if (fluid == null && barrel.getMode() != null && barrel.getMode().getName().equals("fluid")) {
             barrel.setMode("null");
-            NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
         }
         return stack;
     }

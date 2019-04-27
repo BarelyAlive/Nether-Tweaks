@@ -21,7 +21,7 @@ import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.Util;
 
@@ -95,7 +95,7 @@ public class BarrelModeMobSpawn implements IBarrelMode {
     public void update(TileBarrel barrel) {
         if (progress < 1) {
             progress += 1.0 / 600;
-            NetworkHandlerNTM.sendNBTUpdate(barrel);
+            NetworkHandler.sendNBTUpdate(barrel);
         }
 
         if (progress >= 1) {
@@ -103,7 +103,7 @@ public class BarrelModeMobSpawn implements IBarrelMode {
             boolean result = doll.spawnMob(dollStack, barrel.getWorld(), barrel.getPos());
             if (result) {
                 barrel.setMode("null");
-                NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
             }
         }
 

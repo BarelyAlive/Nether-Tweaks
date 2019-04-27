@@ -7,7 +7,6 @@ import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.StackUtils;
 import mod.sfhcore.tileentities.TEBaseInventory;
 import net.minecraft.block.Block;

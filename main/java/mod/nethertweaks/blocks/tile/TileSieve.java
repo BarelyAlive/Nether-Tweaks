@@ -5,9 +5,9 @@ import com.google.common.base.Objects;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Sieve;
 import mod.nethertweaks.enchantments.NTMEnchantments;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Siftable;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.state.IBlockState;
@@ -318,7 +318,7 @@ public class TileSieve extends TileEntity {
     
     public void markDirtyClient() {
         markDirty();
-        NetworkHandlerNTM.sendNBTUpdate(this);
+        NetworkHandler.sendNBTUpdate(this);
     }
     
     //Move to sfh tile base
@@ -327,7 +327,7 @@ public class TileSieve extends TileEntity {
         markDirty();
         IBlockState state = getWorld().getBlockState(getPos());
         getWorld().notifyBlockUpdate(getPos(), state, state, 3);
-        NetworkHandlerNTM.sendNBTUpdate(this);
+        NetworkHandler.sendNBTUpdate(this);
     }
 
     @Nullable

@@ -25,9 +25,9 @@ import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -150,7 +150,7 @@ public class BarrelModeFluid implements IBarrelMode {
                 BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, fluidOnTop);
                 tank.drain(tank.getCapacity(), true);
                 barrel.setMode("block");
-                NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
 
                 barrel.getMode().addItem(info.getItemStack(), barrel);
 
@@ -181,7 +181,7 @@ public class BarrelModeFluid implements IBarrelMode {
                             mode.setInputStack(fstack);
                             mode.setOutputStack(FluidRegistry.getFluidStack(transformer.getOutputFluid(), 1000));
 
-                            NetworkHandlerNTM.sendNBTUpdate(barrel);
+                            NetworkHandler.sendNBTUpdate(barrel);
                             found = true;
                         }
                     }

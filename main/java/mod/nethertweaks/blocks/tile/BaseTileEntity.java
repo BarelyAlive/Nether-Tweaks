@@ -11,20 +11,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.network.NetworkHandler;
 
 public class BaseTileEntity extends TileEntity {
 
     public void markDirtyClient() {
         markDirty();
-        NetworkHandlerNTM.sendNBTUpdate(this);
+        NetworkHandler.sendNBTUpdate(this);
     }
 
     public void markDirtyChunk() {
         markDirty();
         IBlockState state = getWorld().getBlockState(getPos());
         getWorld().notifyBlockUpdate(getPos(), state, state, 3);
-        NetworkHandlerNTM.sendNBTUpdate(this);
+        NetworkHandler.sendNBTUpdate(this);
     }
 
     @Nullable

@@ -9,12 +9,12 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
-import mod.nethertweaks.network.MessageNBTUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.helper.StackUtils;
+import mod.sfhcore.network.MessageNBTUpdate;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.tileentities.TEBaseFluidInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -64,7 +64,7 @@ public class TileCondenser extends TEBaseFluidInventory implements net.minecraft
     public void update() {
 		this.world = getWorld();
 		if(!world.isRemote) {
-			NetworkHandlerNTM.INSTANCE.sendToAll(new MessageNBTUpdate(this));
+			NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
 			if (this.tank.amount >= 1000)
 			{
 				if (!this.getStackInSlot(1).isEmpty())

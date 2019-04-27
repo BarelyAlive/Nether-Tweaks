@@ -12,6 +12,8 @@ import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.GuiHandler;
+import mod.sfhcore.network.MessageCheckLight;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -149,6 +151,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         {
             tileentity.validate();
             worldIn.setTileEntity(pos, tileentity);
+            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), tileentity);
         }
     }
 

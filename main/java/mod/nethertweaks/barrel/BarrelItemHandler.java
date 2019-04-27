@@ -8,9 +8,9 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
+import mod.sfhcore.network.NetworkHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class BarrelItemHandler extends ItemStackHandler {
                 for (IBarrelMode possibleMode : modes) {
                     if (possibleMode.isTriggerItemStack(stack)) {
                         barrel.setMode(possibleMode.getName());
-                        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
+                        NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
 
                         barrel.getMode().addItem(stack, barrel);
                         barrel.markDirty();
@@ -93,7 +93,7 @@ public class BarrelItemHandler extends ItemStackHandler {
                 if (possibleMode.isTriggerItemStack(stack)) {
                     if (!simulate) {
                         barrel.setMode(possibleMode.getName());
-                        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
+                        NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
                         barrel.getMode().addItem(stack, barrel);
                         barrel.markDirty();
                         IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());

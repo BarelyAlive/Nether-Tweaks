@@ -7,9 +7,9 @@ import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Compostable;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.Util;
@@ -87,7 +87,7 @@ public class BarrelModeCompost implements IBarrelMode {
                 if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info)) {
                     Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
                     compostState = comp.getCompostBlock().getBlockState();
-                    NetworkHandlerNTM.sendNBTUpdate(barrel);
+                    NetworkHandler.sendNBTUpdate(barrel);
                 }
             }
         }
@@ -113,7 +113,7 @@ public class BarrelModeCompost implements IBarrelMode {
                     if (!player.capabilities.isCreativeMode) {
                         player.getHeldItem(hand).shrink(1);
                     }
-                    NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, compColor, stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
+                    NetworkHandler.sendToAllAround(new MessageCompostUpdate(this.fillAmount, compColor, stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
                     barrel.markDirty();
                 }
             }
@@ -130,10 +130,10 @@ public class BarrelModeCompost implements IBarrelMode {
         color = new Color("EEA96D");
         handler.setStackInSlot(0, ItemStack.EMPTY);
         compostState = null;
-        NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress,0.0f,  barrel.getPos(), false), barrel);
+        NetworkHandler.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress,0.0f,  barrel.getPos(), false), barrel);
         barrel.setMode("null");
         IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
-        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+        NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
         barrel.getWorld().setBlockState(barrel.getPos(), state);
     }
 
@@ -156,8 +156,8 @@ public class BarrelModeCompost implements IBarrelMode {
                     fillAmount += compost.getValue();
                     if (fillAmount > 1)
                         fillAmount = 1;
-                    NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, comp.getColor(), stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
-                    // NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
+                    NetworkHandler.sendToAllAround(new MessageCompostUpdate(this.fillAmount, comp.getColor(), stack, this.progress, comp.getValue(), barrel.getPos(), isFirst), barrel);
+                    // NetworkHandler.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, this.progress, barrel.getPos()), barrel);
                     barrel.markDirty();
                 }
             }
@@ -175,14 +175,14 @@ public class BarrelModeCompost implements IBarrelMode {
             color = Color.average(originalColor, whiteColor, progress);
 
             // TODO: maybe don't send it _every_ tick
-            NetworkHandlerNTM.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress, 0.0f, barrel.getPos(), false), barrel);
+            NetworkHandler.sendToAllAround(new MessageCompostUpdate(this.fillAmount, this.color, ItemStack.EMPTY, this.progress, 0.0f, barrel.getPos(), false), barrel);
 
             barrel.markDirty();
         }
 
         if (progress >= 1 && compostState != null) {
             barrel.setMode("block");
-            NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
 
             barrel.getMode().addItem(new ItemStack(compostState.getBlock(), 1, compostState.getBlock().getMetaFromState(compostState)), barrel);
         }

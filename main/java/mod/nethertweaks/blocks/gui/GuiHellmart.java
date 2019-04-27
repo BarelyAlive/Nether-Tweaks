@@ -8,9 +8,9 @@ import mod.nethertweaks.blocks.container.ContainerHellmart;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -82,17 +82,17 @@ public class GuiHellmart extends GuiContainer {
 						int price = data.getPrice();
 						if(buySlot.getCount() == price) {
 
-							NetworkHandlerNTM.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
 									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
 									this.tileEntityMarket.getPos().getZ(), true));
 						}
 						else if(buySlot.getCount() > price && buySlot.getCount() > 1) {
-							NetworkHandlerNTM.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
 									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
 									this.tileEntityMarket.getPos().getZ(), false));
 						}
 						if(buySlot.getCount() == 0 && price == 1) {
-							NetworkHandlerNTM.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
 									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
 									this.tileEntityMarket.getPos().getZ(), true));
 						}
@@ -104,7 +104,7 @@ public class GuiHellmart extends GuiContainer {
 
 	@Override
 	public void onGuiClosed() {
-		NetworkHandlerNTM.INSTANCE.sendToServer(new MessageHellmartClosed(this.tileEntityMarket.getPos().getX(),
+		NetworkHandler.INSTANCE.sendToServer(new MessageHellmartClosed(this.tileEntityMarket.getPos().getX(),
 				this.tileEntityMarket.getPos().getY(), this.tileEntityMarket.getPos().getZ()));
 		super.onGuiClosed();
 	}

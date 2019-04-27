@@ -2,7 +2,7 @@ package mod.nethertweaks.barrel.modes.block;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -32,7 +32,7 @@ public class BarrelItemHandlerBlock extends ItemStackHandler
         
         if (!simulate)
         {
-            NetworkHandlerNTM.sendNBTUpdate(barrel);
+            NetworkHandler.sendNBTUpdate(barrel);
         }
         
         return returned;
@@ -61,7 +61,7 @@ public class BarrelItemHandlerBlock extends ItemStackHandler
         if (getStackInSlot(0) == null && barrel != null)
         {
             barrel.setMode("null");
-            NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
         }
     }
 }

@@ -22,7 +22,7 @@ import java.util.List;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.Util;
@@ -88,7 +88,7 @@ public class BarrelModeBlock implements IBarrelMode {
             handler.setBarrel(barrel);
             handler.setStackInSlot(0, ItemStack.EMPTY);
             barrel.setMode("null");
-            NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
             barrel.markDirty();
         }
     }

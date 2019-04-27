@@ -36,12 +36,12 @@ import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.modules.MooFluid.*;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.MessageCheckLight;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
 import mod.nethertweaks.registry.types.Milkable;
 import mod.nethertweaks.util.TankUtil;
+import mod.sfhcore.network.MessageCheckLight;
+import mod.sfhcore.network.NetworkHandler;
 
 import java.util.ArrayList;
 
@@ -107,11 +107,11 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
                     stack.shrink(1);
                 }
 
-                NetworkHandlerNTM.sendNBTUpdate(this);
+                NetworkHandler.sendNBTUpdate(this);
                 markDirty();
                 if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
                     world.checkLight(pos);
-                    NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+                    NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
                 }
 
                 return true;
@@ -137,7 +137,7 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
                     stack.shrink(1);
                 }
 
-                NetworkHandlerNTM.sendNBTUpdate(this);
+                NetworkHandler.sendNBTUpdate(this);
             }
         }
 
@@ -150,14 +150,14 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
                 for (IBarrelMode possibleMode : modes) {
                     if (possibleMode.isTriggerItemStack(stack)) {
                         setMode(possibleMode.getName());
-                        NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
+                        NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
                         mode.onBlockActivated(world, this, pos, state, player, hand, side, hitX, hitY, hitZ);
                         this.markDirty();
                         this.getWorld().setBlockState(pos, state);
 
                         if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
                             world.checkLight(pos);
-                            NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+                            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
                         }
 
                         return true;
@@ -170,7 +170,7 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
 
             if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
                 world.checkLight(pos);
-                NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+                NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
             }
 
             return true;
@@ -196,7 +196,7 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
 
         if (getBlockType().getLightValue(getWorld().getBlockState(pos), getWorld(), pos) != getWorld().getLight(pos)) {
             getWorld().checkLight(pos);
-            NetworkHandlerNTM.sendToAllAround(new MessageCheckLight(pos), this);
+            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
         }
     }
 

@@ -23,9 +23,9 @@ import java.util.List;
 
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -184,7 +184,7 @@ public class BarrelModeFluidTransform implements IBarrelMode {
                     }
                 }
             }
-            NetworkHandlerNTM.sendNBTUpdate(barrel);
+            NetworkHandler.sendNBTUpdate(barrel);
         }
 
         if (progress >= 1) {
@@ -192,7 +192,7 @@ public class BarrelModeFluidTransform implements IBarrelMode {
             FluidTank tank = barrel.getMode().getFluidHandler(barrel);
             Fluid fluid = FluidRegistry.getFluid(transformer.getOutputFluid());
             tank.setFluid(new FluidStack(fluid, 1000));
-            NetworkHandlerNTM.sendNBTUpdate(barrel);
+            NetworkHandler.sendNBTUpdate(barrel);
         }
     }
 

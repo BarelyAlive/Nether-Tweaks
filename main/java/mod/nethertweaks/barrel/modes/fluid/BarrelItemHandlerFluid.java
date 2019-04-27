@@ -6,9 +6,9 @@ import mod.nethertweaks.barrel.modes.mobspawn.BarrelModeMobSpawn;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;
 import net.minecraft.item.ItemStack;
@@ -48,7 +48,7 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
                 if (!simulate) {
                     tank.drain(tank.getCapacity(), true);
                     barrel.setMode("block");
-                    NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+                    NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
 
                     barrel.getMode().addItem(info.getItemStack(), barrel);
                     if(spawnCount > 0){
@@ -74,9 +74,9 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
             if (!simulate) {
                 tank.drain(tank.getCapacity(), true);
                 barrel.setMode("fluid");
-                NetworkHandlerNTM.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
                 tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
-                NetworkHandlerNTM.sendNBTUpdate(barrel);
+                NetworkHandler.sendNBTUpdate(barrel);
             }
             ItemStack ret = stack.copy();
             ret.shrink(1);
@@ -92,7 +92,7 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
                 barrel.getTank().drain(Fluid.BUCKET_VOLUME, true);
                 barrel.setMode("mobspawn");
                 ((BarrelModeMobSpawn) barrel.getMode()).setDollStack(stack);
-                NetworkHandlerNTM.sendNBTUpdate(barrel);
+                NetworkHandler.sendNBTUpdate(barrel);
             }
             ItemStack ret = stack.copy();
             ret.shrink(1);
