@@ -2,6 +2,7 @@ package mod.nethertweaks.blocks.container;
 
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.blocks.container.ContainerBase;
+import mod.sfhcore.blocks.container.CustomSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -21,7 +22,7 @@ public class ContainerCondenser extends ContainerBase {
 		tileEntity = te;
 		
 		addSlotToContainer(new Slot(tileEntity, 0, 26, 48));
-		addSlotToContainer(new SlotOneItem(tileEntity, 1, 80, 30));
+		addSlotToContainer(new CustomSlot(tileEntity, 1, 80, 30, 1));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
