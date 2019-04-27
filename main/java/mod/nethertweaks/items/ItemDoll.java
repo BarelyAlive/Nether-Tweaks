@@ -9,7 +9,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.monster.EntityBlaze;
