@@ -32,7 +32,8 @@ public class CrucibleRecipe implements IRecipeWrapper {
         return inputs;
     }
 
-    public ItemStack getFluid() {
+    public ItemStack getFluid()
+    {
         return output;
     }
 
