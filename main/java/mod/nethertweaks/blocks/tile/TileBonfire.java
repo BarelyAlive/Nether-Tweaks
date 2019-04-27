@@ -9,8 +9,8 @@ import java.util.UUID;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.world.WorldDataNTM;
 import mod.nethertweaks.world.WorldHandler;
+import mod.nethertweaks.world.WorldSaveData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class TileBonfire extends TileEntity {
 			
 			player.bedLocation = new BlockPos(x, y, z);
 			
-			for(Map.Entry<UUID, BlockPos> entryG : WorldDataNTM.spawnLocas.entrySet()) {
+			for(Map.Entry<UUID, BlockPos> entryG : WorldSaveData.spawnLocas.entrySet()) {
 				if(entry == entryG) {
 					removeGlobalEntry(entry.getKey(), entry.getValue());
 				}
@@ -87,19 +87,19 @@ public class TileBonfire extends TileEntity {
 	
 	private void addGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldDataNTM.spawnLocas.put(uuid, pos);
+		WorldSaveData.spawnLocas.put(uuid, pos);
 	}
 	
 	private void removeGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldDataNTM.spawnLocas.remove(uuid, pos);
+		WorldSaveData.spawnLocas.remove(uuid, pos);
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
 		NBTTagList tagList = new NBTTagList();
-		for(Map.Entry<UUID, BlockPos> entry : WorldDataNTM.spawnLocas.entrySet()) {
+		for(Map.Entry<UUID, BlockPos> entry : WorldSaveData.spawnLocas.entrySet()) {
 			
 			NBTTagCompound tag = new NBTTagCompound();
 			
@@ -138,7 +138,7 @@ public class TileBonfire extends TileEntity {
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			WorldDataNTM.spawnLocas.put(index, new BlockPos(x, y, z));			
+			WorldSaveData.spawnLocas.put(index, new BlockPos(x, y, z));			
 		}
 	}
 }
