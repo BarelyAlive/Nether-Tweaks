@@ -10,6 +10,7 @@ import mod.nethertweaks.capabilities.NTMCapabilities;
 import mod.nethertweaks.client.renderers.RenderBarrel;
 import mod.nethertweaks.client.renderers.RenderProjectileStone;
 import mod.nethertweaks.client.renderers.RenderSieve;
+import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.BlockHandler;
@@ -17,6 +18,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.network.NetworkHandlerNTM;
@@ -74,7 +76,8 @@ public class NetherTweaksMod
     static
     {      
     	FluidRegistry.enableUniversalBucket();
-    }    
+    }
+    
     public static NTMDefaultRecipes defaultRecipes;
     public static File configDirectory;
     // List of loaded modules
@@ -95,20 +98,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
     {
-    	if(Loader.isModLoaded("appliedenergistics2"))
-            this.loadedModules.add(new AppliedEnergistics2());
-        if(Loader.isModLoaded("forestry"))
-            this.loadedModules.add(new Forestry());
-        if(Loader.isModLoaded("tconstruct") && Config.doTinkersConstructCompat)
-        	this.loadedModules.add(new TinkersConstruct());
-        if(Loader.isModLoaded("moofluids") ||
-                Loader.isModLoaded("minimoos") ||
-                Loader.isModLoaded("fluidcows"))
-        	this.loadedModules.add(new MooFluidsEtc());
-        if(Loader.isModLoaded("oreberries") && Config.enableOreBerrySeeds)
-        	this.loadedModules.add(new OreBerries());
-        if(Loader.isModLoaded("magneticraft") && Config.magneticraftHammersCompat)
-        	this.loadedModules.add(Magneticraft.INSTANCE);
+    	Compatibility.init();
         
     	LogUtil.setup(MODID, configDirectory);
     	
@@ -118,7 +108,7 @@ public class NetherTweaksMod
     	NTMCapabilities.init();
     	NTMEntities.init();
     	
-    	Config.loadConfigs(new File(configDirectory, "NetherTweaksMod.cfg"));
+    	Config.loadConfigs();
     	
         BlockHandler.init();
         BucketNFluidHandler.init();
@@ -138,7 +128,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
-    	loadJasonVorhees();
+    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
         SmeltingNOreDictHandler.load();
         
     	defaultRecipes = new NTMDefaultRecipes();
@@ -159,23 +149,5 @@ public class NetherTweaksMod
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
     	
     	RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
-    }
-    
-    private static void loadJasonVorhees()
-    {
-		CondenserRegistry.loadJson(new File(configDirectory, "CondenserRegistry.json"));
-		HellmartRegistry.loadJson(new File(configDirectory, "HellmartRegistry.json"));
-		
-		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(configDirectory, "CompostRegistry.json"));
-        NTMRegistryManager.SIEVE_REGISTRY.loadJson(new File(configDirectory, "SieveRegistry.json"));
-        NTMRegistryManager.HAMMER_REGISTRY.loadJson(new File(configDirectory, "HammerRegistry.json"));
-        NTMRegistryManager.HEAT_REGISTRY.loadJson(new File(configDirectory, "HeatRegistry.json"));
-        NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.loadJson(new File(configDirectory, "BarrelLiquidBlacklistRegistry.json"));
-        NTMRegistryManager.FLUID_ON_TOP_REGISTRY.loadJson(new File(configDirectory, "FluidOnTopRegistry.json"));
-        NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.loadJson(new File(configDirectory, "FluidTransformRegistry.json"));
-        NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.loadJson(new File(configDirectory, "FluidBlockTransformerRegistry.json"));
-        NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.loadJson(new File(configDirectory, "FluidItemFluidRegistry.json"));
-        NTMRegistryManager.CRUCIBLE_STONE_REGISTRY.loadJson(new File(configDirectory, "CrucibleRegistryStone.json"));
-        NTMRegistryManager.MILK_ENTITY_REGISTRY.loadJson(new File(configDirectory, "MilkEntityRegistry.json"));
     }
 }

@@ -72,9 +72,9 @@ public class Config {
 	public static String pieceBaseOreDictName;
 	public static String ingotBaseOreDictName;
 	
-	public static void loadConfigs(File file)
+	public static void loadConfigs()
 	{
-		Configuration config = new Configuration(file);
+		Configuration config = new Configuration(new File(NetherTweaksMod.configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 		
 		allowedDims = config.get("WorldType", "Allowed dimensions in Hellworld", allowedDims).getIntList();
