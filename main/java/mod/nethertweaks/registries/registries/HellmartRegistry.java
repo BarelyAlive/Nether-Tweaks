@@ -27,7 +27,6 @@ import mod.nethertweaks.api.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.api.IHellmartDefaultRegistryProvider;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomHellmartDataJson;
-import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.nethertweaks.registry.types.Dryable;

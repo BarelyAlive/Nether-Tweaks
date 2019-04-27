@@ -5,16 +5,15 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IFluidItemFluidRegistry;
-import mod.nethertweaks.json.CustomBlockInfoJson;
-import mod.nethertweaks.json.CustomItemInfoJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryList;
 import mod.nethertweaks.registry.types.FluidItemFluid;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.StackInfo;

@@ -1,23 +1,22 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IFluidOnTopRegistry;
-import mod.nethertweaks.json.CustomBlockInfoJson;
-import mod.nethertweaks.json.CustomItemInfoJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryList;
 import mod.nethertweaks.registry.types.FluidFluidBlock;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-
-import javax.annotation.Nonnull;
-import java.io.FileReader;
-import java.util.List;
 
 public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implements IFluidOnTopRegistry {
     public FluidOnTopRegistry() {

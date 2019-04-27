@@ -12,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.ICompostRegistry;
-import mod.nethertweaks.json.CustomBlockInfoJson;
 import mod.nethertweaks.json.CustomColorJson;
 import mod.nethertweaks.json.CustomCompostableJson;
 import mod.nethertweaks.json.CustomIngredientJson;
@@ -21,6 +20,7 @@ import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
 import mod.nethertweaks.registry.types.Compostable;
+import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.LogUtil;

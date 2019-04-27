@@ -11,9 +11,9 @@ import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IHeatRegistry;
 import mod.nethertweaks.compatibility.HeatSourcesRecipe;
-import mod.nethertweaks.json.CustomBlockInfoJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
+import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.item.ItemStack;
 

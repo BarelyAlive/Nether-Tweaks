@@ -1,7 +1,6 @@
 package mod.nethertweaks.registries.registries;
 
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -11,15 +10,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IFluidBlockTransformerRegistry;
-import mod.nethertweaks.json.CustomBlockInfoJson;
-import mod.nethertweaks.json.CustomEntityInfoJson;
 import mod.nethertweaks.json.CustomFluidBlockTransformerJson;
 import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.json.CustomItemInfoJson;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryList;
 import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomEntityInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;
 import mod.sfhcore.util.ItemInfo;
@@ -28,7 +27,6 @@ import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 
 public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTransformer> implements IFluidBlockTransformerRegistry {
 

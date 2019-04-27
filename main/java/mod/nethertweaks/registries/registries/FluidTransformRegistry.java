@@ -5,11 +5,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IFluidTransformRegistry;
-import mod.nethertweaks.json.CustomBlockInfoJson;
-import mod.nethertweaks.json.CustomItemInfoJson;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
 import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraftforge.fluids.FluidRegistry;

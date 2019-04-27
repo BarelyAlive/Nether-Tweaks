@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.ICrucibleRegistry;
 import mod.nethertweaks.compatibility.CrucibleRecipe;
-import mod.nethertweaks.json.CustomBlockInfoJson;
 import mod.nethertweaks.json.CustomIngredientJson;
 import mod.nethertweaks.json.CustomMeltableJson;
 import mod.nethertweaks.registries.ingredient.IngredientUtil;
@@ -16,6 +15,7 @@ import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
 import mod.nethertweaks.registry.types.Meltable;
+import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.LogUtil;
 import mod.sfhcore.util.StackInfo;

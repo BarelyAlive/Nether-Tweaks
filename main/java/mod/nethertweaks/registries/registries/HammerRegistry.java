@@ -7,13 +7,12 @@ import com.google.gson.reflect.TypeToken;
 import mod.nethertweaks.api.IHammerRegistry;
 import mod.nethertweaks.json.CustomHammerRewardJson;
 import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.json.CustomItemStackJson;
 import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
 import mod.nethertweaks.registry.types.HammerReward;
-
+import mod.sfhcore.json.CustomItemStackJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;
