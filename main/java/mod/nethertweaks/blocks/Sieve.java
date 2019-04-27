@@ -31,7 +31,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.items.ItemMesh;
-import mod.nethertweaks.util.ItemStackItemHandler;
+import mod.sfhcore.util.ItemStackItemHandler;
 import mod.sfhcore.util.Util;
 
 import java.util.ArrayList;

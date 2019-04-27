@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemUtil
+public class ItemUtil extends mod.sfhcore.util.ItemUtil
 {
 	public static boolean isHammer(@Nullable ItemStack stack)
 	{
@@ -21,19 +21,10 @@ public class ItemUtil
 	        return ((IHammer) stack.getItem()).isHammer(stack);
 	
 	    return false;
-	
 	}
 	
 	public boolean isHammer(Item item)
 	{
 	    return isHammer(new ItemStack(item));
-	}
-	
-	/**
-	 * Compares Items, Damage, and NBT
-	 */
-	public static boolean areStacksEquivalent(ItemStack left, ItemStack right)
-	{
-	    return ItemStack.areItemsEqual(right, left) && ItemStack.areItemStackTagsEqual(left, right);
 	}
 }
