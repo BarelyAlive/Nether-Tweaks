@@ -105,13 +105,12 @@ public class NetherTweaksMod
     	LogUtil.setup(MODID, configDirectory);
     	
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
-    	configDirectory.mkdirs();
+    	configDirectory.mkdirs(); 	
+    	Config.loadConfigs();
     	
     	NTMCapabilities.init();
     	NTMEntities.init();
-    	
-    	Config.loadConfigs();
-    	
+    	    	
         BlockHandler.init();
         BucketNFluidHandler.init();
         ItemHandler.init();
