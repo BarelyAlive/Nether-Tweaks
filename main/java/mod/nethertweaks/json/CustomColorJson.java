@@ -1,6 +1,8 @@
 package mod.nethertweaks.json;
 
 import com.google.gson.*;
+
+import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.LogUtil;
 

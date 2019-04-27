@@ -1,6 +1,6 @@
 package mod.nethertweaks.util;
 
-import mod.nethertweaks.blocks.tile.BaseTileEntity;
+import mod.sfhcore.blocks.tiles.BaseTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

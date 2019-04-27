@@ -3,6 +3,7 @@ package mod.nethertweaks.json;
 import com.google.gson.*;
 
 import mod.nethertweaks.registry.types.Ore;
+import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 
@@ -40,22 +41,22 @@ public class CustomOreJson implements JsonDeserializer<Ore>, JsonSerializer<Ore>
 			throws JsonParseException {
 		JsonHelper helper = new JsonHelper(json);
 
-		        String name = helper.getString("name");
-		        Color color = context.deserialize(json.getAsJsonObject().get("color"), Color.class);
-		        ItemInfo ingot = json.getAsJsonObject().has("result") ? context.deserialize(json.getAsJsonObject().get("result"), ItemInfo.class)
-		        		: json.getAsJsonObject().has("ingot") ? context.deserialize(json.getAsJsonObject().get("ingot"), ItemInfo.class) : null;
-		        ItemInfo dust = json.getAsJsonObject().has("dust") ? context.deserialize(json.getAsJsonObject().get("dust"), ItemInfo.class) : null;
+        String name = helper.getString("name");
+        Color color = context.deserialize(json.getAsJsonObject().get("color"), Color.class);
+        ItemInfo ingot = json.getAsJsonObject().has("result") ? context.deserialize(json.getAsJsonObject().get("result"), ItemInfo.class)
+        		: json.getAsJsonObject().has("ingot") ? context.deserialize(json.getAsJsonObject().get("ingot"), ItemInfo.class) : null;
+        ItemInfo dust = json.getAsJsonObject().has("dust") ? context.deserialize(json.getAsJsonObject().get("dust"), ItemInfo.class) : null;
 
-		        HashMap<String, String> translations = null;
-		        if (json.isJsonObject() && json.getAsJsonObject().has("translations")) {
-		            translations = context.deserialize(json.getAsJsonObject().get("translations"), json.getAsJsonObject().get("translations").getClass());
-		        }
+        HashMap<String, String> translations = null;
+        if (json.isJsonObject() && json.getAsJsonObject().has("translations")) {
+            translations = context.deserialize(json.getAsJsonObject().get("translations"), json.getAsJsonObject().get("translations").getClass());
+        }
 
-		        String oredictName = null;
-		        if (json.isJsonObject() && json.getAsJsonObject().has("oredictName")) {
-		            oredictName = helper.getString("oredictName");
-		        }
+        String oredictName = null;
+        if (json.isJsonObject() && json.getAsJsonObject().has("oredictName")) {
+            oredictName = helper.getString("oredictName");
+        }
 
-		        return new Ore(name, color, ingot, dust, translations, oredictName);
+        return new Ore(name, color, ingot, dust, translations, oredictName);
 	}
 }

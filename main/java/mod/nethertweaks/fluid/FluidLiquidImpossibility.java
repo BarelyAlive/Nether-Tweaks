@@ -7,8 +7,10 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Config;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.sfhcore.helper.FluidStateMapper;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
@@ -52,7 +54,7 @@ public class FluidLiquidImpossibility extends Fluid{
 	public void initModel() {
 		Block block = BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY;
 		
-		FluidStateMapper mapper = new FluidStateMapper(this);
+		FluidStateMapper mapper = new FluidStateMapper(NetherTweaksMod.MODID, this);
 		
 		Item item = Item.getItemFromBlock(block);
 		if (item != null) {

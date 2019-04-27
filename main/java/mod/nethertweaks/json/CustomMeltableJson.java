@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import com.google.gson.*;
 
 import mod.nethertweaks.registry.types.Meltable;
+import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.BlockInfo;
 
 public class CustomMeltableJson implements JsonDeserializer<Meltable>, JsonSerializer<Meltable> {

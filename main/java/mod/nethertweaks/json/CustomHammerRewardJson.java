@@ -3,6 +3,7 @@ package mod.nethertweaks.json;
 import com.google.gson.*;
 
 import mod.nethertweaks.registry.types.HammerReward;
+import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.ItemStack;

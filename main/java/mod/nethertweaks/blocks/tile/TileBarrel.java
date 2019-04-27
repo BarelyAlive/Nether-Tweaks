@@ -40,6 +40,7 @@ import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
 import mod.nethertweaks.registry.types.Milkable;
 import mod.nethertweaks.util.TankUtil;
+import mod.sfhcore.blocks.tiles.BaseTileEntity;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.NetworkHandler;
 
