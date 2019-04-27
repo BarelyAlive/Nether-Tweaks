@@ -13,7 +13,6 @@ import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
-import mod.sfhcore.handler.RegisterTileEntity;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

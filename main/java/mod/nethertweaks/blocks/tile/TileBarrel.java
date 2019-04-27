@@ -31,7 +31,7 @@ import mod.nethertweaks.Config;
 import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.BlockBarrel;
+import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.modules.MooFluid.*;
@@ -76,10 +76,10 @@ public class TileBarrel extends BaseTileEntity implements ITickable {
 	}
 
 	public TileBarrel() {
-        this((BlockBarrel) BlockHandler.BARREL);
+        this((Barrel) BlockHandler.BARREL);
     }
 
-    public TileBarrel(BlockBarrel block) {
+    public TileBarrel(Barrel block) {
         this.tier = block.getTier();
         this.blockType = block;
         itemHandler = new BarrelItemHandler(this);

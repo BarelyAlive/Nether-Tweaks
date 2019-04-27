@@ -3,7 +3,7 @@ package mod.nethertweaks.enchantments;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemMesh;
-import mod.sfhcore.handler.Registry;
+import mod.sfhcore.registries.Registry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;

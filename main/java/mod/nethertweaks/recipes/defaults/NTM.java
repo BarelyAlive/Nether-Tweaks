@@ -5,7 +5,7 @@ import java.util.Map;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.BlockBarrel;
+import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -309,7 +309,7 @@ public class NTM implements IRecipeDefaults
     public void registerBarrelLiquidBlacklist(BarrelLiquidBlacklistRegistry registry) {
         for(Fluid fluid : FluidRegistry.getRegisteredFluids().values()){
             if(fluid.getTemperature() >= Config.woodBarrelMaxTemp)
-                registry.register(((BlockBarrel)BlockHandler.BARREL).getTier(), fluid);
+                registry.register(((Barrel)BlockHandler.BARREL).getTier(), fluid);
         }
     }
 

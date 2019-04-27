@@ -11,7 +11,7 @@ import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.network.MessageNBTUpdate;
 import mod.nethertweaks.network.NetworkHandlerNTM;
 import mod.sfhcore.helper.StackUtils;
-import mod.sfhcore.tileentities.TileEntityFluidBase;
+import mod.sfhcore.tileentities.TEBaseFluidInventory;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +43,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Int;
 
-public class TileFreezer extends TileEntityFluidBase implements net.minecraftforge.fluids.capability.IFluidHandler {
+public class TileFreezer extends TEBaseFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	

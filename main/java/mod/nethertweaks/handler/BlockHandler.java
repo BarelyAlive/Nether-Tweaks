@@ -14,7 +14,6 @@ import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
-import mod.sfhcore.handler.Registry;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
@@ -22,7 +21,7 @@ import mod.sfhcore.blocks.base.BlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
 import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
-import mod.sfhcore.handler.RegisterTileEntity;
+import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -35,8 +34,8 @@ public class BlockHandler implements INames
 	//Tile Entity
     public static final Block CONDENSER = new Condenser();
     public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
-    public static final Block BARREL = new BlockBarrel(0, Material.WOOD);
-    public static final Block BARRELSTONE = new BlockBarrel(1, Material.ROCK);
+    public static final Block BARREL = new Barrel(0, Material.WOOD);
+    public static final Block BARRELSTONE = new Barrel(1, Material.ROCK);
     public static final Block FREEZER = new Freezer();
     public static final Block BONFIRE = new Bonfire();
     public static final Block HELLMART = new Hellmart();

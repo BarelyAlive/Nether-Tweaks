@@ -33,12 +33,12 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockBarrel extends Block implements ITileEntityProvider
+public class Barrel extends Block implements ITileEntityProvider
 {
     private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
     private final int tier;
 
-    public BlockBarrel(int tier, Material material) {
+    public Barrel(int tier, Material material) {
         super(material);
         this.tier = tier;
         this.setHardness(2.0f);
