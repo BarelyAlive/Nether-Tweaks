@@ -17,6 +17,7 @@ public class CompatDefaultRecipes
         // TODO use config options to dynamically add mod support
         MODS.add(new NTM());
         MODS.add(new TinkersConstruct());
+        /*
         MODS.add(new IntegratedDynamics());
         MODS.add(new Mekanism());
         MODS.add(new BigReactors());
@@ -29,10 +30,12 @@ public class CompatDefaultRecipes
         MODS.add(new ExtraBees());
         MODS.add(new MagicBees());
         MODS.add(new BinniesBotany());
+        */
         for(ISFHCoreModule module : NetherTweaksMod.loadedModules){
             if(module instanceof IRecipeDefaults)
                 MODS.add((IRecipeDefaults) module);
         }
+        
     }
 
     public void registerCompost(CompostRegistry registry) {

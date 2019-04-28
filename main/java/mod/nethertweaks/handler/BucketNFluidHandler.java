@@ -27,6 +27,7 @@ import mod.nethertweaks.blocks.LiquidImpossibility;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
+import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;
 import mod.sfhcore.registries.Registry;
@@ -67,7 +68,10 @@ public class BucketNFluidHandler
 	}
 		
 	private static void registerBuckets()
-	{			
+	{
+		BucketHandler.addBucket("wood", (CustomBucket) BUCKETWOOD);
+		BucketHandler.addBucket("stone", (CustomBucket) BUCKETSTONE);
+		/*
 		if (Config.enableStoneBucket) {
 			//Stone
 			Registry.registerItem(BUCKETSTONE);
@@ -83,5 +87,6 @@ public class BucketNFluidHandler
 			Registry.registerItem(BUCKETWOODLI);
 			Registry.registerItem(BUCKETWOODMILK);
 		}
+		*/
 	}
 }

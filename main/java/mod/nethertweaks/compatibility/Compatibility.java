@@ -10,6 +10,7 @@ public class Compatibility
 {
 	public static void init()
 	{
+		/*
 		if(Loader.isModLoaded("appliedenergistics2"))
             NetherTweaksMod.loadedModules.add(new AppliedEnergistics2());
         if(Loader.isModLoaded("forestry"))
@@ -24,5 +25,6 @@ public class Compatibility
         	NetherTweaksMod.loadedModules.add(new OreBerries());
         if(Loader.isModLoaded("magneticraft") && Config.magneticraftHammersCompat)
         	NetherTweaksMod.loadedModules.add(Magneticraft.INSTANCE);
+        	*/
 	}
 }
