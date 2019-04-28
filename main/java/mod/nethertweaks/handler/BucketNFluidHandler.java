@@ -69,9 +69,6 @@ public class BucketNFluidHandler
 		
 	private static void registerBuckets()
 	{
-		BucketHandler.addBucket("wood", (CustomBucket) BUCKETWOOD);
-		BucketHandler.addBucket("stone", (CustomBucket) BUCKETSTONE);
-		/*
 		if (Config.enableStoneBucket) {
 			//Stone
 			Registry.registerItem(BUCKETSTONE);
@@ -87,6 +84,5 @@ public class BucketNFluidHandler
 			Registry.registerItem(BUCKETWOODLI);
 			Registry.registerItem(BUCKETWOODMILK);
 		}
-		*/
 	}
 }

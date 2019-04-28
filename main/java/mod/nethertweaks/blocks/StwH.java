@@ -72,7 +72,7 @@ public class StwH extends Block{
 			return false;
 		
 		if (worldIn.provider.getDimension() != 1) {
-			playerIn.changeDimension(Config.StwtHDimension);
+			playerIn.changeDimension(1);
 		} else {
 			if (worldIn.provider.getDimension() == 1) {
 				playerIn.changeDimension(Config.endDim);

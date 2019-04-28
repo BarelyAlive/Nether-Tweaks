@@ -46,7 +46,7 @@ public class BlockHandler implements INames
     public static final Block STWH = new StwH();
     public static final Block ELDERSAPLING = new ElderSapling();
     public static final Block ELDERLOG = new ElderLog();
-    public static final Block ELDERLEAVES = new ElderLeaves();
+    public static final Block ELDERLEAVES = new ElderLeaf();
     public static final Block ELDERWOOD = new ElderPlanks();
     public static final Block ELDERSLAB = new ElderSlab();
     public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));

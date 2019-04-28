@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "nethertweaksmod:blocks/for_tre_sapling"
+        "cross": "nethertweaksmod:blocks/elder_sapling"
     }
 }

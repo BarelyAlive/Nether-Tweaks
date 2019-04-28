@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y": { "model": "nethertweaksmod:elder_log" },
+        "axis=z": { "model": "nethertweaksmod:elder_log", "x": 90 },
+        "axis=x": { "model": "nethertweaksmod:elder_log", "x": 90, "y": 90 },
+        "axis=none":  { "model": "nethertweaksmod:elder_log" }
+    }
+}

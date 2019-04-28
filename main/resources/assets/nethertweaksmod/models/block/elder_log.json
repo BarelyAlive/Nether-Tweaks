@@ -1,7 +1,7 @@
 {
     "parent": "block/cube_column",
     "textures": {
-        "end": "nethertweaksmod:blocks/for_tre_log_top",
-        "side": "nethertweaksmod:blocks/for_tre_log"
+        "end": "nethertweaksmod:blocks/elder_log_top",
+        "side": "nethertweaksmod:blocks/elder_log"
     }
 }

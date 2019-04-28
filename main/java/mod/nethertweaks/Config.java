@@ -10,7 +10,6 @@ public class Config {
 			
 	//int
 	public static int endDim;
-	public static int StwtHDimension;
 	public static int nethDim;
 	public static int burnTimeFurnace;
 	public static int dryTimeCondenser;
@@ -129,8 +128,7 @@ public class Config {
         dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks.", 2400).getInt();
         freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks.", 6000).getInt();
                         
-        StwtHDimension 					= config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 1).getInt();
-        nethDim 						= config.get("World", "To which dimension shall the nether portal send you back?", -1).getInt();
+        nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
         enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "Squares have edges, you know.");
         

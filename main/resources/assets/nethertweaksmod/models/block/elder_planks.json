@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "nethertweaksmod:blocks/for_tre_wood"
+        "all": "nethertweaksmod:blocks/elder_planks"
     }
 }

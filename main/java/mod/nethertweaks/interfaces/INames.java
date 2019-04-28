@@ -21,7 +21,7 @@ public interface INames {
 	public static final String DUST 						= "dust";
 	public static final String STWH 						= "stairway_to_heaven";
 	public static final String ELDERSAPLING 				= "elder_sapling";
-	public static final String ELDERLEAVES 					= "elder_leaves";
+	public static final String ELDERLEAF 					= "elder_leaves";
 	public static final String ELDERPLANKS					= "elder_planks";
 	public static final String ELDERSLAB					= "elder_slab";
 	public static final String ELDERLOG 					= "elder_log";
@@ -73,5 +73,4 @@ public interface INames {
 	public static final String HAMMERSTONE 					= "hammer_stone";
 	public static final String HAMMERIRON					= "hammer_iron";
 	public static final String HAMMERDIAMOND				= "hammer_diamond";
-	
 }

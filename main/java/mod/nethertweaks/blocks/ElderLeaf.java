@@ -42,21 +42,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class ElderLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable, IVariantProvider {
+public class ElderLeaf extends BlockLeaves implements net.minecraftforge.common.IShearable, IVariantProvider {
      
 	 public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
 	    public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 	    protected boolean leavesFancy;
 	    int[] surroundings;
 
-	    public ElderLeaves()
+	    public ElderLeaf()
 	    {
 	        super();
 	        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 	        this.setTickRandomly(true);
 	        this.setCreativeTab(NetherTweaksMod.tabNTM);
-	        this.setUnlocalizedName(INames.ELDERLEAVES);
-	        setRegistryName("nethertweaksmod", INames.ELDERLEAVES);
+	        this.setUnlocalizedName(INames.ELDERLEAF);
+	        setRegistryName("nethertweaksmod", INames.ELDERLEAF);
 	        this.setHardness(0.2F);
 	        this.setLightOpacity(1);
 	        this.setSoundType(SoundType.PLANT);
