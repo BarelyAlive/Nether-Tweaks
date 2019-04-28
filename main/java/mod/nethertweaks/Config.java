@@ -97,13 +97,15 @@ public class Config {
 	//ItemEnable
 	public static boolean enableMultiItem;
 	public static boolean enableSeed;
-	public static boolean enableCrystals;
+	public static boolean enableCrystalLight;
+	public static boolean enableCrystalEnder;
 	public static boolean enablePebbles;
 	public static boolean enableMeshes;
 	public static boolean enableDolls;
 	public static boolean enableJerky;
 	public static boolean enablePickAxeNetherrack;
 	public static boolean enablePickAxeNetherbrick;
+	public static boolean enableGrabber;
 	public static boolean enableHammerWood;
 	public static boolean enableHammerStone;
 	public static boolean enableHammerGold;
@@ -148,7 +150,7 @@ public class Config {
         sieveEfficiencyMaxLevel 		= config.get("Sieving", "Max Level for sieve efficiency enchanting", 5).getInt();
         enableSieveFortune 				= config.get("Sieving", "Enable sieve fortune enchanting?", true).getBoolean();
         sieveFortuneMaxLevel 			= config.get("Sieving", "Max Level for sieve fortune enchanting", 3).getInt();
-        enableSieveLuckOfTheSea 		= config.get("Sieving", "Enable sieve lock of the sea enchanting?", true).getBoolean();
+        enableSieveLuckOfTheSea 		= config.get("Sieving", "Enable sieve luck of the sea enchanting?", true).getBoolean();
         sieveLuckOfTheSeaMaxLevel 		= config.get("Sieving", "Max Level for sieve luck of the sea enchanting", 3).getInt();
         
         //Barrel
@@ -208,13 +210,15 @@ public class Config {
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
     	enableMultiItem 				= config.getBoolean("Enable Multi Item?", "Items", true, "");
     	enableSeed 						= config.getBoolean("Enable Seeds?", "Items", true, "");
-    	enableCrystals 					= config.getBoolean("Enable Crystals?", "Items", true, "");
+    	enableCrystalLight				= config.getBoolean("Enable Crystal of Light?", "Items", true, "");
+    	enableCrystalEnder				= config.getBoolean("Enable Crystal of Light?", "Items", true, "");
     	enablePebbles 					= config.getBoolean("Enable Pebbles?", "Items", true, "");
     	enableMeshes 					= config.getBoolean("Enable Meshes?", "Items", true, "");
     	enableDolls 					= config.getBoolean("Enable Dolls?", "Items", true, "");
     	enableJerky 					= config.getBoolean("Enable Cooked Jerky?", "Items", true, "");
     	enablePickAxeNetherrack 		= config.getBoolean("Enable Netherrack Pickaxe?", "Items", true, "");
     	enablePickAxeNetherbrick 		= config.getBoolean("Enable Netherbrick Pickaxe?", "Items", true, "");
+    	enableGrabber					= config.getBoolean("Enable Grabber?", "Items", true, "");
     	enableHammerWood 				= config.getBoolean("Enable Wood Hammer?", "Items", true, "");
     	enableHammerStone 				= config.getBoolean("Enable Stone Hammer?", "Items", true, "");
     	enableHammerGold 				= config.getBoolean("Enable Gold Hammer?", "Items", true, "");

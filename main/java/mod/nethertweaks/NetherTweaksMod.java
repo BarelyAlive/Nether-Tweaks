@@ -117,7 +117,6 @@ public class NetherTweaksMod
         BucketNFluidHandler.init();
         ItemHandler.init();
         
-        if(Config.enableMultiBlock)
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
     	
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
@@ -142,7 +141,8 @@ public class NetherTweaksMod
     public void PostInit(FMLPostInitializationEvent event)
     {
     	//Mobs
-    	if(Config.spawnWaterMobs) WorldHandler.addWaterMobs();
+    	if(Config.spawnWaterMobs)
+    		WorldHandler.addWaterMobs();
     }
     
     @SubscribeEvent

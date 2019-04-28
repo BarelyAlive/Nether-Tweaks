@@ -5,10 +5,10 @@ public interface INames {
 	public final static String NTM = "nethertweaksmod";
 
 	//Fluids
-	public static final String FLUIDLIQUIDIMPOSSIBILITY				= "liquid_impossibility";
+	public static final String FLUIDLIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//Fluidblocks
-	public static final String BLOCKLIQUIDIMPOSSIBILITY				= "liquid_impossibility";
+	public static final String BLOCKLIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//blocks
 	public static final String CONDENSER 					= "condenser";
@@ -56,7 +56,7 @@ public interface INames {
 	public static final String BUCKETWOODMILK				= "bucket_wood_milk";
 	
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
-	public static final String CACTUSGRABBER 				= "item_cactus_grabber";
+	public static final String GRABBER 						= "grabber";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";
 	public static final String STRING 						= "string";
 	public static final String SEED							= "seed";

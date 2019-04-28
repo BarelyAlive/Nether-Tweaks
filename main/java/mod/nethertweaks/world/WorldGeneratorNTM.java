@@ -2,6 +2,7 @@ package mod.nethertweaks.world;
  
 import java.util.Random;
 
+import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -39,23 +40,26 @@ public class WorldGeneratorNTM implements IWorldGenerator{
         oreGenerationNether(world, random, posX, posZ, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
     }
  
-    public void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY){
-    	
+    public void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY)
+    {	
         int differenzMinMaxY = maxY - minY;
-        for(int i = 0; i < spawnChancen; i++){
-            int positionX = posX + random.nextInt(maxX);
-            int positionY = minY + random.nextInt(differenzMinMaxY);
-            int positionZ = posZ + random.nextInt(maxZ);
-            nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
-        }
-        
-        for(int i = 0; i < 15; i++) // 15 is rarity
-    	{
-    	    int randPosX=posX + random.nextInt(16);
-    	    int randPosY=random.nextInt(128); //Max Y coordinate
-    	    int randPosZ=posZ + random.nextInt(16);
-    	    tree.generate(world, random, new BlockPos(randPosX,randPosY, randPosZ));
-    	}
-         
+        if (Config.enableMultiBlock)
+        {
+			for (int i = 0; i < spawnChancen; i++) {
+				int positionX = posX + random.nextInt(maxX);
+				int positionY = minY + random.nextInt(differenzMinMaxY);
+				int positionZ = posZ + random.nextInt(maxZ);
+				nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
+			} 
+		}
+		if (Config.enableElderLeaves && Config.enableElderLog && Config.enableElderSapling && Config.enableElderWood && Config.enableElderSlab) {
+			for (int i = 0; i < 15; i++) // 15 is rarity
+			{
+				int randPosX = posX + random.nextInt(16);
+				int randPosY = random.nextInt(128); //Max Y coordinate
+				int randPosZ = posZ + random.nextInt(16);
+				tree.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+			} 
+		}
     }
 }
