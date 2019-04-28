@@ -100,11 +100,12 @@ public class NetherTweaksMod
          
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
-    {     
-    	LogUtil.setup(MODID, configDirectory);
-    	
+    {         	
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
-    	configDirectory.mkdirs(); 	
+    	configDirectory.mkdirs();
+    	
+    	LogUtil.setup(MODID, configDirectory);
+
     	Config.init();
     	
     	Compatibility.init();
@@ -116,6 +117,7 @@ public class NetherTweaksMod
         BucketNFluidHandler.init();
         ItemHandler.init();
         
+        if(Config.enableMultiBlock)
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
     	
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
@@ -140,7 +142,7 @@ public class NetherTweaksMod
     public void PostInit(FMLPostInitializationEvent event)
     {
     	//Mobs
-    	WorldHandler.addWaterMobs();
+    	if(Config.spawnWaterMobs) WorldHandler.addWaterMobs();
     }
     
     @SubscribeEvent

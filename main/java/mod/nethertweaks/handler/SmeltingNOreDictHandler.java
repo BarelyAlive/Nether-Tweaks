@@ -28,39 +28,51 @@ public class SmeltingNOreDictHandler {
 		oreRegistration();
 	}
 	
+	@Deprecated
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte		
-		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
-		GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
-		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
+		if(Config.enableJerky) 									GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
+		if(Config.enableElderLog) 								GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		if(Config.enableCrystals) 								GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
+		if(Config.enableMultiBlock && Config.enableMultiItem) 	GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
 	}
 	
 	//Ore-Dictionary
 	private static void oreRegistration()
     {
-		OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
-		OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
-		OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
-    	OreDictionary.registerOre("itemSalt", Konstanten.SALT);
-    	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
-    	OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
-    	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
-    	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
-    	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERWOOD));
-    	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLAB));
-    	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
-    	OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETSTONELI);
-    	OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETWOODLI);
-    	OreDictionary.registerOre("listAllLiquidImpossibility", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
-    	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
-    	OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
-    	OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-    	OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETSTONE);
-    	OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETWOOD);
-    	OreDictionary.registerOre("listAllBucket", Items.BUCKET);
-    	OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
-    	OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
+		if(Config.enableElderSapling) 	OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
+		if(Config.enableElderLog) 		OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
+		if(Config.enableMeanVine) 		OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
+		if(Config.enableMultiItem) 		OreDictionary.registerOre("itemSalt", Konstanten.SALT);
+		if(Config.enableMultiItem) 		OreDictionary.registerOre("dustSalt", Konstanten.SALT);
+		if(Config.enableMultiItem) 		OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
+		if(Config.enableMultiBlock) 	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
+		if(Config.enableMultiBlock) 	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
+		if(Config.enableElderWood) 		OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERWOOD));
+		if(Config.enableElderSlab) 		OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLAB));
+		if(Config.enableElderLog) 		OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
+		
+    	if (Config.enableLiquidImpossibility)
+    	{
+			OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETSTONELI);
+			OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETWOODLI);
+			OreDictionary.registerOre("listAllLiquidImpossibility",
+			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
+		}
+		if (Config.enableStoneBucket && Config.enableWoodBucket)
+		{
+			OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
+			OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
+			OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
+			OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETSTONE);
+			OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETWOOD);
+			OreDictionary.registerOre("listAllBucket", Items.BUCKET);
+		}
+		if (Config.enableFlintNBlaze)
+		{
+			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
+			OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
+		}
     }
 }

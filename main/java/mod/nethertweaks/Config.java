@@ -49,9 +49,11 @@ public class Config {
 	public static boolean spawnSlime;
 	public static boolean doesLIVaporize = false;
 	public static boolean healAnimals;
+	public static boolean spawnWaterMobs;
 	
 	public static int[] allowedDims = {-1, 1};
 	public static boolean isHellworld;
+	public static boolean enableTeleport;
 	
 	//JSON
 	public static boolean enableJSONLoading;
@@ -128,6 +130,7 @@ public class Config {
         StwtHDimension 					= config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 1).getInt();
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you back?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
+        enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "Squares have edges, you know.");
         
         //Ore
 		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "OreDictOreChunks", true).getBoolean();
@@ -154,10 +157,11 @@ public class Config {
         enableBarrelTransformLighting 	= config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
         
         //Liquid Impossibility
-        doesLIVaporize 					= config.get("Fluid", "Can Liquid Impossibility vaporize?", false).getBoolean();
+        doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
         spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
         spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
         spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
+        spawnWaterMobs					= config.getBoolean("Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", "Fluid", true, "Water is wet, you know.");
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
@@ -169,8 +173,8 @@ public class Config {
         // Mod-Compatibility
         enableMooFluid 					= config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();
         fillAmount 						= config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
-        rubberSeed 						= config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Leaves are green");
-        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine");
+        rubberSeed 						= config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Leaves are green, you know.");
+        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine, you know.");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
         dankNullIntegration 			= config.get("DankNullIntegration", "Enable Dank-Null Integration?", false).getBoolean();
         preventUnidict 					= config.get("PreventUnidict", "Enable Unidictionary?", true).getBoolean();

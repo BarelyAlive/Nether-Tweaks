@@ -73,7 +73,7 @@ public class WorldHandler{
     {
     	EntityPlayer player = event.player;
     	
-		if (unallowDim(player.world, event.toDim))
+		if (allowedDims(player.world, event.toDim))
 			teleportPlayer(player);
 	}
 	
@@ -81,14 +81,15 @@ public class WorldHandler{
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 				
-		if (unallowDim(player.getEntityWorld(), player.dimension)) {
+		if (allowedDims(player.getEntityWorld(), player.dimension)) {
 			teleportPlayer(player);
 		}	
 	}
 	
 	//Enitity Interaction   
     @SubscribeEvent
-    public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event){
+    public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event)
+    {
     	if(!event.getWorld().isRemote)
     	{
 	    	if(event.getTarget() instanceof EntityCow)
@@ -152,12 +153,12 @@ public class WorldHandler{
 		}
 	}
 	
-	private boolean unallowDim(World world, int dim)
+	private boolean allowedDims(World world, int dim)
     {
     	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
     	{
 			for (int i : Config.allowedDims) {
-				if (i != dim)
+				if (i == dim)
 					return true;
 			} 
 		}
