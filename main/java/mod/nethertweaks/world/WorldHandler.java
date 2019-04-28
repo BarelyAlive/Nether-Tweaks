@@ -159,8 +159,9 @@ public class WorldHandler{
     	{
 			for (int i : Config.allowedDims) {
 				if (i == dim)
-					return true;
+					return false;
 			} 
+			return true;
 		}
 		return false;
     }
