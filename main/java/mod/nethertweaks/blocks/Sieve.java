@@ -28,6 +28,7 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.items.ItemMesh;
@@ -52,18 +53,23 @@ public class Sieve extends Block{
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote)
-            return true;
-
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
         // I think this should work. Let's just go with it.
-        if (player instanceof FakePlayer && !Config.fakePlayersCanSieve) {
+        if (player instanceof FakePlayer && !Config.fakePlayersCanSieve)
             return false;
-        }
-        TileSieve te = (TileSieve) world.getTileEntity(pos);
-
-        if(te == null)
-            return true;
+        
+        if (!world.isBlockLoaded(pos))
+    		return false;
+    	if(world.isRemote)
+    		return false;
+    	if(player.isSneaking())
+    		return false;
+    	  	
+    	TileSieve te = (TileSieve) world.getTileEntity(pos);
+		if(!(te instanceof TileSieve)) {
+			return false;
+		}
 
         ItemStack heldItem = player.getHeldItem(hand);
 

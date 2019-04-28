@@ -32,8 +32,8 @@ import mod.sfhcore.items.CustomBucketMilk;
 import mod.sfhcore.registries.Registry;
 
 
-public class BucketNFluidHandler {
-
+public class BucketNFluidHandler
+{
 		//Fluids
 		public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
 		public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
@@ -58,25 +58,30 @@ public class BucketNFluidHandler {
 	
 	private static void registerFluids()
 	{
-		//Fluids
-		Registry.registerBlock(BLOCKLIQUIDIMPOSSIBILITY);
-		((FluidLiquidImpossibility) FLUIDLIQUIDIMPOSSIBILITY).initModel();
-		FluidRegistry.addBucketForFluid(FLUIDLIQUIDIMPOSSIBILITY);
+		if (Config.enableLiquidImpossibility) {
+			//Fluids
+			Registry.registerBlock(BLOCKLIQUIDIMPOSSIBILITY);
+			((FluidLiquidImpossibility) FLUIDLIQUIDIMPOSSIBILITY).initModel();
+			FluidRegistry.addBucketForFluid(FLUIDLIQUIDIMPOSSIBILITY);
+		}
 	}
 		
 	private static void registerBuckets()
 	{			
-		//Stone
-		Registry.registerItem(BUCKETSTONE);		
-		Registry.registerItem(BUCKETSTONEWATER);
-		Registry.registerItem(BUCKETSTONELAVA);
-		Registry.registerItem(BUCKETSTONELI);				
-		Registry.registerItem(BUCKETSTONEMILK);
-				
-		//Same with Wood
-		Registry.registerItem(BUCKETWOOD);		
-		Registry.registerItem(BUCKETWOODWATER);	
-		Registry.registerItem(BUCKETWOODLI);
-		Registry.registerItem(BUCKETWOODMILK);
+		if (Config.enableStoneBucket) {
+			//Stone
+			Registry.registerItem(BUCKETSTONE);
+			Registry.registerItem(BUCKETSTONEWATER);
+			Registry.registerItem(BUCKETSTONELAVA);
+			Registry.registerItem(BUCKETSTONELI);
+			Registry.registerItem(BUCKETSTONEMILK);
+		}
+		if (Config.enableWoodBucket) {
+			//Same with Wood
+			Registry.registerItem(BUCKETWOOD);
+			Registry.registerItem(BUCKETWOODWATER);
+			Registry.registerItem(BUCKETWOODLI);
+			Registry.registerItem(BUCKETWOODMILK);
+		}
 	}
 }
