@@ -87,7 +87,7 @@ public class BlockHandler implements INames
         if(Config.enableElderLeaves) 		Registry.registerBlock(ELDERLEAVES);
         if(Config.enableElderWood) 			Registry.registerBlock(ELDERWOOD);
         if(Config.enableElderSlab) 			Registry.registerBlock(ELDERSLAB);
-        if(Config.enableBarrel) 			Registry.registerBlock(NETHERRACKGRAVEL);
+        if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
         if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
         if(Config.enableBarrel) 			Registry.registerBlock(STONEDOOR);  
