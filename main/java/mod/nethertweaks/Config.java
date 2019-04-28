@@ -109,8 +109,10 @@ public class Config {
 	public static boolean enableHammerDiamond;
 	public static boolean enableFlintNBlaze;
 	public static boolean enableStoneDoor;
+	public static boolean enableWoodBucket;
+	public static boolean enableStoneBucket;
 	
-	public static void loadConfigs()
+	public static void init()
 	{
 		Configuration config = new Configuration(new File(NetherTweaksMod.configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
@@ -119,9 +121,9 @@ public class Config {
                 
         burnTimeHellfayah 				= config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
-        burnTimeFurnace 				= config.get("Tweak", "How long should the burntime of the Netherrack Furnace be?", 1600).getInt();
-        dryTimeCondenser 				= config.get("Tweak", "How long should the drytime of the condenser be?", 2400).getInt();
-        freezeTimeFreezer 				= config.get("Tweak", "How long should the freezetime of the freezer be?", 6000).getInt();
+        burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks.", 1600).getInt();
+        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks.", 2400).getInt();
+        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks.", 6000).getInt();
                         
         StwtHDimension 					= config.get("World", "To which dimension shall the Stairway to Heaven send you back?", 1).getInt();
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you back?", -1).getInt();
@@ -152,10 +154,10 @@ public class Config {
         enableBarrelTransformLighting 	= config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
         
         //Liquid Impossibility
-        doesLIVaporize 					= config.get("World", "Can Liquid Impossibility vaporize?", false).getBoolean();
-        spawnPig 						= config.get("Mobs", "Can Liquid Impossibility transform pigmans?", true).getBoolean();
-        spawnSkeleton 					= config.get("Mobs", "Can Liquid Impossibility transform wither skeletons", true).getBoolean();
-        spawnSlime 						= config.get("Mobs", "Can Liquid Impossibility transform magma slimes?", true).getBoolean();
+        doesLIVaporize 					= config.get("Fluid", "Can Liquid Impossibility vaporize?", false).getBoolean();
+        spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
+        spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
+        spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
@@ -216,6 +218,8 @@ public class Config {
     	enableHammerDiamond 			= config.getBoolean("Enable Diamond Hammer?", "Items", true, "");
     	enableFlintNBlaze 				= config.getBoolean("Enable Flint & Blaze?", "Items", true, "");
     	enableStoneDoor 				= config.getBoolean("Enable Stone Door?", "Items", true, "");
+    	enableWoodBucket				= config.getBoolean("Enable Wood Bucket?", "Items", true, "");
+    	enableStoneBucket				= config.getBoolean("Enable Stone Bucket?", "Items", true, "");
     	
         config.save();
 	}

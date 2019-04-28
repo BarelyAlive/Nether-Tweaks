@@ -100,14 +100,14 @@ public class NetherTweaksMod
          
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
-    {
-    	Compatibility.init();
-        
+    {     
     	LogUtil.setup(MODID, configDirectory);
     	
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
     	configDirectory.mkdirs(); 	
-    	Config.loadConfigs();
+    	Config.init();
+    	
+    	Compatibility.init();
     	
     	NTMCapabilities.init();
     	NTMEntities.init();

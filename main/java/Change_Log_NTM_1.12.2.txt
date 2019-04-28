@@ -9,13 +9,14 @@ ChangeLog NTM 2.0.0
 * Condenser and freezer now have a new GUI
 * Condenser recipes, barrel recipes, Hammer rewards & siftable items are now editable via JSON
 * Condenser, Freezer & Netherrack Furnace now work with hoppers n stuff. 1. & 2. output fluid to sides
-* FlintNBlaze now is twice as durable
+* FlintNBlaze is now twice as durable
 * Hammers are now more durable
 * Freed id space
 * Changed icon of creative tab
 * Demon Water is now called Liquid Impossibility becaus of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
 * Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
+* Liquid Impossibility is now as cold as possible
 * New color for Liquid Impossibility to make it not look like p*** anymore
 * Mobs like squids etc. can now spawn in Liquid Impossibility
 * More and better config options!
@@ -36,6 +37,6 @@ ChangeLog NTM 2.0.0
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
 + Added mean vine strings (works as normal string (recipes))
 + Added pebbles (can be thrown for damage)
-+ Added support for WAILA, Moo Fluids, the one probe, draconic evolution, Applied Energistics, Forestry,
++ Added support for WAILA, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,
     Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and hopefully without crashes),
     Thermal Foundation, Tinkers Construct, Integrated Dynamics and many more

@@ -21,11 +21,11 @@ public interface INames {
 	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";
 	public static final String DUST 						= "dust";
 	public static final String STWH 						= "end_teleport";
-	public static final String ELDERSAPLING 				= "nether_sapling";
-	public static final String ELDERLEAVES 					= "nether_leaves";
-	public static final String ELDERWOOD					= "nether_wood";
-	public static final String ELDERSLAB					= "nether_slab";
-	public static final String ELDERLOG 					= "nether_log";
+	public static final String ELDERSAPLING 				= "elder_sapling";
+	public static final String ELDERLEAVES 					= "elder_leaves";
+	public static final String ELDERWOOD					= "elder_wood";
+	public static final String ELDERSLAB					= "elder_slab";
+	public static final String ELDERLOG 					= "elder_log";
 	public static final String NETHERRACKGRAVEL				= "netherrack_gravel";
 	public static final String BONFIRE 						= "bonfire";
 	public static final String MEANVINE 					= "mean_vine";

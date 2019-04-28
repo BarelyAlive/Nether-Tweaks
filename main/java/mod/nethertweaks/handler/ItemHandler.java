@@ -77,9 +77,6 @@ public class ItemHandler implements INames{
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
         if(Config.enableMeshes)  			Registry.registerItem(MESH);
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
-
-        //Food
-    	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
         
         //Werkzeuge
         if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKAXENETHERRACK);
@@ -91,6 +88,9 @@ public class ItemHandler implements INames{
         if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
         
+        //Food
+    	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
+    	
         //Doors
         if(Config.enableStoneDoor)  		Registry.registerItem(ITEMSTONEDOOR);
     }
