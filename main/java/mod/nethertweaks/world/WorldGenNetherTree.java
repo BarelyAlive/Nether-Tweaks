@@ -3,7 +3,7 @@ package mod.nethertweaks.world;
 import java.util.Random;
 
 import mod.nethertweaks.blocks.MeanVine;
-import mod.nethertweaks.blocks.NetherSapling;
+import mod.nethertweaks.blocks.ElderSapling;
 import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
@@ -22,8 +22,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class WorldGenNetherTree extends WorldGenAbstractTree
 {
-    private static final IBlockState DEFAULT_TRUNK = BlockHandler.NETHERLOG.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = BlockHandler.NETHERLEAVES.getDefaultState();
+    private static final IBlockState DEFAULT_TRUNK = BlockHandler.ELDERLOG.getDefaultState();
+    private static final IBlockState DEFAULT_LEAF = BlockHandler.ELDERLEAVES.getDefaultState();
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
     /** True if this tree should grow Vines. */
@@ -107,7 +107,7 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
             {
                 IBlockState state = worldIn.getBlockState(position.down());
 
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (NetherSapling)BlockHandler.NETHERSAPLING) && position.getY() < worldIn.getHeight() - i - 1)
+                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (ElderSapling)BlockHandler.ELDERSAPLING) && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     this.setDirtAt(worldIn, position.down());
                     int k2 = 3;

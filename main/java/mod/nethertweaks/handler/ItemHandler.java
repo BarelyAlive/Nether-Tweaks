@@ -71,27 +71,28 @@ public class ItemHandler implements INames{
     private static void registerItems()
     {
     	//Multi ID Item
-    	Registry.registerItem(ITEMBASE);
-        Registry.registerItem(SEED);
-        Registry.registerItem(CRYSTAL);
-        Registry.registerItem(PEBBLE);
-        Registry.registerItem(MESH);
-        Registry.registerItem(DOLL);
+    	if(Config.enableMultiItem)  		Registry.registerItem(ITEMBASE);
+    	if(Config.enableSeed) 				Registry.registerItem(SEED);
+    	if(Config.enableCrystals) 			Registry.registerItem(CRYSTAL);
+        if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
+        if(Config.enableMeshes)  			Registry.registerItem(MESH);
+        if(Config.enableDolls)  			Registry.registerItem(DOLL);
 
-    	Registry.registerItem(COOKEDJERKY);
+        //Food
+    	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
         
         //Werkzeuge
-        Registry.registerItem(PICKAXENETHERRACK);
-        Registry.registerItem(PICKAXENETHERBRICK);
+        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKAXENETHERRACK);
+        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKAXENETHERBRICK);
+        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);        
+        if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
+        if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
+        if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
+        if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
         
-        Registry.registerItem(HAMMERWOOD);
-        Registry.registerItem(HAMMERGOLD);
-        Registry.registerItem(HAMMERIRON);
-        Registry.registerItem(HAMMERDIAMOND);
-        Registry.registerItem(HAMMERSTONE);
-        
-        Registry.registerItem(FLINTANDBLAZE);        
-        Registry.registerItem(ITEMSTONEDOOR);
+        //Doors
+        if(Config.enableStoneDoor)  		Registry.registerItem(ITEMSTONEDOOR);
     }
     
     private static void addItemBurnTime()

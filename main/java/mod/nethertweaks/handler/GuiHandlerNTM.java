@@ -19,8 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiHandlerNTM implements IGuiHandler {
-	
+public class GuiHandlerNTM implements IGuiHandler
+{	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
@@ -39,7 +39,6 @@ public class GuiHandlerNTM implements IGuiHandler {
 		}
 	}
 		
-
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{

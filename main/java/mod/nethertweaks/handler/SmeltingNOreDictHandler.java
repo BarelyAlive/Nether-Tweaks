@@ -32,7 +32,7 @@ public class SmeltingNOreDictHandler {
 	{
 		//Schmelz-Rezepte		
 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
-		GameRegistry.addSmelting(BlockHandler.NETHERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
 		GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
 		GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
 	}
@@ -40,17 +40,17 @@ public class SmeltingNOreDictHandler {
 	//Ore-Dictionary
 	private static void oreRegistration()
     {
-		OreDictionary.registerOre("treeSapling", BlockHandler.NETHERSAPLING);
-		OreDictionary.registerOre("treeLeaves", BlockHandler.NETHERLEAVES);
+		OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
+		OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
 		OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
     	OreDictionary.registerOre("itemSalt", Konstanten.SALT);
     	OreDictionary.registerOre("dustSalt", Konstanten.SALT);
     	OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
     	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
     	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
-    	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.NETHERWOOD));
-    	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.NETHERSLAB));
-    	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.NETHERLOG));
+    	OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERWOOD));
+    	OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLAB));
+    	OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETSTONELI);
     	OreDictionary.registerOre("listAllDMW", BucketNFluidHandler.BUCKETWOODLI);
     	OreDictionary.registerOre("listAllDMW", FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));

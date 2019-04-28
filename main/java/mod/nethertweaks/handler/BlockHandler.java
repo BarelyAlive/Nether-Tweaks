@@ -1,5 +1,6 @@
 package mod.nethertweaks.handler;
  
+import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
@@ -42,12 +43,12 @@ public class BlockHandler implements INames
      
     //Blocks
     public static final Block DUST = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DUST));
-    public static final Block STWH = new EndTeleport();
-    public static final Block NETHERSAPLING = new NetherSapling();
-    public static final Block NETHERLOG = new NetherLog();
-    public static final Block NETHERLEAVES = new NetherLeaves();
-    public static final Block NETHERWOOD = new NetherWood();
-    public static final Block NETHERSLAB = new NetherSlab();
+    public static final Block STWH = new StwH();
+    public static final Block ELDERSAPLING = new ElderSapling();
+    public static final Block ELDERLOG = new ElderLog();
+    public static final Block ELDERLEAVES = new ElderLeaves();
+    public static final Block ELDERWOOD = new ElderWood();
+    public static final Block ELDERSLAB = new ElderSlab();
     public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
@@ -78,24 +79,24 @@ public class BlockHandler implements INames
     //Registering all the blocks
     private static void registerBlocks()
     {
-    	Registry.registerBlock(ITEMBLOCKBASIC);
-        Registry.registerBlock(DUST);
-        Registry.registerBlock(STWH);
-        Registry.registerBlock(NETHERSAPLING);
-        Registry.registerBlock(NETHERLOG);
-        Registry.registerBlock(NETHERLEAVES);
-        Registry.registerBlock(NETHERWOOD);
-        Registry.registerBlock(NETHERSLAB);
-        Registry.registerBlock(NETHERRACKGRAVEL);
-        Registry.registerBlock(BONFIRE);
-        Registry.registerBlock(MEANVINE);
-        Registry.registerBlock(STONEDOOR);  
-        Registry.registerBlock(CONDENSER);
-        Registry.registerBlock(NETHERRACKFURNACE);
-        Registry.registerBlock(BARREL);
-        Registry.registerBlock(BARRELSTONE);
-        Registry.registerBlock(SIEVE);
-        Registry.registerBlock(FREEZER);
-        Registry.registerBlock(HELLMART);
+    	if(Config.enableMultiBlock) 		Registry.registerBlock(ITEMBLOCKBASIC);
+        if(Config.enableDust) 				Registry.registerBlock(DUST);
+        if(Config.enableStwH) 				Registry.registerBlock(STWH);
+        if(Config.enableElderSapling) 		Registry.registerBlock(ELDERSAPLING);
+        if(Config.enableElderLog) 			Registry.registerBlock(ELDERLOG);
+        if(Config.enableElderLeaves) 		Registry.registerBlock(ELDERLEAVES);
+        if(Config.enableElderWood) 			Registry.registerBlock(ELDERWOOD);
+        if(Config.enableElderSlab) 			Registry.registerBlock(ELDERSLAB);
+        if(Config.enableBarrel) 			Registry.registerBlock(NETHERRACKGRAVEL);
+        if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
+        if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
+        if(Config.enableBarrel) 			Registry.registerBlock(STONEDOOR);  
+        if(Config.enableCondenser) 			Registry.registerBlock(CONDENSER);
+        if(Config.enableNetherrackFurnace)  Registry.registerBlock(NETHERRACKFURNACE);
+        if(Config.enableBarrel) 			Registry.registerBlock(BARREL);
+        if(Config.enableBarrel) 			Registry.registerBlock(BARRELSTONE);
+        if(Config.enableSieve) 				Registry.registerBlock(SIEVE);
+        if(Config.enableFreezer) 			Registry.registerBlock(FREEZER);
+        if(Config.enableHellmart) 			Registry.registerBlock(HELLMART);
     }
 }

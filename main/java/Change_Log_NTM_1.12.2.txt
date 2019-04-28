@@ -13,10 +13,11 @@ ChangeLog NTM 2.0.0
 * Hammers are now more durable
 * Freed id space
 * Changed icon of creative tab
-* Demon Water is now as bright as lava! (makes it perfect for crop fields)
-* Demon Water now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
-* New color for Demon Water for making it not look like p*** anymore
-* Mobs like squids etc. can now spawn in Demon Water
+* Demon Water is now called Liquid Impossibility becaus of new features!
+* Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
+* Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
+* New color for Liquid Impossibility to make it not look like p*** anymore
+* Mobs like squids etc. can now spawn in Liquid Impossibility
 * More and better config options!
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed things being not being in NTM's tab
@@ -30,6 +31,7 @@ ChangeLog NTM 2.0.0
 - Removed Water Fountain due to the new thirst system
 + Ender Crystal is back!
 + Prismarine shards are now sievable
++ Added config options to disable individual blocks
 + Added Dolls for spawning otherwise unobtainable animals
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
 + Added mean vine strings (works as normal string (recipes))
