@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -61,15 +62,20 @@ public class Freezer extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (worldIn.isBlockLoaded(pos)) {
-			if (!worldIn.isRemote) {
-				if (worldIn.getTileEntity(pos) instanceof TileFreezer) {
-					playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
-					return true;
-				}
-			}
+		if (!worldIn.isBlockLoaded(pos))
+    		return false;
+    	if(worldIn.isRemote)
+    		return false;
+    	if(playerIn.isSneaking())
+    		return false;
+    	  	
+    	TileSieve te = (TileSieve) worldIn.getTileEntity(pos);
+		if(!(te instanceof TileSieve)) {
+			return false;
 		}
-		return false;
+		
+		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 
 	@Override

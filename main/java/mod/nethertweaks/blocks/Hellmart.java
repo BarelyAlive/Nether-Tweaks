@@ -40,11 +40,16 @@ public class Hellmart extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-			EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(world.isRemote) {
-			return true;
-		}
-		TileEntity te = world.getTileEntity(pos);
+			EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		if (!world.isBlockLoaded(pos))
+    		return false;
+    	if(world.isRemote)
+    		return false;
+    	if(player.isSneaking())
+    		return false;
+    	  	
+    	TileHellmart te = (TileHellmart) world.getTileEntity(pos);
 		if(!(te instanceof TileHellmart)) {
 			return false;
 		}

@@ -34,15 +34,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
  
-public class NetherLog extends CubeFacingXYZ implements IVariantProvider{
+public class ElderLog extends CubeFacingXYZ implements IVariantProvider{
         
-    public NetherLog() {
-    	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERLOG));
+    public ElderLog() {
+    	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDERLOG));
     	setCreativeTab(NetherTweaksMod.tabNTM);
     	setHardness(2);
     	setResistance(10);
     	setSoundType(SoundType.WOOD);
-    	setUnlocalizedName(INames.NETHERLOG);
+    	setUnlocalizedName(INames.ELDERLOG);
 	}
     
     @Override

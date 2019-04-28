@@ -11,6 +11,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -62,21 +63,20 @@ public class Condenser extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
     {
-    	if (world.isBlockLoaded(pos)) {
-			if (!world.isRemote) {
-				// ...
-				if (player.isSneaking()) {
-					// ...
-				} else {
-					TileEntity te = world.getTileEntity(pos);
-
-					if (te instanceof TileCondenser)
-						player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			return true;
+    	if (!world.isBlockLoaded(pos))
+    		return false;
+    	if(world.isRemote)
+    		return false;
+    	if(player.isSneaking())
+    		return false;
+    	  	
+    	TileCondenser te = (TileCondenser) world.getTileEntity(pos);
+		if(!(te instanceof TileCondenser)) {
+			return false;
 		}
-    	return false;
+		
+		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
     }
     
     @Override

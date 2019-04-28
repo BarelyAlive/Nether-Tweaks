@@ -5,10 +5,10 @@ public interface INames {
 	public final static String NTM = "nethertweaksmod";
 
 	//Fluids
-	public static final String FLUIDLIQUIDIMPOSSIBILITY				= "liquid_impossibility";
+	public static final String FLUIDLIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//Fluidblocks
-	public static final String BLOCKLIQUIDIMPOSSIBILITY				= "liquid_impossibility";
+	public static final String BLOCKLIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//blocks
 	public static final String CONDENSER 					= "condenser";
@@ -20,12 +20,12 @@ public interface INames {
 	public static final String DOORNTMSTONE					= "door_ntm_stone";
 	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";
 	public static final String DUST 						= "dust";
-	public static final String ENDTELEPORT 					= "end_teleport";
-	public static final String NETHERSAPLING 				= "nether_sapling";
-	public static final String NETHERLEAVES 				= "nether_leaves";
-	public static final String NETHERWOOD					= "nether_wood";
-	public static final String NETHERSLAB					= "nether_slab";
-	public static final String NETHERLOG 					= "nether_log";
+	public static final String STWH 						= "stairway_to_heaven";
+	public static final String ELDERSAPLING 				= "elder_sapling";
+	public static final String ELDERLEAVES 					= "elder_leaves";
+	public static final String ELDERWOOD					= "elder_wood";
+	public static final String ELDERSLAB					= "elder_slab";
+	public static final String ELDERLOG 					= "elder_log";
 	public static final String NETHERRACKGRAVEL				= "netherrack_gravel";
 	public static final String BONFIRE 						= "bonfire";
 	public static final String MEANVINE 					= "mean_vine";
@@ -56,7 +56,7 @@ public interface INames {
 	public static final String BUCKETWOODMILK				= "bucket_wood_milk";
 	
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
-	public static final String CACTUSGRABBER 				= "item_cactus_grabber";
+	public static final String GRABBER 						= "grabber";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";
 	public static final String STRING 						= "string";
 	public static final String SEED							= "seed";

@@ -44,17 +44,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class NetherSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
+public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    public NetherSapling()
+    public ElderSapling()
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.tabNTM);
-        this.setUnlocalizedName(INames.NETHERSAPLING);
-        setRegistryName(NetherTweaksMod.MODID, INames.NETHERSAPLING);
+        this.setUnlocalizedName(INames.ELDERSAPLING);
+        setRegistryName(NetherTweaksMod.MODID, INames.ELDERSAPLING);
     }
 
     @Override

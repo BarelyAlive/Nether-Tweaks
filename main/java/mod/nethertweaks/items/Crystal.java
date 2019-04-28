@@ -1,5 +1,6 @@
 package mod.nethertweaks.items;
 
+import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -54,7 +55,7 @@ public class Crystal extends CustomItem{
     	
     	switch (itemstack.getItemDamage()) {
 		case 0:
-			if(playerIn.isSneaking()){
+			if(playerIn.isSneaking() && Config.enableCrystalLight){
 				if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
 					playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
 					playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
@@ -71,18 +72,19 @@ public class Crystal extends CustomItem{
 			}
 			break;	
 		case 1:
-			worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-	        playerIn.getCooldownTracker().setCooldown(this, 20);
-	
-	        if (!worldIn.isRemote)
-	        {
-	            EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, playerIn);
-	            entityenderpearl.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-	            worldIn.spawnEntity(entityenderpearl);
-	        }
-	
-	        playerIn.addStat(StatList.getObjectUseStats(this));
-	        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+			if (Config.enableCrystalEnder) {
+				worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
+						SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F,
+						0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+				playerIn.getCooldownTracker().setCooldown(this, 20);
+				if (!worldIn.isRemote) {
+					EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, playerIn);
+					entityenderpearl.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+					worldIn.spawnEntity(entityenderpearl);
+				}
+				playerIn.addStat(StatList.getObjectUseStats(this));
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+			}
 		default:
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 		}

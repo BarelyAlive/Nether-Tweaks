@@ -28,19 +28,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetherSlab extends Block implements IVariantProvider{
+public class ElderSlab extends Block implements IVariantProvider{
 
-	public static final PropertyEnum<NetherSlab.EnumBlockHalf> HALF = PropertyEnum.<NetherSlab.EnumBlockHalf>create("half", NetherSlab.EnumBlockHalf.class);
+	public static final PropertyEnum<ElderSlab.EnumBlockHalf> HALF = PropertyEnum.<ElderSlab.EnumBlockHalf>create("half", ElderSlab.EnumBlockHalf.class);
     protected static final AxisAlignedBB AABB_BOTTOM_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     protected static final AxisAlignedBB AABB_TOP_HALF = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
 	
-	public NetherSlab() {
+	public ElderSlab() {
 		super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM));
 		this.fullBlock = this.isDouble();
         this.setLightOpacity(255);
-        this.setUnlocalizedName(INames.NETHERSLAB);
-        setRegistryName("nethertweaksmod", INames.NETHERSLAB);
+        this.setUnlocalizedName(INames.ELDERSLAB);
+        setRegistryName("nethertweaksmod", INames.ELDERSLAB);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 	
@@ -48,16 +48,16 @@ public class NetherSlab extends Block implements IVariantProvider{
     public IBlockState getStateFromMeta(int meta)
     {
 		if(meta == 1){
-			return this.getDefaultState().withProperty(HALF, NetherSlab.EnumBlockHalf.TOP);
+			return this.getDefaultState().withProperty(HALF, ElderSlab.EnumBlockHalf.TOP);
 		}else{
-			return this.getDefaultState().withProperty(HALF, NetherSlab.EnumBlockHalf.BOTTOM);
+			return this.getDefaultState().withProperty(HALF, ElderSlab.EnumBlockHalf.BOTTOM);
 		}
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
     	
-    	if(state.getValue(HALF) == NetherSlab.EnumBlockHalf.TOP) {
+    	if(state.getValue(HALF) == ElderSlab.EnumBlockHalf.TOP) {
     		return 1;
     	} else {
     		return 0;
@@ -73,7 +73,7 @@ public class NetherSlab extends Block implements IVariantProvider{
 	@Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return this.isDouble() ? FULL_BLOCK_AABB : (state.getValue(HALF) == NetherSlab.EnumBlockHalf.TOP ? AABB_TOP_HALF : AABB_BOTTOM_HALF);
+        return this.isDouble() ? FULL_BLOCK_AABB : (state.getValue(HALF) == ElderSlab.EnumBlockHalf.TOP ? AABB_TOP_HALF : AABB_BOTTOM_HALF);
     }
 
     /**
@@ -104,7 +104,7 @@ public class NetherSlab extends Block implements IVariantProvider{
      */
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        IBlockState iblockstate = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, NetherSlab.EnumBlockHalf.BOTTOM);
+        IBlockState iblockstate = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(HALF, ElderSlab.EnumBlockHalf.BOTTOM);
 
         if (this.isDouble())
         {
@@ -112,7 +112,7 @@ public class NetherSlab extends Block implements IVariantProvider{
         }
         else
         {
-            return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, NetherSlab.EnumBlockHalf.TOP);
+            return facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D) ? iblockstate : iblockstate.withProperty(HALF, ElderSlab.EnumBlockHalf.TOP);
         }
     }
 

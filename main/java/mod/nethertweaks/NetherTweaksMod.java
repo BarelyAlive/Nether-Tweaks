@@ -100,14 +100,15 @@ public class NetherTweaksMod
          
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
-    {
-    	Compatibility.init();
-        
-    	LogUtil.setup(MODID, configDirectory);
-    	
+    {         	
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
-    	configDirectory.mkdirs(); 	
-    	Config.loadConfigs();
+    	configDirectory.mkdirs();
+    	
+    	LogUtil.setup(MODID, configDirectory);
+
+    	Config.init();
+    	
+    	Compatibility.init();
     	
     	NTMCapabilities.init();
     	NTMEntities.init();
@@ -140,7 +141,8 @@ public class NetherTweaksMod
     public void PostInit(FMLPostInitializationEvent event)
     {
     	//Mobs
-    	WorldHandler.addWaterMobs();
+    	if(Config.spawnWaterMobs)
+    		WorldHandler.addWaterMobs();
     }
     
     @SubscribeEvent

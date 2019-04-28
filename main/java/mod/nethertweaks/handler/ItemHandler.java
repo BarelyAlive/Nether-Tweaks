@@ -17,6 +17,7 @@ import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
+import mod.nethertweaks.items.Grabber;
 import mod.nethertweaks.items.HammerBase;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemMesh;
@@ -53,6 +54,7 @@ public class ItemHandler implements INames{
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
+    public static final Item GRABBER = new Grabber();
     public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 64, ToolMaterial.WOOD);
     public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 64, ToolMaterial.GOLD);
     public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 128, ToolMaterial.STONE);
@@ -71,27 +73,30 @@ public class ItemHandler implements INames{
     private static void registerItems()
     {
     	//Multi ID Item
-    	Registry.registerItem(ITEMBASE);
-        Registry.registerItem(SEED);
-        Registry.registerItem(CRYSTAL);
-        Registry.registerItem(PEBBLE);
-        Registry.registerItem(MESH);
-        Registry.registerItem(DOLL);
-
-    	Registry.registerItem(COOKEDJERKY);
+    	if(Config.enableMultiItem)  		Registry.registerItem(ITEMBASE);
+    	if(Config.enableSeed) 				Registry.registerItem(SEED);
+    	if(Config.enableCrystalLight && Config.enableCrystalEnder)
+    										Registry.registerItem(CRYSTAL);
+        if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
+        if(Config.enableMeshes)  			Registry.registerItem(MESH);
+        if(Config.enableDolls)  			Registry.registerItem(DOLL);
         
         //Werkzeuge
-        Registry.registerItem(PICKAXENETHERRACK);
-        Registry.registerItem(PICKAXENETHERBRICK);
+        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKAXENETHERRACK);
+        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKAXENETHERBRICK);
+        if(Config.enableGrabber)			Registry.registerItem(GRABBER);
+        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);        
+        if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
+        if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
+        if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
+        if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
         
-        Registry.registerItem(HAMMERWOOD);
-        Registry.registerItem(HAMMERGOLD);
-        Registry.registerItem(HAMMERIRON);
-        Registry.registerItem(HAMMERDIAMOND);
-        Registry.registerItem(HAMMERSTONE);
-        
-        Registry.registerItem(FLINTANDBLAZE);        
-        Registry.registerItem(ITEMSTONEDOOR);
+        //Food
+    	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
+    	
+        //Doors
+        if(Config.enableStoneDoor)  		Registry.registerItem(ITEMSTONEDOOR);
     }
     
     private static void addItemBurnTime()

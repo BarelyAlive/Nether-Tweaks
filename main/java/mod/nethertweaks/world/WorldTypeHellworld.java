@@ -16,19 +16,22 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.FlatGeneratorInfo;
 import net.minecraftforge.common.DimensionManager;
 
-public class WorldTypeHellworld extends WorldType {
-	
-	public WorldTypeHellworld(String par2Str) {
+public class WorldTypeHellworld extends WorldType
+{	
+	public WorldTypeHellworld(String par2Str)
+	{
 		super(par2Str);
 	}
 	
 	@Override
-	public int getMinimumSpawnHeight(World world) {
+	public int getMinimumSpawnHeight(World world)
+	{
 		return 1;
 	}
 	
 	@Override
-	public int getSpawnFuzz(WorldServer world, MinecraftServer server) {
+	public int getSpawnFuzz(WorldServer world, MinecraftServer server)
+	{
 		return 100;
 	}
 }

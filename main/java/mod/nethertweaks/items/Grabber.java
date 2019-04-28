@@ -28,12 +28,13 @@ import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemCactusGrabber extends ItemShears{
+public class Grabber extends ItemShears{
 
-	public ItemCactusGrabber(ToolMaterial material) {
+	public Grabber()
+	{
 		setCreativeTab(NetherTweaksMod.tabNTM);
-		setUnlocalizedName(INames.CACTUSGRABBER);
-		setRegistryName(NetherTweaksMod.MODID, INames.CACTUSGRABBER);
+		setUnlocalizedName(INames.GRABBER);
+		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
 		setMaxStackSize(1);
 	}
 	

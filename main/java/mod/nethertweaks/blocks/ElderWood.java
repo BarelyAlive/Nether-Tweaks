@@ -27,10 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetherWood extends Cube{
+public class ElderWood extends Cube{
 	    
-	public NetherWood() {
-		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERWOOD));
+	public ElderWood() {
+		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDERWOOD));
 	}
 	
 	@Override

@@ -34,17 +34,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class EndTeleport extends Block{
+public class StwH extends Block{
 		
-	public EndTeleport() {
+	public StwH() {
 		super(Material.ROCK);
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
-		setUnlocalizedName(INames.ENDTELEPORT);
+		setUnlocalizedName(INames.STWH);
 		setResistance(75.0F);
 		setHardness(16.0F);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ENDTELEPORT));
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.STWH));
 		setTickRandomly(true);
 	}
 	
@@ -64,16 +64,21 @@ public class EndTeleport extends Block{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (worldIn.isBlockLoaded(pos)) {
-			if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() != 1) {
-				playerIn.changeDimension(Config.StwtHDimension);
-			} else {
-				if (playerIn.getRidingEntity() == null && !worldIn.isRemote && worldIn.provider.getDimension() == 1) {
-					playerIn.changeDimension(Config.endDim);
-				}
-			} 
-		}
-		return false;
+		if (!worldIn.isBlockLoaded(pos))
+			return false;
+		if (worldIn.isRemote)
+			return false;
+		if(playerIn.getRidingEntity() != null)
+			return false;
+		
+		if (worldIn.provider.getDimension() != 1) {
+			playerIn.changeDimension(Config.StwtHDimension);
+		} else {
+			if (worldIn.provider.getDimension() == 1) {
+				playerIn.changeDimension(Config.endDim);
+			}
+		} 
+		return true;
 	}
 
 	@Override

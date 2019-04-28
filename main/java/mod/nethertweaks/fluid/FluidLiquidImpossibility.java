@@ -32,12 +32,15 @@ public class FluidLiquidImpossibility extends Fluid{
 	public FluidLiquidImpossibility()
 	{
 		super(INames.FLUIDLIQUIDIMPOSSIBILITY, still, flow);
+		
 		setDensity(FluidRegistry.WATER.getDensity());
 		setTemperature(0);
         setViscosity(FluidRegistry.WATER.getViscosity());
 		setUnlocalizedName(INames.FLUIDLIQUIDIMPOSSIBILITY);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
-		FluidRegistry.registerFluid(this);
+		
+		if(Config.enableLiquidImpossibility)
+			FluidRegistry.registerFluid(this);
 	}
 	
 	@Override
