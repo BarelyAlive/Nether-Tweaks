@@ -22,8 +22,10 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandlerNTM implements IGuiHandler {
 	
 	@Override
-	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch (ID) {
+	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		switch (ID)
+		{
 		case 0:
 			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
 		case 1:
@@ -39,8 +41,10 @@ public class GuiHandlerNTM implements IGuiHandler {
 		
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		switch (ID) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		switch (ID)
+		{
 		case 0:
 			return new GuiNetherrackFurnace(player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
 		case 1:
