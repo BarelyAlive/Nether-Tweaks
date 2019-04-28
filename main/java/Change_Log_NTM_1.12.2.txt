@@ -11,7 +11,6 @@ ChangeLog NTM 2.0.0
 * Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and automatically output fluids to the sides
 * FlintNBlaze are now twice as durable
 * Hammers are now much more durable
-* Freed id space
 * Changed icon of creative tab
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
@@ -20,6 +19,7 @@ ChangeLog NTM 2.0.0
 * New color for Liquid Impossibility to make it not look like p*** anymore
 * Mobs like squids etc. can now spawn in Liquid Impossibility
 * More and better config options!
+* Forgotten Tree is now called Elder Tree & looks different
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
@@ -29,7 +29,7 @@ ChangeLog NTM 2.0.0
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
-- Removed Water Fountain due to the new thirst system
+- Removed Water Fountain
 + Ender Crystal is back!
 + Prismarine shards are now sievable
 + Added config options to disable individual blocks & items

@@ -92,7 +92,7 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 
         GlStateManager.popMatrix();
 
-        float angle = RenderTickCounter.renderTicks * 45.0f / 128.0f;
+        float angle = RenderTickCounter.getRenderTicks() * 45.0f / 128.0f;
 
         // When we want to render translucent blocks we might need this
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();

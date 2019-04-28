@@ -24,10 +24,10 @@ import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
-import mod.nethertweaks.util.OreDictUtil;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.OreDictUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -369,6 +369,7 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
+    	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY);
     }
 
     @Override

@@ -49,28 +49,12 @@ public class Crystal extends CustomItem{
 	/**
      * Called when the equipped item is right clicked.
      */
+	@Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
     	ItemStack itemstack = playerIn.getHeldItem(handIn);
     	
-    	switch (itemstack.getItemDamage()) {
-		case 0:
-			if(playerIn.isSneaking() && Config.enableCrystalLight){
-				if(playerIn.inventory.hasItemStack(new ItemStack(Items.WATER_BUCKET))){
-					playerIn.inventory.clearMatchingItems(Items.WATER_BUCKET, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
-				}
-				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETSTONEWATER))){
-						playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETSTONEWATER, 0, 1, null);
-						playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETSTONELI));
-				}
-				if(playerIn.inventory.hasItemStack(new ItemStack(BucketNFluidHandler.BUCKETWOODWATER))){
-					playerIn.inventory.clearMatchingItems(BucketNFluidHandler.BUCKETWOODWATER, 0, 1, null);
-					playerIn.inventory.addItemStackToInventory(new ItemStack(BucketNFluidHandler.BUCKETWOODLI));
-				}
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-			}
-			break;	
+    	switch (itemstack.getItemDamage()) {	
 		case 1:
 			if (Config.enableCrystalEnder) {
 				worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
@@ -88,7 +72,5 @@ public class Crystal extends CustomItem{
 		default:
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	}
-
 }

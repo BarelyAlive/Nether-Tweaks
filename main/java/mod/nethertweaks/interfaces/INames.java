@@ -15,7 +15,6 @@ public interface INames {
 	public static final String NETHERRACKFURNACE 			= "netherrack_furnace";
 	public static final String BARREL						= "barrel";
 	public static final String FREEZER 						= "freezer";
-	public static final String WATERFOUNTAIN 				= "water_fountain";
 	
 	public static final String DOORNTMSTONE					= "door_ntm_stone";
 	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";
@@ -23,7 +22,7 @@ public interface INames {
 	public static final String STWH 						= "stairway_to_heaven";
 	public static final String ELDERSAPLING 				= "elder_sapling";
 	public static final String ELDERLEAVES 					= "elder_leaves";
-	public static final String ELDERWOOD					= "elder_wood";
+	public static final String ELDERPLANKS					= "elder_planks";
 	public static final String ELDERSLAB					= "elder_slab";
 	public static final String ELDERLOG 					= "elder_log";
 	public static final String NETHERRACKGRAVEL				= "netherrack_gravel";

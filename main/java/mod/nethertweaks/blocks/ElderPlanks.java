@@ -30,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ElderPlanks extends Cube{
 	    
 	public ElderPlanks() {
-		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDERWOOD));
+		super(Material.WOOD, 2.0F, 10.0F, NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDERPLANKS));
 	}
 	
 	@Override
