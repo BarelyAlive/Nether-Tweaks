@@ -34,7 +34,7 @@ public class SmeltingNOreDictHandler {
 		//Schmelz-Rezepte		
 		if(Config.enableJerky) 									GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
 		if(Config.enableElderLog) 								GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(Config.enableCrystals) 								GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
+		if(Config.enableCrystalLight)							GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
 		if(Config.enableMultiBlock && Config.enableMultiItem) 	GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
 	}
 	

@@ -26,7 +26,7 @@ generator.hellworld=Hellworld
 item.cooked_jerky.name=Cooked Jerky
 item.pickaxe_netherrack.name=Netherrack Pickaxe
 item.pickaxe_netherbrick.name=Netherbrick Pickaxe
-item.item_cactus_grabber.name=Grabber
+item.grabber.name=Grabber
 
 item.bucket_wood.name=Wood Bucket
 item.bucket_wood_water.name=Water Bucket
