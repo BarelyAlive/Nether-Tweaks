@@ -102,7 +102,6 @@ public class NetherTweaksMod
     public void PreInit(FMLPreInitializationEvent event)
     {         	
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
-    	configDirectory.mkdirs();
     	
     	LogUtil.setup(MODID, configDirectory);
 
