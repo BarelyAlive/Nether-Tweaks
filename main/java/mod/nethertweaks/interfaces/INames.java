@@ -20,7 +20,7 @@ public interface INames {
 	public static final String DOORNTMSTONE					= "door_ntm_stone";
 	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";
 	public static final String DUST 						= "dust";
-	public static final String STWH 						= "end_teleport";
+	public static final String STWH 						= "stairway_to_heaven";
 	public static final String ELDERSAPLING 				= "elder_sapling";
 	public static final String ELDERLEAVES 					= "elder_leaves";
 	public static final String ELDERWOOD					= "elder_wood";
