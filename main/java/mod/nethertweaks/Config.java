@@ -178,42 +178,44 @@ public class Config {
     	ingotBaseOreDictName 			= config.get("IngotBaseName", "Base Name for Ingots", "Ingot").getString();
         
     	//BlockEnable
-    	enableMultiBlock 				= config.getBoolean("Enable Hellfayah Block, Ore & Salt?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableDust 						= config.getBoolean("Enable Dust?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableBarrel 					= config.getBoolean("Enable Barrel?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableBonfire 					= config.getBoolean("Enable Bonfire?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableCondenser 				= config.getBoolean("Enable Condenser?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableStwH 						= config.getBoolean("Enable StwH?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableFreezer 					= config.getBoolean("Enable Freezer?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableHellmart 					= config.getBoolean("Enable Hellmart?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableLiquidImpossibility 		= config.getBoolean("Enable Liquid Impossibility?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableMeanVine 					= config.getBoolean("Enable Mean Vines?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableElderLeaves 				= config.getBoolean("Enable Elder Leaves?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableElderLog 					= config.getBoolean("Enable Elder Logs?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableNetherrackFurnace 		= config.getBoolean("Enable Elderrack Furnace?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableElderSapling 				= config.getBoolean("Enable Elder Sapling?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableElderSlab 				= config.getBoolean("Enable Elder Slab?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableNetherrackGravel			= config.getBoolean("Enable Netherrack Gravel?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableElderWood 				= config.getBoolean("Enable Elder Planks?", "Blocks", true, "Disabling this may break mechanics in NTM!");
-    	enableSieve 					= config.getBoolean("Enable Sieve?", "Blocks", true, "Disabling this may break mechanics in NTM!");
+    	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
+    	enableMultiBlock 				= config.getBoolean("Enable Hellfayah Block, Ore & Salt?", "Blocks", true, "");
+    	enableDust 						= config.getBoolean("Enable Dust?", "Blocks", true, "");
+    	enableBarrel 					= config.getBoolean("Enable Barrel?", "Blocks", true, "");
+    	enableBonfire 					= config.getBoolean("Enable Bonfire?", "Blocks", true, "");
+    	enableCondenser 				= config.getBoolean("Enable Condenser?", "Blocks", true, "");
+    	enableStwH 						= config.getBoolean("Enable StwH?", "Blocks", true, "");
+    	enableFreezer 					= config.getBoolean("Enable Freezer?", "Blocks", true, "");
+    	enableHellmart 					= config.getBoolean("Enable Hellmart?", "Blocks", true, "");
+    	enableLiquidImpossibility 		= config.getBoolean("Enable Liquid Impossibility?", "Blocks", true, "");
+    	enableMeanVine 					= config.getBoolean("Enable Mean Vines?", "Blocks", true, "");
+    	enableElderLeaves 				= config.getBoolean("Enable Elder Leaves?", "Blocks", true, "");
+    	enableElderLog 					= config.getBoolean("Enable Elder Logs?", "Blocks", true, "");
+    	enableNetherrackFurnace 		= config.getBoolean("Enable Elderrack Furnace?", "Blocks", true, "");
+    	enableElderSapling 				= config.getBoolean("Enable Elder Sapling?", "Blocks", true, "");
+    	enableElderSlab 				= config.getBoolean("Enable Elder Slab?", "Blocks", true, "");
+    	enableNetherrackGravel			= config.getBoolean("Enable Netherrack Gravel?", "Blocks", true, "");
+    	enableElderWood 				= config.getBoolean("Enable Elder Planks?", "Blocks", true, "");
+    	enableSieve 					= config.getBoolean("Enable Sieve?", "Blocks", true, "");
     	
     	//ItemEnable
-    	enableMultiItem 				= config.getBoolean("Enable Multi Item?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableSeed 						= config.getBoolean("Enable Seeds?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableCrystals 					= config.getBoolean("Enable Crystals?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enablePebbles 					= config.getBoolean("Enable Pebbles?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableMeshes 					= config.getBoolean("Enable Meshes?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableDolls 					= config.getBoolean("Enable Dolls?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableJerky 					= config.getBoolean("Enable Cooked Jerky?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enablePickAxeNetherrack 		= config.getBoolean("Enable Netherrack Pickaxe?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enablePickAxeNetherbrick 		= config.getBoolean("Enable Netherbrick Pickaxe?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableHammerWood 				= config.getBoolean("Enable Wood Hammer?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableHammerStone 				= config.getBoolean("Enable Stone Hammer?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableHammerGold 				= config.getBoolean("Enable Gold Hammer?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableHammerIron 				= config.getBoolean("Enable Iron Hammer?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableHammerDiamond 			= config.getBoolean("Enable Diamond Hammer?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableFlintNBlaze 				= config.getBoolean("Enable Flint & Blaze?", "Items", true, "Disabling this may break mechanics in NTM!");
-    	enableStoneDoor 				= config.getBoolean("Enable Stone Door?", "Items", true, "Disabling this may break mechanics in NTM!");
+    	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
+    	enableMultiItem 				= config.getBoolean("Enable Multi Item?", "Items", true, "");
+    	enableSeed 						= config.getBoolean("Enable Seeds?", "Items", true, "");
+    	enableCrystals 					= config.getBoolean("Enable Crystals?", "Items", true, "");
+    	enablePebbles 					= config.getBoolean("Enable Pebbles?", "Items", true, "");
+    	enableMeshes 					= config.getBoolean("Enable Meshes?", "Items", true, "");
+    	enableDolls 					= config.getBoolean("Enable Dolls?", "Items", true, "");
+    	enableJerky 					= config.getBoolean("Enable Cooked Jerky?", "Items", true, "");
+    	enablePickAxeNetherrack 		= config.getBoolean("Enable Netherrack Pickaxe?", "Items", true, "");
+    	enablePickAxeNetherbrick 		= config.getBoolean("Enable Netherbrick Pickaxe?", "Items", true, "");
+    	enableHammerWood 				= config.getBoolean("Enable Wood Hammer?", "Items", true, "");
+    	enableHammerStone 				= config.getBoolean("Enable Stone Hammer?", "Items", true, "");
+    	enableHammerGold 				= config.getBoolean("Enable Gold Hammer?", "Items", true, "");
+    	enableHammerIron 				= config.getBoolean("Enable Iron Hammer?", "Items", true, "");
+    	enableHammerDiamond 			= config.getBoolean("Enable Diamond Hammer?", "Items", true, "");
+    	enableFlintNBlaze 				= config.getBoolean("Enable Flint & Blaze?", "Items", true, "");
+    	enableStoneDoor 				= config.getBoolean("Enable Stone Door?", "Items", true, "");
     	
         config.save();
 	}
