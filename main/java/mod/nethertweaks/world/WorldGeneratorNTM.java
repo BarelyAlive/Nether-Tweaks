@@ -52,7 +52,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 				nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
 			} 
 		}
-		if (Config.enableElderLeaves && Config.enableElderLog && Config.enableElderSapling && Config.enableElderWood && Config.enableElderSlab) {
+		if (Config.enableElderTree) {
 			for (int i = 0; i < 15; i++) // 15 is rarity
 			{
 				int randPosX = posX + random.nextInt(16);

@@ -75,7 +75,7 @@ public class ItemHandler implements INames{
     	//Multi ID Item
     	if(Config.enableMultiItem)  		Registry.registerItem(ITEMBASE);
     	if(Config.enableSeed) 				Registry.registerItem(SEED);
-    	if(Config.enableCrystalLight && Config.enableCrystalEnder)
+    	if(Config.enableCrystalLight || Config.enableCrystalEnder)
     										Registry.registerItem(CRYSTAL);
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
         if(Config.enableMeshes)  			Registry.registerItem(MESH);

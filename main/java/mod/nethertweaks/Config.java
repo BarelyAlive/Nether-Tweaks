@@ -84,13 +84,9 @@ public class Config {
 	public static boolean enableHellmart;
 	public static boolean enableLiquidImpossibility;
 	public static boolean enableMeanVine;
-	public static boolean enableElderLeaves;
-	public static boolean enableElderLog;
+	public static boolean enableElderTree;
 	public static boolean enableNetherrackFurnace;
-	public static boolean enableElderSapling;
-	public static boolean enableElderSlab;
 	public static boolean enableNetherrackGravel;
-	public static boolean enableElderWood;
 	public static boolean enableSieve;
 	
 	//ItemEnable
@@ -195,13 +191,9 @@ public class Config {
     	enableHellmart 					= config.getBoolean("Enable Hellmart?", "Blocks", true, "");
     	enableLiquidImpossibility 		= config.getBoolean("Enable Liquid Impossibility?", "Blocks", true, "");
     	enableMeanVine 					= config.getBoolean("Enable Mean Vines?", "Blocks", true, "");
-    	enableElderLeaves 				= config.getBoolean("Enable Elder Leaves?", "Blocks", true, "");
-    	enableElderLog 					= config.getBoolean("Enable Elder Logs?", "Blocks", true, "");
+    	enableElderTree 				= config.getBoolean("Enable Elder Tree?", "Blocks", true, "");
     	enableNetherrackFurnace 		= config.getBoolean("Enable Elderrack Furnace?", "Blocks", true, "");
-    	enableElderSapling 				= config.getBoolean("Enable Elder Sapling?", "Blocks", true, "");
-    	enableElderSlab 				= config.getBoolean("Enable Elder Slab?", "Blocks", true, "");
     	enableNetherrackGravel			= config.getBoolean("Enable Netherrack Gravel?", "Blocks", true, "");
-    	enableElderWood 				= config.getBoolean("Enable Elder Planks?", "Blocks", true, "");
     	enableSieve 					= config.getBoolean("Enable Sieve?", "Blocks", true, "");
     	
     	//ItemEnable

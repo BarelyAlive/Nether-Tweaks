@@ -10,7 +10,7 @@ ChangeLog NTM 2.0.0
 * Condenser recipes, Barrel recipes, Hammer rewards & siftable items are now editable via JSON
 * Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and automatically output fluids to the sides
 * FlintNBlaze are now twice as durable
-* Hammers are now much more durable
+* Hammers are now more durable
 * Changed icon of creative tab
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
@@ -33,9 +33,9 @@ ChangeLog NTM 2.0.0
 + Ender Crystal is back!
 + Prismarine shards are now sievable
 + Added config options to disable individual blocks & items
-+ Added dolls to get otherwise unattainable mobs
++ Added dolls to get otherwise unobtainable mobs
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
-+ Added mean vine strings (works as normal string in recipes)
++ Added Mean Vine strings (works as normal string in recipes)
 + Added pebbles (can be thrown for damage)
 + Added support for WAILA, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,
     Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and hopefully without crashes),
