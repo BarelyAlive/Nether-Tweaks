@@ -46,9 +46,10 @@ public class BlockHandler implements INames
     public static final Block STWH = new StwH();
     public static final Block ELDERSAPLING = new ElderSapling();
     public static final Block ELDERLOG = new ElderLog();
-    public static final Block ELDERLEAVES = new ElderLeaf();
+    public static final Block ELDERLEAVES = new ElderLeaves();
     public static final Block ELDERWOOD = new ElderPlanks();
     public static final Block ELDERSLAB = new ElderSlab();
+    public static final Block ELDERSLABHALF = new ElderSlabHalf();
     public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
@@ -82,13 +83,14 @@ public class BlockHandler implements INames
     	if(Config.enableMultiBlock) 		Registry.registerBlock(ITEMBLOCKBASIC);
         if(Config.enableDust) 				Registry.registerBlock(DUST);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
-        if (Config.enableElderTree)
+        if(Config.enableElderTree)
         {
 											Registry.registerBlock(ELDERSAPLING);
 											Registry.registerBlock(ELDERLOG);
 											Registry.registerBlock(ELDERLEAVES);
 											Registry.registerBlock(ELDERWOOD);
-											Registry.registerBlock(ELDERSLAB);	
+											Registry.registerBlock(ELDERSLAB.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB));	
+											Registry.registerBlock(ELDERSLABHALF.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB + "_half"));
 		}
         if (Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
 		if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
