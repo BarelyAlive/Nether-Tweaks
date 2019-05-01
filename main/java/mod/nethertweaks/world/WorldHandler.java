@@ -4,6 +4,7 @@ import com.ibm.icu.impl.Differ;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.sfhcore.helper.NotNull;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityCow;
@@ -92,8 +93,12 @@ public class WorldHandler{
     {
     	if(!event.getWorld().isRemote)
     	{
-	    	if(event.getTarget() instanceof EntityCow)
+    		//Had to use id instead of "instanceof EntityCow" because it could cause problems with MooFluids etc.
+	    	if(event.getTarget().getEntityId() == 92)
 	    	{
+	    		if(! NotNull.checkNotNull(event.getItemStack()))
+	    			return;
+	    		
 	    		ItemStack stack = event.getItemStack();
 	    		Item item = stack.getItem();
 	    		EntityPlayer player = event.getEntityPlayer();

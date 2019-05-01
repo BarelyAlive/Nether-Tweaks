@@ -52,18 +52,17 @@ public class BlockHandler implements INames
     public static final Block ELDERLEAVES = new ElderLeaves();
     public static final Block ELDERPLANKS = new ElderPlanks();
     public static final Block ELDERSLABHALF = new ElderSlab.Half();
-    public static final Block ELDERSLAB = new ElderSlab();
-    public static final Block ELDERSLABDOUBLE = new ElderSlab.Double(ELDERSLABHALF, ELDERSLAB);
-    public static final ItemBlock ITEMELDERSLAB = new ItemBlockElderSlab();
+    public static final Block ELDERSLABDOUBLE = new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
     public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
-    
-    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f);
-    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC, NetherTweaksMod.tabNTM);
-        
     public static final Block STONEDOOR = new CustomDoor(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE), 30.0F, 2.0F);
+    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f);
     
+    //ItemBlocks
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC, NetherTweaksMod.tabNTM);
+    public static final ItemBlock ITEMELDERSLAB = new ItemBlockElderSlab();
+
     public static void init()
     {
     	registerTileEntities();
@@ -73,13 +72,13 @@ public class BlockHandler implements INames
     private static void registerTileEntities()
     {
     	//Tile Entity
-    	Registry.registerTileEntity(BONFIRE, TileBonfire.class);
-        Registry.registerTileEntity(CONDENSER, TileCondenser.class);
-        Registry.registerTileEntity(NETHERRACKFURNACE, TileNetherrackFurnace.class);
-        Registry.registerTileEntity(BARREL, TileBarrel.class);
-        Registry.registerTileEntity(SIEVE, TileSieve.class);
-        Registry.registerTileEntity(FREEZER, TileFreezer.class);
-        Registry.registerTileEntity(HELLMART, TileHellmart.class);
+    	if(Config.enableBonfire) 			Registry.registerTileEntity(BONFIRE, TileBonfire.class);
+    	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+    	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACKFURNACE, TileNetherrackFurnace.class);
+    	if(Config.enableBarrel)				Registry.registerTileEntity(BARREL, TileBarrel.class);
+    	if(Config.enableSieve)				Registry.registerTileEntity(SIEVE, TileSieve.class);
+    	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
+    	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
     }
         
     //Registering all the blocks
