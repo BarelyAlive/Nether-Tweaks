@@ -4,7 +4,9 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.properties.IProperty;
@@ -12,8 +14,12 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,9 +32,9 @@ public class ElderSlab extends BlockSlab
 
 	public ElderSlab()
 	{
-		super( BlockHandler.ELDERWOOD.getMaterial( BlockHandler.ELDERWOOD.getDefaultState() ) );
-		this.setHardness( BlockHandler.ELDERWOOD.getBlockHardness( BlockHandler.ELDERWOOD.getDefaultState(), null, null ) );
-		this.setResistance( BlockHandler.ELDERWOOD.getExplosionResistance( null ) * 5.0F / 3.0F );
+		super( BlockHandler.ELDERPLANKS.getMaterial( BlockHandler.ELDERPLANKS.getDefaultState() ) );
+		this.setHardness( BlockHandler.ELDERPLANKS.getBlockHardness( BlockHandler.ELDERPLANKS.getDefaultState(), null, null ) );
+		this.setResistance( BlockHandler.ELDERPLANKS.getExplosionResistance( null ) * 5.0F / 3.0F );
 
 		IBlockState iblockstate = this.blockState.getBaseState();
 
@@ -38,9 +44,47 @@ public class ElderSlab extends BlockSlab
 		}
 
 		this.setDefaultState( iblockstate.withProperty( VARIANT, Variant.DEFAULT ) );
-		this.setCreativeTab( CreativeTabs.BUILDING_BLOCKS );
 		this.useNeighborBrightness = true;
+		if(!this.isDouble())
+		{
+			this.setCreativeTab(NetherTweaksMod.tabNTM);
+		}
 	}
+		
+	/*
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(playerIn.getHeldItem(hand) != null && !this.isDouble())
+		{
+			if(ItemStack.areItemsEqual(playerIn.getActiveItemStack(), new ItemStack(BlockHandler.ELDERSLABHALF)));
+			
+			doDouble(worldIn, pos, state, hand, facing, hitX, hitY, hitZ);
+			
+			return true;
+		}
+		return false;//super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+	}
+	
+	private void doDouble(World worldIn, BlockPos pos, IBlockState state,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM)
+		{
+			if(facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D))
+			{
+				worldIn.setBlockState(pos, BlockHandler.ELDERSLABDOUBLE.getDefaultState());
+			}
+		}
+		else if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+		{
+			if(facing != EnumFacing.UP && (facing == EnumFacing.DOWN || (double)hitY >= 0.5D))
+			{
+				worldIn.setBlockState(pos, BlockHandler.ELDERSLABDOUBLE.getDefaultState());
+			}
+		}
+	}
+	*/
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
@@ -120,6 +164,8 @@ public class ElderSlab extends BlockSlab
 		{
 			super();
 			this.halfSlabBlock = halfSlabBlock;
+			this.setUnlocalizedName(INames.ELDERSLAB);
+			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB);
 		}
 
 		@Override
@@ -149,6 +195,8 @@ public class ElderSlab extends BlockSlab
 		public Half()
 		{
 			super();
+			this.setUnlocalizedName(INames.ELDERSLABHALF);
+			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
 		}
 
 		@Override
@@ -171,7 +219,6 @@ public class ElderSlab extends BlockSlab
 
 	@Override
 	public boolean isDouble() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

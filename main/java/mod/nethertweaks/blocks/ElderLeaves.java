@@ -23,6 +23,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.creativetab.CreativeTabs;
@@ -65,6 +66,13 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
+		this.leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
+
+		if(this.leavesFancy == Minecraft.getMinecraft().gameSettings.fancyGraphics)
+		{
+			worldIn.setBlockState(pos, this.getDefaultState());
+		}
+		
     	 if (!worldIn.isRemote)
          {
              if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
@@ -213,16 +221,6 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     public boolean isOpaqueCube(IBlockState state)
     {
         return !this.leavesFancy;
-    }
-
-    /**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
-     */
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void setGraphicsLevel(boolean fancy)
-    {
-        this.leavesFancy = fancy;
     }
 
     @SideOnly(Side.CLIENT)

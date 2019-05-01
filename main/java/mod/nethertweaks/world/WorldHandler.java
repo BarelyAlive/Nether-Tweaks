@@ -137,7 +137,6 @@ public class WorldHandler{
 			worldsave = WorldSaveData.get(event.getWorld());
 		}
 	}
-	
 	//*********************************************************************************************************************
 	
 	private void teleportPlayer(EntityPlayer player) {

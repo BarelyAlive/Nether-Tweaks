@@ -4,10 +4,10 @@
         "model": "forge:fluid"
     },
     "variants": {
-        "demon_water": [
+        "liquid_impossibility": [
             {
                 "custom": {
-                    "fluid": "demon_water"
+                    "fluid": "liquid_impossibility"
                 }
             }
         ]

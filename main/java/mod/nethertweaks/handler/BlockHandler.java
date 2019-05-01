@@ -14,6 +14,7 @@ import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.items.ItemBlockElderSlab;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
@@ -24,9 +25,11 @@ import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
@@ -47,9 +50,11 @@ public class BlockHandler implements INames
     public static final Block ELDERSAPLING = new ElderSapling();
     public static final Block ELDERLOG = new ElderLog();
     public static final Block ELDERLEAVES = new ElderLeaves();
-    public static final Block ELDERWOOD = new ElderPlanks();
+    public static final Block ELDERPLANKS = new ElderPlanks();
+    public static final Block ELDERSLABHALF = new ElderSlab.Half();
     public static final Block ELDERSLAB = new ElderSlab();
-    public static final Block ELDERSLABHALF = new ElderSlabHalf();
+    public static final Block ELDERSLABDOUBLE = new ElderSlab.Double(ELDERSLABHALF, ELDERSLAB);
+    public static final ItemBlock ITEMELDERSLAB = new ItemBlockElderSlab();
     public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
     public static final Block MEANVINE = new MeanVine();
     public static final Block SIEVE = new Sieve();
@@ -88,9 +93,9 @@ public class BlockHandler implements INames
 											Registry.registerBlock(ELDERSAPLING);
 											Registry.registerBlock(ELDERLOG);
 											Registry.registerBlock(ELDERLEAVES);
-											Registry.registerBlock(ELDERWOOD);
-											Registry.registerBlock(ELDERSLAB.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB));	
-											Registry.registerBlock(ELDERSLABHALF.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB + "_half"));
+											Registry.registerBlock(ELDERPLANKS);
+											Registry.registerBlock(ELDERSLABDOUBLE);
+											Registry.registerBlock(ITEMELDERSLAB);
 		}
         if (Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
 		if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
