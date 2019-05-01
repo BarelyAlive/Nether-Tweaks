@@ -90,14 +90,14 @@ public class BlockHandler implements INames
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree)
         {
-											Registry.registerBlock(ELDERSAPLING);
-											Registry.registerBlock(ELDERLOG);
-											Registry.registerBlock(ELDERLEAVES);
-											Registry.registerBlock(ELDERPLANKS);
-											Registry.registerBlock(ELDERSLABDOUBLE);
+			/*I think, that no */			Registry.registerBlock(ELDERSAPLING);
+			/*one wants to use */			Registry.registerBlock(ELDERLOG);
+			/*just some of     */			Registry.registerBlock(ELDERLEAVES);
+			/*these and not the*/			Registry.registerBlock(ELDERPLANKS);
+			/*the whole tree   */			Registry.registerBlock(ELDERSLABDOUBLE);
 											Registry.registerBlock(ITEMELDERSLAB);
 		}
-        if (Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
+        if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
 		if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
         if(Config.enableBarrel) 			Registry.registerBlock(STONEDOOR);  

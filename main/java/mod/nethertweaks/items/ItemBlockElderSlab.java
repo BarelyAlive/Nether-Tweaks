@@ -27,6 +27,7 @@ public class ItemBlockElderSlab extends ItemBlock{
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 
+	@SuppressWarnings("incomplete-switch")
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World worldIn, BlockPos pos, EnumFacing facing, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
@@ -101,52 +102,4 @@ public class ItemBlockElderSlab extends ItemBlock{
 			}		
 		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
-	/*
-	@SuppressWarnings("incomplete-switch")
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		IBlockState clicked = worldIn.getBlockState(pos);
-		IBlockState slab = BlockHandler.ELDERSLABDOUBLE.getDefaultState();
-		
-		System.out.println(clicked);
-		System.out.println(slab);
-		System.out.println(facing);
-		
-		//wenn von oben auf ein vorhandenes slab gesetzt wird
-		if(clicked.getProperties().containsValue(EnumBlockHalf.BOTTOM) && facing == EnumFacing.UP)
-		{
-			worldIn.setBlockState(pos, slab);
-		}
-		//wenn von unten auf ein vorhandenes slab gesetzt wird
-		if(clicked.getProperties().containsValue(EnumBlockHalf.TOP) && facing == EnumFacing.DOWN)
-		{
-			worldIn.setBlockState(pos, slab);
-		}
-		//wenn an die seite eines blocks gesetztw wird
-		if (facing != EnumFacing.UP && facing != EnumFacing.DOWN) {
-			//wenn an die seite eines blocks gesetzt wird welcher daneben ein bottom slab hat
-				switch (facing) {
-				case NORTH:
-					if(worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.north(1), slab);
-					break;
-				case EAST:
-					if(worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.east(1), slab);
-					break;
-				case SOUTH:
-					if(worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.south(1), slab);
-					break;
-				case WEST:
-					if(worldIn.getBlockState(pos.west(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.west(1), slab);
-					break;
-				}
-			}		
-		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-	}
-	*/
 }
