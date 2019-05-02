@@ -1,12 +1,18 @@
 package mod.nethertweaks.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.properties.IProperty;
@@ -25,7 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
-public class ElderSlab extends BlockSlab
+public class ElderSlab extends BlockSlab implements IVariantProvider
 {
 
 	static final PropertyEnum<ElderSlab.Variant> VARIANT = PropertyEnum.create( "variant", Variant.class );
@@ -50,41 +56,6 @@ public class ElderSlab extends BlockSlab
 			this.setCreativeTab(NetherTweaksMod.tabNTM);
 		}
 	}
-		
-	/*
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(playerIn.getHeldItem(hand) != null && !this.isDouble())
-		{
-			if(ItemStack.areItemsEqual(playerIn.getActiveItemStack(), new ItemStack(BlockHandler.ELDERSLABHALF)));
-			
-			doDouble(worldIn, pos, state, hand, facing, hitX, hitY, hitZ);
-			
-			return true;
-		}
-		return false;//super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-	}
-	
-	private void doDouble(World worldIn, BlockPos pos, IBlockState state,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.BOTTOM)
-		{
-			if(facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double)hitY <= 0.5D))
-			{
-				worldIn.setBlockState(pos, BlockHandler.ELDERSLABDOUBLE.getDefaultState());
-			}
-		}
-		else if(state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
-		{
-			if(facing != EnumFacing.UP && (facing == EnumFacing.DOWN || (double)hitY >= 0.5D))
-			{
-				worldIn.setBlockState(pos, BlockHandler.ELDERSLABDOUBLE.getDefaultState());
-			}
-		}
-	}
-	*/
 
 	/**
 	 * Convert the given metadata into a BlockState for this Block
@@ -96,7 +67,7 @@ public class ElderSlab extends BlockSlab
 
 		if( !this.isDouble() )
 		{
-			iblockstate = iblockstate.withProperty( HALF, ( meta & 8 ) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP );
+			iblockstate = iblockstate.withProperty( HALF, ( meta & 1 ) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP );
 		}
 
 		return iblockstate;
@@ -112,7 +83,7 @@ public class ElderSlab extends BlockSlab
 
 		if( !this.isDouble() && state.getValue( HALF ) == BlockSlab.EnumBlockHalf.TOP )
 		{
-			i |= 8;
+			return 1;
 		}
 
 		return i;
@@ -218,7 +189,21 @@ public class ElderSlab extends BlockSlab
 	}
 
 	@Override
-	public boolean isDouble() {
+	public boolean isDouble()
+	{
 		return false;
+	}
+
+	@Override
+	public List<Pair<Integer, String>> getVariants()
+	{
+		List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
+        if (!this.isDouble()) {
+			ret.add(new ImmutablePair<Integer, String>(0, "half=bottom,variant=default"));
+			ret.add(new ImmutablePair<Integer, String>(0, "half=top,variant=default"));
+		}
+        else
+        	ret.add(new ImmutablePair<Integer, String>(0, "variant=default"));
+		return ret;
 	}
 }

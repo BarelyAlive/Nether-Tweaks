@@ -9,6 +9,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -22,8 +23,8 @@ public class ItemBlockElderSlab extends ItemBlock{
 	
 	public ItemBlockElderSlab() {
 		super(BlockHandler.ELDERSLABHALF);
-		this.setUnlocalizedName("item_" + INames.ELDERSLAB);
-		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB);
+		this.setUnlocalizedName("item_" + INames.ELDERSLABHALF);
+		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}
 
@@ -33,12 +34,6 @@ public class ItemBlockElderSlab extends ItemBlock{
 			float hitY, float hitZ, EnumHand hand) {
 		IBlockState clicked = worldIn.getBlockState(pos);
 		IBlockState slab = BlockHandler.ELDERSLABDOUBLE.getDefaultState();
-		
-		System.out.println(clicked);
-		System.out.println(hitY);
-		
-		if(worldIn.isRemote)
-			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		
 		//wenn von oben auf ein vorhandenes slab gesetzt wird
 		if (clicked.getBlock() instanceof ElderSlab)
@@ -65,6 +60,11 @@ public class ItemBlockElderSlab extends ItemBlock{
 						worldIn.setBlockState(pos.down(1), slab);
 					}
 				}
+				else if (clicked.getBlock().isAir(clicked, worldIn, pos.down(1)))
+				{
+					worldIn.setBlockState(pos.down(1), BlockHandler.ELDERSLABHALF.getDefaultState().withProperty(BlockSlab.HALF, EnumBlockHalf.TOP));
+				}
+				clicked = worldIn.getBlockState(pos.up(1));
 			}
 			else if(hitY == 1)
 			{
@@ -76,6 +76,11 @@ public class ItemBlockElderSlab extends ItemBlock{
 						worldIn.setBlockState(pos.up(1), slab);
 					}
 				}
+				else if (clicked.getBlock().isAir(clicked, worldIn, pos.up(1)))
+				{
+					worldIn.setBlockState(pos.up(1), BlockHandler.ELDERSLABHALF.getDefaultState());
+				}
+				clicked = worldIn.getBlockState(pos.down(1));
 			}
 		}
 		//wenn an die seite eines blocks gesetztw wird
@@ -83,23 +88,26 @@ public class ItemBlockElderSlab extends ItemBlock{
 			//wenn an die seite eines blocks gesetzt wird welcher daneben ein bottom slab hat
 				switch (facing) {
 				case NORTH:
-					if(worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
+					if(worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
 						worldIn.setBlockState(pos.north(1), slab);
 					break;
 				case EAST:
-					if(worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
+					if(worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
 						worldIn.setBlockState(pos.east(1), slab);
 					break;
 				case SOUTH:
-					if(worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
+					if(worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
 						worldIn.setBlockState(pos.south(1), slab);
 					break;
 				case WEST:
-					if(worldIn.getBlockState(pos.west(1)).getProperties().containsValue(EnumBlockHalf.TOP) ||worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
+					if(worldIn.getBlockState(pos.west(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
 						worldIn.setBlockState(pos.west(1), slab);
 					break;
 				}
 			}		
-		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		if(!player.isCreative())
+			player.getHeldItem(hand).shrink(1);
+		
+		return EnumActionResult.SUCCESS;
 	}
 }

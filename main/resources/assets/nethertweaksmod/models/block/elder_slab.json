@@ -1,8 +1,6 @@
 {
-    "parent": "block/half_slab",
+    "parent": "block/cube_all",
     "textures": {
-        "bottom": "nethertweaksmod:blocks/elder_planks",
-        "top": "nethertweaksmod:blocks/elder_planks",
-        "side": "nethertweaksmod:blocks/elder_planks"
+        "all": "nethertweaksmod:blocks/elder_planks"
     }
 }
