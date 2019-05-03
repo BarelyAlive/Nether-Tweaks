@@ -36,11 +36,7 @@ public class FluidLiquidImpossibility extends Fluid{
 		setDensity(FluidRegistry.WATER.getDensity());
 		setTemperature(0);
         setViscosity(FluidRegistry.WATER.getViscosity());
-		setUnlocalizedName(INames.FLUIDLIQUIDIMPOSSIBILITY);
 		setLuminosity(FluidRegistry.LAVA.getLuminosity());
-		
-		if(Config.enableLiquidImpossibility)
-			FluidRegistry.registerFluid(this);
 	}
 	
 	@Override
@@ -51,20 +47,5 @@ public class FluidLiquidImpossibility extends Fluid{
 	@Override
 	public boolean doesVaporize(FluidStack fluidStack) {
 		return Config.doesLIVaporize;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		Block block = BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY;
-		
-		FluidStateMapper mapper = new FluidStateMapper(NetherTweaksMod.MODID, this);
-		
-		Item item = Item.getItemFromBlock(block);
-		if (item != null) {
-			ModelLoader.registerItemVariants(item);
-			ModelLoader.setCustomMeshDefinition(item, mapper);
-		}
-		
-		ModelLoader.setCustomStateMapper(block, mapper);		
 	}
 }

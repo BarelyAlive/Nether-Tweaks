@@ -30,6 +30,7 @@ import mod.sfhcore.Constants;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;
+import mod.sfhcore.registries.RegisterFluid;
 import mod.sfhcore.registries.Registry;
 
 
@@ -59,12 +60,8 @@ public class BucketNFluidHandler
 	
 	private static void registerFluids()
 	{
-		if (Config.enableLiquidImpossibility) {
-			//Fluids
-			Registry.registerBlock(BLOCKLIQUIDIMPOSSIBILITY);
-			((FluidLiquidImpossibility) FLUIDLIQUIDIMPOSSIBILITY).initModel();
-			FluidRegistry.addBucketForFluid(FLUIDLIQUIDIMPOSSIBILITY);
-		}
+		if (Config.enableLiquidImpossibility)
+			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 	}
 		
 	private static void registerBuckets()

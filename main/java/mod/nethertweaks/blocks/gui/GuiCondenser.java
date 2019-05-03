@@ -12,7 +12,7 @@ import mod.sfhcore.Constants;
 
 public class GuiCondenser extends GuiContainer {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/guicondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 	
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {

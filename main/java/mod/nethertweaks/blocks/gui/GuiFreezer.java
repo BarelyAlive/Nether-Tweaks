@@ -10,9 +10,10 @@ import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.sfhcore.Constants;
 
-public class GuiFreezer extends GuiContainer {
+public class GuiFreezer extends GuiContainer
+{
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.TEX + "textures/gui/guifreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guifreezer.png");
 	private TileFreezer entity;
 	
 	public GuiFreezer(InventoryPlayer inventoryPlayer, TileFreezer tileEntity) {
