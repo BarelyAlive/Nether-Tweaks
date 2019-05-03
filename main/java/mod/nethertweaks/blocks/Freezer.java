@@ -50,9 +50,8 @@ public class Freezer extends CubeContainerHorizontal{
     private static boolean keepInventory;
 	
 	public Freezer() {
-		super(Material.ROCK, new ResourceLocation("nethertweaksmod", INames.FREEZER));
+		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setUnlocalizedName(INames.FREEZER);
 		setResistance(17.5f);
 		setHardness(3.5f);
 		setCreativeTab(NetherTweaksMod.tabNTM);

@@ -41,7 +41,6 @@ public class StwH extends Block{
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
-		setUnlocalizedName(INames.STWH);
 		setResistance(75.0F);
 		setHardness(16.0F);
 		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.STWH));

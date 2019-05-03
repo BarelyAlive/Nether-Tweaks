@@ -22,7 +22,6 @@ public class HammerBase extends ItemTool implements IHammer  {
 	public HammerBase(ResourceLocation loc, int maxUses, ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
-		this.setUnlocalizedName(loc.getResourcePath());
 		this.setRegistryName(loc);
 		this.setMaxDamage(maxUses);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);

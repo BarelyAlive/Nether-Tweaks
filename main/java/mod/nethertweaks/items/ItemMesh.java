@@ -29,7 +29,6 @@ public class ItemMesh extends Item implements IVariantProvider{
 	public ItemMesh() {
 		super();
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(name);
 		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, name));
 		this.setMaxStackSize(1);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);

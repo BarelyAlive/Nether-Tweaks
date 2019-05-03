@@ -42,7 +42,6 @@ public class ElderLog extends CubeFacingXYZ implements IVariantProvider{
     	setHardness(2);
     	setResistance(10);
     	setSoundType(SoundType.WOOD);
-    	setUnlocalizedName(INames.ELDERLOG);
 	}
     
     @Override

@@ -24,7 +24,6 @@ public class ItemBlockElderSlab extends ItemBlock
 	public ItemBlockElderSlab()
 	{
 		super(BlockHandler.ELDERSLABHALF);
-		this.setUnlocalizedName("item_" + INames.ELDERSLABHALF);
 		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
 	}

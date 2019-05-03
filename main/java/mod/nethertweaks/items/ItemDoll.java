@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.monster.EntityBlaze;
@@ -59,8 +60,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 	public ItemDoll()
 	{		
 		super();
-		setUnlocalizedName("item_doll");
-		setRegistryName(NetherTweaksMod.MODID, "item_doll");
+		setRegistryName(NetherTweaksMod.MODID, INames.DOLL);
 		
 		setCreativeTab(NetherTweaksMod.tabNTM);
 		setHasSubtypes(true);

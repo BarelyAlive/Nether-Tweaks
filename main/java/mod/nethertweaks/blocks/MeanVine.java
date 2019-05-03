@@ -23,8 +23,7 @@ public class MeanVine extends BlockVine{
 	
 	public MeanVine(){
 		setCreativeTab(NetherTweaksMod.tabNTM);
-		setUnlocalizedName(INames.MEANVINE);
-		setRegistryName("nethertweaksmod", INames.MEANVINE);
+		setRegistryName(NetherTweaksMod.MODID, INames.MEANVINE);
 	}
 
 	@Override

@@ -52,7 +52,6 @@ public class LiquidImpossibility extends BlockFluidClassic{
         setResistance(3000.0F);
         setHardness(300.0F);
         setRegistryName(NetherTweaksMod.MODID, INames.BLOCKLIQUIDIMPOSSIBILITY);
-        setUnlocalizedName(INames.BLOCKLIQUIDIMPOSSIBILITY);
         setLightLevel(15);
         setTemperature(0);
     }

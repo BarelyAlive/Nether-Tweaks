@@ -135,7 +135,6 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 		{
 			super();
 			this.halfSlabBlock = halfSlabBlock;
-			this.setUnlocalizedName(INames.ELDERSLAB);
 			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB);
 		}
 
@@ -166,7 +165,6 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 		public Half()
 		{
 			super();
-			this.setUnlocalizedName(INames.ELDERSLABHALF);
 			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
 		}
 

@@ -62,7 +62,6 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         setResistance(17.5F);
         setHardness(3.5F);
         setCreativeTab(NetherTweaksMod.tabNTM);
-        setUnlocalizedName(INames.NETHERRACKFURNACE);
     }
 
     @SideOnly(Side.CLIENT)

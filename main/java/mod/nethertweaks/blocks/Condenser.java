@@ -51,9 +51,8 @@ public class Condenser extends CubeContainerHorizontal{
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     public Condenser() {
-        super(Material.ROCK, new ResourceLocation("nethertweaksmod", INames.CONDENSER));
+        super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.CONDENSER));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setUnlocalizedName(INames.CONDENSER);
         setResistance(30.0f);
         setHardness(4.0f);
         setCreativeTab(NetherTweaksMod.tabNTM);

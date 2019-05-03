@@ -49,8 +49,7 @@ public class ItemHandler implements INames{
 	public static final Item ITEMBASE = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
     
 	//Food
-    public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true)
-    		.setUnlocalizedName(INames.COOKEDJERKY).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
+    public static final Item COOKEDJERKY = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
     
     //Werkzeuge
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);

@@ -42,7 +42,6 @@ public class ItemPebble extends Item implements IVariantProvider
     public ItemPebble()
     {
         this.setHasSubtypes(true);
-        this.setUnlocalizedName(INames.PEBBLE);
         this.setRegistryName(NetherTweaksMod.MODID, INames.PEBBLE);
         this.setCreativeTab(NetherTweaksMod.tabNTM);
     }

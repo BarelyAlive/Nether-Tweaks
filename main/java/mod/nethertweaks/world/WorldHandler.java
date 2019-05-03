@@ -93,7 +93,7 @@ public class WorldHandler{
     {
     	if(!event.getWorld().isRemote)
     	{
-    		//Had to use id instead of "instanceof EntityCow" because it could cause problems with MooFluids etc.
+    		//Had to use ID instead of "instanceof EntityCow" because it could cause problems with MooFluids etc.
 	    	if(event.getTarget().getEntityId() == 92)
 	    	{
 	    		if(! NotNull.checkNotNull(event.getItemStack()))
@@ -163,9 +163,8 @@ public class WorldHandler{
     	{
 			for (int i : Config.allowedDims) {
 				if (i == dim)
-					return false;
+					return true;
 			} 
-			return true;
 		}
 		return false;
     }

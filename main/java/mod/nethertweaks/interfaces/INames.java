@@ -74,4 +74,6 @@ public interface INames {
 	public static final String HAMMERSTONE 					= "hammer_stone";
 	public static final String HAMMERIRON					= "hammer_iron";
 	public static final String HAMMERDIAMOND				= "hammer_diamond";
+
+	public static final String DOLL 						= "item_doll";
 }

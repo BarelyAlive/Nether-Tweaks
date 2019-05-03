@@ -46,7 +46,6 @@ public class Sieve extends Block{
     public Sieve() {
         super(Material.WOOD);
         this.setHardness(2.0f);
-        this.setUnlocalizedName(INames.SIEVE);
         this.setRegistryName(INames.SIEVE);
         this.setCreativeTab(NetherTweaksMod.tabNTM);
         this.setDefaultState(this.blockState.getBaseState().withProperty(MESH, MeshType.NO_RENDER));
