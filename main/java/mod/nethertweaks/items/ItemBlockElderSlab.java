@@ -19,9 +19,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemBlockElderSlab extends ItemBlock{
-	
-	public ItemBlockElderSlab() {
+public class ItemBlockElderSlab extends ItemBlock
+{
+	public ItemBlockElderSlab()
+	{
 		super(BlockHandler.ELDERSLABHALF);
 		this.setUnlocalizedName("item_" + INames.ELDERSLABHALF);
 		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
@@ -31,7 +32,8 @@ public class ItemBlockElderSlab extends ItemBlock{
 	@SuppressWarnings("incomplete-switch")
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World worldIn, BlockPos pos, EnumFacing facing, float hitX,
-			float hitY, float hitZ, EnumHand hand) {
+			float hitY, float hitZ, EnumHand hand)
+	{
 		IBlockState clicked = worldIn.getBlockState(pos);
 		IBlockState slab = BlockHandler.ELDERSLABDOUBLE.getDefaultState();
 		

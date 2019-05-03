@@ -1,6 +1,8 @@
 package mod.nethertweaks.client.renderers;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.sfhcore.client.renderers.ModelVertex;
+import mod.sfhcore.client.renderers.SpriteColor;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
@@ -83,12 +85,4 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
             buffer.endVertex();
         }
     }
-
-    /*
-	@Override
-	public void renderTileEntityFast(TileBarrel te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer) {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 }

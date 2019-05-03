@@ -18,7 +18,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import java.util.List;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.client.renderers.SpriteColor;
+import mod.sfhcore.client.renderers.SpriteColor;
 import mod.sfhcore.texturing.Color;
 
 public interface IBarrelMode {
