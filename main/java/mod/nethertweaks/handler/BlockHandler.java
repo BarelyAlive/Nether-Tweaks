@@ -36,32 +36,32 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BlockHandler implements INames
 {	
 	//Tile Entity
-    public static final Block CONDENSER = new Condenser();
+    public static final Block CONDENSER 		= new Condenser();
     public static final Block NETHERRACKFURNACE = new NetherrackFurnace();
-    public static final Block BARREL = new Barrel(0, Material.WOOD);
-    public static final Block BARRELSTONE = new Barrel(1, Material.ROCK);
-    public static final Block FREEZER = new Freezer();
-    public static final Block BONFIRE = new Bonfire();
-    public static final Block HELLMART = new Hellmart();
+    public static final Block BARREL 			= new Barrel(0, Material.WOOD);
+    public static final Block BARRELSTONE 		= new Barrel(1, Material.ROCK);
+    public static final Block FREEZER 			= new Freezer();
+    public static final Block BONFIRE 			= new Bonfire();
+    public static final Block HELLMART 			= new Hellmart();
      
     //Blocks
-    public static final Block DUST = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DUST));
-    public static final Block STWH = new StwH();
-    public static final Block ELDERSAPLING = new ElderSapling();
-    public static final Block ELDERLOG = new ElderLog();
-    public static final Block ELDERLEAVES = new ElderLeaves();
-    public static final Block ELDERPLANKS = new ElderPlanks();
-    public static final Block ELDERSLABHALF = new ElderSlab.Half();
-    public static final Block ELDERSLABDOUBLE = new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
-    public static final Block NETHERRACKGRAVEL = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
-    public static final Block MEANVINE = new MeanVine();
-    public static final Block SIEVE = new Sieve();
-    public static final Block STONEDOOR = new CustomDoor(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE), 30.0F, 2.0F);
-    public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f, NetherTweaksMod.tabNTM);
+    public static final Block DUST 				= new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.DUST));
+    public static final Block STWH 				= new StwH();
+    public static final Block ELDERSAPLING 		= new ElderSapling();
+    public static final Block ELDERLOG 			= new ElderLog();
+    public static final Block ELDERLEAVES 		= new ElderLeaves();
+    public static final Block ELDERPLANKS 		= new ElderPlanks();
+    public static final Block ELDERSLABHALF 	= new ElderSlab.Half();
+    public static final Block ELDERSLABDOUBLE 	= new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
+    public static final Block NETHERRACKGRAVEL 	= new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.tabNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
+    public static final Block MEANVINE 			= new MeanVine();
+    public static final Block SIEVE 			= new Sieve();
+    public static final Block STONEDOOR 		= new CustomDoor(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE), 30.0F, 2.0F);
+    public static final Block BLOCKBASIC 		= new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f, NetherTweaksMod.tabNTM);
     
     //ItemBlocks
-    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(BLOCKBASIC, NetherTweaksMod.tabNTM);
     public static final ItemBlock ITEMELDERSLAB = new ItemBlockElderSlab();
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(BLOCKBASIC, NetherTweaksMod.tabNTM);
 
     public static void init()
     {
