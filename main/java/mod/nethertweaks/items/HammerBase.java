@@ -19,13 +19,18 @@ public class HammerBase extends ItemTool implements IHammer  {
 
 	private int miningLevel;
 
-	public HammerBase(String name, int maxUses, ToolMaterial material)
+	public HammerBase(int maxUses, ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
-		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, name));
+		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));
 		this.setMaxDamage(maxUses);
 		this.setCreativeTab(NetherTweaksMod.tabNTM);
 		this.miningLevel = material.getHarvestLevel();
+	}
+	
+	private String getName(ToolMaterial m)
+	{		
+		return "hammer_" + m.name();
 	}
 	
     @Override

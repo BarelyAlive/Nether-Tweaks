@@ -60,7 +60,7 @@ public class BlockHandler implements INames
     public static final Block BLOCKBASIC = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f);
     
     //ItemBlocks
-    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum((BlockEnum) BLOCKBASIC, NetherTweaksMod.tabNTM);
+    public static final ItemBlock ITEMBLOCKBASIC = new ItemBlockEnum(BLOCKBASIC, NetherTweaksMod.tabNTM);
     public static final ItemBlock ITEMELDERSLAB = new ItemBlockElderSlab();
 
     public static void init()
