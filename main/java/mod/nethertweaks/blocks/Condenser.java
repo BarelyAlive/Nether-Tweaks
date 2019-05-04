@@ -55,7 +55,7 @@ public class Condenser extends CubeContainerHorizontal{
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setResistance(30.0f);
         setHardness(4.0f);
-        setCreativeTab(NetherTweaksMod.tabNTM);
+        setCreativeTab(NetherTweaksMod.TABNTM);
     }
     
     @Override

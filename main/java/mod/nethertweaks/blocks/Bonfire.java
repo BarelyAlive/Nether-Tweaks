@@ -44,7 +44,7 @@ public class Bonfire extends BlockContainer {
 		super(Material.ROCK);
 		setLightLevel(15);
 		setRegistryName(NetherTweaksMod.MODID, INames.BONFIRE);
-		setCreativeTab(NetherTweaksMod.tabNTM);
+		setCreativeTab(NetherTweaksMod.TABNTM);
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	

@@ -25,7 +25,7 @@ public class ItemBlockElderSlab extends ItemBlock
 	{
 		super(BlockHandler.ELDERSLABHALF);
 		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
+		this.setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 
 	@SuppressWarnings("incomplete-switch")

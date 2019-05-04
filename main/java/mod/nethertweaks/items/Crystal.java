@@ -38,7 +38,7 @@ import net.minecraftforge.fml.common.Loader;
 public class Crystal extends CustomItem{
 		
 	public Crystal() {
-		super(null, 1, NetherTweaksMod.tabNTM, true, 2, new ResourceLocation(NetherTweaksMod.MODID, INames.CRYSTAL));
+		super(null, 1, NetherTweaksMod.TABNTM, true, 2, new ResourceLocation(NetherTweaksMod.MODID, INames.CRYSTAL));
 	}
 	
 	@Override

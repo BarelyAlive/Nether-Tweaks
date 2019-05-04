@@ -51,7 +51,7 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 
 		this.setDefaultState( iblockstate.withProperty( VARIANT, Variant.DEFAULT ) );
 		this.useNeighborBrightness = true;
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
+		this.setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 
 	/**

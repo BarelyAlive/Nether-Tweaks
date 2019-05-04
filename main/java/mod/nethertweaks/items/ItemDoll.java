@@ -62,7 +62,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 		super();
 		setRegistryName(NetherTweaksMod.MODID, INames.DOLL);
 		
-		setCreativeTab(NetherTweaksMod.tabNTM);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		setHasSubtypes(true);
 		
 		names.add(BAT);

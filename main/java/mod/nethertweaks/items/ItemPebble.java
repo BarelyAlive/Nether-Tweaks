@@ -43,7 +43,7 @@ public class ItemPebble extends Item implements IVariantProvider
     {
         this.setHasSubtypes(true);
         this.setRegistryName(NetherTweaksMod.MODID, INames.PEBBLE);
-        this.setCreativeTab(NetherTweaksMod.tabNTM);
+        this.setCreativeTab(NetherTweaksMod.TABNTM);
     }
     
     @SideOnly(Side.CLIENT)

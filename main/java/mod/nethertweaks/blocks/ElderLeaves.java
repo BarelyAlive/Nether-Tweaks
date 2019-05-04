@@ -55,7 +55,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
         super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
         this.setTickRandomly(true);
-        this.setCreativeTab(NetherTweaksMod.tabNTM);
+        this.setCreativeTab(NetherTweaksMod.TABNTM);
         this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERLEAVES);
         this.setHardness(0.2F);
         this.setLightOpacity(1);

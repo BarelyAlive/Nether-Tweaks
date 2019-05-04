@@ -32,7 +32,7 @@ public class Grabber extends ItemShears{
 
 	public Grabber()
 	{
-		setCreativeTab(NetherTweaksMod.tabNTM);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
 		setMaxStackSize(1);
 	}

@@ -61,7 +61,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);
-        setCreativeTab(NetherTweaksMod.tabNTM);
+        setCreativeTab(NetherTweaksMod.TABNTM);
     }
 
     @SideOnly(Side.CLIENT)

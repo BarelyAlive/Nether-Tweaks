@@ -38,7 +38,7 @@ public class StwH extends Block{
 		
 	public StwH() {
 		super(Material.ROCK);
-		setCreativeTab(NetherTweaksMod.tabNTM);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);

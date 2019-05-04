@@ -46,10 +46,10 @@ public class ItemHandler implements INames{
     public static final Item DOLL 			 = new ItemDoll();
     
     //Multi ID Item
-	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.tabNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
     
 	//Food
-    public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.tabNTM);
+    public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.TABNTM);
     
     //Werkzeuge
     public static final Item PICKNETHERRACK	 = new PickaxeNTM(ToolMaterial.STONE);
@@ -62,7 +62,7 @@ public class ItemHandler implements INames{
     public static final Item HAMMERDIAMOND 	 = new HammerBase(4096, ToolMaterial.DIAMOND);
     
     //itemblocks
-    public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
+    public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
     
 	public static void init()
 	{

@@ -76,7 +76,6 @@ public class NetherTweaksMod
     
     static
     {      
-    	FluidRegistry.enableUniversalBucket();
     	MessageHandler.init();
     }
     
@@ -86,15 +85,7 @@ public class NetherTweaksMod
     public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
     
     //Creative Tabs
-    public static final CreativeTabs tabNTM = new CreativeTabs("tab_nether_tweaks_mod")
-    {     
-        @Override
-        @SideOnly(Side.CLIENT)
-        public ItemStack getTabIconItem()
-        {
-            return Konstanten.HELLFAYAH;
-        }
-    };
+    public static final CreativeTabs TABNTM = new CreativeTabNTM();
     
     public WorldType Hellworld = new WorldTypeHellworld("hellworld");
          

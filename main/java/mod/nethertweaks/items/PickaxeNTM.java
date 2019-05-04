@@ -11,7 +11,7 @@ public class PickaxeNTM extends ItemPickaxe{
 	public PickaxeNTM(ToolMaterial material) {
 		super(material);
 		this.setRegistryName(NetherTweaksMod.MODID, getNameByMaterial(material));
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
+		this.setCreativeTab(NetherTweaksMod.TABNTM);
 		this.setMaxStackSize(1);
 	}
 

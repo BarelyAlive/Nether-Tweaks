@@ -57,7 +57,7 @@ public class ItemOre extends Item {
 		registerIngot = ore.getResult() == null;
 		this.setUnlocalizedName(Constants.MOD + ".ore."+ore.getName());
 		this.setRegistryName("itemOre"+StringUtils.capitalize(ore.getName()));
-		this.setCreativeTab(NetherTweaksMod.tabNTM);
+		this.setCreativeTab(NetherTweaksMod.TABNTM);
 		this.setHasSubtypes(true);
 	}
 

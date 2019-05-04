@@ -8,50 +8,40 @@
         "type": {
           "0": {
             "textures": {
-              "layer0": "nethertweaksmod:items/crushed_gold"
+              "layer0": "nethertweaksmod:items/end_box"
             }
           },
           "1": {
             "textures": {
-              "layer0": "nethertweaksmod:items/crushed_iron"
+              "layer0": "nethertweaksmod:items/portal_core"
             }
           },
           "2": {
             "textures": {
-              "layer0": "nethertweaksmod:items/end_box"
+              "layer0": "nethertweaksmod:items/item_ender_infused_frame"
             }
           },
           "3": {
             "textures": {
-              "layer0": "nethertweaksmod:items/portal_core"
+              "layer0": "nethertweaksmod:items/hellfayah"
             }
           },
           "4": {
             "textures": {
-              "layer0": "nethertweaksmod:items/item_ender_infused_frame"
+              "layer0": "nethertweaksmod:items/item_light_pulver"
             }
           },
           "5": {
             "textures": {
-              "layer0": "nethertweaksmod:items/hellfayah"
+              "layer0": "nethertweaksmod:items/salt"
             }
           },
           "6": {
             "textures": {
-              "layer0": "nethertweaksmod:items/item_light_pulver"
-            }
-          },
-          "7": {
-            "textures": {
-              "layer0": "nethertweaksmod:items/salt"
-            }
-          },
-          "8": {
-            "textures": {
               "layer0": "nethertweaksmod:items/stone_bar"
             }
           },
-        "9": {
+          "7": {
             "textures": {
               "layer0": "nethertweaksmod:items/mean_vine_string"
             }
