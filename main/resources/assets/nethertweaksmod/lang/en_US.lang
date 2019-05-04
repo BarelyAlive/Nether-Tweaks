@@ -25,7 +25,6 @@ item.block_basic_hellfayah_block.name=Hellfayah
 item.block_basic_blocksalt.name=Salt
 
 item.door_ntm_stone.name=Stone Door
-item.door_ntm_obsidian.name=Obsidian Door
 
 generator.hellworld=Hellworld
 
@@ -33,16 +32,6 @@ item.cooked_jerky.name=Cooked Jerky
 item.pickaxe_netherrack.name=Netherrack Pickaxe
 item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 item.grabber.name=Grabber
-
-item.bucket_wood.name=Wood Bucket
-item.bucket_wood_water.name=Water Bucket
-item.bucket_wood_liquid_impossibility.name=Liquid Impossibility Bucket
-item.bucket_wood_milk.name=Milk Bucket
-item.bucket_stone.name=Stone Bucket
-item.bucket_stone_water.name=Water Bucket
-item.bucket_stone_lava.name=Lava Bucket
-item.bucket_stone_liquid_impossibility.name=Liquid Impossibility Bucket
-item.bucket_stone_milk.name=Milk Bucket
 
 item.hammer_wood.name=Wood Hammer
 item.hammer_gold.name=Gold Hammer

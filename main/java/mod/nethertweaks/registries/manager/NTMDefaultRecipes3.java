@@ -1,4 +1,4 @@
-package mod.nethertweaks.registries.manager;
+/*package mod.nethertweaks.registries.manager;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -417,4 +417,4 @@ public class NTMDefaultRecipes3 implements IHammerDefaultRegistryProvider, ICond
 
         return saplingMap;
 	}
-}
+}*/
