@@ -49,11 +49,10 @@ public class LiquidImpossibility extends BlockFluidClassic{
     public LiquidImpossibility()
     {
         super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
-        setResistance(3000.0F);
-        setHardness(300.0F);
         setRegistryName(NetherTweaksMod.MODID, INames.BLOCKLIQUIDIMPOSSIBILITY);
         setLightLevel(15);
         setTemperature(0);
+        setBlockUnbreakable();
     }
     
     @Override
@@ -62,7 +61,8 @@ public class LiquidImpossibility extends BlockFluidClassic{
     }
     
     @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type)
+    {
     	if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(this.getDefaultState()))
     	{
     		return true;
@@ -71,7 +71,8 @@ public class LiquidImpossibility extends BlockFluidClassic{
     }
     
     @Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+    {
 		
 		if (world.isRemote)
 			return;
@@ -98,7 +99,8 @@ public class LiquidImpossibility extends BlockFluidClassic{
 		}
 		
 		if (Config.spawnSkeleton) {
-			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null) {
+			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null)
+			{
 
 				EntitySkeleton skeleton = new EntitySkeleton(world);
 				skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
@@ -117,7 +119,8 @@ public class LiquidImpossibility extends BlockFluidClassic{
 		}
 			
 		if (Config.spawnSlime) {
-			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null) {
+			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null)
+			{
 
 				EntitySlime slime = new EntitySlime(world);
 				slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
@@ -145,4 +148,6 @@ public class LiquidImpossibility extends BlockFluidClassic{
     public Fluid getFluid() {
     return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
     }
+    
+    
 }

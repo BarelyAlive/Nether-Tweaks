@@ -33,7 +33,6 @@ import mod.sfhcore.items.CustomBucketMilk;
 import mod.sfhcore.registries.RegisterFluid;
 import mod.sfhcore.registries.Registry;
 
-
 public class BucketNFluidHandler
 {
 		//Fluids

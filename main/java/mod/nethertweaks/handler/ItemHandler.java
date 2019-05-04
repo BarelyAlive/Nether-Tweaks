@@ -55,11 +55,11 @@ public class ItemHandler implements INames{
     public static final Item PICKAXENETHERRACK = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKAXENETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
     public static final Item GRABBER = new Grabber();
-    public static final Item HAMMERWOOD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERWOOD), 64, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD = new HammerBase(new ResourceLocation(NTM, INames.HAMMERGOLD), 64, ToolMaterial.GOLD);
-    public static final Item HAMMERSTONE = new HammerBase(new ResourceLocation(NTM, INames.HAMMERSTONE), 128, ToolMaterial.STONE);
-    public static final Item HAMMERIRON = new HammerBase(new ResourceLocation(NTM, INames.HAMMERIRON), 512, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND = new HammerBase(new ResourceLocation(NTM, INames.HAMMERDIAMOND), 4096, ToolMaterial.DIAMOND);
+    public static final Item HAMMERWOOD = new HammerBase(INames.HAMMERWOOD, 64, ToolMaterial.WOOD);
+    public static final Item HAMMERGOLD = new HammerBase(INames.HAMMERGOLD, 64, ToolMaterial.GOLD);
+    public static final Item HAMMERSTONE = new HammerBase(INames.HAMMERSTONE, 128, ToolMaterial.STONE);
+    public static final Item HAMMERIRON = new HammerBase(INames.HAMMERIRON, 512, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND = new HammerBase(INames.HAMMERDIAMOND, 4096, ToolMaterial.DIAMOND);
     
     //itemblocks
     public static final Item ITEMSTONEDOOR = new ItemDoor(NetherTweaksMod.tabNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
