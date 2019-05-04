@@ -13,6 +13,7 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.container.ContainerBase;
+import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.math.BlockPos;
