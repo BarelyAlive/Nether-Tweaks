@@ -1,13 +1,13 @@
 {   "parent": "block/block",
     "textures": {
-        "particle": "nethertweaksmod:blocks/end_teleport_side",
-        "bottom": "nethertweaksmod:blocks/end_teleport_bottom",
-        "top": "nethertweaksmod:blocks/end_teleport_top",
-        "side": "nethertweaksmod:blocks/end_teleport_side"
+        "particle": "nethertweaksmod:blocks/stairway_to_heaven_side",
+        "bottom": "nethertweaksmod:blocks/stairway_to_heaven_bottom",
+        "top": "nethertweaksmod:blocks/stairway_to_heaven_top",
+        "side": "nethertweaksmod:blocks/stairway_to_heaven_side"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],
-            "to": [ 16, 16, 16 ],
+            "to": [ 16, 13, 16 ],
             "faces": {
                 "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom" },
                 "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top" },

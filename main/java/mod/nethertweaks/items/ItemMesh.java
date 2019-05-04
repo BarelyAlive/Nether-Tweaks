@@ -3,6 +3,8 @@ package mod.nethertweaks.items;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -71,12 +73,11 @@ public class ItemMesh extends Item implements IVariantProvider{
     }
 
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (tab.equals(this.getCreativeTab())) {
-			for (int i = 1; i < MeshType.values().length; i++) { //0 is the "none" case.
-				items.add(new ItemStack(this, 1, i));
-			} 
-		}
+    public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list) {
+        if (this.isInCreativeTab(tab))
+            for (int i = 1; i < MeshType.values().length - 1; i++) { //0 is the "none" case, 5 the "no render" case
+                list.add(new ItemStack(this, 1, i));
+            }
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class ItemMesh extends Item implements IVariantProvider{
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
         
-        for(int i = 1; i < MeshType.values().length; i++)
+        for(int i = 1; i < MeshType.values().length -1; i++)
 		{
 			ret.add(new ImmutablePair<Integer, String>(i, "mesh=" + MeshType.getMeshTypeByID(i).getName()));
 		}

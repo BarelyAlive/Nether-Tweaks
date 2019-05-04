@@ -1,6 +1,6 @@
 {
-    "parent": "nethertweaksmod:block/mesh_base",
-    "textures": {
-        "mesh": "minecraft:blocks/wool_colored_purple"
-    }
+  "parent": "nethertweaksmod:block/mesh_base",
+  "textures": {
+    "texture": "minecraft:blocks/wool_colored_purple"
+  }
 }

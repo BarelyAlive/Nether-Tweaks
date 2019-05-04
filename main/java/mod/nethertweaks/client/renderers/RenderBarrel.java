@@ -20,8 +20,6 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
         model[3] = new ModelVertex(EnumFacing.UP, 0.125, 0.875, 0.875, 0, 1);
     }
     
-    
-
     @Override
 	public void renderTileEntityFast(TileBarrel te, double x, double y, double z, float partialTicks, int destroyStage, float partial, BufferBuilder buffer)
     {

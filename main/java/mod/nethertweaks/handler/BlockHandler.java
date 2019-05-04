@@ -94,16 +94,19 @@ public class BlockHandler implements INames
 			/*just some of     */			Registry.registerBlock(ELDERLEAVES);
 			/*these and not the*/			Registry.registerBlock(ELDERPLANKS);
 			/*the whole tree   */			Registry.registerBlock(ELDERSLABDOUBLE);
-											Registry.registerBlock(ITEMELDERSLAB);
+			/*Ddtd!			   */			Registry.registerBlock(ITEMELDERSLAB);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
 		if(Config.enableBonfire) 			Registry.registerBlock(BONFIRE);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
-        if(Config.enableBarrel) 			Registry.registerBlock(STONEDOOR);  
+        if(Config.enableStoneDoor) 			Registry.registerBlock(STONEDOOR);
         if(Config.enableCondenser) 			Registry.registerBlock(CONDENSER);
         if(Config.enableNetherrackFurnace)  Registry.registerBlock(NETHERRACKFURNACE);
-        if(Config.enableBarrel) 			Registry.registerBlock(BARREL);
-        if(Config.enableBarrel) 			Registry.registerBlock(BARRELSTONE);
+        if(Config.enableBarrel)
+        {
+        									Registry.registerBlock(BARREL);
+        									Registry.registerBlock(BARRELSTONE);
+        }
         if(Config.enableSieve) 				Registry.registerBlock(SIEVE);
         if(Config.enableFreezer) 			Registry.registerBlock(FREEZER);
         if(Config.enableHellmart) 			Registry.registerBlock(HELLMART);

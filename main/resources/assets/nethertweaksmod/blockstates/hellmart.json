@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nethertweaksmod:hellmart" }
+        "normal": { "model": "nethertweaksmod:block/hellmart" }
     }
 }

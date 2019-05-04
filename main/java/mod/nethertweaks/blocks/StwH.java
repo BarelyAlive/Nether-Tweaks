@@ -112,4 +112,9 @@ public class StwH extends Block{
         }
 		super.randomDisplayTick(stateIn, worldIn, pos, rand);
 	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 }

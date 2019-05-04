@@ -33,6 +33,7 @@ ChangeLog NTM 2.0.0
 + Ender Crystal is back!
 + Prismarine shards are now sievable
 + Added config options to disable individual blocks & items
++ Added netherrack gravel
 + Added dolls to get otherwise unobtainable mobs
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
 + Added Mean Vine strings (works as normal string in recipes)
