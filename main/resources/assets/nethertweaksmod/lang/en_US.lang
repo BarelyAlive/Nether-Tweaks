@@ -13,11 +13,16 @@ tile.elder_planks.name=Elder Planks
 tile.elder_sapling.name=Elder Sapling
 tile.elder_slab_half.name=Elder Slab
 tile.elder_slab.name=Elder Double Slab
+tile.netherrack_gravel.name=Netherrack Gravel
 tile.barrel0.name=Barrel
 tile.barrel1.name=Barrel
 tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
+
+item.block_basic_ore_hellfayah.name=Hellfayah Ore
+item.block_basic_hellfayah_block.name=Hellfayah
+item.block_basic_blocksalt.name=Salt
 
 item.door_ntm_stone.name=Stone Door
 item.door_ntm_obsidian.name=Obsidian Door
