@@ -68,8 +68,8 @@ public class Freezer extends CubeContainerHorizontal{
     	if(playerIn.isSneaking())
     		return false;
     	  	
-    	TileSieve te = (TileSieve) worldIn.getTileEntity(pos);
-		if(!(te instanceof TileSieve)) {
+    	TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
+		if(!(te instanceof TileFreezer)) {
 			return false;
 		}
 		
