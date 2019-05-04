@@ -63,7 +63,6 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 
 	@Override
 	public List<?> getRecipeList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

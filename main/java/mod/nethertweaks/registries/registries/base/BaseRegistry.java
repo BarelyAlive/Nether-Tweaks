@@ -70,7 +70,6 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 
     protected abstract void registerEntriesFromJSON(FileReader fr);
 
-    @SuppressWarnings("unchecked")
     public void registerDefaults() {
         defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
     }
