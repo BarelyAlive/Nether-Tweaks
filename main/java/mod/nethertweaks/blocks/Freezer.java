@@ -64,7 +64,7 @@ public class Freezer extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!worldIn.isBlockLoaded(pos))
+		if(!worldIn.isBlockLoaded(pos))
     		return false;
     	if(worldIn.isRemote)
     		return false;
@@ -82,13 +82,11 @@ public class Freezer extends CubeContainerHorizontal{
 			FluidStack f = FluidUtil.getFluidContained(held);
 			IFluidHandler freezer = FluidUtil.getFluidHandler(worldIn, pos, facing);
 			IFluidHandler heldFH = FluidUtil.getFluidHandler(held);
-			
-			if(f.getFluid() == FluidRegistry.WATER)
-			{
-				System.out.println(worldIn.getBlockState(pos));
-				FluidUtil.tryFluidTransfer(freezer, heldFH, f, true);
-				return false;
-			}
+
+			System.out.println(FluidUtil.getFluidHandler(worldIn, pos, facing));
+
+			FluidUtil.tryFluidTransfer(freezer, heldFH, f, true);
+			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
