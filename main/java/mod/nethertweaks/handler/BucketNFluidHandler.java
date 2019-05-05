@@ -40,6 +40,7 @@ public class BucketNFluidHandler
 		public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
 						
 		//Buckets
+		/*
 		public static Item BUCKETWOOD = new CustomBucket(Blocks.AIR, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOOD), ItemStack.EMPTY, NetherTweaksMod.TABNTM);
 		public static Item BUCKETWOODWATER = new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODWATER), new ItemStack(BUCKETWOOD), NetherTweaksMod.TABNTM);
 		public static Item BUCKETWOODLI = new CustomBucket(BLOCKLIQUIDIMPOSSIBILITY, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODLI), new ItemStack(BUCKETWOOD), NetherTweaksMod.TABNTM);
@@ -50,6 +51,7 @@ public class BucketNFluidHandler
 		public static Item BUCKETSTONELAVA = new CustomBucket(Blocks.FLOWING_LAVA, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONELAVA), new ItemStack(BUCKETSTONE), NetherTweaksMod.TABNTM);
 		public static Item BUCKETSTONELI = new CustomBucket(BLOCKLIQUIDIMPOSSIBILITY, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONELI), new ItemStack(BUCKETSTONE), NetherTweaksMod.TABNTM);
 		public static Item BUCKETSTONEMILK = new CustomBucketMilk(NetherTweaksMod.TABNTM, new ItemStack(BUCKETSTONE), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEMILK));
+		*/
 
 	public static void init()
 	{
@@ -65,6 +67,8 @@ public class BucketNFluidHandler
 		
 	private static void registerBuckets()
 	{
+		BucketHandler.addBucket("wood", 0x80778899, NetherTweaksMod.TABNTM);
+		/*
 		if (Config.enableStoneBucket) {
 			//Stone
 			Registry.registerItem(BUCKETSTONE);
@@ -80,5 +84,6 @@ public class BucketNFluidHandler
 			Registry.registerItem(BUCKETWOODLI);
 			Registry.registerItem(BUCKETWOODMILK);
 		}
+		*/
 	}
 }

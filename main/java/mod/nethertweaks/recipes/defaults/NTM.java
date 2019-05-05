@@ -266,7 +266,7 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHammer(HammerRegistry registry)
     {
-    	registry.register("netherrack", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
+    	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACKGRAVEL, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
         registry.register("gravel", new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F);
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);

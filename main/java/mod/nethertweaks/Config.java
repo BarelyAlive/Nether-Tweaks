@@ -42,6 +42,9 @@ public class Config {
 	public static boolean enableBarrelTransformLighting;
 	public static int compostingTicks;
 	
+	//Crucible
+	public static boolean thinCrucibleModel;
+	
 	//Liquid Impossibility
 	public static boolean spawnPig;
 	public static boolean spawnSkeleton;
@@ -88,6 +91,7 @@ public class Config {
 	public static boolean enableNetherrackFurnace;
 	public static boolean enableNetherrackGravel;
 	public static boolean enableSieve;
+	public static boolean enableCrucible;
 	
 	//ItemEnable
 	public static boolean enableMultiItem;
@@ -152,6 +156,9 @@ public class Config {
         compostingTicks 				= config.get("Composting", "ticksToFormDirt", 600).getInt();
         enableBarrelTransformLighting 	= config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
         
+        //Crucible
+        thinCrucibleModel			 	= config.get("Misc", "Do you want a hin crucible model?", true).getBoolean();
+        
         //Liquid Impossibility
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
         spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
@@ -195,6 +202,7 @@ public class Config {
     	enableNetherrackFurnace 		= config.getBoolean("Enable Elderrack Furnace?", "Blocks", true, "");
     	enableNetherrackGravel			= config.getBoolean("Enable Netherrack Gravel?", "Blocks", true, "");
     	enableSieve 					= config.getBoolean("Enable Sieve?", "Blocks", true, "");
+    	enableCrucible 					= config.getBoolean("Enable Crucible?", "Blocks", true, "");
     	
     	//ItemEnable
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");

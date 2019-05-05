@@ -103,6 +103,7 @@ public class WorldHandler{
 	    		Item item = stack.getItem();
 	    		EntityPlayer player = event.getEntityPlayer();
 	    		
+	    		/*
 		    	if(item == BucketNFluidHandler.BUCKETSTONE)
 		    	{
 		    		stack.shrink(1);
@@ -113,6 +114,7 @@ public class WorldHandler{
 		    		stack.shrink(1);
 		    		player.setHeldItem(event.getHand(), new ItemStack(BucketNFluidHandler.BUCKETWOODMILK));
 		    	}
+		    	*/
 	    	}
     	}
     }

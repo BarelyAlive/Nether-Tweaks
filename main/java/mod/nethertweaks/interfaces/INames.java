@@ -15,6 +15,7 @@ public interface INames {
 	public static final String NETHERRACKFURNACE 			= "netherrack_furnace";
 	public static final String BARREL						= "barrel";
 	public static final String FREEZER 						= "freezer";
+	public static final String CRUCIBLE						= "crucible";
 	
 	public static final String DOORNTMSTONE					= "door_ntm_stone";
 	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";

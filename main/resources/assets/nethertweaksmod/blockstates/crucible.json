@@ -1,0 +1,41 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "nethertweaksmod:crucible_big",
+    "textures": {
+      "particle": "nethertweaksmod:blocks/crucible",
+      "top": "nethertweaksmod:blocks/crucible",
+      "bottom": "nethertweaksmod:blocks/crucible",
+      "side": "nethertweaksmod:blocks/crucible",
+      "inside": "nethertweaksmod:blocks/crucible"
+    }
+  },
+  "variants": {
+    "thin=true": {
+      "model": "nethertweaksmod:crucible_thin",
+      "textures": {
+        "particle": "nethertweaksmod:blocks/crucible",
+        "top": "nethertweaksmod:blocks/crucible",
+        "bottom": "nethertweaksmod:blocks/crucible",
+        "side": "nethertweaksmod:blocks/crucible",
+        "inside": "nethertweaksmod:blocks/crucible"
+      }
+    },
+    "thin=false": {
+      "model": "nethertweaksmod:crucible_big",
+      "textures": {
+        "particle": "nethertweaksmod:blocks/crucible",
+        "top": "nethertweaksmod:blocks/crucible",
+        "bottom": "nethertweaksmod:blocks/crucible",
+        "side": "nethertweaksmod:blocks/crucible",
+        "inside": "nethertweaksmod:blocks/crucible"
+      }
+    },
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
+  }
+}
