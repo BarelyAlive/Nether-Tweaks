@@ -8,9 +8,9 @@ import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
+import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.tileentities.TEBaseFluidInventory;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,9 +42,14 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import scala.Int;
 
-public class TileFreezer extends TEBaseFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
+public class TileFreezer extends TileFluidInventory
+{	
+	private static List<Fluid> lf = new ArrayList<Fluid>();
 	
-	private List<Fluid> lf = new ArrayList<Fluid>();
+	static
+	{
+		lf.add(FluidRegistry.WATER);
+	}
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);

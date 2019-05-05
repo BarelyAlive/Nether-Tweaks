@@ -24,14 +24,14 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.types.Meltable;
-import mod.sfhcore.blocks.tiles.BaseTileEntity;
+import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.client.renderers.SpriteColor;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.Util;
 
-public abstract class TileCrucibleBase extends BaseTileEntity implements ITickable {
+public abstract class TileCrucibleBase extends TileBase implements ITickable {
     public static final int MAX_ITEMS = 4;
 
     protected FluidTankBase tank;

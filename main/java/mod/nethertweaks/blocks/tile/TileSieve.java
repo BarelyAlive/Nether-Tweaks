@@ -9,7 +9,7 @@ import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Siftable;
-import mod.sfhcore.blocks.tiles.BaseTileEntity;
+import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class TileSieve extends BaseTileEntity {
+public class TileSieve extends TileBase {
 
     private static final Random rand = new Random();
     @Nonnull

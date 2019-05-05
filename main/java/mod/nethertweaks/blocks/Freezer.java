@@ -13,6 +13,7 @@ import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.proxy.IVariantProvider;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -36,11 +37,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -56,7 +59,7 @@ public class Freezer extends CubeContainerHorizontal{
 		setHardness(3.5f);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
-
+	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
@@ -71,6 +74,23 @@ public class Freezer extends CubeContainerHorizontal{
     	TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
 		if(!(te instanceof TileFreezer)) {
 			return false;
+		}
+		
+		//Fill from player-hand item
+		try {
+			ItemStack held = playerIn.getHeldItem(hand);
+			FluidStack f = FluidUtil.getFluidContained(held);
+			IFluidHandler freezer = FluidUtil.getFluidHandler(worldIn, pos, facing);
+			IFluidHandler heldFH = FluidUtil.getFluidHandler(held);
+			
+			if(f.getFluid() == FluidRegistry.WATER)
+			{
+				System.out.println(worldIn.getBlockState(pos));
+				FluidUtil.tryFluidTransfer(freezer, heldFH, f, true);
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());

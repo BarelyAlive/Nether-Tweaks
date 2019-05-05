@@ -2,6 +2,7 @@ package mod.nethertweaks.registries.registries;
 
 import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.bind.TreeTypeAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IHammerRegistry;
@@ -52,7 +53,6 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 
         for (Map.Entry<String, ArrayList<HammerReward>> s : gsonInput.entrySet()) {
             Ingredient ingredient = IngredientUtil.parseFromString(s.getKey());
-
 
             Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
             if (search != null) {

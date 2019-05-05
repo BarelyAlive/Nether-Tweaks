@@ -7,7 +7,7 @@ import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
-import mod.sfhcore.tileentities.TEBaseInventory;
+import mod.sfhcore.blocks.tiles.TileInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -51,7 +51,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileNetherrackFurnace extends TEBaseInventory{
+public class TileNetherrackFurnace extends TileInventory{
     
 	
     public TileNetherrackFurnace() {

@@ -124,6 +124,7 @@ public class NetherTweaksMod
         SmeltingNOreDictHandler.load();
         
     	defaultRecipes = new NTMDefaultRecipes();
+    	defaultRecipes.registerDefaults();
 		BarrelModeRegistry.registerDefaults();
     }
      

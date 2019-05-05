@@ -12,9 +12,9 @@ import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registry.types.Dryable;
+import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.tileentities.TEBaseFluidInventory;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.entity.layers.LayerWolfCollar;
@@ -48,7 +48,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class TileCondenser extends TEBaseFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
+public class TileCondenser extends TileFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	

@@ -13,10 +13,16 @@ public class CompatDefaultRecipes
 {
     private static final List<IRecipeDefaults> MODS = new ArrayList<>();
 
-    static {
-        // TODO use config options to dynamically add mod support
+    public CompatDefaultRecipes()
+    {
         MODS.add(new NTM());
         MODS.add(new TinkersConstruct());
+    }
+    
+    static {
+        // TODO use config options to dynamically add mod support
+        //MODS.add(new NTM());
+        //MODS.add(new TinkersConstruct());
         /*
         MODS.add(new IntegratedDynamics());
         MODS.add(new Mekanism());

@@ -39,7 +39,7 @@ import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
 import mod.nethertweaks.registry.types.Milkable;
-import mod.sfhcore.blocks.tiles.BaseTileEntity;
+import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;
@@ -48,7 +48,7 @@ import java.util.ArrayList;
 
 import static mod.nethertweaks.registries.manager.NTMRegistryManager.MILK_ENTITY_REGISTRY;
 
-public class TileBarrel extends BaseTileEntity implements ITickable {
+public class TileBarrel extends TileBase implements ITickable {
 
     private IBarrelMode mode;
     private BarrelItemHandler itemHandler;
