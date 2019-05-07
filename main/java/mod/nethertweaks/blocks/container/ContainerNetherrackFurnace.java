@@ -15,10 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerNetherrackFurnace extends ContainerBase {
 	
-	private IInventory tileEntity;
+	private TileNetherrackFurnace tileEntity;
 	
 	public ContainerNetherrackFurnace(InventoryPlayer playerInv, TileNetherrackFurnace tileEntity2) {
-		super(new TileNetherrackFurnace());
+		super(tileEntity2);
 		tileEntity = tileEntity2;
 		
 		addSlotToContainer(new Slot(tileEntity, 0, 57, 17));
@@ -32,7 +32,10 @@ public class ContainerNetherrackFurnace extends ContainerBase {
 		for(int i = 0; i < 9; i++) {
 			addSlotToContainer(new Slot((IInventory) playerInv, i, 9 + i * 18, 142));
 		}
-
 	}
 	
+	@Override
+	public void updateProgressBar(int id, int data) {
+		this.tileentity.setField(id, data);
+	}
 }

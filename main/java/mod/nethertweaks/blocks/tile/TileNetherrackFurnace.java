@@ -60,59 +60,54 @@ public class TileNetherrackFurnace extends TileInventory{
 	}
 
 	@Override
-    public void update() {
-		if (canSmelt())
-		{
-            ++this.workTime;
-            if (this.workTime >= maxworkTime && this.world.isRemote)
-            {
-            	this.workTime = 0;
-            }
-		}
-		
-        if (!this.world.isRemote)
+    public void update()
+	{
+		if(world.isRemote) return;
+		markDirtyClient();
+        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+        if (!canSmelt()) return;
+        
+        ++this.workTime;		
+        if (this.workTime >= maxworkTime)
         {
-            if (canSmelt())
-            {
-                if (this.workTime >= maxworkTime)
-                {
-                    smeltItem();
-                    this.workTime = 0;
-                }
-            }
-            else
-            {
-            	this.workTime = 0;
-            }
-            NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+            smeltItem();
+            this.workTime = 0;
         }
     }
     
     public boolean checkHeatSource(){ 
-		World world = getWorld();
-		IBlockState block = world.getBlockState(this.pos.add(0, -1, 0));
-		if (world.isBlockLoaded(pos)) {
-			if (block.getMaterial() == Material.FIRE) {
-				return true;
-			}
-			if (block.getMaterial() == Material.LAVA) {
-				if (block instanceof BlockFluidClassic) {
-					int lavatime = this.maxworkTime / 10 * 8;
-					int lavaheat = FluidRegistry.LAVA.getTemperature();
-					int blockheat = BlockFluidClassic.getTemperature(world, this.pos);
-					if (this.maxworkTime > lavatime) {
-						int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-						if (lavatime > heattime) {
-							this.maxworkTime = heattime;
-						} else {
-							this.maxworkTime = lavatime;
-						}
-					}
-				}
-				return true;
-			} 
+    	Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
+		IBlockState state = block.getDefaultState();
+		
+		if(!world.isBlockLoaded(pos)) return false;
+		
+		if (state.getMaterial() == Material.FIRE)
+		{
+			maxworkTime = ((maxworkTime / 10) * 9);
+			return true;
 		}
-		return false;
+		
+		if(!(block instanceof BlockFluidClassic)) return false;
+		
+		int blockheat = BlockFluidClassic.getTemperature(world, pos);
+		int lavaheat = FluidRegistry.LAVA.getTemperature();
+		if(blockheat < lavaheat) return false;
+		
+		int lavatime = ((maxworkTime / 10) * 8);
+		
+		if (maxworkTime > lavatime)
+		{
+			int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
+			if (lavatime > heattime)
+			{
+				maxworkTime = heattime;
+			}
+			else
+			{
+				maxworkTime = lavatime;
+			}
+		}
+		return true;
 	}
 
     /**
@@ -121,43 +116,18 @@ public class TileNetherrackFurnace extends TileInventory{
      */
     private boolean canSmelt()
     {
-    	if(!checkHeatSource()) {
-    		return false;
-    	}
-    	if (((ItemStack)this.machineItemStacks.get(0)).isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
-
-            if (itemstack.isEmpty())
-            {
-                return false;
-            }
-            else
-            {
-                ItemStack itemstack1 = this.machineItemStacks.get(1);
-
-                if (itemstack1.isEmpty())
-                {
-                    return true;
-                }
-                else if (!itemstack1.isItemEqual(itemstack))
-                {
-                    return false;
-                }
-                else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
-                {
-                    return true;
-                }
-                else
-                {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
-                }
-            }
-        }
+    	if(!checkHeatSource()) return false;
+    	if (((ItemStack)this.machineItemStacks.get(0)).isEmpty()) return false;           
+        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
+        if (itemstack.isEmpty()) return false;       
+        ItemStack itemstack1 = this.machineItemStacks.get(1);
+        if(itemstack1.isEmpty()) return true;       
+        if(!itemstack1.isItemEqual(itemstack)) return false;
+        if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit()
+        		&& itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+            return true;
+        
+            return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
     }
 
     /**
@@ -185,42 +155,19 @@ public class TileNetherrackFurnace extends TileInventory{
             this.machineItemStacks.get(0).shrink(1);
         }
     }
-    
-    @Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		this.workTime = compound.getInteger("worktime");
-		ItemStackHelper.loadAllItems(compound, this.machineItemStacks);
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		compound.setInteger("worktime", this.workTime);
-		ItemStackHelper.saveAllItems(compound, this.machineItemStacks);
-		return compound;
-	}
 	
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
 		ItemStack slot;
 		ItemStack result;
-		IFluidHandlerItem handler;
 		switch(index)
 		{
 		case 0:
 			slot = this.getStackInSlot(1);
-			if ((slot.getCount() + stack.getCount()) > slot.getMaxStackSize())
-			{
-				return false;
-			}
-			/*
+			if(slot.getCount() == slot.getMaxStackSize()) return false;
+				
 			result = FurnaceRecipes.instance().getSmeltingResult(stack);
-			if (result == ItemStack.EMPTY)
-			{
-				return false;
-			}
-			*/
+			if(result == ItemStack.EMPTY) return false;
 			return true;
 		}
 		return false;
@@ -228,10 +175,7 @@ public class TileNetherrackFurnace extends TileInventory{
 	
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
-		if (index == 1)
-		{
-			return true;
-		}
+		if (index == 1) return true;
 		return false;
 	}
 	    
