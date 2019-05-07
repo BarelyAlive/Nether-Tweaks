@@ -11,12 +11,14 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
+import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.entity.layers.LayerWolfCollar;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -50,50 +52,54 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
 	
-	private List<Fluid> lf = new ArrayList<Fluid>();
+	private static List<Fluid> lf = new ArrayList<Fluid>();
+	
+	static
+	{
+		lf.add(FluidRegistry.WATER);
+	}
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, 16000);
 		this.maxworkTime = Config.dryTimeCondenser;
-		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
 
 	@Override
-    public void update() {
-		this.world = getWorld();
-		if(!world.isRemote) {
-			NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
-			if (this.tank.amount >= 1000)
+    public void update()
+	{
+		if(world.isRemote) return;
+		
+		NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
+		if (this.tank.amount >= 1000)
+		{
+			if (!this.getStackInSlot(1).isEmpty())
 			{
-				if (!this.getStackInSlot(1).isEmpty())
+				if (this.getStackInSlot(1).getCount() == 1)
 				{
-					if (this.getStackInSlot(1).getCount() == 1)
+					IFluidHandlerItem outHandler = FluidUtil.getFluidHandler(this.getStackInSlot(1));
+					if (this.getStackInSlot(1).getItem().equals(Items.BUCKET))
 					{
-						IFluidHandlerItem outHandler = FluidUtil.getFluidHandler(this.getStackInSlot(1));
-						if (this.getStackInSlot(1).getItem().equals(Items.BUCKET))
+						this.setInventorySlotContents(1, new ItemStack(Items.WATER_BUCKET));
+						this.drain(1000,  true); 
+					}
+					else if (outHandler != null)
+					{
+						if(outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), false) >= 1000)
 						{
-							this.setInventorySlotContents(1, new ItemStack(Items.WATER_BUCKET));
+							outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), true);
 							this.drain(1000,  true); 
-						}
-						else if (outHandler != null)
-						{
-							if(outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), false) >= 1000)
-							{
-								outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), true);
-								this.drain(1000,  true); 
-							}
 						}
 					}
 				}
 			}
-			if(checkInv()) {
-				this.workTime++;
-				if (this.workTime >= this.maxworkTime)
-				{
-					this.workTime = 0;
-					dry();
-				}
+		}
+		if(!checkInv()) {
+			this.workTime++;
+			if (this.workTime >= this.maxworkTime)
+			{
+				this.workTime = 0;
+				dry();
 			}
 		}
 	}
@@ -103,6 +109,7 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 		ItemStack material = this.getStackInSlot(0);
 		ItemStack bucket = this.getStackInSlot(1);
 		int filledinothertank = 0;
+		if(CondenserRegistry.getDryable(material) == null) return;
 		int amount = CondenserRegistry.getDryable(material).getValue();
 		if (this.world.getTileEntity(this.getPos().east()) instanceof IFluidHandler)
 		{
@@ -125,7 +132,7 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 			filledinothertank = this.fillTankInBlock(handler, amount);
 		}
 		
-		amount = amount - filledinothertank;
+		amount -= filledinothertank;
 		
 		if (amount > 0)
 		{
@@ -159,109 +166,78 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 	
 	public boolean checkHeatSource()
 	{
-		World world = getWorld();
 		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		if (world.isBlockLoaded(pos))
+		IBlockState state = block.getDefaultState();
+		
+		if(!world.isBlockLoaded(pos)) return false;
+		
+		if (state.getMaterial() == Material.FIRE)
 		{
-			if (block.getDefaultState().getMaterial() == Material.FIRE)
+			maxworkTime = ((maxworkTime / 10) * 9);
+			return true;
+		}
+		else if (state.getMaterial() == Material.LAVA)
+		{
+			if (block instanceof BlockFluidClassic)
 			{
-				maxworkTime = ((maxworkTime / 10) * 9);
-				return true;
-			}
-			if (block.getDefaultState().getMaterial() == Material.LAVA)
-			{
-				if (block instanceof BlockFluidClassic)
+				int lavatime = ((maxworkTime / 10) * 8);
+				int lavaheat = FluidRegistry.LAVA.getTemperature();
+				int blockheat = BlockFluidClassic.getTemperature(world, pos);
+				if (maxworkTime > lavatime)
 				{
-					int lavatime = ((maxworkTime / 10) * 8);
-					int lavaheat = FluidRegistry.LAVA.getTemperature();
-					int blockheat = BlockFluidClassic.getTemperature(world, pos);
-					if (maxworkTime > lavatime)
+					int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
+					if (lavatime > heattime)
 					{
-						int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-						if (lavatime > heattime)
-						{
-							maxworkTime = heattime;
-						}
-						else
-						{
-							maxworkTime = lavatime;
-						}
+						maxworkTime = heattime;
+					}
+					else
+					{
+						maxworkTime = lavatime;
 					}
 				}
-				return true;
 			}
+			return true;
 		}
 		return false;
 	}
 	
 	public boolean checkInv()
 	{
-		if (!this.getStackInSlot(0).isEmpty())
-		{
-			if(CondenserRegistry.containsItem(machineItemStacks.get(0)))
-			{
-				Dryable result = CondenserRegistry.getDryable(machineItemStacks.get(0));
-				if (result != null)
-				{
-					if(this.MAX_CAPACITY > this.tank.amount)
-					{
-						if (checkHeatSource())
-						{
-							return true;
-						}
-					}
-				}
-			}
-		}
-		workTime = 0;
-		return false;
+		if(this.getStackInSlot(0).isEmpty()) return false;
+		if(!CondenserRegistry.containsItem(machineItemStacks.get(0))) return false;
+		
+		Dryable result = CondenserRegistry.getDryable(machineItemStacks.get(0));
+		if (result == null) return false;
+		if(this.fillable() == 0) return false;
+		if(!checkHeatSource()) return false;
+		
+		return true;
 	}
 	
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
+	public boolean isItemValidForSlot(int index, ItemStack stack)
+	{
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		if(handler == null) return false;
+		if(FluidUtil.getFluidContained(stack).getFluid() != FluidRegistry.WATER) return false;
+		if(this.getStackInSlot(1).getCount() == stack.getMaxStackSize()) return false;
+		
 		if (index == 0)
-		{
-			if (CondenserRegistry.containsItem(stack))
-			{
-				return true;
-			}
-		}
-		else if (index == 1)
-		{
-			ItemStack slot = this.getStackInSlot(1);
-			if ((slot.getCount() + stack.getCount()) > 1)
-			{
-				return false;
-			}
-			if (stack.getItem().equals(Items.BUCKET))
-			{
-				return true;
-			}
-			else if (stack.getItem().equals(Items.WATER_BUCKET))
-			{
-				return true;
-			}
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
-			if(handler != null)
-			{
-				return true;
-			}
-		}
-		return false;
+			if (!CondenserRegistry.containsItem(stack)) return false;
+		
+		return true;
 	}
 	
 	@Override
-	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
-		if (index == 1)
-		{
-			return true;
-		}
-		return false;
+	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack)
+	{
+		if (index != 1) return false;
+		return true;
 	}
 	
     public String getGuiID()
     {
-        return "nethertweaksmod:GuiCondenser";
+        return "nethertweaksmod:gui_condenser";
     }
  
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

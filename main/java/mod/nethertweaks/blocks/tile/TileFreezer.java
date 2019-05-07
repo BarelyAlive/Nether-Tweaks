@@ -45,6 +45,7 @@ import scala.Int;
 public class TileFreezer extends TileFluidInventory
 {	
 	private static List<Fluid> lf = new ArrayList<Fluid>();
+	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
 	static
 	{
@@ -53,95 +54,96 @@ public class TileFreezer extends TileFluidInventory
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);
-		maxworkTime = Config.freezeTimeFreezer;
+		this.maxworkTime = Config.freezeTimeFreezer;
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
 	
-	World world;
-	ItemStack ice = new ItemStack(Blocks.ICE, 1);
-	
     @Override
 	public void update() {
-		this.world = getWorld();
-    	if (!this.world.isRemote)
-    	{
-			NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
-			fillFromItem();
-			if(canFreeze()) {
-				this.workTime++;
-				if(workTime >= this.maxworkTime) {
-					workTime = 0;
-					freezeItem();
-				}
+    	if (this.world.isRemote) return;
+    	
+		NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
+		if(canFreeze()) {
+			this.workTime++;
+			if(workTime >= this.maxworkTime) {
+				workTime = 0;
+				freezeItem();
 			}
-    	}
+		}
+		fillFromItem();
 	}
 	
 	private boolean canFreeze()
     {
-        if (world.isBlockPowered(pos) && this.tank.amount >= 1000)
-        {
-        	return true;
-        }
-        return false;
+		if(!world.isBlockPowered(pos)) return false;
+        if (this.tank.amount < 1000) return false;
+        if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
+        return true;
     }
 
     public void freezeItem()
     {
-    	this.tank.amount -= 1000;
+    	this.drain(1000, true);
+    	
         if (this.machineItemStacks.get(0).isEmpty())
-        {
+        	
             this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
-            return;
-        }
-        else if (this.machineItemStacks.get(0).getItem() == ice.getItem())
-        {
-        	ItemStack output = this.getStackInSlot(0);
-        	output.shrink(1);
-        	this.setInventorySlotContents(0, output);
-            return;
-        }
+        
+        else if(this.getStackInSlot(0).getCount() >= 1)
+        	
+        	this.getStackInSlot(0).grow(1);
+        
+        fillFromItem();
     }
     
-    private void fillFromItem(){
-    	if(
-    			!machineItemStacks.get(2).isEmpty() 
-    		&& (
-    				machineItemStacks.get(1).isEmpty() 
-    			|| (
-    					(
-    							machineItemStacks.get(2).getItem().getContainerItem() != null
-    							&&
-    							machineItemStacks.get(2).getItem().getContainerItem().equals(machineItemStacks.get(1).getItem()) 
-    					)
-    				&& this.machineItemStacks.get(1).getCount() < this.machineItemStacks.get(1).getMaxStackSize()
-    				)
-    			)
-    		) {
-    		FluidStack input_stack = FluidUtil.getFluidContained(machineItemStacks.get(2));
-    		if (input_stack != null)
-    		{
-	    		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(machineItemStacks.get(2));
-	    		if(input_stack.getFluid() == FluidRegistry.WATER){
-	        		int accepted_amount = this.fill(input_stack, true);
-	        		input_handler.drain(accepted_amount, true);
-	    		}
-	        	if(FluidUtil.getFluidContained(machineItemStacks.get(2)).amount == 1000) {
-	        		if(machineItemStacks.get(1).isEmpty() || machineItemStacks.get(1).getCount() < machineItemStacks.get(1).getMaxStackSize())
-	        		{
-	        			machineItemStacks.get(2).shrink(1);
-	        		}
-	            	if(!machineItemStacks.get(1).isEmpty()) {
-	            		machineItemStacks.get(1).shrink(1);
-	            	}
-	            	else
-	            	{
-	            		machineItemStacks.set(1, new ItemStack(Items.BUCKET));
-	            	}
-	        	}
-    		}
-    	}
+	private void fillFromItem()
+    {
+    	ItemStack input = machineItemStacks.get(2);
+    	ItemStack output = machineItemStacks.get(1);
+    	ItemStack container = ItemStack.EMPTY;
+    	if(!input.isEmpty())
+    	container = new ItemStack(input.getItem().getContainerItem());
+    	
+    	if(output.getCount() == output.getMaxStackSize()) return;
+    	if(input.isEmpty()) return;
+    	if(FluidUtil.getFluidHandler(input) == null) return;
+    	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
+    	if(this.fillable() == 0) return;
+    	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
+    	if(FluidUtil.getFluidHandler(input).drain(this.fillable(), false).amount >  this.fillable()) return;
+    	
+		FluidStack input_stack = FluidUtil.getFluidContained(input);
+		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+		
+		FluidUtil.tryFluidTransfer(this, input_handler, this.fillable(), true);
+		
+		if(!container.isEmpty())
+		{
+			if(!output.isEmpty())
+			{
+				machineItemStacks.get(1).grow(1);
+				machineItemStacks.get(2).shrink(1);
+			}
+			else
+			{
+				machineItemStacks.set(1, container);
+				machineItemStacks.get(2).shrink(1);
+			}
+		}
+		else
+		{
+			if(output.isEmpty())
+			{
+				machineItemStacks.set(1, input);
+				machineItemStacks.get(2).shrink(1);
+			}
+			else
+			{
+				machineItemStacks.get(1).grow(1);
+				machineItemStacks.get(2).shrink(1);
+			}
+		}
     }
     
 	@Override
@@ -151,23 +153,11 @@ public class TileFreezer extends TileFluidInventory
 		switch(index)
 		{
 		case 2:
-			slot = this.getStackInSlot(1);
-			if ((slot.getCount() + stack.getCount()) > 1)
-			{
-				return false;
-			}
-			if (stack.getItem().equals(Items.WATER_BUCKET))
-			{
-				return true;
-			}
-			handler = FluidUtil.getFluidHandler(stack);
-			if(handler != null)
-			{
-				return true;
-			}
-			break;
+			if(FluidUtil.getFluidHandler(stack) == null) return false;
+			if(FluidUtil.getFluidContained(stack).getFluid() != FluidRegistry.WATER) return false;
+			if(!this.getStackInSlot(2).isEmpty()) return false;
 		}
-		return false;
+		return true;
 	}
 	
 	@Override
