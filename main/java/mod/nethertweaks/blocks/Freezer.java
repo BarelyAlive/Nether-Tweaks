@@ -68,17 +68,12 @@ public class Freezer extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if(!worldIn.isBlockLoaded(pos))
-    		return false;
-    	if(worldIn.isRemote)
-    		return false;
-    	if(playerIn.isSneaking())
-    		return false;
+		if(!worldIn.isBlockLoaded(pos)) return false;
+    	if(worldIn.isRemote) return false;
+    	if(playerIn.isSneaking()) return false;
     	  	
     	TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
-		if(!(te instanceof TileFreezer)) {
-			return false;
-		}
+		if(!(te instanceof TileFreezer)) return false;
 						
 		//Fill from player-hand item
 		if(TankUtil.fillFromHand(playerIn, hand, te)) return true;

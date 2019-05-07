@@ -169,7 +169,7 @@ public class TileFreezer extends TileFluidInventory
 	    
 	public String getGuiID()
     {
-        return "nethertweaksmod:GuiFreezer";
+        return "nethertweaksmod:gui_freezer";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
