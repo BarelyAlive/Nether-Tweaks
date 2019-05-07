@@ -40,6 +40,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
@@ -75,7 +76,7 @@ public class Freezer extends CubeContainerHorizontal{
 		if(!(te instanceof TileFreezer)) {
 			return false;
 		}
-		
+				
 		//Fill from player-hand item
 		try {
 			ItemStack held = playerIn.getHeldItem(hand);
@@ -83,9 +84,7 @@ public class Freezer extends CubeContainerHorizontal{
 			IFluidHandler freezer = FluidUtil.getFluidHandler(worldIn, pos, facing);
 			IFluidHandler heldFH = FluidUtil.getFluidHandler(held);
 
-			System.out.println(FluidUtil.getFluidHandler(worldIn, pos, facing));
-
-			FluidUtil.tryFluidTransfer(freezer, heldFH, f, true);
+			FluidUtil.tryFluidTransfer(te, heldFH, f, true);
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();

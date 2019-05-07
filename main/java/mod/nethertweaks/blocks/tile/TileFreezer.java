@@ -63,7 +63,6 @@ public class TileFreezer extends TileFluidInventory
 	public void update() {
     	if (this.world.isRemote) return;
     	
-		NetworkHandler.INSTANCE.sendToAll(new MessageNBTUpdate(this));
 		if(canFreeze()) {
 			this.workTime++;
 			if(workTime >= this.maxworkTime) {
@@ -72,6 +71,7 @@ public class TileFreezer extends TileFluidInventory
 			}
 		}
 		fillFromItem();
+		markDirtyClient();
 	}
 	
 	private boolean canFreeze()
@@ -82,7 +82,7 @@ public class TileFreezer extends TileFluidInventory
         return true;
     }
 
-    public void freezeItem()
+    private void freezeItem()
     {
     	this.drain(1000, true);
     	
@@ -93,8 +93,6 @@ public class TileFreezer extends TileFluidInventory
         else if(this.getStackInSlot(0).getCount() >= 1)
         	
         	this.getStackInSlot(0).grow(1);
-        
-        fillFromItem();
     }
     
 	private void fillFromItem()
@@ -116,7 +114,7 @@ public class TileFreezer extends TileFluidInventory
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		FluidUtil.tryFluidTransfer(this, input_handler, this.fillable(), true);
+		if(FluidUtil.tryFluidTransfer(this, input_handler, this.fillable(), true) == null) return;
 		
 		if(!container.isEmpty())
 		{
