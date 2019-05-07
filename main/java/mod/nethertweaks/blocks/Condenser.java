@@ -15,6 +15,7 @@ import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.proxy.IVariantProvider;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -73,6 +74,8 @@ public class Condenser extends CubeContainerHorizontal{
 		if(!(te instanceof TileCondenser)) {
 			return false;
 		}
+		
+		if(TankUtil.fillToHand(player, hand, te)) return true;
 		
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;

@@ -12,6 +12,7 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
@@ -26,6 +27,7 @@ import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -43,6 +45,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
@@ -76,19 +79,9 @@ public class Freezer extends CubeContainerHorizontal{
 		if(!(te instanceof TileFreezer)) {
 			return false;
 		}
-				
+						
 		//Fill from player-hand item
-		try {
-			ItemStack held = playerIn.getHeldItem(hand);
-			FluidStack f = FluidUtil.getFluidContained(held);
-			IFluidHandler freezer = FluidUtil.getFluidHandler(worldIn, pos, facing);
-			IFluidHandler heldFH = FluidUtil.getFluidHandler(held);
-
-			FluidUtil.tryFluidTransfer(te, heldFH, f, true);
-			return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if(TankUtil.fillFromHand(playerIn, hand, te)) return true;
 		
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
