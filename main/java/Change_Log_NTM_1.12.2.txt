@@ -9,6 +9,8 @@ ChangeLog NTM 2.0.0
 * Condenser and Freezer now have a new GUI
 * Condenser recipes, Barrel recipes, Hammer rewards & siftable items are now editable via JSON
 * Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and automatically output fluids to the sides
+* Condenser can be drained by held item
+* Freezer can be filled by held item
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab

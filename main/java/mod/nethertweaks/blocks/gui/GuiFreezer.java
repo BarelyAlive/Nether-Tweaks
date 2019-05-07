@@ -19,8 +19,8 @@ public class GuiFreezer extends GuiContainer
 	public GuiFreezer(InventoryPlayer inventoryPlayer, TileFreezer tileEntity) {
         super(new ContainerFreezer(inventoryPlayer, tileEntity));
         entity = tileEntity;
-   		xSize = 175;
-		ySize = 165;
+   		xSize = 176;
+		ySize = 166;
 	}
 	
 	/**

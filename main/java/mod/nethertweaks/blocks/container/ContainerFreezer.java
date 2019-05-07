@@ -20,17 +20,17 @@ public class ContainerFreezer extends ContainerBase {
 		super(te);
 		tileEntity = te;
 		
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 27, 48));
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 81, 12));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 26, 48));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 80, 12));
 		addSlotToContainer(new Slot(tileEntity, 2, 81, 48));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 9 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
 		for(int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, 9 + i * 18, 142));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}
 
 	}

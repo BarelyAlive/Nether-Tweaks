@@ -18,8 +18,8 @@ public class GuiCondenser extends GuiContainer {
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {
         super(new ContainerCondenser(inventoryPlayer, tileEntity));
         entity = tileEntity;
-   		xSize = 175;
-		ySize = 165;
+   		xSize = 176;
+		ySize = 166;
 	}
 	
 	/**
@@ -77,5 +77,4 @@ public class GuiCondenser extends GuiContainer {
     public boolean doesGuiPauseGame() {
     	return false;
     }
-
 }
