@@ -55,9 +55,7 @@ public class MessageBarrelModeUpdate implements IMessage {
 					if (entity instanceof TileBarrel)
 					{
 						TileBarrel te = (TileBarrel) entity;
-						te.setMode(msg.modeName);
-						
-						//Minecraft.getMinecraft().thePlayer.worldObj.notifyBlockUpdate(new BlockPos(msg.x, msg.y, msg.z));
+						te.setMode(msg.modeName);						
 					}
 				}
 			});

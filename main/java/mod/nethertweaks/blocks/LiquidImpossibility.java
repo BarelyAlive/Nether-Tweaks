@@ -72,13 +72,9 @@ public class LiquidImpossibility extends BlockFluidClassic{
     
     @Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-    {
-		
-		if (world.isRemote)
-			return;
-		
-		if (entity.isDead)
-			return;
+    {	
+		if (world.isRemote) return;		
+		if (entity.isDead) return;
 		
 		if (Config.spawnPig) {
 			if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {

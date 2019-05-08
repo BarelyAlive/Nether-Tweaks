@@ -63,12 +63,9 @@ public class StwH extends Block{
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!worldIn.isBlockLoaded(pos))
-			return false;
-		if (worldIn.isRemote)
-			return false;
-		if(playerIn.getRidingEntity() != null)
-			return false;
+		if(!worldIn.isBlockLoaded(pos)) 	   return false;
+		if(worldIn.isRemote) 				   return false;
+		if(playerIn.getRidingEntity() != null) return false;
 		
 		if (worldIn.provider.getDimension() != 1) {
 			playerIn.changeDimension(1);
