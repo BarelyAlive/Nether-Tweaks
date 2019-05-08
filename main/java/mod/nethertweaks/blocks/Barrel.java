@@ -65,12 +65,13 @@ public class Barrel extends Block implements ITileEntityProvider
         super.breakBlock(worldIn, pos, state);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public int getLightValue(@Nonnull IBlockState state, IBlockAccess world, @Nonnull BlockPos pos) {
         TileEntity te = world.getTileEntity(pos);
+        
+        if(!(te instanceof TileBarrel)) return super.getLightValue(state, world, pos);
+        if(!Config.enableBarrelTransformLighting) return super.getLightValue(state, world, pos);
 
-        if (te instanceof TileBarrel && Config.enableBarrelTransformLighting) {
             TileBarrel tile = (TileBarrel) te;
             if (tile.getMode() instanceof BarrelModeBlock) {
                 BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
@@ -84,7 +85,7 @@ public class Barrel extends Block implements ITileEntityProvider
                 if (mode.getFluidHandler(tile).getFluidAmount() > 0) {
                     return Util.getLightValue(mode.getFluidHandler(tile).getFluid());
                 }
-            } else if (Config.enableBarrelTransformLighting) {
+            } else {
                 if (tile.getMode() instanceof BarrelModeCompost) {
                     BarrelModeCompost mode = (BarrelModeCompost) tile.getMode();
 
@@ -102,7 +103,6 @@ public class Barrel extends Block implements ITileEntityProvider
                     return Math.round(Util.weightedAverage(outputValue, inputValue, mode.getProgress()));
                 }
             }
-        }
 
         return super.getLightValue(state, world, pos);
     }
@@ -110,20 +110,19 @@ public class Barrel extends Block implements ITileEntityProvider
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-    	if(worldIn.isBlockLoaded(pos))
-    		return worldIn.isRemote || worldIn.getTileEntity(pos) == null || ((TileBarrel) worldIn.getTileEntity(pos)).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-
-    	return false;
+    	if(!worldIn.isBlockLoaded(pos)) return false;
+    	if(!worldIn.isRemote) return false;
+    	TileEntity te = worldIn.getTileEntity(pos);
+    	if(!(te instanceof TileBarrel)) return false;
+    		return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @Deprecated
     public boolean isFullBlock(IBlockState state) {
         return false;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @Deprecated
     public boolean isOpaqueCube(IBlockState state) {
@@ -135,7 +134,6 @@ public class Barrel extends Block implements ITileEntityProvider
         return new TileBarrel(this);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @Nonnull
     @Deprecated
@@ -143,13 +141,11 @@ public class Barrel extends Block implements ITileEntityProvider
         return boundingBox;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean isTopSolid(IBlockState state) {
         return false;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     @Deprecated
     public boolean isFullCube(IBlockState state) {
@@ -164,8 +160,7 @@ public class Barrel extends Block implements ITileEntityProvider
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileBarrel) {
+        if (!(te instanceof TileBarrel)) return;
             ((TileBarrel) te).entityOnTop(worldIn, entityIn);
-        }
     }
 }

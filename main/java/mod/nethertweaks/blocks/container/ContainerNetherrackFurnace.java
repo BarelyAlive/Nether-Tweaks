@@ -34,6 +34,7 @@ public class ContainerNetherrackFurnace extends ContainerBase {
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int data) {
 		this.tileentity.setField(id, data);
