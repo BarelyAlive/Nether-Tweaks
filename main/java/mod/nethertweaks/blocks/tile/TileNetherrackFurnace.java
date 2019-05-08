@@ -5,9 +5,12 @@ import javax.annotation.Nullable;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.sfhcore.blocks.tiles.TileInventory;
+import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.material.Material;
@@ -40,6 +43,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.util.datafix.walkers.ItemStackDataLists;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -68,47 +72,10 @@ public class TileNetherrackFurnace extends TileInventory{
         if (!canSmelt()) return;
         
         ++this.workTime;		
-        if (this.workTime >= maxworkTime)
-        {
+        if(this.workTime < maxworkTime) return;
             smeltItem();
             this.workTime = 0;
-        }
     }
-    
-    public boolean checkHeatSource(){ 
-    	Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		IBlockState state = block.getDefaultState();
-		
-		if(!world.isBlockLoaded(pos)) return false;
-		
-		if (state.getMaterial() == Material.FIRE)
-		{
-			maxworkTime = ((maxworkTime / 10) * 9);
-			return true;
-		}
-		
-		if(!(block instanceof BlockFluidClassic)) return false;
-		
-		int blockheat = BlockFluidClassic.getTemperature(world, pos);
-		int lavaheat = FluidRegistry.LAVA.getTemperature();
-		if(blockheat < lavaheat) return false;
-		
-		int lavatime = ((maxworkTime / 10) * 8);
-		
-		if (maxworkTime > lavatime)
-		{
-			int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-			if (lavatime > heattime)
-			{
-				maxworkTime = heattime;
-			}
-			else
-			{
-				maxworkTime = lavatime;
-			}
-		}
-		return true;
-	}
 
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
@@ -116,7 +83,7 @@ public class TileNetherrackFurnace extends TileInventory{
      */
     private boolean canSmelt()
     {
-    	if(!checkHeatSource()) return false;
+        if(getMaxWorktime() <= 0) return false;
     	if (((ItemStack)this.machineItemStacks.get(0)).isEmpty()) return false;           
         ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
         if (itemstack.isEmpty()) return false;       
@@ -129,6 +96,44 @@ public class TileNetherrackFurnace extends TileInventory{
         
             return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
     }
+    
+    public int getHeatRate() {
+        BlockPos posBelow = pos.add(0, -1, 0);
+        IBlockState stateBelow = getWorld().getBlockState(posBelow);
+
+        if (stateBelow == Blocks.AIR.getDefaultState()) {
+            return 0;
+        }
+
+        // Try to match metadata
+        int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
+
+        // Try to match without metadata
+        if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+            heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
+
+        if (heat != 0)
+            return heat;
+
+        TileEntity tile = getWorld().getTileEntity(posBelow);
+
+        if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)) {
+            return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+        }
+
+        return 0;
+    }
+
+	private int getMaxWorktime()
+	{
+		int heat = getHeatRate();
+				if(heat < 1 && heat > 0)
+			this.maxworkTime *= this.maxworkTime;
+		if(heat >= 1)
+			this.maxworkTime = this.maxworkTime /= heat;
+		
+		return 0;	
+	}
 
     /**
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack

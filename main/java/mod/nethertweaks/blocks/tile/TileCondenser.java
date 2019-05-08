@@ -7,8 +7,10 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
+import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.HeatRegistry;
@@ -16,6 +18,7 @@ import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -38,6 +41,7 @@ import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -163,43 +167,32 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 		return 0;
 	}
 	
-	private boolean checkHeatSource()
-	{
-		Block block = world.getBlockState(pos.add(0, -1, 0)).getBlock();
-		IBlockState state = block.getDefaultState();
-		
-		if(!world.isBlockLoaded(pos)) return false;
-		
-		if (state.getMaterial() == Material.FIRE)
-		{
-			maxworkTime = ((maxworkTime / 10) * 9);
-			return true;
-		}
-		else
-		{
-			if(!(block instanceof BlockFluidClassic)) return false;
-			
-			int blockheat = BlockFluidClassic.getTemperature(world, pos);
-			int lavaheat = FluidRegistry.LAVA.getTemperature();
-			if(blockheat < lavaheat) return false;
-			
-			int lavatime = ((maxworkTime / 10) * 8);
-			
-			if (maxworkTime > lavatime)
-			{
-				int heattime = lavatime * Math.floorDiv(lavaheat, blockheat);
-				if (lavatime > heattime)
-				{
-					maxworkTime = heattime;
-				}
-				else
-				{
-					maxworkTime = lavatime;
-				}
-			}
-		}
-		return true;
-	}
+	public int getHeatRate() {
+        BlockPos posBelow = pos.add(0, -1, 0);
+        IBlockState stateBelow = getWorld().getBlockState(posBelow);
+
+        if (stateBelow == Blocks.AIR.getDefaultState()) {
+            return 0;
+        }
+
+        // Try to match metadata
+        int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
+
+        // Try to match without metadata
+        if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+            heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
+
+        if (heat != 0)
+            return heat;
+
+        TileEntity tile = getWorld().getTileEntity(posBelow);
+
+        if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)) {
+            return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+        }
+
+        return 0;
+    }
 	
 	private boolean checkInv()
 	{
@@ -209,9 +202,20 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 		Dryable result = CondenserRegistry.getDryable(machineItemStacks.get(0));
 		if (result == null) return false;
 		if(this.fillable() == 0) return false;
-		if(!checkHeatSource()) return false;
+		if(getMaxWorktime() <= 0) return false;
 		
 		return true;
+	}
+	
+	private int getMaxWorktime()
+	{
+		int heat = getHeatRate();
+				if(heat < 1 && heat > 0)
+			this.maxworkTime *= this.maxworkTime;
+		if(heat >= 1)
+			this.maxworkTime = this.maxworkTime /= heat;
+		
+		return 0;	
 	}
 	
 	@Override
