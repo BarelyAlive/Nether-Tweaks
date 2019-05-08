@@ -48,7 +48,7 @@ public class Bonfire extends BlockContainer {
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	
-	int l = 0;
+	private int l = 0;
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		l++;
@@ -76,27 +76,25 @@ public class Bonfire extends BlockContainer {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (worldIn.isBlockLoaded(pos)) {
-			if (playerIn.onGround && playerIn.dimension == -1) {
-				TileEntity bonfire = worldIn.getTileEntity(pos);
-
-				if (bonfire instanceof TileBonfire) {
-					((TileBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
-				}
-			} 
-		}
-		return false;
+		if(!worldIn.isBlockLoaded(pos)) return false;
+		if(!playerIn.onGround) return false;
+		
+		TileEntity bonfire = worldIn.getTileEntity(pos);
+		if(!(bonfire instanceof TileBonfire)) return false;
+		
+		((TileBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
+		return true;
 	}
 	
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		if (worldIn.isBlockLoaded(pos)) {
-			TileEntity bonfire = worldIn.getTileEntity(pos);
-			if (bonfire instanceof TileBonfire) {
-				((TileBonfire) bonfire).deleteSpawnLocationsIfDestroyed();
-			} 
-		}
+		if(!worldIn.isBlockLoaded(pos)) return;
+		
+		TileEntity bonfire = worldIn.getTileEntity(pos);
+		if(!(bonfire instanceof TileBonfire)) return;
+		
+		((TileBonfire) bonfire).deleteSpawnLocationsIfDestroyed();
 	}
 	
 	/*
@@ -137,12 +135,6 @@ public class Bonfire extends BlockContainer {
         }
     }
     */
-    
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
 
     public boolean isFullCube(IBlockState state)
     {

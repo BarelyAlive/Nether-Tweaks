@@ -32,8 +32,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimension()){
         case -1: generateNether(world, random, chunkX * 16, chunkZ * 16);
-        }
-		
+        }		
 	}
  
     private void generateNether(World world, Random random, int posX, int posZ) {

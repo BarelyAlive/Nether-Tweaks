@@ -144,8 +144,8 @@ public class WorldHandler{
 	}
 	//*********************************************************************************************************************
 	
-	private void teleportPlayer(EntityPlayer player) {
-		
+	private void teleportPlayer(EntityPlayer player)
+	{
 		if(player.dimension != -1)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
@@ -159,12 +159,12 @@ public class WorldHandler{
 	
 	private boolean allowedDims(World world, int dim)
     {
-    	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
-    	{
-			for (int i : Config.allowedDims) {
-				if (i == dim)
-					return true;
-			} 
+		if(world.isRemote) return false;
+		if(!(world.getWorldType() instanceof WorldTypeHellworld))
+    	
+		for (int i : Config.allowedDims) {
+			if (i == dim)
+				return true;
 		}
 		return false;
     }

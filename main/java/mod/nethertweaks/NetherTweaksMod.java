@@ -114,7 +114,9 @@ public class NetherTweaksMod
     	MinecraftForge.EVENT_BUS.register(this);
     	
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());		
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	
+		
+		NTMDefaultRecipes.registerDefaults();
     }
     
     @Mod.EventHandler

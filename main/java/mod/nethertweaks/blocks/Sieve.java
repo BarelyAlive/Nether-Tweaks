@@ -55,20 +55,13 @@ public class Sieve extends Block{
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         // I think this should work. Let's just go with it.
-        if (player instanceof FakePlayer && !Config.fakePlayersCanSieve)
-            return false;
-        
-        if (!world.isBlockLoaded(pos))
-    		return false;
-    	if(world.isRemote)
-    		return false;
-    	if(player.isSneaking())
-    		return false;
+        if(player instanceof FakePlayer && !Config.fakePlayersCanSieve) return false;
+        if(!world.isBlockLoaded(pos)) return false;
+    	if(world.isRemote) return false;
+    	if(player.isSneaking()) return false;
     	  	
     	TileSieve te = (TileSieve) world.getTileEntity(pos);
-		if(!(te instanceof TileSieve)) {
-			return false;
-		}
+		if(!(te instanceof TileSieve)) return false;
 
         ItemStack heldItem = player.getHeldItem(hand);
 
