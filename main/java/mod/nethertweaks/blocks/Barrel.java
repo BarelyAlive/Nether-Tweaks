@@ -111,7 +111,7 @@ public class Barrel extends Block implements ITileEntityProvider
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
     	if(!worldIn.isBlockLoaded(pos)) return false;
-    	if(!worldIn.isRemote) return false;
+    	if(worldIn.isRemote) return true;
     	TileEntity te = worldIn.getTileEntity(pos);
     	if(!(te instanceof TileBarrel)) return false;
     		return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);

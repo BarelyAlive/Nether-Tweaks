@@ -74,8 +74,11 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 	{
 		if(world.isRemote) return;
 		markDirtyClient();
-		if(!checkInv()) return;
-		
+		if(!checkInv())
+		{
+			this.workTime = 0;
+			return;
+		}
 		this.workTime++;
 		if (this.workTime >= this.maxworkTime)
 		{

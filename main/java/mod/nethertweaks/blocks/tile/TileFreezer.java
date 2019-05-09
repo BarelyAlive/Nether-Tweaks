@@ -62,16 +62,18 @@ public class TileFreezer extends TileFluidInventory
     @Override
 	public void update() {
     	if (this.world.isRemote) return;
-    	
-		if(canFreeze()) {
-			this.workTime++;
-			if(workTime >= this.maxworkTime) {
-				workTime = 0;
-				freezeItem();
-			}
-		}
-		fillFromItem();
+    	fillFromItem();
 		markDirtyClient();
+		if(!canFreeze()) {
+			this.workTime = 0;
+			return;
+		}
+		
+		this.workTime++;
+		if(workTime >= this.maxworkTime) {
+			workTime = 0;
+			freezeItem();
+		}
 	}
 	
 	private boolean canFreeze()
@@ -93,6 +95,7 @@ public class TileFreezer extends TileFluidInventory
         else if(this.getStackInSlot(0).getCount() >= 1)
         	
         	this.getStackInSlot(0).grow(1);
+        fillFromItem();
     }
     
 	private void fillFromItem()

@@ -69,9 +69,14 @@ public class TileNetherrackFurnace extends TileInventory{
 		if(world.isRemote) return;
 		markDirtyClient();
         NetherrackFurnace.setState(isWorking(), this.world, this.pos);
-        if (!canSmelt()) return;
+        if (!canSmelt())
+        {
+        	this.workTime = 0;
+        	return;
+        }
         
-        ++this.workTime;		
+        ++this.workTime;
+        System.out.println(workTime);
         if(this.workTime < maxworkTime) return;
             smeltItem();
             this.workTime = 0;

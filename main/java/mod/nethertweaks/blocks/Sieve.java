@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -28,6 +29,7 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
@@ -39,16 +41,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Sieve extends Block{
+public class Sieve extends BlockContainer {
 
     public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
 
     public Sieve() {
         super(Material.WOOD);
         this.setHardness(2.0f);
-        this.setRegistryName(INames.SIEVE);
+        this.setRegistryName(NetherTweaksMod.MODID, INames.SIEVE);
         this.setCreativeTab(NetherTweaksMod.TABNTM);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(MESH, MeshType.NO_RENDER));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(MESH, MeshType.NONE));
     }
 
     @Override
@@ -57,12 +59,12 @@ public class Sieve extends Block{
         // I think this should work. Let's just go with it.
         if(player instanceof FakePlayer && !Config.fakePlayersCanSieve) return false;
         if(!world.isBlockLoaded(pos)) return false;
-    	if(world.isRemote) return false;
+    	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
     	  	
     	TileSieve te = (TileSieve) world.getTileEntity(pos);
-		if(!(te instanceof TileSieve)) return false;
-
+		if(te == null) return true;
+		
         ItemStack heldItem = player.getHeldItem(hand);
 
         // Removing a mesh
@@ -88,6 +90,7 @@ public class Sieve extends Block{
             slot = DankNullUtils.getSelectedStackIndex(DankNullUtils.getInventoryFromHeld(player));
             maxSlot = slot + 1;
         }
+
         for(;slot < maxSlot; slot++){
             ItemStack stack = cap.getStackInSlot(slot);
             if(!stack.isEmpty() && stack.getItem() instanceof ItemMesh){
@@ -171,13 +174,7 @@ public class Sieve extends Block{
 
         super.breakBlock(world, pos, state);
     }
-
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
-    	return new TileSieve();
-    }
-
+    
     //region >>>> RENDERING OPTIONS
     @Override
     @Deprecated
@@ -250,5 +247,9 @@ public class Sieve extends Block{
             return getName();
         }
     }
-
+    
+	@Override
+	public TileSieve createNewTileEntity(World worldIn, int meta) {
+    	return new TileSieve();
+	}
 }

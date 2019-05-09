@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
@@ -69,14 +69,12 @@ public class Freezer extends CubeContainerHorizontal{
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if(!worldIn.isBlockLoaded(pos)) return false;
-    	if(worldIn.isRemote) return false;
-    	if(playerIn.isSneaking()) return false;
-    	  	
-    	TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
+		TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
 		if(!(te instanceof TileFreezer)) return false;
-						
 		//Fill from player-hand item
 		if(TankUtil.fillFromHand(playerIn, hand, te)) return true;
+    	if(worldIn.isRemote) return true;
+    	if(playerIn.isSneaking()) return false;
 		
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;

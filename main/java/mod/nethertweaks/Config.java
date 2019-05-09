@@ -179,7 +179,7 @@ public class Config {
         rubberSeed 						= config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Leaves are green, you know.");
         oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine, you know.");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
-        dankNullIntegration 			= config.get("DankNullIntegration", "Enable Dank-Null Integration?", false).getBoolean();
+        dankNullIntegration 			= config.get("DankNullIntegration", "Enable Dank-Null Integration?", true).getBoolean();
         preventUnidict 					= config.get("PreventUnidict", "Enable Unidictionary?", true).getBoolean();
     	chunkBaseOreDictName 			= config.get("ChunkBaseName", "Base Name for Chunks", "Chunk").getString();
     	dustBaseOreDictName 			= config.get("DustBaseName", "Base Name for Dusts", "Dust").getString();

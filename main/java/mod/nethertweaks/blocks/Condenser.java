@@ -63,14 +63,13 @@ public class Condenser extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
     {	
-    	if (!world.isBlockLoaded(pos)) return false;
+    	if(!world.isBlockLoaded(pos)) return false;
+		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
+		if(!(te instanceof TileCondenser)) return false;
+		//Fill from player-hand item
+		if(TankUtil.fillToHand(player, hand, te)) return true;
     	if(world.isRemote) return false;
     	if(player.isSneaking()) return false;
-    	  	
-    	TileCondenser te = (TileCondenser) world.getTileEntity(pos);
-		if(!(te instanceof TileCondenser)) return false;
-		
-		if(TankUtil.fillToHand(player, hand, te)) return true;
 		
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;

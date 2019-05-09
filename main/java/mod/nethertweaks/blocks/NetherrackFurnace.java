@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
@@ -68,12 +69,9 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
     {
-    	if (!world.isBlockLoaded(pos))
-    		return false;
-    	if(world.isRemote)
-    		return false;
-    	if(player.isSneaking())
-    		return false;
+    	if (!world.isBlockLoaded(pos)) return false;
+    	if(world.isRemote) return true;
+    	if(player.isSneaking()) return false;
     	  	
 		TileEntity te = world.getTileEntity(pos);
 		if(!(te instanceof TileNetherrackFurnace)) {
