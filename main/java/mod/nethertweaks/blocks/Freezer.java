@@ -11,10 +11,14 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
+import mod.sfhcore.SFHCore;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
+import mod.sfhcore.network.MessageFluidTankContents;
+import mod.sfhcore.network.MessageNBTUpdate;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.proxy.IVariantProvider;
-import mod.sfhcore.util.TankUtil;
+import mod.sfhcore.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -46,15 +50,19 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Freezer extends CubeContainerHorizontal{
 	
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
     private static boolean keepInventory;
+    public final FluidStack WATER = new FluidStack(FluidRegistry.WATER, Integer.MAX_VALUE);
 	
 	public Freezer() {
 		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
@@ -71,11 +79,25 @@ public class Freezer extends CubeContainerHorizontal{
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
 		if(!(te instanceof TileFreezer)) return false;
-		//Fill from player-hand item
-		if(TankUtil.fillFromHand(playerIn, hand, te)) return true;
-    	if(worldIn.isRemote) return true;
+    	//if(worldIn.isRemote) return true;
     	if(playerIn.isSneaking()) return false;
-		
+    	
+    	IFluidHandlerItem handler = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
+    	boolean cap;
+    	if(handler == null)
+    		cap = playerIn.getHeldItem(hand).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, facing);
+    	IFluidHandler freezer = te.tank;
+    	
+		System.out.println((worldIn.isRemote ? "Client " : "Server ")  + te.tank.getFluidAmount());
+    	
+    			if(!worldIn.isRemote)
+    			{
+    				FluidUtil.tryFluidTransfer(te.tank, FluidUtil.getFluidHandler(playerIn.getHeldItem(hand)), WATER, true);
+        			te.markDirtyClient();
+    				//NetworkHandler.sendToServer(new MessageFluidTankContents(te.tank.getTankProperties(), te));
+        			return true;
+    			}
+    	
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

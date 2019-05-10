@@ -54,8 +54,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class TileCondenser extends TileFluidInventory implements net.minecraftforge.fluids.capability.IFluidHandler {
-	
+public class TileCondenser extends TileFluidInventory
+{	
 	private static List<Fluid> lf = new ArrayList<Fluid>();
 	
 	static
@@ -73,7 +73,6 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
     public void update()
 	{
 		if(world.isRemote) return;
-		markDirtyClient();
 		if(!checkInv())
 		{
 			this.workTime = 0;
@@ -85,6 +84,9 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 			this.workTime = 0;
 			dry();
 		}
+		fillToItemSlot();
+		fillTankInBlock(tank, getMaxCapacity());
+		markDirtyClient();
 	}
 	
 	public void dry()
@@ -119,7 +121,7 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 		
 		if (amount > 0)
 		{
-			this.tank.amount += amount;
+			this.tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
 		}
 		
 		material.shrink(1);
@@ -128,24 +130,29 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 	
 	private void fillToItemSlot()
 	{
-		ItemStack slot1 = this.getStackInSlot(1);
-		if(slot1.isEmpty()) return;
-		if(FluidUtil.getFluidHandler(slot1) == null) return;
-		if(!hasAcceptedFluids(FluidUtil.getFluidContained(slot1).getFluid())) return;
-    	if(this.fillable() == 0) return;
-    	if(FluidUtil.getFluidHandler(slot1).fill(this.getFluid(), false) < this.getFluidAmount()) return;
-    	if (this.getStackInSlot(1).getCount() != 1) return;
+		ItemStack input = machineItemStacks.get(2);
+    	ItemStack output = machineItemStacks.get(1);
     	
-		IFluidHandlerItem outHandler = FluidUtil.getFluidHandler(this.getStackInSlot(1));
-		if (this.getStackInSlot(1).getItem().equals(Items.BUCKET))
-		{
-			this.setInventorySlotContents(1, new ItemStack(Items.WATER_BUCKET));
-			this.drain(1000,  true); 
+    	if(output.getCount() == output.getMaxStackSize()) return;
+    	if(input.isEmpty()) return;
+    	if(FluidUtil.getFluidHandler(input) == null) return;
+    	if(this.tank.getFluidAmount() == 0) return;
+    	if(!input.isEmpty()) return;
+    	if(FluidUtil.getFluidHandler(input).fill(this.tank.getFluid(), false) <= this.tank.getFluidAmount()) return;
+    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
+    	
+		FluidStack input_stack = FluidUtil.getFluidContained(input);
+		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+		
+		if(FluidUtil.tryFluidTransfer(input_handler, this.tank, this.fillable(), true) == null) return;
+		
+		if (output.isEmpty()) {
+			machineItemStacks.get(1).grow(1);
+			machineItemStacks.get(2).shrink(1);
 		}
-		else if(outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), false) >= 1000)
-		{
-			outHandler.fill(new FluidStack(this.tank.getFluid(), 1000), true);
-			this.drain(1000,  true); 
+		else {
+			machineItemStacks.set(1, input);
+			machineItemStacks.get(2).shrink(1);
 		}
 	}
 	
@@ -197,7 +204,7 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
         return 0;
     }
 	
-	private boolean checkInv()
+	private boolean checkInv() 
 	{
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		if(!CondenserRegistry.containsItem(machineItemStacks.get(0))) return false;
@@ -238,8 +245,8 @@ public class TileCondenser extends TileFluidInventory implements net.minecraftfo
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack)
 	{
-		if (index != 1) return false;
-		return true;
+		if (index != 2) return true;
+		return false;
 	}
 	
     public String getGuiID()

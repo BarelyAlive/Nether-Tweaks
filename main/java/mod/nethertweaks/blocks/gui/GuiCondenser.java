@@ -63,9 +63,9 @@ public class GuiCondenser extends GuiContainer {
         x = x_old;
         y = y_old;
         
-        if(this.entity.getTank().amount != 0)
+        if(this.entity.tank.getFluidAmount() != 0)
         {
-    		int k = this.entity.getTank().amount * 64 / this.entity.getMaxCapacity();
+    		int k = this.entity.tank.getFluidAmount() * 64 / this.entity.getMaxCapacity();
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;

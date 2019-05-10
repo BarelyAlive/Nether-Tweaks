@@ -22,7 +22,7 @@ public class ContainerFreezer extends ContainerBase {
 		
 		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 26, 48));
 		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 80, 12));
-		addSlotToContainer(new Slot(tileEntity, 2, 81, 48));
+		addSlotToContainer(new Slot(tileEntity, 2, 80, 48));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {

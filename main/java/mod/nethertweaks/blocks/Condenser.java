@@ -28,6 +28,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -62,13 +63,11 @@ public class Condenser extends CubeContainerHorizontal{
     @Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
-    {	
+    {
     	if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(!(te instanceof TileCondenser)) return false;
-		//Fill from player-hand item
-		if(TankUtil.fillToHand(player, hand, te)) return true;
-    	if(world.isRemote) return false;
+    	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
 		
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
