@@ -1,62 +1,30 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
-import mod.sfhcore.SFHCore;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
-import mod.sfhcore.blocks.tiles.TileFluidInventory;
-import mod.sfhcore.network.MessageFluidTankContents;
-import mod.sfhcore.network.MessageNBTUpdate;
-import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.proxy.IVariantProvider;
-import mod.sfhcore.util.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
+import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.EnumFaceDirection;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Freezer extends CubeContainerHorizontal{
 	
@@ -92,7 +60,7 @@ public class Freezer extends CubeContainerHorizontal{
     	
     			if(!worldIn.isRemote)
     			{
-    				FluidUtil.tryFluidTransfer(te.tank, FluidUtil.getFluidHandler(playerIn.getHeldItem(hand)), WATER, true);
+    				//TankUtil.drainWaterFromBottle(te, playerIn, te.tank);
         			te.markDirtyClient();
     				//NetworkHandler.sendToServer(new MessageFluidTankContents(te.tank.getTankProperties(), te));
         			return true;
