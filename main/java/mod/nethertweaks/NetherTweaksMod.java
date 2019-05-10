@@ -75,7 +75,8 @@ public class NetherTweaksMod
     public static NetherTweaksMod instance;
     
     static
-    {      
+    {   
+    	FluidRegistry.enableUniversalBucket();
     	MessageHandler.init();
     }
     

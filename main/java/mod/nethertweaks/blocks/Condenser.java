@@ -45,6 +45,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class Condenser extends CubeContainerHorizontal{
@@ -67,9 +69,17 @@ public class Condenser extends CubeContainerHorizontal{
     	if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(!(te instanceof TileCondenser)) return false;
-    	if(world.isRemote) return true;
+    	//if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
 		
+    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+    	
+    	if (item != null) {
+			FluidUtil.interactWithFluidHandler(player, hand, te.tank);
+			te.markDirtyClient();
+			return true;
+		}
+    	
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }

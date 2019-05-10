@@ -5,6 +5,9 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.network.MessageFluidTankContents;
+import mod.sfhcore.network.MessageNBTUpdate;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -25,6 +28,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import p455w0rdslib.util.ChunkUtils;
 
 public class Freezer extends CubeContainerHorizontal{
 	
@@ -50,22 +54,16 @@ public class Freezer extends CubeContainerHorizontal{
     	//if(worldIn.isRemote) return true;
     	if(playerIn.isSneaking()) return false;
     	
-    	IFluidHandlerItem handler = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
-    	boolean cap;
-    	if(handler == null)
-    		cap = playerIn.getHeldItem(hand).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, facing);
-    	IFluidHandler freezer = te.tank;
+    	IFluidHandlerItem item = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
     	
-		System.out.println((worldIn.isRemote ? "Client " : "Server ")  + te.tank.getFluidAmount());
-    	
-    			if(!worldIn.isRemote)
-    			{
-    				//TankUtil.drainWaterFromBottle(te, playerIn, te.tank);
-        			te.markDirtyClient();
-    				//NetworkHandler.sendToServer(new MessageFluidTankContents(te.tank.getTankProperties(), te));
-        			return true;
-    			}
-    	
+    	if (item != null) {
+    		//FluidUtil.getFluidHandler(world, blockPos, side)
+			FluidUtil.interactWithFluidHandler(playerIn, hand, te.tank);
+			System.out.println(worldIn.isRemote + " " + te.tank.getFluid().amount);
+			if (worldIn.isRemote)
+				NetworkHandler.sendToServer(new MessageFluidTankContents(te.tank.getTankProperties(), te));
+			return true;
+		}
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

@@ -63,13 +63,15 @@ public class TileFreezer extends TileFluidInventory
 	public void update() {
     	if (this.world.isRemote) return;
     	fillFromItem();
-		markDirtyClient();
+    	
 		if(!canFreeze()) {
 			this.workTime = 0;
 			return;
 		}
 		
 		this.workTime++;
+    	//this.markDirty();
+		NetworkHandler.sendNBTUpdate(this);
 		if(workTime >= this.maxworkTime) {
 			workTime = 0;
 			freezeItem();
@@ -96,6 +98,7 @@ public class TileFreezer extends TileFluidInventory
         	
         	this.getStackInSlot(0).grow(1);
         fillFromItem();
+        this.markDirty();
     }
     
 	private void fillFromItem()
@@ -109,6 +112,8 @@ public class TileFreezer extends TileFluidInventory
     	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
     	if(FluidUtil.getFluidHandler(input) == null) return;
+    	if(FluidUtil.getFluidContained(input) == null) return;
+    	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
     	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
     	if(this.fillable() == 0) return;
     	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
