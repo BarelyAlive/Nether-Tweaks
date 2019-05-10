@@ -104,7 +104,7 @@ public class TileFreezer extends TileFluidInventory
     	ItemStack output = machineItemStacks.get(1);
     	ItemStack container = ItemStack.EMPTY;
     	if(!input.isEmpty())
-    	container = new ItemStack(input.getItem().getContainerItem());
+    		container = new ItemStack(input.getItem().getContainerItem());
     	
     	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
@@ -112,7 +112,7 @@ public class TileFreezer extends TileFluidInventory
     	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
     	if(this.fillable() == 0) return;
     	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-    	if(FluidUtil.getFluidHandler(input).drain(this.fillable(), false).amount >  this.fillable()) return;
+    	if(FluidUtil.getFluidHandler(input).drain(this.fillable(), false).amount == 0) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
