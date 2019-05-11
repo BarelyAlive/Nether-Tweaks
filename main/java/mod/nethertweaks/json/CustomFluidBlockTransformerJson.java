@@ -19,7 +19,7 @@ public class CustomFluidBlockTransformerJson implements JsonDeserializer<FluidBl
 		        obj.add("output", context.serialize(src.getOutput()));
 
 		        if (src.getToSpawn() != EntityInfo.EMPTY)
-		            obj.add("toSpawn", context.serialize(src.getToSpawn()));
+		            obj.add("toSpawn", context.serialize(src.getToSpawn().getName()));
 
 		        if (src.getSpawnCount() != 0) {
 		            obj.addProperty("spawnCount", src.getSpawnCount());
@@ -35,14 +35,15 @@ public class CustomFluidBlockTransformerJson implements JsonDeserializer<FluidBl
 	public FluidBlockTransformer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 			throws JsonParseException
 	{
-		JsonObject obj = new JsonObject();
-
+		JsonObject obj = json.getAsJsonObject();
+		
 		        return new FluidBlockTransformer(
-		                obj.getAsJsonPrimitive("fluidName").getAsString(),
+		                //obj.getAsJsonPrimitive("fluidName").getAsString(),
+		                obj.get("fluidName").getAsString(),
 		                context.deserialize(obj.get("input"), Ingredient.class),
 		                context.deserialize(obj.get("output"), BlockInfo.class),
 		                obj.has("toSpawn") ?
-		                	context.deserialize(obj.get("toSpawn"), EntityInfo.class) : EntityInfo.EMPTY.getName(),
+		                	context.deserialize(obj.get("toSpawn"), EntityInfo.class).toString() : EntityInfo.EMPTY.getName(),
 		                obj.has("spawnCount") ? obj.getAsJsonPrimitive("spawnCount").getAsInt() : 0,
 		                obj.has("spawnRange") ? obj.getAsJsonPrimitive("spawnRange").getAsInt() : 0
 		        );

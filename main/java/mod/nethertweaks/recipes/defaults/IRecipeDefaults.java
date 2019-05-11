@@ -7,6 +7,8 @@ public interface IRecipeDefaults
 	 String getMODID();
 	
 	 default void registerCompost(CompostRegistry registry) {}
+	 default void registerCondenser(CondenserRegistry registry) {};
+	 default void registerHellmart(HellmartRegistry registry) {};
 	 default void registerSieve(SieveRegistry registry) {}
 	 default void registerHammer(HammerRegistry registry) {}
 	 default void registerHeat(HeatRegistry registry) {}

@@ -18,6 +18,8 @@ public class CustomOreJson implements JsonDeserializer<Ore>, JsonSerializer<Ore>
     public JsonElement serialize(Ore src, Type typeOfSrc, JsonSerializationContext context)
     {
         JsonObject obj = new JsonObject();
+        System.out.println(src.toString());
+        System.out.println(src.getName());
         obj.addProperty("name", src.getName());
         obj.add("color", context.serialize(src.getColor(), Color.class));
         if(src.getResult() != null)

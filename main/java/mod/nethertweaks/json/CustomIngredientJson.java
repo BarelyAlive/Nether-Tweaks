@@ -33,7 +33,7 @@ public class CustomIngredientJson implements JsonDeserializer<Ingredient>, JsonS
             return new JsonPrimitive("ore:" + ((OreIngredientStoring)src).getOreName());
         } else {
             ItemStack[] stacks = src.getMatchingStacks();
-            if (stacks.length == 0)
+            if (stacks.length != 0)
                 return new JsonPrimitive(stacks[0].getItem().getRegistryName().toString() + ":" + stacks[0].getItemDamage());
         }
 

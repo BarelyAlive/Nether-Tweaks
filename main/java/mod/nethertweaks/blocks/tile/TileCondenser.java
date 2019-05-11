@@ -79,6 +79,7 @@ public class TileCondenser extends TileFluidInventory
 			return;
 		}
 		this.workTime++;
+		NetworkHandler.sendNBTUpdate(this);
 		if (this.workTime >= this.maxworkTime)
 		{
 			this.workTime = 0;
@@ -86,7 +87,6 @@ public class TileCondenser extends TileFluidInventory
 		}
 		fillToItemSlot();
 		fillTankInBlock(tank, getMaxCapacity());
-		markDirtyClient();
 	}
 	
 	public void dry()

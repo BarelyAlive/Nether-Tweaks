@@ -156,8 +156,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
                 UniDict.getConfig().recipesToIgnore.add(recipeLocation);
             }
 
-            ItemStack smeltingResult;
-
+            ItemStack smeltingResult;            
+            
             if (ore.isRegisterIngot()) {
                 smeltingResult = new ItemStack(ore, 1, 3);
                 OreDictionary.registerOre("ingot" + StringUtils.capitalize(ore.getOre().getName()), smeltingResult);

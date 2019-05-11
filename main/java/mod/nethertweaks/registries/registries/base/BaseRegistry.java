@@ -38,7 +38,6 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
     public void saveJson(File file) {
         try(FileWriter fw = new FileWriter(file)) {
             // TODO remove null again
-        	System.out.println(registry);
             if (typeOfSource != null) {
                 gson.toJson(registry, typeOfSource, fw);
             } else {
