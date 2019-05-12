@@ -78,6 +78,7 @@ public class TileCondenser extends TileFluidInventory
 			return;
 		}
 		work();
+		System.out.println(this.getWorkTime());
 		NetworkHandler.sendNBTUpdate(this);
 		
 		if (this.getWorkTime() >= this.getMaxworkTime())
