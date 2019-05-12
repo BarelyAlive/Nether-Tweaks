@@ -49,6 +49,16 @@ public class CompatDefaultRecipes
                 .forEach(mod -> mod.registerCompost(registry));
     }
 
+    public void registerCondenser(CondenserRegistry registry) {
+        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+                .forEach(mod -> mod.registerCondenser(registry));
+    }
+
+    public void registerHellmart(HellmartRegistry registry) {
+        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+                .forEach(mod -> mod.registerHellmart(registry));
+    }
+
     public void registerSieve(SieveRegistry registry) {
         MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
                 .forEach(mod -> mod.registerSieve(registry));

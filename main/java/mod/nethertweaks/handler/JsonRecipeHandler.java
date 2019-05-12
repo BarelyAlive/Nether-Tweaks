@@ -10,11 +10,10 @@ public class JsonRecipeHandler
 {
 	public static void loadJasonVorhees(File f)
     {
-		CondenserRegistry.loadJson(new File(f, "CondenserRegistry.json"));
-		HellmartRegistry.loadJson(new File(f, "HellmartRegistry.json"));
-		
 		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(f, "CompostRegistry.json"));
         NTMRegistryManager.SIEVE_REGISTRY.loadJson(new File(f, "SieveRegistry.json"));
+        NTMRegistryManager.CONDENSER_REGISTRY.loadJson(new File(f, "CondenserRegistry.json"));
+        NTMRegistryManager.HELLMART_REGISTRY.loadJson(new File(f, "HellmartRegistry.json"));
         NTMRegistryManager.HAMMER_REGISTRY.loadJson(new File(f, "HammerRegistry.json"));
         NTMRegistryManager.HEAT_REGISTRY.loadJson(new File(f, "HeatRegistry.json"));
         NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.loadJson(new File(f, "BarrelLiquidBlacklistRegistry.json"));

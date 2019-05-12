@@ -113,13 +113,14 @@ public class NTM implements IRecipeDefaults
     public void registerHellmart(HellmartRegistry registry)
     {
     	registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, 0), new ItemStack(Items.EMERALD), 10));
+    	registry.register(1, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, 1), new ItemStack(Items.EMERALD), 10));
     }
     
     @Override
     public void registerCondenser(CondenserRegistry registry)
     {
-    	registry.register(new ItemStack(Blocks.LEAVES, 1, 1), 250);
-    	registry.register(new ItemStack(Blocks.LEAVES2, 1, 1), 250);
+    	registry.register(new ItemStack(Blocks.LEAVES, 1), 250);
+    	registry.register(new ItemStack(Blocks.LEAVES2, 1), 250);
     }
     
     @Override

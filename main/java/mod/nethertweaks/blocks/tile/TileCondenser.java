@@ -191,7 +191,7 @@ public class TileCondenser extends TileFluidInventory
         // Try to match without metadata
         if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
-
+        
         if (heat != 0)
             return heat;
 
@@ -220,12 +220,11 @@ public class TileCondenser extends TileFluidInventory
 	private int getMaxWorktime()
 	{
 		int heat = getHeatRate();
-				if(heat < 1 && heat > 0)
-			this.maxworkTime *= this.maxworkTime;
-		if(heat >= 1)
-			this.maxworkTime = this.maxworkTime /= heat;
-		
-		return 0;	
+		int workTime = Config.dryTimeCondenser;
+		workTime *= 3;
+		workTime /= heat;
+		this.maxworkTime = workTime;
+		return workTime;	
 	}
 	
 	@Override
