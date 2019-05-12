@@ -45,6 +45,7 @@ public class WorldHandler{
 		if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
     	
 		teleportPlayer(player);
+		//Case: player x's spawnpoint is at the start portal position
 		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
 		{
     		BlockPos posplayer = player.getPosition();
@@ -63,7 +64,7 @@ public class WorldHandler{
     			}
     		}
 		}
-		else
+		else //Case player saved at a bonfire etc.
 		{
 			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
 			player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);

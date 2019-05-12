@@ -2,13 +2,24 @@ package mod.nethertweaks.blocks.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.io.IOException;
+
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.sfhcore.Constants;
+import mod.sfhcore.util.Util;
 
 public class GuiFreezer extends GuiContainer
 {
@@ -40,6 +51,7 @@ public class GuiFreezer extends GuiContainer
         fontRendererObj.drawString("BaseGenerator", 8, 6, 4210752);
         fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
         */
+		
     }
 	
     @Override
@@ -64,13 +76,32 @@ public class GuiFreezer extends GuiContainer
         x = x_old;
         y = y_old;
         
-        if(this.entity.tank.getFluidAmount() != 0)
+        if(this.entity.getTank().getFluidAmount() != 0)
         {
-    		int k = this.entity.tank.getFluidAmount() * 64 / this.entity.getMaxCapacity();
+    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getMaxCapacity();
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;
-        	drawTexturedModalRect(x, y + k_inv, 176, 14 + k_inv, 16, k);
+        	
+        	GL11.glPushMatrix();
+    		GlStateManager.enableBlend();
+    		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+    		FluidStack fluid = this.entity.getTank().getFluid();
+    		
+        	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
+        	System.out.println(sprite.getFrameCount());
+        	System.out.println(sprite.getFrameCount());
+    		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
+    		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
+        	Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+
+        	for (int i = 0; i < 16; i++)
+        	{
+        		int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
+        		drawTexturedModalRect(x + i, y + k_inv, i* sprite.getIconHeight(), frame * sprite.getIconHeight() , 1, k);
+        	}
+    		GL11.glPopMatrix();
         }
     }
     
@@ -78,5 +109,4 @@ public class GuiFreezer extends GuiContainer
     public boolean doesGuiPauseGame() {
     	return false;
     }
-
 }

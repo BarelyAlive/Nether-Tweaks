@@ -137,7 +137,7 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 
     @Override
     public void update(TileBarrel barrel) {
-        if (transformer == null) {
+        if (transformer == null && inputStack != null && inputStack.getFluid() != null && outputStack != null && outputStack.getFluid() != null) {
             transformer = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.getFluidTransformer(inputStack
                     .getFluid().getName(), outputStack.getFluid().getName());
         }

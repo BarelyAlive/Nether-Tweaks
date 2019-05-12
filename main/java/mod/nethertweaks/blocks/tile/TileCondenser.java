@@ -60,8 +60,7 @@ public class TileCondenser extends TileFluidInventory
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, 16000);
-		this.maxworkTime = Config.dryTimeCondenser;
-		this.lf.add(FluidRegistry.WATER);
+		this.setMaxworkTime(Config.dryTimeCondenser);
 		setAcceptedFluids(lf);
 	}
 
@@ -69,26 +68,29 @@ public class TileCondenser extends TileFluidInventory
     public void update()
 	{
 		if(world.isRemote) return;
-		if(!checkInv())
-		{
-			this.workTime = 0;
-			return;
-		}
-		this.workTime++;
-		NetworkHandler.sendNBTUpdate(this);
-		if (this.workTime >= this.maxworkTime)
-		{
-			this.workTime = 0;
-			dry();
-		}
+		
 		fillToItemSlot();
 		fillToNeighborsTank();
+		
+		if(!checkInv())
+		{
+			this.setWorkTime(0);
+			return;
+		}
+		work();
+		NetworkHandler.sendNBTUpdate(this);
+		
+		if (this.getWorkTime() >= this.getMaxworkTime())
+		{
+			this.setWorkTime(0);
+			dry();
+		}
 	}
 	
 	public int fillToNeighborsTank()
 	{
 		int filledinothertank = 0;
-		int amount = this.tank.getFluidAmount();
+		int amount = this.getTank().getFluidAmount();
 		if (this.world.getTileEntity(this.getPos().east()) instanceof IFluidHandler)
 		{
 			IFluidHandler handler = (IFluidHandler) this.world.getTileEntity(this.getPos().east());
@@ -111,7 +113,7 @@ public class TileCondenser extends TileFluidInventory
 		}
 		if (filledinothertank != 0)
 		{
-			this.tank.getFluid().amount -= filledinothertank;
+			this.getTank().getFluid().amount -= filledinothertank;
 		}
 		return filledinothertank;
 	}
@@ -125,7 +127,7 @@ public class TileCondenser extends TileFluidInventory
 		
 		if (amount > 0)
 		{
-			this.tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
+			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 		}
 		
 		material.shrink(1);
@@ -134,48 +136,49 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void fillToItemSlot()
 	{
-		ItemStack input = machineItemStacks.get(2);
-    	ItemStack output = machineItemStacks.get(1);
+		ItemStack input = getStackInSlot(2);
+    	ItemStack output = getStackInSlot(1);
     	
     	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
     	if(FluidUtil.getFluidHandler(input) == null) return;
-    	if(this.tank.getFluidAmount() == 0) return;
+    	if(this.getTank().getFluidAmount() == 0) return;
     	if(!input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input).fill(this.tank.getFluid(), false) < this.tank.getFluidAmount()) return;
+    	if(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount()) return;
     	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(input_handler, this.tank, this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null) return;
 		
 		if (output.isEmpty()) {
-			machineItemStacks.set(1, input);
-			machineItemStacks.get(2).shrink(1);
+			setInventorySlotContents(1, input);
+			getStackInSlot(2).shrink(1);
 		}
-		else {
-			machineItemStacks.get(1).grow(1);
-			machineItemStacks.get(2).shrink(1);
+		else
+		{
+			getStackInSlot(1).grow(1);
+			getStackInSlot(2).shrink(1);
 		}
 	}
 	
 	/**
-	 * @param tank IFluidHandler of the Block to which the Water should go
+	 * @param getTank() IFluidHandler of the Block to which the Water should go
 	 * @param amount of what should be transfered
 	 * @return amount of what amount is transfered
 	 */
 	private int fillTankInBlock (IFluidHandler tank, int amount)
 	{
-		int return_amount = tank.fill(new FluidStack(FluidRegistry.WATER, amount), false);
+		int return_amount = getTank().fill(new FluidStack(FluidRegistry.WATER, amount), false);
 		if (return_amount == amount)
 		{
-			tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
+			getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 			return amount;
 		}
 		else if (return_amount != 0)
 		{
-			tank.fill(new FluidStack(FluidRegistry.WATER, return_amount), true);
+			getTank().fill(new FluidStack(FluidRegistry.WATER, return_amount), true);
 			return return_amount;
 		}
 		return 0;
@@ -211,23 +214,23 @@ public class TileCondenser extends TileFluidInventory
 	private boolean checkInv()
 	{
 		if(this.getStackInSlot(0).isEmpty()) return false;
-		if(!CondenserRegistry.containsItem(machineItemStacks.get(0))) return false;
+		if(!CondenserRegistry.containsItem(getStackInSlot(0))) return false;
 		
-		Dryable result = CondenserRegistry.getDryable(machineItemStacks.get(0));
+		Dryable result = CondenserRegistry.getDryable(getStackInSlot(0));
 		if (result == null) return false;
-		if (this.fillable() == 0) return false;
-		if (getMaxWorktime() <= 0) return false;
+		if(this.emptyRoom() == 0) return false;
+		if(getMaxworkTime() <= 0) return false;
 		
 		return true;
 	}
 	
-	private int getMaxWorktime()
+	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
 		int workTime = Config.dryTimeCondenser;
 		workTime *= 3;
 		workTime /= heat;
-		this.maxworkTime = workTime;
+		this.setMaxworkTime(workTime);
 		return workTime;	
 	}
 	

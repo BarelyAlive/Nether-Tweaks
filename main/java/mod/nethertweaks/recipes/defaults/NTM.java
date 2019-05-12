@@ -3,6 +3,8 @@ package mod.nethertweaks.recipes.defaults;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Barrel;
@@ -10,6 +12,7 @@ import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -27,10 +30,12 @@ import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
+import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -112,15 +117,88 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHellmart(HellmartRegistry registry)
     {
-    	registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, 0), new ItemStack(Items.EMERALD), 10));
-    	registry.register(1, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, 1), new ItemStack(Items.EMERALD), 10));
+    	//Dolls
+    	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
+			registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), TankUtil.WATER_BOTTLE, 10));
+		}
     }
     
     @Override
     public void registerCondenser(CondenserRegistry registry)
-    {
-    	registry.register(new ItemStack(Blocks.LEAVES, 1), 250);
-    	registry.register(new ItemStack(Blocks.LEAVES2, 1), 250);
+    {    	
+    	registry.register(new ItemStack(Items.ROTTEN_FLESH, 1, 0), 112);
+		registry.register(new ItemStack(Items.APPLE, 1, 0), 80);
+		registry.register(new ItemStack(Items.CHORUS_FRUIT, 1, 0), 42);
+		registry.register(new ItemStack(Items.CHORUS_FRUIT_POPPED, 1, 0), 42);
+		registry.register(new ItemStack(Items.CARROT, 1, 0), 42);
+		registry.register(new ItemStack(Items.EGG, 1, 0), 42);	
+		//fish
+		registry.register(new ItemStack(Items.FISH, 1, 0), 63);
+		//cooked fish
+		registry.register(new ItemStack(Items.COOKED_FISH,1, 0), 63);
+		//salmon
+		registry.register(new ItemStack(Items.FISH, 1, 1), 63);
+		//cooked salmon
+		registry.register(new ItemStack(Items.COOKED_FISH, 1, 1), 63);
+			
+		//clownfish
+		registry.register(new ItemStack(Items.FISH, 1, 2), 63);
+		//blowfish
+		registry.register(new ItemStack(Items.FISH, 1, 3), 63);	
+		
+		registry.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, 0), 63);
+		registry.register(new ItemStack(Blocks.RED_MUSHROOM, 1, 0), 63);
+		registry.register(new ItemStack(Items.MELON,1, 0), 9);
+		registry.register(new ItemStack(Blocks.MELON_BLOCK,1, 0), 1);	
+		registry.register(new ItemStack(Items.POISONOUS_POTATO,1, 0), 42);
+		registry.register(new ItemStack(Items.PORKCHOP,1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_PORKCHOP,1, 0), 63);	
+		registry.register(new ItemStack(Items.POTATO,1, 0), 42);	
+		registry.register(new ItemStack(Items.BAKED_POTATO,1, 0), 42);
+		registry.register(new ItemStack(Items.BEEF,1, 0), 63);	
+		registry.register(new ItemStack(Items.COOKED_BEEF,1, 0), 63);	
+		registry.register(new ItemStack(Items.CHICKEN,1, 0), 63);	
+		registry.register(new ItemStack(Items.COOKED_CHICKEN,1, 0), 63);
+		registry.register(new ItemStack(Items.RABBIT_STEW,1, 0), 1);
+		registry.register(new ItemStack(Items.RABBIT,1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_RABBIT,1, 0), 63);
+		registry.register(new ItemStack(Items.MUTTON,1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_MUTTON,1, 0), 63);
+		registry.register(new ItemStack(Items.MAGMA_CREAM,1, 0), 112);	
+		registry.register(new ItemStack(Items.SLIME_BALL,1, 0), 112);	
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN),1, 0), 250);	
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS),1, 0), 700);
+		
+		for(int i = 0; i < 6; i++)
+			registry.register(new ItemStack(Blocks.SAPLING, 1, i), 125);
+		for(int i = 0; i < 4; i++)
+			registry.register(new ItemStack(Blocks.LEAVES, 1, i), 125);
+		for(int i = 0; i < 2; i++)
+			registry.register(new ItemStack(Blocks.LEAVES2, 1, i), 125);
+		for(ItemStack sap : OreDictionary.getOres("treeSapling"))
+			registry.register(sap, 125);
+		for(ItemStack sap : OreDictionary.getOres("treeLeaves"))
+			registry.register(sap, 125);
+		for(ItemStack sap : OreDictionary.getOres("vine"))
+			registry.register(sap, 125);
+		for (ItemStack stack: OreDictionary.getOres("listAllfruit"))
+			registry.register(stack, 80);
+		for (ItemStack stack: OreDictionary.getOres("listAllveggie"))
+			registry.register(stack, 80);
+		for (ItemStack stack: OreDictionary.getOres("listAllGrain"))
+			registry.register(stack, 42);
+		for (ItemStack stack: OreDictionary.getOres("listAllseed"))
+			registry.register(stack, 42);
+		for (ItemStack stack: OreDictionary.getOres("listAllmeatraw"))
+			registry.register(stack, 63);
+		for (ItemStack stack: OreDictionary.getOres("listAllmeatcooked"))
+			registry.register(stack, 63);
+		for (ItemStack stack: OreDictionary.getOres("listAllfishraw"))
+			registry.register(stack, 63);
+		for (ItemStack stack: OreDictionary.getOres("listAllfishcooked"))
+			registry.register(stack, 63);
+		for (ItemStack stack: OreDictionary.getOres("listAllfishfresh"))
+			registry.register(stack, 63);
     }
     
     @Override
@@ -257,7 +335,6 @@ public class NTM implements IRecipeDefaults
             registry.register(new ItemStack(Blocks.DIRT, 1, 0), new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.DIAMOND.getID());
         }
 
-        /*
         getLeavesSapling().forEach((leaves, sapling) ->
         {
             float chance = 20f / 100f;
@@ -279,7 +356,6 @@ public class NTM implements IRecipeDefaults
             registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.005f, MeshType.IRON.getID());
             registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.01f, MeshType.DIAMOND.getID());
         });
-        */
     }
 
     @Override

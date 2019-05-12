@@ -75,9 +75,9 @@ public class Condenser extends CubeContainerHorizontal{
     	
     	if (item != null) {
     		//FluidUtil.getFluidHandler(world, blockPos, side)
-			FluidUtil.interactWithFluidHandler(player, hand, te.tank);
+			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if (world.isRemote)
-				NetworkHandler.sendToServer(new MessageFluidTankContents(te.tank.getTankProperties(), te));
+				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
 			return true;
 		}
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
@@ -94,7 +94,7 @@ public class Condenser extends CubeContainerHorizontal{
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
-			FluidUtil.interactWithFluidHandler(player, hand, te.tank);
+			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			te.markDirtyClient();
 			return true;
 		}

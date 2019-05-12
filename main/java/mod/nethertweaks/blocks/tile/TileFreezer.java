@@ -49,7 +49,7 @@ public class TileFreezer extends TileFluidInventory
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);
-		this.maxworkTime = Config.freezeTimeFreezer;
+		this.setWorkTime(Config.freezeTimeFreezer);
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
@@ -57,18 +57,19 @@ public class TileFreezer extends TileFluidInventory
     @Override
 	public void update() {
     	if (this.world.isRemote) return;
-    	fillFromItem();
+    	
+    	fillFromItem();  
     	
 		if(!canFreeze()) {
-			this.workTime = 0;
+			this.setWorkTime(0);
 			return;
-		}
+		}		
 		
-		this.workTime++;
-    	//this.markDirty();
+		work();
 		NetworkHandler.sendNBTUpdate(this);
-		if(workTime >= this.maxworkTime) {
-			workTime = 0;
+		
+		if(getWorkTime() >= this.getMaxworkTime()) {
+			setWorkTime(0);
 			freezeItem();
 		}
 	}
@@ -76,16 +77,16 @@ public class TileFreezer extends TileFluidInventory
 	private boolean canFreeze()
     {
 		if(!world.isBlockPowered(pos)) return false;
-        if (this.tank.getFluidAmount() < 1000) return false;
+        if (this.getTank().getFluidAmount() < 1000) return false;
         if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
         return true;
     }
 
     private void freezeItem()
     {
-    	this.tank.drain(1000, true);
+    	this.getTank().drain(1000, true);
     	
-        if (this.machineItemStacks.get(0).isEmpty())
+        if (this.getStackInSlot(0).isEmpty())
         	
             this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
         
@@ -98,8 +99,8 @@ public class TileFreezer extends TileFluidInventory
     
 	private void fillFromItem()
     {
-    	ItemStack input = machineItemStacks.get(2);
-    	ItemStack output = machineItemStacks.get(1);
+    	ItemStack input = getStackInSlot(2);
+    	ItemStack output = getStackInSlot(1);
     	ItemStack container = ItemStack.EMPTY;
     	if(!input.isEmpty())
     		container = new ItemStack(input.getItem().getContainerItem());
@@ -110,39 +111,39 @@ public class TileFreezer extends TileFluidInventory
     	if(FluidUtil.getFluidContained(input) == null) return;
     	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
     	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
-    	if(this.fillable() == 0) return;
+    	if(this.emptyRoom() == 0) return;
     	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-    	if(FluidUtil.getFluidHandler(input).drain(this.fillable(), false).amount == 0) return;
+    	if(FluidUtil.getFluidHandler(input).drain(this.emptyRoom(), false).amount == 0) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(this.tank, input_handler, this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.emptyRoom(), true) == null) return;
 		
 		if(!container.isEmpty())
 		{
 			if(!output.isEmpty())
 			{
-				machineItemStacks.get(1).grow(1);
-				machineItemStacks.get(2).shrink(1);
+				getStackInSlot(1).grow(1);
+				getStackInSlot(2).shrink(1);
 			}
 			else
 			{
-				machineItemStacks.set(1, container);
-				machineItemStacks.get(2).shrink(1);
+				setInventorySlotContents(1, container);
+				getStackInSlot(2).shrink(1);
 			}
 		}
 		else
 		{
 			if(output.isEmpty())
 			{
-				machineItemStacks.set(1, input);
-				machineItemStacks.get(2).shrink(1);
+				setInventorySlotContents(1, input);
+				getStackInSlot(2).shrink(1);
 			}
 			else
 			{
-				machineItemStacks.get(1).grow(1);
-				machineItemStacks.get(2).shrink(1);
+				getStackInSlot(1).grow(1);
+				getStackInSlot(2).shrink(1);
 			}
 		}
     }

@@ -15,7 +15,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {   
@@ -27,7 +27,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {   
@@ -39,7 +39,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {   
@@ -51,7 +51,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {
@@ -63,7 +63,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {
@@ -75,7 +75,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {
@@ -87,7 +87,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         },
         {
@@ -99,7 +99,7 @@
                 "north": { "texture": "#texture"},
                 "south": { "texture": "#texture"},
                 "west":  { "texture": "#texture"},
-                "east":  { "texture": "#texture" }
+                "east":  { "texture": "#texture"}
             }
         }
     ]
