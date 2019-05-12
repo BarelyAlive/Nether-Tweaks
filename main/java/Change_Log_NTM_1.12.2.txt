@@ -32,7 +32,6 @@ ChangeLog NTM 2.0.0
 - Removed Sanctuary Crystal
 - Removed Water Fountain
 + Ender Crystal is back!
-+ Prismarine shards are now sievable
 + Added config options to disable individual blocks & items
 + Added netherrack gravel
 + Added dolls to get otherwise unobtainable mobs
