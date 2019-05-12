@@ -56,16 +56,12 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
-	private static List<Fluid> lf = new ArrayList<Fluid>();
-	
-	static
-	{
-		lf.add(FluidRegistry.WATER);
-	}
+	private List<Fluid> lf = new ArrayList<Fluid>();
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, 16000);
 		this.maxworkTime = Config.dryTimeCondenser;
+		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
 
@@ -86,16 +82,13 @@ public class TileCondenser extends TileFluidInventory
 			dry();
 		}
 		fillToItemSlot();
-		fillTankInBlock(tank, getMaxCapacity());
+		fillToNeighborsTank();
 	}
 	
-	public void dry()
+	public int fillToNeighborsTank()
 	{
-		ItemStack material = this.getStackInSlot(0);
-		ItemStack bucket = this.getStackInSlot(1);
 		int filledinothertank = 0;
-		if(CondenserRegistry.getDryable(material) == null) return;
-		int amount = CondenserRegistry.getDryable(material).getValue();
+		int amount = this.tank.getFluidAmount();
 		if (this.world.getTileEntity(this.getPos().east()) instanceof IFluidHandler)
 		{
 			IFluidHandler handler = (IFluidHandler) this.world.getTileEntity(this.getPos().east());
@@ -116,8 +109,19 @@ public class TileCondenser extends TileFluidInventory
 			IFluidHandler handler = (IFluidHandler) this.world.getTileEntity(this.getPos().north());
 			filledinothertank = this.fillTankInBlock(handler, amount);
 		}
-		
-		amount -= filledinothertank;
+		if (filledinothertank != 0)
+		{
+			this.tank.getFluid().amount -= filledinothertank;
+		}
+		return filledinothertank;
+	}
+	
+	public void dry()
+	{
+		ItemStack material = this.getStackInSlot(0);
+		ItemStack bucket = this.getStackInSlot(1);
+		if(CondenserRegistry.getDryable(material) == null) return;
+		int amount = CondenserRegistry.getDryable(material).getValue();
 		
 		if (amount > 0)
 		{
@@ -138,7 +142,7 @@ public class TileCondenser extends TileFluidInventory
     	if(FluidUtil.getFluidHandler(input) == null) return;
     	if(this.tank.getFluidAmount() == 0) return;
     	if(!input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input).fill(this.tank.getFluid(), false) <= this.tank.getFluidAmount()) return;
+    	if(FluidUtil.getFluidHandler(input).fill(this.tank.getFluid(), false) < this.tank.getFluidAmount()) return;
     	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
@@ -147,11 +151,11 @@ public class TileCondenser extends TileFluidInventory
 		if(FluidUtil.tryFluidTransfer(input_handler, this.tank, this.fillable(), true) == null) return;
 		
 		if (output.isEmpty()) {
-			machineItemStacks.get(1).grow(1);
+			machineItemStacks.set(1, input);
 			machineItemStacks.get(2).shrink(1);
 		}
 		else {
-			machineItemStacks.set(1, input);
+			machineItemStacks.get(1).grow(1);
 			machineItemStacks.get(2).shrink(1);
 		}
 	}
@@ -204,15 +208,15 @@ public class TileCondenser extends TileFluidInventory
         return 0;
     }
 	
-	private boolean checkInv() 
+	private boolean checkInv()
 	{
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		if(!CondenserRegistry.containsItem(machineItemStacks.get(0))) return false;
 		
 		Dryable result = CondenserRegistry.getDryable(machineItemStacks.get(0));
 		if (result == null) return false;
-		if(this.fillable() == 0) return false;
-		if(getMaxWorktime() <= 0) return false;
+		if (this.fillable() == 0) return false;
+		if (getMaxWorktime() <= 0) return false;
 		
 		return true;
 	}

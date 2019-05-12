@@ -52,7 +52,6 @@ public class GuiCondenser extends GuiContainer {
         
         int x_old = x;
         int y_old = y;
-        System.out.println(this.entity.isWorking(this.entity));
         if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
         	x += 28;
