@@ -147,7 +147,7 @@ public class TileCondenser extends TileFluidInventory
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null) return;
 		
 		if (output.isEmpty()) {
 			getStackInSlot(1).grow(1);
@@ -214,7 +214,7 @@ public class TileCondenser extends TileFluidInventory
 		
 		Dryable result = CondenserRegistry.getDryable(getStackInSlot(0));
 		if (result == null) return false;
-		if(this.fillable() == 0) return false;
+		if(this.emptyRoom() == 0) return false;
 		if(getMaxworkTime() <= 0) return false;
 		
 		return true;

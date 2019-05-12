@@ -116,14 +116,14 @@ public class TileFreezer extends TileFluidInventory
     	if(FluidUtil.getFluidContained(input) == null) return;
     	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
     	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
-    	if(this.fillable() == 0) return;
+    	if(this.emptyRoom() == 0) return;
     	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-    	if(FluidUtil.getFluidHandler(input).drain(this.fillable(), false).amount == 0) return;
+    	if(FluidUtil.getFluidHandler(input).drain(this.emptyRoom(), false).amount == 0) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.emptyRoom(), true) == null) return;
 		
 		if(!container.isEmpty())
 		{
