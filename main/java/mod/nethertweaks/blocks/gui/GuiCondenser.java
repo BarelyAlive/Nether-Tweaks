@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.Constants;
+import mod.sfhcore.util.Util;
 
 public class GuiCondenser extends GuiContainer {
 	private int xSize, ySize;
@@ -69,7 +70,8 @@ public class GuiCondenser extends GuiContainer {
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;
-        	drawTexturedModalRect(x, y + k_inv, 176, 14 + k_inv, 16, k);
+        	
+			drawTexturedModalRect(x, y + k_inv, Util.getTextureFromFluidStack(this.entity.tank.getFluid()), 16, k);
         }
     }
     
