@@ -3,6 +3,8 @@ package mod.nethertweaks.recipes.defaults;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Barrel;
@@ -10,6 +12,7 @@ import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -27,10 +30,12 @@ import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
+import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -112,7 +117,10 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHellmart(HellmartRegistry registry)
     {
-    	registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, 0), new ItemStack(Items.EMERALD), 10));
+    	//Dolls
+    	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
+			registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), TankUtil.WATER_BOTTLE, 10));
+		}
     }
     
     @Override
@@ -128,7 +136,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Items.FISH, 1, 0), 63);
 		//cooked fish
 		registry.register(new ItemStack(Items.COOKED_FISH,1, 0), 63);
-		
 		//salmon
 		registry.register(new ItemStack(Items.FISH, 1, 1), 63);
 		//cooked salmon
