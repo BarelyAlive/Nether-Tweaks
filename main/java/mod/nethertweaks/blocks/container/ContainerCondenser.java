@@ -21,7 +21,7 @@ public class ContainerCondenser extends ContainerBase {
 		super(te);
 		tileEntity = te;
 		
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 26, 48));
+		addSlotToContainer(new Slot(tileEntity, 0, 26, 48));
 		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 80, 12));
 		addSlotToContainer(new Slot(tileEntity, 2, 80, 48));
 

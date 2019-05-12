@@ -47,6 +47,8 @@ public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSeriali
         jsonObject.addProperty("name", src.getItem().getRegistryName().toString());
         jsonObject.addProperty("meta", new ItemStack(src.getItem()).getItemDamage());
         jsonObject.addProperty("millibuckets", src.getValue());
+        
+        System.out.println(jsonObject);
 
         return jsonObject;
     }

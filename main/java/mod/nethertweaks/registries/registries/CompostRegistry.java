@@ -61,8 +61,6 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 
         Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
         
-        System.out.println(state);
-
         if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
             LogUtil.error("Compost Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
             return;
@@ -89,7 +87,6 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 
     public void register(@Nonnull String name, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         Ingredient ingredient = new OreIngredientStoring(name);
-        System.out.println(state);
         Compostable compostable = new Compostable(value, color, state);
 
         if (oreRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))

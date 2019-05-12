@@ -56,12 +56,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
-	private static List<Fluid> lf = new ArrayList<Fluid>();
-	
-	static
-	{
-		lf.add(FluidRegistry.WATER);
-	}
+	private List<Fluid> lf = new ArrayList<Fluid>();
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, 16000);
@@ -75,7 +70,7 @@ public class TileCondenser extends TileFluidInventory
 		if(world.isRemote) return;
 		
 		fillToItemSlot();
-		fillTankInBlock(getTank(), getMaxCapacity());
+		fillToNeighborsTank();
 		
 		if(!checkInv())
 		{
@@ -92,13 +87,10 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 	
-	public void dry()
+	public int fillToNeighborsTank()
 	{
-		ItemStack material = this.getStackInSlot(0);
-		ItemStack bucket = this.getStackInSlot(1);
 		int filledinothertank = 0;
-		if(CondenserRegistry.getDryable(material) == null) return;
-		int amount = CondenserRegistry.getDryable(material).getValue();
+		int amount = this.getTank().getFluidAmount();
 		if (this.world.getTileEntity(this.getPos().east()) instanceof IFluidHandler)
 		{
 			IFluidHandler handler = (IFluidHandler) this.world.getTileEntity(this.getPos().east());
@@ -119,8 +111,19 @@ public class TileCondenser extends TileFluidInventory
 			IFluidHandler handler = (IFluidHandler) this.world.getTileEntity(this.getPos().north());
 			filledinothertank = this.fillTankInBlock(handler, amount);
 		}
-		
-		amount -= filledinothertank;
+		if (filledinothertank != 0)
+		{
+			this.getTank().getFluid().amount -= filledinothertank;
+		}
+		return filledinothertank;
+	}
+	
+	public void dry()
+	{
+		ItemStack material = this.getStackInSlot(0);
+		ItemStack bucket = this.getStackInSlot(1);
+		if(CondenserRegistry.getDryable(material) == null) return;
+		int amount = CondenserRegistry.getDryable(material).getValue();
 		
 		if (amount > 0)
 		{
@@ -150,11 +153,12 @@ public class TileCondenser extends TileFluidInventory
 		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null) return;
 		
 		if (output.isEmpty()) {
-			getStackInSlot(1).grow(1);
+			setInventorySlotContents(1, input);
 			getStackInSlot(2).shrink(1);
 		}
-		else {
-			setInventorySlotContents(1, input);
+		else
+		{
+			getStackInSlot(1).grow(1);
 			getStackInSlot(2).shrink(1);
 		}
 	}
@@ -194,7 +198,7 @@ public class TileCondenser extends TileFluidInventory
         // Try to match without metadata
         if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
-
+        
         if (heat != 0)
             return heat;
 
@@ -207,7 +211,7 @@ public class TileCondenser extends TileFluidInventory
         return 0;
     }
 	
-	private boolean checkInv() 
+	private boolean checkInv()
 	{
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		if(!CondenserRegistry.containsItem(getStackInSlot(0))) return false;
@@ -223,9 +227,11 @@ public class TileCondenser extends TileFluidInventory
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		setMaxworkTime(this.getMaxworkTime() * 3 / heat);
-		
-		return getMaxworkTime();
+		int workTime = Config.dryTimeCondenser;
+		workTime *= 3;
+		workTime /= heat;
+		this.setMaxworkTime(workTime);
+		return workTime;	
 	}
 	
 	@Override

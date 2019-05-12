@@ -44,13 +44,8 @@ import scala.Int;
 
 public class TileFreezer extends TileFluidInventory
 {	
-	private static List<Fluid> lf = new ArrayList<Fluid>();
+	private List<Fluid> lf = new ArrayList<Fluid>();
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
-	
-	static
-	{
-		lf.add(FluidRegistry.WATER);
-	}
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);

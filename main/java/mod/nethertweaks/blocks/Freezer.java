@@ -59,7 +59,6 @@ public class Freezer extends CubeContainerHorizontal{
     	if (item != null) {
     		//FluidUtil.getFluidHandler(world, blockPos, side)
 			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
-			System.out.println(worldIn.isRemote + " " + te.getTank().getFluid().amount);
 			if (worldIn.isRemote)
 				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
 			return true;

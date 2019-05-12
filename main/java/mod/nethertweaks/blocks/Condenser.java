@@ -8,12 +8,11 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCondenser;
-import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.network.MessageFluidTankContents;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
@@ -66,6 +65,26 @@ public class Condenser extends CubeContainerHorizontal{
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
     {
+		if(!world.isBlockLoaded(pos)) return false;
+		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
+		if(!(te instanceof TileCondenser)) return false;
+    	//if(worldIn.isRemote) return true;
+    	if(player.isSneaking()) return false;
+    	
+    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+    	
+    	if (item != null) {
+    		//FluidUtil.getFluidHandler(world, blockPos, side)
+			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
+			if (world.isRemote)
+				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
+			return true;
+		}
+		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+		return true;
+		
+		
+		/*
     	if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(!(te instanceof TileCondenser)) return false;
@@ -82,6 +101,7 @@ public class Condenser extends CubeContainerHorizontal{
     	
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
+		*/
     }
     
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.io.File;
@@ -26,17 +27,44 @@ import com.google.gson.reflect.TypeToken;
 import mod.nethertweaks.api.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomDryableJson;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.json.CustomFluidBlockTransformerJson;
+import mod.nethertweaks.json.CustomIngredientJson;
+import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
+import mod.nethertweaks.registries.manager.*;
+import mod.nethertweaks.registries.registries.base.BaseRegistryList;
 import mod.nethertweaks.registry.types.Dryable;
+import mod.nethertweaks.registry.types.FluidBlockTransformer;
 import mod.nethertweaks.registry.types.HammerReward;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomEntityInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.EntityInfo;
 import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.StackInfo;
 
-public class CondenserRegistry {
+public class CondenserRegistry extends BaseRegistryList<Dryable> implements ICondenserDefaultRegistryProvider {
 	
+	public CondenserRegistry() {
+        super(
+                new GsonBuilder()
+                        .setPrettyPrinting()
+                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+                        .registerTypeAdapter(StackInfo.class, new CustomItemInfoJson())
+                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+                        .registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
+                        .registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
+                        .registerTypeAdapter(EntityInfo.class, new CustomEntityInfoJson())
+                        .registerTypeAdapter(Dryable.class, new CustomDryableJson())
+                        .create(),
+                NTMRegistryManager.CONDENSER_DEFAULT_REGISTRY_PROVIDERS
+        );
+	}
+
 	private static HashMap<ItemInfo, List<Dryable>> registry = new HashMap<ItemInfo, List<Dryable>>();
 	private static Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(Dryable.class, new CustomDryableJson()).create();
 
-	public static void loadJson(File file)
+	public void loadJson(File file)
 	{
 		registry.clear();
 
@@ -68,7 +96,7 @@ public class CondenserRegistry {
 		}
 	}
 
-	public static void saveJson(File file)
+	public void saveJson(File file)
 	{
 		try
 		{
@@ -127,10 +155,21 @@ public class CondenserRegistry {
 		return null;
 	}
 
-	public static void registerDefaults()
-	{
-		for (ICondenserDefaultRegistryProvider provider : NTMRegistryManager.CONDENSER_DEFAULT_REGISTRY_PROVIDERS) {
-			provider.registerCondenserRecipeDefaults();
-		}
+	@Override
+	public void registerCondenserRecipeDefaults() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void registerEntriesFromJSON(FileReader fr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
