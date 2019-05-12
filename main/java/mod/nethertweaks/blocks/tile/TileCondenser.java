@@ -75,7 +75,7 @@ public class TileCondenser extends TileFluidInventory
 		if(world.isRemote) return;
 		
 		fillToItemSlot();
-		fillTankInBlock(tank, getMaxCapacity());
+		fillTankInBlock(getTank(), getMaxCapacity());
 		
 		if(!checkInv())
 		{
@@ -124,7 +124,7 @@ public class TileCondenser extends TileFluidInventory
 		
 		if (amount > 0)
 		{
-			this.tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
+			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 		}
 		
 		material.shrink(1);
@@ -139,15 +139,15 @@ public class TileCondenser extends TileFluidInventory
     	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
     	if(FluidUtil.getFluidHandler(input) == null) return;
-    	if(this.tank.getFluidAmount() == 0) return;
+    	if(this.getTank().getFluidAmount() == 0) return;
     	if(!input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input).fill(this.tank.getFluid(), false) <= this.tank.getFluidAmount()) return;
+    	if(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount()) return;
     	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(input_handler, this.tank, this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.fillable(), true) == null) return;
 		
 		if (output.isEmpty()) {
 			getStackInSlot(1).grow(1);
@@ -160,21 +160,21 @@ public class TileCondenser extends TileFluidInventory
 	}
 	
 	/**
-	 * @param tank IFluidHandler of the Block to which the Water should go
+	 * @param getTank() IFluidHandler of the Block to which the Water should go
 	 * @param amount of what should be transfered
 	 * @return amount of what amount is transfered
 	 */
 	private int fillTankInBlock (IFluidHandler tank, int amount)
 	{
-		int return_amount = tank.fill(new FluidStack(FluidRegistry.WATER, amount), false);
+		int return_amount = getTank().fill(new FluidStack(FluidRegistry.WATER, amount), false);
 		if (return_amount == amount)
 		{
-			tank.fill(new FluidStack(FluidRegistry.WATER, amount), true);
+			getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 			return amount;
 		}
 		else if (return_amount != 0)
 		{
-			tank.fill(new FluidStack(FluidRegistry.WATER, return_amount), true);
+			getTank().fill(new FluidStack(FluidRegistry.WATER, return_amount), true);
 			return return_amount;
 		}
 		return 0;

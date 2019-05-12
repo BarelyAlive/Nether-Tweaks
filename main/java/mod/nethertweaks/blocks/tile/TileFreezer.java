@@ -82,14 +82,14 @@ public class TileFreezer extends TileFluidInventory
 	private boolean canFreeze()
     {
 		if(!world.isBlockPowered(pos)) return false;
-        if (this.tank.getFluidAmount() < 1000) return false;
+        if (this.getTank().getFluidAmount() < 1000) return false;
         if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
         return true;
     }
 
     private void freezeItem()
     {
-    	this.tank.drain(1000, true);
+    	this.getTank().drain(1000, true);
     	
         if (this.getStackInSlot(0).isEmpty())
         	
@@ -123,7 +123,7 @@ public class TileFreezer extends TileFluidInventory
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(this.tank, input_handler, this.fillable(), true) == null) return;
+		if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.fillable(), true) == null) return;
 		
 		if(!container.isEmpty())
 		{

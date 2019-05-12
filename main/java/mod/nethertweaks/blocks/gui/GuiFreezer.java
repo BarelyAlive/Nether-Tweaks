@@ -76,9 +76,9 @@ public class GuiFreezer extends GuiContainer
         x = x_old;
         y = y_old;
         
-        if(this.entity.tank.getFluidAmount() != 0)
+        if(this.entity.getTank().getFluidAmount() != 0)
         {
-    		int k = this.entity.tank.getFluidAmount() * 64 / this.entity.getMaxCapacity();
+    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getMaxCapacity();
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;
@@ -87,12 +87,12 @@ public class GuiFreezer extends GuiContainer
     		GlStateManager.enableBlend();
     		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-    		FluidStack fluid = this.entity.tank.getFluid();
+    		FluidStack fluid = this.entity.getTank().getFluid();
     		
         	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
         	System.out.println(sprite.getFrameCount());
         	System.out.println(sprite.getFrameCount());
-    		ResourceLocation res = this.entity.tank.getFluid().getFluid().getStill(this.entity.tank.getFluid());
+    		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
     		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
         	Minecraft.getMinecraft().getTextureManager().bindTexture(res);
 

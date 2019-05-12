@@ -75,7 +75,7 @@ public class Condenser extends CubeContainerHorizontal{
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
-			FluidUtil.interactWithFluidHandler(player, hand, te.tank);
+			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			te.markDirtyClient();
 			return true;
 		}
