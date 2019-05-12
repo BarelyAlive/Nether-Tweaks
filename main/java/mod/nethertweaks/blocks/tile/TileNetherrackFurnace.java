@@ -10,6 +10,7 @@ import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.sfhcore.blocks.tiles.TileInventory;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFurnace;
@@ -60,26 +61,26 @@ public class TileNetherrackFurnace extends TileInventory{
 	
     public TileNetherrackFurnace() {
 		super(2, INames.TENETHERRACKFURNACE);
-		this.maxworkTime = Config.burnTimeFurnace;
+		this.setMaxworkTime(Config.burnTimeFurnace);
 	}
 
 	@Override
     public void update()
 	{
 		if(world.isRemote) return;
-		markDirtyClient();
         NetherrackFurnace.setState(isWorking(), this.world, this.pos);
         if (!canSmelt())
         {
-        	this.workTime = 0;
+        	this.setWorkTime(0);
         	return;
         }
         
-        ++this.workTime;
-        System.out.println(workTime);
-        if(this.workTime < maxworkTime) return;
+        work();
+        NetworkHandler.sendNBTUpdate(this);
+        
+        if(this.getWorkTime() < getMaxworkTime()) return;
             smeltItem();
-            this.workTime = 0;
+            this.setWorkTime(0);
     }
 
     /**
@@ -88,11 +89,11 @@ public class TileNetherrackFurnace extends TileInventory{
      */
     private boolean canSmelt()
     {
-        if(getMaxWorktime() <= 0) return false;
-    	if (((ItemStack)this.machineItemStacks.get(0)).isEmpty()) return false;           
-        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
+        if(calcMaxWorktime() <= 0) return false;
+    	if (((ItemStack)this.getStackInSlot(0)).isEmpty()) return false;           
+        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStackInSlot(0));
         if (itemstack.isEmpty()) return false;       
-        ItemStack itemstack1 = this.machineItemStacks.get(1);
+        ItemStack itemstack1 = this.getStackInSlot(1);
         if(itemstack1.isEmpty()) return true;       
         if(!itemstack1.isItemEqual(itemstack)) return false;
         if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit()
@@ -129,15 +130,12 @@ public class TileNetherrackFurnace extends TileInventory{
         return 0;
     }
 
-	private int getMaxWorktime()
+	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-				if(heat < 1 && heat > 0)
-			this.maxworkTime *= this.maxworkTime;
-		if(heat >= 1)
-			this.maxworkTime = this.maxworkTime /= heat;
+		setMaxworkTime(this.getMaxworkTime() * 3 / heat);
 		
-		return 0;	
+		return getMaxworkTime();
 	}
 
     /**
@@ -145,24 +143,24 @@ public class TileNetherrackFurnace extends TileInventory{
      */
     public void smeltItem()
     {
-        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.machineItemStacks.get(0));
+        ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStackInSlot(0));
         
-        if (this.machineItemStacks.get(1).isEmpty())
+        if (this.getStackInSlot(1).isEmpty())
         {
-            this.machineItemStacks.set(1, itemstack.copy());
+            this.setInventorySlotContents(1, itemstack.copy());
         }
-        else if (this.machineItemStacks.get(1).getItem() == itemstack.getItem())
+        else if (this.getStackInSlot(1).getItem() == itemstack.getItem())
         {
-            machineItemStacks.get(1).grow(itemstack.getCount());
+            getStackInSlot(1).grow(itemstack.getCount());
         }
 
-        if (this.machineItemStacks.get(0).getCount() <= 0)
+        if (this.getStackInSlot(0).getCount() <= 0)
         {
-            this.machineItemStacks.set(0, ItemStack.EMPTY);
+            this.setInventorySlotContents(0, ItemStack.EMPTY);
         }
         else
         {
-            this.machineItemStacks.get(0).shrink(1);
+            this.getStackInSlot(0).shrink(1);
         }
     }
 	

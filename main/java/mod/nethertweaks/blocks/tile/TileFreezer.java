@@ -54,7 +54,7 @@ public class TileFreezer extends TileFluidInventory
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);
-		this.maxworkTime = Config.freezeTimeFreezer;
+		this.setWorkTime(Config.freezeTimeFreezer);
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
@@ -62,18 +62,19 @@ public class TileFreezer extends TileFluidInventory
     @Override
 	public void update() {
     	if (this.world.isRemote) return;
-    	fillFromItem();
+    	
+    	fillFromItem();  
     	
 		if(!canFreeze()) {
-			this.workTime = 0;
+			this.setWorkTime(0);
 			return;
-		}
+		}		
 		
-		this.workTime++;
-    	//this.markDirty();
+		work();
 		NetworkHandler.sendNBTUpdate(this);
-		if(workTime >= this.maxworkTime) {
-			workTime = 0;
+		
+		if(getWorkTime() >= this.getMaxworkTime()) {
+			setWorkTime(0);
 			freezeItem();
 		}
 	}
@@ -90,7 +91,7 @@ public class TileFreezer extends TileFluidInventory
     {
     	this.tank.drain(1000, true);
     	
-        if (this.machineItemStacks.get(0).isEmpty())
+        if (this.getStackInSlot(0).isEmpty())
         	
             this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
         
@@ -103,8 +104,8 @@ public class TileFreezer extends TileFluidInventory
     
 	private void fillFromItem()
     {
-    	ItemStack input = machineItemStacks.get(2);
-    	ItemStack output = machineItemStacks.get(1);
+    	ItemStack input = getStackInSlot(2);
+    	ItemStack output = getStackInSlot(1);
     	ItemStack container = ItemStack.EMPTY;
     	if(!input.isEmpty())
     		container = new ItemStack(input.getItem().getContainerItem());
@@ -128,26 +129,26 @@ public class TileFreezer extends TileFluidInventory
 		{
 			if(!output.isEmpty())
 			{
-				machineItemStacks.get(1).grow(1);
-				machineItemStacks.get(2).shrink(1);
+				getStackInSlot(1).grow(1);
+				getStackInSlot(2).shrink(1);
 			}
 			else
 			{
-				machineItemStacks.set(1, container);
-				machineItemStacks.get(2).shrink(1);
+				setInventorySlotContents(1, container);
+				getStackInSlot(2).shrink(1);
 			}
 		}
 		else
 		{
 			if(output.isEmpty())
 			{
-				machineItemStacks.set(1, input);
-				machineItemStacks.get(2).shrink(1);
+				setInventorySlotContents(1, input);
+				getStackInSlot(2).shrink(1);
 			}
 			else
 			{
-				machineItemStacks.get(1).grow(1);
-				machineItemStacks.get(2).shrink(1);
+				getStackInSlot(1).grow(1);
+				getStackInSlot(2).shrink(1);
 			}
 		}
     }
