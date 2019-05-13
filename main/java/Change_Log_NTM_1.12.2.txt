@@ -23,10 +23,10 @@ ChangeLog NTM 2.0.0
 * More and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
-* Fixed things being not being in NTM's tab
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
 * Fixed Netherrack Furnace lag caused by block set spam
+* Fixed cascading world gen lag (offset tree spawn position by +8)
 * Stone Doors are back!
 - Removed old ore blocks and items
 - Removed Holy Earth
@@ -40,6 +40,6 @@ ChangeLog NTM 2.0.0
     The Currency is water (also editable via JSON)
 + Added Mean Vine strings (works as normal string in recipes)
 + Added pebbles (can be thrown for damage)
-+ Added support for WAILA, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,
++ Added support for WAILA, Harvestcraft, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,
     Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and hopefully without crashes),
     Thermal Foundation, Tinkers Construct, Integrated Dynamics and many more

@@ -54,11 +54,16 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 		if (Config.enableElderTree) {
 			for (int i = 0; i < 15; i++) // 15 is rarity
 			{
-				int randPosX = posX + random.nextInt(16);
+				int randPosX = posX + random.nextInt(16)+8;
 				int randPosY = random.nextInt(128); //Max Y coordinate
-				int randPosZ = posZ + random.nextInt(16);
+				int randPosZ = posZ + random.nextInt(16)+8;
 				tree.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
-			} 
+			}
+			/*Wichtige Anmerkung der Autorin:
+			* Da Minecraft in vielen Dingen, so wie bei der Weltgeneration
+			* zu dumm zum kacken ist, muss die spawn position der Bäume
+			* um 8 versetzt werden, da es sonst zu sogenanntem
+			* "cascading world gen lag" kommt.*/
 		}
     }
 }

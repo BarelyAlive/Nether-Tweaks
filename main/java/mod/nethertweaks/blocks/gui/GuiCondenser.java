@@ -2,8 +2,12 @@ package mod.nethertweaks.blocks.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerCondenser;
@@ -71,7 +75,25 @@ public class GuiCondenser extends GuiContainer {
         	y += 6;
         	int k_inv = 64 - k;
         	
-			drawTexturedModalRect(x, y + k_inv, Util.getTextureFromFluidStack(this.entity.getTank().getFluid()), 16, k);
+        	GL11.glPushMatrix();
+    		GlStateManager.enableBlend();
+    		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+    		FluidStack fluid = this.entity.getTank().getFluid();
+    		
+        	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
+        	//System.out.println(sprite.getFrameCount());
+        	//System.out.println(sprite.getFrameCount());
+    		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
+    		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
+        	Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+
+        	for (int i = 0; i < 16; i++)
+        	{
+        		int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
+        		drawTexturedModalRect(x + i, y + k_inv, i* sprite.getIconHeight(), frame * sprite.getIconHeight() , 1, k);
+        	}
+    		GL11.glPopMatrix();
         }
     }
     

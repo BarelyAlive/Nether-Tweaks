@@ -59,9 +59,10 @@ public class TileFreezer extends TileFluidInventory
 	
     @Override
 	public void update() {
-    	if (this.world.isRemote) return;
+    	if(this.world.isRemote) return;
     	
-    	fillFromItem();  
+    	fillFromItem();
+		NetworkHandler.sendNBTUpdate(this);
     	
 		if(!canFreeze()) {
 			this.setWorkTime(0);
@@ -69,7 +70,6 @@ public class TileFreezer extends TileFluidInventory
 		}		
 		
 		work();
-		NetworkHandler.sendNBTUpdate(this);
 		
 		if(getWorkTime() >= this.getMaxworkTime()) {
 			setWorkTime(0);
@@ -80,7 +80,7 @@ public class TileFreezer extends TileFluidInventory
 	private boolean canFreeze()
     {
 		if(!world.isBlockPowered(pos)) return false;
-        if (this.getTank().getFluidAmount() < 1000) return false;
+        if(this.getTank().getFluidAmount() < 1000) return false;
         if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
         return true;
     }
@@ -89,13 +89,12 @@ public class TileFreezer extends TileFluidInventory
     {
     	this.getTank().drain(1000, true);
     	
-        if (this.getStackInSlot(0).isEmpty())
-        	
+        if(this.getStackInSlot(0).isEmpty())	
             this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
         
-        else if(this.getStackInSlot(0).getCount() >= 1)
-        	
+        else if(this.getStackInSlot(0).getCount() >= 1)   	
         	this.getStackInSlot(0).grow(1);
+        
         fillFromItem();
         this.markDirty();
     }
@@ -152,11 +151,11 @@ public class TileFreezer extends TileFluidInventory
 		}
 		else if(ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
-			if (getTank().getFluidAmount() < getTank().getCapacity() && (getTank().getFluid() == null || getTank().getFluid().getFluid() == FluidRegistry.WATER))
+			if(getTank().getFluidAmount() < getTank().getCapacity() && (getTank().getFluid() == null || getTank().getFluid().getFluid() == FluidRegistry.WATER))
 			{
                 getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
                 
-                if (output.isEmpty()) {
+                if(output.isEmpty()) {
     				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
     				getStackInSlot(2).shrink(1);
     			}
@@ -185,7 +184,7 @@ public class TileFreezer extends TileFluidInventory
 	
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
-		if (index != 2) return true;
+		if(index != 2) return true;
 		return false;
 	}
 	    
