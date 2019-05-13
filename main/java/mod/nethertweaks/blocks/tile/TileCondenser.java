@@ -59,9 +59,6 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 public class TileCondenser extends TileFluidInventory
 {	
 	private List<Fluid> lf = new ArrayList<Fluid>();
-	protected static int[] SLOTS_TOP = new int[] {0};
-	protected static int[] SLOTS_BOTTOM = new int[] {2, 1};
-	protected static int[] SLOTS_SIDES = new int[] {1};
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
@@ -83,6 +80,7 @@ public class TileCondenser extends TileFluidInventory
 			this.setWorkTime(0);
 			return;
 		}
+		
 		work();
 		
 		if(this.getWorkTime() >= this.getMaxworkTime())

@@ -50,9 +50,6 @@ public class TileFreezer extends TileFluidInventory
 {	
 	private List<Fluid> lf = new ArrayList<Fluid>();
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
-	protected static int[] SLOTS_TOP = new int[] {0};
-	protected static int[] SLOTS_BOTTOM = new int[] {2, 1};
-	protected static int[] SLOTS_SIDES = new int[] {1};
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
@@ -116,14 +113,12 @@ public class TileFreezer extends TileFluidInventory
     	if(handler != null)
     	{
 	    	if(FluidUtil.getFluidContained(input) == null) return;
-	    	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
-	    	if(this.emptyRoom() == this.getTank().getCapacity()) return;
 	    	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-	    	if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) != null) return;
+	    	if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return;
 	    	
 			FluidStack input_stack = FluidUtil.getFluidContained(input);
 			
-			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, this.emptyRoom(), true) != null)
+			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true) != null)
 			{
 				if(!container.isEmpty())
 				{
