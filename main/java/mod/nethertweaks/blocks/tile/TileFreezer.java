@@ -9,6 +9,7 @@ import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
+import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.ItemStackItemHandler;
@@ -51,7 +52,7 @@ public class TileFreezer extends TileFluidInventory
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
 	public TileFreezer() {
-		super(3, INames.TEFREEZER, 16000);
+		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.freezeTimeFreezer);
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);

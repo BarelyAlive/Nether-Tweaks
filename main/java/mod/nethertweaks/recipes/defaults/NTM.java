@@ -273,7 +273,7 @@ public class NTM implements IRecipeDefaults
 
         // Gold from nether rack
         ItemOre gold = oreRegistry.getOreItem("gold");
-        if (gold != null)
+        if(gold != null)
         {
             registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.FLINT.getID());
             registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.IRON.getID());
@@ -282,7 +282,7 @@ public class NTM implements IRecipeDefaults
 
         // All default Ores
         for (ItemOre ore : oreRegistry.getItemOreRegistry()) {
-            if (oreRegistry.getSieveBlackList().contains(ore)) continue;
+            if(oreRegistry.getSieveBlackList().contains(ore)) continue;
             ItemInfo info = new ItemInfo(ore);
             switch (ore.getOre().getName()) {
                 case "iron":
@@ -446,7 +446,7 @@ public class NTM implements IRecipeDefaults
         registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(new ItemStack(Blocks.NETHERRACK)));
         registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(new ItemStack(Blocks.END_STONE)));
 
-        if (FluidRegistry.isFluidRegistered("milk")){
+        if(FluidRegistry.isFluidRegistered("milk")){
             registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(new ItemStack(Blocks.BROWN_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
             registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(new ItemStack(Blocks.RED_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
         }
@@ -486,7 +486,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-        if (Config.isHellworld)
+        if(Config.isHellworld)
             return chance;
         else return chance / 100f * (float) Config.normalDropPercent;
     }

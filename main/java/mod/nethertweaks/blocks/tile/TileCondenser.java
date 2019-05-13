@@ -16,6 +16,7 @@ import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.HeatRegistry;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
+import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
@@ -63,7 +64,7 @@ public class TileCondenser extends TileFluidInventory
 	protected static int[] SLOTS_SIDES = new int[] {1};
 	
     public TileCondenser() {
-		super(3, INames.TECONDENSER, 16000);
+		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.dryTimeCondenser);
 		setAcceptedFluids(lf);
 	}

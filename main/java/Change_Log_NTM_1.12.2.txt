@@ -26,7 +26,7 @@ ChangeLog NTM 2.0.0
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
 * Fixed Netherrack Furnace lag caused by block set spam
-* Fixed cascading world gen lag (offset tree spawn position by +8)
+* Fixed cascading world gen lag (Solution: Offset tree spawn position by +8)
 * Stone Doors are back!
 - Removed old ore blocks and items
 - Removed Holy Earth
