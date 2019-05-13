@@ -56,9 +56,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileNetherrackFurnace extends TileInventory{
-    
-	
+public class TileNetherrackFurnace extends TileInventory
+{	
     public TileNetherrackFurnace() {
 		super(2, INames.TENETHERRACKFURNACE);
 		this.setMaxworkTime(Config.burnTimeFurnace);
@@ -104,7 +103,7 @@ public class TileNetherrackFurnace extends TileInventory{
             return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
     }
     
-    public int getHeatRate() {
+    private int getHeatRate() {
         BlockPos posBelow = pos.add(0, -1, 0);
         IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
@@ -170,12 +169,11 @@ public class TileNetherrackFurnace extends TileInventory{
     }
 	
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
+	public boolean isItemValidForSlot(int index, ItemStack stack)
+	{
 		ItemStack slot;
 		ItemStack result;
-		switch(index)
-		{
-		case 0:
+		if(index == 0) {
 			slot = this.getStackInSlot(1);
 			if(slot.getCount() == slot.getMaxStackSize()) return false;
 				

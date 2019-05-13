@@ -169,22 +169,24 @@ public class TileFreezer extends TileFluidInventory
     }
     
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		ItemStack slot;
-		IFluidHandlerItem handler;
-		switch(index)
-		{
-		case 2:
+	public boolean isItemValidForSlot(int index, ItemStack stack)
+	{
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
+		
+		if(index == 0)
+			return false;
+		if(index == 2) {
 			if(FluidUtil.getFluidHandler(stack) == null) return false;
-			if(FluidUtil.getFluidContained(stack).getFluid() != FluidRegistry.WATER) return false;
-			if(!this.getStackInSlot(2).isEmpty()) return false;
+			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
 		return true;
 	}
 	
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
-		if(index != 2) return true;
+		if(index == 0) return true;
+		if(index == 1) return true;
 		return false;
 	}
 	    

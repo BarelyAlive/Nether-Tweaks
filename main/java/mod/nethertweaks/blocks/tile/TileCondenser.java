@@ -91,10 +91,9 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 	
-	private int fillToNeighborsTank()
+	private void fillToNeighborsTank()
 	{
 		FluidStack water = this.getTank().getFluid();
-		System.out.println(water);
 		
 		if(water != null) {
 			BlockPos north = this.getPos().north();
@@ -131,7 +130,6 @@ public class TileCondenser extends TileFluidInventory
 				FluidUtil.tryFluidTransfer(((TileFluidInventory) teWest).getTank(), this.getTank(), water, true);
 		}
 		NetworkHandler.sendNBTUpdate(this);
-		return 0;
 	}
 	
 	private void dry()
@@ -255,7 +253,7 @@ public class TileCondenser extends TileFluidInventory
 		if(index == 2)
 		{
 			if(handler == null) return false;	
-			if(FluidUtil.getFluidContained(stack).getFluid() != FluidRegistry.WATER) return false;
+			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}
 			
 		return true;
