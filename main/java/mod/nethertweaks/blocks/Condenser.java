@@ -68,13 +68,17 @@ public class Condenser extends CubeContainerHorizontal{
 		if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(!(te instanceof TileCondenser)) return false;
-    	//if(worldIn.isRemote) return true;
+    	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
+    	
+		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))
+		{
+			return true;
+		}
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
-    		//FluidUtil.getFluidHandler(world, blockPos, side)
 			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if (world.isRemote)
 				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
@@ -82,26 +86,6 @@ public class Condenser extends CubeContainerHorizontal{
 		}
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
-		
-		
-		/*
-    	if(!world.isBlockLoaded(pos)) return false;
-		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
-		if(!(te instanceof TileCondenser)) return false;
-    	//if(world.isRemote) return true;
-    	if(player.isSneaking()) return false;
-		
-    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
-    	
-    	if (item != null) {
-			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
-			te.markDirtyClient();
-			return true;
-		}
-    	
-		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
-		return true;
-		*/
     }
     
     @Override

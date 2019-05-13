@@ -51,13 +51,14 @@ public class Freezer extends CubeContainerHorizontal{
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
 		if(!(te instanceof TileFreezer)) return false;
-    	//if(worldIn.isRemote) return true;
+    	if(worldIn.isRemote) return true;
     	if(playerIn.isSneaking()) return false;
+    	
+		TankUtil.drainWaterFromBottle(te, playerIn, te.getTank());
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
     	
     	if (item != null) {
-    		//FluidUtil.getFluidHandler(world, blockPos, side)
 			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
 			if (worldIn.isRemote)
 				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));

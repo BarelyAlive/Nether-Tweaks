@@ -90,8 +90,8 @@ public class GuiFreezer extends GuiContainer
     		FluidStack fluid = this.entity.getTank().getFluid();
     		
         	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-        	System.out.println(sprite.getFrameCount());
-        	System.out.println(sprite.getFrameCount());
+        	//System.out.println(sprite.getFrameCount());
+        	//System.out.println(sprite.getFrameCount());
     		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
     		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
         	Minecraft.getMinecraft().getTextureManager().bindTexture(res);

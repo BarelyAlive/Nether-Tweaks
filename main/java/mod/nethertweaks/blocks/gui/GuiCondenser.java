@@ -56,7 +56,7 @@ public class GuiCondenser extends GuiContainer {
         if(this.entity.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
         	x += 28;
-        	y += 19;
+        	y += 18;
         	int k_inv = 12 - k;
         	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
         }

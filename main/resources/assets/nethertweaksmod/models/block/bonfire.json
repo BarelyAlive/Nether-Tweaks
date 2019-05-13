@@ -1,10 +1,10 @@
 {
     "parent": "minecraft:block/block",
     "textures": {
-        "nrack": "blocks/netherrack",
-        "iron": "blocks/iron_block",
-        "particle": "blocks/netherrack",
-        "planks": "blocks/planks_oak"
+        "nrack": "minecraft:blocks/netherrack",
+        "iron": "minecraft:blocks/iron_block",
+        "particle": "minecraft:blocks/netherrack",
+        "planks": "minecraft:blocks/planks_oak"
     },
     "name": "bonfire",
     "elements": [

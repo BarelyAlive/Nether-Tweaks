@@ -11,6 +11,9 @@ import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.util.ItemStackItemHandler;
+import mod.sfhcore.util.ItemUtil;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,7 +52,7 @@ public class TileFreezer extends TileFluidInventory
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, 16000);
-		this.setWorkTime(Config.freezeTimeFreezer);
+		this.setMaxworkTime(Config.freezeTimeFreezer);
 		this.lf.add(FluidRegistry.WATER);
 		setAcceptedFluids(lf);
 	}
@@ -102,49 +105,67 @@ public class TileFreezer extends TileFluidInventory
     	ItemStack input = getStackInSlot(2);
     	ItemStack output = getStackInSlot(1);
     	ItemStack container = ItemStack.EMPTY;
-    	if(!input.isEmpty())
-    		container = new ItemStack(input.getItem().getContainerItem());
-    	
-    	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input) == null) return;
-    	if(FluidUtil.getFluidContained(input) == null) return;
-    	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
-    	if(!hasAcceptedFluids(FluidUtil.getFluidContained(input).getFluid())) return;
-    	if(this.emptyRoom() == 0) return;
-    	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-    	if(FluidUtil.getFluidHandler(input).drain(this.emptyRoom(), false).amount == 0) return;
+    		container = new ItemStack(input.getItem().getContainerItem());    	
+    	if(output.getCount() == output.getMaxStackSize()) return;
     	
-		FluidStack input_stack = FluidUtil.getFluidContained(input);
-		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
-		
-		if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.emptyRoom(), true) == null) return;
-		
-		if(!container.isEmpty())
-		{
-			if(!output.isEmpty())
+    	if(FluidUtil.getFluidHandler(input) != null)
+    	{
+	    	if(FluidUtil.getFluidContained(input) == null) return;
+	    	if(FluidUtil.getFluidContained(input).getFluid() == null) return;
+	    	if(this.emptyRoom() == this.getTank().getCapacity()) return;
+	    	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
+	    	if(FluidUtil.getFluidHandler(input).drain(this.emptyRoom(), false).amount == 0) return;
+	    	
+			FluidStack input_stack = FluidUtil.getFluidContained(input);
+			IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+			
+			if(FluidUtil.tryFluidTransfer(this.getTank(), input_handler, this.emptyRoom(), true) != null)
 			{
-				getStackInSlot(1).grow(1);
-				getStackInSlot(2).shrink(1);
-			}
-			else
-			{
-				setInventorySlotContents(1, container);
-				getStackInSlot(2).shrink(1);
+				if(!container.isEmpty())
+				{
+					if(!output.isEmpty())
+					{
+						getStackInSlot(1).grow(1);
+						getStackInSlot(2).shrink(1);
+					}
+					else
+					{
+						setInventorySlotContents(1, container);
+						getStackInSlot(2).shrink(1);
+					}
+				}
+				else
+				{
+					if(output.isEmpty())
+					{
+						setInventorySlotContents(1, input);
+						getStackInSlot(2).shrink(1);
+					}
+					else
+					{
+						getStackInSlot(1).grow(1);
+						getStackInSlot(2).shrink(1);
+					}
+				}
 			}
 		}
-		else
+		else if(ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
-			if(output.isEmpty())
+			if (getTank().getFluidAmount() < getTank().getCapacity() && (getTank().getFluid() == null || getTank().getFluid().getFluid() == FluidRegistry.WATER))
 			{
-				setInventorySlotContents(1, input);
-				getStackInSlot(2).shrink(1);
-			}
-			else
-			{
-				getStackInSlot(1).grow(1);
-				getStackInSlot(2).shrink(1);
-			}
+                getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+                
+                if (output.isEmpty()) {
+    				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
+    				getStackInSlot(2).shrink(1);
+    			}
+                else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
+        		{
+                	getStackInSlot(1).grow(1);
+    				getStackInSlot(2).shrink(1);
+        		}
+            }
 		}
     }
     

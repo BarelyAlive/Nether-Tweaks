@@ -10,6 +10,7 @@ ChangeLog NTM 2.0.0
 * Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and (No.1) automatically output fluids to the sides
 * Held items can now drain Condensers and fill Freezers
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
+* Condenser can now be drained with buckets and bottles and freezer can be filled with them
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
@@ -26,7 +27,7 @@ ChangeLog NTM 2.0.0
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage
 * Fixed Netherrack Furnace lag caused by block set spam
-* Doors are back!
+* Stone Doors are back!
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal

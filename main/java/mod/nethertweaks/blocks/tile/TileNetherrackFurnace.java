@@ -79,8 +79,9 @@ public class TileNetherrackFurnace extends TileInventory{
         NetworkHandler.sendNBTUpdate(this);
         
         if(this.getWorkTime() < getMaxworkTime()) return;
-            smeltItem();
-            this.setWorkTime(0);
+        
+        smeltItem();
+        this.setWorkTime(0);
     }
 
     /**
@@ -89,14 +90,14 @@ public class TileNetherrackFurnace extends TileInventory{
      */
     private boolean canSmelt()
     {
-        if(calcMaxWorktime() <= 0) return false;
-    	if (((ItemStack)this.getStackInSlot(0)).isEmpty()) return false;           
+        if(calcMaxWorktime() == 0) return false;
+    	if(((ItemStack)this.getStackInSlot(0)).isEmpty()) return false;      
         ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStackInSlot(0));
-        if (itemstack.isEmpty()) return false;       
+        if(itemstack.isEmpty()) return false;
         ItemStack itemstack1 = this.getStackInSlot(1);
         if(itemstack1.isEmpty()) return true;       
         if(!itemstack1.isItemEqual(itemstack)) return false;
-        if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit()
+        if(itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit()
         		&& itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
             return true;
         
@@ -133,9 +134,13 @@ public class TileNetherrackFurnace extends TileInventory{
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		setMaxworkTime(this.getMaxworkTime() * 3 / heat);
-		
-		return getMaxworkTime();
+		int workTime = Config.burnTimeFurnace;
+		if (heat != 0) {
+			workTime *= 3;
+			workTime /= heat;
+			this.setMaxworkTime(workTime);
+		}
+		return workTime;
 	}
 
     /**

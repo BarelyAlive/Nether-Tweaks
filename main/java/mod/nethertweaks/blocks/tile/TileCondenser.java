@@ -19,6 +19,7 @@ import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -78,7 +79,6 @@ public class TileCondenser extends TileFluidInventory
 			return;
 		}
 		work();
-		System.out.println(this.getWorkTime());
 		NetworkHandler.sendNBTUpdate(this);
 		
 		if (this.getWorkTime() >= this.getMaxworkTime())
@@ -142,25 +142,38 @@ public class TileCondenser extends TileFluidInventory
     	
     	if(output.getCount() == output.getMaxStackSize()) return;
     	if(input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input) == null) return;
     	if(this.getTank().getFluidAmount() == 0) return;
-    	if(!input.isEmpty()) return;
-    	if(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount()) return;
-    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
     	
 		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null) return;
-		
-		if (output.isEmpty()) {
-			setInventorySlotContents(1, input);
-			getStackInSlot(2).shrink(1);
+		if (input_handler != null) {
+		    	if(!(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount())) return;
+		    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
+				if (FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)
+					return;
+				if (output.isEmpty()) {
+					setInventorySlotContents(1, input_handler.getContainer());
+					getStackInSlot(2).shrink(1);
+				} else {
+					getStackInSlot(1).grow(1);
+					getStackInSlot(2).shrink(1);
+				}
 		}
-		else
+		else if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
 		{
-			getStackInSlot(1).grow(1);
-			getStackInSlot(2).shrink(1);
+			if (getTank().getFluid() != null && getTank().getFluidAmount() >= 250 && getTank().getFluid().getFluid() == FluidRegistry.WATER)
+			{
+                getTank().drain(250, true);
+                
+                if (output.isEmpty()) {
+    				setInventorySlotContents(1, TankUtil.WATER_BOTTLE.copy());
+    				getStackInSlot(2).shrink(1);
+    			} else if(ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)){
+    				getStackInSlot(1).grow(1);
+    				getStackInSlot(2).shrink(1);
+    			}
+            }
 		}
 	}
 	
@@ -229,9 +242,11 @@ public class TileCondenser extends TileFluidInventory
 	{
 		int heat = getHeatRate();
 		int workTime = Config.dryTimeCondenser;
-		workTime *= 3;
-		workTime /= heat;
-		this.setMaxworkTime(workTime);
+		if (heat != 0) {
+			workTime *= 3;
+			workTime /= heat;
+			this.setMaxworkTime(workTime);
+		}
 		return workTime;	
 	}
 	
