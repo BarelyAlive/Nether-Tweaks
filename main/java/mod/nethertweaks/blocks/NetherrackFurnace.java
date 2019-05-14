@@ -53,7 +53,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherrackFurnace extends CubeContainerHorizontal {
      
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static boolean keepInventory;
     public static final PropertyBool ISBURNING = PropertyBool.create("is_burning");
 
     public NetherrackFurnace()
