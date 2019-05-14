@@ -71,9 +71,9 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(world.isRemote) return;
 		
+    	extractFromInventory(pos.up(), EnumFacing.DOWN);
 		fillToItemSlot();
 		fillToNeighborsTank();
-		NetworkHandler.sendNBTUpdate(this);
 		
 		if(!checkInv())
 		{
@@ -82,6 +82,7 @@ public class TileCondenser extends TileFluidInventory
 		}
 		
 		work();
+		NetworkHandler.sendNBTUpdate(this);
 		
 		if(this.getWorkTime() >= this.getMaxworkTime())
 		{
@@ -249,9 +250,12 @@ public class TileCondenser extends TileFluidInventory
 		
 		if(index == 0)
 			return CondenserRegistry.containsItem(stack);
+		if(index == 1)
+			return false;
 		if(index == 2)
 		{
-			if(handler == null) return false;	
+			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
+			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}
 			

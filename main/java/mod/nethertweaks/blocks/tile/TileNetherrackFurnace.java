@@ -67,6 +67,7 @@ public class TileNetherrackFurnace extends TileInventory
     public void update()
 	{
 		if(world.isRemote) return;
+    	extractFromInventory(pos.up(), EnumFacing.DOWN);
         NetherrackFurnace.setState(isWorking(), this.world, this.pos);
         if (!canSmelt())
         {

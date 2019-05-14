@@ -62,8 +62,8 @@ public class TileFreezer extends TileFluidInventory
 	public void update() {
     	if(this.world.isRemote) return;
     	
+    	extractFromInventory(pos.up(), EnumFacing.DOWN);
     	fillFromItem();
-		NetworkHandler.sendNBTUpdate(this);
     	
 		if(!canFreeze()) {
 			this.setWorkTime(0);
@@ -71,6 +71,7 @@ public class TileFreezer extends TileFluidInventory
 		}		
 		
 		work();
+		NetworkHandler.sendNBTUpdate(this);
 		
 		if(getWorkTime() >= this.getMaxworkTime()) {
 			setWorkTime(0);
@@ -175,7 +176,10 @@ public class TileFreezer extends TileFluidInventory
 		
 		if(index == 0)
 			return false;
+		if(index == 1)
+			return false;
 		if(index == 2) {
+			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(FluidUtil.getFluidHandler(stack) == null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}

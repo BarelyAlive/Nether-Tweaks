@@ -85,27 +85,31 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     public static void setState(boolean active, World worldIn, BlockPos pos)
     {
     	IBlockState b = worldIn.getBlockState(pos);
+    	if(b == Blocks.AIR.getDefaultState()) return;
         TileEntity tileentity = worldIn.getTileEntity(pos);
     	
-    	if(b != Blocks.AIR.getDefaultState()) {
-    		if(active && b.getValue(ISBURNING) == false) {
-    	   		b.getBlock().setLightLevel(0.875F);
-    	        b = b.withProperty(ISBURNING, true);
-    	        worldIn.setBlockState(pos, b, 3);
-    	        worldIn.setBlockState(pos, b, 3);
-    		}
-    		else if(!active && b.getValue(ISBURNING) == true) {
-        		b.getBlock().setLightLevel(0.0F);
-        		b = b.withProperty(ISBURNING, false);
-    	        worldIn.setBlockState(pos, b, 3);
-    	        worldIn.setBlockState(pos, b, 3);
-        	}
+		if(active && !b.getValue(ISBURNING)) {
+	   		b.getBlock().setLightLevel(0.875F);
+	        b = b.withProperty(ISBURNING, true);
+	        worldIn.setBlockState(pos, b, 3);
+	        worldIn.setBlockState(pos, b, 3);
+	        validate(worldIn, pos, tileentity);
+		}
+		else if(!active && b.getValue(ISBURNING)) {
+    		b.getBlock().setLightLevel(0.0F);
+    		b = b.withProperty(ISBURNING, false);
+	        worldIn.setBlockState(pos, b, 3);
+	        worldIn.setBlockState(pos, b, 3);
+	        validate(worldIn, pos, tileentity);
     	}
-    	
-        if (tileentity != null)
+    }
+    
+    private static void validate(World world, BlockPos pos, TileEntity tileentity)
+    {
+    	if (tileentity != null)
         {
             tileentity.validate();
-            worldIn.setTileEntity(pos, tileentity);
+            world.setTileEntity(pos, tileentity);
             NetworkHandler.sendToAllAround(new MessageCheckLight(pos), tileentity);
         }
     }
