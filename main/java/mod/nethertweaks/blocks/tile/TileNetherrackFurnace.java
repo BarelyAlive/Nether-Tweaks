@@ -194,7 +194,7 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
     public String getGuiID()
     {
-        return "nethertweaksmod:GuiNetherrackFurnace";
+        return "nethertweaksmod:gui_netherrack_furnace";
     }
     
     @Override
