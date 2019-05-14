@@ -68,15 +68,35 @@ public class TileNetherrackFurnace extends TileInventory
 	{
 		if(world.isRemote) return;
     	extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	insertToInventory(pos.north(), EnumFacing.UP);
+    	insertToInventory(pos.south(), EnumFacing.UP);
+    	insertToInventory(pos.west(), EnumFacing.UP);
+    	insertToInventory(pos.east(), EnumFacing.UP);
+    	insertToInventory(pos.north(), EnumFacing.WEST);
+    	insertToInventory(pos.south(), EnumFacing.WEST);
+    	insertToInventory(pos.west(), EnumFacing.WEST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
+    	insertToInventory(pos.north(), EnumFacing.SOUTH);
+    	insertToInventory(pos.south(), EnumFacing.SOUTH);
+    	insertToInventory(pos.west(), EnumFacing.SOUTH);
+    	insertToInventory(pos.east(), EnumFacing.SOUTH);
+    	insertToInventory(pos.north(), EnumFacing.NORTH);
+    	insertToInventory(pos.south(), EnumFacing.NORTH);
+    	insertToInventory(pos.west(), EnumFacing.NORTH);
+    	insertToInventory(pos.east(), EnumFacing.NORTH);
+    	insertToInventory(pos.north(), EnumFacing.EAST);
+    	insertToInventory(pos.south(), EnumFacing.EAST);
+    	insertToInventory(pos.west(), EnumFacing.EAST);
+    	insertToInventory(pos.east(), EnumFacing.EAST);
         NetherrackFurnace.setState(isWorking(), this.world, this.pos);
-        if (!canSmelt())
+		NetworkHandler.sendNBTUpdate(this);
+		if (!canSmelt())
         {
         	this.setWorkTime(0);
         	return;
         }
         
         work();
-        NetworkHandler.sendNBTUpdate(this);
         
         if(this.getWorkTime() < getMaxworkTime()) return;
         
@@ -187,6 +207,7 @@ public class TileNetherrackFurnace extends TileInventory
 	
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
+		if (index == 0) return false;
 		if (index == 1) return true;
 		return false;
 	}
