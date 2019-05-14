@@ -15,7 +15,8 @@ import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.Constants;
 import mod.sfhcore.util.Util;
 
-public class GuiCondenser extends GuiContainer {
+public class GuiCondenser extends GuiContainer
+{
 	private int xSize, ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
@@ -82,8 +83,6 @@ public class GuiCondenser extends GuiContainer {
     		FluidStack fluid = this.entity.getTank().getFluid();
     		
         	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-        	//System.out.println(sprite.getFrameCount());
-        	//System.out.println(sprite.getFrameCount());
     		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
     		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
         	Minecraft.getMinecraft().getTextureManager().bindTexture(res);

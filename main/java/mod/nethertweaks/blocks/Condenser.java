@@ -71,10 +71,7 @@ public class Condenser extends CubeContainerHorizontal{
     	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
     	
-		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))
-		{
-			return true;
-		}
+		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))	return true;
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	

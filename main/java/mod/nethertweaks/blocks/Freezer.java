@@ -54,7 +54,7 @@ public class Freezer extends CubeContainerHorizontal{
     	if(worldIn.isRemote) return true;
     	if(playerIn.isSneaking()) return false;
     	
-		TankUtil.drainWaterFromBottle(te, playerIn, te.getTank());
+		if(TankUtil.drainWaterFromBottle(te, playerIn, te.getTank())) return true;
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
     	
