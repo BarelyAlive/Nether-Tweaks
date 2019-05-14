@@ -115,7 +115,6 @@ public class TileCondenser extends TileFluidInventory
 			else if(hwest != null)
 				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 		}
-		NetworkHandler.sendNBTUpdate(this);
 	}
 	
 	private void dry()
