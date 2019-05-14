@@ -67,7 +67,27 @@ public class TileNetherrackFurnace extends TileInventory
     public void update()
 	{
 		if(world.isRemote) return;
-    	extractFromInventory(pos.up(), EnumFacing.DOWN);
+		
+    	checkInputOutput();
+        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+		NetworkHandler.sendNBTUpdate(this);
+		if (!canSmelt())
+        {
+        	this.setWorkTime(0);
+        	return;
+        }
+        
+        work();
+        
+        if(this.getWorkTime() < getMaxworkTime()) return;
+        
+        smeltItem();
+        this.setWorkTime(0);
+    }
+	
+	private void checkInputOutput()
+	{
+		extractFromInventory(pos.up(), EnumFacing.DOWN);
     	insertToInventory(pos.north(), EnumFacing.UP);
     	insertToInventory(pos.south(), EnumFacing.UP);
     	insertToInventory(pos.west(), EnumFacing.UP);
@@ -88,21 +108,7 @@ public class TileNetherrackFurnace extends TileInventory
     	insertToInventory(pos.south(), EnumFacing.EAST);
     	insertToInventory(pos.west(), EnumFacing.EAST);
     	insertToInventory(pos.east(), EnumFacing.EAST);
-        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
-		NetworkHandler.sendNBTUpdate(this);
-		if (!canSmelt())
-        {
-        	this.setWorkTime(0);
-        	return;
-        }
-        
-        work();
-        
-        if(this.getWorkTime() < getMaxworkTime()) return;
-        
-        smeltItem();
-        this.setWorkTime(0);
-    }
+	}
 
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.

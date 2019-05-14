@@ -71,7 +71,29 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(world.isRemote) return;
 		
-    	extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	checkInputOutput();
+		fillToItemSlot();
+		fillToNeighborsTank();
+		
+		NetworkHandler.sendNBTUpdate(this);
+		if(!checkInv())
+		{
+			this.setWorkTime(0);
+			return;
+		}
+		
+		work();
+		
+		if(this.getWorkTime() >= this.getMaxworkTime())
+		{
+			this.setWorkTime(0);
+			dry();
+		}
+	}
+	
+	private void checkInputOutput()
+	{
+		extractFromInventory(pos.up(), EnumFacing.DOWN);
     	insertToInventory(pos.north(), EnumFacing.UP);
     	insertToInventory(pos.south(), EnumFacing.UP);
     	insertToInventory(pos.west(), EnumFacing.UP);
@@ -92,23 +114,6 @@ public class TileCondenser extends TileFluidInventory
     	insertToInventory(pos.south(), EnumFacing.EAST);
     	insertToInventory(pos.west(), EnumFacing.EAST);
     	insertToInventory(pos.east(), EnumFacing.EAST);
-		fillToItemSlot();
-		fillToNeighborsTank();
-		
-		NetworkHandler.sendNBTUpdate(this);
-		if(!checkInv())
-		{
-			this.setWorkTime(0);
-			return;
-		}
-		
-		work();
-		
-		if(this.getWorkTime() >= this.getMaxworkTime())
-		{
-			this.setWorkTime(0);
-			dry();
-		}
 	}
 	
 	private void fillToNeighborsTank()

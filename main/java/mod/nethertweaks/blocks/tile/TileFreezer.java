@@ -62,7 +62,26 @@ public class TileFreezer extends TileFluidInventory
 	public void update() {
     	if(this.world.isRemote) return;
     	
-    	extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	checkInputOutput();
+    	fillFromItem();
+    	
+		NetworkHandler.sendNBTUpdate(this);
+		if(!canFreeze()) {
+			this.setWorkTime(0);
+			return;
+		}		
+		
+		work();
+		
+		if(getWorkTime() >= this.getMaxworkTime()) {
+			setWorkTime(0);
+			freezeItem();
+		}
+	}
+    
+    private void checkInputOutput()
+	{
+		extractFromInventory(pos.up(), EnumFacing.DOWN);
     	insertToInventory(pos.north(), EnumFacing.UP);
     	insertToInventory(pos.south(), EnumFacing.UP);
     	insertToInventory(pos.west(), EnumFacing.UP);
@@ -83,20 +102,6 @@ public class TileFreezer extends TileFluidInventory
     	insertToInventory(pos.south(), EnumFacing.EAST);
     	insertToInventory(pos.west(), EnumFacing.EAST);
     	insertToInventory(pos.east(), EnumFacing.EAST);
-    	fillFromItem();
-    	
-		NetworkHandler.sendNBTUpdate(this);
-		if(!canFreeze()) {
-			this.setWorkTime(0);
-			return;
-		}		
-		
-		work();
-		
-		if(getWorkTime() >= this.getMaxworkTime()) {
-			setWorkTime(0);
-			freezeItem();
-		}
 	}
 	
 	private boolean canFreeze()
