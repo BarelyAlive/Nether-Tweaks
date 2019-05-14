@@ -114,20 +114,6 @@ public class TileCondenser extends TileFluidInventory
 				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
 			else if(hwest != null)
 				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
-			
-			//Check TileFluidInventory
-			TileEntity teNorth = this.world.getTileEntity(north);
-			TileEntity teEast = this.world.getTileEntity(east);
-			TileEntity teSouth = this.world.getTileEntity(south);
-			TileEntity teWest = this.world.getTileEntity(west);
-			if(teNorth instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teNorth).getTank(), this.getTank(), water, true);
-			else if(teEast instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teEast).getTank(), this.getTank(), water, true);
-			else if(teSouth instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teSouth).getTank(), this.getTank(), water, true);
-			else if(teWest instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teWest).getTank(), this.getTank(), water, true);
 		}
 		NetworkHandler.sendNBTUpdate(this);
 	}
