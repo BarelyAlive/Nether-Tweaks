@@ -60,8 +60,6 @@ public class Freezer extends CubeContainerHorizontal{
     	
     	if (item != null) {
 			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
-			if (worldIn.isRemote)
-				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
 			return true;
 		}
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
