@@ -30,13 +30,12 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import p455w0rdslib.util.ChunkUtils;
 
-public class Freezer extends CubeContainerHorizontal{
-	
+public class Freezer extends CubeContainerHorizontal
+{
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static boolean keepInventory;
-    public final FluidStack WATER = new FluidStack(FluidRegistry.WATER, Integer.MAX_VALUE);
 	
-	public Freezer() {
+	public Freezer()
+	{
 		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);

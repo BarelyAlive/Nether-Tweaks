@@ -11,6 +11,7 @@ ChangeLog NTM 2.0.0
 * Held items can now drain Condensers and fill Freezers
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
+* Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
@@ -28,7 +29,7 @@ ChangeLog NTM 2.0.0
 * Fixed Netherrack Furnace lag caused by block set spam
 * Fixed cascading world gen lag (Solution: Offset tree spawn position by +8)
 * Fixed Netherrack Furnace "check light spam"
-* Fixed Furnace not setting lighting back if destroyed
+* Fixed Furnace not setting lighting back to normal if destroyed
 * Stone Doors are back!
 - Removed old ore blocks and items
 - Removed Holy Earth

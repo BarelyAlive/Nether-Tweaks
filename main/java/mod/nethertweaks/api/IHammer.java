@@ -1,4 +1,4 @@
-package mod.nethertweaks.interfaces;
+package mod.nethertweaks.api;
 
 import net.minecraft.item.ItemStack;
 
