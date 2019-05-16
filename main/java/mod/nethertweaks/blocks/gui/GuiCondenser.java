@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.Constants;
@@ -18,7 +19,7 @@ import mod.sfhcore.util.Util;
 public class GuiCondenser extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guicondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 	
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {

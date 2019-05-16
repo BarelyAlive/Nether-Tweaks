@@ -16,8 +16,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Hellmart extends BlockContainer {
-
+public class Hellmart extends BlockContainer
+{
 	public Hellmart()
 	{
 		super(Material.ROCK);
@@ -41,17 +41,13 @@ public class Hellmart extends BlockContainer {
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (!world.isBlockLoaded(pos))
-    		return false;
-    	if(world.isRemote)
-    		return false;
-    	if(player.isSneaking())
-    		return false;
+		if(!world.isBlockLoaded(pos)) return false;
+    	if(world.isRemote) return false;
+    	if(player.isSneaking()) return false;
     	  	
     	TileHellmart te = (TileHellmart) world.getTileEntity(pos);
-		if(!(te instanceof TileHellmart)) {
-			return false;
-		}
+		if(!(te instanceof TileHellmart)) return false;
+		
 		player.openGui(NetherTweaksMod.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}

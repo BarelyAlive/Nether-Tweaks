@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.Constants;
@@ -20,7 +21,7 @@ import mod.sfhcore.blocks.container.ContainerBase;
 
 public class GuiNetherrackFurnace extends GuiContainer {
 	private int xSize = 175, ySize = 165;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD, "textures/gui/guinetherrackfurnace.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 	private InventoryPlayer inv;
 	private BlockPos pos;

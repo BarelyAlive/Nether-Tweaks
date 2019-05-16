@@ -45,17 +45,7 @@ public interface INames {
 	public static final String TESIEVE						= "tileentity_sieve";
 	public static final String TEHELLMART					= "tileentity_hellmart";
 	
-	//items
-	public static final String BUCKETSTONE 					= "bucket_stone";
-	public static final String BUCKETSTONEWATER 			= "bucket_stone_water";
-	public static final String BUCKETSTONELI				= "bucket_stone_liquid_impossibility";
-	public static final String BUCKETSTONELAVA 				= "bucket_stone_lava";
-	public static final String BUCKETSTONEMILK 				= "bucket_stone_milk";
-	public static final String BUCKETWOOD 					= "bucket_wood";
-	public static final String BUCKETWOODWATER 				= "bucket_wood_water";
-	public static final String BUCKETWOODLI					= "bucket_wood_liquid_impossibility";
-	public static final String BUCKETWOODMILK				= "bucket_wood_milk";
-	
+	//items	
 	public static final String ITEMDOORNTM 					= "item_door_ntm";
 	public static final String GRABBER 						= "grabber";
 	public static final String FLINTNBLAZE 					= "flint_and_blaze";

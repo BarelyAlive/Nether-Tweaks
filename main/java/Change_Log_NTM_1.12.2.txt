@@ -23,6 +23,7 @@ ChangeLog NTM 2.0.0
 * Mobs like squids etc. can now spawn in Liquid Impossibility
 * More and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
+* Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed Spawn and respawn in Hellworld
 * Fixed a Bug that could cause server damage

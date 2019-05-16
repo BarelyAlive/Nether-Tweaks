@@ -5,7 +5,6 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileBase;
-import mod.sfhcore.network.MessageFluidTankContents;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;

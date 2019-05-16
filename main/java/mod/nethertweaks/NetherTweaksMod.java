@@ -68,7 +68,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.RegistryManager;
  
-@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
+@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version="2.0.0", dependencies="required-after:sfhcore;")
 public class NetherTweaksMod
 {   
 	public static final String MODID = "nethertweaksmod";

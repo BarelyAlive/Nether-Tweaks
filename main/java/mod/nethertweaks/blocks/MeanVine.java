@@ -31,9 +31,6 @@ public class MeanVine extends BlockVine{
 		return false;
 	}
 	
-	/**
-     * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
-     */
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
     	if(!(entityIn instanceof EntityItem)){
