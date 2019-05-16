@@ -58,12 +58,9 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
-	private List<Fluid> lf = new ArrayList<Fluid>();
-	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.dryTimeCondenser);
-		setAcceptedFluids(lf);
 	}
 
 	@Override

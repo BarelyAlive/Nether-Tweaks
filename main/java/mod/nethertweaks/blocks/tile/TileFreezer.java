@@ -48,14 +48,11 @@ import scala.Int;
 
 public class TileFreezer extends TileFluidInventory
 {	
-	private List<Fluid> lf = new ArrayList<Fluid>();
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.freezeTimeFreezer);
-		this.lf.add(FluidRegistry.WATER);
-		setAcceptedFluids(lf);
 	}
 	
     @Override
