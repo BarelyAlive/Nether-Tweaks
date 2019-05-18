@@ -1,0 +1,94 @@
+fluid.liquid_impossibility=Flüssige Unmöglichkeit
+
+tile.liquid_impossibility.name=Flüssige Unmöglichkeit
+tile.condenser.name=Kondensierer
+tile.netherrack_furnace.name=Nethergesteinofen
+tile.stairway_to_heaven.name=Stairway to Heaven
+tile.dust.name=Staub
+tile.bonfire.name=Freudenfeuer
+tile.freezer.name=Gefrierschrank
+tile.elder_log.name=Uraltholz
+tile.elder_leaves.name=Uraltlaub
+tile.elder_planks.name=Uraltbretter
+tile.elder_sapling.name=Uraltsetzling
+tile.elder_slab_half.name=Uraltstufe
+tile.elder_slab.name=Uraltdoppelstufe
+tile.netherrack_gravel.name=Nethergesteinkies
+tile.barrel0.name=Holzfass
+tile.barrel1.name=Steinfass
+tile.crucible.name=Schmelze
+tile.unfired_crucible.name=Ungebrannte Schmelze
+tile.mean_vine.name=Fiese Ranken
+tile.sieve.name=Sieb
+tile.hellmart.name=Hellmart
+
+item.door_ntm_stone.name=Steintür
+item.door_ntm_elder.name=Uralttür
+
+generator.hellworld=Hölle auf Erden
+
+item.cooked_jerky.name="Essbar"
+item.pickaxe_netherrack.name=Nethegesteinspitzhacke
+item.pickaxe_netherbrick.name=Netherziegelspitzhacke
+item.grabber.name=Greifzange
+
+item.hammer_wood.name=Holzhammer
+item.hammer_gold.name=Goldhammer
+item.hammer_iron.name=Eisenhammer
+item.hammer_diamond.name=Diamanthammer
+item.hammer_stone.name=Steinhammer
+
+item.seed_0.name=Pilzsporen
+item.seed_1.name=Grassamen
+item.seed_2.name=Kaktussamen
+item.seed_3.name=Gummibaumsamen
+
+item.flint_and_blaze.name=Feuerzeug
+
+item.crystal_0.name=Lichtkristall
+item.crystal_1.name=Enderkristall
+
+item.item_base_0.name=Endbox
+item.item_base_1.name=Portalkern
+item.item_base_2.name=Enderdurzogener Rahmen
+item.item_base_3.name=Hellfayah
+item.item_base_4.name=Lichtpulver
+item.item_base_5.name=Salz
+item.item_base_6.name=Steinstange
+item.item_base_7.name=Faden
+
+item.item_mesh_string.name=Fadengeflecht
+item.item_mesh_flint.name=Feuersteingeflecht
+item.item_mesh_iron.name=Eisengeflecht
+item.item_mesh_diamond.name=Diamantgeflecht
+
+item.item_pebble_0.name=Kieselstein
+item.item_pebble_1.name=Granitkieselstein
+item.item_pebble_2.name=Dioritkieselstein
+item.item_pebble_3.name=Andesitkieselstein
+
+item.item_block_basic_ore_hellfayah.name=Hellfayaherz
+item.item_block_basic_hellfayah_block.name=Hellfayahblock
+item.item_block_basic_blocksalt.name=Salzblock
+
+tile.block_basic_ore_hellfayah.name=Hellfayaherz
+tile.block_basic_hellfayah_block.name=Hellfayahblock
+tile.block_basic_blocksalt.name=Salzblock
+
+item.item_doll_bat.name=Fledermauspuppe
+item.item_doll_chicken.name=Hühnchenpuppe
+item.item_doll_cow.name=Kuhpuppe
+item.item_doll_donkey.name=Eselpuppe
+item.item_doll_horse.name=Pferdpuppe
+item.item_doll_red_mooshroom.name=Rote Mooshroompuppe
+item.item_doll_mule.name=Mauleselpuppe
+item.item_doll_ocelot.name=Ozelotpuppe
+item.item_doll_parrot.name=Papageipuppe
+item.item_doll_rabbit.name=Hasenpuppe
+item.item_doll_sheep.name=Schafspuppe
+item.item_doll_llama.name=Llamapuppe
+item.item_doll_polar_bear.name=Polarbärpuppe
+item.item_doll_wolf.name=Wolfspuppe
+item.item_doll_villager.name=Dorfbewohnerpuppe
+
+itemGroup.tab_nether_tweaks_mod=Nether Tweaks

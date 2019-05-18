@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -51,13 +52,13 @@ public class GuiFreezer extends GuiContainer
 	{
 		String fName = "Nothing";
 		FluidStack f = this.entity.getTank().getFluid();
-		if(f != null) fName = f.getLocalizedName(); 
+		if(f != null) fName = f.getLocalizedName();
 		fontRenderer.drawString(fName + ": " + this.entity.getTank().getFluidAmount() + " mB", 95, 73, 0xffffff);
     }
 	
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
-
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
         int x = (width - xSize) / 2;
