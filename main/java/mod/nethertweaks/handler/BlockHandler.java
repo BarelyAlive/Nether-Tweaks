@@ -56,7 +56,7 @@ public class BlockHandler implements INames
     public static final Block ELDERPLANKS 		 = new ElderPlanks();
     public static final Block ELDERSLABHALF 	 = new ElderSlab.Half();
     public static final Block ELDERSLABDOUBLE 	 = new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
-    public static final Block NETHERRACKGRAVEL 	 = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.TABNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
+    public static final Block NETHERRACKGRAVEL 	 = new NetherrackGravel();
     public static final Block MEANVINE 			 = new MeanVine();
     public static final Block SIEVE 			 = new Sieve();
     public static final Block STONEDOOR 		 = new CustomDoor(Material.ROCK, new ResourceLocation(NTM, INames.DOORNTMSTONE), 30.0F, 2.0F);
