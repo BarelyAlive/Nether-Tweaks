@@ -165,19 +165,18 @@ public class TileCondenser extends TileFluidInventory
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
 		if(input_handler != null) {
-		    	if(!(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount())) return;
 		    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
-				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)
-					return;
+				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)return;
 				if(output.isEmpty()) {
 					setInventorySlotContents(1, input_handler.getContainer());
 					getStackInSlot(2).shrink(1);
-				} else {
+				}
+				else {
 					getStackInSlot(1).grow(1);
 					getStackInSlot(2).shrink(1);
 				}
 		}
-		else if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
+		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
 		{
 			if(this.getTank().getFluid() != null && this.getTank().getFluidAmount() >= 250 && this.getTank().getFluid().getFluid() == FluidRegistry.WATER)
 			{

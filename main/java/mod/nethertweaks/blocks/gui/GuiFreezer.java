@@ -47,12 +47,12 @@ public class GuiFreezer extends GuiContainer
     }
 		
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2){
-		/*
-        fontRendererObj.drawString("BaseGenerator", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-        */
-		
+	protected void drawGuiContainerForegroundLayer(int par1, int par2)
+	{
+		String fName = "Nothing";
+		FluidStack f = this.entity.getTank().getFluid();
+		if(f != null) fName = f.getLocalizedName(); 
+		fontRenderer.drawString(fName + ": " + this.entity.getTank().getFluidAmount() + " mB", 95, 73, 0xffffff);
     }
 	
     @Override
