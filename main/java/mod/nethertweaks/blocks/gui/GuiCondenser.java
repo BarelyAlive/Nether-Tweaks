@@ -5,7 +5,10 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
@@ -43,10 +46,13 @@ public class GuiCondenser extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		String fName = "Nothing";
+		String fName = "---";
 		FluidStack f = this.entity.getTank().getFluid();
-		if(f != null) fName = f.getLocalizedName(); 
-		fontRenderer.drawString(fName + ": " + this.entity.getTank().getFluidAmount() + " mB", 95, 73, 0xffffff);
+		if(f != null) fName = f.getLocalizedName() + " : " + this.entity.getTank().getFluidAmount() + " mB";
+		else fName = fName +" : 0 mB";
+		int lenght = fontRenderer.getStringWidth(fName);
+		int x = 174 - lenght;
+		fontRenderer.drawStringWithShadow(fName, x, 73, 0xffffff);
     }
 	
     @Override

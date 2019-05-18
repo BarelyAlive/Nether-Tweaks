@@ -12,6 +12,8 @@ ChangeLog NTM 2.0.0
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
 * Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
+* Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
+  (In any language available in Minecraft or Mod-supported language (depends on the fluid's Mod)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
