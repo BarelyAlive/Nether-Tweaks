@@ -107,10 +107,10 @@ public class TileCondenser extends TileFluidInventory
     	insertToInventory(pos.south(), EnumFacing.NORTH);
     	insertToInventory(pos.west(), EnumFacing.NORTH);
     	insertToInventory(pos.east(), EnumFacing.NORTH);
-    	insertToInventory(pos.north(), EnumFacing.EAST);
-    	insertToInventory(pos.south(), EnumFacing.EAST);
+    	insertToInventory(pos.north(), EnumFacing.SOUTH);
+    	insertToInventory(pos.south(), EnumFacing.NORTH);
     	insertToInventory(pos.west(), EnumFacing.EAST);
-    	insertToInventory(pos.east(), EnumFacing.EAST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
 	}
 	
 	private void fillToNeighborsTank()
@@ -124,18 +124,15 @@ public class TileCondenser extends TileFluidInventory
 			BlockPos west = this.getPos().west();
 			
 			//Check FluidHandler
-			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.NORTH);
-			IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.EAST);
-			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.SOUTH);
-			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.WEST);
-			if(hnorth != null)
-				FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
-			else if(heast != null)
-				FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
-			else if(hsouth != null)
-				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
-			else if(hwest != null)
-				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
+			IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
+			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
+			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
+			
+			if(hnorth != null) FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
+			if(heast != null)  FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
+			if(hsouth != null) FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
+			if(hwest != null)  FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 		}
 	}
 	
