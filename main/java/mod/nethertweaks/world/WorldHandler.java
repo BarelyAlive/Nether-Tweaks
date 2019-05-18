@@ -1,5 +1,5 @@
 package mod.nethertweaks.world;
- 
+
 import com.ibm.icu.impl.Differ;
 
 import mod.nethertweaks.Config;
@@ -26,67 +26,65 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
- 
+
 public class WorldHandler{
-     
+
 	public final static String key = "ntm.firstSpawn";
 	public final static String coodX = "ntm.cood.x";
 	public final static String coodY = "ntm.cood.y";
 	public final static String coodZ = "ntm.cood.z";
-    
+
 	//HELLWORLD
-	
+
     @SubscribeEvent
-    public void respawn(PlayerEvent.PlayerRespawnEvent event)
-    {
+    public void respawn(PlayerEvent.PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
 		int range = 32;
-		
-		if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-    	
-		teleportPlayer(player);
-		//Case: player x's spawnpoint is at the start portal position
-		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
-		{
-    		BlockPos posplayer = player.getPosition();
-    		int yDifferenz = 0;
-    		if (posplayer.getY() < range)
+
+    	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+    		teleportPlayer(player);
+    		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
-    			yDifferenz = range - posplayer.getY();
+	    		BlockPos posplayer = player.getPosition();
+	    		int yDifferenz = 0;
+	    		if (posplayer.getY() < range)
+	    		{
+	    			yDifferenz = range - posplayer.getY();
+	    		}
+	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
+
+	    		for(BlockPos pos : posi)
+	    		{
+	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+	    			{
+	    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+	    			}
+	    		}
     		}
-    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
-    		
-    		for(BlockPos pos : posi)
+    		else
     		{
-    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
-    			{
-    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-    			}
+    			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
+				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
     		}
-		}
-		else //Case player saved at a bonfire etc.
-		{
-			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
-			player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
 		}
     }
-    
+
     @SubscribeEvent
 	public void changeToHomeDim(PlayerEvent.PlayerChangedDimensionEvent event)
     {
     	EntityPlayer player = event.player;
-    	
+
     	if(player.dimension != -1) teleportPlayer(player);
 	}
-	
+
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
-		
-		if(player.dimension != -1) teleportPlayer(player);	
+
+		if(player.dimension != -1) teleportPlayer(player);
 	}
-	
-	//Enitity Interaction   
+
+	//Enitity Interaction
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event)
     {
@@ -97,11 +95,11 @@ public class WorldHandler{
 	    	{
 	    		if(! NotNull.checkNotNull(event.getItemStack()))
 	    			return;
-	    		
+
 	    		ItemStack stack = event.getItemStack();
 	    		Item item = stack.getItem();
 	    		EntityPlayer player = event.getEntityPlayer();
-	    		
+
 	    		/*
 		    	if(item == BucketNFluidHandler.BUCKETSTONE)
 		    	{
@@ -117,36 +115,36 @@ public class WorldHandler{
 	    	}
     	}
     }
-    
+
     //WORLD DATA
-    
+
     @SubscribeEvent
-	public void LoadPlayerList(WorldEvent.Load event)
-    {
-    	if(event.getWorld().isRemote) return;    	
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void LoadPlayerList(WorldEvent.Load event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
-	
+
 	@SubscribeEvent
-	public void UnloadPlayerList(WorldEvent.Unload event)
-	{
-		if(event.getWorld().isRemote) return;		
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void UnloadPlayerList(WorldEvent.Unload event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
-	
+
 	@SubscribeEvent
-	public void SavePlayerList(WorldEvent.Save event)
-	{
-		if(event.getWorld().isRemote) return;	
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void SavePlayerList(WorldEvent.Save event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
 	//*********************************************************************************************************************
-	
-	private void teleportPlayer(EntityPlayer player)
-	{
+
+	private void teleportPlayer(EntityPlayer player) {
+
 		if(player.dimension != -1)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
@@ -157,7 +155,7 @@ public class WorldHandler{
 			player.changeDimension(-1);
 		}
 	}
-	
+
 	public static void addWaterMobs()
 	{
 		EntityRegistry.addSpawn(EntitySquid.class, 25, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
