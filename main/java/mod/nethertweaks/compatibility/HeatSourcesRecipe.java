@@ -11,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 
 import mezz.jei.api.ingredients.*;
 import mezz.jei.api.recipe.*;
-import mod.nethertweaks.util.*;
 import mod.sfhcore.util.*;
 import net.minecraft.*;
 import net.minecraft.item.*;
