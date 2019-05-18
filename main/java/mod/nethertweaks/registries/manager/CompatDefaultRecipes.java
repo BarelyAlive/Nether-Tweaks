@@ -21,7 +21,6 @@ public class CompatDefaultRecipes
     
     static {
         // TODO use config options to dynamically add mod support
-        MODS.add(new NTM());
         //MODS.add(new TinkersConstruct());
         /*
         MODS.add(new IntegratedDynamics());

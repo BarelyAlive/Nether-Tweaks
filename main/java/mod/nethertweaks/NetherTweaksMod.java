@@ -82,7 +82,6 @@ public class NetherTweaksMod
     	MessageHandler.init();
     }
     
-    public static NTMDefaultRecipes defaultRecipes;
     public static File configDirectory;
     // List of loaded modules
     public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
@@ -128,8 +127,6 @@ public class NetherTweaksMod
     	JsonRecipeHandler.loadJasonVorhees(configDirectory);
         SmeltingNOreDictHandler.load();
         
-    	defaultRecipes = new NTMDefaultRecipes();
-    	defaultRecipes.registerDefaults();
 		BarrelModeRegistry.registerDefaults();
     }
      

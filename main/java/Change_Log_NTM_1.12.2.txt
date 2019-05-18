@@ -26,7 +26,7 @@ ChangeLog NTM 2.0.0
 * Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Fixed Spawn and respawn in Hellworld
-* Fixed a Bug that could cause server damage
+* Fixed a Bug that could cause server damage if a block got activated but wasn't loaded
 * Fixed Netherrack Furnace lag caused by block set spam
 * Fixed cascading world gen lag (Solution: Offset tree spawn position by +8)
 * Fixed Netherrack Furnace "check light spam"

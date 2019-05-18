@@ -73,6 +73,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	if(player.isSneaking()) return false;
     	  	
 		TileEntity te = world.getTileEntity(pos);
+		if(te ==  null) return false;
 		if(!(te instanceof TileNetherrackFurnace)) {
 			return false;
 		}
