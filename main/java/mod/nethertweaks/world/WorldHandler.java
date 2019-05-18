@@ -160,6 +160,6 @@ public class WorldHandler{
 	
 	public static void addWaterMobs()
 	{
-		EntityRegistry.addSpawn(EntitySquid.class, 50, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
+		EntityRegistry.addSpawn(EntitySquid.class, 25, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
 	}
 }
