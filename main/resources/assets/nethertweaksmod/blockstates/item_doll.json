@@ -78,7 +78,12 @@
         "textures": {
           "layer0": "nethertweaksmod:items/doll_wolf"
         }
+      },
+      "villager": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_villager"
+        }
       }
-  }
-}
+    }
+   }
 }

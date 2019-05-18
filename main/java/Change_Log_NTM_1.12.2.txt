@@ -1,7 +1,7 @@
 ChangeLog NTM 2.0.0
 
 * Each Bonfire now individually stores the savepoints of the players for themselves
-  Example: If you last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
+  Example: If a player last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
 * Bonfire will now let you teleport to other Bonfire
 * Condensers now include water tanks so you can put together any combination of organic material
 * Freezers now include water tanks and can have a redstone signal from any side
@@ -39,6 +39,7 @@ ChangeLog NTM 2.0.0
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
 + Added netherrack gravel
++ Added Elder Door
 + Added dolls to get otherwise unobtainable mobs
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
     The Currency is water (also editable via JSON)

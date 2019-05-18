@@ -27,6 +27,7 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -54,6 +55,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 	public static final String LLAMA = "llama";
 	public static final String POLAR_BEAR = "polar_bear";
 	public static final String WOLF = "wolf";
+	public static final String VILLAGER = "villager";
 	
 	private static ArrayList<String> names = new ArrayList<String>();
 	
@@ -79,6 +81,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 		names.add(LLAMA);
 		names.add(POLAR_BEAR);
 		names.add(WOLF);
+		names.add(VILLAGER);
 	}
 	
 	public Fluid getSpawnFluid(ItemStack stack) {
@@ -164,8 +167,11 @@ public class ItemDoll extends Item implements IVariantProvider{
 		case 13:
 			EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
+		case 14:
+			EntityVillager derp = new EntityVillager(world);
+			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
-			return world.spawnEntity(wolf);
+			return world.spawnEntity(derp);
 		default:
 			return false;
 		}

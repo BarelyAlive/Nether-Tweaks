@@ -60,6 +60,7 @@ public class BlockHandler implements INames
     public static final Block MEANVINE 			 = new MeanVine();
     public static final Block SIEVE 			 = new Sieve();
     public static final Block STONEDOOR 		 = new CustomDoor(Material.ROCK, new ResourceLocation(NTM, INames.DOORNTMSTONE), 30.0F, 2.0F);
+    public static final Block ELDERDOOR 		 = new CustomDoor(Material.WOOD, new ResourceLocation(NTM, INames.DOORNTMELDER), 15.0F, 2.0F);
     public static final Block BLOCKBASIC 		 = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f, NetherTweaksMod.TABNTM);
     
     //ItemBlocks
@@ -108,5 +109,6 @@ public class BlockHandler implements INames
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
         if(Config.enableStoneDoor) 			Registry.registerBlock(STONEDOOR);
+        if(Config.enableElderDoor)			Registry.registerBlock(ELDERDOOR);
     }
 }

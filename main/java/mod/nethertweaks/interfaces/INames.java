@@ -18,7 +18,7 @@ public interface INames {
 	public static final String CRUCIBLE						= "crucible";
 	
 	public static final String DOORNTMSTONE					= "door_ntm_stone";
-	public static final String DOORNTMOBSIDIAN				= "door_ntm_obsidian";
+	public static final String DOORNTMELDER					= "door_ntm_elder";
 	public static final String DUST 						= "dust";
 	public static final String STWH 						= "stairway_to_heaven";
 	public static final String ELDERSAPLING 				= "elder_sapling";

@@ -62,7 +62,8 @@ public class ItemHandler implements INames{
     public static final Item HAMMERDIAMOND 	 = new HammerBase(4096, ToolMaterial.DIAMOND);
     
     //itemblocks
-    public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));  
+    public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));
+    public static final Item ITEMELDERDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMELDER)); 
     
 	public static void init()
 	{
@@ -97,6 +98,7 @@ public class ItemHandler implements INames{
     	
         //Doors
         if(Config.enableStoneDoor)  		Registry.registerItem(ITEMSTONEDOOR);
+        if(Config.enableElderDoor)			Registry.registerItem(ITEMELDERDOOR);
     }
     
     private static void addItemBurnTime()

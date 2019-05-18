@@ -27,6 +27,7 @@ item.block_basic_hellfayah_block.name=Hellfayah
 item.block_basic_blocksalt.name=Salt
 
 item.door_ntm_stone.name=Stone Door
+item.door_ntm_elder.name=Elder Door
 
 generator.hellworld=Hellworld
 
@@ -92,5 +93,6 @@ item.item_doll_sheep.name=Sheep Doll
 item.item_doll_llama.name=Llama Doll
 item.item_doll_polar_bear.name=Polar Bear Doll
 item.item_doll_wolf.name=Wolf Doll
+item.item_doll_villager.name=Villager Doll
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks
