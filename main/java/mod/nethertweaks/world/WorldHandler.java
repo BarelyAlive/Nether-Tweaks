@@ -37,37 +37,35 @@ public class WorldHandler{
 	//HELLWORLD
 	
     @SubscribeEvent
-    public void respawn(PlayerEvent.PlayerRespawnEvent event)
-    {
+    public void respawn(PlayerEvent.PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
 		int range = 32;
-		
-		if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
     	
-		teleportPlayer(player);
-		//Case: player x's spawnpoint is at the start portal position
-		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
-		{
-    		BlockPos posplayer = player.getPosition();
-    		int yDifferenz = 0;
-    		if (posplayer.getY() < range)
+    	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+    		teleportPlayer(player);
+    		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
-    			yDifferenz = range - posplayer.getY();
+	    		BlockPos posplayer = player.getPosition();
+	    		int yDifferenz = 0;
+	    		if (posplayer.getY() < range)
+	    		{
+	    			yDifferenz = range - posplayer.getY();
+	    		}
+	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
+	    		
+	    		for(BlockPos pos : posi)
+	    		{
+	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+	    			{
+	    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+	    			}
+	    		}
     		}
-    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
-    		
-    		for(BlockPos pos : posi)
+    		else
     		{
-    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
-    			{
-    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
-    			}
+    			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
+				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
     		}
-		}
-		else //Case player saved at a bonfire etc.
-		{
-			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
-			player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
 		}
     }
     
@@ -76,14 +74,17 @@ public class WorldHandler{
     {
     	EntityPlayer player = event.player;
     	
-		if (allowedDims(player.world, event.toDim)) teleportPlayer(player);
+		if (allowedDims(player.world, event.toDim))
+			teleportPlayer(player);
 	}
 	
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
 				
-		if (allowedDims(player.getEntityWorld(), player.dimension)) teleportPlayer(player);
+		if (allowedDims(player.getEntityWorld(), player.dimension)) {
+			teleportPlayer(player);
+		}	
 	}
 	
 	//Enitity Interaction   
@@ -121,32 +122,32 @@ public class WorldHandler{
     //WORLD DATA
     
     @SubscribeEvent
-	public void LoadPlayerList(WorldEvent.Load event)
-    {
-    	if(event.getWorld().isRemote) return;    	
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void LoadPlayerList(WorldEvent.Load event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
 	
 	@SubscribeEvent
-	public void UnloadPlayerList(WorldEvent.Unload event)
-	{
-		if(event.getWorld().isRemote) return;		
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void UnloadPlayerList(WorldEvent.Unload event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
 	
 	@SubscribeEvent
-	public void SavePlayerList(WorldEvent.Save event)
-	{
-		if(event.getWorld().isRemote) return;	
-		WorldSaveData worldsave;
-		worldsave = WorldSaveData.get(event.getWorld());
+	public void SavePlayerList(WorldEvent.Save event) {
+		if(!(event.getWorld().isRemote)) {
+			WorldSaveData worldsave;
+			worldsave = WorldSaveData.get(event.getWorld());
+		}
 	}
 	//*********************************************************************************************************************
 	
-	private void teleportPlayer(EntityPlayer player)
-	{
+	private void teleportPlayer(EntityPlayer player) {
+		
 		if(player.dimension != -1)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
@@ -160,12 +161,12 @@ public class WorldHandler{
 	
 	private boolean allowedDims(World world, int dim)
     {
-		if(world.isRemote) return false;
-		if(!(world.getWorldType() instanceof WorldTypeHellworld))
-    	
-		for (int i : Config.allowedDims) {
-			if (i == dim)
-				return true;
+    	if (!world.isRemote && world.getWorldType() instanceof WorldTypeHellworld)
+    	{
+			for (int i : Config.allowedDims) {
+				if (i == dim)
+					return true;
+			} 
 		}
 		return false;
     }

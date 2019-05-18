@@ -55,24 +55,18 @@ public class SmeltingNOreDictHandler {
 		
     	if (Config.enableLiquidImpossibility)
     	{
-    		/*
-			OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETSTONELI);
-			OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETWOODLI);
-			*/
+			//OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETSTONELI);
+			//OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETWOODLI);
 			OreDictionary.registerOre("listAllLiquidImpossibility",
 			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		}
 		if (Config.enableStoneBucket && Config.enableWoodBucket)
 		{
-			/*
-			OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
-			OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
-			*/
+			//OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
+			//OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
 			OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-			/*
-			OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETSTONE);
-			OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETWOOD);
-			*/
+			//OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETSTONE);
+			//OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETWOOD);
 			OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		}
 		if (Config.enableFlintNBlaze)
