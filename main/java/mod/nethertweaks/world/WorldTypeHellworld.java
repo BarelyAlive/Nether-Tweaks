@@ -1,20 +1,9 @@
 package mod.nethertweaks.world;
 
-import net.minecraft.client.multiplayer.ChunkProviderClient;
-import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeHell;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.FlatGeneratorInfo;
-import net.minecraftforge.common.DimensionManager;
 
 public class WorldTypeHellworld extends WorldType
 {	

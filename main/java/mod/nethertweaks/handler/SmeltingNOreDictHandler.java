@@ -41,17 +41,18 @@ public class SmeltingNOreDictHandler {
 	//Ore-Dictionary
 	private static void oreRegistration()
     {
-		if(Config.enableElderTree) 		OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
-		if(Config.enableElderTree) 		OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
-		if(Config.enableMeanVine) 		OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
-		if(Config.enableMultiItem) 		OreDictionary.registerOre("itemSalt", Konstanten.SALT);
-		if(Config.enableMultiItem) 		OreDictionary.registerOre("dustSalt", Konstanten.SALT);
-		if(Config.enableMultiItem) 		OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
-		if(Config.enableMultiBlock) 	OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
-		if(Config.enableMultiBlock) 	OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
-		if(Config.enableElderTree) 		OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERPLANKS));
-		if(Config.enableElderTree) 		OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
-		if(Config.enableElderTree) 		OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
+		if(Config.enableElderTree) 		 OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
+		if(Config.enableElderTree) 		 OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
+		if(Config.enableMeanVine) 		 OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
+		if(Config.enableMultiItem) 		 OreDictionary.registerOre("itemSalt", Konstanten.SALT);
+		if(Config.enableMultiItem) 		 OreDictionary.registerOre("dustSalt", Konstanten.SALT);
+		if(Config.enableMultiItem) 		 OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
+		if(Config.enableMultiBlock) 	 OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
+		if(Config.enableMultiBlock) 	 OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
+		if(Config.enableElderTree) 		 OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERPLANKS));
+		if(Config.enableElderTree) 		 OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
+		if(Config.enableElderTree) 		 OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
+		if(Config.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACKGRAVEL);
 		
     	if (Config.enableLiquidImpossibility)
     	{

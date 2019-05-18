@@ -76,14 +76,14 @@ public class WorldHandler{
     {
     	EntityPlayer player = event.player;
     	
-		if (allowedDims(player.world, event.toDim)) teleportPlayer(player);
+    	if(player.dimension != -1) teleportPlayer(player);
 	}
 	
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
-				
-		if (allowedDims(player.getEntityWorld(), player.dimension)) teleportPlayer(player);
+		
+		if(player.dimension != -1) teleportPlayer(player);	
 	}
 	
 	//Enitity Interaction   
@@ -157,18 +157,6 @@ public class WorldHandler{
 			player.changeDimension(-1);
 		}
 	}
-	
-	private boolean allowedDims(World world, int dim)
-    {
-		if(world.isRemote) return false;
-		if(!(world.getWorldType() instanceof WorldTypeHellworld))
-    	
-		for (int i : Config.allowedDims) {
-			if (i == dim)
-				return true;
-		}
-		return false;
-    }
 	
 	public static void addWaterMobs()
 	{
