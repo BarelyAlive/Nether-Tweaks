@@ -22,10 +22,6 @@ tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
 
-item.block_basic_ore_hellfayah.name=Hellfayah Ore
-item.block_basic_hellfayah_block.name=Hellfayah
-item.block_basic_blocksalt.name=Salt
-
 item.door_ntm_stone.name=Stone Door
 item.door_ntm_elder.name=Elder Door
 

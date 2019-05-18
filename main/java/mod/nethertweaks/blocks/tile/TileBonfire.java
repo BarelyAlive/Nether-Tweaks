@@ -70,7 +70,7 @@ public class TileBonfire extends TileEntity {
 	public void setSpawnLocationForPlayer(EntityPlayer player, BlockPos pos) {
 		this.spawnLocs.put(getUUID(player), new BlockPos(player));
 		if(world.isRemote)
-		    player.sendMessage(new TextComponentString(player.getName() + " rested at X: " + player.getPosition() + "!"));
+		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + player.getPosition() + "!"));
 		
 		addGlobalEntry(getUUID(player), new BlockPos(player));
 				

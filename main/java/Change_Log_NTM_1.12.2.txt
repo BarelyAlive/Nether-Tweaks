@@ -40,7 +40,7 @@ ChangeLog NTM 2.0.0
 - Removed Water Fountain
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
-+ Readded german language support
++ Readded german language support (de-de)
 + Added netherrack gravel (drops flint)
 + Added Elder Door
 + Added dolls to get otherwise unobtainable mobs

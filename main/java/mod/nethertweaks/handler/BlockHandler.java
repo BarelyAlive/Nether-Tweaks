@@ -35,7 +35,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class BlockHandler implements INames
-{	
+{
 	//Tile Entity
     public static final Block CONDENSER 		 = new Condenser();
     public static final Block NETHERRACKFURNACE  = new NetherrackFurnace();

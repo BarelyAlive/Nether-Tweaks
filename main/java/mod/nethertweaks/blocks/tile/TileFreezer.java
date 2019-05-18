@@ -202,7 +202,7 @@ public class TileFreezer extends TileFluidInventory
 			return false;
 		if(index == 2) {
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
-			if(FluidUtil.getFluidHandler(stack) == null) return false;
+			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
 		return true;
