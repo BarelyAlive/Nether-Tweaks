@@ -71,23 +71,8 @@ public class Seed extends CustomItem
 			}
 			break;
 		case 2:
-			Block block1 = worldIn.getBlockState(pos.add(1, 1, 0)).getBlock();
-			Block block2 = worldIn.getBlockState(pos.add(0, 1, 1)).getBlock();
-			Block block3 = worldIn.getBlockState(pos.add(-1, 1, 0)).getBlock();
-			Block block4 = worldIn.getBlockState(pos.add(0, 1, -1)).getBlock();
-			Block block5 = worldIn.getBlockState(pos.add(0, 1, 0)).getBlock();
-			if(block == Blocks.SAND)
-			{
-				if( block1.equals(Blocks.AIR)
-				 && block2.equals(Blocks.AIR)
-				 && block3.equals(Blocks.AIR)
-				 && block4.equals(Blocks.AIR)
-				 && block5.equals(Blocks.AIR)
-				)
-				{
-					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
-				}
-			}
+			if(Blocks.CACTUS.canPlaceBlockAt(worldIn, pos.up()))
+				worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
 			break;
 		case 3:
 			if (!facing.equals(EnumFacing.UP))

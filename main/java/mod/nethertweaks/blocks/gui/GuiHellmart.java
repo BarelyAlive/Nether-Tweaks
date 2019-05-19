@@ -11,11 +11,13 @@ import mod.nethertweaks.network.MessageHellmartClosed;
 import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.CapabilityItemHandler;
 
@@ -23,7 +25,6 @@ public class GuiHellmart extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
 
 	private int itemNum;
-
 	private final TileHellmart tileEntityMarket;
 
 	public GuiHellmart(InventoryPlayer inventoryplayer, TileHellmart tileEntityMarket) {
@@ -126,7 +127,7 @@ public class GuiHellmart extends GuiContainer {
 		itemRender.renderItemAndEffectIntoGUI(item, 73, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, item, 73, 16, "");
 
-		ItemStack currency = data.getCurrency();
+		ItemStack currency = TankUtil.WATER_BOTTLE;
 		itemRender.renderItemAndEffectIntoGUI(currency, 100, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, currency, 100, 16, "");
 		itemRender.zLevel = 0.0F;
