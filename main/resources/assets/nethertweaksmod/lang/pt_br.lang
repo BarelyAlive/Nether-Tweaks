@@ -56,6 +56,7 @@ item.item_base_4.name=Pó de Luz
 item.item_base_5.name=Sal
 item.item_base_6.name=Barra de Pedra
 item.item_base_7.name=Corda
+item.item_base_8.name=Barril de Água
 
 item.item_mesh_string.name=Malha de Cordas
 item.item_mesh_flint.name=Malha de sílex

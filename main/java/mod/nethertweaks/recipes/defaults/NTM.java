@@ -119,7 +119,7 @@ public class NTM implements IRecipeDefaults
     {
     	//Dolls
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
-			registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), TankUtil.WATER_BOTTLE, 10));
+			registry.register(0, new HellmartData(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(ItemHandler.ITEMBASE, 1, 8), 3));
 		}
     }
     

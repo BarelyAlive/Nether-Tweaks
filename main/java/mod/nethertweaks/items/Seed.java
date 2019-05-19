@@ -62,17 +62,20 @@ public class Seed extends CustomItem
 		switch (player.getHeldItem(hand).getItemDamage()) {
 		case 0:
 			if(block == Blocks.DIRT || block == Blocks.GRASS){
-				worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
+				if(!worldIn.isRemote)
+					worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
 			}
 			break;
 		case 1:
 			if(block == Blocks.DIRT){
-				worldIn.setBlockState(pos, Blocks.GRASS.getDefaultState());
+				if(!worldIn.isRemote)
+					worldIn.setBlockState(pos, Blocks.GRASS.getDefaultState());
 			}
 			break;
 		case 2:
 			if(Blocks.CACTUS.canPlaceBlockAt(worldIn, pos.up()))
-				worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
+				if(!worldIn.isRemote)
+					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
 			break;
 		case 3:
 			if (!facing.equals(EnumFacing.UP))
@@ -89,7 +92,8 @@ public class Seed extends CustomItem
 					final IBlockState plant = validPlants.get(worldIn.rand.nextInt(validPlants.size()))
 							.getPlant(worldIn, pos);
 					if (worldIn.isAirBlock(pos.add(0, 1, 0))) {
-						worldIn.setBlockState(pos.add(0, 1, 0), plant);
+						if(!worldIn.isRemote)
+							worldIn.setBlockState(pos.add(0, 1, 0), plant);
 						if (!player.isCreative())
 							stack.shrink(1);
 						return EnumActionResult.SUCCESS;

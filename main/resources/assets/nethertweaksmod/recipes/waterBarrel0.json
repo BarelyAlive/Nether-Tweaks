@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "item_base",
+    "data": 8
+  },
+  "pattern": [
+    "xx",
+    "xx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:potion",
+      "data": 0
+    }
+  }
+}

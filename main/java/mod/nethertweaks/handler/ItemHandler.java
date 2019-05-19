@@ -46,7 +46,7 @@ public class ItemHandler implements INames{
     public static final Item DOLL 			 = new ItemDoll();
     
     //Multi ID Item
-	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 9, new ResourceLocation(NTM, INames.ITEMBASE));
     
 	//Food
     public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.TABNTM);
