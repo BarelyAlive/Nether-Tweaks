@@ -3,6 +3,7 @@ package mod.nethertweaks;
 import java.io.File;
 import java.util.List;
 
+import mod.nethertweaks.items.Grabber;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -56,6 +57,7 @@ public class Config {
 	public static int[] allowedDims = {-1, 1};
 	public static boolean isHellworld;
 	public static boolean enableTeleport;
+	public static String[] grabberBlocks;
 	
 	//JSON
 	public static boolean enableJSONLoading;
@@ -170,6 +172,7 @@ public class Config {
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
         woodBarrelMaxTemp 				= config.get("World", "Hwo hot can a fluid be in a wodden barrel?", 301).getInt();
+        grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
         enableJSONLoading 				= config.get("JSON", "Enable use of JSON configuration?", true).getBoolean();

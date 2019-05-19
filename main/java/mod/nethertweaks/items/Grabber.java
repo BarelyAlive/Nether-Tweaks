@@ -5,6 +5,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -29,7 +30,13 @@ import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class Grabber extends ItemShears{
+public class Grabber extends ItemShears
+{
+	private static String[] tangible = new String[] {"minecraft:cactus", "minecraft:melon_block, minecraft:web, minecraft:fern, minecraft:deadbush"};
+	
+	public static String[] getTangible() {
+		return tangible;
+	}
 
 	public Grabber()
 	{
@@ -44,17 +51,19 @@ public class Grabber extends ItemShears{
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{		
 		IBlockState block = worldIn.getBlockState(pos);
-		if(block == Blocks.CACTUS.getDefaultState() || block == Blocks.MELON_BLOCK.getDefaultState()){
-			if (!worldIn.isRemote) {
-				worldIn.setBlockToAir(pos);
-				player.inventory.addItemStackToInventory(new ItemStack(block.getBlock()));
-			}
-			if(!player.capabilities.isCreativeMode)
-				player.getActiveItemStack().damageItem(1, player);
+		for (String name : tangible) {
+			ResourceLocation loc = new ResourceLocation(name);
+			if (Block.REGISTRY.containsKey(loc)) {
+				if (!worldIn.isRemote) {
+					worldIn.setBlockToAir(pos);
+					player.inventory.addItemStackToInventory(new ItemStack(block.getBlock()));
+				}
+				if (!player.capabilities.isCreativeMode)
+					player.getActiveItemStack().damageItem(1, player);
 
-			return EnumActionResult.SUCCESS;
-		}else{
-			return EnumActionResult.FAIL;
+				return EnumActionResult.SUCCESS;
+			}
 		}
+		return EnumActionResult.FAIL;
 	}
 }
