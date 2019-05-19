@@ -67,7 +67,9 @@ public class BucketNFluidHandler
 		
 	private static void registerBuckets()
 	{
-		BucketHandler.addBucket("wood", 0x80874633, NetherTweaksMod.TABNTM);
+		BucketHandler.addBucket("wood", "Wood", 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
+		BucketHandler.addBucket("stone", "Stone", 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
+		BucketHandler.disabledBucket("wood", "lava");
 		/*
 		if (Config.enableStoneBucket) {
 			//Stone
