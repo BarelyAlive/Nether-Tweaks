@@ -19,10 +19,10 @@ public class RenderCrucible extends FastTESR<TileCrucibleBase> {
     private static final ModelVertex[] model = new ModelVertex[4];
 
     static {
-        model[0] = new ModelVertex(EnumFacing.UP, 0.125, 0.6875, 0.125, 0, 0);
-        model[1] = new ModelVertex(EnumFacing.UP, 0.875, 0.6875, 0.125, 1, 0);
-        model[2] = new ModelVertex(EnumFacing.UP, 0.875, 0.6875, 0.875, 1, 1);
-        model[3] = new ModelVertex(EnumFacing.UP, 0.125, 0.6875, 0.875, 0, 1);
+        model[0] = new ModelVertex(EnumFacing.UP, 0.0625, 0.6875, 0.0625, 0, 0);
+        model[1] = new ModelVertex(EnumFacing.UP, 0.9375, 0.6875, 0.0625, 1, 0);
+        model[2] = new ModelVertex(EnumFacing.UP, 0.9375, 0.6875, 0.9375, 1, 1);
+        model[3] = new ModelVertex(EnumFacing.UP, 0.0625, 0.6875, 0.9375, 0, 1);
     }
 
     @Override
