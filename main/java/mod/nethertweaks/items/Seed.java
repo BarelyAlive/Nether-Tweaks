@@ -59,7 +59,7 @@ public class Seed extends CustomItem
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
 		
-		switch (player.getActiveItemStack().getItemDamage()) {
+		switch (player.getHeldItem(hand).getItemDamage()) {
 		case 0:
 			if(block == Blocks.DIRT || block == Blocks.GRASS){
 				worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
@@ -100,14 +100,16 @@ public class Seed extends CustomItem
 
 	            // Filter Plants to just ones that can be planted on this block.
 	            List<IPlantable> validPlants = plants.stream().filter(p -> soil.getBlock().canSustainPlant(soil, worldIn, pos, EnumFacing.UP, p)).collect(Collectors.toList());
-	            final IBlockState plant = validPlants.get(worldIn.rand.nextInt(validPlants.size())).getPlant(worldIn, pos);
-
-	            if (worldIn.isAirBlock(pos.add(0, 1, 0))) {
-	                worldIn.setBlockState(pos.add(0, 1, 0), plant);
-	                if(!player.isCreative())
-	                    stack.shrink(1);
-	                return EnumActionResult.SUCCESS;
-	            }
+	            if (validPlants.size() > 0) {
+					final IBlockState plant = validPlants.get(worldIn.rand.nextInt(validPlants.size()))
+							.getPlant(worldIn, pos);
+					if (worldIn.isAirBlock(pos.add(0, 1, 0))) {
+						worldIn.setBlockState(pos.add(0, 1, 0), plant);
+						if (!player.isCreative())
+							stack.shrink(1);
+						return EnumActionResult.SUCCESS;
+					} 
+				}
 	        }
 			break;
 		default:

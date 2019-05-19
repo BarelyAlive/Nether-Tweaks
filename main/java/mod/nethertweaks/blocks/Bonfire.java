@@ -80,10 +80,11 @@ public class Bonfire extends BlockContainer {
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		if(!playerIn.onGround) return false;
 		
-		TileEntity bonfire = worldIn.getTileEntity(pos);
-		if(!(bonfire instanceof TileBonfire)) return false;
+		TileEntity te = worldIn.getTileEntity(pos);
+		if(te ==  null) return false;
+		if(!(te instanceof TileBonfire)) return false;
 		
-		((TileBonfire) bonfire).setSpawnLocationForPlayer(playerIn, pos);
+		((TileBonfire) te).setSpawnLocationForPlayer(playerIn, pos);
 		return true;
 	}
 	

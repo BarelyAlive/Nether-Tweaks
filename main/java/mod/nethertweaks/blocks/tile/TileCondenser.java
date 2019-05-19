@@ -58,12 +58,9 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
-	private List<Fluid> lf = new ArrayList<Fluid>();
-	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.dryTimeCondenser);
-		setAcceptedFluids(lf);
 	}
 
 	@Override
@@ -71,10 +68,11 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(world.isRemote) return;
 		
+    	checkInputOutput();
 		fillToItemSlot();
 		fillToNeighborsTank();
-		NetworkHandler.sendNBTUpdate(this);
 		
+		NetworkHandler.sendNBTUpdate(this);
 		if(!checkInv())
 		{
 			this.setWorkTime(0);
@@ -90,6 +88,31 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 	
+	private void checkInputOutput()
+	{
+		extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	insertToInventory(pos.north(), EnumFacing.UP);
+    	insertToInventory(pos.south(), EnumFacing.UP);
+    	insertToInventory(pos.west(), EnumFacing.UP);
+    	insertToInventory(pos.east(), EnumFacing.UP);
+    	insertToInventory(pos.north(), EnumFacing.WEST);
+    	insertToInventory(pos.south(), EnumFacing.WEST);
+    	insertToInventory(pos.west(), EnumFacing.WEST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
+    	insertToInventory(pos.north(), EnumFacing.SOUTH);
+    	insertToInventory(pos.south(), EnumFacing.SOUTH);
+    	insertToInventory(pos.west(), EnumFacing.SOUTH);
+    	insertToInventory(pos.east(), EnumFacing.SOUTH);
+    	insertToInventory(pos.north(), EnumFacing.NORTH);
+    	insertToInventory(pos.south(), EnumFacing.NORTH);
+    	insertToInventory(pos.west(), EnumFacing.NORTH);
+    	insertToInventory(pos.east(), EnumFacing.NORTH);
+    	insertToInventory(pos.north(), EnumFacing.SOUTH);
+    	insertToInventory(pos.south(), EnumFacing.NORTH);
+    	insertToInventory(pos.west(), EnumFacing.EAST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
+	}
+	
 	private void fillToNeighborsTank()
 	{
 		FluidStack water = this.getTank().getFluid();
@@ -101,34 +124,16 @@ public class TileCondenser extends TileFluidInventory
 			BlockPos west = this.getPos().west();
 			
 			//Check FluidHandler
-			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.NORTH);
-			IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.EAST);
-			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.SOUTH);
-			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.WEST);
-			if(hnorth != null)
-				FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
-			else if(heast != null)
-				FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
-			else if(hsouth != null)
-				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
-			else if(hwest != null)
-				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
+			IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
+			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
+			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 			
-			//Check TileFluidInventory
-			TileEntity teNorth = this.world.getTileEntity(north);
-			TileEntity teEast = this.world.getTileEntity(east);
-			TileEntity teSouth = this.world.getTileEntity(south);
-			TileEntity teWest = this.world.getTileEntity(west);
-			if(teNorth instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teNorth).getTank(), this.getTank(), water, true);
-			else if(teEast instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teEast).getTank(), this.getTank(), water, true);
-			else if(teSouth instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teSouth).getTank(), this.getTank(), water, true);
-			else if(teWest instanceof TileFluidInventory)
-				FluidUtil.tryFluidTransfer(((TileFluidInventory) teWest).getTank(), this.getTank(), water, true);
+			if(hnorth != null) FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
+			if(heast != null)  FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
+			if(hsouth != null) FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
+			if(hwest != null)  FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 		}
-		NetworkHandler.sendNBTUpdate(this);
 	}
 	
 	private void dry()
@@ -160,19 +165,18 @@ public class TileCondenser extends TileFluidInventory
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
 		if(input_handler != null) {
-		    	if(!(FluidUtil.getFluidHandler(input).fill(this.getTank().getFluid(), false) <= this.getTank().getFluidAmount())) return;
 		    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
-				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)
-					return;
+				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)return;
 				if(output.isEmpty()) {
 					setInventorySlotContents(1, input_handler.getContainer());
 					getStackInSlot(2).shrink(1);
-				} else {
+				}
+				else {
 					getStackInSlot(1).grow(1);
 					getStackInSlot(2).shrink(1);
 				}
 		}
-		else if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
+		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
 		{
 			if(this.getTank().getFluid() != null && this.getTank().getFluidAmount() >= 250 && this.getTank().getFluid().getFluid() == FluidRegistry.WATER)
 			{
@@ -249,9 +253,12 @@ public class TileCondenser extends TileFluidInventory
 		
 		if(index == 0)
 			return CondenserRegistry.containsItem(stack);
+		if(index == 1)
+			return false;
 		if(index == 2)
 		{
-			if(handler == null) return false;	
+			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
+			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}
 			

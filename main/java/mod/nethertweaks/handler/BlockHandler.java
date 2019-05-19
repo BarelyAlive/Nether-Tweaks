@@ -35,7 +35,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class BlockHandler implements INames
-{	
+{
 	//Tile Entity
     public static final Block CONDENSER 		 = new Condenser();
     public static final Block NETHERRACKFURNACE  = new NetherrackFurnace();
@@ -56,10 +56,11 @@ public class BlockHandler implements INames
     public static final Block ELDERPLANKS 		 = new ElderPlanks();
     public static final Block ELDERSLABHALF 	 = new ElderSlab.Half();
     public static final Block ELDERSLABDOUBLE 	 = new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
-    public static final Block NETHERRACKGRAVEL 	 = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.TABNTM, new ResourceLocation(NTM, INames.NETHERRACKGRAVEL));
+    public static final Block NETHERRACKGRAVEL 	 = new NetherrackGravel();
     public static final Block MEANVINE 			 = new MeanVine();
     public static final Block SIEVE 			 = new Sieve();
     public static final Block STONEDOOR 		 = new CustomDoor(Material.ROCK, new ResourceLocation(NTM, INames.DOORNTMSTONE), 30.0F, 2.0F);
+    public static final Block ELDERDOOR 		 = new CustomDoor(Material.WOOD, new ResourceLocation(NTM, INames.DOORNTMELDER), 15.0F, 2.0F);
     public static final Block BLOCKBASIC 		 = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 20.0f, 2.0f, NetherTweaksMod.TABNTM);
     
     //ItemBlocks
@@ -108,5 +109,6 @@ public class BlockHandler implements INames
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACKGRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEANVINE);
         if(Config.enableStoneDoor) 			Registry.registerBlock(STONEDOOR);
+        if(Config.enableElderDoor)			Registry.registerBlock(ELDERDOOR);
     }
 }

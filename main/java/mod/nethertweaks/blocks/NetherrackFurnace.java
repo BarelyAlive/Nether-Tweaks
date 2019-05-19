@@ -53,7 +53,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NetherrackFurnace extends CubeContainerHorizontal {
      
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static boolean keepInventory;
     public static final PropertyBool ISBURNING = PropertyBool.create("is_burning");
 
     public NetherrackFurnace()
@@ -74,6 +73,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	if(player.isSneaking()) return false;
     	  	
 		TileEntity te = world.getTileEntity(pos);
+		if(te ==  null) return false;
 		if(!(te instanceof TileNetherrackFurnace)) {
 			return false;
 		}
@@ -82,30 +82,40 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 		return true;
     }
     
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+    	//Set light to normal if destroyed. Otherwise next furnace at that pos will be LIT
+    	//No pun intended
+    	setState(false, worldIn, pos);
+    }
+    
     public static void setState(boolean active, World worldIn, BlockPos pos)
     {
     	IBlockState b = worldIn.getBlockState(pos);
+    	if(b == Blocks.AIR.getDefaultState()) return;
         TileEntity tileentity = worldIn.getTileEntity(pos);
     	
-    	if(b != Blocks.AIR.getDefaultState()) {
-    		if(active && b.getValue(ISBURNING) == false) {
-    	   		b.getBlock().setLightLevel(0.875F);
-    	        b = b.withProperty(ISBURNING, true);
-    	        worldIn.setBlockState(pos, b, 3);
-    	        worldIn.setBlockState(pos, b, 3);
-    		}
-    		else if(!active && b.getValue(ISBURNING) == true) {
-        		b.getBlock().setLightLevel(0.0F);
-        		b = b.withProperty(ISBURNING, false);
-    	        worldIn.setBlockState(pos, b, 3);
-    	        worldIn.setBlockState(pos, b, 3);
-        	}
+		if(active && !b.getValue(ISBURNING)) {
+	   		b.getBlock().setLightLevel(0.875F);
+	        b = b.withProperty(ISBURNING, true);
+	        worldIn.setBlockState(pos, b, 3);
+	        validate(worldIn, pos, tileentity);
+		}
+		else if(!active && b.getValue(ISBURNING)) {
+    		b.getBlock().setLightLevel(0.0F);
+    		b = b.withProperty(ISBURNING, false);
+	        worldIn.setBlockState(pos, b, 3);
+	        validate(worldIn, pos, tileentity);
     	}
-    	
-        if (tileentity != null)
+    }
+    
+    private static void validate(World world, BlockPos pos, TileEntity tileentity)
+    {
+    	if (tileentity != null)
         {
             tileentity.validate();
-            worldIn.setTileEntity(pos, tileentity);
+            world.setTileEntity(pos, tileentity);
             NetworkHandler.sendToAllAround(new MessageCheckLight(pos), tileentity);
         }
     }

@@ -11,7 +11,6 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
-import mod.sfhcore.network.MessageFluidTankContents;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.util.TankUtil;
@@ -48,16 +47,16 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.registry.GameRegistry;
  
-public class Condenser extends CubeContainerHorizontal{
-     
-    private static boolean keepInventory;
+public class Condenser extends CubeContainerHorizontal
+{
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public Condenser() {
+    public Condenser()
+    {
         super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.CONDENSER));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setResistance(30.0f);
-        setHardness(4.0f);
+        setResistance(17.5f);
+        setHardness(3.5f);
         setCreativeTab(NetherTweaksMod.TABNTM);
     }
     
@@ -67,21 +66,17 @@ public class Condenser extends CubeContainerHorizontal{
     {
 		if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
+		if(te ==  null) return false;
 		if(!(te instanceof TileCondenser)) return false;
     	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
     	
-		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))
-		{
-			return true;
-		}
+		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))	return true;
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
 			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
-			if (world.isRemote)
-				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
 			return true;
 		}
 		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());

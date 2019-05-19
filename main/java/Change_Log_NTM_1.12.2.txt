@@ -1,7 +1,7 @@
 ChangeLog NTM 2.0.0
 
 * Each Bonfire now individually stores the savepoints of the players for themselves
-  Example: If you last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
+  Example: If a player last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
 * Bonfire will now let you teleport to other Bonfire
 * Condensers now include water tanks so you can put together any combination of organic material
 * Freezers now include water tanks and can have a redstone signal from any side
@@ -11,6 +11,9 @@ ChangeLog NTM 2.0.0
 * Held items can now drain Condensers and fill Freezers
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
+* Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
+* Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
+  (In any language available in Minecraft or Mod-supported language (depends on the fluid's Mod)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
@@ -22,11 +25,14 @@ ChangeLog NTM 2.0.0
 * Mobs like squids etc. can now spawn in Liquid Impossibility
 * More and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
+* Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
-* Fixed Spawn and respawn in Hellworld
-* Fixed a Bug that could cause server damage
+* Fixed Spawn and respawn in Hellworld (If a player dies he/she will get set back to the start portal
+* Fixed a Bug that could cause server damage if a block got activated but wasn't loaded
 * Fixed Netherrack Furnace lag caused by block set spam
 * Fixed cascading world gen lag (Solution: Offset tree spawn position by +8)
+* Fixed Netherrack Furnace "check light spam"
+* Fixed Furnace not setting lighting back to normal if destroyed
 * Stone Doors are back!
 - Removed old ore blocks and items
 - Removed Holy Earth
@@ -34,7 +40,10 @@ ChangeLog NTM 2.0.0
 - Removed Water Fountain
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
-+ Added netherrack gravel
++ Readded language support (de-de, es-es, fr-fr, pt-br(?))
+  (If something is not correct translated, don't blame me. I had to use DeepL)
++ Added netherrack gravel (drops flint)
++ Added Elder Door
 + Added dolls to get otherwise unobtainable mobs
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
     The Currency is water (also editable via JSON)

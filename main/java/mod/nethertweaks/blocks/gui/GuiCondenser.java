@@ -5,19 +5,24 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.Constants;
 import mod.sfhcore.util.Util;
 
-public class GuiCondenser extends GuiContainer {
+public class GuiCondenser extends GuiContainer
+{
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guicondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 	
 	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {
@@ -39,11 +44,15 @@ public class GuiCondenser extends GuiContainer {
     }
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2){
-		/*
-        fontRendererObj.drawString("BaseGenerator", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-        */
+	protected void drawGuiContainerForegroundLayer(int par1, int par2)
+	{
+		String fName = "---";
+		FluidStack f = this.entity.getTank().getFluid();
+		if(f != null) fName = f.getLocalizedName() + " : " + this.entity.getTank().getFluidAmount() + " mB";
+		else fName = fName +" : 0 mB";
+		int lenght = fontRenderer.getStringWidth(fName);
+		int x = 174 - lenght;
+		fontRenderer.drawStringWithShadow(fName, x, 73, 0xffffff);
     }
 	
     @Override
@@ -70,7 +79,7 @@ public class GuiCondenser extends GuiContainer {
         
         if(this.entity.getTank().getFluidAmount() != 0)
         {
-    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getMaxCapacity();
+    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getTank().getCapacity();
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;
@@ -82,8 +91,6 @@ public class GuiCondenser extends GuiContainer {
     		FluidStack fluid = this.entity.getTank().getFluid();
     		
         	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-        	//System.out.println(sprite.getFrameCount());
-        	//System.out.println(sprite.getFrameCount());
     		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
     		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
         	Minecraft.getMinecraft().getTextureManager().bindTexture(res);

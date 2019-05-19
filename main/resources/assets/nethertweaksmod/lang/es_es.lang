@@ -1,0 +1,94 @@
+fluid.liquid_impossibility=Imposibilidad de líquidos
+
+tile.liquid_impossibility.name=Imposibilidad de líquidos
+tile.condenser.name=Condensador
+tile.netherrack_furnace.name=Horno de Netherrack
+tile.stairway_to_heaven.name=Stairway to Heaven
+tile.dust.name=Polvo
+tile.bonfire.name=Hoguera
+tile.freezer.name=Congelador
+tile.elder_log.name=Tronco de anciano
+tile.elder_leaves.name=Hojas de anciano
+tile.elder_planks.name=Tablones de anciano
+tile.elder_sapling.name=Plántula mayor
+tile.elder_slab_half.name=Losa de anciano
+tile.elder_slab.name=Losa de anciano doble
+tile.netherrack_gravel.name=Grava Netherrack
+tile.barrel0.name=Barril
+tile.barrel1.name=Barril
+tile.crucible.name=Crisol
+tile.unfired_crucible.name=Crisol no encendido
+tile.mean_vine.name=Zarcillos desagradables
+tile.sieve.name=cedazo
+tile.hellmart.name=Hellmart
+
+item.door_ntm_stone.name=Puerta de piedra
+item.door_ntm_elder.name=Puerta de anciano
+
+generator.hellworld=Hellworld
+
+item.cooked_jerky.name=Incomible
+item.pickaxe_netherrack.name=Netherrack Pickaxe
+item.pickaxe_netherbrick.name=Netherbrick Pickaxe
+item.grabber.name=Grabber
+
+item.hammer_wood.name=Martillo de madera
+item.hammer_gold.name=Martillo dorado
+item.hammer_iron.name=Martillo de hierro
+item.hammer_diamond.name=Martillo de diamante
+item.hammer_stone.name=Martillo de piedra
+
+item.seed_0.name=Esporas de hongos
+item.seed_1.name=Semillas de cesped
+item.seed_2.name=Semillas de cactus
+item.seed_3.name=Semillas de caucho
+
+item.flint_and_blaze.name=Flint and Blaze
+
+item.crystal_0.name=Cristal de luz
+item.crystal_1.name=Cristal de Ender
+
+item.item_base_0.name=End Box
+item.item_base_1.name=Núcleo del Portal
+item.item_base_2.name=Marco Ender Infundido
+item.item_base_3.name=Hellfayah
+item.item_base_4.name=Polvo de luz
+item.item_base_5.name=sal
+item.item_base_6.name=Barra de piedra
+item.item_base_7.name=cuerda
+
+item.item_mesh_string.name=Malla de cadena
+item.item_mesh_flint.name=Malla de pedernal
+item.item_mesh_iron.name=Malla de hierro
+item.item_mesh_diamond.name=Malla de diamante
+
+item.item_pebble_0.name=Piedra Guijarro
+item.item_pebble_1.name=Guijarro de granito
+item.item_pebble_2.name=Guijarro de diorita
+item.item_pebble_3.name=Andesita guijarro
+
+item.item_block_basic_ore_hellfayah.name=Mineral de Hellfayah
+item.item_block_basic_hellfayah_block.name=Bloque de Hellfayah
+item.item_block_basic_blocksalt.name=Bloque de sal
+
+tile.block_basic_ore_hellfayah.name=Mineral de Hellfayah
+tile.block_basic_hellfayah_block.name=Bloque de Hellfayah
+tile.block_basic_blocksalt.name=Bloque de sal
+
+item.item_doll_bat.name=Muñeca de murciélago
+item.item_doll_chicken.name=Muñeca de pollo
+item.item_doll_cow.name=Muñeca de vaca
+item.item_doll_donkey.name=Muñeca Burro
+item.item_doll_horse.name=Muñeca de caballo
+item.item_doll_red_mooshroom.name=Muñeca Mooshroom Roja
+item.item_doll_mule.name=Muñeca mula
+item.item_doll_ocelot.name=Muñeca Ocelote
+item.item_doll_parrot.name=Muñeca loro
+item.item_doll_rabbit.name=Muñeca de conejo
+item.item_doll_sheep.name=Muñeca de oveja
+item.item_doll_llama.name=Muñeca de llama
+item.item_doll_polar_bear.name=Muñeca del oso polar
+item.item_doll_wolf.name=Muñeca lobo
+item.item_doll_villager.name=Muñeca Aldeana
+
+itemGroup.tab_nether_tweaks_mod=Nether Tweaks

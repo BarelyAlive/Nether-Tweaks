@@ -18,6 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -41,15 +42,13 @@ public class Grabber extends ItemShears{
 	 * Called when a Block is right-clicked with this Item
 	 */
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		
-		RayTraceResult rtr = new RayTraceResult(player);
-		
-		Block block = worldIn.getBlockState(rtr.getBlockPos()).getBlock();
-		if(block == Blocks.CACTUS || block == Blocks.MELON_BLOCK){
-			worldIn.setBlockToAir(rtr.getBlockPos());
-			player.inventory.addItemStackToInventory(new ItemStack(block));
-			
+	{		
+		IBlockState block = worldIn.getBlockState(pos);
+		if(block == Blocks.CACTUS.getDefaultState() || block == Blocks.MELON_BLOCK.getDefaultState()){
+			if (!worldIn.isRemote) {
+				worldIn.setBlockToAir(pos);
+				player.inventory.addItemStackToInventory(new ItemStack(block.getBlock()));
+			}
 			if(!player.capabilities.isCreativeMode)
 				player.getActiveItemStack().damageItem(1, player);
 

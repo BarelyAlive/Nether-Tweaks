@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 import org.lwjgl.opengl.GL11;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.sfhcore.Constants;
@@ -24,7 +26,7 @@ import mod.sfhcore.util.Util;
 public class GuiFreezer extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD + ":textures/gui/guifreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guifreezer.png");
 	private TileFreezer entity;
 	
 	public GuiFreezer(InventoryPlayer inventoryPlayer, TileFreezer tileEntity) {
@@ -46,17 +48,20 @@ public class GuiFreezer extends GuiContainer
     }
 		
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2){
-		/*
-        fontRendererObj.drawString("BaseGenerator", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-        */
-		
+	protected void drawGuiContainerForegroundLayer(int par1, int par2)
+	{
+		String fName = "---";
+		FluidStack f = this.entity.getTank().getFluid();
+		if(f != null) fName = f.getLocalizedName() + " : " + this.entity.getTank().getFluidAmount() + " mB";
+		else fName = fName +" : 0 mB";
+		int lenght = fontRenderer.getStringWidth(fName);
+		int x = 174 - lenght;
+		fontRenderer.drawStringWithShadow(fName, x, 73, 0xffffff);
     }
 	
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
-
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
         int x = (width - xSize) / 2;
@@ -78,7 +83,7 @@ public class GuiFreezer extends GuiContainer
         
         if(this.entity.getTank().getFluidAmount() != 0)
         {
-    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getMaxCapacity();
+    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getTank().getCapacity();
         	x += 134;
         	y += 6;
         	int k_inv = 64 - k;
@@ -90,8 +95,6 @@ public class GuiFreezer extends GuiContainer
     		FluidStack fluid = this.entity.getTank().getFluid();
     		
         	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-        	//System.out.println(sprite.getFrameCount());
-        	//System.out.println(sprite.getFrameCount());
     		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
     		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
         	Minecraft.getMinecraft().getTextureManager().bindTexture(res);

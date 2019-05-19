@@ -22,11 +22,8 @@ tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
 
-item.block_basic_ore_hellfayah.name=Hellfayah Ore
-item.block_basic_hellfayah_block.name=Hellfayah
-item.block_basic_blocksalt.name=Salt
-
 item.door_ntm_stone.name=Stone Door
+item.door_ntm_elder.name=Elder Door
 
 generator.hellworld=Hellworld
 
@@ -55,7 +52,7 @@ item.item_base_0.name=End Box
 item.item_base_1.name=Portal Core
 item.item_base_2.name=Ender Infused Frame
 item.item_base_3.name=Hellfayah
-item.item_base_4.name=Pulver of Light
+item.item_base_4.name=Powder of Light
 item.item_base_5.name=Salt
 item.item_base_6.name=Stone Bar
 item.item_base_7.name=String
@@ -92,5 +89,6 @@ item.item_doll_sheep.name=Sheep Doll
 item.item_doll_llama.name=Llama Doll
 item.item_doll_polar_bear.name=Polar Bear Doll
 item.item_doll_wolf.name=Wolf Doll
+item.item_doll_villager.name=Villager Doll
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks

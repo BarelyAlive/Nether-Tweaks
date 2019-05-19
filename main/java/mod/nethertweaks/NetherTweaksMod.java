@@ -68,7 +68,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.RegistryManager;
  
-@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version=Constants.NTMVersion, dependencies="required-after:sfhcore;")
+@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version="2.0.0", dependencies="required-after:sfhcore;")
 public class NetherTweaksMod
 {   
 	public static final String MODID = "nethertweaksmod";
@@ -82,7 +82,6 @@ public class NetherTweaksMod
     	MessageHandler.init();
     }
     
-    public static NTMDefaultRecipes defaultRecipes;
     public static File configDirectory;
     // List of loaded modules
     public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
@@ -128,8 +127,6 @@ public class NetherTweaksMod
     	JsonRecipeHandler.loadJasonVorhees(configDirectory);
         SmeltingNOreDictHandler.load();
         
-    	defaultRecipes = new NTMDefaultRecipes();
-    	defaultRecipes.registerDefaults();
 		BarrelModeRegistry.registerDefaults();
     }
      

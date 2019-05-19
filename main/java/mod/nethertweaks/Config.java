@@ -112,6 +112,7 @@ public class Config {
 	public static boolean enableHammerDiamond;
 	public static boolean enableFlintNBlaze;
 	public static boolean enableStoneDoor;
+	public static boolean enableElderDoor;
 	public static boolean enableWoodBucket;
 	public static boolean enableStoneBucket;
 	
@@ -224,6 +225,7 @@ public class Config {
     	enableHammerDiamond 			= config.getBoolean("Enable Diamond Hammer?", "Items", true, "");
     	enableFlintNBlaze 				= config.getBoolean("Enable Flint & Blaze?", "Items", true, "");
     	enableStoneDoor 				= config.getBoolean("Enable Stone Door?", "Items", true, "");
+    	enableElderDoor 				= config.getBoolean("Enable Elder Door?", "Items", true, "");
     	enableWoodBucket				= config.getBoolean("Enable Wood Bucket?", "Items", true, "");
     	enableStoneBucket				= config.getBoolean("Enable Stone Bucket?", "Items", true, "");
     	

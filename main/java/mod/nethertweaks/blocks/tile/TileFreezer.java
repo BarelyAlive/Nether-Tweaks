@@ -48,23 +48,21 @@ import scala.Int;
 
 public class TileFreezer extends TileFluidInventory
 {	
-	private List<Fluid> lf = new ArrayList<Fluid>();
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
 	public TileFreezer() {
 		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
 		this.setMaxworkTime(Config.freezeTimeFreezer);
-		this.lf.add(FluidRegistry.WATER);
-		setAcceptedFluids(lf);
 	}
 	
     @Override
 	public void update() {
     	if(this.world.isRemote) return;
     	
+    	checkInputOutput();
     	fillFromItem();
-		NetworkHandler.sendNBTUpdate(this);
     	
+		NetworkHandler.sendNBTUpdate(this);
 		if(!canFreeze()) {
 			this.setWorkTime(0);
 			return;
@@ -76,6 +74,31 @@ public class TileFreezer extends TileFluidInventory
 			setWorkTime(0);
 			freezeItem();
 		}
+	}
+    
+    private void checkInputOutput()
+	{
+		extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	insertToInventory(pos.north(), EnumFacing.UP);
+    	insertToInventory(pos.south(), EnumFacing.UP);
+    	insertToInventory(pos.west(), EnumFacing.UP);
+    	insertToInventory(pos.east(), EnumFacing.UP);
+    	insertToInventory(pos.north(), EnumFacing.WEST);
+    	insertToInventory(pos.south(), EnumFacing.WEST);
+    	insertToInventory(pos.west(), EnumFacing.WEST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
+    	insertToInventory(pos.north(), EnumFacing.SOUTH);
+    	insertToInventory(pos.south(), EnumFacing.SOUTH);
+    	insertToInventory(pos.west(), EnumFacing.SOUTH);
+    	insertToInventory(pos.east(), EnumFacing.SOUTH);
+    	insertToInventory(pos.north(), EnumFacing.NORTH);
+    	insertToInventory(pos.south(), EnumFacing.NORTH);
+    	insertToInventory(pos.west(), EnumFacing.NORTH);
+    	insertToInventory(pos.east(), EnumFacing.NORTH);
+    	insertToInventory(pos.north(), EnumFacing.EAST);
+    	insertToInventory(pos.south(), EnumFacing.EAST);
+    	insertToInventory(pos.west(), EnumFacing.EAST);
+    	insertToInventory(pos.east(), EnumFacing.EAST);
 	}
 	
 	private boolean canFreeze()
@@ -175,8 +198,11 @@ public class TileFreezer extends TileFluidInventory
 		
 		if(index == 0)
 			return false;
+		if(index == 1)
+			return false;
 		if(index == 2) {
-			if(FluidUtil.getFluidHandler(stack) == null) return false;
+			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
+			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
 		return true;

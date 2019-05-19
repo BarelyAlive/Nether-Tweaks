@@ -5,7 +5,6 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileBase;
-import mod.sfhcore.network.MessageFluidTankContents;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;
@@ -30,13 +29,12 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import p455w0rdslib.util.ChunkUtils;
 
-public class Freezer extends CubeContainerHorizontal{
-	
+public class Freezer extends CubeContainerHorizontal
+{
     private static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private static boolean keepInventory;
-    public final FluidStack WATER = new FluidStack(FluidRegistry.WATER, Integer.MAX_VALUE);
 	
-	public Freezer() {
+	public Freezer()
+	{
 		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
@@ -50,18 +48,17 @@ public class Freezer extends CubeContainerHorizontal{
 	{
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
+		if(te ==  null) return false;
 		if(!(te instanceof TileFreezer)) return false;
     	if(worldIn.isRemote) return true;
     	if(playerIn.isSneaking()) return false;
     	
-		TankUtil.drainWaterFromBottle(te, playerIn, te.getTank());
+		if(TankUtil.drainWaterFromBottle(te, playerIn, te.getTank())) return true;
     	
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
     	
     	if (item != null) {
 			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
-			if (worldIn.isRemote)
-				NetworkHandler.sendToServer(new MessageFluidTankContents(te.getTank().getTankProperties(), te));
 			return true;
 		}
 		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());

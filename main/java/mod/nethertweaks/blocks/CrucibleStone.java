@@ -47,9 +47,8 @@ public class CrucibleStone extends CrucibleBase implements INames
 
     @Override
     public TileEntity createTileEntity(@Nonnull World worldIn, @Nonnull IBlockState state) {
-        if (this.fired)
-            return new TileCrucibleStone();
-
+        if(this.fired) return new TileCrucibleStone();
+        
         return null;
     }
 

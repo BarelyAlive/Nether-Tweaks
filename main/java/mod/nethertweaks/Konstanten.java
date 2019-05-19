@@ -5,8 +5,8 @@ import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class Konstanten {
-	
+public class Konstanten
+{	
 	//itemBase
 	public static final ItemStack ENDBOX = new ItemStack(ItemHandler.ITEMBASE, 1, 0);
 	public static final ItemStack PORTALCORE = new ItemStack(ItemHandler.ITEMBASE, 1, 1);
@@ -16,9 +16,6 @@ public class Konstanten {
 	public static final ItemStack SALT = new ItemStack(ItemHandler.ITEMBASE, 1, 5);
 	public static final ItemStack STONEBAR = new ItemStack(ItemHandler.ITEMBASE, 1, 6);
 	public static final ItemStack STRING = new ItemStack(ItemHandler.ITEMBASE, 1, 7);
-	
-	
-	//ItemStack Ore Material
 	
 	//Block BAsic
     public static final ItemStack HELLFAYAHORE = new ItemStack(BlockHandler.BLOCKBASIC, 1, 0);
