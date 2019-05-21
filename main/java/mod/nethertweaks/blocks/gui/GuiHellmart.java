@@ -127,7 +127,7 @@ public class GuiHellmart extends GuiContainer {
 		itemRender.renderItemAndEffectIntoGUI(item, 73, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, item, 73, 16, "");
 
-		ItemStack currency = TankUtil.WATER_BOTTLE;
+		ItemStack currency = data.getCurrency();
 		itemRender.renderItemAndEffectIntoGUI(currency, 100, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, currency, 100, 16, "");
 		itemRender.zLevel = 0.0F;
