@@ -77,6 +77,6 @@ public class TileHellmart extends TileEntity {
 	}
 
 	public String getGuiID() {
-		return "nethertweaksmod:market";
+		return "nethertweaksmod:hellmart";
 	}
 }

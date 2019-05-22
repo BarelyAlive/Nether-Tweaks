@@ -76,7 +76,7 @@ public class GuiHellmart extends GuiContainer {
 		if(guibutton.id == 2) {
 			ItemStack buySlot = tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
 					.getStackInSlot(0);
-			if(buySlot != null) {
+			if(buySlot != null) { 
 				final HellmartData data = HellmartRegistry.getData(itemNum);
 				if(buySlot.getItem() == data.getCurrency().getItem()) {
 					if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {

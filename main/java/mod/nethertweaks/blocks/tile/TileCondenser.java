@@ -158,15 +158,19 @@ public class TileCondenser extends TileFluidInventory
     	ItemStack output = getStackInSlot(1);
     	
     	if(output.getCount() == output.getMaxStackSize()) return;
+    	if(!ItemStack.areItemsEqual(input, output) && !output.isEmpty()) return;
     	if(input.isEmpty()) return;
     	if(this.getTank().getFluidAmount() == 0) return;
     	
-		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+		System.out.println(input);
+		System.out.println(output);
+		System.out.println(input_handler);
 		
-		if(input_handler != null) {
-		    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
-				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)return;
+		if(input_handler != null)
+		{
+				FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
+				
 				if(output.isEmpty()) {
 					setInventorySlotContents(1, input_handler.getContainer());
 					getStackInSlot(2).shrink(1);
