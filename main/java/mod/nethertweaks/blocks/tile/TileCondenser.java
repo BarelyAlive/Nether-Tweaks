@@ -166,8 +166,9 @@ public class TileCondenser extends TileFluidInventory
 		
 		if(input_handler != null)
 		{
-				FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
-				
+			FluidStack f = FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
+			if(f == null) return;
+			
 				if(output.isEmpty()) {
 					setInventorySlotContents(1, input_handler.getContainer());
 					getStackInSlot(2).shrink(1);

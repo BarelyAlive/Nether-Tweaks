@@ -5,11 +5,11 @@
   ],
   "key": {
     "X": {
-      "item": "item_nether_log"
+      "item": "item_elder_log"
     }
   },
   "result": {
-    "item": "item_nether_wood",
+    "item": "item_elder_wood",
     "count": 4
   }
 }

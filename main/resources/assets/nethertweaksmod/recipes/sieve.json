@@ -10,8 +10,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "s": {
-      "item": "item_base",
-      "data": 12
+      "type": "forge:ore_dict",
+      "ore": "slabStone"
     },
     "x": {
       "type": "forge:ore_dict",

@@ -1,20 +1,19 @@
 {
   "result": {
-    "item": "cactus_grabbber"
+    "item": "pickaxe_netherrack"
   },
   "pattern": [
-    "XYX",
+    "YYY",
     " X ",
     " X "
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "minecraft:bone"
     },
     "Y": {
-      "item": "minecraft:flint"
+      "item": "minecraft:netherbrick"
     }
   }
 }

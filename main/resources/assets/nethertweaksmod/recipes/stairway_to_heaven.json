@@ -8,14 +8,14 @@
   "key": {
     "X": {
       "item": "item_base",
-      "data": 4
+      "data": 0
     },
     "Y": {
       "item": "item_base",
-      "data": 7
+      "data": 1
     }
   },
   "result": {
-    "item": "item_end_teleport"
+    "item": "item_stairway_to_heaven"
   }
 }

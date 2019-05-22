@@ -8,7 +8,7 @@
   "key": {
     "Y": {
       "item": "item_base",
-      "data": 4
+      "data": 2
     },
     "X": {
       "item": "minecraft:end_stone"
@@ -16,6 +16,6 @@
   },
   "result": {
     "item": "item_base",
-    "data": 2
+    "data": 0
   }
 }

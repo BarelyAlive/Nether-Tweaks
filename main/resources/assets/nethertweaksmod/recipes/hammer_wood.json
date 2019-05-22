@@ -14,8 +14,8 @@
       "ore": "plankWood"
     },
     "y": {
-      "item": "item_base",
-      "data": 12
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
     }
   }
 }

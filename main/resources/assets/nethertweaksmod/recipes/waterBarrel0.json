@@ -4,14 +4,19 @@
     "data": 8
   },
   "pattern": [
-    "xx",
-    "xx"
+    "xxx",
+    "xyx",
+    "xxx"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
-      "item": "minecraft:potion",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "y": {
+      "type": "forge:ore_dict",
+      "ore": "listAllWater"
     }
   }
 }
