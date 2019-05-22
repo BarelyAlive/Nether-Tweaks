@@ -163,9 +163,6 @@ public class TileCondenser extends TileFluidInventory
     	if(this.getTank().getFluidAmount() == 0) return;
     	
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
-		System.out.println(input);
-		System.out.println(output);
-		System.out.println(input_handler);
 		
 		if(input_handler != null)
 		{
