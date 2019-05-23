@@ -17,6 +17,7 @@ ChangeLog NTM 2.0.0
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
+* Changed some recipes
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
 * Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes

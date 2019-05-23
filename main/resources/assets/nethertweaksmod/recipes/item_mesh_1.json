@@ -1,18 +1,18 @@
 {
-  "result": {
-    "item": "item_mesh",
-    "data": 1
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "xxx",
     "xxx",
     "xxx"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
       "item": "item_base",
-      "data": "7"
+      "data": 7
     }
+  },
+  "result": {
+    "item": "item_mesh",
+    "data": 1
   }
 }

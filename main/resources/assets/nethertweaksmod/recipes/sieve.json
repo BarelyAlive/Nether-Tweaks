@@ -1,25 +1,25 @@
 {
-  "result": {
-    "item": "item_sieve"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "x x",
     "xyx",
     "s s"
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "s": {
-      "type": "forge:ore_dict",
-      "ore": "slabStone"
+      "item": "item_base",
+      "data": 6
     },
     "x": {
       "type": "forge:ore_dict",
       "ore": "stone"
     },
     "y": {
-      "type": "forge:ore_dict",
-      "ore": "slabCobblestone"
+      "item": "minecraft:stone_slab",
+      "data": 0
     }
+  },
+  "result": {
+    "item": "item_sieve"
   }
 }

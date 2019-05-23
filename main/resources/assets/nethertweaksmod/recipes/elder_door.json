@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "item": "minecraft:obsidian"
+      "item": "item_elder_planks"
     }
   },
   "result": {
-    "item": "door_ntm_obsidian"
+    "item": "door_ntm_elder"
   }
 }

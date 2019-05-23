@@ -11,7 +11,7 @@
     },
     "Y": {
       "type": "forge:ore_dict",
-      "ore": "bucket"
+      "ore": "listAllBucket"
     }
   },
   "result": {

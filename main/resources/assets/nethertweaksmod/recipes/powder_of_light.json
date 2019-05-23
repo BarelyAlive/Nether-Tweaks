@@ -14,8 +14,7 @@
       "ore": "dustSalt"
     },
     "Z": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "item_dust"
     }
   },
   "result": {
