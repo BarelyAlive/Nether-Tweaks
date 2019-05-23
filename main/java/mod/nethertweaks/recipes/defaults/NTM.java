@@ -161,7 +161,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Items.COOKED_BEEF,1, 0), 63);	
 		registry.register(new ItemStack(Items.CHICKEN,1, 0), 63);	
 		registry.register(new ItemStack(Items.COOKED_CHICKEN,1, 0), 63);
-		registry.register(new ItemStack(Items.RABBIT_STEW,1, 0), 1);
+		registry.register(new ItemStack(Items.RABBIT_STEW,1, 0), 100);
 		registry.register(new ItemStack(Items.RABBIT,1, 0), 63);
 		registry.register(new ItemStack(Items.COOKED_RABBIT,1, 0), 63);
 		registry.register(new ItemStack(Items.MUTTON,1, 0), 63);
