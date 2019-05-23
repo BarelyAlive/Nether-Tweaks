@@ -84,8 +84,7 @@ public class NetherTweaksMod
     
     public static File configDirectory;
     // List of loaded modules
-    public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
-    
+    public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();    
     //Creative Tabs
     public static final CreativeTabs TABNTM = new CreativeTabNTM();
     
