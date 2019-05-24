@@ -24,7 +24,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import mod.nethertweaks.api.ICondenserDefaultRegistryProvider;
 import mod.nethertweaks.api.IHellmartDefaultRegistryProvider;
 import mod.nethertweaks.items.*;
 import mod.nethertweaks.json.CustomDryableJson;

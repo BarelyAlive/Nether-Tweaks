@@ -11,45 +11,39 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import mod.nethertweaks.registry.types.Compostable;
 import mod.nethertweaks.registry.types.Dryable;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.json.JsonHelper;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;
+import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSerializer<Dryable>
 {
+	@Override
+    public JsonElement serialize(Dryable src, Type typeOfSrc, JsonSerializationContext context)
+    {
+    	JsonObject obj = new JsonObject();
+        obj.addProperty("value", src.getValue());
+        obj.add("item", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
+
+        return obj;
+    }
+	
     @Override
     public Dryable deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
     {
-        JsonHelper helper = new JsonHelper(json);
-        
-        String name = helper.getString("name");
-        int meta = helper.getNullableInteger("meta", 0);
-        int value = helper.getNullableInteger("millibuckets", 1);
+    	JsonHelper helper = new JsonHelper(json);
+        JsonObject obj = json.getAsJsonObject();
 
-        Item item = Item.getByNameOrId(name);
-        
-        if(item == null)
-        {
-            LogUtil.error("Error parsing JSON: Invalid Item: " + json.toString());
-            LogUtil.error("This may result in crashing or other undefined behavior");
-        }
-        
-        return new Dryable(item, meta, value);
-    }
-    
-    @Override
-    public JsonElement serialize(Dryable src, Type typeOfSrc, JsonSerializationContext context)
-    {
-        JsonObject jsonObject = new JsonObject();
-        
-        jsonObject.addProperty("name", src.getItem().getRegistryName().toString());
-        jsonObject.addProperty("meta", new ItemStack(src.getItem()).getItemDamage());
-        jsonObject.addProperty("millibuckets", src.getValue());
-        
-        System.out.println(jsonObject);
+        int value =  helper.getInteger("value");
+        ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
 
-        return jsonObject;
+        return new Dryable(result.getItemStack(), value);
     }
 }

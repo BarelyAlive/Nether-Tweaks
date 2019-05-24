@@ -33,10 +33,10 @@ public class CustomCompostableJson implements JsonDeserializer<Compostable>, Jso
         float value = (float) helper.getDouble("value");
         Color color = Color.INVALID_COLOR;
         if (obj.has("color")) {
-            color = context.deserialize(json.getAsJsonObject().get("color"), Color.class);
+            color = context.deserialize(obj.get("color"), Color.class);
         }
 
-        BlockInfo result = context.deserialize(json.getAsJsonObject().get("compostBlock"), BlockInfo.class);
+        BlockInfo result = context.deserialize(obj.get("compostBlock"), BlockInfo.class);
 
         return new Compostable(value, color, result);
     }

@@ -140,13 +140,11 @@ public class TileCondenser extends TileFluidInventory
 	{
 		ItemStack material = this.getStackInSlot(0);
 		ItemStack bucket = this.getStackInSlot(1);
-		if(CondenserRegistry.getDryable(material) == null) return;
-		int amount = CondenserRegistry.getDryable(material).getValue();
+		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
+		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
 		if(amount > 0)
-		{
 			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
-		}
 		
 		material.shrink(1);
 		return;
@@ -225,12 +223,13 @@ public class TileCondenser extends TileFluidInventory
 	private boolean checkInv()
 	{
 		if(this.getStackInSlot(0).isEmpty()) return false;
-		if(!CondenserRegistry.containsItem(getStackInSlot(0))) return false;
+		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		
-		Dryable result = CondenserRegistry.getDryable(getStackInSlot(0));
+		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
+		System.out.println(result);
 		if(result == null) return false;
 		if(this.emptyRoom() == 0) return false;
-		if(getMaxworkTime() <= 0) return false;
+		calcMaxWorktime();
 		
 		return true;
 	}
@@ -238,17 +237,17 @@ public class TileCondenser extends TileFluidInventory
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		int workTime = Config.dryTimeCondenser;
+		int maxWorktime = Config.dryTimeCondenser;
 		if(heat != 0) {
-			workTime *= 3;
-			workTime /= heat;
-			this.setMaxworkTime(workTime);
+			maxWorktime *= 3;
+			maxWorktime /= heat;
+			this.setMaxworkTime(maxWorktime);
 		}
 		else
 		{
-			workTime = 0;
+			this.setWorkTime(0);
 		}
-		return workTime;	
+		return maxWorktime;	
 	}
 	
 	@Override
@@ -258,7 +257,7 @@ public class TileCondenser extends TileFluidInventory
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
 		if(index == 0)
-			return CondenserRegistry.containsItem(stack);
+			return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		if(index == 1)
 			return false;
 		if(index == 2)

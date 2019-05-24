@@ -68,13 +68,13 @@ item.item_pebble_1.name=Granite Pebble
 item.item_pebble_2.name=Diorite Pebble
 item.item_pebble_3.name=Andesite Pebble
 
-item.item_block_basic_ore_hellfayah.name=Hellfayah Ore
-item.item_block_basic_hellfayah_block.name=Hellfayah Block
-item.item_block_basic_blocksalt.name=Salt Block
+item.block_basic_ore_hellfayah.name=Hellfayah Ore
+item.block_basic_hellfayah_block.name=Block of Hellfayah
+item.block_basic_blocksalt.name=Block of Salt
 
 tile.block_basic_ore_hellfayah.name=Hellfayah Ore
-tile.block_basic_hellfayah_block.name=Hellfayah Block
-tile.block_basic_blocksalt.name=Salt Block
+tile.block_basic_hellfayah_block.name=Block of Hellfayah
+tile.block_basic_blocksalt.name=Block of Salt
 
 item.item_doll_bat.name=Bat Doll
 item.item_doll_chicken.name=Chicken Doll
