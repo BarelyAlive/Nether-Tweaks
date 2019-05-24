@@ -116,17 +116,18 @@ public class NetherTweaksMod
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	
-		
-		NTMDefaultRecipes.registerDefaults();
     }
     
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
-    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
         SmeltingNOreDictHandler.load();
         
+		NTMDefaultRecipes.registerDefaults();
+        
 		BarrelModeRegistry.registerDefaults();
+		
+    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }
      
     @Mod.EventHandler

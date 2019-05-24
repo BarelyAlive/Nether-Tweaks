@@ -244,6 +244,10 @@ public class TileCondenser extends TileFluidInventory
 			workTime /= heat;
 			this.setMaxworkTime(workTime);
 		}
+		else
+		{
+			workTime = 0;
+		}
 		return workTime;	
 	}
 	

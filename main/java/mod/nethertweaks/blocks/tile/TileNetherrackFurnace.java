@@ -166,6 +166,10 @@ public class TileNetherrackFurnace extends TileInventory
 			workTime /= heat;
 			this.setMaxworkTime(workTime);
 		}
+		else
+		{
+			workTime = 0;
+		}
 		return workTime;
 	}
 
