@@ -126,7 +126,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
         Ingredient ingredient = new OreIngredientStoring(name);
 
         if (dryRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
-            LogUtil.error("Compost Ore Entry for " + name + " already exists, skipping.");
+            LogUtil.error("Dry Ore Entry for " + name + " already exists, skipping.");
         else
         {
         	for(ItemStack stack : ingredient.getMatchingStacks())
@@ -159,7 +159,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 	@Override
 	public boolean containsItem(@Nonnull Item item, int meta) {
-		return containsItem(new ItemStack(item, meta));
+		return containsItem(new ItemStack(item, 1, meta));
 	}
 
 	@Override

@@ -21,7 +21,7 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageFluidUpdate.MessageFluidUpdateHandler.class, MessageFluidUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageNBTUpdate.MessageNBTUpdateHandler.class, MessageNBTUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageCheckLight.MessageCheckLightHandler.class, MessageCheckLight.class, Side.CLIENT);
-		NetworkHandler.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageHellmartClosed.MessageHellmartClosedHandler.class, MessageHellmartClosed.class, Side.CLIENT);
 	}
 }
