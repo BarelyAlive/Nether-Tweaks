@@ -1,59 +1,36 @@
 package mod.nethertweaks.registries.registries;
 
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import mod.nethertweaks.api.ICondenserRegistry;
+import mod.nethertweaks.json.CustomDryableJson;
+import mod.nethertweaks.json.CustomIngredientJson;
+import mod.nethertweaks.registries.ingredient.IngredientUtil;
+import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
+import mod.nethertweaks.registry.types.Compostable;
+import mod.nethertweaks.registry.types.Dryable;
+import mod.sfhcore.json.CustomItemInfoJson;
+import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.LogUtil;
+import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import mod.nethertweaks.api.ICondenserRegistry;
-import mod.nethertweaks.items.*;
-import mod.nethertweaks.json.CustomDryableJson;
-import mod.nethertweaks.json.CustomFluidBlockTransformerJson;
-import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.registries.ingredient.IngredientUtil;
-import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
-import mod.nethertweaks.registries.manager.*;
-import mod.nethertweaks.registries.registries.base.BaseRegistryList;
-import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
-import mod.nethertweaks.registry.types.Compostable;
-import mod.nethertweaks.registry.types.Dryable;
-import mod.nethertweaks.registry.types.FluidBlockTransformer;
-import mod.nethertweaks.registry.types.HammerReward;
-import mod.sfhcore.json.CustomBlockInfoJson;
-import mod.sfhcore.json.CustomEntityInfoJson;
-import mod.sfhcore.json.CustomItemInfoJson;
-import mod.sfhcore.json.CustomItemStackJson;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.EntityInfo;
-import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.LogUtil;
-import mod.sfhcore.util.StackInfo;
+import net.minecraftforge.oredict.OreIngredient;
 
 public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> implements ICondenserRegistry
 {
@@ -90,6 +67,14 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
                 register(ingr, entry.getValue());
         }
 	}
+	
+	@Override
+    public Map<Ingredient, Dryable> getRegistry() {
+        //noinspection unchecked
+        Map<Ingredient, Dryable> map = (HashMap) ((HashMap) registry).clone();
+        map.putAll(dryRegistry);
+        return map;
+    }
 
 	@Override
 	public List<?> getRecipeList() {
@@ -102,7 +87,11 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 		if (itemStack.isEmpty())
             return;
 
-        Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
+        //Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
+        Ingredient ingredient = Ingredient.fromStacks(itemStack);
+        
+        System.out.println(itemStack.getItem().getRegistryName());
+        System.out.println(ingredient.getMatchingStacks());
         
         if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
             LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
@@ -134,7 +123,19 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 	@Override
 	public void register(@Nonnull String name, int value) {
-		register(name, value);
+        Ingredient ingredient = new OreIngredientStoring(name);
+
+        if (dryRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
+            LogUtil.error("Compost Ore Entry for " + name + " already exists, skipping.");
+        else
+        {
+        	for(ItemStack stack : ingredient.getMatchingStacks())
+        	{
+                Dryable dryable = new Dryable(stack, value);
+        		register(ingredient, dryable);
+        	}
+        }
+        
 	}
 
 	@Override

@@ -122,12 +122,6 @@ public class NetherTweaksMod
     public void load(FMLInitializationEvent event)
     {
         SmeltingNOreDictHandler.load();
-        
-		NTMDefaultRecipes.registerDefaults();
-        
-		BarrelModeRegistry.registerDefaults();
-		
-    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }
      
     @Mod.EventHandler
@@ -136,6 +130,12 @@ public class NetherTweaksMod
     	//Mobs
     	if(Config.spawnWaterMobs)
     		WorldHandler.addWaterMobs();
+    	        
+		BarrelModeRegistry.registerDefaults();
+    	
+		NTMDefaultRecipes.registerDefaults();
+		
+    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }
     
     @SubscribeEvent

@@ -92,12 +92,12 @@ public final class NTMRegistryManager {
 		MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS.add(milkEntityDefaults);
 	}
 
-	public static void registerCondenserDefaultRecipeHandler(ICondenserDefaultRegistryProvider condenserDefaults) {
-		CONDENSER_DEFAULT_REGISTRY_PROVIDERS.add(condenserDefaults);
+	public static void registerCondenserDefaultRecipeHandler(ICondenserDefaultRegistryProvider provider) {
+		CONDENSER_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
 
-	public static void registerHellmartDefaultRecipeHandler(IHellmartDefaultRegistryProvider hellmartDefaults) {
-		HELLMART_DEFAULT_REGISTRY_PROVIDERS.add(hellmartDefaults);
+	public static void registerHellmartDefaultRecipeHandler(IHellmartDefaultRegistryProvider provider) {
+		HELLMART_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
 	
     //endregion

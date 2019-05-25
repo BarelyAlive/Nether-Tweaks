@@ -137,7 +137,7 @@ public class NTM implements IRecipeDefaults
 		//fish
 		registry.register(new ItemStack(Items.FISH, 1, 0), 63);
 		//cooked fish
-		registry.register(new ItemStack(Items.COOKED_FISH,1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_FISH, 1, 0), 63);
 		//salmon
 		registry.register(new ItemStack(Items.FISH, 1, 1), 63);
 		//cooked salmon
@@ -148,39 +148,46 @@ public class NTM implements IRecipeDefaults
 		//blowfish
 		registry.register(new ItemStack(Items.FISH, 1, 3), 63);	
 		
-		registry.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, 0), 63);
-		registry.register(new ItemStack(Blocks.RED_MUSHROOM, 1, 0), 63);
-		registry.register(new ItemStack(Items.MELON,1, 0), 9);
-		registry.register(new ItemStack(Blocks.MELON_BLOCK,1, 0), 1);	
-		registry.register(new ItemStack(Items.POISONOUS_POTATO,1, 0), 42);
-		registry.register(new ItemStack(Items.PORKCHOP,1, 0), 63);
-		registry.register(new ItemStack(Items.COOKED_PORKCHOP,1, 0), 63);	
-		registry.register(new ItemStack(Items.POTATO,1, 0), 42);	
-		registry.register(new ItemStack(Items.BAKED_POTATO,1, 0), 42);
-		registry.register(new ItemStack(Items.BEEF,1, 0), 63);	
-		registry.register(new ItemStack(Items.COOKED_BEEF,1, 0), 63);	
-		registry.register(new ItemStack(Items.CHICKEN,1, 0), 63);	
-		registry.register(new ItemStack(Items.COOKED_CHICKEN,1, 0), 63);
-		registry.register(new ItemStack(Items.RABBIT_STEW,1, 0), 100);
-		registry.register(new ItemStack(Items.RABBIT,1, 0), 63);
-		registry.register(new ItemStack(Items.COOKED_RABBIT,1, 0), 63);
-		registry.register(new ItemStack(Items.MUTTON,1, 0), 63);
-		registry.register(new ItemStack(Items.COOKED_MUTTON,1, 0), 63);
-		registry.register(new ItemStack(Items.MAGMA_CREAM,1, 0), 112);	
-		registry.register(new ItemStack(Items.SLIME_BALL,1, 0), 112);	
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN),1, 0), 250);	
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS),1, 0), 300);
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.BROWN_MUSHROOM), 1, 0), 63);
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.RED_MUSHROOM), 1, 0), 63);
+		registry.register(new ItemStack(Items.MELON, 1, 0), 9);
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.MELON_BLOCK), 1, 0), 350);	
+		registry.register(new ItemStack(Items.POISONOUS_POTATO, 1, 0), 42);
+		registry.register(new ItemStack(Items.PORKCHOP, 1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_PORKCHOP, 1, 0), 63);	
+		registry.register(new ItemStack(Items.POTATO, 1, 0), 42);	
+		registry.register(new ItemStack(Items.BAKED_POTATO, 1, 0), 42);
+		registry.register(new ItemStack(Items.BEEF, 1, 0), 63);	
+		registry.register(new ItemStack(Items.COOKED_BEEF, 1, 0), 63);	
+		registry.register(new ItemStack(Items.CHICKEN, 1, 0), 63);	
+		registry.register(new ItemStack(Items.COOKED_CHICKEN, 1, 0), 63);
+		registry.register(new ItemStack(Items.RABBIT_STEW, 1, 0), 100);
+		registry.register(new ItemStack(Items.RABBIT, 1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_RABBIT, 1, 0), 63);
+		registry.register(new ItemStack(Items.MUTTON, 1, 0), 63);
+		registry.register(new ItemStack(Items.COOKED_MUTTON, 1, 0), 63);
+		registry.register(new ItemStack(Items.MAGMA_CREAM, 1, 0), 112);	
+		registry.register(new ItemStack(Items.SLIME_BALL, 1, 0), 112);	
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN), 1, 0), 250);	
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS), 1, 0), 300);
 		
-		for(int i = 0; i < 6; i++)
-			registry.register(new ItemStack(Blocks.SAPLING, 1, i), 125);
-		for(int i = 0; i < 4; i++)
-			registry.register(new ItemStack(Blocks.LEAVES, 1, i), 125);
-		for(int i = 0; i < 2; i++)
-			registry.register(new ItemStack(Blocks.LEAVES2, 1, i), 125);
+		registry.register("treeSapling", 100);
+		registry.register("treeLeaves", 100);
+		registry.register("vine", 125);
+		registry.register("listAllfruit", 80);
+		registry.register("listAllveggie", 80);
+		registry.register("listAllGrain", 42);
+		registry.register("listAllseed", 42);
+		registry.register("listAllmeatraw", 63);
+		registry.register("listAllfishraw", 63);
+		registry.register("listAllfishcooked", 63);
+		registry.register("listAllfishfresh", 63);
+		
+		/*
 		for(ItemStack sap : OreDictionary.getOres("treeSapling"))
-			registry.register(sap, 125);
+			registry.register(sap, 100);
 		for(ItemStack sap : OreDictionary.getOres("treeLeaves"))
-			registry.register(sap, 125);
+			registry.register(sap, 100);
 		for(ItemStack sap : OreDictionary.getOres("vine"))
 			registry.register(sap, 125);
 		for (ItemStack stack: OreDictionary.getOres("listAllfruit"))
@@ -201,6 +208,7 @@ public class NTM implements IRecipeDefaults
 			registry.register(stack, 63);
 		for (ItemStack stack: OreDictionary.getOres("listAllfishfresh"))
 			registry.register(stack, 63);
+			*/
     }
     
     @Override
