@@ -69,22 +69,5 @@ public class BucketNFluidHandler
 	{
 		BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
 		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
-		/*
-		if (Config.enableStoneBucket) {
-			//Stone
-			Registry.registerItem(BUCKETSTONE);
-			Registry.registerItem(BUCKETSTONEWATER);
-			Registry.registerItem(BUCKETSTONELAVA);
-			Registry.registerItem(BUCKETSTONELI);
-			Registry.registerItem(BUCKETSTONEMILK);
-		}
-		if (Config.enableWoodBucket) {
-			//Same with Wood
-			Registry.registerItem(BUCKETWOOD);
-			Registry.registerItem(BUCKETWOODWATER);
-			Registry.registerItem(BUCKETWOODLI);
-			Registry.registerItem(BUCKETWOODMILK);
-		}
-		*/
 	}
 }

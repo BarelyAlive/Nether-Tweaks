@@ -10,6 +10,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
@@ -29,6 +30,7 @@ import mod.sfhcore.Constants;
 import mod.sfhcore.SFHCore;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
+import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.registries.Registry;
@@ -103,7 +105,7 @@ public class ItemHandler implements INames{
     
     private static void addItemBurnTime()
     {
-    	//CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketNFluidHandler.BUCKETSTONELAVA), 20000);
+    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }

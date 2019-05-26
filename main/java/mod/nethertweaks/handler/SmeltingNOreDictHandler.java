@@ -19,6 +19,7 @@ import scala.tools.nsc.doc.model.ModelFactory.NonTemplateMemberImpl;
 import io.netty.channel.nio.NioTask;
 import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
+import mod.sfhcore.handler.BucketHandler;
 
 
 public class SmeltingNOreDictHandler {
@@ -56,18 +57,18 @@ public class SmeltingNOreDictHandler {
 		
     	if (Config.enableLiquidImpossibility)
     	{
-			//OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETSTONELI);
-			//OreDictionary.registerOre("listAllLiquidImpossibility", BucketNFluidHandler.BUCKETWOODLI);
+			OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("liquid_impossibility"), "stone"));
+			OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("liquid_impossibility"), "wood"));
 			OreDictionary.registerOre("listAllLiquidImpossibility",
 			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		}
 		if (Config.enableStoneBucket && Config.enableWoodBucket)
 		{
-			//OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETSTONEWATER);
-			//OreDictionary.registerOre("listAllWater", BucketNFluidHandler.BUCKETWOODWATER);
+			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
+			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 			OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-			//OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETSTONE);
-			//OreDictionary.registerOre("listAllBucket", BucketNFluidHandler.BUCKETWOOD);
+			OreDictionary.registerOre("listAllBucket",BucketHandler.getBucketFromFluid(null, "stone"));
+			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
 			OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		}
 		if (Config.enableFlintNBlaze)
