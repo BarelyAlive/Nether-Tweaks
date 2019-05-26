@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "pickaxe_netherbrick"
+  },
+  "pattern": [
+    "YYY",
+    " X ",
+    " X "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "X": {
+      "item": "minecraft:bone"
+    },
+    "Y": {
+      "item": "minecraft:netherbrick"
+    }
+  }
+}

@@ -1,17 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "X"
+    "XXX"
   ],
   "key": {
     "X": {
-      "item": "block_basic",
-      "data": 1
+      "item": "item_elder_planks"
     }
   },
   "result": {
-    "item": "item_base",
-    "data": 3,
-    "count": 9
+    "item": "elder_slab_half",
+    "count": 6
   }
 }

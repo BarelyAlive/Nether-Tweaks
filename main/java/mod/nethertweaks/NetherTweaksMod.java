@@ -84,8 +84,7 @@ public class NetherTweaksMod
     
     public static File configDirectory;
     // List of loaded modules
-    public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
-    
+    public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();    
     //Creative Tabs
     public static final CreativeTabs TABNTM = new CreativeTabNTM();
     
@@ -117,17 +116,12 @@ public class NetherTweaksMod
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	
-		
-		NTMDefaultRecipes.registerDefaults();
     }
     
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
-    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
         SmeltingNOreDictHandler.load();
-        
-		BarrelModeRegistry.registerDefaults();
     }
      
     @Mod.EventHandler
@@ -136,6 +130,12 @@ public class NetherTweaksMod
     	//Mobs
     	if(Config.spawnWaterMobs)
     		WorldHandler.addWaterMobs();
+    	        
+		BarrelModeRegistry.registerDefaults();
+    	
+		NTMDefaultRecipes.registerDefaults();
+		
+    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }
     
     @SubscribeEvent

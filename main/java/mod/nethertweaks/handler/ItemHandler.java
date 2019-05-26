@@ -48,7 +48,7 @@ public class ItemHandler implements INames{
     public static final Item DOLL 			 = new ItemDoll();
     
     //Multi ID Item
-	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 9, new ResourceLocation(NTM, INames.ITEMBASE));
     
 	//Food
     public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.TABNTM);
@@ -78,7 +78,7 @@ public class ItemHandler implements INames{
     	//Multi ID Item
     	if(Config.enableMultiItem)  		Registry.registerItem(ITEMBASE);
     	if(Config.enableSeed) 				Registry.registerItem(SEED);
-    	if(Config.enableCrystalLight | Config.enableCrystalEnder)
+    	if(Config.enableCrystalLight || Config.enableCrystalEnder)
     										Registry.registerItem(CRYSTAL);
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
         if(Config.enableMeshes)  			Registry.registerItem(MESH);
@@ -88,7 +88,7 @@ public class ItemHandler implements INames{
         if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
         if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
         if(Config.enableGrabber)			Registry.registerItem(GRABBER);
-        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);        
+        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
         if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
@@ -105,7 +105,10 @@ public class ItemHandler implements INames{
     
     private static void addItemBurnTime()
     {
+<<<<<<< HEAD
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
+=======
+>>>>>>> master
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }

@@ -11,7 +11,7 @@
       "data": 1
     },
     "Y": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:gold_block"
     },
     "Z": {
       "item": "minecraft:nether_star"
@@ -19,6 +19,6 @@
   },
   "result": {
     "item": "item_base",
-    "data": 3
+    "data": 1
   }
 }

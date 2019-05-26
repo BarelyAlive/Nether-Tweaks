@@ -5,13 +5,13 @@
   ],
   "key": {
     "X": {
-      "item": "item_block_basic",
+      "item": "block_basic",
       "data": 2
     }
   },
   "result": {
     "item": "item_base",
-    "data": 7,
+    "data": 5,
     "count": 9
   }
 }

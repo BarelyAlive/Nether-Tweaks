@@ -1,15 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XXX"
+    "XX",
+    "XX",
+    "XX"
   ],
   "key": {
     "X": {
-      "item": "item_nether_wood"
+      "item": "item_elder_planks"
     }
   },
   "result": {
-    "item": "item_nether_slab",
-    "count": 6
+    "item": "door_ntm_elder"
   }
 }

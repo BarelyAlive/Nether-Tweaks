@@ -2,7 +2,7 @@ ChangeLog NTM 2.0.0
 
 * Each Bonfire now individually stores the savepoints of the players for themselves
   Example: If a player last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
-* Bonfire will now let you teleport to other Bonfire
+* Bonfire will now let you teleport to other Bonfires
 * Condensers now include water tanks so you can put together any combination of organic material
 * Freezers now include water tanks and can have a redstone signal from any side
 * Condenser and Freezer now have a new GUI
@@ -13,10 +13,11 @@ ChangeLog NTM 2.0.0
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
 * Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
 * Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
-  (In any language available in Minecraft or Mod-supported language (depends on the fluid's Mod)
+  (In any language available in Minecraft or Mod-supported language (depends on the language support of the fluid's Mod)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
+* Changed some recipes
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
 * Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
@@ -27,6 +28,7 @@ ChangeLog NTM 2.0.0
 * Forgotten Tree is now called Elder Tree & looks different
 * Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
+* Grabber now works with melon blocks, cactus, cobweb, fern and dead bushes (configurable)
 * Fixed Spawn and respawn in Hellworld (If a player dies he/she will get set back to the start portal
 * Fixed a Bug that could cause server damage if a block got activated but wasn't loaded
 * Fixed Netherrack Furnace lag caused by block set spam
@@ -46,7 +48,7 @@ ChangeLog NTM 2.0.0
 + Added Elder Door
 + Added dolls to get otherwise unobtainable mobs
 + Added Hellmart for buying dolls and if desired other stuff (editable via JSON)
-    The Currency is water (also editable via JSON)
+    The Currency is water barrels (also editable via JSON)(craft them from water bottles/buckets)
 + Added Mean Vine strings (works as normal string in recipes)
 + Added pebbles (can be thrown for damage)
 + Added support for WAILA, Harvestcraft, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,

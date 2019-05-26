@@ -1,13 +1,10 @@
 {
-  "result": {
-    "item": "cactus_grabbber"
-  },
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "XYX",
     " X ",
     " X "
   ],
-  "type": "minecraft:crafting_shaped",
   "key": {
     "X": {
       "type": "forge:ore_dict",
@@ -16,5 +13,8 @@
     "Y": {
       "item": "minecraft:flint"
     }
+  },
+  "result": {
+    "item": "grabber"
   }
 }

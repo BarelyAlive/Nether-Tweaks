@@ -8,14 +8,17 @@ import mod.nethertweaks.blocks.container.ContainerHellmart;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.CapabilityItemHandler;
 
@@ -23,13 +26,12 @@ public class GuiHellmart extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
 
 	private int itemNum;
-
 	private final TileHellmart tileEntityMarket;
 
 	public GuiHellmart(InventoryPlayer inventoryplayer, TileHellmart tileEntityMarket) {
 		super(new ContainerHellmart(inventoryplayer, tileEntityMarket));
 		this.tileEntityMarket = tileEntityMarket;
-		tileEntityMarket.setBrowsingInfo(HellmartRegistry.getSize() -1);
+		tileEntityMarket.setBrowsingInfo(NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() -1);
 	}
 
 	@Override
@@ -61,13 +63,13 @@ public class GuiHellmart extends GuiContainer {
 		if(guibutton.id == 0) {
 			itemNum--;
 			if(itemNum < 0) {
-				itemNum = HellmartRegistry.getSize() - 1;
+				itemNum = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() - 1;
 			}
 			this.tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 1) {
 			itemNum++;
-			if(itemNum > HellmartRegistry.getSize() - 1) {
+			if(itemNum > NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() - 1) {
 				itemNum = 0;
 			}
 			this.tileEntityMarket.setBrowsingInfo(itemNum);
@@ -76,7 +78,8 @@ public class GuiHellmart extends GuiContainer {
 			ItemStack buySlot = tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
 					.getStackInSlot(0);
 			if(buySlot != null) {
-				final HellmartData data = HellmartRegistry.getData(itemNum);
+				HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+				final HellmartData data = dataz[itemNum];
 				if(buySlot.getItem() == data.getCurrency().getItem()) {
 					if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
 						int price = data.getPrice();
@@ -120,7 +123,8 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glEnable(GL11.GL_LIGHTING);
 		itemRender.zLevel = 100.0F;
 
-		HellmartData data = HellmartRegistry.getData(itemNum);
+		HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+		HellmartData data = dataz[itemNum];
 
 		ItemStack item = data.getItem();
 		itemRender.renderItemAndEffectIntoGUI(item, 73, 16);
@@ -144,10 +148,10 @@ public class GuiHellmart extends GuiContainer {
 	public void drawScreen(int par1, int par2, float par3) {
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
-		ItemStack item = HellmartRegistry.getData(itemNum).getItem();
+		HellmartData[] item = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 
 		if(this.isPointInRegion(73, 16, 16, 16, par1, par2)) {
-			this.renderToolTip(item, par1, par2);
+			this.renderToolTip(item[itemNum].getItem(), par1, par2);
 		}
 	}
 

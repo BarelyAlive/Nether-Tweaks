@@ -78,7 +78,6 @@ public class BarrelModeCompost implements IBarrelMode {
         handler = new BarrelItemHandlerCompost(null);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (fillAmount == 0) {

@@ -1,13 +1,14 @@
 {
   "result": {
-    "item": "nethertweaksmod:hammer_wood"
+    "item": "item_base",
+    "data": 8
   },
   "pattern": [
-    " x ",
-    " yx",
-    "y  "
+    "xxx",
+    "xyx",
+    "xxx"
   ],
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
       "type": "forge:ore_dict",
@@ -15,7 +16,7 @@
     },
     "y": {
       "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "ore": "listAllWater"
     }
   }
 }

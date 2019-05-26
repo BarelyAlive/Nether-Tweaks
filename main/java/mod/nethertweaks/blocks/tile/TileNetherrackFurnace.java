@@ -79,7 +79,7 @@ public class TileNetherrackFurnace extends TileInventory
         
         work();
         
-        if(this.getWorkTime() < getMaxworkTime()) return;
+        if(this.getWorkTime() <= getMaxworkTime()) return;
         
         smeltItem();
         this.setWorkTime(0);
@@ -165,8 +165,13 @@ public class TileNetherrackFurnace extends TileInventory
 			workTime *= 3;
 			workTime /= heat;
 			this.setMaxworkTime(workTime);
+			return workTime;
 		}
-		return workTime;
+		else
+		{
+			this.setWorkTime(0);
+			return 0;
+		}
 	}
 
     /**

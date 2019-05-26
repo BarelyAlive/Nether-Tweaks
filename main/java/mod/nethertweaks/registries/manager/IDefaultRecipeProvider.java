@@ -15,9 +15,10 @@ interface IHammerDefaultRegistryProvider extends IDefaultRecipeProvider<HammerRe
 interface IHeatDefaultRegistryProvider extends IDefaultRecipeProvider<HeatRegistry>{};
 interface IMilkEntityDefaultRegistryProvider extends IDefaultRecipeProvider<MilkEntityRegistry>{};
 interface IOreDefaultRegistryProvider extends IDefaultRecipeProvider<OreRegistry>{};
-interface ISieveDefaultRegistryProvider extends IDefaultRecipeProvider<SieveRegistry>{
 
-	void registerSieveRecipeDefaults();};
+interface ISieveDefaultRegistryProvider extends IDefaultRecipeProvider<SieveRegistry>{
+void registerSieveRecipeDefaults();};
+
 interface ICondenserDefaultRegistryProvider extends IDefaultRecipeProvider<CondenserRegistry>{};
 interface IHellmartDefaultRegistryProvider extends IDefaultRecipeProvider<HellmartRegistry>{};
 interface ICrucibleStoneDefaultRegistryProvider extends IDefaultRecipeProvider<CrucibleRegistry>{};

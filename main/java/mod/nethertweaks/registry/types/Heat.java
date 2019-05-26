@@ -7,13 +7,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 
-public class Dryable
+public class Heat
 {	
-	//Dry Helper
+	//Heat Helper
 	
 	@Override
 	public String toString() {
-		return "Dryable [item=" + item + ", value=" + value + "]";
+		return "Heat [item=" + item + ", value=" + value + "]";
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Dryable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dryable other = (Dryable) obj;
+		Heat other = (Heat) obj;
 		if (item == null) {
 			if (other.item != null)
 				return false;
@@ -44,26 +44,26 @@ public class Dryable
 		return true;
 	}
 
-	private ItemStack item;
+	private BlockInfo item;
 	private int value;
 	
-	public static Dryable getEMPTY() {
+	public static Heat getEMPTY() {
 		return EMPTY;
 	}
 
-	public static void setEMPTY(Dryable eMPTY) {
+	public static void setEMPTY(Heat eMPTY) {
 		EMPTY = eMPTY;
 	}
 
-	static Dryable EMPTY = new Dryable(ItemStack.EMPTY, 0);
+	static Heat EMPTY = new Heat(new BlockInfo(ItemStack.EMPTY), 0);
 	
-	public Dryable(ItemStack stack, int value)
+	public Heat(BlockInfo stack, int value)
 	{
 		this.item = stack;
 		this.value = value;
 	}
 	
-	public ItemStack getItem()
+	public BlockInfo getItem()
 	{
 		return this.item;
 	}

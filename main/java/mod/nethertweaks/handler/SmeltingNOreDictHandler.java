@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -54,6 +55,11 @@ public class SmeltingNOreDictHandler {
 		if(Config.enableElderTree) 		 OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
 		if(Config.enableElderTree) 		 OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
 		if(Config.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACKGRAVEL);
+		if(Config.enableSeed) {
+										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 1));
+										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 2));
+										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 3));
+		}
 		
     	if (Config.enableLiquidImpossibility)
     	{

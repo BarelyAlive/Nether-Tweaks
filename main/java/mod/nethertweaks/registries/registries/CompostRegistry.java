@@ -88,7 +88,7 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
     public void register(@Nonnull String name, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         Ingredient ingredient = new OreIngredientStoring(name);
         Compostable compostable = new Compostable(value, color, state);
-
+        
         if (oreRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
             LogUtil.error("Compost Ore Entry for " + name + " already exists, skipping.");
         else

@@ -3,6 +3,7 @@ package mod.nethertweaks;
 import java.io.File;
 import java.util.List;
 
+import mod.nethertweaks.items.Grabber;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -56,6 +57,7 @@ public class Config {
 	public static int[] allowedDims = {-1, 1};
 	public static boolean isHellworld;
 	public static boolean enableTeleport;
+	public static String[] grabberBlocks;
 	
 	//JSON
 	public static boolean enableJSONLoading;
@@ -120,9 +122,7 @@ public class Config {
 	{
 		Configuration config = new Configuration(new File(NetherTweaksMod.configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
-		
-		allowedDims 					= config.get("WorldType", "Allowed dimensions in Hellworld", allowedDims).getIntList();
-                
+		                
         burnTimeHellfayah 				= config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks.", 1600).getInt();
@@ -139,11 +139,11 @@ public class Config {
         
         ///Sieve
         sievesAutoOutput 				= config.get("Sieving", "sievesAutoOutput", false).getBoolean();
-        setFireToMacroUsers 			= config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
-        sieveSimilarRadius 				= config.get("Sieving", "sieveSimilarRadius", 2).getInt();
-        fakePlayersCanSieve 			= config.get("Mechanics", "fakePlayersCanSieve", false).getBoolean();
-        hellworldFeatures 				= config.get("Sieving", "setFireToMacroUsers", false).getBoolean();
-        flattenSieveRecipes 			= config.get("Sieving", "If enablednall mesh tiers can obtain the same", false).getBoolean();
+        setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users", false).getBoolean();
+        sieveSimilarRadius 				= config.get("Sieving", "Sieve Similar Radius", 2).getInt();
+        fakePlayersCanSieve 			= config.get("Sieving", "Fake players can sieve", false).getBoolean();
+        hellworldFeatures 				= config.get("Sieving", "Enable Hellowrld Features?", false).getBoolean();
+        flattenSieveRecipes 			= config.get("Sieving", "If enabled all mesh tiers can obtain the same", false).getBoolean();
         hasteIncreaseSpeed 				= config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
         enableSieveEfficiency 			= config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
         sieveEfficiencyMaxLevel 		= config.get("Sieving", "Max Level for sieve efficiency enchanting", 5).getInt();
@@ -153,26 +153,27 @@ public class Config {
         sieveLuckOfTheSeaMaxLevel 		= config.get("Sieving", "Max Level for sieve luck of the sea enchanting", 3).getInt();
         
         //Barrel
-        shouldBarrelsFillWithRain 		= config.get("Mechanics", "barrelsFillWithRain", true).getBoolean();
-        compostingTicks 				= config.get("Composting", "ticksToFormDirt", 600).getInt();
-        enableBarrelTransformLighting 	= config.get("Misc", "enableBarrelTransformLighting", true).getBoolean();
+        shouldBarrelsFillWithRain 		= config.get("Barrel", "Barrels fill with rain?", true).getBoolean();
+        compostingTicks 				= config.get("Barrel", "Ticks to form Dirt", 600).getInt();
+        enableBarrelTransformLighting 	= config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
         
         //Crucible
-        thinCrucibleModel			 	= config.get("Misc", "Do you want a hin crucible model?", true).getBoolean();
+        thinCrucibleModel			 	= config.get("Crucible", "Do you want a hin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
-        spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
-        spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
-        spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
+        spawnPig 						= config.getBoolean("Can Liquid Impossibility transform pigmans into pigs?", "Fluid", true, "");
+        spawnSkeleton 					= config.getBoolean("Can Liquid Impossibility transform wither skeletons into skeletons", "Fluid", true, "");
+        spawnSlime 						= config.getBoolean("Can Liquid Impossibility transform magma slimes into slimes?", "Fluid", true, "");
         spawnWaterMobs					= config.getBoolean("Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", "Fluid", true, "Water is wet, you know.");
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
         woodBarrelMaxTemp 				= config.get("World", "Hwo hot can a fluid be in a wodden barrel?", 301).getInt();
+        grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
-        enableJSONLoading 				= config.get("JSON", "Enable use of JSON configuration?", true).getBoolean();
+        enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this, to only load standard recipes");
         
         // Mod-Compatibility
         enableMooFluid 					= config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();

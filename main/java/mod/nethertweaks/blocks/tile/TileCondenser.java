@@ -73,6 +73,7 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
+				
 		if(!checkInv())
 		{
 			this.setWorkTime(0);
@@ -140,13 +141,11 @@ public class TileCondenser extends TileFluidInventory
 	{
 		ItemStack material = this.getStackInSlot(0);
 		ItemStack bucket = this.getStackInSlot(1);
-		if(CondenserRegistry.getDryable(material) == null) return;
-		int amount = CondenserRegistry.getDryable(material).getValue();
+		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
+		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
 		if(amount > 0)
-		{
 			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
-		}
 		
 		material.shrink(1);
 		return;
@@ -158,15 +157,17 @@ public class TileCondenser extends TileFluidInventory
     	ItemStack output = getStackInSlot(1);
     	
     	if(output.getCount() == output.getMaxStackSize()) return;
+    	if(!ItemStack.areItemsEqual(input, output) && !output.isEmpty()) return;
     	if(input.isEmpty()) return;
     	if(this.getTank().getFluidAmount() == 0) return;
     	
-		FluidStack input_stack = FluidUtil.getFluidContained(input);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(input_handler != null) {
-		    	if(!ItemStack.areItemsEqual(input, output) && output.getMaxStackSize() == output.getCount()) return;
-				if(FluidUtil.tryFluidTransfer(input_handler, this.getTank(), this.emptyRoom(), true) == null)return;
+		if(input_handler != null)
+		{
+			FluidStack f = FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
+			if(f == null) return;
+			
 				if(output.isEmpty()) {
 					setInventorySlotContents(1, input_handler.getContainer());
 					getStackInSlot(2).shrink(1);
@@ -222,13 +223,13 @@ public class TileCondenser extends TileFluidInventory
 	
 	private boolean checkInv()
 	{
+		if(calcMaxWorktime() == 0) return false;
 		if(this.getStackInSlot(0).isEmpty()) return false;
-		if(!CondenserRegistry.containsItem(getStackInSlot(0))) return false;
+		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		
-		Dryable result = CondenserRegistry.getDryable(getStackInSlot(0));
+		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
 		if(this.emptyRoom() == 0) return false;
-		if(getMaxworkTime() <= 0) return false;
 		
 		return true;
 	}
@@ -237,12 +238,17 @@ public class TileCondenser extends TileFluidInventory
 	{
 		int heat = getHeatRate();
 		int workTime = Config.dryTimeCondenser;
-		if(heat != 0) {
+		if (heat != 0) {
 			workTime *= 3;
 			workTime /= heat;
 			this.setMaxworkTime(workTime);
+			return workTime;
 		}
-		return workTime;	
+		else
+		{
+			this.setWorkTime(0);
+			return 0;
+		}
 	}
 	
 	@Override
@@ -252,7 +258,7 @@ public class TileCondenser extends TileFluidInventory
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
 		if(index == 0)
-			return CondenserRegistry.containsItem(stack);
+			return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		if(index == 1)
 			return false;
 		if(index == 2)

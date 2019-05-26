@@ -20,4 +20,8 @@ public class CreativeTabNTM extends CreativeTabs
 		return Konstanten.HELLFAYAH;
 	}
 
+	@Override
+	public boolean hasSearchBar() {
+		return true;
+	}
 }
