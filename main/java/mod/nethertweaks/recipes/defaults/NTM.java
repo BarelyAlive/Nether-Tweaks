@@ -120,9 +120,9 @@ public class NTM implements IRecipeDefaults
     {
     	//Dolls
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
-			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(ItemHandler.ITEMBASE, 1, 8), 3);
+			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(ItemHandler.ITEMBASE, 1, 8), 10);
+    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
     }
     
     @Override
@@ -170,6 +170,12 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Items.SLIME_BALL, 1, 0), 112);	
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN), 1, 0), 250);	
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS), 1, 0), 300);
+		
+		registry.register(new ItemStack(Blocks.PACKED_ICE), 9000);
+        registry.register(new ItemStack(Blocks.ICE), 1000);
+        registry.register(new ItemStack(Blocks.SNOW), 1000);
+        registry.register(new ItemStack(Items.SNOWBALL), 250);
+        registry.register(new ItemStack(Blocks.SNOW_LAYER), 125);
 		
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);
@@ -361,9 +367,7 @@ public class NTM implements IRecipeDefaults
         // Vanilla fluids are weird, the "flowing" variant is simply a temporary state of checking if it can flow.
         // So, once the lava has spread out all the way, it will all actually be "still" lava.
         // Thanks Mojang <3
-    	
-    	System.out.println((new BlockInfo(Blocks.LAVA)).toString());
-    	
+    	    	
         registry.register(new BlockInfo(Blocks.FLOWING_LAVA), 3);
         registry.register(new BlockInfo(Blocks.LAVA), 3);
         registry.register(new BlockInfo(Blocks.FIRE), 4);
@@ -381,7 +385,6 @@ public class NTM implements IRecipeDefaults
             }
         }
 
-        // TODO Move HeatRegistry to Ingredient
         registry.register("blockUranium", 20);
         registry.register("blockBlaze", 10);
         registry.register("torch", 1); // Torch OreDict
@@ -399,7 +402,9 @@ public class NTM implements IRecipeDefaults
     public void registerFluidOnTop(FluidOnTopRegistry registry)
     {
         registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.COBBLESTONE.getDefaultState()));
+        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+        registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+        registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
     }
 
     @Override
@@ -451,7 +456,7 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
-    	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY);
+    	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
     }
 
     @Override

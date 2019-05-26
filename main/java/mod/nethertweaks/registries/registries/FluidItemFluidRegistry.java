@@ -42,6 +42,14 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
     }
 
+    public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid, int transformTime) {
+        registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime));
+    }
+
+    public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid, int transformTime, boolean consumable) {
+        registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
+    }
+
     public String getFluidForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
         ItemInfo info = new ItemInfo(stack);
 
@@ -52,6 +60,30 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         }
 
         return null;
+    }
+
+    public int getTransformTime(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
+        ItemInfo info = new ItemInfo(stack);
+
+        for (FluidItemFluid transformer : registry) {
+            if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant())) {
+                return transformer.getTransformTime();
+            }
+        }
+
+        return 0;
+    }
+    
+    public boolean getConsumable(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
+        ItemInfo info = new ItemInfo(stack);
+
+        for (FluidItemFluid transformer : registry) {
+            if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant())) {
+                return transformer.isConsumable();
+            }
+        }
+
+        return false;
     }
 
     @Override
