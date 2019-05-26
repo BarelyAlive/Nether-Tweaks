@@ -97,6 +97,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if(tileentity == null) return;
     	
+        //Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
 	        b = b.withProperty(ISBURNING, true);
 	        worldIn.setBlockState(pos, b, 3);
