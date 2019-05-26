@@ -87,11 +87,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 		if (itemStack.isEmpty())
             return;
 
-        //Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
         Ingredient ingredient = Ingredient.fromStacks(itemStack);
-        
-        System.out.println(itemStack.getItem().getRegistryName());
-        System.out.println(ingredient.getMatchingStacks());
         
         if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
             LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
@@ -134,8 +130,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
                 Dryable dryable = new Dryable(stack, value);
         		register(ingredient, dryable);
         	}
-        }
-        
+        }  
 	}
 
 	@Override

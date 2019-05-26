@@ -14,6 +14,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
+import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
@@ -181,33 +182,6 @@ public class NTM implements IRecipeDefaults
 		registry.register("listAllfishraw", 63);
 		registry.register("listAllfishcooked", 63);
 		registry.register("listAllfishfresh", 63);
-		
-		/*
-		for(ItemStack sap : OreDictionary.getOres("treeSapling"))
-			registry.register(sap, 100);
-		for(ItemStack sap : OreDictionary.getOres("treeLeaves"))
-			registry.register(sap, 100);
-		for(ItemStack sap : OreDictionary.getOres("vine"))
-			registry.register(sap, 125);
-		for (ItemStack stack: OreDictionary.getOres("listAllfruit"))
-			registry.register(stack, 80);
-		for (ItemStack stack: OreDictionary.getOres("listAllveggie"))
-			registry.register(stack, 80);
-		for (ItemStack stack: OreDictionary.getOres("listAllGrain"))
-			registry.register(stack, 42);
-		for (ItemStack stack: OreDictionary.getOres("listAllseed"))
-			registry.register(stack, 42);
-		for (ItemStack stack: OreDictionary.getOres("listAllmeatraw"))
-			registry.register(stack, 63);
-		for (ItemStack stack: OreDictionary.getOres("listAllmeatcooked"))
-			registry.register(stack, 63);
-		for (ItemStack stack: OreDictionary.getOres("listAllfishraw"))
-			registry.register(stack, 63);
-		for (ItemStack stack: OreDictionary.getOres("listAllfishcooked"))
-			registry.register(stack, 63);
-		for (ItemStack stack: OreDictionary.getOres("listAllfishfresh"))
-			registry.register(stack, 63);
-			*/
     }
     
     @Override
@@ -405,9 +379,9 @@ public class NTM implements IRecipeDefaults
         }
 
         // TODO Move HeatRegistry to Ingredient
-//        registry.register(new OreStoringIngredient("blockUranium", 20);
-//        registry.register(new OreStoringIngredient("blockBlaze", 10);
-//        registry.register(new OreStoringIngredient("torch", 1); // Torch OreDict
+        registry.register("blockUranium", 20);
+        registry.register("blockBlaze", 10);
+        registry.register("torch", 1); // Torch OreDict
     }
 
     @Override
