@@ -73,6 +73,7 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
+				
 		if(!checkInv())
 		{
 			this.setWorkTime(0);
@@ -222,13 +223,13 @@ public class TileCondenser extends TileFluidInventory
 	
 	private boolean checkInv()
 	{
+		if(calcMaxWorktime() == 0) return false;
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
 		if(this.emptyRoom() == 0) return false;
-		calcMaxWorktime();
 		
 		return true;
 	}
@@ -236,17 +237,17 @@ public class TileCondenser extends TileFluidInventory
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		int maxWorktime = Config.dryTimeCondenser;
-		if(heat != 0) {
-			maxWorktime *= 3;
-			maxWorktime /= heat;
-			this.setMaxworkTime(maxWorktime);
-			return maxWorktime;	
+		int workTime = Config.dryTimeCondenser;
+		if (heat != 0) {
+			workTime *= 3;
+			workTime /= heat;
+			this.setMaxworkTime(workTime);
+			return workTime;
 		}
 		else
 		{
 			this.setWorkTime(0);
-			return 0;	
+			return 0;
 		}
 	}
 	

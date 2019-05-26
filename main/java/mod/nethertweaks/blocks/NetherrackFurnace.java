@@ -46,6 +46,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -83,11 +84,10 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     }
     
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
-    {
-    	//Set light to normal if destroyed. Otherwise next furnace at that pos will be LIT
-    	//No pun intended
-    	setState(false, worldIn, pos);
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
+    { 	
+    	if(state.getValue(ISBURNING)) return 12;
+    	return 0;
     }
     
     public static void setState(boolean active, World worldIn, BlockPos pos)
@@ -95,15 +95,14 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	IBlockState b = worldIn.getBlockState(pos);
     	if(b == Blocks.AIR.getDefaultState()) return;
         TileEntity tileentity = worldIn.getTileEntity(pos);
+        if(tileentity == null) return;
     	
 		if(active && !b.getValue(ISBURNING)) {
-	   		b.getBlock().setLightLevel(0.875F);
 	        b = b.withProperty(ISBURNING, true);
 	        worldIn.setBlockState(pos, b, 3);
 	        validate(worldIn, pos, tileentity);
 		}
 		else if(!active && b.getValue(ISBURNING)) {
-    		b.getBlock().setLightLevel(0.0F);
     		b = b.withProperty(ISBURNING, false);
 	        worldIn.setBlockState(pos, b, 3);
 	        validate(worldIn, pos, tileentity);

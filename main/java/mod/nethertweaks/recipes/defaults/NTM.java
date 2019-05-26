@@ -361,6 +361,9 @@ public class NTM implements IRecipeDefaults
         // Vanilla fluids are weird, the "flowing" variant is simply a temporary state of checking if it can flow.
         // So, once the lava has spread out all the way, it will all actually be "still" lava.
         // Thanks Mojang <3
+    	
+    	System.out.println((new BlockInfo(Blocks.LAVA)).toString());
+    	
         registry.register(new BlockInfo(Blocks.FLOWING_LAVA), 3);
         registry.register(new BlockInfo(Blocks.LAVA), 3);
         registry.register(new BlockInfo(Blocks.FIRE), 4);

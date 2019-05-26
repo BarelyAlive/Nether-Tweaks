@@ -5,7 +5,7 @@ import mod.sfhcore.util.BlockInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
-public interface IHeatRegistry extends IRegistryMap<Ingredient, Heat> {
+public interface IHeatRegistry extends IRegistryMap<String, Integer> {
 
 	public void register (ItemStack stack, int heatAmount);
 	public void register (String name, int heatAmount);
