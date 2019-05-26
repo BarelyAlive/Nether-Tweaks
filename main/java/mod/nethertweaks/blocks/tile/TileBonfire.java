@@ -9,8 +9,11 @@ import java.util.UUID;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.mojang.realmsclient.dto.WorldDownload;
+
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldSaveData;
+import mod.nethertweaks.world.WorldSpawnLoc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,38 +27,30 @@ import scala.collection.script.Remove;
 
 public class TileBonfire extends TileEntity {
 
-	private Map<UUID, BlockPos> spawnLocs;
+	private ArrayList<UUID> registeredPlayer;
 	
 	public TileBonfire()
 	{
-		this.spawnLocs = new HashMap<UUID, BlockPos>();
+		this.registeredPlayer = new ArrayList<UUID>();
 		
 	}
 	
 	public void deleteSpawnLocationsIfDestroyed() {
-		/*
-		for(Map.Entry<UUID, BlockPos> entry : spawnLocs.entrySet())
+		if (this.registeredPlayer.size() != 0)
 		{
-			EntityPlayer player = getPlayer(entry.getKey());
-			
-			int x = player.getEntityData().getInteger(WorldHandler.coodX);
-			int y = player.getEntityData().getInteger(WorldHandler.coodY);
-			int z = player.getEntityData().getInteger(WorldHandler.coodZ);
-			
-			player.bedLocation = new BlockPos(x, y, z);
-			
-			for(Map.Entry<UUID, BlockPos> entryG : WorldSaveData.spawnLocas.entrySet()) {
-				if(entry == entryG) {
-					removeGlobalEntry(entry.getKey(), entry.getValue());
+			for(UUID entry : this.registeredPlayer)
+			{
+				if (WorldSpawnLoc.spawnLocas.containsKey(entry))
+				{
+					EntityPlayer player = getPlayer(entry);
+					
+					if(world.isRemote)
+						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+					
+					WorldSpawnLoc.spawnLocas.remove(entry);
 				}
 			}
-			
-			if(world.isRemote)
-				player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 		}
-				*/
-	
-		this.spawnLocs.clear();
 	}
 	
 	private EntityPlayer getPlayer(UUID uuid)
@@ -68,7 +63,7 @@ public class TileBonfire extends TileEntity {
 	}
 	
 	public void setSpawnLocationForPlayer(EntityPlayer player, BlockPos pos) {
-		this.spawnLocs.put(getUUID(player), new BlockPos(player));
+		this.registeredPlayer.add(getUUID(player));
 		if(world.isRemote)
 		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + player.getPosition() + "!"));
 		
@@ -79,41 +74,37 @@ public class TileBonfire extends TileEntity {
 	
 	public BlockPos getSpawnLocationForPlayer(EntityPlayer player)
 	{
-		if(this.spawnLocs.containsKey(getUUID(player))) {
-			return this.spawnLocs.get(getUUID(player));
+		if(WorldSpawnLoc.spawnLocas.containsKey(getUUID(player))) {
+			return WorldSpawnLoc.spawnLocas.get(getUUID(player));
 		}
 		return null;
 	}
 	
 	private void addGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldSaveData.spawnLocas.put(uuid, pos);
+		WorldSpawnLoc.spawnLocas.put(uuid, pos);
 	}
 	
 	private void removeGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldSaveData.spawnLocas.remove(uuid, pos);
+		WorldSpawnLoc.spawnLocas.remove(uuid, pos);
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
 		NBTTagList tagList = new NBTTagList();
-		for(Map.Entry<UUID, BlockPos> entry : WorldSaveData.spawnLocas.entrySet()) {
+		for(UUID entry : this.registeredPlayer) {
 			
 			NBTTagCompound tag = new NBTTagCompound();
 			
-			tag.setLong("NTM.leastSignificantBits", entry.getKey().getLeastSignificantBits());
-			tag.setLong("NTM.mostSignificantBits", entry.getKey().getMostSignificantBits());
-			
-			tag.setInteger("NTM.PosX", entry.getValue().getX());
-			tag.setInteger("NTM.PosY", entry.getValue().getY());
-			tag.setInteger("NTM.PosZ", entry.getValue().getZ());
+			tag.setLong("NTM.leastSignificantBits", entry.getLeastSignificantBits());
+			tag.setLong("NTM.mostSignificantBits", entry.getMostSignificantBits());
 			
 			tagList.appendTag(tag);
 			
 		}	
-		nbt.setTag("BonFireList", tagList);
+		nbt.setTag("UserBonefireList", tagList);
 		return super.writeToNBT(nbt);
 	}
 	
@@ -125,7 +116,7 @@ public class TileBonfire extends TileEntity {
 		long mBits;
 		UUID index;
 		int x, y, z;
-		NBTTagList nbtList = nbt.getTagList("BonFireList", 10);
+		NBTTagList nbtList = nbt.getTagList("UserBonefireList", 10);
 		
 		for(int i = 0; i < nbtList.tagCount(); i++) {
 			NBTTagCompound tag = (NBTTagCompound) nbtList.getCompoundTagAt(i);
@@ -134,11 +125,7 @@ public class TileBonfire extends TileEntity {
 			mBits = tag.getLong("NTM.mostSignificantBits");
 			index = new UUID(mBits, lBits);
 			
-			x = tag.getInteger("NTM.PosX");
-			y = tag.getInteger("NTM.PosY");
-			z = tag.getInteger("NTM.PosZ");
-			
-			WorldSaveData.spawnLocas.put(index, new BlockPos(x, y, z));			
+			this.registeredPlayer.add(index);
 		}
 	}
 }

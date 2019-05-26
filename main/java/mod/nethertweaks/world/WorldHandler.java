@@ -4,6 +4,7 @@ import com.ibm.icu.impl.Differ;
 
 import mod.nethertweaks.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NotNull;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Teleporter.PortalPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -23,6 +25,7 @@ import net.minecraft.world.biome.BiomeHell;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -43,7 +46,7 @@ public class WorldHandler{
 
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(player);
-    		if (!WorldSaveData.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
+    		if (!WorldSpawnLoc.spawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
@@ -63,8 +66,9 @@ public class WorldHandler{
     		}
     		else
     		{
-    			BlockPos pos = WorldSaveData.spawnLocas.get(player.getUUID(player.getGameProfile()));
-				player.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), player.rotationYaw, player.rotationPitch);
+    			BlockPos pos = WorldSpawnLoc.spawnLocas.get(player.getUUID(player.getGameProfile()));
+    			System.out.println(pos);
+				player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
     		}
 		}
     }
@@ -88,32 +92,30 @@ public class WorldHandler{
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event)
     {
-    	if(!event.getWorld().isRemote)
-    	{
+    	//if(!event.getWorld().isRemote)
+    	//{
     		//Had to use ID instead of "instanceof EntityCow" because it could cause problems with MooFluids etc.
-	    	if(event.getTarget().getEntityId() == 92)
+	    	if(event.getTarget() instanceof EntityCow)
 	    	{
 	    		if(! NotNull.checkNotNull(event.getItemStack()))
 	    			return;
-
+	    		
 	    		ItemStack stack = event.getItemStack();
 	    		Item item = stack.getItem();
 	    		EntityPlayer player = event.getEntityPlayer();
-
-	    		/*
-		    	if(item == BucketNFluidHandler.BUCKETSTONE)
+	    		
+		    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
 		    	{
 		    		stack.shrink(1);
-		    		player.setHeldItem(event.getHand(), new ItemStack(BucketNFluidHandler.BUCKETSTONEMILK));
+		    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
 		    	}
-		    	else if(item == BucketNFluidHandler.BUCKETWOOD)
+		    	else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
 		    	{
 		    		stack.shrink(1);
-		    		player.setHeldItem(event.getHand(), new ItemStack(BucketNFluidHandler.BUCKETWOODMILK));
+		    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
 		    	}
-		    	*/
 	    	}
-    	}
+    	//}
     }
 
     //WORLD DATA
@@ -123,6 +125,8 @@ public class WorldHandler{
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
+			
+			WorldSpawnLoc.setSpawnLocations(worldsave.getSpawnLocations());
 		}
 	}
 
@@ -131,6 +135,9 @@ public class WorldHandler{
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
+			
+			worldsave.setSpawnLocations(WorldSpawnLoc.getSpawnLocations());
+			worldsave.markDirty();
 		}
 	}
 
@@ -139,6 +146,9 @@ public class WorldHandler{
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
+			
+			worldsave.setSpawnLocations(WorldSpawnLoc.getSpawnLocations());
+			worldsave.markDirty();
 		}
 	}
 	//*********************************************************************************************************************

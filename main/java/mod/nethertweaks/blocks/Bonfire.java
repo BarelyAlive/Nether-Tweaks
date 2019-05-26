@@ -31,6 +31,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -137,6 +138,31 @@ public class Bonfire extends BlockContainer {
         }
     }
     */
+	
+	@Override
+	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+		super.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
+		this.onBlockDestroy(worldIn, pos);
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
+		super.onBlockDestroyedByPlayer(worldIn, pos, state);
+		this.onBlockDestroy(worldIn, pos);
+	}
+	
+	private void onBlockDestroy(World worldIn, BlockPos pos)
+	{
+		if (!worldIn.isRemote) return;
+		
+		if (worldIn.getTileEntity(pos) == null) return;
+		
+		if (!(worldIn.getTileEntity(pos) instanceof TileBonfire)) return;
+		
+		TileBonfire bonfire = (TileBonfire) worldIn.getTileEntity(pos);
+		
+		bonfire.deleteSpawnLocationsIfDestroyed();
+	}
 	
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
