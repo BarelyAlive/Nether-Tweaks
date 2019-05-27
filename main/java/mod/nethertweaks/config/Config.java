@@ -49,7 +49,6 @@ public class Config
 	public static boolean thinCrucibleModel;
 	
 	//Liquid Impossibility
-	public static boolean spawnPig;
 	public static boolean spawnSkeleton;
 	public static boolean spawnSlime;
 	public static boolean doesLIVaporize = false;
@@ -162,7 +161,6 @@ public class Config
         
         //Liquid Impossibility
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
-        spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
         spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
         spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
         spawnWaterMobs					= config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();

@@ -83,6 +83,11 @@
         "textures": {
           "layer0": "nethertweaksmod:items/doll_villager"
         }
+      },
+      "pig": {
+        "textures": {
+          "layer0": "nethertweaksmod:items/doll_pig"
+        }
       }
     }
    }

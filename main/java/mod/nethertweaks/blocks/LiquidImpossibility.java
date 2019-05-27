@@ -76,24 +76,6 @@ public class LiquidImpossibility extends BlockFluidClassic{
 		if (world.isRemote) return;		
 		if (entity.isDead) return;
 		
-		if (Config.spawnPig) {
-			if (entity instanceof EntityPigZombie && !((EntityPigZombie) entity).isAngry()) {
-
-				EntityPig entitypig = new EntityPig(world);
-				entitypig.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
-				entitypig.setNoAI(entitypig.isAIDisabled());
-
-				if (entitypig.hasCustomName()) {
-					entitypig.setCustomNameTag(entitypig.getCustomNameTag());
-					entitypig.setAlwaysRenderNameTag(entitypig.getAlwaysRenderNameTag());
-				}
-				entitypig.setHealth(entitypig.getMaxHealth());
-
-				world.spawnEntity(entitypig);
-				entity.setDead();
-			} 
-		}
-		
 		if (Config.spawnSkeleton) {
 			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null)
 			{
