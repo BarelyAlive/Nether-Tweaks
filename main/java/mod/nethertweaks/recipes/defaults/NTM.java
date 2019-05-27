@@ -30,6 +30,7 @@ import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
+import mod.nethertweaks.registry.types.HammerReward;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
@@ -149,7 +150,7 @@ public class NTM implements IRecipeDefaults
 		
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.BROWN_MUSHROOM)), 63);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.RED_MUSHROOM)), 63);
-		registry.register(new ItemStack(Items.MELON), 9);
+		registry.register(new ItemStack(Items.MELON), 38);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.MELON_BLOCK)), 350);	
 		registry.register(new ItemStack(Items.POISONOUS_POTATO), 42);
 		registry.register(new ItemStack(Items.PORKCHOP), 63);
@@ -324,7 +325,7 @@ public class NTM implements IRecipeDefaults
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.IRON.getID());
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.DIAMOND.getID());
         }
-
+        	
         getLeavesSapling().forEach((leaves, sapling) ->
         {
             float chance = 20f / 100f;
@@ -353,8 +354,13 @@ public class NTM implements IRecipeDefaults
     {
     	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACKGRAVEL, 1), 0, 1.0F, 0.0F);
     	registry.register(BlockHandler.NETHERRACKGRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
+    	registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
-        registry.register("gravel", new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F);
+        for(ItemStack block : OreDictionary.getOres("gravel"))
+        {
+        	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACKGRAVEL))
+        		registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
+        }
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);
 
         // Hammer concrete into concrete powder
@@ -452,9 +458,10 @@ public class NTM implements IRecipeDefaults
 
         // Vanilla Concrete
         for (int meta = 0; meta < 16; meta++)
+        {
             registry.register(FluidRegistry.WATER, new ItemInfo(new ItemStack(Blocks.CONCRETE_POWDER, 1, meta)), new ItemInfo(new ItemStack(Blocks.CONCRETE, 1, meta)));
-        for (int meta = 0; meta < 16; meta++)
             registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(new ItemStack(Blocks.CONCRETE_POWDER, 1, meta)), new ItemInfo(new ItemStack(Blocks.CONCRETE, 1, meta)));
+        }
     }
 
     @Override
@@ -487,7 +494,8 @@ public class NTM implements IRecipeDefaults
         else return chance / 100f * (float) Config.normalDropPercent;
     }
 
-    private static Map<BlockInfo, BlockInfo> getLeavesSapling(){
+    private static Map<BlockInfo, BlockInfo> getLeavesSapling()
+    {
         Map<BlockInfo, BlockInfo> saplingMap = new LinkedHashMap<>();
         saplingMap.put(new BlockInfo(Blocks.LEAVES, 0), new BlockInfo(Blocks.SAPLING, 0));
         saplingMap.put(new BlockInfo(Blocks.LEAVES, 1), new BlockInfo(Blocks.SAPLING, 1));
@@ -495,6 +503,8 @@ public class NTM implements IRecipeDefaults
         saplingMap.put(new BlockInfo(Blocks.LEAVES, 3), new BlockInfo(Blocks.SAPLING, 3));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 0), new BlockInfo(Blocks.SAPLING, 4));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 1), new BlockInfo(Blocks.SAPLING, 5));
+        //Support your own stuff!
+        saplingMap.put(new BlockInfo(BlockHandler.ELDERLEAVES), new BlockInfo(BlockHandler.ELDERSAPLING));
 
         return saplingMap;
     }
