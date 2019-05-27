@@ -6,10 +6,10 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.Fluid;
 import mod.sfhcore.helper.FluidStateMapper;
 import mod.sfhcore.proxy.IVariantProvider;

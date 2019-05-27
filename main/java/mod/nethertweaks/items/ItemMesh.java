@@ -8,9 +8,9 @@ import javax.annotation.Nonnull;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;

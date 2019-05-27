@@ -27,12 +27,12 @@ import p455w0rd.danknull.util.DankNullUtils;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemMesh;
 import mod.sfhcore.util.ItemStackItemHandler;
 import mod.sfhcore.util.Util;

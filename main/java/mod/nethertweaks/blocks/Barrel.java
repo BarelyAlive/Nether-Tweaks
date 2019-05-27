@@ -19,14 +19,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.apache.commons.lang3.StringUtils;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.barrel.modes.block.BarrelModeBlock;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluid;
 import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluidTransform;
 import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.Util;
 
 import javax.annotation.Nonnull;

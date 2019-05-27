@@ -1,6 +1,6 @@
 package mod.nethertweaks.registry.types;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

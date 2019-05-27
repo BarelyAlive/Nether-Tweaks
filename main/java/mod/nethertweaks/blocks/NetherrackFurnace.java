@@ -4,13 +4,13 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.handler.GuiHandler;
 import mod.sfhcore.network.MessageCheckLight;

@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.Sieve.MeshType;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
@@ -171,11 +171,12 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN), 1, 0), 250);	
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS), 1, 0), 300);
 		
-		registry.register(new ItemStack(Blocks.PACKED_ICE), 9000);
-        registry.register(new ItemStack(Blocks.ICE), 1000);
-        registry.register(new ItemStack(Blocks.SNOW), 1000);
+		//Back to water 1:1
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PACKED_ICE)), 9000);
+        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.ICE)), 1000);
+        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW)), 1000);
         registry.register(new ItemStack(Items.SNOWBALL), 250);
-        registry.register(new ItemStack(Blocks.SNOW_LAYER), 125);
+        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW_LAYER)), 125);
 		
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);

@@ -18,8 +18,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import scala.tools.nsc.doc.model.ModelFactory.NonTemplateMemberImpl;
 import io.netty.channel.nio.NioTask;
-import mod.nethertweaks.Config;
 import mod.nethertweaks.Konstanten;
+import mod.nethertweaks.config.Config;
 
 
 public class SmeltingNOreDictHandler {

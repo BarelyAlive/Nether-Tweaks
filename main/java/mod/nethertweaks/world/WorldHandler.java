@@ -2,7 +2,7 @@ package mod.nethertweaks.world;
 
 import com.ibm.icu.impl.Differ;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.sfhcore.helper.NotNull;
 import net.minecraft.entity.Entity;

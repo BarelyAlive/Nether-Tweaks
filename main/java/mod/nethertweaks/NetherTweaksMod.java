@@ -13,6 +13,7 @@ import mod.nethertweaks.client.renderers.RenderCrucible;
 import mod.nethertweaks.client.renderers.RenderProjectileStone;
 import mod.nethertweaks.client.renderers.RenderSieve;
 import mod.nethertweaks.compatibility.Compatibility;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.BlockHandler;

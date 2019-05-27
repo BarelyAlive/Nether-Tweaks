@@ -1,7 +1,7 @@
 package mod.nethertweaks.compatibility;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.recipes.defaults.TinkersConstruct;
 import net.minecraftforge.fml.common.Loader;

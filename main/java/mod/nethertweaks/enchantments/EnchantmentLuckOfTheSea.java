@@ -1,7 +1,7 @@
 package mod.nethertweaks.enchantments;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemMesh;
 import mod.sfhcore.registries.Registry;
 import net.minecraft.enchantment.Enchantment;

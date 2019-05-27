@@ -1,7 +1,7 @@
 package mod.nethertweaks.blocks;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.BlockGravel;
 
 public class NetherrackGravel extends BlockGravel{

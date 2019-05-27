@@ -24,9 +24,9 @@ import javax.annotation.Nonnull;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.proxy.IVariantProvider;
 
 public class CrucibleStone extends CrucibleBase implements INames

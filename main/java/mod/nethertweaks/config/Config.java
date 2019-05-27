@@ -1,14 +1,15 @@
-package mod.nethertweaks;
+package mod.nethertweaks.config;
 
 import java.io.File;
 import java.util.List;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.Grabber;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class Config {
-			
+public class Config
+{		
 	//int
 	public static int endDim;
 	public static int nethDim;
@@ -26,22 +27,23 @@ public class Config {
 	//Sieve
 	public static boolean sievesAutoOutput;
 	public static boolean setFireToMacroUsers;
-	public static int sieveSimilarRadius;
 	public static boolean fakePlayersCanSieve;
 	public static boolean hellworldFeatures;
 	public static boolean flattenSieveRecipes;
 	public static boolean hasteIncreaseSpeed;
 	public static boolean enableSieveEfficiency;
-	public static int sieveEfficiencyMaxLevel;
 	public static boolean enableSieveFortune;
-	public static int sieveFortuneMaxLevel;
 	public static boolean enableSieveLuckOfTheSea;
 	public static int sieveLuckOfTheSeaMaxLevel;
+	public static int sieveSimilarRadius;
+	public static int sieveFortuneMaxLevel;
+	public static int sieveEfficiencyMaxLevel;
 	
 	//Barrel
 	public static boolean shouldBarrelsFillWithRain;
 	public static boolean enableBarrelTransformLighting;
 	public static int compostingTicks;
+	public static int woodBarrelMaxTemp;
 	
 	//Crucible
 	public static boolean thinCrucibleModel;
@@ -61,15 +63,11 @@ public class Config {
 	
 	//JSON
 	public static boolean enableJSONLoading;
-	public static int woodBarrelMaxTemp;
 	
 	// Mod-Compatibility
-	public static boolean enableMooFluid;
-	public static List<String> fluidList;
-	public static boolean fluidListIsBlackList;
 	public static int fillAmount;
-	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
-	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
+	public static boolean enableMooFluid;
+	public static boolean fluidListIsBlackList;
 	public static boolean generalItemHandlerCompat;
 	public static boolean dankNullIntegration;
 	public static boolean preventUnidict;
@@ -77,6 +75,8 @@ public class Config {
 	public static String dustBaseOreDictName;
 	public static String pieceBaseOreDictName;
 	public static String ingotBaseOreDictName;
+	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
+	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
 	public static boolean enableMultiBlock;
@@ -123,22 +123,22 @@ public class Config {
 		Configuration config = new Configuration(new File(NetherTweaksMod.configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 		                
-        burnTimeHellfayah 				= config.get("Tweak", "Duration of Hellfayah", 12800).getInt();
-        burnTimeHellfayahBlock 			= config.get("Tweak", "Duration of Hellfayah blocks", 128000).getInt();
-        burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks.", 1600).getInt();
-        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks.", 2400).getInt();
-        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks.", 6000).getInt();
+        burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
+        burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
+        burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
+        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
+        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
                         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
         enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "Squares have edges, you know.");
         
         //Ore
-		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "OreDictOreChunks", true).getBoolean();
-		shouldOreDictOreDusts 			= config.get("Compatibilitiy", "OreDictOreDusts", true).getBoolean();
+		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "Enable OreDict Ore Chunks?", true).getBoolean();
+		shouldOreDictOreDusts 			= config.get("Compatibilitiy", "Enable OreDict Ore Dusts?", true).getBoolean();
         
         ///Sieve
-        sievesAutoOutput 				= config.get("Sieving", "sievesAutoOutput", false).getBoolean();
+        sievesAutoOutput 				= config.get("Sieving", "Sieve Auto output?", false).getBoolean();
         setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users", false).getBoolean();
         sieveSimilarRadius 				= config.get("Sieving", "Sieve Similar Radius", 2).getInt();
         fakePlayersCanSieve 			= config.get("Sieving", "Fake players can sieve", false).getBoolean();
@@ -162,10 +162,10 @@ public class Config {
         
         //Liquid Impossibility
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
-        spawnPig 						= config.getBoolean("Can Liquid Impossibility transform pigmans into pigs?", "Fluid", true, "");
-        spawnSkeleton 					= config.getBoolean("Can Liquid Impossibility transform wither skeletons into skeletons", "Fluid", true, "");
-        spawnSlime 						= config.getBoolean("Can Liquid Impossibility transform magma slimes into slimes?", "Fluid", true, "");
-        spawnWaterMobs					= config.getBoolean("Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", "Fluid", true, "Water is wet, you know.");
+        spawnPig 						= config.get("Fluid", "Can Liquid Impossibility transform pigmans into pigs?", true).getBoolean();
+        spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
+        spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
+        spawnWaterMobs					= config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
@@ -173,16 +173,16 @@ public class Config {
         grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
-        enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this, to only load standard recipes");
+        enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON Confugration causes problems");
         
-        // Mod-Compatibility
-        enableMooFluid 					= config.get("MooFluids", "Enable Moo-Fluids-Compatibility", true).getBoolean();
+        //Mod-Compatibility
+        enableMooFluid 					= config.get("Compatibility", "Enable Moo-Fluids-Compatibility", true).getBoolean();
         fillAmount 						= config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
-        rubberSeed 						= config.getStringList("RubberSeeds", "The rubber saplings ntm should support", rubberSeed, "Leaves are green, you know.");
-        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compat", oreDictPreferenceOrder, "Coffe has caffeine, you know.");
+        rubberSeed 						= config.getStringList("The rubber saplings ntm should support", "Compatibility", rubberSeed, "Leaves are green, you know.");
+        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "Coffe has caffeine, you know.");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
-        dankNullIntegration 			= config.get("DankNullIntegration", "Enable Dank-Null Integration?", true).getBoolean();
-        preventUnidict 					= config.get("PreventUnidict", "Enable Unidictionary?", true).getBoolean();
+        dankNullIntegration 			= config.get("Compatibility", "Enable Dank-Null Integration?", true).getBoolean();
+        preventUnidict 					= config.get("Compatibility", "Enable Unidictionary?", true).getBoolean();
     	chunkBaseOreDictName 			= config.get("ChunkBaseName", "Base Name for Chunks", "Chunk").getString();
     	dustBaseOreDictName 			= config.get("DustBaseName", "Base Name for Dusts", "Dust").getString();
     	pieceBaseOreDictName 			= config.get("PieceBaseName", "Base Name for Pieces", "Piece").getString();
@@ -190,45 +190,45 @@ public class Config {
         
     	//BlockEnable
     	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiBlock 				= config.getBoolean("Enable Hellfayah Block, Ore & Salt?", "Blocks", true, "");
-    	enableDust 						= config.getBoolean("Enable Dust?", "Blocks", true, "");
-    	enableBarrel 					= config.getBoolean("Enable Barrel?", "Blocks", true, "");
-    	enableBonfire 					= config.getBoolean("Enable Bonfire?", "Blocks", true, "");
-    	enableCondenser 				= config.getBoolean("Enable Condenser?", "Blocks", true, "");
-    	enableStwH 						= config.getBoolean("Enable StwH?", "Blocks", true, "");
-    	enableFreezer 					= config.getBoolean("Enable Freezer?", "Blocks", true, "");
-    	enableHellmart 					= config.getBoolean("Enable Hellmart?", "Blocks", true, "");
-    	enableLiquidImpossibility 		= config.getBoolean("Enable Liquid Impossibility?", "Blocks", true, "");
-    	enableMeanVine 					= config.getBoolean("Enable Mean Vines?", "Blocks", true, "");
-    	enableElderTree 				= config.getBoolean("Enable Elder Tree?", "Blocks", true, "");
-    	enableNetherrackFurnace 		= config.getBoolean("Enable Elderrack Furnace?", "Blocks", true, "");
-    	enableNetherrackGravel			= config.getBoolean("Enable Netherrack Gravel?", "Blocks", true, "");
-    	enableSieve 					= config.getBoolean("Enable Sieve?", "Blocks", true, "");
-    	enableCrucible 					= config.getBoolean("Enable Crucible?", "Blocks", true, "");
+    	enableMultiBlock 				= config.get("Blocks", "Enable Hellfayah Block, Ore & Salt?", true).getBoolean();
+    	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
+    	enableBarrel 					= config.get("Blocks", "Enable Barrel?", true).getBoolean();
+    	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
+    	enableCondenser 				= config.get("Blocks", "Enable Condenser?", true).getBoolean();
+    	enableStwH 						= config.get("Blocks", "Enable Stairway to Heaven?", true).getBoolean();
+    	enableFreezer 					= config.get("Blocks", "Enable Freezer?", true).getBoolean();
+    	enableHellmart 					= config.get("Blocks", "Enable Hellmart?", true).getBoolean();
+    	enableLiquidImpossibility 		= config.get("Blocks", "Enable Liquid Impossibility?", true).getBoolean();
+    	enableMeanVine 					= config.get("Blocks", "Enable Mean Vines?", true).getBoolean();
+    	enableElderTree 				= config.get("Blocks", "Enable Elder Tree?", true).getBoolean();
+    	enableNetherrackFurnace 		= config.get("Blocks", "Enable Elderrack Furnace?", true).getBoolean();
+    	enableNetherrackGravel			= config.get("Blocks", "Enable Netherrack Gravel?", true).getBoolean();
+    	enableSieve 					= config.get("Blocks", "Enable Sieve?", true).getBoolean();
+    	enableCrucible 					= config.get("Blocks", "Enable Crucible?", true).getBoolean();
     	
     	//ItemEnable
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiItem 				= config.getBoolean("Enable Multi Item?", "Items", true, "");
-    	enableSeed 						= config.getBoolean("Enable Seeds?", "Items", true, "");
-    	enableCrystalLight				= config.getBoolean("Enable Crystal of Light?", "Items", true, "");
-    	enableCrystalEnder				= config.getBoolean("Enable Crystal of Light?", "Items", true, "");
-    	enablePebbles 					= config.getBoolean("Enable Pebbles?", "Items", true, "");
-    	enableMeshes 					= config.getBoolean("Enable Meshes?", "Items", true, "");
-    	enableDolls 					= config.getBoolean("Enable Dolls?", "Items", true, "");
-    	enableJerky 					= config.getBoolean("Enable Cooked Jerky?", "Items", true, "");
-    	enablePickAxeNetherrack 		= config.getBoolean("Enable Netherrack Pickaxe?", "Items", true, "");
-    	enablePickAxeNetherbrick 		= config.getBoolean("Enable Netherbrick Pickaxe?", "Items", true, "");
-    	enableGrabber					= config.getBoolean("Enable Grabber?", "Items", true, "");
-    	enableHammerWood 				= config.getBoolean("Enable Wood Hammer?", "Items", true, "");
-    	enableHammerStone 				= config.getBoolean("Enable Stone Hammer?", "Items", true, "");
-    	enableHammerGold 				= config.getBoolean("Enable Gold Hammer?", "Items", true, "");
-    	enableHammerIron 				= config.getBoolean("Enable Iron Hammer?", "Items", true, "");
-    	enableHammerDiamond 			= config.getBoolean("Enable Diamond Hammer?", "Items", true, "");
-    	enableFlintNBlaze 				= config.getBoolean("Enable Flint & Blaze?", "Items", true, "");
-    	enableStoneDoor 				= config.getBoolean("Enable Stone Door?", "Items", true, "");
-    	enableElderDoor 				= config.getBoolean("Enable Elder Door?", "Items", true, "");
-    	enableWoodBucket				= config.getBoolean("Enable Wood Bucket?", "Items", true, "");
-    	enableStoneBucket				= config.getBoolean("Enable Stone Bucket?", "Items", true, "");
+    	enableMultiItem 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableSeed 						= config.get("Items", "Enable Seeds?", true).getBoolean();
+    	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
+    	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
+    	enablePebbles 					= config.get("Items", "Enable Pebbles?", true).getBoolean();
+    	enableMeshes 					= config.get("Items", "Enable Meshes?", true).getBoolean();
+    	enableDolls 					= config.get("Items", "Enable Dolls?", true).getBoolean();
+    	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
+    	enablePickAxeNetherrack 		= config.get("Items", "Enable Netherrack Pickaxe?", true).getBoolean();
+    	enablePickAxeNetherbrick 		= config.get("Items", "Enable Netherbrick Pickaxe?", true).getBoolean();
+    	enableGrabber					= config.get("Items", "Enable Grabber?", true).getBoolean();
+    	enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
+    	enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
+    	enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
+    	enableHammerIron 				= config.get("Items", "Enable Iron Hammer?", true).getBoolean();
+    	enableHammerDiamond 			= config.get("Items", "Enable Diamond Hammer?", true).getBoolean();
+    	enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
+    	enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
+    	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
+    	enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
+    	enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
     	
         config.save();
 	}

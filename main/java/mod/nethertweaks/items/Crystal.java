@@ -1,16 +1,19 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.Config;
+import java.util.List;
+
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.items.CustomItem;
 import net.java.games.input.Keyboard;
 import net.minecraft.block.Block;
 import net.minecraft.client.audio.Sound;
 import net.minecraft.client.audio.SoundManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,6 +74,20 @@ public class Crystal extends CustomItem{
 			}
 		default:
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+		}
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		switch (stack.getItemDamage()) {
+		case 0:
+			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
+			break;
+		case 1:
+			tooltip.add("This Crystal allows you to teleport, like Ender Pearls");
+			break;
+		default:
+			break;
 		}
 	}
 }

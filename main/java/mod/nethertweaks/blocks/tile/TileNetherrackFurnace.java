@@ -2,12 +2,12 @@ package mod.nethertweaks.blocks.tile;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.sfhcore.blocks.tiles.TileInventory;
 import mod.sfhcore.network.NetworkHandler;

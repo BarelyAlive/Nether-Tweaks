@@ -3,11 +3,11 @@ package mod.nethertweaks.blocks.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.MessageNBTUpdate;

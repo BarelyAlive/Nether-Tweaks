@@ -2,8 +2,8 @@ package mod.nethertweaks.blocks.tile;
 
 import com.google.common.base.Objects;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;

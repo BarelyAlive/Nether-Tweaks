@@ -4,9 +4,9 @@ import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IOreRegistry;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.json.CustomColorJson;
 import mod.nethertweaks.json.CustomOreJson;

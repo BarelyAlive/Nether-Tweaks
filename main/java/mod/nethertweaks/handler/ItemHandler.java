@@ -11,11 +11,11 @@ import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Bonfire;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.Grabber;
@@ -39,8 +39,6 @@ public class ItemHandler implements INames{
     public static final Item SEED 			 = new Seed();
     public static final Item FLINTANDBLAZE 	 = new FlintAndBlaze();
     public static final Item CRYSTAL 		 = new Crystal();
-    
-    //NEW
     public static final Item PEBBLE 		 = new ItemPebble();
     public static final Item MESH 			 = new ItemMesh();
     public static final Item DOLL 			 = new ItemDoll();
@@ -56,10 +54,10 @@ public class ItemHandler implements INames{
     public static final Item PICKNETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
     public static final Item GRABBER 		 = new Grabber();
     public static final Item HAMMERWOOD		 = new HammerBase(64, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD 	 = new HammerBase(64, ToolMaterial.GOLD);
-    public static final Item HAMMERSTONE	 = new HammerBase(128, ToolMaterial.STONE);
-    public static final Item HAMMERIRON 	 = new HammerBase(512, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND 	 = new HammerBase(4096, ToolMaterial.DIAMOND);
+    public static final Item HAMMERGOLD 	 = new HammerBase(80, ToolMaterial.GOLD);
+    public static final Item HAMMERSTONE	 = new HammerBase(160, ToolMaterial.STONE);
+    public static final Item HAMMERIRON 	 = new HammerBase(640, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND 	 = new HammerBase(5120, ToolMaterial.DIAMOND);
     
     //itemblocks
     public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));
@@ -103,7 +101,9 @@ public class ItemHandler implements INames{
     
     private static void addItemBurnTime()
     {
+    	if(Config.enableMultiItem)
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
+    	if(Config.enableMultiBlock)
     	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

@@ -1,8 +1,8 @@
 package mod.nethertweaks.blocks;
  
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileHellmart;
-import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

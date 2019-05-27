@@ -14,6 +14,7 @@ ChangeLog NTM 2.0.0
 * Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
 * Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
   (In any language available in Minecraft or Mod-supported language (depends on the language support of the fluid's Mod)
+* The Condenser is also able to melt water from snowballs, snow, ice and pack ice.
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab

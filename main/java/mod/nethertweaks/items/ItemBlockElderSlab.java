@@ -1,9 +1,9 @@
 package mod.nethertweaks.items;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.ElderSlab;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockSlab.EnumBlockHalf;

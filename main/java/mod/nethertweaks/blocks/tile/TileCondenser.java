@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
