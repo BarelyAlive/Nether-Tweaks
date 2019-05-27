@@ -6,6 +6,7 @@ import java.util.List;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.Grabber;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Config
@@ -64,6 +65,7 @@ public class Config
 	public static boolean enableJSONLoading;
 	
 	// Mod-Compatibility
+	public static List<String> fluidList;
 	public static int fillAmount;
 	public static boolean enableMooFluid;
 	public static boolean fluidListIsBlackList;
@@ -116,6 +118,7 @@ public class Config
 	public static boolean enableElderDoor;
 	public static boolean enableWoodBucket;
 	public static boolean enableStoneBucket;
+	public static boolean enableString;
 	
 	public static void init()
 	{
@@ -227,6 +230,7 @@ public class Config
     	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
     	enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
     	enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
+    	enableString					= config.get("Items", "Enable Mean Vine String?", true).getBoolean();
     	
         config.save();
 	}

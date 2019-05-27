@@ -34,34 +34,44 @@ public class SmeltingNOreDictHandler {
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte		
-		if(Config.enableJerky) 									GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
-		if(Config.enableElderTree) 								GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(Config.enableCrystalLight)							GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
-		if(Config.enableMultiBlock && Config.enableMultiItem) 	GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
+		if(Config.enableJerky) 								  GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKEDJERKY), 1.0F);
+		if(Config.enableElderTree) 							  GameRegistry.addSmelting(BlockHandler.ELDERLOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		if(Config.enableCrystalLight)						  GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
+		if(Config.enableMultiBlock && Config.enableMultiItem) GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
+		if(Config.enableCrucible)							  GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 2.0f);
 	}
 	
 	//Ore-Dictionary
 	private static void oreRegistration()
     {
-		if(Config.enableElderTree) 		 OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
-		if(Config.enableElderTree) 		 OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
-		if(Config.enableMeanVine) 		 OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
-		if(Config.enableMultiItem) 		 OreDictionary.registerOre("itemSalt", Konstanten.SALT);
-		if(Config.enableMultiItem) 		 OreDictionary.registerOre("dustSalt", Konstanten.SALT);
-		if(Config.enableMultiItem) 		 OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
-		if(Config.enableMultiBlock) 	 OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
-		if(Config.enableMultiBlock) 	 OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
-		if(Config.enableElderTree) 		 OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERPLANKS));
-		if(Config.enableElderTree) 		 OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
-		if(Config.enableElderTree) 		 OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
 		if(Config.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACKGRAVEL);
+		if(Config.enableMeanVine) 		 OreDictionary.registerOre("vine", BlockHandler.MEANVINE);
+		if(Config.enableString) 		 OreDictionary.registerOre("string", Konstanten.STRING);
 		if(Config.enableJerky)			 OreDictionary.registerOre("listAllmeatcooked", ItemHandler.COOKEDJERKY);
-		if(Config.enableSeed) {
-										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 1));
-										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 2));
-										 OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, 3));
+		if(Config.enableMultiItem)
+		{
+			OreDictionary.registerOre("itemSalt", Konstanten.SALT);
+			OreDictionary.registerOre("dustSalt", Konstanten.SALT);
+			OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
 		}
-		
+		if(Config.enableMultiBlock)
+		{	 
+			OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
+			OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
+		}
+		if(Config.enableElderTree)
+		{		 
+			OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERPLANKS));
+			OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
+			OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
+			OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
+			OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
+		}
+		if(Config.enableSeed)
+		{
+			for(int i = 1; i < 4; i++)
+			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, i));
+		}		
     	if (Config.enableLiquidImpossibility)
     	{
 			OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
@@ -69,15 +79,21 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("listAllLiquidImpossibility",
 			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		}
-		if (Config.enableStoneBucket && Config.enableWoodBucket)
+    	if (Config.enableStoneBucket)
+		{
+			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
+			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
+		}
+		if (Config.enableWoodBucket)
 		{
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
-			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
-			OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
-			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
-			OreDictionary.registerOre("listAllBucket", Items.BUCKET);
+			
 		}
+		
+		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
+		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
+		
 		if (Config.enableFlintNBlaze)
 		{
 			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
