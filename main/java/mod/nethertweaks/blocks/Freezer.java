@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.network.MessageNBTUpdate;
@@ -61,7 +62,7 @@ public class Freezer extends CubeContainerHorizontal
 			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
 			return true;
 		}
-		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idFreezer, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

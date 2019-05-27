@@ -50,8 +50,5 @@ public class IngredientUtil {
         }
 
         return ingr1.getValidItemStacksPacked().equals(ingr2.getValidItemStacksPacked());
-        // return Util.arrayEqualsPredicate(ingr1.getMatchingStacks(), ingr2.getMatchingStacks(), ItemStack::areItemStacksEqual);
     }
-
-
 }

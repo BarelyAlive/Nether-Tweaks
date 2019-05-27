@@ -5,7 +5,6 @@ import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
-import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileBonfire;
 import mod.nethertweaks.blocks.tile.TileCondenser;

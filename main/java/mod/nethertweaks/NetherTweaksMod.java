@@ -69,10 +69,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.RegistryManager;
  
-@Mod(modid=NetherTweaksMod.MODID, name="Nether Tweaks Mod", version="2.0.0", dependencies="required-after:sfhcore;")
+@Mod(modid=NetherTweaksMod.MODID, name=NetherTweaksMod.MODNAME, version=NetherTweaksMod.VERSION, dependencies=NetherTweaksMod.DEPENDENCIES)
 public class NetherTweaksMod
 {   
 	public static final String MODID = "nethertweaksmod";
+	public static final String MODNAME = "Nether Tweaks Mod";
+	public static final String VERSION = "2.0.0";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.0];";
 	
     @Instance(value=MODID)
     public static NetherTweaksMod instance;
@@ -129,8 +132,7 @@ public class NetherTweaksMod
     public void PostInit(FMLPostInitializationEvent event)
     {
     	//Mobs
-    	if(Config.spawnWaterMobs)
-    		WorldHandler.addWaterMobs();
+    	if(Config.spawnWaterMobs) WorldHandler.addWaterMobs();
     	        
 		BarrelModeRegistry.registerDefaults();
     	
@@ -141,7 +143,7 @@ public class NetherTweaksMod
     
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event)
-    {   
+    {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());

@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.handler.GuiHandlerNTM;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -50,7 +51,7 @@ public class Hellmart extends BlockContainer
     	if(te == null) return false;
 		if(!(te instanceof TileHellmart)) return false;
 		
-		player.openGui(NetherTweaksMod.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idHellmart, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 
