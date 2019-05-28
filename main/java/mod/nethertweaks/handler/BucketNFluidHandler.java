@@ -38,8 +38,6 @@ public class BucketNFluidHandler
 	//Fluids
 	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
 	public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
-					
-	//Buckets
 
 	public static void init()
 	{
@@ -56,6 +54,6 @@ public class BucketNFluidHandler
 	private static void registerBuckets()
 	{
 		BucketHandler.addBucket("wood", 0x80874633, NetherTweaksMod.TABNTM);
-		BucketHandler.addBucket("stone", 0x80874633, NetherTweaksMod.TABNTM);
+		BucketHandler.addBucket("stone", 0x8421504, NetherTweaksMod.TABNTM);
 	}
 }

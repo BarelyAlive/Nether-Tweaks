@@ -33,8 +33,8 @@ import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.registries.Registry;
 
-public class ItemHandler implements INames{
-	 
+public class ItemHandler implements INames
+{	 
 	//ITEMS
     public static final Item SEED 			 = new Seed();
     public static final Item FLINTANDBLAZE 	 = new FlintAndBlaze();
@@ -50,9 +50,9 @@ public class ItemHandler implements INames{
     public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.TABNTM);
     
     //Werkzeuge
+    public static final Item GRABBER 		 = new Grabber();
     public static final Item PICKNETHERRACK	 = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKNETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item GRABBER 		 = new Grabber();
     public static final Item HAMMERWOOD		 = new HammerBase(64, ToolMaterial.WOOD);
     public static final Item HAMMERGOLD 	 = new HammerBase(80, ToolMaterial.GOLD);
     public static final Item HAMMERSTONE	 = new HammerBase(160, ToolMaterial.STONE);

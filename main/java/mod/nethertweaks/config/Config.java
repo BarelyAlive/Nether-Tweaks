@@ -12,113 +12,111 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Config
 {		
 	//int
-	public static int endDim;
-	public static int nethDim;
-	public static int burnTimeFurnace;
-	public static int dryTimeCondenser;
-	public static int freezeTimeFreezer;
-	public static int burnTimeHellfayah;
-	public static int burnTimeHellfayahBlock;
-	public static int normalDropPercent;
+	public static int endDim  = -1;
+	public static int nethDim = -1;
+	public static int burnTimeFurnace 		 = 1600;
+	public static int dryTimeCondenser  	 = 2400;
+	public static int freezeTimeFreezer 	 = 6000;
+	public static int burnTimeHellfayah 	 = 12800;
+	public static int burnTimeHellfayahBlock = 128000;
+	public static int normalDropPercent = 100;
 	
 	//Ore
-	public static boolean shouldOreDictOreChunks;
-	public static boolean shouldOreDictOreDusts;
+	public static boolean shouldOreDictOreChunks = true;
+	public static boolean shouldOreDictOreDusts  = true;
 	
 	//Sieve
-	public static boolean sievesAutoOutput;
-	public static boolean setFireToMacroUsers;
-	public static boolean fakePlayersCanSieve;
-	public static boolean hellworldFeatures;
-	public static boolean flattenSieveRecipes;
-	public static boolean hasteIncreaseSpeed;
-	public static boolean enableSieveEfficiency;
-	public static boolean enableSieveFortune;
-	public static boolean enableSieveLuckOfTheSea;
-	public static int sieveLuckOfTheSeaMaxLevel;
-	public static int sieveSimilarRadius;
-	public static int sieveFortuneMaxLevel;
-	public static int sieveEfficiencyMaxLevel;
+	public static int sieveSimilarRadius 		  = 2;
+	public static int sieveLuckOfTheSeaMaxLevel   = 3;
+	public static int sieveFortuneMaxLevel 		  = 3;
+	public static int sieveEfficiencyMaxLevel 	  = 5;
+	public static boolean setFireToMacroUsers 	  = true;
+	public static boolean hellworldFeatures 	  = true;
+	public static boolean hasteIncreaseSpeed 	  = true;
+	public static boolean enableSieveEfficiency   = true;
+	public static boolean enableSieveFortune 	  = true;
+	public static boolean enableSieveLuckOfTheSea = true;
+	public static boolean sievesAutoOutput 		  = false;
+	public static boolean fakePlayersCanSieve 	  = false;
+	public static boolean flattenSieveRecipes 	  = false;
 	
 	//Barrel
-	public static boolean shouldBarrelsFillWithRain;
-	public static boolean enableBarrelTransformLighting;
-	public static int compostingTicks;
-	public static int woodBarrelMaxTemp;
+	public static int compostingTicks 	= 600;
+	public static int woodBarrelMaxTemp = 301;
+	public static boolean shouldBarrelsFillWithRain 	= true;
+	public static boolean enableBarrelTransformLighting = true;
 	
 	//Crucible
-	public static boolean thinCrucibleModel;
+	public static boolean thinCrucibleModel = true;
 	
 	//Liquid Impossibility
-	public static boolean spawnSkeleton;
-	public static boolean spawnSlime;
 	public static boolean doesLIVaporize = false;
-	public static boolean healAnimals;
-	public static boolean spawnWaterMobs;
+	public static boolean spawnSkeleton  = true;
+	public static boolean spawnSlime 	 = true;
+	public static boolean spawnWaterMobs = true;
 	
-	public static int[] allowedDims = {-1, 1};
 	public static boolean isHellworld;
-	public static boolean enableTeleport;
-	public static String[] grabberBlocks;
+	public static boolean enableTeleport = true;
+	public static String[] grabberBlocks = Grabber.getTangible();
 	
 	//JSON
-	public static boolean enableJSONLoading;
+	public static boolean enableJSONLoading = true;
 	
 	// Mod-Compatibility
 	public static List<String> fluidList;
-	public static int fillAmount;
-	public static boolean enableMooFluid;
+	public static int fillAmount = 1000;
+	public static boolean enableMooFluid = true;
 	public static boolean fluidListIsBlackList;
-	public static boolean generalItemHandlerCompat;
-	public static boolean dankNullIntegration;
-	public static boolean preventUnidict;
-	public static String chunkBaseOreDictName;
-	public static String dustBaseOreDictName;
-	public static String pieceBaseOreDictName;
-	public static String ingotBaseOreDictName;
+	public static boolean generalItemHandlerCompat = false;
+	public static boolean dankNullIntegration = true;
+	public static boolean preventUnidict = true;
+	public static String chunkBaseOreDictName = "Chunk";
+	public static String dustBaseOreDictName  = "Dust";
+	public static String pieceBaseOreDictName = "Piece";
+	public static String ingotBaseOreDictName = "Ingot";
 	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
-	public static boolean enableMultiBlock;
-	public static boolean enableDust;
-	public static boolean enableBarrel;
-	public static boolean enableBonfire;
-	public static boolean enableCondenser;
-	public static boolean enableStwH;
-	public static boolean enableFreezer;
-	public static boolean enableHellmart;
-	public static boolean enableLiquidImpossibility;
-	public static boolean enableMeanVine;
-	public static boolean enableElderTree;
-	public static boolean enableNetherrackFurnace;
-	public static boolean enableNetherrackGravel;
-	public static boolean enableSieve;
-	public static boolean enableCrucible;
+	public static boolean enableMultiBlock 			= true;
+	public static boolean enableDust 				= true;
+	public static boolean enableBarrel 				= true;
+	public static boolean enableBonfire 			= true;
+	public static boolean enableCondenser 			= true;
+	public static boolean enableStwH 				= true;
+	public static boolean enableFreezer 			= true;
+	public static boolean enableHellmart 			= true;
+	public static boolean enableLiquidImpossibility = true;
+	public static boolean enableMeanVine 			= true;
+	public static boolean enableElderTree 			= true;
+	public static boolean enableNetherrackFurnace 	= true;
+	public static boolean enableNetherrackGravel 	= true;
+	public static boolean enableSieve 				= true;
+	public static boolean enableCrucible 			= true;
 	
 	//ItemEnable
-	public static boolean enableMultiItem;
-	public static boolean enableSeed;
-	public static boolean enableCrystalLight;
-	public static boolean enableCrystalEnder;
-	public static boolean enablePebbles;
-	public static boolean enableMeshes;
-	public static boolean enableDolls;
-	public static boolean enableJerky;
-	public static boolean enablePickAxeNetherrack;
-	public static boolean enablePickAxeNetherbrick;
-	public static boolean enableGrabber;
-	public static boolean enableHammerWood;
-	public static boolean enableHammerStone;
-	public static boolean enableHammerGold;
-	public static boolean enableHammerIron;
-	public static boolean enableHammerDiamond;
-	public static boolean enableFlintNBlaze;
-	public static boolean enableStoneDoor;
-	public static boolean enableElderDoor;
-	public static boolean enableWoodBucket;
-	public static boolean enableStoneBucket;
-	public static boolean enableString;
+	public static boolean enableMultiItem 			= true;
+	public static boolean enableSeed 				= true;
+	public static boolean enableCrystalLight 		= true;
+	public static boolean enableCrystalEnder 		= true;
+	public static boolean enablePebbles 			= true;
+	public static boolean enableMeshes 				= true;
+	public static boolean enableDolls 				= true;
+	public static boolean enableJerky 				= true;
+	public static boolean enablePickAxeNetherrack 	= true;
+	public static boolean enablePickAxeNetherbrick 	= true;
+	public static boolean enableGrabber 			= true;
+	public static boolean enableHammerWood 			= true;
+	public static boolean enableHammerStone 		= true;
+	public static boolean enableHammerGold 			= true;
+	public static boolean enableHammerIron 			= true;
+	public static boolean enableHammerDiamond 		= true;
+	public static boolean enableFlintNBlaze 		= true;
+	public static boolean enableStoneDoor 			= true;
+	public static boolean enableElderDoor 			= true;
+	public static boolean enableWoodBucket 			= true;
+	public static boolean enableStoneBucket 		= true;
+	public static boolean enableString 				= true;
 	
 	public static void init()
 	{
@@ -170,7 +168,7 @@ public class Config
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
-        woodBarrelMaxTemp 				= config.get("World", "Hwo hot can a fluid be in a wodden barrel?", 301).getInt();
+        woodBarrelMaxTemp 				= config.get("World", "How hot can a fluid be in a wodden barrel (in Kelvin)?", 301).getInt();
         grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
