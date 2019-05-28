@@ -32,39 +32,37 @@ public interface INames {
 	public static String MEANVINE 					= "mean_vine";
 	public static String SIEVE 						= "sieve";
 	public static String HELLMART 					= "hellmart";
-
-	public static String OREDUST 					= "ore_dust";
 	
 	public static String BLOCKBASIC 				= "block_basic";
 	
 	//Tile ENtities
-	public static String TENETHERRACKFURNACE		= "tileentity_netherrack_Furnace";
+	public static String TENETHERRACKFURNACE		= "tileentity_netherrack_furnace";
 	public static String TECONDENSER 				= "tileentity_condenser";
 	public static String TEBARREL 					= "tileentity_barrel";
 	public static String TEFREEZER					= "tileentity_freezer";
 	public static String TESIEVE					= "tileentity_sieve";
 	public static String TEHELLMART					= "tileentity_hellmart";
 	
-	//items	
-	public static String ITEMDOORNTM 				= "item_door_ntm";
-	public static String GRABBER 					= "grabber";
+	//items
 	public static String FLINTNBLAZE 				= "flint_and_blaze";
 	public static String STRING 					= "string";
 	public static String SEED						= "seed";
 	public static String PEBBLE						= "item_pebble";
 	
+	public static String DOLL 						= "item_doll";
 	public static String CRYSTAL 					= "crystal";
 	public static String ITEMBASE 					= "item_base";
 	
 	public static String COOKEDJERKY 				= "cooked_jerky";
+	
 	public static String PICKAXENETHERRACK 			= "pickaxe_netherrack";
 	public static String PICKAXENETHERBRICK			= "pickaxe_netherbrick";
+	
+	public static String GRABBER 					= "grabber";
 	
 	public static String HAMMERWOOD 				= "hammer_wood";
 	public static String HAMMERGOLD 				= "hammer_gold";
 	public static String HAMMERSTONE 				= "hammer_stone";
 	public static String HAMMERIRON					= "hammer_iron";
 	public static String HAMMERDIAMOND				= "hammer_diamond";
-
-	public static String DOLL 						= "item_doll";
 }

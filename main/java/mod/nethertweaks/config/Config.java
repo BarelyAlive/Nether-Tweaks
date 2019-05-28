@@ -14,19 +14,19 @@ public class Config
 	//int
 	public static int endDim  = -1;
 	public static int nethDim = -1;
+	public static int normalDropPercent = 100;
 	public static int burnTimeFurnace 		 = 1600;
 	public static int dryTimeCondenser  	 = 2400;
 	public static int freezeTimeFreezer 	 = 6000;
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
-	public static int normalDropPercent = 100;
 	
 	//Ore
 	public static boolean shouldOreDictOreChunks = true;
 	public static boolean shouldOreDictOreDusts  = true;
 	
 	//Sieve
-	public static int sieveSimilarRadius 		  = 2;
+	public static int sieveSimilarRadius 		  = 2; 
 	public static int sieveLuckOfTheSeaMaxLevel   = 3;
 	public static int sieveFortuneMaxLevel 		  = 3;
 	public static int sieveEfficiencyMaxLevel 	  = 5;
@@ -232,5 +232,4 @@ public class Config
     	
         config.save();
 	}
-
 }

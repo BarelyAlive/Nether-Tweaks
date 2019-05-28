@@ -9,6 +9,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.CompostRegistry;
@@ -130,10 +131,14 @@ public class TileCondenser extends TileFluidInventory
 			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
 			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 			
-			if(hnorth != null) FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
-			if(heast != null)  FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
-			if(hsouth != null) FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
-			if(hwest != null)  FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+			if(hnorth != null &&  world.getBlockState(north) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
+			if(heast != null &&  world.getBlockState(east) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
+			if(hsouth != null &&  world.getBlockState(south) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
+			if(hwest != null &&  world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 		}
 	}
 	
@@ -229,7 +234,7 @@ public class TileCondenser extends TileFluidInventory
 		
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
-		if(this.emptyRoom() == 0) return false;
+		if(this.emptyRoom() < result.getValue()) return false;
 		
 		return true;
 	}
@@ -266,6 +271,7 @@ public class TileCondenser extends TileFluidInventory
 			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
+			return !NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		}
 			
 		return true;

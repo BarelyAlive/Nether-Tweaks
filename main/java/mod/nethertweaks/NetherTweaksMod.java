@@ -92,11 +92,11 @@ public class NetherTweaksMod
     //Creative Tabs
     public static final CreativeTabs TABNTM = new CreativeTabNTM();
     
-    public WorldType Hellworld = new WorldTypeHellworld("hellworld");
+    public WorldType Hellworld = new WorldTypeHellworld();
          
     @Mod.EventHandler
     public void PreInit(FMLPreInitializationEvent event)
-    {         	
+    {
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
     	
     	LogUtil.setup(MODID, configDirectory);

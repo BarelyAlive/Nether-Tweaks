@@ -5,8 +5,8 @@ import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.BlockGravel;
 import net.minecraft.block.SoundType;
 
-public class NetherrackGravel extends BlockGravel{
-
+public class NetherrackGravel extends BlockGravel
+{
 	public NetherrackGravel()
 	{
 		setSoundType(SoundType.GROUND);

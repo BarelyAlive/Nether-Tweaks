@@ -210,8 +210,7 @@ public class TileNetherrackFurnace extends TileInventory
 			if(slot.getCount() == slot.getMaxStackSize()) return false;
 				
 			result = FurnaceRecipes.instance().getSmeltingResult(stack);
-			if(result == ItemStack.EMPTY) return false;
-			return true;
+			if(result != ItemStack.EMPTY) return true;
 		}
 		return false;
 	}

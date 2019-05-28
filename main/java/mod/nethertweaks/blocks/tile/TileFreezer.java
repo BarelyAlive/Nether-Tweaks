@@ -205,7 +205,7 @@ public class TileFreezer extends TileFluidInventory
 			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override

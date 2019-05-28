@@ -219,21 +219,6 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
                                 }
                             }
                         }
-
-                        if (rand.nextInt(5) == 0 && i > 5)
-                        {
-                            for (int l3 = 0; l3 < 2; ++l3)
-                            {
-                                for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
-                                {
-                                    if (rand.nextInt(4 - l3) == 0)
-                                    {
-                                        EnumFacing enumfacing1 = enumfacing.getOpposite();
-                                        this.placeCocoa(worldIn, rand.nextInt(3), position.add(enumfacing1.getFrontOffsetX(), i - 5 + l3, enumfacing1.getFrontOffsetZ()), enumfacing);
-                                    }
-                                }
-                            }
-                        }
                     }
 
                     return true;
@@ -248,11 +233,6 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
         {
             return false;
         }
-    }
-
-    private void placeCocoa(World worldIn, int p_181652_2_, BlockPos pos, EnumFacing side)
-    {
-        this.setBlockAndNotifyAdequately(worldIn, pos, Blocks.COCOA.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockCocoa.FACING, side));
     }
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop)

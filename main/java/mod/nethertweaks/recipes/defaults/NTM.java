@@ -127,7 +127,7 @@ public class NTM implements IRecipeDefaults
     
     @Override
     public void registerCondenser(CondenserRegistry registry)
-    {    	
+    {
     	registry.register(new ItemStack(Items.ROTTEN_FLESH), 112);
 		registry.register(new ItemStack(Items.APPLE), 80);
 		registry.register(new ItemStack(Items.CHORUS_FRUIT), 42);

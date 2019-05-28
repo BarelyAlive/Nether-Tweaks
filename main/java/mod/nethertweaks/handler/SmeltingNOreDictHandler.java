@@ -55,15 +55,16 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("itemHellfayah", Konstanten.HELLFAYAH);
 		}
 		if(Config.enableMultiBlock)
-		{	 
+		{
 			OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 0));
 			OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCKBASIC, 1, 1));
+			OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCKBASIC, 1, 2));
 		}
 		if(Config.enableElderTree)
 		{		 
-			OreDictionary.registerOre("plankWood", new ItemStack(BlockHandler.ELDERPLANKS));
-			OreDictionary.registerOre("slabWood", new ItemStack(BlockHandler.ELDERSLABHALF));
-			OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDERLOG));
+			OreDictionary.registerOre("plankWood", BlockHandler.ELDERPLANKS);
+			OreDictionary.registerOre("slabWood", BlockHandler.ELDERSLABHALF);
+			OreDictionary.registerOre("logWood", BlockHandler.ELDERLOG);
 			OreDictionary.registerOre("treeSapling", BlockHandler.ELDERSAPLING);
 			OreDictionary.registerOre("treeLeaves", BlockHandler.ELDERLEAVES);
 		}
@@ -88,7 +89,6 @@ public class SmeltingNOreDictHandler {
 		{
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
-			
 		}
 		
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
