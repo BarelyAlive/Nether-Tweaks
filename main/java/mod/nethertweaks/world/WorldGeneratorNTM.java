@@ -2,7 +2,7 @@ package mod.nethertweaks.world;
  
 import java.util.Random;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +39,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
         oreGenerationNether(world, random, posX, posZ, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
     }
  
-    public void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY)
+    private void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY)
     {	
         int differenzMinMaxY = maxY - minY;
         if (Config.enableMultiBlock)

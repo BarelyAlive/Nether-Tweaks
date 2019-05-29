@@ -7,9 +7,10 @@ import java.util.Random;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -66,7 +67,7 @@ public class Condenser extends CubeContainerHorizontal
     {
 		if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
-		if(te ==  null) return false;
+		if(te == null) return false;
 		if(!(te instanceof TileCondenser)) return false;
     	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
@@ -79,7 +80,7 @@ public class Condenser extends CubeContainerHorizontal
 			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			return true;
 		}
-		player.openGui(NetherTweaksMod.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idCondenser, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     
@@ -90,7 +91,7 @@ public class Condenser extends CubeContainerHorizontal
     }
     
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileCondenser();
     }
 }

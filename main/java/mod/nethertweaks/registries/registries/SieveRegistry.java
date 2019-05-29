@@ -4,9 +4,9 @@ import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.api.ISieveRegistry;
 import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.json.CustomIngredientJson;
 import mod.nethertweaks.registries.ingredient.IngredientUtil;

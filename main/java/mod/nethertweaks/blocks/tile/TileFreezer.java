@@ -3,11 +3,11 @@ package mod.nethertweaks.blocks.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.MessageNBTUpdate;
@@ -56,22 +56,26 @@ public class TileFreezer extends TileFluidInventory
 	}
 	
     @Override
-	public void update() {
-    	if(this.world.isRemote) return;
+	public void update()
+    {
+    	if(world.isRemote) return;
     	
     	checkInputOutput();
     	fillFromItem();
     	
 		NetworkHandler.sendNBTUpdate(this);
-		if(!canFreeze()) {
+		
+		if(!canFreeze())
+		{
 			this.setWorkTime(0);
 			return;
-		}		
+		}
 		
 		work();
 		
-		if(getWorkTime() >= this.getMaxworkTime()) {
-			setWorkTime(0);
+		if(getWorkTime() >= this.getMaxworkTime())
+		{
+			this.setWorkTime(0);
 			freezeItem();
 		}
 	}
@@ -79,26 +83,10 @@ public class TileFreezer extends TileFluidInventory
     private void checkInputOutput()
 	{
 		extractFromInventory(pos.up(), EnumFacing.DOWN);
-    	insertToInventory(pos.north(), EnumFacing.UP);
-    	insertToInventory(pos.south(), EnumFacing.UP);
-    	insertToInventory(pos.west(), EnumFacing.UP);
-    	insertToInventory(pos.east(), EnumFacing.UP);
-    	insertToInventory(pos.north(), EnumFacing.WEST);
-    	insertToInventory(pos.south(), EnumFacing.WEST);
-    	insertToInventory(pos.west(), EnumFacing.WEST);
-    	insertToInventory(pos.east(), EnumFacing.WEST);
     	insertToInventory(pos.north(), EnumFacing.SOUTH);
-    	insertToInventory(pos.south(), EnumFacing.SOUTH);
-    	insertToInventory(pos.west(), EnumFacing.SOUTH);
-    	insertToInventory(pos.east(), EnumFacing.SOUTH);
-    	insertToInventory(pos.north(), EnumFacing.NORTH);
     	insertToInventory(pos.south(), EnumFacing.NORTH);
-    	insertToInventory(pos.west(), EnumFacing.NORTH);
-    	insertToInventory(pos.east(), EnumFacing.NORTH);
-    	insertToInventory(pos.north(), EnumFacing.EAST);
-    	insertToInventory(pos.south(), EnumFacing.EAST);
     	insertToInventory(pos.west(), EnumFacing.EAST);
-    	insertToInventory(pos.east(), EnumFacing.EAST);
+    	insertToInventory(pos.east(), EnumFacing.WEST);
 	}
 	
 	private boolean canFreeze()
@@ -113,82 +101,61 @@ public class TileFreezer extends TileFluidInventory
     {
     	this.getTank().drain(1000, true);
     	
-        if(this.getStackInSlot(0).isEmpty())	
+        if(this.getStackInSlot(0).isEmpty())
             this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
         
         else if(this.getStackInSlot(0).getCount() >= 1)   	
         	this.getStackInSlot(0).grow(1);
         
         fillFromItem();
-        this.markDirty();
     }
     
 	private void fillFromItem()
-    {
-    	ItemStack input = getStackInSlot(2);
-    	ItemStack output = getStackInSlot(1);
-    	ItemStack container = ItemStack.EMPTY;
-    	if(input.isEmpty()) return;
-    		container = new ItemStack(input.getItem().getContainerItem());    	
-    	if(output.getCount() == output.getMaxStackSize()) return;
-    	IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
-    	
-    	if(handler != null)
-    	{
-	    	if(FluidUtil.getFluidContained(input) == null) return;
-	    	if(!output.isEmpty() && !input.isEmpty() && !ItemStack.areItemsEqual(container, output)) return;
-	    	if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return;
-	    	
-			FluidStack input_stack = FluidUtil.getFluidContained(input);
+	{
+		ItemStack input  = this.getStackInSlot(2).copy();
+		ItemStack output = this.getStackInSlot(1).copy();
+	
+		if(input.isEmpty()) return;
+	
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
+	
+		if(handler != null)
+		{
+    		FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
+    		if (f == null) return;
 			
-			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true) != null)
+			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
+		
+			if(output.isEmpty())
 			{
-				if(!container.isEmpty())
-				{
-					if(!output.isEmpty())
-					{
-						getStackInSlot(1).grow(1);
-						getStackInSlot(2).shrink(1);
-					}
-					else
-					{
-						setInventorySlotContents(1, container);
-						getStackInSlot(2).shrink(1);
-					}
-				}
-				else
-				{
-					if(output.isEmpty())
-					{
-						setInventorySlotContents(1, input);
-						getStackInSlot(2).shrink(1);
-					}
-					else
-					{
-						getStackInSlot(1).grow(1);
-						getStackInSlot(2).shrink(1);
-					}
-				}
+				this.setInventorySlotContents(1, handler.getContainer());
+				this.decrStackSize(2, 1);
+			}
+			if(ItemStack.areItemsEqual(output, handler.getContainer()))
+			{
+				this.getStackInSlot(1).grow(1);
+				this.decrStackSize(2, 1);
+			}
+			else
+				this.setInventorySlotContents(2, handler.getContainer());
+		}
+    	
+		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
+		{
+			if(getTank().getFluidAmount() < getTank().getCapacity())
+			{
+               			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+               
+               			if(output.isEmpty())
+    					setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
+               
+               			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
+					this.getStackInSlot(1).grow(1);
+        		
+				this.decrStackSize(2, 1);
 			}
 		}
-		else if(ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
-		{
-			if(getTank().getFluidAmount() < getTank().getCapacity() && (getTank().getFluid() == null || getTank().getFluid().getFluid() == FluidRegistry.WATER))
-			{
-                getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
-                
-                if(output.isEmpty()) {
-    				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-    				getStackInSlot(2).shrink(1);
-    			}
-                else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
-        		{
-                	getStackInSlot(1).grow(1);
-    				getStackInSlot(2).shrink(1);
-        		}
-            }
-		}
-    }
+	}
     
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
@@ -205,7 +172,7 @@ public class TileFreezer extends TileFluidInventory
 			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override

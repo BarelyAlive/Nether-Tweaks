@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.Config;
+import org.lwjgl.Sys;
+
+import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
+import mod.nethertweaks.config.Config;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
@@ -74,7 +77,7 @@ public class TileCondenser extends TileFluidInventory
 		
 		NetworkHandler.sendNBTUpdate(this);
 				
-		if(!checkInv())
+		if(!canDry())
 		{
 			this.setWorkTime(0);
 			return;
@@ -89,25 +92,21 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 	
+	private boolean canDry()
+	{
+		if(calcMaxWorktime() == 0) return false;
+		if(this.getStackInSlot(0).isEmpty()) return false;
+		
+		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
+		if(result == null) return false;
+		if(this.emptyRoom() < result.getValue()) return false;
+		
+		return true;
+	}
+	
 	private void checkInputOutput()
 	{
 		extractFromInventory(pos.up(), EnumFacing.DOWN);
-    	insertToInventory(pos.north(), EnumFacing.UP);
-    	insertToInventory(pos.south(), EnumFacing.UP);
-    	insertToInventory(pos.west(), EnumFacing.UP);
-    	insertToInventory(pos.east(), EnumFacing.UP);
-    	insertToInventory(pos.north(), EnumFacing.WEST);
-    	insertToInventory(pos.south(), EnumFacing.WEST);
-    	insertToInventory(pos.west(), EnumFacing.WEST);
-    	insertToInventory(pos.east(), EnumFacing.WEST);
-    	insertToInventory(pos.north(), EnumFacing.SOUTH);
-    	insertToInventory(pos.south(), EnumFacing.SOUTH);
-    	insertToInventory(pos.west(), EnumFacing.SOUTH);
-    	insertToInventory(pos.east(), EnumFacing.SOUTH);
-    	insertToInventory(pos.north(), EnumFacing.NORTH);
-    	insertToInventory(pos.south(), EnumFacing.NORTH);
-    	insertToInventory(pos.west(), EnumFacing.NORTH);
-    	insertToInventory(pos.east(), EnumFacing.NORTH);
     	insertToInventory(pos.north(), EnumFacing.SOUTH);
     	insertToInventory(pos.south(), EnumFacing.NORTH);
     	insertToInventory(pos.west(), EnumFacing.EAST);
@@ -120,20 +119,24 @@ public class TileCondenser extends TileFluidInventory
 		
 		if(water != null) {
 			BlockPos north = this.getPos().north();
-			BlockPos east = this.getPos().east();
+			BlockPos east  = this.getPos().east();
 			BlockPos south = this.getPos().south();
-			BlockPos west = this.getPos().west();
+			BlockPos west  = this.getPos().west();
 			
 			//Check FluidHandler
 			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
-			IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
+			IFluidHandler heast  = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
 			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
-			IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
+			IFluidHandler hwest  = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 			
-			if(hnorth != null) FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
-			if(heast != null)  FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
-			if(hsouth != null) FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
-			if(hwest != null)  FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+			if(hnorth != null && world.getBlockState(north) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
+			if(heast != null && world.getBlockState(east) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
+			if(hsouth != null && world.getBlockState(south) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
+			if(hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
+				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 		}
 	}
 	
@@ -153,43 +156,35 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void fillToItemSlot()
 	{
-		ItemStack input = getStackInSlot(2);
-    	ItemStack output = getStackInSlot(1);
+		ItemStack input  = this.getStackInSlot(2).copy();
+    	ItemStack output = this.getStackInSlot(1).copy();
     	
-    	if(output.getCount() == output.getMaxStackSize()) return;
-    	if(!ItemStack.areItemsEqual(input, output) && !output.isEmpty()) return;
+    	if(!output.isEmpty()) return;
     	if(input.isEmpty()) return;
     	if(this.getTank().getFluidAmount() == 0) return;
     	
+    	input.setCount(1);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
-		if(input_handler != null)
+		if (input_handler != null)
 		{
-			FluidStack f = FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
-			if(f == null) return;
+			FluidStack f = FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, false);
+			if (f == null) return;
 			
-				if(output.isEmpty()) {
-					setInventorySlotContents(1, input_handler.getContainer());
-					getStackInSlot(2).shrink(1);
-				}
-				else {
-					getStackInSlot(1).grow(1);
-					getStackInSlot(2).shrink(1);
-				}
+			FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
+			
+			this.setInventorySlotContents(1, input_handler.getContainer());
+			this.decrStackSize(2, 1);
 		}
-		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (output.isEmpty() || ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)))
+		
+		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE) || this.getStackInSlot(1).isEmpty()))
 		{
-			if(this.getTank().getFluid() != null && this.getTank().getFluidAmount() >= 250 && this.getTank().getFluid().getFluid() == FluidRegistry.WATER)
+			if(this.getTank().getFluidAmount() >= 250)
 			{
                 this.getTank().drain(250, true);
                 
-                if(output.isEmpty()) {
-    				setInventorySlotContents(1, TankUtil.WATER_BOTTLE.copy());
-    				getStackInSlot(2).shrink(1);
-    			} else if(ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE)){
-    				getStackInSlot(1).grow(1);
-    				getStackInSlot(2).shrink(1);
-    			}
+				this.setInventorySlotContents(1, TankUtil.WATER_BOTTLE.copy());
+				this.decrStackSize(2, 1);
             }
 		}
 	}
@@ -221,19 +216,6 @@ public class TileCondenser extends TileFluidInventory
         return 0;
     }
 	
-	private boolean checkInv()
-	{
-		if(calcMaxWorktime() == 0) return false;
-		if(this.getStackInSlot(0).isEmpty()) return false;
-		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
-		
-		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
-		if(result == null) return false;
-		if(this.emptyRoom() == 0) return false;
-		
-		return true;
-	}
-	
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
@@ -257,10 +239,8 @@ public class TileCondenser extends TileFluidInventory
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
-		if(index == 0)
-			return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
-		if(index == 1)
-			return false;
+		if(index == 0) return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
+		if(index == 1) return false;
 		if(index == 2)
 		{
 			if(stack.getItem() == Items.GLASS_BOTTLE) return true;

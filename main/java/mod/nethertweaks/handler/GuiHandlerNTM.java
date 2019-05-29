@@ -21,19 +21,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandlerNTM implements IGuiHandler
-{	
+{
+	public static final int idFurnace = 0;
+	public static final int idCondenser = 1;
+	public static final int idFreezer = 2;
+	public static final int idHellmart = 3;
+	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		switch (ID)
 		{
-		case 0:
+		case idFurnace:
 			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
-		case 1:
+		case idCondenser:
 			return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
-		case 2:
+		case idFreezer:
 			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
-		case 3:
+		case idHellmart:
 			return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;
@@ -45,13 +50,13 @@ public class GuiHandlerNTM implements IGuiHandler
 	{
 		switch (ID)
 		{
-		case 0:
+		case idFurnace:
 			return new GuiNetherrackFurnace(player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
-		case 1:
+		case idCondenser:
 			return new GuiCondenser(player.inventory, (TileCondenser) world.getTileEntity(new BlockPos(x, y, z)));
-		case 2:
+		case idFreezer:
 			return new GuiFreezer(player.inventory, (TileFreezer) world.getTileEntity(new BlockPos(x, y, z)));
-		case 3:
+		case idHellmart:
 			return new GuiHellmart(player.inventory, (TileHellmart) world.getTileEntity(new BlockPos(x, y, z)));
 		default:
 			return null;

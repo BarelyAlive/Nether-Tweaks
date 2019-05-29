@@ -32,7 +32,9 @@ import mod.sfhcore.util.Util;
 
 public class BarrelModeFluidTransform implements IBarrelMode {
 
+	private BarrelItemHandlerFluid handler = new BarrelItemHandlerFluid(null);
     private FluidStack inputStack, outputStack;
+    private ItemStack inputItemStack;
     private float progress = 0;
     private FluidTransformer transformer;
 
@@ -198,6 +200,11 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 
     @Override
     public void addItem(ItemStack stack, TileBarrel barrel) {
+    	handler.setBarrel(barrel);
+    	if(handler.getStackInSlot(0).isEmpty())
+    	{
+    		handler.insertItem(0, stack, false);
+    	}
     }
 
     @Override

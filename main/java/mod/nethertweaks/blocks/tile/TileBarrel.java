@@ -27,11 +27,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.Barrel;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.modules.MooFluid.*;

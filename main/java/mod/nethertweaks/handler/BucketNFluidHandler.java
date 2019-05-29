@@ -21,11 +21,11 @@ import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.LiquidImpossibility;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.Constants;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.items.CustomBucket;
@@ -35,39 +35,25 @@ import mod.sfhcore.registries.Registry;
 
 public class BucketNFluidHandler
 {
-		//Fluids
-		public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
-		public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
-						
-		//Buckets
-		/*
-		public static Item BUCKETWOOD = new CustomBucket(Blocks.AIR, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOOD), ItemStack.EMPTY, NetherTweaksMod.TABNTM);
-		public static Item BUCKETWOODWATER = new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODWATER), new ItemStack(BUCKETWOOD), NetherTweaksMod.TABNTM);
-		public static Item BUCKETWOODLI = new CustomBucket(BLOCKLIQUIDIMPOSSIBILITY, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODLI), new ItemStack(BUCKETWOOD), NetherTweaksMod.TABNTM);
-		public static Item BUCKETWOODMILK = new CustomBucketMilk(NetherTweaksMod.TABNTM, new ItemStack(BUCKETWOOD), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETWOODMILK));
-		
-		public static Item BUCKETSTONE = new CustomBucket(Blocks.AIR, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONE), ItemStack.EMPTY, NetherTweaksMod.TABNTM);
-		public static Item BUCKETSTONEWATER = new CustomBucket(Blocks.FLOWING_WATER, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEWATER), new ItemStack(BUCKETSTONE), NetherTweaksMod.TABNTM);
-		public static Item BUCKETSTONELAVA = new CustomBucket(Blocks.FLOWING_LAVA, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONELAVA), new ItemStack(BUCKETSTONE), NetherTweaksMod.TABNTM);
-		public static Item BUCKETSTONELI = new CustomBucket(BLOCKLIQUIDIMPOSSIBILITY, new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONELI), new ItemStack(BUCKETSTONE), NetherTweaksMod.TABNTM);
-		public static Item BUCKETSTONEMILK = new CustomBucketMilk(NetherTweaksMod.TABNTM, new ItemStack(BUCKETSTONE), new ResourceLocation(NetherTweaksMod.MODID, INames.BUCKETSTONEMILK));
-		*/
+	//Fluids
+	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
+	public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
 
 	public static void init()
 	{
 		registerFluids(); //1.
 		registerBuckets(); //2.
 	}
-	
+
 	private static void registerFluids()
 	{
 		if (Config.enableLiquidImpossibility)
 			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 	}
-		
+
 	private static void registerBuckets()
 	{
 		BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
-		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
+		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80425104, NetherTweaksMod.TABNTM);
 	}
 }

@@ -2,9 +2,9 @@ package mod.nethertweaks.barrel.modes.compost;
 
 import java.util.List;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;

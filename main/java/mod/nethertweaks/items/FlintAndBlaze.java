@@ -1,8 +1,11 @@
 package mod.nethertweaks.items;
 
+import java.util.List;
+
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.interfaces.INames;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,4 +24,9 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
         this.setCreativeTab(NetherTweaksMod.TABNTM);
     }
 
+    @Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+		tooltip.add("Totally LIT!");
+	}
 }

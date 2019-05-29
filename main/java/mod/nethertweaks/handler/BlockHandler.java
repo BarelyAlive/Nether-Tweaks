@@ -1,11 +1,10 @@
 package mod.nethertweaks.handler;
  
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
-import mod.nethertweaks.blocks.enums.EnumBlockOreNTM;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileBonfire;
 import mod.nethertweaks.blocks.tile.TileCondenser;
@@ -14,7 +13,7 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemBlockElderSlab;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CubeFalling;

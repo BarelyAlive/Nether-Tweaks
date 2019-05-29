@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;

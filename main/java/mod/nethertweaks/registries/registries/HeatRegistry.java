@@ -55,7 +55,6 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
             LogUtil.error("Heat Entry for " + info.getItemStack().getItem().getRegistryName() + " with meta " + info.getItemStack().getMetadata() + " already exists, skipping.");
             return;
         }
-        //Heat heat = new Heat(info, heatAmount);
         registry.put(info.toString(), heatAmount);
     }
 

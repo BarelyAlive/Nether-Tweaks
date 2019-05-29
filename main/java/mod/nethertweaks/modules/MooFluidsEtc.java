@@ -2,7 +2,7 @@ package mod.nethertweaks.modules;
 
 import java.util.*;
 
-import mod.nethertweaks.Config;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.event.*;

@@ -4,9 +4,9 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IHammer;
-import mod.nethertweaks.interfaces.INames;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.HammerRegistry;
 import net.minecraft.block.Block;

@@ -7,9 +7,9 @@ import net.minecraft.world.WorldType;
 
 public class WorldTypeHellworld extends WorldType
 {	
-	public WorldTypeHellworld(String par2Str)
+	public WorldTypeHellworld()
 	{
-		super(par2Str);
+		super("hellworld");
 	}
 	
 	@Override

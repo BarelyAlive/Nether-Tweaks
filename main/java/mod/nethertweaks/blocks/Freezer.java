@@ -1,8 +1,9 @@
 package mod.nethertweaks.blocks;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.interfaces.INames;
+import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.network.MessageNBTUpdate;
@@ -43,25 +44,25 @@ public class Freezer extends CubeContainerHorizontal
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if(!worldIn.isBlockLoaded(pos)) return false;
-		TileFreezer te = (TileFreezer) worldIn.getTileEntity(pos);
-		if(te ==  null) return false;
+		if(!world.isBlockLoaded(pos)) return false;
+		TileFreezer te = (TileFreezer) world.getTileEntity(pos);
+		if(te == null) return false;
 		if(!(te instanceof TileFreezer)) return false;
-    	if(worldIn.isRemote) return true;
-    	if(playerIn.isSneaking()) return false;
+    	if(world.isRemote) return true;
+    	if(player.isSneaking()) return false;
     	
-		if(TankUtil.drainWaterFromBottle(te, playerIn, te.getTank())) return true;
+		if(TankUtil.drainWaterFromBottle(te, player, te.getTank())) return true;
     	
-    	IFluidHandlerItem item = FluidUtil.getFluidHandler(playerIn.getHeldItem(hand));
+    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
-			FluidUtil.interactWithFluidHandler(playerIn, hand, te.getTank());
+			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			return true;
 		}
-		playerIn.openGui(NetherTweaksMod.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idFreezer, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 
@@ -72,7 +73,7 @@ public class Freezer extends CubeContainerHorizontal
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 	    return new TileFreezer();
 	}
 }

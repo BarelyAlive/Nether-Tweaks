@@ -10,11 +10,11 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.Lists;
 
+import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.interfaces.INames;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;

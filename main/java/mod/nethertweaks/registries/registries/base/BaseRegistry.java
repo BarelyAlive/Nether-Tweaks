@@ -2,8 +2,8 @@ package mod.nethertweaks.registries.registries.base;
 
 import com.google.gson.Gson;
 
-import mod.nethertweaks.Config;
 import mod.nethertweaks.api.IRegistry;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 import javax.annotation.Nonnull;

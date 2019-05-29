@@ -71,17 +71,28 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
         // Fluid to Fluid transformations
         String fluidItemFluidOutput = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(tank.getFluid().getFluid(), stack);
         if (fluidItemFluidOutput != null && tank.getFluidAmount() == tank.getCapacity()) {
+        	
+            int spawnCount = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getTransformTime(tank.getFluid().getFluid(), stack);
+            boolean isConsumable = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getConsumable(tank.getFluid().getFluid(), stack);
+            
             if (!simulate) {
                 tank.drain(tank.getCapacity(), true);
                 barrel.setMode("fluid");
-                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
-                tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
-                NetworkHandler.sendNBTUpdate(barrel);
+                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("fluid", barrel.getPos()), barrel);
+                
+                barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
+                /*
+                if (spawnCount > 0)
+                {
+                	tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
+                	NetworkHandler.sendNBTUpdate(barrel);
+                }
+                */
             }
             ItemStack ret = stack.copy();
             ret.shrink(1);
-
-            return ret.isEmpty() ? ItemStack.EMPTY : ret;
+            
+            return !(isConsumable) ? stack : (ret.isEmpty() ? ItemStack.EMPTY : ret);
         }
 
 
