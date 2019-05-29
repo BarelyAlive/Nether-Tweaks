@@ -156,8 +156,8 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void fillToItemSlot()
 	{
-		ItemStack input  =this.getStackInSlot(2).copy();
-    	ItemStack output =this.getStackInSlot(1).copy();
+		ItemStack input  = this.getStackInSlot(2).copy();
+    	ItemStack output = this.getStackInSlot(1).copy();
     	
     	if(!output.isEmpty()) return;
     	if(input.isEmpty()) return;
