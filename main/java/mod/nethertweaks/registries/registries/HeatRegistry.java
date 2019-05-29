@@ -95,7 +95,6 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
                 LogUtil.error("Heat JSON Entry for " + entry.getKey() + " already exists, skipping.");
             else
             {
-            	System.out.println(entry.getKey());
                 register(entry.getKey(), entry.getValue());
             }
         }

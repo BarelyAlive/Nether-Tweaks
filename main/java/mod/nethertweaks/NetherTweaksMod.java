@@ -22,6 +22,7 @@ import mod.nethertweaks.handler.HandlerHammer;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.MessageHandler;
+import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.recipes.defaults.TinkersConstruct;
@@ -47,10 +48,14 @@ import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldType;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -60,6 +65,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -82,6 +88,34 @@ public class NetherTweaksMod
     	MessageHandler.init();
     }
     
+    @Mod.EventBusSubscriber
+    public static class BucketRegistrationHandler
+    {
+    	@SubscribeEvent(priority = EventPriority.LOWEST)
+    	public static void registerBuckets (RegistryEvent.Register<Item> event)
+    	{
+    		OreHandler.add(new ItemStack(Items.IRON_INGOT), 8);
+    		OreHandler.add(new ItemStack(Items.GOLD_INGOT), 4);
+    		OreHandler.add(new ItemStack(Items.DIAMOND), 1);
+    		OreHandler.add(new ItemStack(Items.EMERALD), 1);
+    		OreHandler.add(new ItemStack(Items.REDSTONE), 2); 
+    		OreHandler.add(new ItemStack(Items.COAL), 16);
+    		OreHandler.register(event.getRegistry());
+    	}
+    	
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void registerItemHandlers(ColorHandlerEvent.Item event)
+        {
+        	OreHandler.registerItemHandlers(event);
+        }
+    	
+    	@SubscribeEvent(priority = EventPriority.LOWEST)
+    	public static void registerBucketModels(ModelRegistryEvent event)
+    	{
+    		OreHandler.registerModels(event);
+    	}
+    }
+
     public static File configDirectory;
     // List of loaded modules
     public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();    
@@ -109,7 +143,7 @@ public class NetherTweaksMod
         ItemHandler.init();
         
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
-    	
+        
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
     	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
     	MinecraftForge.EVENT_BUS.register(this);
