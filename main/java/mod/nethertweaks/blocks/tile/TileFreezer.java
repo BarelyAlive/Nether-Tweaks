@@ -111,21 +111,21 @@ public class TileFreezer extends TileFluidInventory
     }
     
 	private void fillFromItem()
-    {
-    	ItemStack input  = this.getStackInSlot(2).copy();
-    	ItemStack output = this.getStackInSlot(1).copy();
+	{
+    		ItemStack input  = this.getStackInSlot(2).copy();
+    		ItemStack output = this.getStackInSlot(1).copy();
     	
-    	if(input.isEmpty()) return;
+    		if(input.isEmpty()) return;
     	
-    	IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
+    		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
     	
-    	if(handler != null)
-    	{
-	    	FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
-	    	if (f == null) return;
+    		if(handler != null)
+    		{
+	    		FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
+	    		if (f == null) return;
 			
 			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
-			
+		
 			if(output.isEmpty())
 			{
 				this.setInventorySlotContents(1, handler.getContainer());
@@ -136,26 +136,28 @@ public class TileFreezer extends TileFluidInventory
 				this.getStackInSlot(1).grow(1);
 				this.decrStackSize(2, 1);
 			}
+			/*
 			else
 				this.setInventorySlotContents(2, handler.getContainer());
+			*/
 		}
     	
 		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
 			if(getTank().getFluidAmount() < getTank().getCapacity())
 			{
-                this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
-                
-                if(output.isEmpty())
-    				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-                
-                else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
-                	this.getStackInSlot(1).grow(1);
+               			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+               
+               			if(output.isEmpty())
+    					setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
+               
+               			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
+					this.getStackInSlot(1).grow(1);
         		
-                this.decrStackSize(2, 1);
-            }
+				this.decrStackSize(2, 1);
+			}
 		}
-    }
+	}
     
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
