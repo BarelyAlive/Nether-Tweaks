@@ -54,6 +54,6 @@ public class BucketNFluidHandler
 	private static void registerBuckets()
 	{
 		BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
-		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80425104, NetherTweaksMod.TABNTM);
+		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
 	}
 }
