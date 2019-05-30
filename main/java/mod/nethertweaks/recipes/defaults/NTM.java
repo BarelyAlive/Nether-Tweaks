@@ -359,18 +359,18 @@ public class NTM implements IRecipeDefaults
     	registry.register(BlockHandler.NETHERRACKGRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
     	registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
+        
+        //Yes, I have to do this otherwise i can'split the outputs
         for(ItemStack block : OreDictionary.getOres("gravel"))
         {
         	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACKGRAVEL))
         		registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
         }
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);
-        
-        registry.register(Blocks.ICE.getDefaultState(), new ItemStack(Blocks.SNOW, 1), 0, 1.0F, 0.0F);
 
         // Hammer concrete into concrete powder
         for (int meta = 0; meta < 16; meta++)
-            registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta).toString(), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
+            registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
     }
 
     @Override
