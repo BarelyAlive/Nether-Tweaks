@@ -149,7 +149,6 @@ public class TileCondenser extends TileFluidInventory
 	private void dry()
 	{
 		ItemStack material = this.getStackInSlot(0);
-		ItemStack bucket = this.getStackInSlot(1);
 		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
 		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
@@ -157,7 +156,6 @@ public class TileCondenser extends TileFluidInventory
 			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 		
 		material.shrink(1);
-		return;
 	}
 	
 	private void fillToItemSlot()
@@ -210,8 +208,7 @@ public class TileCondenser extends TileFluidInventory
         if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
         
-        if(heat != 0)
-            return heat;
+        if(heat != 0) return heat;
 
         TileEntity tile = getWorld().getTileEntity(posBelow);
 
