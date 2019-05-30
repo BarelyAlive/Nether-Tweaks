@@ -1,4 +1,4 @@
-package mod.nethertweaks.render;
+package mod.nethertweaks.client.renderers;
 
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;

@@ -112,8 +112,8 @@ public class TileFreezer extends TileFluidInventory
     
 	private void fillFromItem()
 	{
-		ItemStack input  = this.getStackInSlot(2).copy();
-		ItemStack output = this.getStackInSlot(1).copy();
+		ItemStack input  = this.getStackInSlot(2);
+		ItemStack output = this.getStackInSlot(1);
 	
 		if(input.isEmpty()) return;
 	
@@ -166,10 +166,8 @@ public class TileFreezer extends TileFluidInventory
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
 		switch (index) {
-		case 0:
-			return false;
-		case 1:
-			return false;
+		case 0: return false;
+		case 1: return false;
 		case 2:
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(handler ==  null) return false;
