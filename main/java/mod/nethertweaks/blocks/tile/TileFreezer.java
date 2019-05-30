@@ -126,31 +126,33 @@ public class TileFreezer extends TileFluidInventory
 			
 			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
 		
+			System.out.println(handler.getContainer());
+			
 			if(output.isEmpty())
 			{
-				this.setInventorySlotContents(1, handler.getContainer());
-				this.decrStackSize(2, 1);
+				this.setInventorySlotContents(1, new ItemStack(handler.getContainer().getItem()));
+				this.getStackInSlot(2).shrink(1);
+				System.out.println(getStackInSlot(2));
 			}
 			if(ItemStack.areItemsEqual(output, handler.getContainer()))
 			{
 				this.getStackInSlot(1).grow(1);
 				this.decrStackSize(2, 1);
 			}
-			else
-				this.setInventorySlotContents(2, handler.getContainer());
+			//this.setInventorySlotContents(2, ItemStack.EMPTY);
 		}
     	
 		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
 			if(getTank().getFluidAmount() < getTank().getCapacity())
 			{
-               			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
-               
-               			if(output.isEmpty())
-    					setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-               
-               			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
-					this.getStackInSlot(1).grow(1);
+       			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+       
+       			if(output.isEmpty())
+				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
+       
+       			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
+				this.getStackInSlot(1).grow(1);
         		
 				this.decrStackSize(2, 1);
 			}
@@ -163,23 +165,23 @@ public class TileFreezer extends TileFluidInventory
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
-		if(index == 0)
+		switch (index) {
+		case 0:
 			return false;
-		if(index == 1)
+		case 1:
 			return false;
-		if(index == 2) {
+		case 2:
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
-		return false;
+		
+		return true;
 	}
 	
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
-		if(index == 0) return true;
-		if(index == 1) return true;
-		return false;
+		return index != 2;
 	}
 	    
 	public String getGuiID()

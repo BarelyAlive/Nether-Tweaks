@@ -239,10 +239,12 @@ public class TileCondenser extends TileFluidInventory
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
-		if(index == 0) return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
-		if(index == 1) return false;
-		if(index == 2)
-		{
+		switch (index) {
+		case 0:
+			return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
+		case 1:
+			return false;
+		case 2:
 			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
@@ -254,8 +256,7 @@ public class TileCondenser extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack)
 	{
-		if(index == 1) return true;
-		return false;
+		return index == 1;
 	}
 	
     public String getGuiID()
