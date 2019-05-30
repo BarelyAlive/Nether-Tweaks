@@ -61,7 +61,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
-	private int fillTick;
+	private int fillTick = 0;
 	
     public TileCondenser() {
 		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
@@ -271,5 +271,17 @@ public class TileCondenser extends TileFluidInventory
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerCondenser(playerInventory, this);
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+    	fillTick = compound.getInteger("fillTick");
+    	super.readFromNBT(compound);
+    }
+    
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+    	compound.setInteger("fillTick", fillTick);
+    	return super.writeToNBT(compound);
     }
 }
