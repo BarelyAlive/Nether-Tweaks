@@ -18,6 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,8 +34,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Grabber extends ItemShears
 {
-	private static String[] tangible = new String[] {"minecraft:cactus", "minecraft:melon_block, minecraft:web, minecraft:fern, minecraft:deadbush"};
+	private static String[] tangible = new String[] {
+			"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
+	public static void setTangible(String[] tangible) {
+		Grabber.tangible = tangible;
+	}
+
 	public static String[] getTangible() {
 		return tangible;
 	}
@@ -72,17 +78,19 @@ public class Grabber extends ItemShears
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
 		setMaxStackSize(1);
+		setTangible(Config.grabberBlocks);
 	}
 	
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
+	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{		
 		IBlockState block = worldIn.getBlockState(pos);
 		for (String name : tangible) {
 			ResourceLocation loc = new ResourceLocation(name);
-			if (Block.REGISTRY.containsKey(loc)) {
+			if (loc.equals(block.getBlock().getRegistryName())) {
 				if (!worldIn.isRemote) {
 					worldIn.setBlockToAir(pos);
 					player.inventory.addItemStackToInventory(new ItemStack(block.getBlock()));
