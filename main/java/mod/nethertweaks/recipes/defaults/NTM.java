@@ -258,6 +258,9 @@ public class NTM implements IRecipeDefaults
 
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GLOWSTONE_DUST), getDropChance(0.0625f), MeshType.IRON.getID());
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getID());
+        
+        for(int i = 0; i < 6; i++)
+        	registry.register("dirt", new BlockInfo(Blocks.SAPLING, i), getDropChance(0.05f), MeshType.STRING.getID());
 
         // Custom Ores for other mods
         OreRegistry oreRegistry = NTMRegistryManager.ORE_REGISTRY;
@@ -362,6 +365,8 @@ public class NTM implements IRecipeDefaults
         		registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
         }
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);
+        
+        registry.register(Blocks.ICE.getDefaultState(), new ItemStack(Blocks.SNOW, 1), 0, 1.0F, 0.0F);
 
         // Hammer concrete into concrete powder
         for (int meta = 0; meta < 16; meta++)
