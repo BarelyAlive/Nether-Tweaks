@@ -108,19 +108,21 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void checkInputOutput()
 	{
-		extractFromInventory(pos.up(), EnumFacing.DOWN);
-    	insertToInventory(pos.north(), EnumFacing.SOUTH);
-    	insertToInventory(pos.south(), EnumFacing.NORTH);
-    	insertToInventory(pos.west(), EnumFacing.EAST);
-    	insertToInventory(pos.east(), EnumFacing.WEST);
+		if(Config.autoExtractItems) extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	if(Config.autoOutputItems) {
+			insertToInventory(pos.north(), EnumFacing.SOUTH);
+			insertToInventory(pos.south(), EnumFacing.NORTH);
+			insertToInventory(pos.west(), EnumFacing.EAST);
+			insertToInventory(pos.east(), EnumFacing.WEST);
+		}
 	}
 	
 	private void fillToNeighborsTank()
 	{
 		fillTick++;
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(FluidRegistry.WATER, 200);
-			if (water != null) {
+			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
+			if (this.getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
 				BlockPos north = this.getPos().north();
 				BlockPos east = this.getPos().east();
 				BlockPos south = this.getPos().south();
@@ -140,7 +142,6 @@ public class TileCondenser extends TileFluidInventory
 					FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
 				if (hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
-
 			}
 			fillTick = 0;
 		}

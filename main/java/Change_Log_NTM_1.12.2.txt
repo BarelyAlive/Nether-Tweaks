@@ -7,14 +7,16 @@ ChangeLog NTM 2.0.0
 * Freezers now include water tanks and can have a redstone signal from any side
 * Condenser and Freezer now have a new GUI
 * Condenser recipes, Barrel recipes, Hammer rewards & siftable items are now editable via JSON
-* Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and (No.1) automatically output fluids to the sides
+* Condenser, Freezer & Netherrack Furnace now work with hoppers or similar
+* Condenser automatically output fluids to the sides (can be disabled via config file)
 * Held items can now drain Condensers and fill Freezers
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
 * Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
+    (Can be disabled via config file)
 * Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
   (In any language available in Minecraft or Mod-supported language (depends on the language support of the fluid's Mod)
-* The Condenser is also able to melt water from snowballs, snow, ice and pack ice.
+* The Condenser is also able to melt water from snowballs, snow, ice and pack ice (1:1)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
@@ -29,7 +31,7 @@ ChangeLog NTM 2.0.0
 * Forgotten Tree is now called Elder Tree & looks different
 * Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
-* Grabber now works with melon blocks, cactus, cobweb, fern and dead bushes (configurable)
+* Grabber now works with melon blocks, cactus, cobweb, fern, dead bushes and shearable entities like sheep (configurable)
 * Fixed Spawn and respawn in Hellworld (If a player dies he/she will get set back to the start portal
 * Fixed a Bug that could cause server damage if a block got activated but wasn't loaded
 * Fixed Netherrack Furnace lag caused by block set spam

@@ -38,6 +38,34 @@ public class Grabber extends ItemShears
 	public static String[] getTangible() {
 		return tangible;
 	}
+	
+	@Override
+	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
+			EnumHand hand) {
+		if (entity.world.isRemote)
+        {
+            return false;
+        }
+        if (entity instanceof net.minecraftforge.common.IShearable)
+        {
+            net.minecraftforge.common.IShearable target = (net.minecraftforge.common.IShearable)entity;
+            BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
+            if (target.isShearable(itemstack, entity.world, pos))
+            {
+                java.util.List<ItemStack> drops = target.onSheared(itemstack, entity.world, pos,
+                        net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, itemstack));
+
+                java.util.Random rand = new java.util.Random();
+                for(ItemStack stack : drops)
+                {
+                    player.addItemStackToInventory(stack);
+                }
+                itemstack.damageItem(1, entity);
+            }
+            return true;
+        }
+        return false;
+	}
 
 	public Grabber()
 	{

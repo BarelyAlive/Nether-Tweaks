@@ -14,24 +14,30 @@ public class Config
 	//int
 	public static int endDim  = -1;
 	public static int nethDim = -1;
-	public static int normalDropPercent = 100;
 	public static int burnTimeFurnace 		 = 1600;
-	public static int dryTimeCondenser  	 = 2400;
 	public static int freezeTimeFreezer 	 = 6000;
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
 	
+	public static boolean autoOutputItems  = true;
+	public static boolean autoExtractItems = true;
+	
 	//Ore
 	public static boolean shouldOreDictOreChunks = true;
 	public static boolean shouldOreDictOreDusts  = true;
+		
+	//Condenser
+	public static int dryTimeCondenser  	 = 2400;
+	public static int fluidOutputAmount  	 = 200;
 	
 	//Sieve
 	public static int sieveSimilarRadius 		  = 2; 
 	public static int sieveLuckOfTheSeaMaxLevel   = 3;
 	public static int sieveFortuneMaxLevel 		  = 3;
 	public static int sieveEfficiencyMaxLevel 	  = 5;
+	public static int normalDropPercent 		  = 100;
 	public static boolean setFireToMacroUsers 	  = true;
-	public static boolean hellworldFeatures 	  = true;
+	public static boolean hellworldfeatures 	  = true;
 	public static boolean hasteIncreaseSpeed 	  = true;
 	public static boolean enableSieveEfficiency   = true;
 	public static boolean enableSieveFortune 	  = true;
@@ -126,8 +132,13 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
         freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
+        
+        autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
+        autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
+        
+        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
+        fluidOutputAmount 				= config.get("Tweak", "Condenser max. fluid auto output in mB/Sec", 200, "0 disables it").getInt();
                         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
@@ -138,23 +149,25 @@ public class Config
 		shouldOreDictOreDusts 			= config.get("Compatibilitiy", "Enable OreDict Ore Dusts?", true).getBoolean();
         
         ///Sieve
-        sievesAutoOutput 				= config.get("Sieving", "Sieve Auto output?", false).getBoolean();
-        setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users", false).getBoolean();
         sieveSimilarRadius 				= config.get("Sieving", "Sieve Similar Radius", 2).getInt();
+        sieveFortuneMaxLevel 			= config.get("Sieving", "Max Level for sieve fortune enchanting?", 3).getInt();
+        sieveEfficiencyMaxLevel 		= config.get("Sieving", "Max Level for sieve efficiency enchanting?", 5).getInt();
+        sieveLuckOfTheSeaMaxLevel 		= config.get("Sieving", "Max Level for sieve luck of the sea enchanting?", 3).getInt();
+        normalDropPercent 				= config.get("Sieving", "The normal drop percent chance outside Hellworld", 100).getInt();
+        sievesAutoOutput 				= config.get("Sieving", "Sieve Auto output?", false).getBoolean();
         fakePlayersCanSieve 			= config.get("Sieving", "Fake players can sieve", false).getBoolean();
-        hellworldFeatures 				= config.get("Sieving", "Enable Hellowrld Features?", false).getBoolean();
-        flattenSieveRecipes 			= config.get("Sieving", "If enabled all mesh tiers can obtain the same", false).getBoolean();
-        hasteIncreaseSpeed 				= config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
-        enableSieveEfficiency 			= config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
-        sieveEfficiencyMaxLevel 		= config.get("Sieving", "Max Level for sieve efficiency enchanting", 5).getInt();
+        setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users", false).getBoolean();
+        hellworldfeatures 				= config.get("Sieving", "Enable Hellowrld features?", false).getBoolean();
         enableSieveFortune 				= config.get("Sieving", "Enable sieve fortune enchanting?", true).getBoolean();
-        sieveFortuneMaxLevel 			= config.get("Sieving", "Max Level for sieve fortune enchanting", 3).getInt();
+        enableSieveEfficiency 			= config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
+        hasteIncreaseSpeed 				= config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
         enableSieveLuckOfTheSea 		= config.get("Sieving", "Enable sieve luck of the sea enchanting?", true).getBoolean();
-        sieveLuckOfTheSeaMaxLevel 		= config.get("Sieving", "Max Level for sieve luck of the sea enchanting", 3).getInt();
+        flattenSieveRecipes 			= config.get("Sieving", "If enabled all mesh tiers can obtain the same", false).getBoolean();
         
         //Barrel
-        shouldBarrelsFillWithRain 		= config.get("Barrel", "Barrels fill with rain?", true).getBoolean();
         compostingTicks 				= config.get("Barrel", "Ticks to form Dirt", 600).getInt();
+        woodBarrelMaxTemp 				= config.get("Barrel", "How hot can a fluid be in a wodden barrel (in Kelvin)?", 301).getInt();
+        shouldBarrelsFillWithRain 		= config.get("Barrel", "Barrels fill with rain?", true).getBoolean();
         enableBarrelTransformLighting 	= config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
         
         //Crucible
@@ -167,8 +180,6 @@ public class Config
         spawnWaterMobs					= config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
-        normalDropPercent 				= config.get("World", "The normal drop percent chance outside Hellworld", 100).getInt();
-        woodBarrelMaxTemp 				= config.get("World", "How hot can a fluid be in a wodden barrel (in Kelvin)?", 301).getInt();
         grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
