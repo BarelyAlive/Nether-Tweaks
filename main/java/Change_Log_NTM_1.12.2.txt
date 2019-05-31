@@ -23,11 +23,11 @@ ChangeLog NTM 2.0.0
 * Changed some recipes
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
-* Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
+* Liquid Impossibility now turns wither skeletons into normal skeletons & magma slimes into slimes
 * Liquid Impossibility is now as cold as possible
 * New color for Liquid Impossibility to make it not look like p*** anymore
 * Mobs like squids etc. can now spawn in Liquid Impossibility
-* More and better config options!
+* Much more and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
 * Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
@@ -39,13 +39,14 @@ ChangeLog NTM 2.0.0
 * Fixed Netherrack Furnace "check light spam"
 * Fixed Furnace not setting lighting back to normal if destroyed
 * Stone Doors are back!
+* Stone & Wood Bucket are now like forge's universal bucket (Wood Buckets can't hold/pick up hot fluids)
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
 - Removed Water Fountain
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
-+ Readded language support (de-de, es-es, fr-fr, pt-br(?))
++ Readded language support (de-de, es-es, fr-fr, portuguese (idk if brazilian or not sorry)
   (If something is not correct translated, don't blame me. I had to use DeepL)
 + Added netherrack gravel (drops flint)
 + Added Elder Door

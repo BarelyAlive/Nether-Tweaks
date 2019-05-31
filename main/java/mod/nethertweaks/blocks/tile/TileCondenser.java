@@ -64,7 +64,7 @@ public class TileCondenser extends TileFluidInventory
 	private int fillTick = 0;
 	
     public TileCondenser() {
-		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
+		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
 	}
 
@@ -108,7 +108,8 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void checkInputOutput()
 	{
-		if(Config.autoExtractItems) extractFromInventory(pos.up(), EnumFacing.DOWN);
+		if(Config.autoExtractItems)
+			extractFromInventory(pos.up(), EnumFacing.DOWN);
     	if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);

@@ -87,7 +87,8 @@ public class TileNetherrackFurnace extends TileInventory
 	
 	private void checkInputOutput()
 	{
-		if(Config.autoExtractItems) extractFromInventory(pos.up(), EnumFacing.DOWN);
+		if(Config.autoExtractItems)
+			extractFromInventory(pos.up(), EnumFacing.DOWN);
     	if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);

@@ -45,6 +45,14 @@ public class Grabber extends ItemShears
 		return tangible;
 	}
 	
+	public Grabber()
+	{
+		setCreativeTab(NetherTweaksMod.TABNTM);
+		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
+		setTangible(Config.grabberBlocks);
+		setMaxStackSize(1);
+	}
+	
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
 			EnumHand hand) {
@@ -72,21 +80,13 @@ public class Grabber extends ItemShears
         }
         return false;
 	}
-
-	public Grabber()
-	{
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
-		setMaxStackSize(1);
-		setTangible(Config.grabberBlocks);
-	}
 	
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{		
+	{
 		IBlockState block = worldIn.getBlockState(pos);
 		for (String name : tangible) {
 			ResourceLocation loc = new ResourceLocation(name);
@@ -107,6 +107,7 @@ public class Grabber extends ItemShears
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory");
+		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
+				+ "Can be enchanted with fortune for more output when used for example on sheep");
 	}
 }

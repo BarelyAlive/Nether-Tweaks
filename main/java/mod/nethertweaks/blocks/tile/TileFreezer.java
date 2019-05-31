@@ -51,7 +51,7 @@ public class TileFreezer extends TileFluidInventory
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	
 	public TileFreezer() {
-		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
+		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
 		this.setMaxworkTime(Config.freezeTimeFreezer);
 	}
 	
@@ -82,7 +82,8 @@ public class TileFreezer extends TileFluidInventory
     
     private void checkInputOutput()
 	{
-    	if(Config.autoExtractItems) extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	if(Config.autoExtractItems)
+    		extractFromInventory(pos.up(), EnumFacing.DOWN);
     	if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);

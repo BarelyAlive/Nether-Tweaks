@@ -15,9 +15,14 @@ public class Config
 	public static int endDim  = -1;
 	public static int nethDim = -1;
 	public static int burnTimeFurnace 		 = 1600;
-	public static int freezeTimeFreezer 	 = 6000;
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
+	
+	public static int durabilityHWood 	 = 64;
+	public static int durabilityHGold 	 = 80;
+	public static int durabilityHStone 	 = 160;
+	public static int durabilityHIron 	 = 640;
+	public static int durabilityHDiamond = 5120;
 	
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
@@ -25,13 +30,18 @@ public class Config
 	//Ore
 	public static boolean shouldOreDictOreChunks = true;
 	public static boolean shouldOreDictOreDusts  = true;
+	
+	//Freezer
+	public static int freezeTimeFreezer  = 6000;
+	public static int capacityFreezer  	 = 16000;
 		
 	//Condenser
-	public static int dryTimeCondenser  	 = 2400;
 	public static int fluidOutputAmount  	 = 200;
+	public static int dryTimeCondenser  	 = 2400;
+	public static int capacityCondenser  	 = 16000;
 	
 	//Sieve
-	public static int sieveSimilarRadius 		  = 2; 
+	public static int sieveSimilarRadius 		  = 2;
 	public static int sieveLuckOfTheSeaMaxLevel   = 3;
 	public static int sieveFortuneMaxLevel 		  = 3;
 	public static int sieveEfficiencyMaxLevel 	  = 5;
@@ -61,7 +71,7 @@ public class Config
 	public static boolean spawnSlime 	 = true;
 	public static boolean spawnWaterMobs = true;
 	
-	public static boolean isHellworld;
+	public static boolean isHellworld = true;
 	public static boolean enableTeleport = true;
 	public static String[] grabberBlocks = Grabber.getTangible();
 	
@@ -122,7 +132,6 @@ public class Config
 	public static boolean enableElderDoor 			= true;
 	public static boolean enableWoodBucket 			= true;
 	public static boolean enableStoneBucket 		= true;
-	public static boolean enableString 				= true;
 	
 	public static void init()
 	{
@@ -132,13 +141,22 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
         
         autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
         autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
         
+        capacityFreezer					= config.get("Tweak", "Freezer fluid capacity in mb", 16000).getInt();
+        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
+        
         dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
+        capacityCondenser 				= config.get("Tweak", "Condenser fluid capacity in mb", 16000).getInt();
         fluidOutputAmount 				= config.get("Tweak", "Condenser max. fluid auto output in mB/Sec", 200, "0 disables it").getInt();
+        
+        durabilityHWood					= config.get("Tweak", "Durability for Wood Hammer", 64, "").getInt();
+    	durabilityHGold					= config.get("Tweak", "Durability for Gold Hammer", 80, "").getInt();
+    	durabilityHStone				= config.get("Tweak", "Durability for Stone Hammer", 160, "").getInt();
+    	durabilityHIron					= config.get("Tweak", "Durability for Iron Hammer", 640, "").getInt();
+    	durabilityHDiamond				= config.get("Tweak", "Durability for Diamond Hammer", 5120, "").getInt();
                         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
@@ -239,7 +257,6 @@ public class Config
     	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
     	enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
     	enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
-    	enableString					= config.get("Items", "Enable Mean Vine String?", true).getBoolean();
     	
         config.save();
 	}
