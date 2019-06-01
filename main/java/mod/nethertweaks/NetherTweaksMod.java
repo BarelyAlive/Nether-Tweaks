@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ricardothecoder.yac.library.fluids.FluidBase;
+
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
 import mod.nethertweaks.blocks.tile.TileSieve;
@@ -38,7 +40,9 @@ import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
 import mod.nethertweaks.registries.registries.FluidTransformRegistry;
 import mod.nethertweaks.registries.registries.HammerRegistry;
 import mod.nethertweaks.registries.registries.HellmartRegistry;
+import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
+import mod.nethertweaks.registry.types.FluidBlockTransformer;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldTypeHellworld;
@@ -48,16 +52,25 @@ import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.LogUtil;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.IFluidBlock;
+import net.minecraftforge.fluids.capability.wrappers.FluidBlockWrapper;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
@@ -73,6 +86,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.RegistryManager;
  
 @Mod(modid=NetherTweaksMod.MODID, name=NetherTweaksMod.MODNAME, version=NetherTweaksMod.VERSION, dependencies=NetherTweaksMod.DEPENDENCIES)
@@ -98,12 +112,21 @@ public class NetherTweaksMod
     	@SubscribeEvent(priority = EventPriority.LOWEST)
     	public static void registerBuckets (RegistryEvent.Register<Item> event)
     	{
-    		OreHandler.add(new ItemStack(Items.IRON_INGOT), 8);
-    		OreHandler.add(new ItemStack(Items.GOLD_INGOT), 4);
-    		OreHandler.add(new ItemStack(Items.DIAMOND), 1);
-    		OreHandler.add(new ItemStack(Items.EMERALD), 1);
-    		OreHandler.add(new ItemStack(Items.REDSTONE), 2); 
-    		OreHandler.add(new ItemStack(Items.COAL), 16);
+    		String[] ore_names = OreDictionary.getOreNames();
+    		for (String ore_name : ore_names)
+    		{
+    			if (ore_name.startsWith("ore"))
+    			{
+    				if(!OreDictionary.doesOreNameExist("ingot" + ore_name.substring(3)))
+    				{
+    					continue;
+    				}
+            		for (ItemStack stack : OreDictionary.getOres(ore_name))
+            		{
+                		OreHandler.add(stack, 1);
+            		}
+    			}
+    		}
     		OreHandler.register(event.getRegistry());
     	}
     	
@@ -152,6 +175,12 @@ public class NetherTweaksMod
     	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
     	MinecraftForge.EVENT_BUS.register(this);
     	
+    	OreHandler.disableOre("minecraft:redstone");
+    	OreHandler.disableOre("minecraft:coal");
+    	// Disable all copper ores except all ores from thermal foundation
+    	OreHandler.disableOre("copper");
+    	OreHandler.enableOre("thermalfoundation:ore");
+    	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	
     }
@@ -165,6 +194,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event)
     {
+		OreHandler.registerFurnaceRecipe();
     	//Mobs
     	if(Config.spawnWaterMobs) WorldHandler.addWaterMobs();
     	        
