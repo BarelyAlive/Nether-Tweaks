@@ -14,6 +14,7 @@ import com.mojang.realmsclient.dto.WorldDownload;
 import mod.nethertweaks.world.WorldHandler;
 import mod.nethertweaks.world.WorldSaveData;
 import mod.nethertweaks.world.WorldSpawnLoc;
+import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -67,12 +68,12 @@ public class TileBonfire extends TileEntity {
 		if(world.isRemote)
 		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + player.getPosition() + "!"));
 		
-		addGlobalEntry(getUUID(player), new BlockPos(player));
+		addGlobalEntry(getUUID(player), new PlayerPosition(new BlockPos(player), player.rotationYaw, player.rotationPitch));
 				
 		//player.bedLocation = new BlockPos(player);
 	}
 	
-	public BlockPos getSpawnLocationForPlayer(EntityPlayer player)
+	public PlayerPosition getSpawnLocationForPlayer(EntityPlayer player)
 	{
 		if(WorldSpawnLoc.spawnLocas.containsKey(getUUID(player))) {
 			return WorldSpawnLoc.spawnLocas.get(getUUID(player));
@@ -80,7 +81,7 @@ public class TileBonfire extends TileEntity {
 		return null;
 	}
 	
-	private void addGlobalEntry(UUID uuid, BlockPos pos)
+	private void addGlobalEntry(UUID uuid, PlayerPosition pos)
 	{
 		WorldSpawnLoc.spawnLocas.put(uuid, pos);
 	}

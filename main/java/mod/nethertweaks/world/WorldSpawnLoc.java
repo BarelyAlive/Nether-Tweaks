@@ -4,18 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.util.math.BlockPos;
 
 public class WorldSpawnLoc {
 	
-	public static  Map<UUID, BlockPos> spawnLocas = new HashMap<UUID, BlockPos>();
+	public static  Map<UUID, PlayerPosition> spawnLocas = new HashMap<UUID, PlayerPosition>();
 	
-	public static void setSpawnLocations(Map<UUID, BlockPos> spawn)
+	public static void setSpawnLocations(Map<UUID, PlayerPosition> map)
 	{
-		spawnLocas = spawn;
+		spawnLocas = map;
 	}
 	
-	public static Map<UUID, BlockPos> getSpawnLocations()
+	public static Map<UUID, PlayerPosition> getSpawnLocations()
 	{
 		return spawnLocas;
 	}
