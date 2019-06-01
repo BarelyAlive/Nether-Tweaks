@@ -119,7 +119,9 @@ public class NTM implements IRecipeDefaults
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
 			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
+    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);	        		
+		registry.register("treeSapling", "ice", 3);
+		registry.register("beeComb", "ice", 5);
     }
     
     @Override

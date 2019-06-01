@@ -98,5 +98,6 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
 			OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
 		}
+		OreDictionary.registerOre("ice", Blocks.ICE);
     }
 }
