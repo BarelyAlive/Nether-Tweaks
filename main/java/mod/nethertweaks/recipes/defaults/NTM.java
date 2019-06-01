@@ -267,8 +267,13 @@ public class NTM implements IRecipeDefaults
         	
         	if (Block.getBlockFromItem(sapling) instanceof IPlantable)
         	{
-        		if(NameHelper.getModID(sapling) != "harvestcraft")
-				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        		boolean hc = NameHelper.getModID(sapling) == "harvestcraft";
+        		
+        		if(hc && Config.enableHarvestcraft)
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        		else if(!hc)
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        			
 				
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());

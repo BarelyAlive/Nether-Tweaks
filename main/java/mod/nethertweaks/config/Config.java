@@ -89,6 +89,7 @@ public class Config
 	public static List<String> fluidList;
 	public static int fillAmount = 1000;
 	public static boolean enableMooFluid = true;
+	public static boolean enableHarvestcraft = false;
 	public static boolean preventUnidict = true;
 	public static boolean dankNullIntegration = true;
 	public static boolean generalItemHandlerCompat = false;
@@ -97,7 +98,6 @@ public class Config
 	public static String dustBaseOreDictName  = "Dust";
 	public static String pieceBaseOreDictName = "Piece";
 	public static String ingotBaseOreDictName = "Ingot";
-	public static String[] rubberSeed = {"techreborn:rubber_sapling", "ic2:sapling"};
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
@@ -219,9 +219,9 @@ public class Config
         
         //Mod-Compatibility
         fluidListIsBlackList			= config.get("Compatibility", "Is the Moo-Fluids-List a blacklist?", true).getBoolean();
-        enableMooFluid 					= config.get("Compatibility", "Enable Moo-Fluids-Compatibility", true).getBoolean();
-        fillAmount 						= config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
-        rubberSeed 						= config.getStringList("The rubber saplings ntm should support", "Compatibility", rubberSeed, "");
+        enableMooFluid 					= config.get("Compatibility", "Enable Moo-Fluids-Compatibility?", true).getBoolean();
+        enableHarvestcraft				= config.get("Compatibility", "Enable Harvestcraft-Spaling_Sifting?", false, "Disabled by default, cuz HC wants you to buy or find its saplings").getBoolean();
+        fillAmount 						= config.get("FillAmount", "How many mB milk should be produced?", 1000).getInt();
         oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
         dankNullIntegration 			= config.get("Compatibility", "Enable Dank-Null Integration?", true).getBoolean();
