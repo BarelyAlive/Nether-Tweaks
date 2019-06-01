@@ -1,4 +1,4 @@
-package mod.nethertweaks.render;
+package mod.nethertweaks.client.renderers;
 
 import mod.nethertweaks.items.ItemChunk;
 import net.minecraft.client.Minecraft;

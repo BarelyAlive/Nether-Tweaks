@@ -7,7 +7,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemChunk;
-import mod.nethertweaks.render.ChunkColorer;
+import mod.nethertweaks.client.renderers.ChunkColorer;
 import mod.sfhcore.SFHCore;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.proxy.SFHCoreClientProxy;
