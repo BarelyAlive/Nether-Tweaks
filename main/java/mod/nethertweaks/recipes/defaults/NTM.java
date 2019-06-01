@@ -257,6 +257,7 @@ public class NTM implements IRecipeDefaults
         for(int i = 0; i < 6; i++)
         	registry.register("dirt", new BlockInfo(Blocks.SAPLING, i), getDropChance(0.05f), MeshType.STRING.getID());
         
+        //Damit Saplinge erfasst werden, die auch von ihren Leaves gedroppt werden sollen
         for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
         {
         	Block leafBlock = Block.getBlockFromItem(leaves.getItem());
