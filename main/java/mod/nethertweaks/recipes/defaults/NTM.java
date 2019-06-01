@@ -334,6 +334,8 @@ public class NTM implements IRecipeDefaults
         // Seeds
         for (int i = 0; i < 2; i++)
         {
+        	if(i == 0)
+        		registry.register("sand", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
         }
         
