@@ -18,6 +18,9 @@ public class Config
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
 	
+	public static int durabilityPickRack  = 64;
+	public static int durabilityPickBrick = 64;
+	
 	public static int durabilityHWood 	 = 64;
 	public static int durabilityHGold 	 = 80;
 	public static int durabilityHStone 	 = 160;
@@ -66,6 +69,10 @@ public class Config
 	public static boolean thinCrucibleModel = true;
 	
 	//Liquid Impossibility
+	public static int densityLI = 1000;
+	public static int luminosityLI = 15;
+	public static int viscosityLI = 1000;
+	public static int temperatureLI = 0;
 	public static boolean doesLIVaporize = false;
 	public static boolean spawnSkeleton  = true;
 	public static boolean spawnSlime 	 = true;
@@ -82,10 +89,10 @@ public class Config
 	public static List<String> fluidList;
 	public static int fillAmount = 1000;
 	public static boolean enableMooFluid = true;
-	public static boolean fluidListIsBlackList;
-	public static boolean generalItemHandlerCompat = false;
-	public static boolean dankNullIntegration = true;
 	public static boolean preventUnidict = true;
+	public static boolean dankNullIntegration = true;
+	public static boolean generalItemHandlerCompat = false;
+	public static boolean fluidListIsBlackList = true;
 	public static String chunkBaseOreDictName = "Chunk";
 	public static String dustBaseOreDictName  = "Dust";
 	public static String pieceBaseOreDictName = "Piece";
@@ -152,15 +159,18 @@ public class Config
         capacityCondenser 				= config.get("Tweak", "Condenser fluid capacity in mb", 16000).getInt();
         fluidOutputAmount 				= config.get("Tweak", "Condenser max. fluid auto output in mB/Sec", 200, "0 disables it").getInt();
         
-        durabilityHWood					= config.get("Tweak", "Durability for Wood Hammer", 64, "").getInt();
-    	durabilityHGold					= config.get("Tweak", "Durability for Gold Hammer", 80, "").getInt();
-    	durabilityHStone				= config.get("Tweak", "Durability for Stone Hammer", 160, "").getInt();
-    	durabilityHIron					= config.get("Tweak", "Durability for Iron Hammer", 640, "").getInt();
-    	durabilityHDiamond				= config.get("Tweak", "Durability for Diamond Hammer", 5120, "").getInt();
-                        
+        durabilityPickRack				= config.getInt("Durability for Netherrack Pickaxe", "Tweak", 132, 1, Integer.MAX_VALUE, "");
+        durabilityPickBrick				= config.getInt("Durability for Netherbrick Pickaxe", "Tweak", 251, 1, Integer.MAX_VALUE, "");
+        
+        durabilityHWood					= config.getInt("Durability for Wood Hammer", "Tweak", 64, 1, Integer.MAX_VALUE, "");
+    	durabilityHGold					= config.getInt("Durability for Gold Hammer", "Tweak", 80, 1, Integer.MAX_VALUE, "");
+    	durabilityHStone				= config.getInt("Durability for Stone Hammer", "Tweak", 160, 1, Integer.MAX_VALUE, "");
+    	durabilityHIron					= config.getInt("Durability for Iron Hammer", "Tweak", 640, 1, Integer.MAX_VALUE, "");
+    	durabilityHDiamond				= config.getInt("Durability for Diamond Hammer", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+        
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
-        enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "Squares have edges, you know.");
+        enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "");
         
         //Ore
 		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "Enable OreDict Ore Chunks?", true).getBoolean();
@@ -192,6 +202,10 @@ public class Config
         thinCrucibleModel			 	= config.get("Crucible", "Do you want a hin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
+        densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        luminosityLI					= config.getInt("Luminosity for Liquid Impossibility", "Fluid", 15, 0, 15, "");
+        viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        temperatureLI					= config.getInt("Temperatur of Liquid Impossibility in Kelvin", "Fluid", 0, 0, Integer.MAX_VALUE, ""); 
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
         spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
         spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
@@ -204,10 +218,11 @@ public class Config
         enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON Confugration causes problems");
         
         //Mod-Compatibility
+        fluidListIsBlackList			= config.get("Compatibility", "Is the Moo-Fluids-List a blacklist?", true).getBoolean();
         enableMooFluid 					= config.get("Compatibility", "Enable Moo-Fluids-Compatibility", true).getBoolean();
         fillAmount 						= config.get("FillAmount", "How many mB milk should be produced", 1000).getInt();
-        rubberSeed 						= config.getStringList("The rubber saplings ntm should support", "Compatibility", rubberSeed, "Leaves are green, you know.");
-        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "Coffe has caffeine, you know.");
+        rubberSeed 						= config.getStringList("The rubber saplings ntm should support", "Compatibility", rubberSeed, "");
+        oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
         dankNullIntegration 			= config.get("Compatibility", "Enable Dank-Null Integration?", true).getBoolean();
         preventUnidict 					= config.get("Compatibility", "Enable Unidictionary?", true).getBoolean();
