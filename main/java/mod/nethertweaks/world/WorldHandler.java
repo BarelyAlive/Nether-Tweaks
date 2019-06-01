@@ -6,6 +6,7 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NotNull;
+import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntityCow;
@@ -66,9 +67,9 @@ public class WorldHandler{
     		}
     		else
     		{
-    			BlockPos pos = WorldSpawnLoc.spawnLocas.get(player.getUUID(player.getGameProfile()));
-    			System.out.println(pos);
-				player.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+    			PlayerPosition pos = WorldSpawnLoc.spawnLocas.get(player.getUUID(player.getGameProfile()));
+				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
+				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}
 		}
     }

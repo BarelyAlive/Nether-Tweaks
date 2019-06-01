@@ -65,4 +65,6 @@ public interface INames {
 	public static String HAMMERSTONE 				= "hammer_stone";
 	public static String HAMMERIRON					= "hammer_iron";
 	public static String HAMMERDIAMOND				= "hammer_diamond";
+
+	public static String CHUNK						= "chunk";
 }
