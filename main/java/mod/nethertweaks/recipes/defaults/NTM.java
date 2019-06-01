@@ -268,6 +268,14 @@ public class NTM implements IRecipeDefaults
         	
         	if (Block.getBlockFromItem(sapling) instanceof IPlantable) {
 				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.10f), MeshType.FLINT.getID());
+				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.15f), MeshType.IRON.getID());
+				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.20f), MeshType.DIAMOND.getID());
+				
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.60f), MeshType.IRON.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.80f), MeshType.DIAMOND.getID());
 			}
         }
 
@@ -517,8 +525,6 @@ public class NTM implements IRecipeDefaults
         saplingMap.put(new BlockInfo(Blocks.LEAVES, 3), new BlockInfo(Blocks.SAPLING, 3));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 0), new BlockInfo(Blocks.SAPLING, 4));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 1), new BlockInfo(Blocks.SAPLING, 5));
-        //Support your own stuff!
-        saplingMap.put(new BlockInfo(BlockHandler.ELDERLEAVES), new BlockInfo(BlockHandler.ELDERSAPLING));
 
         return saplingMap;
     }
