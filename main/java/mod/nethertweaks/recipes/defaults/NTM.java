@@ -2,6 +2,7 @@ package mod.nethertweaks.recipes.defaults;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -41,10 +42,12 @@ import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -85,6 +88,7 @@ public class NTM implements IRecipeDefaults
         registry.register(new BlockInfo(Blocks.WATERLILY.getDefaultState()), 0.10f, dirtState, new Color("269900"));
         registry.register(new BlockInfo(Blocks.VINE.getDefaultState()), 0.10f, dirtState, new Color("23630E"));
         registry.register(new BlockInfo(Blocks.TALLGRASS, 1), 0.08f, dirtState, new Color("23630E"));
+        registry.register(new BlockInfo(Blocks.TALLGRASS, 2), 0.08f, dirtState, new Color("23630E"));
         registry.register(new ItemInfo(Items.EGG), 0.08f, dirtState, new Color("FFFA66"));
         registry.register(new ItemInfo(Items.NETHER_WART), 0.10f, dirtState, new Color("FF2B52"));
         registry.register(new ItemInfo(Items.REEDS), 0.08f, dirtState, new Color("9BFF8A"));
@@ -252,6 +256,19 @@ public class NTM implements IRecipeDefaults
         
         for(int i = 0; i < 6; i++)
         	registry.register("dirt", new BlockInfo(Blocks.SAPLING, i), getDropChance(0.05f), MeshType.STRING.getID());
+        
+        for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
+        {
+        	Block leafBlock = Block.getBlockFromItem(leaves.getItem());
+        	IBlockState state = leafBlock.getDefaultState();
+        	Random rand = new Random();
+        	
+        	Item sapling = leafBlock.getItemDropped(state, rand, 0);
+        	
+        	if (Block.getBlockFromItem(sapling) instanceof IPlantable) {
+				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+			}
+        }
 
         // Custom Ores for other mods
         OreRegistry oreRegistry = NTMRegistryManager.ORE_REGISTRY;
