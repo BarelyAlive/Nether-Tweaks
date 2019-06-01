@@ -33,7 +33,6 @@ public class TileBonfire extends TileEntity {
 	public TileBonfire()
 	{
 		this.registeredPlayer = new ArrayList<UUID>();
-		
 	}
 	
 	public void deleteSpawnLocationsIfDestroyed() {

@@ -2,6 +2,7 @@ package mod.nethertweaks.recipes.defaults;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -14,6 +15,8 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
+import mod.nethertweaks.items.Seed;
+import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -32,6 +35,7 @@ import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
@@ -41,10 +45,13 @@ import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -62,38 +69,30 @@ public class NTM implements IRecipeDefaults
         BlockInfo dirtState = new BlockInfo(Blocks.DIRT);
 
         registry.register(new ItemInfo(Items.ROTTEN_FLESH), 0.1f, dirtState, new Color("C45631"));
-
         registry.register(new ItemInfo(Items.SPIDER_EYE), 0.08f, dirtState, new Color("963E44"));
-
         registry.register(new ItemInfo(Items.WHEAT), 0.08f, dirtState, new Color("E3E162"));
         registry.register(new ItemInfo(Items.WHEAT_SEEDS), 0.08f, dirtState, new Color("35A82A"));
         registry.register(new ItemInfo(Items.BREAD), 0.16f, dirtState, new Color("D1AF60"));
-
         registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 0.10f, dirtState, new Color("CFBFB6"));
         registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 0.10f, dirtState, new Color("D6A8A5"));
-
         registry.register(new ItemInfo(Items.PUMPKIN_PIE), 0.16f, dirtState, new Color("E39A6D"));
-
         registry.register(new ItemInfo(Items.PORKCHOP), 0.2f, dirtState, new Color("FFA091"));
         registry.register(new ItemInfo(Items.BEEF), 0.2f, dirtState, new Color("FF4242"));
         registry.register(new ItemInfo(Items.CHICKEN), 0.2f, dirtState, new Color("FFE8E8"));
-
         registry.register(new ItemInfo(Items.APPLE), 0.10f, dirtState, new Color("FFF68F"));
         registry.register(new ItemInfo(Items.MELON), 0.04f, dirtState, new Color("FF443B"));
         registry.register(new BlockInfo(Blocks.MELON_BLOCK), 1.0f / 6, dirtState, new Color("FF443B"));
         registry.register(new BlockInfo(Blocks.PUMPKIN), 1.0f / 6, dirtState, new Color("FFDB66"));
         registry.register(new BlockInfo(Blocks.LIT_PUMPKIN), 1.0f / 6, dirtState, new Color("FFDB66"));
-
         registry.register(new BlockInfo(Blocks.CACTUS), 0.10f, dirtState, new Color("DEFFB5"));
-
         registry.register(new ItemInfo(Items.CARROT), 0.08f, dirtState, new Color("FF9B0F"));
         registry.register(new ItemInfo(Items.POTATO), 0.08f, dirtState, new Color("FFF1B5"));
         registry.register(new ItemInfo(Items.BAKED_POTATO), 0.08f, dirtState, new Color("FFF1B5"));
         registry.register(new ItemInfo(Items.POISONOUS_POTATO), 0.08f, dirtState, new Color("E0FF8A"));
-
         registry.register(new BlockInfo(Blocks.WATERLILY.getDefaultState()), 0.10f, dirtState, new Color("269900"));
         registry.register(new BlockInfo(Blocks.VINE.getDefaultState()), 0.10f, dirtState, new Color("23630E"));
         registry.register(new BlockInfo(Blocks.TALLGRASS, 1), 0.08f, dirtState, new Color("23630E"));
+        registry.register(new BlockInfo(Blocks.TALLGRASS, 2), 0.08f, dirtState, new Color("23630E"));
         registry.register(new ItemInfo(Items.EGG), 0.08f, dirtState, new Color("FFFA66"));
         registry.register(new ItemInfo(Items.NETHER_WART), 0.10f, dirtState, new Color("FF2B52"));
         registry.register(new ItemInfo(Items.REEDS), 0.08f, dirtState, new Color("9BFF8A"));
@@ -105,11 +104,11 @@ public class NTM implements IRecipeDefaults
         registry.register("listAllGrain", 0.08f, dirtState, new Color("E3E162"));
         registry.register("listAllseed", 0.08f, dirtState, new Color("35A82A"));
         registry.register("listAllmeatraw", 0.15f, dirtState, new Color("FFA091"));
-        registry.register("treeSapling", 0.125f, dirtState);
-        registry.register("treeLeaves", 0.125f, dirtState);
-        registry.register("flower", 0.1f, dirtState);
-        registry.register("fish", 0.15f, dirtState);
-        registry.register("listAllmeatcooked", 0.20f, dirtState);
+        registry.register("treeSapling", 0.125f, dirtState, new Color("4DA83B"));
+        registry.register("treeLeaves", 0.125f, dirtState, new Color("1E932D"));
+        registry.register("flower", 0.1f, dirtState, new Color("708D13"));
+        registry.register("fish", 0.15f, dirtState, new Color("4A7090"));
+        registry.register("listAllmeatcooked", 0.20f, dirtState, new Color("8D0002"));
 
         // Misc. Modded Items
         registry.register("dustAsh", 0.125f, dirtState, new Color("C0C0C0"));
@@ -123,6 +122,10 @@ public class NTM implements IRecipeDefaults
 			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
 		}
     	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
+    	
+    	Ingredient ingredient = new OreIngredientStoring("treeSapling");
+    	for(ItemStack ore : ingredient.getMatchingStacks())
+    		registry.register(ore, new ItemStack(Blocks.ICE), 3);
     }
     
     @Override
@@ -146,7 +149,7 @@ public class NTM implements IRecipeDefaults
 		//clownfish
 		registry.register(new ItemStack(Items.FISH, 1, 2), 63);
 		//blowfish
-		registry.register(new ItemStack(Items.FISH, 1, 3), 63);	
+		registry.register(new ItemStack(Items.FISH, 1, 3), 63);
 		
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.BROWN_MUSHROOM)), 63);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.RED_MUSHROOM)), 63);
@@ -166,16 +169,17 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Items.COOKED_RABBIT), 63);
 		registry.register(new ItemStack(Items.MUTTON), 63);
 		registry.register(new ItemStack(Items.COOKED_MUTTON), 63);
-		registry.register(new ItemStack(Items.MAGMA_CREAM), 112);	
-		registry.register(new ItemStack(Items.SLIME_BALL), 112);	
+		registry.register(new ItemStack(Items.MAGMA_CREAM), 78);
+		registry.register(new ItemStack(Items.SLIME_BALL), 88);
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)), 800);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN)), 250);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS)), 300);
 		
 		//Back to water 1:1
+        registry.register(new ItemStack(Items.SNOWBALL), 250);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PACKED_ICE)), 9000);
         registry.register(new ItemStack(Item.getItemFromBlock(Blocks.ICE)), 1000);
         registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW)), 1000);
-        registry.register(new ItemStack(Items.SNOWBALL), 250);
         registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW_LAYER)), 125); //Blame Mojang for their unfair recipe
         
 		registry.register("treeSapling", 100);
@@ -224,7 +228,6 @@ public class NTM implements IRecipeDefaults
         //Grass Seeds
         registry.register("dirt", new ItemInfo(ItemHandler.SEED, 1), getDropChance(0.05f), MeshType.STRING.getID());
 
-
         registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getID());
         registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getID());
 
@@ -258,6 +261,32 @@ public class NTM implements IRecipeDefaults
 
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GLOWSTONE_DUST), getDropChance(0.0625f), MeshType.IRON.getID());
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getID());
+        	
+        //Damit Saplinge erfasst werden, die auch von ihren Leaves gedroppt werden sollen
+        for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
+        {
+        	Block leafBlock = Block.getBlockFromItem(leaves.getItem());
+        	IBlockState state = leafBlock.getDefaultState();
+        	Random rand = new Random();
+        	
+        	Item sapling = leafBlock.getItemDropped(state, rand, 0);
+        	
+        	if (Block.getBlockFromItem(sapling) instanceof IPlantable)
+        	{
+        		boolean hc = NameHelper.getModID(sapling) == "harvestcraft";
+        		
+        		if(hc && Config.enableHarvestcraft)
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        		else if(!hc)
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        			
+				
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.60f), MeshType.IRON.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.80f), MeshType.DIAMOND.getID());
+			}
+        }
 
         // Custom Ores for other mods
         OreRegistry oreRegistry = NTMRegistryManager.ORE_REGISTRY;
@@ -314,16 +343,11 @@ public class NTM implements IRecipeDefaults
             }
         }
         // Seeds
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
+        	if(i == 0)
+        		registry.register("sand", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
-        }
-
-        if(Item.REGISTRY.containsKey(ItemHandler.SEED.getRegistryName()))
-        {
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.FLINT.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.IRON.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.DIAMOND.getID());
         }
         
         getLeavesSapling().forEach((leaves, sapling) ->
@@ -356,6 +380,8 @@ public class NTM implements IRecipeDefaults
     	registry.register(BlockHandler.NETHERRACKGRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
     	registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
+        
+        //Yes, I have to do this otherwise i can'split the outputs
         for(ItemStack block : OreDictionary.getOres("gravel"))
         {
         	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACKGRAVEL))
@@ -365,7 +391,7 @@ public class NTM implements IRecipeDefaults
 
         // Hammer concrete into concrete powder
         for (int meta = 0; meta < 16; meta++)
-            registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta).toString(), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
+            registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
     }
 
     @Override
@@ -503,8 +529,6 @@ public class NTM implements IRecipeDefaults
         saplingMap.put(new BlockInfo(Blocks.LEAVES, 3), new BlockInfo(Blocks.SAPLING, 3));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 0), new BlockInfo(Blocks.SAPLING, 4));
         saplingMap.put(new BlockInfo(Blocks.LEAVES2, 1), new BlockInfo(Blocks.SAPLING, 5));
-        //Support your own stuff!
-        saplingMap.put(new BlockInfo(BlockHandler.ELDERLEAVES), new BlockInfo(BlockHandler.ELDERSAPLING));
 
         return saplingMap;
     }

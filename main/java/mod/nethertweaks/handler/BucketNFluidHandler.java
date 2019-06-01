@@ -32,6 +32,7 @@ import mod.sfhcore.items.CustomBucket;
 import mod.sfhcore.items.CustomBucketMilk;
 import mod.sfhcore.registries.RegisterFluid;
 import mod.sfhcore.registries.Registry;
+import mod.sfhcore.util.BlockInfo;
 
 public class BucketNFluidHandler
 {
@@ -53,7 +54,9 @@ public class BucketNFluidHandler
 
 	private static void registerBuckets()
 	{
-		BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
-		BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
+		if(Config.enableWoodBucket)
+			BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
+		if(Config.enableStoneBucket)
+			BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
 	}
 }

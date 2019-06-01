@@ -39,11 +39,11 @@ public class ItemHandler implements INames
 {
 	//ITEMS
     public static final Item SEED 			 = new Seed();
-    public static final Item FLINTANDBLAZE 	 = new FlintAndBlaze();
-    public static final Item CRYSTAL 		 = new Crystal();
-    public static final Item PEBBLE 		 = new ItemPebble();
     public static final Item MESH 			 = new ItemMesh();
     public static final Item DOLL 			 = new ItemDoll();
+    public static final Item PEBBLE 		 = new ItemPebble();
+    public static final Item CRYSTAL 		 = new Crystal();
+    public static final Item FLINTANDBLAZE 	 = new FlintAndBlaze();
 
     //Multi ID Item
 	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 8, new ResourceLocation(NTM, INames.ITEMBASE));
@@ -55,11 +55,11 @@ public class ItemHandler implements INames
     public static final Item GRABBER 		 = new Grabber();
     public static final Item PICKNETHERRACK	 = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICKNETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item HAMMERWOOD		 = new HammerBase(64, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD 	 = new HammerBase(80, ToolMaterial.GOLD);
-    public static final Item HAMMERSTONE	 = new HammerBase(160, ToolMaterial.STONE);
-    public static final Item HAMMERIRON 	 = new HammerBase(640, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND 	 = new HammerBase(5120, ToolMaterial.DIAMOND);
+    public static final Item HAMMERWOOD		 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
+    public static final Item HAMMERGOLD 	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
+    public static final Item HAMMERSTONE	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
+    public static final Item HAMMERIRON 	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
+    public static final Item HAMMERDIAMOND 	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
     //itemblocks
     public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));
@@ -83,15 +83,15 @@ public class ItemHandler implements INames
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
 
         //Werkzeuge
-        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
-        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
         if(Config.enableGrabber)			Registry.registerItem(GRABBER);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);
+        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
+        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
         if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
         if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
-        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
 
         //Food
     	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
@@ -103,10 +103,11 @@ public class ItemHandler implements INames
 
     private static void addItemBurnTime()
     {
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
+    	if(Config.enableStoneBucket)
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	if(Config.enableMultiItem)
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
     	if(Config.enableMultiBlock)
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

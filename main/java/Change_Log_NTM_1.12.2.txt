@@ -7,43 +7,47 @@ ChangeLog NTM 2.0.0
 * Freezers now include water tanks and can have a redstone signal from any side
 * Condenser and Freezer now have a new GUI
 * Condenser recipes, Barrel recipes, Hammer rewards & siftable items are now editable via JSON
-* Condenser, Freezer & Netherrack Furnace now work with hoppers or similar and (No.1) automatically output fluids to the sides
+* Condenser, Freezer & Netherrack Furnace now work with hoppers or similar
+* Condenser automatically output fluids to the sides (can be disabled via config file)
 * Held items can now drain Condensers and fill Freezers
 * Condenser & Netherrack Furnace now calculate their working time by which block is below them. This can be edited via JSON file HeatRegistry.json
 * Condenser can now be drained with buckets and bottles and freezer can be filled with them
 * Condenser, Freezer & Netherrack Furnace are now able to pull items from above and put items to inventorys in the sides
+    (Can be disabled via config file)
 * Condenser & Freezer now show in their GUI under the fluid bar the fluid name and the amount
   (In any language available in Minecraft or Mod-supported language (depends on the language support of the fluid's Mod)
-* The Condenser is also able to melt water from snowballs, snow, ice and pack ice.
+* The Condenser is also able to melt water from snowballs, snow, ice and pack ice (1:1)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
 * Changed icon of creative tab
 * Changed some recipes
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
-* Liquid Impossibility now turns pigmans into pigs, wither skeletons into normal skeletons & magma slimes into slimes
+* Liquid Impossibility now turns wither skeletons into normal skeletons & magma slimes into slimes
 * Liquid Impossibility is now as cold as possible
 * New color for Liquid Impossibility to make it not look like p*** anymore
 * Mobs like squids etc. can now spawn in Liquid Impossibility
-* More and better config options!
+* Much more and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
 * Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
-* Grabber now works with melon blocks, cactus, cobweb, fern and dead bushes (configurable)
-* Fixed Spawn and respawn in Hellworld (If a player dies he/she will get set back to the start portal
+* Grabber now works with melon blocks, cactus, cobweb, fern, dead bushes and shearable entities like sheep (configurable)
+* Fixed Spawn and respawn in Hellworld (If a player dies he/she will get set back to the portal when they first entered the nether)
 * Fixed a Bug that could cause server damage if a block got activated but wasn't loaded
 * Fixed Netherrack Furnace lag caused by block set spam
 * Fixed cascading world gen lag (Solution: Offset tree spawn position by +8)
 * Fixed Netherrack Furnace "check light spam"
 * Fixed Furnace not setting lighting back to normal if destroyed
 * Stone Doors are back!
+* Stone & Wood Bucket are now like forge's universal bucket (Wood Buckets can't hold/pick up hot fluids)
+    (actually this is from SFHCore and every mod can add them they use SFHCore)
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
 - Removed Water Fountain
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
-+ Readded language support (de-de, es-es, fr-fr, pt-br(?))
++ Readded language support (de-de, es-es, fr-fr, pt-br (idk if brazilian or not sorry)
   (If something is not correct translated, don't blame me. I had to use DeepL)
 + Added netherrack gravel (drops flint)
 + Added Elder Door
@@ -52,6 +56,4 @@ ChangeLog NTM 2.0.0
     The Currency is water barrels (also editable via JSON)(craft them from water bottles/buckets)
 + Added Mean Vine strings (works as normal string in recipes)
 + Added pebbles (can be thrown for damage)
-+ Added support for WAILA, Harvestcraft, Moo Fluids, the one probe, Draconic Evolution, Applied Energistics, Forestry,
-    Magneticraft, Actually Additions, Big Reactors, Ender IO, Mekanism (finally, and hopefully without crashes),
-    Thermal Foundation, Tinkers Construct, Integrated Dynamics and many more
++ Added support for Moo Fluids

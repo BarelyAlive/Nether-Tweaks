@@ -20,11 +20,6 @@
         "textures": {
           "layer0": "nethertweaksmod:items/item_cactus_seeds"
         }
-      },
-      "3": {
-        "textures": {
-          "layer0": "nethertweaksmod:items/seed_rubber"
-        }
       }
     }
   }

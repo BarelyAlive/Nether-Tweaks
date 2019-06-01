@@ -28,7 +28,6 @@ import mod.nethertweaks.handler.MessageHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
-import mod.nethertweaks.recipes.defaults.TinkersConstruct;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -142,13 +141,13 @@ public class NetherTweaksMod
     		OreHandler.registerModels(event);
     	}
     }
-
-    public static File configDirectory;
+    
     // List of loaded modules
     public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();    
     //Creative Tabs
     public static final CreativeTabs TABNTM = new CreativeTabNTM();
     
+    public static File configDirectory;
     public WorldType Hellworld = new WorldTypeHellworld();
          
     @Mod.EventHandler
@@ -164,10 +163,10 @@ public class NetherTweaksMod
     	
     	NTMCapabilities.init();
     	NTMEntities.init();
-    	    	
+
+        ItemHandler.init();    	
         BlockHandler.init();
         BucketNFluidHandler.init();
-        ItemHandler.init();
         
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         

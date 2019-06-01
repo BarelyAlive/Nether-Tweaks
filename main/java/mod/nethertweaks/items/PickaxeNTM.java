@@ -2,6 +2,7 @@ package mod.nethertweaks.items;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
@@ -19,10 +20,12 @@ public class PickaxeNTM extends ItemPickaxe{
 	{
 		if(tool == ToolMaterial.STONE)
 		{
+			setMaxDamage(Config.durabilityPickRack);
 			return INames.PICKAXENETHERRACK;
 		}
 		else
 		{
+			setMaxDamage(Config.durabilityPickBrick);
 			return INames.PICKAXENETHERBRICK;
 		}
 	}

@@ -61,8 +61,10 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class TileCondenser extends TileFluidInventory
 {	
+	private int fillTick = 0;
+	
     public TileCondenser() {
-		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, 16000));
+		super(3, INames.TECONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
 	}
 
@@ -106,44 +108,49 @@ public class TileCondenser extends TileFluidInventory
 	
 	private void checkInputOutput()
 	{
-		extractFromInventory(pos.up(), EnumFacing.DOWN);
-    	insertToInventory(pos.north(), EnumFacing.SOUTH);
-    	insertToInventory(pos.south(), EnumFacing.NORTH);
-    	insertToInventory(pos.west(), EnumFacing.EAST);
-    	insertToInventory(pos.east(), EnumFacing.WEST);
+		if(Config.autoExtractItems)
+			extractFromInventory(pos.up(), EnumFacing.DOWN);
+    	if(Config.autoOutputItems) {
+			insertToInventory(pos.north(), EnumFacing.SOUTH);
+			insertToInventory(pos.south(), EnumFacing.NORTH);
+			insertToInventory(pos.west(), EnumFacing.EAST);
+			insertToInventory(pos.east(), EnumFacing.WEST);
+		}
 	}
 	
 	private void fillToNeighborsTank()
 	{
-		FluidStack water = this.getTank().getFluid();
-		
-		if(water != null) {
-			BlockPos north = this.getPos().north();
-			BlockPos east  = this.getPos().east();
-			BlockPos south = this.getPos().south();
-			BlockPos west  = this.getPos().west();
-			
-			//Check FluidHandler
-			IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
-			IFluidHandler heast  = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
-			IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
-			IFluidHandler hwest  = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
-			
-			if(hnorth != null && world.getBlockState(north) != BlockHandler.CONDENSER.getDefaultState())
-				FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
-			if(heast != null && world.getBlockState(east) != BlockHandler.CONDENSER.getDefaultState())
-				FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
-			if(hsouth != null && world.getBlockState(south) != BlockHandler.CONDENSER.getDefaultState())
-				FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
-			if(hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
-				FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+		fillTick++;
+		if (fillTick == 20) {
+			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
+			if (this.getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
+				BlockPos north = this.getPos().north();
+				BlockPos east = this.getPos().east();
+				BlockPos south = this.getPos().south();
+				BlockPos west = this.getPos().west();
+
+				//Check FluidHandler
+				IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
+				IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
+				IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
+				IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
+
+				if (hnorth != null && world.getBlockState(north) != BlockHandler.CONDENSER.getDefaultState())
+					FluidUtil.tryFluidTransfer(hnorth, this.getTank(), water, true);
+				if (heast != null && world.getBlockState(east) != BlockHandler.CONDENSER.getDefaultState())
+					FluidUtil.tryFluidTransfer(heast, this.getTank(), water, true);
+				if (hsouth != null && world.getBlockState(south) != BlockHandler.CONDENSER.getDefaultState())
+					FluidUtil.tryFluidTransfer(hsouth, this.getTank(), water, true);
+				if (hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
+					FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
+			}
+			fillTick = 0;
 		}
 	}
 	
 	private void dry()
 	{
 		ItemStack material = this.getStackInSlot(0);
-		ItemStack bucket = this.getStackInSlot(1);
 		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
 		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
@@ -151,13 +158,12 @@ public class TileCondenser extends TileFluidInventory
 			this.getTank().fill(new FluidStack(FluidRegistry.WATER, amount), true);
 		
 		material.shrink(1);
-		return;
 	}
 	
 	private void fillToItemSlot()
 	{
-		ItemStack input  = this.getStackInSlot(2).copy();
-    	ItemStack output = this.getStackInSlot(1).copy();
+		ItemStack input  = this.getStackInSlot(2);
+    	ItemStack output = this.getStackInSlot(1);
     	
     	if(!output.isEmpty()) return;
     	if(input.isEmpty()) return;
@@ -204,8 +210,7 @@ public class TileCondenser extends TileFluidInventory
         if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
         
-        if(heat != 0)
-            return heat;
+        if(heat != 0) return heat;
 
         TileEntity tile = getWorld().getTileEntity(posBelow);
 
@@ -239,10 +244,10 @@ public class TileCondenser extends TileFluidInventory
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
 		
-		if(index == 0) return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
-		if(index == 1) return false;
-		if(index == 2)
-		{
+		switch (index) {
+		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
+		case 1: return false;
+		case 2:
 			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
@@ -254,8 +259,7 @@ public class TileCondenser extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack)
 	{
-		if(index == 1) return true;
-		return false;
+		return index == 1;
 	}
 	
     public String getGuiID()
@@ -266,5 +270,17 @@ public class TileCondenser extends TileFluidInventory
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerCondenser(playerInventory, this);
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+    	fillTick = compound.getInteger("fillTick");
+    	super.readFromNBT(compound);
+    }
+    
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+    	compound.setInteger("fillTick", fillTick);
+    	return super.writeToNBT(compound);
     }
 }
