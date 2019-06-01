@@ -15,6 +15,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
+import mod.nethertweaks.items.Seed;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -331,16 +332,9 @@ public class NTM implements IRecipeDefaults
             }
         }
         // Seeds
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             registry.register("dirt", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
-        }
-
-        if(Item.REGISTRY.containsKey(ItemHandler.SEED.getRegistryName()))
-        {
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.FLINT.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.IRON.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, 3), getDropChance(0.05f), MeshType.DIAMOND.getID());
         }
         
         getLeavesSapling().forEach((leaves, sapling) ->

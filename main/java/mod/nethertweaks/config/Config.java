@@ -200,7 +200,7 @@ public class Config
         enableBarrelTransformLighting 	= config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
         
         //Crucible
-        thinCrucibleModel			 	= config.get("Crucible", "Do you want a hin crucible model?", true).getBoolean();
+        thinCrucibleModel			 	= config.get("Crucible", "Do you want a thin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
         densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
@@ -215,7 +215,7 @@ public class Config
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
         
         //JSON
-        enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON Confugration causes problems");
+        enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON configuration causes problems");
         
         //Mod-Compatibility
         fluidListIsBlackList			= config.get("Compatibility", "Is the Moo-Fluids-List a blacklist?", true).getBoolean();

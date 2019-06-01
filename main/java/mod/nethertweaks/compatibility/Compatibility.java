@@ -11,7 +11,8 @@ public class Compatibility
 	{
 		if(Loader.isModLoaded("moofluids") ||
                 Loader.isModLoaded("minimoos") ||
-                Loader.isModLoaded("fluidcows"))
+                Loader.isModLoaded("fluidcows") &&
+                Config.enableMooFluid)
         	NetherTweaksMod.loadedModules.add(new MooFluidsEtc());
 		/*
 		if(Loader.isModLoaded("appliedenergistics2"))
