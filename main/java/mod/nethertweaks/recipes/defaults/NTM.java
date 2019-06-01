@@ -33,6 +33,7 @@ import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
@@ -253,10 +254,7 @@ public class NTM implements IRecipeDefaults
 
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GLOWSTONE_DUST), getDropChance(0.0625f), MeshType.IRON.getID());
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getID());
-        
-        for(int i = 0; i < 6; i++)
-        	registry.register("dirt", new BlockInfo(Blocks.SAPLING, i), getDropChance(0.05f), MeshType.STRING.getID());
-        
+        	
         //Damit Saplinge erfasst werden, die auch von ihren Leaves gedroppt werden sollen
         for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
         {
@@ -266,11 +264,10 @@ public class NTM implements IRecipeDefaults
         	
         	Item sapling = leafBlock.getItemDropped(state, rand, 0);
         	
-        	if (Block.getBlockFromItem(sapling) instanceof IPlantable) {
+        	if (Block.getBlockFromItem(sapling) instanceof IPlantable)
+        	{
+        		if(NameHelper.getModID(sapling) != "harvestcraft")
 				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
-				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.10f), MeshType.FLINT.getID());
-				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.15f), MeshType.IRON.getID());
-				registry.register("dirt", new ItemInfo(sapling), getDropChance(0.20f), MeshType.DIAMOND.getID());
 				
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());
