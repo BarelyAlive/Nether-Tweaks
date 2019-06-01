@@ -26,7 +26,6 @@ import mod.nethertweaks.handler.MessageHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
-import mod.nethertweaks.recipes.defaults.TinkersConstruct;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;

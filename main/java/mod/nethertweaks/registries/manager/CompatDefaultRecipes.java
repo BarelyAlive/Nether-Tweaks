@@ -16,7 +16,6 @@ public class CompatDefaultRecipes
     public CompatDefaultRecipes()
     {
         MODS.add(new NTM());
-        MODS.add(new TinkersConstruct());
     }
     
     static {
