@@ -3,6 +3,7 @@ package mod.nethertweaks;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 
 public class Konstanten

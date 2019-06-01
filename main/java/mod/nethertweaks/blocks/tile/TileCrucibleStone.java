@@ -37,24 +37,24 @@ public class TileCrucibleStone extends TileCrucibleBase {
 
             if (solidAmount <= 0) {
                 if (!itemHandler.getStackInSlot(0).isEmpty()) {
-                    currentItem = new ItemInfo(itemHandler.getStackInSlot(0));
+                    setCurrentItem(new ItemInfo(itemHandler.getStackInSlot(0)));
                     itemHandler.getStackInSlot(0).shrink(1);
 
                     if (itemHandler.getStackInSlot(0).isEmpty()) {
                         itemHandler.setStackInSlot(0, ItemStack.EMPTY);
                     }
 
-                    solidAmount = crucibleRegistry.getMeltable(currentItem).getAmount();
+                    solidAmount = crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
                 } else {
 //                  onBlockActivated in TileCrucibleBase already updates the client item/fluid is removed
                     return;
                 }
             }
 
-            if (!itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).isItemEqual(currentItem.getItemStack())) {
+            if (!itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).isItemEqual(getCurrentItem().getItemStack())) {
                 // For meltables with a really small "amount"
                 while (heatRate > solidAmount && !itemHandler.getStackInSlot(0).isEmpty()) {
-                    solidAmount += crucibleRegistry.getMeltable(currentItem).getAmount();
+                    solidAmount += crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
                     itemHandler.getStackInSlot(0).shrink(1);
 
                     if (itemHandler.getStackInSlot(0).isEmpty()) {
@@ -68,8 +68,8 @@ public class TileCrucibleStone extends TileCrucibleBase {
                 heatRate = solidAmount;
             }
 
-            if (heatRate > 0 && currentItem.isValid() && crucibleRegistry.canBeMelted(currentItem)) {
-                FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(currentItem).getFluid()), heatRate);
+            if (heatRate > 0 && getCurrentItem().isValid() && crucibleRegistry.canBeMelted(getCurrentItem())) {
+                FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(getCurrentItem()).getFluid()), heatRate);
                 int filled = tank.fillInternal(toFill, true);
                 solidAmount -= filled;
 

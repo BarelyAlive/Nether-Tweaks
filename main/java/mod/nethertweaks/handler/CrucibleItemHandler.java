@@ -1,10 +1,11 @@
-package mod.nethertweaks.blocks.tile;
+package mod.nethertweaks.handler;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 
+import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.types.Meltable;
 import mod.sfhcore.util.ItemInfo;
@@ -29,7 +30,7 @@ public class CrucibleItemHandler extends ItemStackHandler {
             int allowedSolidAmount = meltable.getAmount() * TileCrucibleBase.MAX_ITEMS;
 
             if (totalSolidAmount <= allowedSolidAmount) {
-                te.currentItem = new ItemInfo(stack);
+                te.setCurrentItem(new ItemInfo(stack));
 
                 return super.insertItem(slot, stack, simulate);
             }
@@ -46,7 +47,7 @@ public class CrucibleItemHandler extends ItemStackHandler {
 
     @Override
     protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-        return te.solidAmount > 0 ? TileCrucibleBase.MAX_ITEMS - 1 : TileCrucibleBase.MAX_ITEMS;
+        return te.getSolidAmount() > 0 ? TileCrucibleBase.MAX_ITEMS - 1 : TileCrucibleBase.MAX_ITEMS;
     }
 
     @Override

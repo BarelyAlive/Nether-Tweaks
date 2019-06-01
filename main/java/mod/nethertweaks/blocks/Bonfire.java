@@ -38,13 +38,13 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Bonfire extends BlockContainer {
-	
+public class Bonfire extends BlockContainer
+{
 	//public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
 	public Bonfire() {
 		super(Material.ROCK);
-		setLightLevel(15);
+		setLightLevel(12);
 		setRegistryName(NetherTweaksMod.MODID, INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.TABNTM);
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -153,10 +153,8 @@ public class Bonfire extends BlockContainer {
 	
 	private void onBlockDestroy(World worldIn, BlockPos pos)
 	{
-		if (!worldIn.isRemote) return;
-		
-		if (worldIn.getTileEntity(pos) == null) return;
-		
+		if (!worldIn.isRemote) return;	
+		if (worldIn.getTileEntity(pos) == null) return;	
 		if (!(worldIn.getTileEntity(pos) instanceof TileBonfire)) return;
 		
 		TileBonfire bonfire = (TileBonfire) worldIn.getTileEntity(pos);
