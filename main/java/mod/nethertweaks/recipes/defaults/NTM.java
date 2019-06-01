@@ -16,6 +16,7 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.items.Seed;
+import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
@@ -49,6 +50,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -119,9 +121,11 @@ public class NTM implements IRecipeDefaults
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
 			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);	        		
-		registry.register("treeSapling", "ice", 3);
-		registry.register("beeComb", "ice", 5);
+    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
+    	
+    	Ingredient ingredient = new OreIngredientStoring("treeSapling");
+    	for(ItemStack ore : ingredient.getMatchingStacks())
+    		registry.register(ore, new ItemStack(Blocks.ICE), 3);
     }
     
     @Override
