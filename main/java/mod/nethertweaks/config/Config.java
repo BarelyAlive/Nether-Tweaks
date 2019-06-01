@@ -148,6 +148,7 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
+        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
         autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
@@ -170,7 +171,7 @@ public class Config
         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
-        enableTeleport					= config.getBoolean("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "");
+        enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
         
         //Ore
 		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "Enable OreDict Ore Chunks?", true).getBoolean();
@@ -212,7 +213,6 @@ public class Config
         spawnWaterMobs					= config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
         
         isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
-        grabberBlocks	 				= config.get("Misc", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
         
         //JSON
         enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON Confugration causes problems");

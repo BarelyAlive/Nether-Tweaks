@@ -83,15 +83,15 @@ public class ItemHandler implements INames
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
 
         //Werkzeuge
-        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
-        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
         if(Config.enableGrabber)			Registry.registerItem(GRABBER);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);
+        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
+        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
         if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
         if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
-        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
 
         //Food
     	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
@@ -103,10 +103,11 @@ public class ItemHandler implements INames
 
     private static void addItemBurnTime()
     {
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
+    	if(Config.enableStoneBucket)
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	if(Config.enableMultiItem)
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
     	if(Config.enableMultiBlock)
-    	CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

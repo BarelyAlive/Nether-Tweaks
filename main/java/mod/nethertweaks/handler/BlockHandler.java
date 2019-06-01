@@ -43,21 +43,21 @@ public class BlockHandler implements INames
     public static final Block FREEZER 			 = new Freezer();
     public static final Block BONFIRE 			 = new Bonfire();
     public static final Block HELLMART 			 = new Hellmart();
-    public static final Block UNFIRED_CRUCIBLE	 = new CrucibleStone(false);
     public static final Block CRUCIBLE		 	 = new CrucibleStone(true);
+    public static final Block UNFIRED_CRUCIBLE	 = new CrucibleStone(false);
     
     //Blocks
     public static final Block DUST 				 = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.TABNTM, new ResourceLocation(NTM, INames.DUST));
     public static final Block STWH 				 = new StwH();
-    public static final Block ELDERSAPLING 		 = new ElderSapling();
+    public static final Block SIEVE 			 = new Sieve();
+    public static final Block MEANVINE 			 = new MeanVine();
+    public static final Block NETHERRACKGRAVEL 	 = new NetherrackGravel();
     public static final Block ELDERLOG 			 = new ElderLog();
     public static final Block ELDERLEAVES 		 = new ElderLeaves();
     public static final Block ELDERPLANKS 		 = new ElderPlanks();
+    public static final Block ELDERSAPLING 		 = new ElderSapling();
     public static final Block ELDERSLABHALF 	 = new ElderSlab.Half();
     public static final Block ELDERSLABDOUBLE 	 = new ElderSlab.Double(ELDERSLABHALF, new ElderSlab());
-    public static final Block NETHERRACKGRAVEL 	 = new NetherrackGravel();
-    public static final Block MEANVINE 			 = new MeanVine();
-    public static final Block SIEVE 			 = new Sieve();
     public static final Block STONEDOOR 		 = new CustomDoor(Material.ROCK, new ResourceLocation(NTM, INames.DOORNTMSTONE), 30.0F, 2.0F);
     public static final Block ELDERDOOR 		 = new CustomDoor(Material.WOOD, new ResourceLocation(NTM, INames.DOORNTMELDER), 15.0F, 2.0F);
     public static final Block BLOCKBASIC 		 = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCKBASIC), 17.5f, 3.5f, NetherTweaksMod.TABNTM);

@@ -44,14 +44,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class LiquidImpossibility extends BlockFluidClassic{
-
+public class LiquidImpossibility extends BlockFluidClassic
+{
     public LiquidImpossibility()
     {
         super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
         setRegistryName(NetherTweaksMod.MODID, INames.BLOCKLIQUIDIMPOSSIBILITY);
-        setLightLevel(15);
-        setTemperature(0);
+        setLightLevel(Config.luminosityLI);
+        setTemperature(Config.temperatureLI);
+        setDensity(Config.densityLI);
         setBlockUnbreakable();
     }
     
