@@ -13,6 +13,8 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.items.ItemChunk;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.items.Seed;
@@ -289,58 +291,53 @@ public class NTM implements IRecipeDefaults
         }
 
         // Custom Ores for other mods
-        OreRegistry oreRegistry = NTMRegistryManager.ORE_REGISTRY;
-
-        // Gold from nether rack
-        ItemOre gold = oreRegistry.getOreItem("gold");
-        if(gold != null)
-        {
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.FLINT.getID());
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.IRON.getID());
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.4f), MeshType.DIAMOND.getID());
-        }
-
         // All default Ores
-        for (ItemOre ore : oreRegistry.getItemOreRegistry()) {
-            if(oreRegistry.getSieveBlackList().contains(ore)) continue;
-            ItemInfo info = new ItemInfo(ore);
-            switch (ore.getOre().getName()) {
-                case "iron":
-                    registry.register("gravel", info.copy(), getDropChance(0.1f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.25f), MeshType.DIAMOND.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.5f), MeshType.DIAMOND.getID());
-                    break;
-                case "aluminum":
-                case "aluminium":
-                    registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "copper":
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "silver":
-                    registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-                case "tin":
-                    registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "uranium":
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.10f), MeshType.DIAMOND.getID());
-                    break;
-                case "zinc":
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-                default:
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-            }
+        for (ItemChunk ore : OreHandler.mod_chunks.values()) {
+            for (int i = 0; i < ore.getMaxSubItems(); i++) {
+				ItemInfo info = new ItemInfo(ore, i);
+				String name = ore.getOreName(i);
+				switch (name) {
+				case "iron":
+					registry.register("gravel", info.copy(), getDropChance(0.1f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.25f), MeshType.DIAMOND.getID());
+					registry.register("sand", info.copy(), getDropChance(0.5f), MeshType.DIAMOND.getID());
+					break;
+				case "gold":
+					registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f), MeshType.FLINT.getID());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f), MeshType.IRON.getID());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.4f), MeshType.DIAMOND.getID());
+				case "aluminum":
+				case "aluminium":
+					registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "copper":
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "silver":
+					registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				case "tin":
+					registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "uranium":
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.10f), MeshType.DIAMOND.getID());
+					break;
+				case "zinc":
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				default:
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				}
+			}
         }
         // Seeds
         for (int i = 0; i < 2; i++)

@@ -39,13 +39,27 @@ public class ItemChunk extends Item implements IVariantProvider {
 		return chunks.size();
 	}
 	
-	public ItemStack getResult(int i)
+	public ItemStack getContainedBlock(int i)
 	{
 		Collection<ItemStack> entrys = chunks.values();
 		ItemStack[] entry_array = entrys.toArray(new ItemStack[0]);
 		if (entry_array.length <= i)
 			return ItemStack.EMPTY;
-		return FurnaceRecipes.instance().getSmeltingResult(entry_array[i]);
+		return entry_array[i];
+	}
+	
+	public String getOreName(int i)
+	{
+		Set<String> entrys = chunks.keySet();
+		String[] entry_array = entrys.toArray(new String[0]);
+		if (entry_array.length <= i)
+			return "";
+		return entry_array[i];
+	}
+	
+	public ItemStack getResult(int i)
+	{
+		return FurnaceRecipes.instance().getSmeltingResult(this.getContainedBlock(i));
 	}
 	
 	@Override

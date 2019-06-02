@@ -20,6 +20,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 class OreInfo
@@ -33,7 +34,7 @@ class OreInfo
 public class OreHandler {
 
 	private static Map<ItemStack, Integer> ore_list = new HashMap<ItemStack, Integer>();
-	private static Map<String, ItemChunk> mod_chunks = new HashMap<String, ItemChunk>();
+	public static Map<String, ItemChunk> mod_chunks = new HashMap<String, ItemChunk>();
 	private static List<String> disabled_chunks = new ArrayList<String>();
 	private static List<String> enable_chunks = new ArrayList<String>();
 	
@@ -113,8 +114,11 @@ public class OreHandler {
 				chunks = (ItemChunk) mod_chunks.get(mod_domain);
 			}
 			
-			chunks.add(entry.getKey().getUnlocalizedName(), entry.getKey());
-			
+			int[] ids = OreDictionary.getOreIDs(entry.getKey());
+			if (ids.length != 0)
+			{
+				chunks.add(OreDictionary.getOreName(ids[0]).toLowerCase().substring(3), entry.getKey());
+			}
 			mod_chunks.put(mod_domain, chunks);
 			chunks = null;
 		}
