@@ -1,9 +1,11 @@
 package mod.nethertweaks.world;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import forestry.core.utils.NBTUtilForestry.NBTList;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -17,7 +19,8 @@ public class WorldSaveData extends WorldSavedData {
 	public final static String key = "ntm.world_save_data";
 	
 	//Bonfire
-	public Map<UUID, PlayerPosition> spawnLocas = new HashMap<UUID, PlayerPosition>();
+	public Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<UUID, PlayerPosition>();
+	public Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<BlockPos, BonfireInfo>();
 	
 	public WorldSaveData(String key) {
 		super(key);
@@ -45,7 +48,10 @@ public class WorldSaveData extends WorldSavedData {
 		long mBits;
 		UUID index;
 		int x, y, z;
+		boolean is_public;
+		String name;
 		float yaw, ang;
+		List<UUID> player_list;
 		NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
 		
 		for(int i = 0; i < nbtList.tagCount(); i++) {
@@ -62,7 +68,58 @@ public class WorldSaveData extends WorldSavedData {
 			yaw = tag.getFloat("NTM.Yaw");
 			ang = tag.getFloat("NTM.Ang");
 			
-			spawnLocas.put(index, new PlayerPosition(new BlockPos(x, y, z), yaw, ang));			
+			lastSpawnLocas.put(index, new PlayerPosition(new BlockPos(x, y, z), yaw, ang));			
+		}
+		
+		for(Map.Entry<BlockPos, BonfireInfo> entry : this.bonfire_info.entrySet())
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			
+			tag.setInteger("NTM.PosX", entry.getKey().getX());
+			tag.setInteger("NTM.PosY", entry.getKey().getY());
+			tag.setInteger("NTM.PosZ", entry.getKey().getZ());
+			
+			tag.setString("NTM.Name", entry.getValue().getName());
+			tag.setBoolean("NTM.seeable", entry.getValue().isPublic());
+			
+			NBTTagList list = new NBTTagList();
+			
+			for(UUID uuid : entry.getValue().getLastPlayerSpawn())
+			{
+				NBTTagCompound player_tag = new NBTTagCompound();
+				player_tag.setLong("NTM.leastSignificantBits", uuid.getLeastSignificantBits());
+				player_tag.setLong("NTM.mostSignificantBits", uuid.getMostSignificantBits());
+				list.appendTag(player_tag);
+			}
+			
+			nbt.setTag("NTM.UUIDs", list);
+			
+		}
+		
+		nbtList = nbt.getTagList("NTM.Bonfires", 10);
+
+		for(int i = 0; i < nbtList.tagCount(); i++) {
+			NBTTagCompound tag = (NBTTagCompound) nbtList.getCompoundTagAt(i);
+			
+			NBTTagList nbt_player_list = tag.getTagList("NTM.UUIDs", 10);
+			
+			for(int j = 0; j < nbt_player_list.tagCount(); j++)
+			{
+				NBTTagCompound player_tag = (NBTTagCompound) nbtList.getCompoundTagAt(i);
+				lBits = player_tag.getLong("NTM.leastSignificantBits");
+				mBits = player_tag.getLong("NTM.mostSignificantBits");
+				index = new UUID(mBits, lBits);
+				player_list.add(index);
+			}
+			
+			is_public = tag.getBoolean("NTM.seeable");
+			name = tag.getString("NTM.Name");
+			
+			z = tag.getInteger("NTM.PosZ");
+			y = tag.getInteger("NTM.PosY");
+			x = tag.getInteger("NTM.PosX");
+			
+			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, player_list));
 		}
 	}
 
@@ -70,7 +127,7 @@ public class WorldSaveData extends WorldSavedData {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{	
 		NBTTagList tagList = new NBTTagList();
-		for(Map.Entry<UUID, PlayerPosition> entry : spawnLocas.entrySet()) {
+		for(Map.Entry<UUID, PlayerPosition> entry : lastSpawnLocas.entrySet()) {
 			
 			NBTTagCompound tag = new NBTTagCompound();
 			
@@ -88,19 +145,60 @@ public class WorldSaveData extends WorldSavedData {
 			
 		}
 		
-		nbt.setTag("NTM.Network", tagList);
+		nbt.setTag("NTM.Network", tagList.copy());
+		
+		tagList = new NBTTagList();
+		
+		for(Map.Entry<BlockPos, BonfireInfo> entry : this.bonfire_info.entrySet())
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			
+			tag.setInteger("NTM.PosX", entry.getKey().getX());
+			tag.setInteger("NTM.PosY", entry.getKey().getY());
+			tag.setInteger("NTM.PosZ", entry.getKey().getZ());
+			
+			tag.setString("NTM.Name", entry.getValue().getName());
+			tag.setBoolean("NTM.seeable", entry.getValue().isPublic());
+			
+			NBTTagList list = new NBTTagList();
+			
+			for(UUID uuid : entry.getValue().getLastPlayerSpawn())
+			{
+				NBTTagCompound player_tag = new NBTTagCompound();
+				player_tag.setLong("NTM.leastSignificantBits", uuid.getLeastSignificantBits());
+				player_tag.setLong("NTM.mostSignificantBits", uuid.getMostSignificantBits());
+				list.appendTag(player_tag);
+			}
+			
+			nbt.setTag("NTM.UUIDs", list);
+			
+			tagList.appendTag(tag);
+			
+		}
+		
+		nbt.setTag("NTM.Bonfires", tagList.copy());
 		
 		return nbt;
 	}
 	
 	public void setSpawnLocations(Map<UUID, PlayerPosition> spawnLocas)
 	{
-		this.spawnLocas = spawnLocas;
+		this.lastSpawnLocas = spawnLocas;
 	}
 	
 	public Map<UUID, PlayerPosition> getSpawnLocations()
 	{
-		return this.spawnLocas;
+		return this.lastSpawnLocas;
+	}
+	
+	public void setBonfireInfo(Map<BlockPos, BonfireInfo> bonefire_info)
+	{
+		this.bonfire_info = bonefire_info;
+	}
+	
+	public Map<BlockPos, BonfireInfo> getBonfireInfo()
+	{
+		return this.bonfire_info;
 	}
 	
 }

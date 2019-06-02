@@ -1,4 +1,4 @@
-package mod.nethertweaks.render;
+package mod.nethertweaks.client.renderers;
 
 import mod.nethertweaks.items.ItemChunk;
 import net.minecraft.client.Minecraft;
@@ -17,7 +17,7 @@ public class ChunkColorer implements IItemColor {
         }
         ItemChunk chunk = (ItemChunk) stack.getItem();
         if (tintIndex == 0)
-        {
+        { 
 	        ItemStack b = chunk.getResult(stack.getItemDamage());
 	        if (b.isEmpty())
 	        {

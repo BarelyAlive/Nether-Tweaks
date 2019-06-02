@@ -9,16 +9,27 @@ import net.minecraft.util.math.BlockPos;
 
 public class WorldSpawnLoc {
 	
-	public static  Map<UUID, PlayerPosition> spawnLocas = new HashMap<UUID, PlayerPosition>();
+	public static  Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<UUID, PlayerPosition>();
+	public static Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<BlockPos, BonfireInfo>();
 	
-	public static void setSpawnLocations(Map<UUID, PlayerPosition> map)
+	public static void setLastSpawnLocations(Map<UUID, PlayerPosition> map)
 	{
-		spawnLocas = map;
+		lastSpawnLocas = map;
 	}
 	
-	public static Map<UUID, PlayerPosition> getSpawnLocations()
+	public static Map<UUID, PlayerPosition> getLastSpawnLocations()
 	{
-		return spawnLocas;
+		return lastSpawnLocas;
+	}
+	
+	public static void setBonfireInfo(Map<BlockPos, BonfireInfo> map)
+	{
+		bonfire_info = map;
+	}
+	
+	public static Map<BlockPos, BonfireInfo> getBonfireInfo()
+	{
+		return bonfire_info;
 	}
 	
 }
