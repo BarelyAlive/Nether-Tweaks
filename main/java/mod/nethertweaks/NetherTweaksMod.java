@@ -177,8 +177,10 @@ public class NetherTweaksMod
     	OreHandler.disableOre("minecraft:redstone");
     	OreHandler.disableOre("minecraft:coal");
     	// Disable all copper ores except all ores from thermal foundation
+    	/*
     	OreHandler.disableOre("copper");
     	OreHandler.enableOre("thermalfoundation:ore");
+    	*/
     	
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	

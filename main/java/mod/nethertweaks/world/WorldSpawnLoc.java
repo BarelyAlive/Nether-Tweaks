@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class WorldSpawnLoc {
 	
-	public static  Map<UUID, PlayerPosition> spawnLocas = new HashMap<UUID, PlayerPosition>();
+	public static Map<UUID, PlayerPosition> spawnLocas = new HashMap<UUID, PlayerPosition>();
 	
 	public static void setSpawnLocations(Map<UUID, PlayerPosition> map)
 	{
