@@ -14,7 +14,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class HandlerHammer
+public class HammerHandler
 {
     @SubscribeEvent(priority = EventPriority.LOW)
     public void hammer(BlockEvent.HarvestDropsEvent event)

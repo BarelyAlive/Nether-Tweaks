@@ -21,7 +21,7 @@ import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.GuiHandlerNTM;
-import mod.nethertweaks.handler.HandlerHammer;
+import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.MessageHandler;
@@ -171,7 +171,7 @@ public class NetherTweaksMod
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCKBASIC.getDefaultState(), 16, 16), 1);
         
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
-    	MinecraftForge.EVENT_BUS.register(new HandlerHammer());
+    	MinecraftForge.EVENT_BUS.register(new HammerHandler());
     	MinecraftForge.EVENT_BUS.register(this);
     	
     	OreHandler.disableOre("minecraft:redstone");

@@ -36,7 +36,7 @@ public class Seed extends CustomItem
 {
 	public Seed()
 	{
-		super(null, 64, NetherTweaksMod.TABNTM, true, 4, new ResourceLocation(NetherTweaksMod.MODID, INames.SEED));
+		super(null, 64, NetherTweaksMod.TABNTM, true, 3, new ResourceLocation(NetherTweaksMod.MODID, INames.SEED));
 	}
 
 	/**

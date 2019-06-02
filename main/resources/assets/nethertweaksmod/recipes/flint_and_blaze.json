@@ -1,17 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " X",
-    "Y "
-  ],
-  "key": {
-    "X": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "minecraft:flint"
     },
-    "Y": {
+    {
       "item": "minecraft:blaze_rod"
     }
-  },
+  ],
   "result": {
     "item": "flint_and_blaze"
   }

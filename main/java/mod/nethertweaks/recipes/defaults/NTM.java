@@ -169,9 +169,9 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(Items.COOKED_RABBIT), 63);
 		registry.register(new ItemStack(Items.MUTTON), 63);
 		registry.register(new ItemStack(Items.COOKED_MUTTON), 63);
-		registry.register(new ItemStack(Items.MAGMA_CREAM), 78);
-		registry.register(new ItemStack(Items.SLIME_BALL), 88);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)), 800);
+		registry.register(new ItemStack(Items.MAGMA_CREAM), 68);
+		registry.register(new ItemStack(Items.SLIME_BALL), 45);
+		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)), 405);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN)), 250);
 		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS)), 300);
 		

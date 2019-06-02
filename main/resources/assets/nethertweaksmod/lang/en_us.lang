@@ -56,6 +56,7 @@ item.item_base_4.name=Powder of Light
 item.item_base_5.name=Salt
 item.item_base_6.name=Stone Bar
 item.item_base_7.name=String
+item.item_base_8.name=Porcelain Clay 
 
 item.item_mesh_string.name=String Mesh
 item.item_mesh_flint.name=Flint Mesh

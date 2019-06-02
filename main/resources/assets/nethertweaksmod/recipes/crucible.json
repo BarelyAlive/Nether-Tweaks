@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",  
+  "pattern": [
+    "x x",
+    "x x",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "item_base",
+      "data": 8
+    }
+  },
+  "result": {
+    "item": "item_unfired_crucible"
+  }
+}

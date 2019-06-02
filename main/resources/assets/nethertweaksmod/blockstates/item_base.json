@@ -45,6 +45,11 @@
             "textures": {
               "layer0": "nethertweaksmod:items/mean_vine_string"
             }
+          },
+          "8": {
+            "textures": {
+              "layer0": "nethertweaksmod:items/porcelain_clay"
+            }
           }
         }
     }
