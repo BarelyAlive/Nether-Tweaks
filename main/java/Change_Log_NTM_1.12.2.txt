@@ -3,6 +3,7 @@ ChangeLog NTM 2.0.0
 * Each Bonfire now individually stores the savepoints of the players for themselves
   Example: If a player last saved on Bonfire A and Bonfire B gets destroyed, your safe point remains untouched
 * Bonfire will now let you teleport to other Bonfires
+* Bonfires can be set to public or private
 * Condensers now include water tanks so you can put together any combination of organic material
 * Freezers now include water tanks and can have a redstone signal from any side
 * Condenser and Freezer now have a new GUI
@@ -57,3 +58,4 @@ ChangeLog NTM 2.0.0
 + Added Mean Vine strings (works as normal string in recipes)
 + Added pebbles (can be thrown for damage)
 + Added support for Moo Fluids
++ Added support for ore materials that have ingots
