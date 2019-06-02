@@ -91,5 +91,6 @@ item.item_doll_llama.name=Llama Doll
 item.item_doll_polar_bear.name=Polar Bear Doll
 item.item_doll_wolf.name=Wolf Doll
 item.item_doll_villager.name=Villager Doll
+item.item_doll_pig.name=Pig Doll
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks

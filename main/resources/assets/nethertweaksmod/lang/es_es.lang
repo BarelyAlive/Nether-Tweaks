@@ -56,6 +56,7 @@ item.item_base_4.name=Polvo de luz
 item.item_base_5.name=sal
 item.item_base_6.name=Barra de piedra
 item.item_base_7.name=Cuerda
+item.item_base_8.name=Gres Porcelánico
 
 item.item_mesh_string.name=Malla de cadena
 item.item_mesh_flint.name=Malla de pedernal
@@ -90,5 +91,6 @@ item.item_doll_llama.name=Muñeca de llama
 item.item_doll_polar_bear.name=Muñeca del oso polar
 item.item_doll_wolf.name=Muñeca lobo
 item.item_doll_villager.name=Muñeca Aldeana
+item.item_doll_villager.name=Cerdo Muñeca
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks
