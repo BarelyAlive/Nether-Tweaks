@@ -127,7 +127,6 @@ public class NetherTweaksMod
     			}
     		}
     		OreHandler.register(event.getRegistry());
-     		SmeltingNOreDictHandler.load();
     	}
     	
         @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -190,6 +189,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
+ 		SmeltingNOreDictHandler.load();
     }
      
     @Mod.EventHandler
