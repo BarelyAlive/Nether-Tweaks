@@ -73,33 +73,34 @@ public class SmeltingNOreDictHandler {
 			for(int i = 1; i < 4; i++)
 			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, i));
 		}
-    	if(Config.enableLiquidImpossibility)
-    	{
-			OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
-			OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
-			OreDictionary.registerOre("listAllLiquidImpossibility",
-			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
-		}
+    	if(Config.enableLiquidImpossibility)	
+			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
+		
     	if(Config.enableStoneBucket)
 		{	
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
+			
+			if(Config.enableLiquidImpossibility)
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
 		}
 		if(Config.enableWoodBucket)
 		{
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
+			
+			if(Config.enableLiquidImpossibility)
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
 		}
 
-		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
+		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
 
 		if(Config.enableFlintNBlaze)
 		{
 			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
 			OreDictionary.registerOre("lighter", ItemHandler.FLINTANDBLAZE);
 		}
-		OreDictionary.registerOre("ice", Blocks.ICE);
     }
 }
