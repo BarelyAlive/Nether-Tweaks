@@ -81,17 +81,19 @@ public class SmeltingNOreDictHandler {
 		}
     	if(Config.enableStoneBucket)
 		{
-			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
+			
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
+			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
+			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
 		}
 		if(Config.enableWoodBucket)
 		{
-			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
+			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 		}
 
-		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
+		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 
 		if(Config.enableFlintNBlaze)
 		{

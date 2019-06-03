@@ -203,9 +203,9 @@ public class Config
         thinCrucibleModel			 	= config.get("Crucible", "Do you want a thin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
-        densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
         luminosityLI					= config.getInt("Luminosity for Liquid Impossibility", "Fluid", 15, 0, 15, "");
-        viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
         temperatureLI					= config.getInt("Temperatur of Liquid Impossibility in Kelvin", "Fluid", 0, 0, Integer.MAX_VALUE, ""); 
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
         spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
