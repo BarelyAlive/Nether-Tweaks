@@ -92,8 +92,7 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 		}
 
-		//OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-		OreDictionary.registerOre("listAllWater", FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
+		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 
 		if(Config.enableFlintNBlaze)
