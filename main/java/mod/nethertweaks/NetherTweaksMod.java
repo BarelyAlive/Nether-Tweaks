@@ -189,7 +189,9 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
- 		SmeltingNOreDictHandler.load();
+
+ 	SmeltingNOreDictHandler.load();
+
     }
      
     @Mod.EventHandler
