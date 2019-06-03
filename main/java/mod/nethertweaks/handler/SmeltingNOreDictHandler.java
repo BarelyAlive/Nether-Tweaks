@@ -21,6 +21,7 @@ import io.netty.channel.nio.NioTask;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.handler.BucketHandler;
+import mod.sfhcore.util.LogUtil;
 
 public class SmeltingNOreDictHandler {
 
@@ -80,8 +81,7 @@ public class SmeltingNOreDictHandler {
 			FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		}
     	if(Config.enableStoneBucket)
-		{
-			
+		{	
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
