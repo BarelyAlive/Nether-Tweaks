@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -41,15 +42,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Grabber extends ItemShears
 {
-	private static List<String> tangibleList;
+	private static List<String> tangibleList = new ArrayList<String>();
 	
-	static
+	private void setTangible(String[] blocks)
 	{
-		tangibleList.add("minecraft:cactus");
-		tangibleList.add("minecraft:melon_block");
-		tangibleList.add("minecraft:web");
-		tangibleList.add("minecraft:fern");
-		tangibleList.add("minecraft:deadbush");
+		for(String entry : blocks) tangibleList.add(entry);
 	}
 	
 	public static List<String> getTangible() {
@@ -60,7 +57,7 @@ public class Grabber extends ItemShears
 	{
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setNameFromMaterial(material);
-		Arrays.asList(Config.grabberBlocks).forEach(tangibleList::add);
+		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
 	}
