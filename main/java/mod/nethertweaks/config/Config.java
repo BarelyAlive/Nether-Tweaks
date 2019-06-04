@@ -86,7 +86,7 @@ public class Config
 	
 	public static boolean isHellworld = true;
 	public static boolean enableTeleport = true;
-	public static String[] grabberBlocks = Grabber.getTangible();
+	public static String[] grabberBlocks = (String[]) Grabber.getTangible().toArray();
 	
 	//JSON
 	public static boolean enableJSONLoading = true;
@@ -158,17 +158,17 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
+        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", (String[])Grabber.getTangible().toArray()).getStringList();
         
         autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
         autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
         
-        capacityFreezer					= config.get("Tweak", "Freezer fluid capacity in mb", 16000).getInt();
-        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
+        capacityFreezer					= config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
+        freezeTimeFreezer 				= config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
         
-        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
-        capacityCondenser 				= config.get("Tweak", "Condenser fluid capacity in mb", 16000).getInt();
-        fluidOutputAmount 				= config.get("Tweak", "Condenser max. fluid auto output in mB/Sec", 200, "0 disables it").getInt();
+        dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
+        capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
+        fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 1, Integer.MAX_VALUE, "0 disables it");
         
         durabilityPickRack				= config.getInt("Durability for Netherrack Pickaxe", "Tweak", 132, 1, Integer.MAX_VALUE, "");
         durabilityPickBrick				= config.getInt("Durability for Netherbrick Pickaxe", "Tweak", 251, 1, Integer.MAX_VALUE, "");

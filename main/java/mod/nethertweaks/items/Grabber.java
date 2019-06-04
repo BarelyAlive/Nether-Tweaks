@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -40,22 +41,26 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Grabber extends ItemShears
 {
-	private static String[] tangible = new String[] {
-			"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
+	private static List<String> tangibleList;
 	
-	public static void setTangible(String[] tangible) {
-		Grabber.tangible = tangible;
+	static
+	{
+		tangibleList.add("minecraft:cactus");
+		tangibleList.add("minecraft:melon_block");
+		tangibleList.add("minecraft:web");
+		tangibleList.add("minecraft:fern");
+		tangibleList.add("minecraft:deadbush");
 	}
 	
-	public static String[] getTangible() {
-		return tangible;
+	public static List<String> getTangible() {
+		return tangibleList;
 	}
 	
 	public Grabber(int durability, ToolMaterial material)
 	{
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setNameFromMaterial(material);
-		setTangible(Config.grabberBlocks);
+		Arrays.asList(Config.grabberBlocks).forEach(tangibleList::add);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
 	}
@@ -78,7 +83,8 @@ public class Grabber extends ItemShears
 
             for(ItemStack stack : drops)
             {
-            	if (!player.inventory.addItemStackToInventory(stack.copy())) {
+            	if (!player.inventory.addItemStackToInventory(stack.copy()))
+            	{
 					EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
 					world.spawnEntity(item);
 				}
@@ -99,7 +105,7 @@ public class Grabber extends ItemShears
 		final Block block = info.getBlock();
 		final BlockPos playerPos = player.getPosition();
 		
-		for (String name : tangible) {
+		for (String name : tangibleList) {
 			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!world.isRemote) {
