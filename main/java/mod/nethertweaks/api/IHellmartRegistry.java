@@ -3,6 +3,7 @@ package mod.nethertweaks.api;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -13,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public interface IHellmartRegistry extends IRegistryMap<Ingredient, HellmartData>
 {
     public void register(ItemStack product, ItemStack currency, int price);
-    public void register(Item product, Item currency, int price);
+    public void register(ItemInfo product, ItemInfo currency, int price);
     public void register(ResourceLocation location, ResourceLocation currency, int price);
 
     /**

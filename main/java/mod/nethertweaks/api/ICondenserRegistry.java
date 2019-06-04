@@ -16,7 +16,7 @@ public interface ICondenserRegistry extends IRegistryMap<Ingredient, Dryable>
 {
     public void register(ItemStack itemStack, int value);
     public void register(@Nullable Item item, int meta, int value);
-    public void register(Block block, int meta, int value);
+    public void register(BlockInfo block, int value);
     public void register(StackInfo item, int value);
     public void register(ResourceLocation location, int meta, int value);
 

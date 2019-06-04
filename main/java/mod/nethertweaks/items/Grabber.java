@@ -10,8 +10,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -19,16 +19,20 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
+import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraftforge.common.IShearable;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -40,7 +44,7 @@ public class Grabber extends ItemShears
 	public static void setTangible(String[] tangible) {
 		Grabber.tangible = tangible;
 	}
-
+	
 	public static String[] getTangible() {
 		return tangible;
 	}
@@ -56,25 +60,23 @@ public class Grabber extends ItemShears
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
 			EnumHand hand) {
-		if (entity.world.isRemote)
+		if (entity.world.isRemote) return false;
+		
+        if (entity instanceof IShearable)
         {
-            return false;
-        }
-        if (entity instanceof net.minecraftforge.common.IShearable)
-        {
-            net.minecraftforge.common.IShearable target = (net.minecraftforge.common.IShearable)entity;
+            IShearable target = (IShearable)entity;
             BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
             if (target.isShearable(itemstack, entity.world, pos))
             {
-                java.util.List<ItemStack> drops = target.onSheared(itemstack, entity.world, pos,
-                        net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.init.Enchantments.FORTUNE, itemstack));
+                List<ItemStack> drops = target.onSheared(itemstack, entity.world, pos,
+                        EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 
-                java.util.Random rand = new java.util.Random();
                 for(ItemStack stack : drops)
                 {
-                    player.addItemStackToInventory(stack);
+                	player.addItemStackToInventory(stack);
                 }
-                itemstack.damageItem(1, entity);
+                if (!player.capabilities.isCreativeMode)
+                	itemstack.damageItem(1, entity);
             }
             return true;
         }
@@ -87,13 +89,15 @@ public class Grabber extends ItemShears
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		IBlockState block = worldIn.getBlockState(pos);
+		BlockInfo info = new BlockInfo(worldIn.getBlockState(pos));
+		Block block = info.getBlock();
+		
 		for (String name : tangible) {
 			ResourceLocation loc = new ResourceLocation(name);
-			if (loc.equals(block.getBlock().getRegistryName())) {
+			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!worldIn.isRemote) {
 					worldIn.setBlockToAir(pos);
-					player.inventory.addItemStackToInventory(new ItemStack(block.getBlock()));
+					player.inventory.addItemStackToInventory(info.getItemStack());
 				}
 				if (!player.capabilities.isCreativeMode)
 					player.getActiveItemStack().damageItem(1, player);

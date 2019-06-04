@@ -121,68 +121,68 @@ public class NTM implements IRecipeDefaults
     {
     	//Dolls
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
-			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
+			registry.register(new ItemInfo(ItemHandler.DOLL, i.getKey()), new ItemInfo(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
+    	registry.register(new ItemInfo(ItemHandler.CRYSTAL, 1), new ItemInfo(Blocks.ICE), 10);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");
     	for(ItemStack ore : ingredient.getMatchingStacks())
-    		registry.register(ore, new ItemStack(Blocks.ICE), 3);
+    		registry.register(new ItemInfo(ore), new ItemInfo(Blocks.ICE), 3);
     }
     
     @Override
     public void registerCondenser(CondenserRegistry registry)
     {
-    	registry.register(new ItemStack(Items.ROTTEN_FLESH), 112);
-		registry.register(new ItemStack(Items.APPLE), 80);
-		registry.register(new ItemStack(Items.CHORUS_FRUIT), 42);
-		registry.register(new ItemStack(Items.CHORUS_FRUIT_POPPED), 42);
-		registry.register(new ItemStack(Items.CARROT), 42);
-		registry.register(new ItemStack(Items.EGG), 42);	
+    	registry.register(new ItemInfo(Items.ROTTEN_FLESH), 90);
+		registry.register(new ItemInfo(Items.APPLE), 80);
+		registry.register(new ItemInfo(Items.CHORUS_FRUIT), 42);
+		registry.register(new ItemInfo(Items.CHORUS_FRUIT_POPPED), 42);
+		registry.register(new ItemInfo(Items.CARROT), 42);
+		registry.register(new ItemInfo(Items.EGG), 42);	
 		//fish
-		registry.register(new ItemStack(Items.FISH), 63);
+		registry.register(new ItemInfo(Items.FISH), 63);
 		//cooked fish
-		registry.register(new ItemStack(Items.COOKED_FISH), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH), 63);
 		//salmon
-		registry.register(new ItemStack(Items.FISH, 1, 1), 63);
+		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemStack(Items.COOKED_FISH, 1, 1), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);
 			
 		//clownfish
-		registry.register(new ItemStack(Items.FISH, 1, 2), 63);
+		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
-		registry.register(new ItemStack(Items.FISH, 1, 3), 63);
+		registry.register(new ItemInfo(Items.FISH, 3), 63);
 		
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.BROWN_MUSHROOM)), 63);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.RED_MUSHROOM)), 63);
-		registry.register(new ItemStack(Items.MELON), 38);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.MELON_BLOCK)), 350);	
-		registry.register(new ItemStack(Items.POISONOUS_POTATO), 42);
-		registry.register(new ItemStack(Items.PORKCHOP), 63);
-		registry.register(new ItemStack(Items.COOKED_PORKCHOP), 63);	
-		registry.register(new ItemStack(Items.POTATO), 42);	
-		registry.register(new ItemStack(Items.BAKED_POTATO), 42);
-		registry.register(new ItemStack(Items.BEEF), 63);	
-		registry.register(new ItemStack(Items.COOKED_BEEF), 63);	
-		registry.register(new ItemStack(Items.CHICKEN), 63);	
-		registry.register(new ItemStack(Items.COOKED_CHICKEN), 63);
-		registry.register(new ItemStack(Items.RABBIT_STEW), 100);
-		registry.register(new ItemStack(Items.RABBIT), 63);
-		registry.register(new ItemStack(Items.COOKED_RABBIT), 63);
-		registry.register(new ItemStack(Items.MUTTON), 63);
-		registry.register(new ItemStack(Items.COOKED_MUTTON), 63);
-		registry.register(new ItemStack(Items.MAGMA_CREAM), 68);
-		registry.register(new ItemStack(Items.SLIME_BALL), 45);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)), 405);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN)), 250);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS)), 300);
+		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
+		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
+		registry.register(new ItemInfo(Items.MELON), 38);
+		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
+		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
+		registry.register(new ItemInfo(Items.PORKCHOP), 63);
+		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 63);	
+		registry.register(new ItemInfo(Items.POTATO), 42);	
+		registry.register(new ItemInfo(Items.BAKED_POTATO), 42);
+		registry.register(new ItemInfo(Items.BEEF), 63);	
+		registry.register(new ItemInfo(Items.COOKED_BEEF), 63);	
+		registry.register(new ItemInfo(Items.CHICKEN), 63);	
+		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 63);
+		registry.register(new ItemInfo(Items.RABBIT_STEW), 100);
+		registry.register(new ItemInfo(Items.RABBIT), 63);
+		registry.register(new ItemInfo(Items.COOKED_RABBIT), 63);
+		registry.register(new ItemInfo(Items.MUTTON), 63);
+		registry.register(new ItemInfo(Items.COOKED_MUTTON), 63);
+		registry.register(new ItemInfo(Items.MAGMA_CREAM), 68);
+		registry.register(new ItemInfo(Items.SLIME_BALL), 45);
+		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
+		registry.register(new BlockInfo(Blocks.PUMPKIN), 250);
+		registry.register(new BlockInfo(Blocks.CACTUS), 300);
 		
 		//Back to water 1:1
-        registry.register(new ItemStack(Items.SNOWBALL), 250);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PACKED_ICE)), 9000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.ICE)), 1000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW)), 1000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW_LAYER)), 125); //Blame Mojang for their unfair recipe
+        registry.register(new ItemInfo(Items.SNOWBALL), 250);
+		registry.register(new BlockInfo(Blocks.PACKED_ICE), 9000);
+        registry.register(new BlockInfo(Blocks.ICE), 1000);
+        registry.register(new BlockInfo(Blocks.SNOW), 1000);
+        registry.register(new BlockInfo(Blocks.SNOW_LAYER), 125); //Blame Mojang for their unfair recipe
         
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);

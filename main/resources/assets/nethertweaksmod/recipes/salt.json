@@ -1,14 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "X"
-  ],
-  "key": {
-    "X": {
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
       "type": "forge:ore_dict",
       "ore": "listAllWater"
     }
-  },
+  ],
   "result": {
     "item": "item_base",
     "data": 5,

@@ -1,27 +1,15 @@
 package mod.nethertweaks.handler;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFlintAndSteel;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.UniversalBucket;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-import scala.tools.nsc.doc.model.ModelFactory.NonTemplateMemberImpl;
-import io.netty.channel.nio.NioTask;
 import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.handler.BucketHandler;
-import mod.sfhcore.util.LogUtil;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SmeltingNOreDictHandler {
 
@@ -73,7 +61,7 @@ public class SmeltingNOreDictHandler {
 			for(int i = 1; i < 4; i++)
 			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, i));
 		}
-    	if(Config.enableLiquidImpossibility)	
+    	if(Config.enableLiquidImpossibility)
 			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		
     	if(Config.enableStoneBucket)
@@ -96,7 +84,7 @@ public class SmeltingNOreDictHandler {
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-
+		
 		if(Config.enableFlintNBlaze)
 		{
 			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
