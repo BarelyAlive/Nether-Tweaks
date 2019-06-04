@@ -63,25 +63,25 @@ public class Grabber extends ItemShears
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
 			EnumHand hand) {
-		final World worldIn = player.getEntityWorld();
+		final World world = player.getEntityWorld();
 		final BlockPos playerPos = player.getPosition();
 		
-		if (entity.world.isRemote) return false;
+		if (world.isRemote) return false;
 		
         if (entity instanceof IShearable)
         {
             IShearable target = (IShearable)entity;
             BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
-            if (target.isShearable(itemstack, entity.world, pos))
+            if (target.isShearable(itemstack, world, pos))
             {
-                List<ItemStack> drops = target.onSheared(itemstack, entity.world, pos,
+                List<ItemStack> drops = target.onSheared(itemstack, world, pos,
                         EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 
                 for(ItemStack stack : drops)
                 {
                 	if (!player.inventory.addItemStackToInventory(stack.copy())) {
-						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
-						worldIn.spawnEntity(item);
+						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
+						world.spawnEntity(item);
 					}
                 }
                 if (!player.capabilities.isCreativeMode)
@@ -96,20 +96,20 @@ public class Grabber extends ItemShears
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, final BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World world, final BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		final BlockInfo info = new BlockInfo(worldIn.getBlockState(pos));
+		final BlockInfo info = new BlockInfo(world.getBlockState(pos));
 		final Block block = info.getBlock();
 		final BlockPos playerPos = player.getPosition();
 		
 		for (String name : tangible) {
 			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
-				if (!worldIn.isRemote) {
-					worldIn.setBlockToAir(pos);
+				if (!world.isRemote) {
+					world.setBlockToAir(pos);
 					if (!player.inventory.addItemStackToInventory(info.getItemStack())) {
-						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
-						worldIn.spawnEntity(item);
+						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
+						world.spawnEntity(item);
 					}
 				}
 				if (!player.capabilities.isCreativeMode)
@@ -122,7 +122,7 @@ public class Grabber extends ItemShears
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
 				+ "Can be enchanted with fortune for more output when used for example on sheep");
