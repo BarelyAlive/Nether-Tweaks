@@ -38,32 +38,36 @@ import mod.sfhcore.registries.Registry;
 public class ItemHandler implements INames
 {
 	//ITEMS
-    public static final Item SEED 			 = new Seed();
-    public static final Item MESH 			 = new ItemMesh();
-    public static final Item DOLL 			 = new ItemDoll();
-    public static final Item PEBBLE 		 = new ItemPebble();
-    public static final Item CRYSTAL 		 = new Crystal();
-    public static final Item FLINTANDBLAZE 	 = new FlintAndBlaze();
+    public static final Item SEED 			  = new Seed();
+    public static final Item MESH 			  = new ItemMesh();
+    public static final Item DOLL 			  = new ItemDoll();
+    public static final Item PEBBLE 		  = new ItemPebble();
+    public static final Item CRYSTAL 		  = new Crystal();
+    public static final Item FLINT_N_BLAZE 	  = new FlintAndBlaze();
 
     //Multi ID Item
-	public static final Item ITEMBASE 		 = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 9, new ResourceLocation(NTM, INames.ITEMBASE));
+	public static final Item ITEM_BASE 		  = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 9, new ResourceLocation(NTM, INames.ITEM_BASE));
 
 	//Food
-    public static final Item COOKEDJERKY 	 = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKEDJERKY).setCreativeTab(NetherTweaksMod.TABNTM);
+    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKED_JERKY).setCreativeTab(NetherTweaksMod.TABNTM);
 
     //Werkzeuge
-    public static final Item GRABBER 		 = new Grabber();
-    public static final Item PICKNETHERRACK	 = new PickaxeNTM(ToolMaterial.STONE);
-    public static final Item PICKNETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item HAMMERWOOD		 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
-    public static final Item HAMMERGOLD 	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
-    public static final Item HAMMERSTONE	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
-    public static final Item HAMMERIRON 	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
-    public static final Item HAMMERDIAMOND 	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+    public static final Item GRABBER_WOOD 	  = new Grabber(ToolMaterial.WOOD, 96);
+    public static final Item GRABBER_GOLD 	  = new Grabber(ToolMaterial.GOLD, 120);
+    public static final Item GRABBER_STONE 	  = new Grabber(ToolMaterial.STONE, 240);
+    public static final Item GRABBER_IRON 	  = new Grabber(ToolMaterial.IRON, 960);
+    public static final Item GRABBER_DIAMOND  = new Grabber(ToolMaterial.DIAMOND, 7680);
+    public static final Item PICK_NETHERRACK  = new PickaxeNTM(ToolMaterial.STONE);
+    public static final Item PICK_NETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
+    public static final Item HAMMER_WOOD	  = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
+    public static final Item HAMMER_GOLD 	  = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
+    public static final Item HAMMER_STONE	  = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
+    public static final Item HAMMER_IRON 	  = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
+    public static final Item HAMMER_DIAMOND	  = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
     //itemblocks
-    public static final Item ITEMSTONEDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMSTONE));
-    public static final Item ITEMELDERDOOR 	 = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.DOORNTMELDER));
+    public static final Item ITEM_STONE_DOOR  = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.STONE_DOOR));
+    public static final Item ITEM_ELDER_DOOR  = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDER_DOOR));
 
 	public static void init()
 	{
@@ -74,7 +78,7 @@ public class ItemHandler implements INames
     private static void registerItems()
     {
     	//Multi ID Item
-    	if(Config.enableMultiItem)  		Registry.registerItem(ITEMBASE);
+    	if(Config.enableMultiItem)  		Registry.registerItem(ITEM_BASE);
     	if(Config.enableSeed) 				Registry.registerItem(SEED);
     	if(Config.enableCrystalLight || Config.enableCrystalEnder)
     										Registry.registerItem(CRYSTAL);
@@ -83,22 +87,22 @@ public class ItemHandler implements INames
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
 
         //Werkzeuge
-        if(Config.enableGrabber)			Registry.registerItem(GRABBER);
-        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINTANDBLAZE);
-        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICKNETHERRACK);
-        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICKNETHERBRICK);
-        if(Config.enableHammerWood)  		Registry.registerItem(HAMMERWOOD);
-        if(Config.enableHammerGold)  		Registry.registerItem(HAMMERGOLD);
-        if(Config.enableHammerStone)  		Registry.registerItem(HAMMERSTONE);
-        if(Config.enableHammerIron)  		Registry.registerItem(HAMMERIRON);
-        if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMERDIAMOND);
+        if(Config.enableGrabber)			Registry.registerItem(GRABBER_WOOD);
+        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
+        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICK_NETHERRACK);
+        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICK_NETHERBRICK);
+        if(Config.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
+        if(Config.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
+        if(Config.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
+        if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
 
         //Food
-    	if(Config.enableJerky)  			Registry.registerItem(COOKEDJERKY);
+    	if(Config.enableJerky)  			Registry.registerItem(COOKED_JERKY);
 
         //Doors
-        if(Config.enableStoneDoor)  		Registry.registerItem(ITEMSTONEDOOR);
-        if(Config.enableElderDoor)			Registry.registerItem(ITEMELDERDOOR);
+        if(Config.enableStoneDoor)  		Registry.registerItem(ITEM_STONE_DOOR);
+        if(Config.enableElderDoor)			Registry.registerItem(ITEM_ELDER_DOOR);
     }
 
     private static void addItemBurnTime()
@@ -106,8 +110,8 @@ public class ItemHandler implements INames
     	if(Config.enableStoneBucket)
     		CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	if(Config.enableMultiItem)
-    		CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEMBASE, 1, 3), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEM_BASE, 1, 3), Config.burnTimeHellfayah);
     	if(Config.enableMultiBlock)
-    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEMBLOCKBASIC, 1, 1), Config.burnTimeHellfayahBlock);
+    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEM_BLOCK_BASIC, 1, 1), Config.burnTimeHellfayahBlock);
     }
 }

@@ -59,7 +59,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
     public NetherrackFurnace()
     {
-        super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERRACKFURNACE));
+        super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERRACK_FURNACE));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);

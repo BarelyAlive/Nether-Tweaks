@@ -23,8 +23,8 @@ public class ItemBlockElderSlab extends ItemBlock
 {
 	public ItemBlockElderSlab()
 	{
-		super(BlockHandler.ELDERSLABHALF);
-		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
+		super(BlockHandler.ELDER_SLAB_HALF);
+		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SLAB_HALF);
 		this.setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 
@@ -34,7 +34,7 @@ public class ItemBlockElderSlab extends ItemBlock
 			float hitY, float hitZ, EnumHand hand)
 	{
 		IBlockState clicked = worldIn.getBlockState(pos);
-		IBlockState slab = BlockHandler.ELDERSLABDOUBLE.getDefaultState();
+		IBlockState slab = BlockHandler.ELDER_SLAB_DOUBLE.getDefaultState();
 		
 		//wenn von oben auf ein vorhandenes slab gesetzt wird
 		if (clicked.getBlock() instanceof ElderSlab)
@@ -63,7 +63,7 @@ public class ItemBlockElderSlab extends ItemBlock
 				}
 				else if (clicked.getBlock().isAir(clicked, worldIn, pos.down(1)))
 				{
-					worldIn.setBlockState(pos.down(1), BlockHandler.ELDERSLABHALF.getDefaultState().withProperty(BlockSlab.HALF, EnumBlockHalf.TOP));
+					worldIn.setBlockState(pos.down(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, EnumBlockHalf.TOP));
 				}
 				clicked = worldIn.getBlockState(pos.up(1));
 			}
@@ -79,7 +79,7 @@ public class ItemBlockElderSlab extends ItemBlock
 				}
 				else if (clicked.getBlock().isAir(clicked, worldIn, pos.up(1)))
 				{
-					worldIn.setBlockState(pos.up(1), BlockHandler.ELDERSLABHALF.getDefaultState());
+					worldIn.setBlockState(pos.up(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState());
 				}
 				clicked = worldIn.getBlockState(pos.down(1));
 			}

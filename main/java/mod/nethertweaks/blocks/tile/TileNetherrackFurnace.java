@@ -59,7 +59,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public class TileNetherrackFurnace extends TileInventory
 {	
     public TileNetherrackFurnace() {
-		super(2, INames.TENETHERRACKFURNACE);
+		super(2, INames.TE_NETHERRACKFURNACE);
 		this.setMaxworkTime(Config.burnTimeFurnace);
 	}
 

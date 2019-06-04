@@ -371,15 +371,15 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHammer(HammerRegistry registry)
     {
-    	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACKGRAVEL, 1), 0, 1.0F, 0.0F);
-    	registry.register(BlockHandler.NETHERRACKGRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
+    	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACK_GRAVEL, 1), 0, 1.0F, 0.0F);
+    	registry.register(BlockHandler.NETHERRACK_GRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
     	registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
         
         //Yes, I have to do this otherwise i can'split the outputs
         for(ItemStack block : OreDictionary.getOres("gravel"))
         {
-        	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACKGRAVEL))
+        	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACK_GRAVEL))
         		registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
         }
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);

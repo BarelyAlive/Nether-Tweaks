@@ -37,7 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ElderLog extends CubeFacingXYZ implements IVariantProvider{
         
     public ElderLog() {
-    	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDERLOG));
+    	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDER_LOG));
     	setCreativeTab(NetherTweaksMod.TABNTM);
     	setHardness(2);
     	setResistance(10);

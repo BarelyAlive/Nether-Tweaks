@@ -38,9 +38,9 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 
 	public ElderSlab()
 	{
-		super( BlockHandler.ELDERPLANKS.getMaterial( BlockHandler.ELDERPLANKS.getDefaultState() ) );
-		this.setHardness( BlockHandler.ELDERPLANKS.getBlockHardness( BlockHandler.ELDERPLANKS.getDefaultState(), null, null ) );
-		this.setResistance( BlockHandler.ELDERPLANKS.getExplosionResistance( null ) * 5.0F / 3.0F );
+		super( BlockHandler.ELDER_PLANKS.getMaterial( BlockHandler.ELDER_PLANKS.getDefaultState() ) );
+		this.setHardness( BlockHandler.ELDER_PLANKS.getBlockHardness( BlockHandler.ELDER_PLANKS.getDefaultState(), null, null ) );
+		this.setResistance( BlockHandler.ELDER_PLANKS.getExplosionResistance( null ) * 5.0F / 3.0F );
 
 		IBlockState iblockstate = this.blockState.getBaseState();
 
@@ -132,7 +132,7 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 		{
 			super();
 			this.halfSlabBlock = halfSlabBlock;
-			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLAB);
+			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SLAB);
 		}
 
 		@Override
@@ -162,7 +162,7 @@ public class ElderSlab extends BlockSlab implements IVariantProvider
 		public Half()
 		{
 			super();
-			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERSLABHALF);
+			this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SLAB_HALF);
 		}
 
 		@Override

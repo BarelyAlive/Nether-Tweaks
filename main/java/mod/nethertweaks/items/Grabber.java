@@ -51,11 +51,12 @@ public class Grabber extends ItemShears
 		return tangible;
 	}
 	
-	public Grabber()
+	public Grabber(ToolMaterial material, int durability)
 	{
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(NetherTweaksMod.MODID, INames.GRABBER);
+		setNameFromMaterial(material);
 		setTangible(Config.grabberBlocks);
+		setMaxDamage(durability);
 		setMaxStackSize(1);
 	}
 	
@@ -78,8 +79,8 @@ public class Grabber extends ItemShears
 
                 for(ItemStack stack : drops)
                 {
-                	if (player.inventory.addItemStackToInventory(stack)) {
-						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack);
+                	if (!player.inventory.addItemStackToInventory(stack.copy())) {
+						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
 						worldIn.spawnEntity(item);
 					}
                 }
@@ -106,7 +107,7 @@ public class Grabber extends ItemShears
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!worldIn.isRemote) {
 					worldIn.setBlockToAir(pos);
-					if (player.inventory.addItemStackToInventory(info.getItemStack())) {
+					if (!player.inventory.addItemStackToInventory(info.getItemStack())) {
 						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
 						worldIn.spawnEntity(item);
 					}
@@ -125,5 +126,25 @@ public class Grabber extends ItemShears
 	{
 		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
 				+ "Can be enchanted with fortune for more output when used for example on sheep");
+	}
+	
+	private void setNameFromMaterial(ToolMaterial material)
+	{
+		switch (material) {
+		case WOOD:
+			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_WOOD);
+			break;
+		case GOLD:
+			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_GOLD);
+			break;
+		case STONE:
+			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_STONE);
+			break;
+		case DIAMOND:
+			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_DIAMOND);
+			break;
+		default:
+			break;
+		}
 	}
 }
