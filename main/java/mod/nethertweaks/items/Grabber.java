@@ -25,6 +25,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
@@ -60,6 +62,9 @@ public class Grabber extends ItemShears
 	@Override
 	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
 			EnumHand hand) {
+		final World worldIn = player.getEntityWorld();
+		final BlockPos playerPos = player.getPosition();
+		
 		if (entity.world.isRemote) return false;
 		
         if (entity instanceof IShearable)
@@ -73,7 +78,10 @@ public class Grabber extends ItemShears
 
                 for(ItemStack stack : drops)
                 {
-                	player.addItemStackToInventory(stack);
+                	if (player.inventory.addItemStackToInventory(stack)) {
+						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack);
+						worldIn.spawnEntity(item);
+					}
                 }
                 if (!player.capabilities.isCreativeMode)
                 	itemstack.damageItem(1, entity);
@@ -87,17 +95,21 @@ public class Grabber extends ItemShears
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, final BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		BlockInfo info = new BlockInfo(worldIn.getBlockState(pos));
-		Block block = info.getBlock();
+		final BlockInfo info = new BlockInfo(worldIn.getBlockState(pos));
+		final Block block = info.getBlock();
+		final BlockPos playerPos = player.getPosition();
 		
 		for (String name : tangible) {
-			ResourceLocation loc = new ResourceLocation(name);
+			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!worldIn.isRemote) {
 					worldIn.setBlockToAir(pos);
-					player.inventory.addItemStackToInventory(info.getItemStack());
+					if (player.inventory.addItemStackToInventory(info.getItemStack())) {
+						EntityItem item = new EntityItem(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
+						worldIn.spawnEntity(item);
+					}
 				}
 				if (!player.capabilities.isCreativeMode)
 					player.getActiveItemStack().damageItem(1, player);
