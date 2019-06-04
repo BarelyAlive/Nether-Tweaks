@@ -1,8 +1,11 @@
 package mod.nethertweaks;
 
+import net.minecraft.creativetab.CreativeTabs;
+
 public interface INames {
 	
-	public static String NTM = "nethertweaksmod";
+	public static String MODID = NetherTweaksMod.MODID;
+	public static CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
 	//Fluids
 	public static String FLUIDLIQUIDIMPOSSIBILITY	= "liquid_impossibility";

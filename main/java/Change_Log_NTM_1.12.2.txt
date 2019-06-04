@@ -48,6 +48,7 @@ ChangeLog NTM 2.0.0
 - Removed Water Fountain
 + Ender Crystal is back!
 + Added config options to disable individual blocks & items
++ Added Gold-, Stone-, Iron and Diamond variant
 + Readded language support (de-de, es-es, fr-fr, pt-br (idk if brazilian or not sorry)
   (If something is not correct translated, don't blame me. I had to use DeepL)
 + Added netherrack gravel (drops flint)

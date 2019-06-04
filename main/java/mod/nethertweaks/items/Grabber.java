@@ -51,7 +51,7 @@ public class Grabber extends ItemShears
 		return tangible;
 	}
 	
-	public Grabber(ToolMaterial material, int durability)
+	public Grabber(int durability, ToolMaterial material)
 	{
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setNameFromMaterial(material);
@@ -67,29 +67,26 @@ public class Grabber extends ItemShears
 		final BlockPos playerPos = player.getPosition();
 		
 		if (world.isRemote) return false;
-		
-        if (entity instanceof IShearable)
+        if (!(entity instanceof IShearable)) return false;
+        
+        IShearable target = (IShearable)entity;
+        BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
+        if (target.isShearable(itemstack, world, pos))
         {
-            IShearable target = (IShearable)entity;
-            BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
-            if (target.isShearable(itemstack, world, pos))
-            {
-                List<ItemStack> drops = target.onSheared(itemstack, world, pos,
-                        EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
+            List<ItemStack> drops = target.onSheared(itemstack, world, pos,
+                    EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 
-                for(ItemStack stack : drops)
-                {
-                	if (!player.inventory.addItemStackToInventory(stack.copy())) {
-						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
-						world.spawnEntity(item);
-					}
-                }
-                if (!player.capabilities.isCreativeMode)
-                	itemstack.damageItem(1, entity);
+            for(ItemStack stack : drops)
+            {
+            	if (!player.inventory.addItemStackToInventory(stack.copy())) {
+					EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
+					world.spawnEntity(item);
+				}
             }
-            return true;
+            if (!player.capabilities.isCreativeMode)
+            	itemstack.damageItem(1, entity);
         }
-        return false;
+        return true;
 	}
 	
 	/**
@@ -139,6 +136,9 @@ public class Grabber extends ItemShears
 			break;
 		case STONE:
 			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_STONE);
+			break;
+		case IRON:
+			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_IRON);
 			break;
 		case DIAMOND:
 			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_DIAMOND);

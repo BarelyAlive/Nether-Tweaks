@@ -30,7 +30,11 @@ generator.hellworld=Hölle auf Erden
 item.cooked_jerky.name="Essbar"
 item.pickaxe_netherrack.name=Nethegesteinspitzhacke
 item.pickaxe_netherbrick.name=Netherziegelspitzhacke
-item.grabber.name=Greifzange
+item.grabber_wood.name=Greifzange
+item.grabber_gold.name=Greifzange
+item.grabber_stone.name=Greifzange
+item.grabber_iron.name=Greifzange
+item.grabber_diamond.name=Greifzange
 
 item.hammer_wood.name=Holzhammer
 item.hammer_gold.name=Goldhammer

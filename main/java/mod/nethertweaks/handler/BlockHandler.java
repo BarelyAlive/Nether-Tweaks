@@ -47,7 +47,7 @@ public class BlockHandler implements INames
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
     
     //Blocks
-    public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, NetherTweaksMod.TABNTM, new ResourceLocation(NTM, INames.DUST));
+    public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
     public static final Block STWH 				   = new StwH();
     public static final Block SIEVE 			   = new Sieve();
     public static final Block MEAN_VINE			   = new MeanVine();
@@ -58,13 +58,13 @@ public class BlockHandler implements INames
     public static final Block ELDER_SAPLING 	   = new ElderSapling();
     public static final Block ELDER_SLAB_HALF 	   = new ElderSlab.Half();
     public static final Block ELDER_SLAB_DOUBLE    = new ElderSlab.Double(ELDER_SLAB_HALF, new ElderSlab());
-    public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(NTM, INames.STONE_DOOR), 30.0F, 2.0F);
-    public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(NTM, INames.ELDER_DOOR), 15.0F, 2.0F);
-    public static final Block BLOCK_BASIC		   = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(NTM, INames.BLOCK_BASIC), 17.5f, 3.5f, NetherTweaksMod.TABNTM);
+    public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
+    public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(MODID, INames.ELDER_DOOR), 15.0F, 2.0F);
+    public static final Block BLOCK_BASIC		   = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(MODID, INames.BLOCK_BASIC), 17.5f, 3.5f, TAB);
     
     //ItemBlocks
     public static final ItemBlock ITEM_ELDER_SLAB  = new ItemBlockElderSlab();
-    public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, NetherTweaksMod.TABNTM);
+    public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, TAB);
 
     public static void init()
     {

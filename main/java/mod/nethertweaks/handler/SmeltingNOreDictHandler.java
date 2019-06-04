@@ -18,7 +18,6 @@ public class SmeltingNOreDictHandler {
 		oreRegistration();
 	}
 
-	@Deprecated
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte

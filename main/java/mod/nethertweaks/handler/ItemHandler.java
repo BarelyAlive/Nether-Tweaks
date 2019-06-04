@@ -46,17 +46,17 @@ public class ItemHandler implements INames
     public static final Item FLINT_N_BLAZE 	  = new FlintAndBlaze();
 
     //Multi ID Item
-	public static final Item ITEM_BASE 		  = new CustomItem(null, 64, NetherTweaksMod.TABNTM, true, 9, new ResourceLocation(NTM, INames.ITEM_BASE));
+	public static final Item ITEM_BASE 		  = new CustomItem(null, 64, TAB, true, 9, new ResourceLocation(MODID, INames.ITEM_BASE));
 
 	//Food
-    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(NetherTweaksMod.MODID, INames.COOKED_JERKY).setCreativeTab(NetherTweaksMod.TABNTM);
+    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
     //Werkzeuge
-    public static final Item GRABBER_WOOD 	  = new Grabber(ToolMaterial.WOOD, 96);
-    public static final Item GRABBER_GOLD 	  = new Grabber(ToolMaterial.GOLD, 120);
-    public static final Item GRABBER_STONE 	  = new Grabber(ToolMaterial.STONE, 240);
-    public static final Item GRABBER_IRON 	  = new Grabber(ToolMaterial.IRON, 960);
-    public static final Item GRABBER_DIAMOND  = new Grabber(ToolMaterial.DIAMOND, 7680);
+    public static final Item GRABBER_WOOD 	  = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
+    public static final Item GRABBER_GOLD 	  = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
+    public static final Item GRABBER_STONE 	  = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
+    public static final Item GRABBER_IRON 	  = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
+    public static final Item GRABBER_DIAMOND  = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
     public static final Item PICK_NETHERRACK  = new PickaxeNTM(ToolMaterial.STONE);
     public static final Item PICK_NETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
     public static final Item HAMMER_WOOD	  = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
@@ -66,8 +66,8 @@ public class ItemHandler implements INames
     public static final Item HAMMER_DIAMOND	  = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
     //itemblocks
-    public static final Item ITEM_STONE_DOOR  = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.STONE_DOOR));
-    public static final Item ITEM_ELDER_DOOR  = new ItemDoor(NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDER_DOOR));
+    public static final Item ITEM_STONE_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, INames.STONE_DOOR));
+    public static final Item ITEM_ELDER_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, INames.ELDER_DOOR));
 
 	public static void init()
 	{
@@ -87,7 +87,11 @@ public class ItemHandler implements INames
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
 
         //Werkzeuge
-        if(Config.enableGrabber)			Registry.registerItem(GRABBER_WOOD);
+        if(Config.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
+        if(Config.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
+        if(Config.enableGrabberStone)		Registry.registerItem(GRABBER_STONE);
+        if(Config.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
+        if(Config.enableGrabberDiamond)		Registry.registerItem(GRABBER_DIAMOND);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
         if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICK_NETHERRACK);
         if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICK_NETHERBRICK);

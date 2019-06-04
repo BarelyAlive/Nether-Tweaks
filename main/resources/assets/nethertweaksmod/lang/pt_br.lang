@@ -30,7 +30,11 @@ generator.hellworld=Hellworld
 item.cooked_jerky.name=Desapetrechante
 item.pickaxe_netherrack.name=Picareta Netherrack
 item.pickaxe_netherbrick.name=Picareta Netherbrick
-item.grabber.name=Grabber
+item.grabber_wood.name=Grabber
+item.grabber_gold.name=Grabber
+item.grabber_stone.name=Grabber
+item.grabber_iron.name=Grabber
+item.grabber_diamond.name=Grabber
 
 item.hammer_wood.name=Martelo de madeira
 item.hammer_gold.name=Martelo dourado

@@ -30,7 +30,11 @@ generator.hellworld=Hellworld
 item.cooked_jerky.name=Cooked Jerky
 item.pickaxe_netherrack.name=Netherrack Pickaxe
 item.pickaxe_netherbrick.name=Netherbrick Pickaxe
-item.grabber.name=Grabber
+item.grabber_wood.name=Grabber
+item.grabber_gold.name=Grabber
+item.grabber_stone.name=Grabber
+item.grabber_iron.name=Grabber
+item.grabber_diamond.name=Grabber
 
 item.hammer_wood.name=Wood Hammer
 item.hammer_gold.name=Gold Hammer

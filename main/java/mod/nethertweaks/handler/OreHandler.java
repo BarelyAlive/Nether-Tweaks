@@ -106,7 +106,7 @@ public class OreHandler {
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
-				chunks.setRegistryName(INames.NTM, (mod_domain == "minecraft" ? INames.CHUNK : mod_domain + "_" + INames.CHUNK));
+				chunks.setRegistryName(INames.MODID, (mod_domain == "minecraft" ? INames.CHUNK : mod_domain + "_" + INames.CHUNK));
 				chunks.setCreativeTab(NetherTweaksMod.TABNTM);
 			}
 			else
@@ -137,7 +137,7 @@ public class OreHandler {
 		{
             for (Pair<Integer, String> variant : ((IVariantProvider)entry.getValue()).getVariants())
             {
-                ModelLoader.setCustomModelResourceLocation(entry.getValue(), variant.getLeft(), new ModelResourceLocation(INames.NTM + ":chunk", variant.getRight()));
+                ModelLoader.setCustomModelResourceLocation(entry.getValue(), variant.getLeft(), new ModelResourceLocation(INames.MODID + ":chunk", variant.getRight()));
             }
 		}
 	}

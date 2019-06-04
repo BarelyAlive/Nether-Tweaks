@@ -27,6 +27,12 @@ public class Config
 	public static int durabilityHIron 	 = 640;
 	public static int durabilityHDiamond = 5120;
 	
+	public static int durabilityGWood 	 = 64;
+	public static int durabilityGGold 	 = 80;
+	public static int durabilityGStone 	 = 160;
+	public static int durabilityGIron 	 = 640;
+	public static int durabilityGDiamond = 5120;
+	
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
 	
@@ -128,12 +134,16 @@ public class Config
 	public static boolean enableJerky 				= true;
 	public static boolean enablePickAxeNetherrack 	= true;
 	public static boolean enablePickAxeNetherbrick 	= true;
-	public static boolean enableGrabber 			= true;
 	public static boolean enableHammerWood 			= true;
 	public static boolean enableHammerStone 		= true;
 	public static boolean enableHammerGold 			= true;
 	public static boolean enableHammerIron 			= true;
 	public static boolean enableHammerDiamond 		= true;
+	public static boolean enableGrabberWood			= true;
+	public static boolean enableGrabberStone 		= true;
+	public static boolean enableGrabberGold			= true;
+	public static boolean enableGrabberIron			= true;
+	public static boolean enableGrabberDiamond 		= true;
 	public static boolean enableFlintNBlaze 		= true;
 	public static boolean enableStoneDoor 			= true;
 	public static boolean enableElderDoor 			= true;
@@ -168,6 +178,12 @@ public class Config
     	durabilityHStone				= config.getInt("Durability for Stone Hammer", "Tweak", 160, 1, Integer.MAX_VALUE, "");
     	durabilityHIron					= config.getInt("Durability for Iron Hammer", "Tweak", 640, 1, Integer.MAX_VALUE, "");
     	durabilityHDiamond				= config.getInt("Durability for Diamond Hammer", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+    	
+    	durabilityGWood					= config.getInt("Durability for Wood Grabber", "Tweak", 64, 1, Integer.MAX_VALUE, "");
+    	durabilityGGold					= config.getInt("Durability for Gold Grabber", "Tweak", 80, 1, Integer.MAX_VALUE, "");
+    	durabilityGStone				= config.getInt("Durability for Stone Grabber", "Tweak", 160, 1, Integer.MAX_VALUE, "");
+    	durabilityGIron					= config.getInt("Durability for Iron Grabber", "Tweak", 640, 1, Integer.MAX_VALUE, "");
+    	durabilityGDiamond				= config.getInt("Durability for Diamond Grabber", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
@@ -261,12 +277,16 @@ public class Config
     	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
     	enablePickAxeNetherrack 		= config.get("Items", "Enable Netherrack Pickaxe?", true).getBoolean();
     	enablePickAxeNetherbrick 		= config.get("Items", "Enable Netherbrick Pickaxe?", true).getBoolean();
-    	enableGrabber					= config.get("Items", "Enable Grabber?", true).getBoolean();
     	enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
     	enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
     	enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
     	enableHammerIron 				= config.get("Items", "Enable Iron Hammer?", true).getBoolean();
     	enableHammerDiamond 			= config.get("Items", "Enable Diamond Hammer?", true).getBoolean();
+    	enableGrabberWood 				= config.get("Items", "Enable Wood Grabber?", true).getBoolean();
+    	enableGrabberStone 				= config.get("Items", "Enable Stone Grabber?", true).getBoolean();
+    	enableGrabberGold 				= config.get("Items", "Enable Gold Grabber?", true).getBoolean();
+    	enableGrabberIron 				= config.get("Items", "Enable Iron Grabber?", true).getBoolean();
+    	enableGrabberDiamond 			= config.get("Items", "Enable Diamond Grabber?", true).getBoolean();
     	enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
     	enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
     	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
