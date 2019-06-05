@@ -21,11 +21,11 @@ public class SmeltingNOreDictHandler {
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte
-		if(Config.enableJerky) 								  GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
-		if(Config.enableElderTree) 							  GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(Config.enableCrystalLight)						  GameRegistry.addSmelting(Konstanten.POWDEROFLIGHT, new ItemStack(ItemHandler.CRYSTAL, 1, 0), 2.0F);
-		if(Config.enableMultiBlock && Config.enableMultiItem) GameRegistry.addSmelting(Konstanten.HELLFAYAHORE, Konstanten.HELLFAYAH, 2.0F);
-		if(Config.enableCrucible)							  GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 2.0f);
+		if(Config.enableJerky) 								 GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
+		if(Config.enableElderTree) 							 GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		if(Config.enableCrystalLight)						 GameRegistry.addSmelting(Konstanten.POWDER_OF_LIGHT, Konstanten.CRYSTAL_LIGHT, 2.0F);
+		if(Config.enableMultiBlock && Config.enableMultiItem)GameRegistry.addSmelting(Konstanten.HELLFAYAH_ORE, Konstanten.HELLFAYAH, 2.0F);
+		if(Config.enableCrucible)							 GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
 	}
 
 	//Ore-Dictionary

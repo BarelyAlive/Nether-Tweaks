@@ -7,14 +7,14 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "item_base",
+      "data": 6
     },
     "Y": {
       "item": "minecraft:flint"
     }
   },
   "result": {
-    "item": "grabber"
+    "item": "grabber_stone"
   }
 }

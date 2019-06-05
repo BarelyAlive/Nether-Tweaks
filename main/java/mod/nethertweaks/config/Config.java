@@ -18,8 +18,8 @@ public class Config
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
 	
-	public static int durabilityPickRack  = 64;
-	public static int durabilityPickBrick = 64;
+	public static int durabilityPickRack  = 132;
+	public static int durabilityPickBrick = 251;
 	
 	public static int durabilityHWood 	 = 64;
 	public static int durabilityHGold 	 = 80;
@@ -75,16 +75,16 @@ public class Config
 	public static boolean thinCrucibleModel = true;
 	
 	//Liquid Impossibility
-	public static int densityLI = 1000;
-	public static int luminosityLI = 15;
-	public static int viscosityLI = 1000;
 	public static int temperatureLI = 0;
+	public static int luminosityLI  = 15;
+	public static int densityLI 	= 1000;
+	public static int viscosityLI   = 1000;
 	public static boolean doesLIVaporize = false;
 	public static boolean spawnSkeleton  = true;
 	public static boolean spawnSlime 	 = true;
 	public static boolean spawnWaterMobs = true;
 	
-	public static boolean isHellworld = true;
+	public static boolean isHellworld 	 = true;
 	public static boolean enableTeleport = true;
 	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
@@ -94,12 +94,12 @@ public class Config
 	// Mod-Compatibility
 	public static List<String> fluidList;
 	public static int fillAmount = 1000;
-	public static boolean enableMooFluid = true;
-	public static boolean enableHarvestcraft = false;
-	public static boolean preventUnidict = true;
-	public static boolean dankNullIntegration = true;
-	public static boolean generalItemHandlerCompat = false;
-	public static boolean fluidListIsBlackList = true;
+	public static boolean enableMooFluid 			= true;
+	public static boolean preventUnidict 			= true;
+	public static boolean dankNullIntegration 		= true;
+	public static boolean fluidListIsBlackList 		= true;
+	public static boolean enableHarvestcraft 		= false;
+	public static boolean generalItemHandlerCompat  = false;
 	public static String chunkBaseOreDictName = "Chunk";
 	public static String dustBaseOreDictName  = "Dust";
 	public static String pieceBaseOreDictName = "Piece";
