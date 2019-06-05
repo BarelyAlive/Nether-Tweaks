@@ -2,8 +2,7 @@
   "type": "forge:ore_shapeless",
   "ingredients": [
     {
-      "type": "forge:ore_dict",
-      "ore": "listAllWater"
+      "item": "minecraft:water_bucket"
     }
   ],
   "result": {
