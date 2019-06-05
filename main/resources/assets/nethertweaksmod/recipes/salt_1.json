@@ -4,14 +4,10 @@
     [
       {
         "item": "minecraft:water_bucket"
-      }
-    ],
-    [
+      },
       {
         "item": "nethertweaksmod:bucket_wood_water"
-      }
-    ],
-    [
+      },
       {
         "item": "nethertweaksmod:bucket_stone_water"
       }
