@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "nethertweaksmod:bucket_stone_water"
+  ],
+  "result": {
+    "item": "item_base",
+    "data": 5,
+    "count": 2
+  }
+}
