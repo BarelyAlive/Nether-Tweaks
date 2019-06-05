@@ -55,16 +55,16 @@ public class WorldHandler{
 		BlockPos clicked = event.getPos();
 		World world = event.getEntity().getEntityWorld();
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z)) return;
-		if (!event.getEntity().getEntityWorld().isRemote)
+		if (!event.getEntity().getEntityWorld().isRemote && Config.enableSaltRecipe)
 		{
-			final ItemInfo info = new ItemInfo(event.getItemStack());
+			final ItemInfo heldItem = new ItemInfo(event.getItemStack());
 			final ItemInfo bucket1 = new ItemInfo(Items.WATER_BUCKET);
 			final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 			final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			
-			if (ItemStack.areItemsEqual(info.getItemStack(), bucket1.getItemStack())
-					|| ItemStack.areItemsEqual(info.getItemStack(), bucket2.getItemStack())
-					|| ItemStack.areItemsEqual(info.getItemStack(), bucket3.getItemStack()))
+			if (ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
+					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket2.getItemStack())
+					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack()))
 			{
 				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
 				{

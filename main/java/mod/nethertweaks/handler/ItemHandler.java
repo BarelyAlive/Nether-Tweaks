@@ -1,21 +1,6 @@
 package mod.nethertweaks.handler;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSlab;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import mod.nethertweaks.INames;
-import mod.nethertweaks.Konstanten;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
@@ -26,14 +11,17 @@ import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
-import mod.sfhcore.Constants;
-import mod.sfhcore.SFHCore;
-import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.registries.Registry;
+import mod.sfhcore.util.ItemInfo;
+import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class ItemHandler implements INames
 {
@@ -112,10 +100,10 @@ public class ItemHandler implements INames
     private static void addItemBurnTime()
     {
     	if(Config.enableStoneBucket)
-    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	if(Config.enableMultiItem)
-    		CustomFuelHandler.addFuelBurnTime(new ItemStack(ItemHandler.ITEM_BASE, 1, 3), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.ITEM_BASE, 3), Config.burnTimeHellfayah);
     	if(Config.enableMultiBlock)
-    		CustomFuelHandler.addFuelBurnTime(new ItemStack(BlockHandler.ITEM_BLOCK_BASIC, 1, 1), Config.burnTimeHellfayahBlock);
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.ITEM_BLOCK_BASIC, 1), Config.burnTimeHellfayahBlock);
     }
 }

@@ -86,6 +86,7 @@ public class Config
 	
 	public static boolean isHellworld 	 = true;
 	public static boolean enableTeleport = true;
+	public static boolean enableSaltRecipe = true;
 	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
 	//JSON
@@ -187,6 +188,7 @@ public class Config
         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
+        enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
         enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
         
         //Ore
