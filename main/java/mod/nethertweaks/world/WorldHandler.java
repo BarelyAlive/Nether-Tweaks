@@ -5,20 +5,25 @@ import com.ibm.icu.impl.Differ;
 import java.util.*;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NotNull;
+import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Teleporter.PortalPosition;
 import net.minecraft.world.World;
@@ -26,6 +31,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeHell;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -40,6 +47,34 @@ public class WorldHandler{
 	public final static String coodZ = "ntm.cood.z";
 
 	//HELLWORLD
+	
+	@SubscribeEvent
+    public void salt(LivingEntityUseItemEvent.Finish event)
+	{
+		System.out.println("Hallo");
+		if (!event.getEntity().getEntityWorld().isRemote)
+		{
+			final ItemInfo info = new ItemInfo(event.getItem());
+			final ItemInfo bucket1 = new ItemInfo(Items.WATER_BUCKET);
+			final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
+			final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
+			
+			if (ItemStack.areItemsEqual(info.getItemStack(), bucket1.getItemStack()) ||
+					ItemStack.areItemsEqual(info.getItemStack(), bucket2.getItemStack()) ||
+					ItemStack.areItemsEqual(info.getItemStack(), bucket3.getItemStack()))
+			{
+				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
+				{
+					RayTraceResult ray = new RayTraceResult(event.getEntity());
+					BlockPos clicked = ray.getBlockPos();
+					World world = event.getEntity().getEntityWorld();
+					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY(), clicked.getZ(),
+							new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
+					world.spawnEntity(salt);
+				}
+			} 
+		}
+    }
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
