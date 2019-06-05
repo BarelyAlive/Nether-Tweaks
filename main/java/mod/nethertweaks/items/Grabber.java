@@ -107,7 +107,7 @@ public class Grabber extends ItemShears
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!world.isRemote) {
 					world.setBlockToAir(pos);
-					if (!player.inventory.addItemStackToInventory(info.getItemStack())) {
+					if (!player.inventory.addItemStackToInventory(new ItemStack(block, 1))) {
 						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
 						world.spawnEntity(item);
 					}

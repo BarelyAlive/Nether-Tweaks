@@ -159,7 +159,7 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", Grabber.getTangible().toArray(new String[0])).getStringList();
+        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", grabberBlocks).getStringList();
         
         autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
         autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
