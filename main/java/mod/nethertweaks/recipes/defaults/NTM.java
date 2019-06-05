@@ -387,6 +387,8 @@ public class NTM implements IRecipeDefaults
         // Hammer concrete into concrete powder
         for (int meta = 0; meta < 16; meta++)
             registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
+        
+        registry.register(Blocks.GLOWSTONE.getDefaultState(), new ItemStack(Items.GLOWSTONE_DUST, 4), 0, 1.0F, 0.0F);
     }
 
     @Override
