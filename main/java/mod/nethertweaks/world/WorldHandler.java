@@ -49,12 +49,11 @@ public class WorldHandler{
 	//HELLWORLD
 	
 	@SubscribeEvent
-    public void salt(LivingEntityUseItemEvent.Finish event)
+    public void salt(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event)
 	{
-		System.out.println("Hallo");
 		if (!event.getEntity().getEntityWorld().isRemote)
 		{
-			final ItemInfo info = new ItemInfo(event.getItem());
+			final ItemInfo info = new ItemInfo(event.getItemStack());
 			final ItemInfo bucket1 = new ItemInfo(Items.WATER_BUCKET);
 			final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 			final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
@@ -65,10 +64,9 @@ public class WorldHandler{
 			{
 				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
 				{
-					RayTraceResult ray = new RayTraceResult(event.getEntity());
-					BlockPos clicked = ray.getBlockPos();
+					BlockPos clicked = event.getPos();
 					World world = event.getEntity().getEntityWorld();
-					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY(), clicked.getZ(),
+					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY()+1, clicked.getZ(),
 							new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
 					world.spawnEntity(salt);
 				}

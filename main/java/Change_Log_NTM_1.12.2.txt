@@ -42,6 +42,7 @@ ChangeLog NTM 2.0.0
 * Stone Doors are back!
 * Stone & Wood Bucket are now like forge's universal bucket (Wood Buckets can't hold/pick up hot fluids)
     (actually this is from SFHCore and every mod can add them they use SFHCore)
+* IF SOMETHING IS NOT CLEAR PLEASE HAVE A LOOK INTO MY WIKI: https://nethertweaksmod.wordpress.com/
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
