@@ -35,6 +35,7 @@ import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -51,6 +52,9 @@ public class WorldHandler{
 	@SubscribeEvent
     public void salt(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event)
 	{
+		BlockPos clicked = event.getPos();
+		World world = event.getEntity().getEntityWorld();
+		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z)) return;
 		if (!event.getEntity().getEntityWorld().isRemote)
 		{
 			final ItemInfo info = new ItemInfo(event.getItemStack());
@@ -58,17 +62,16 @@ public class WorldHandler{
 			final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 			final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			
-			if (ItemStack.areItemsEqual(info.getItemStack(), bucket1.getItemStack()) ||
-					ItemStack.areItemsEqual(info.getItemStack(), bucket2.getItemStack()) ||
-					ItemStack.areItemsEqual(info.getItemStack(), bucket3.getItemStack()))
+			if (ItemStack.areItemsEqual(info.getItemStack(), bucket1.getItemStack())
+					|| ItemStack.areItemsEqual(info.getItemStack(), bucket2.getItemStack())
+					|| ItemStack.areItemsEqual(info.getItemStack(), bucket3.getItemStack()))
 			{
 				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
 				{
-					BlockPos clicked = event.getPos();
-					World world = event.getEntity().getEntityWorld();
-					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY()+1, clicked.getZ(),
+					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1, clicked.getZ(),
 							new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
 					world.spawnEntity(salt);
+					event.getResult();
 				}
 			} 
 		}
