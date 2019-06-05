@@ -20,8 +20,8 @@ public interface INames {
 	public static String FREEZER 					= "freezer";
 	public static String CRUCIBLE					= "crucible";
 	
-	public static String STONE_DOOR					= "door_ntm_stone";
-	public static String ELDER_DOOR					= "door_ntm_elder";
+	public static String STONE_DOOR					= "stone_door";
+	public static String ELDER_DOOR					= "elder_door";
 	public static String DUST 						= "dust";
 	public static String STWH 						= "stairway_to_heaven";
 	public static String ELDER_SAPLING 				= "elder_sapling";
