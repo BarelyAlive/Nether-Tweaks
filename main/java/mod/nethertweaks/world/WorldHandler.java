@@ -71,7 +71,6 @@ public class WorldHandler{
 					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1, clicked.getZ(),
 							new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
 					world.spawnEntity(salt);
-					event.getResult();
 				}
 			} 
 		}
