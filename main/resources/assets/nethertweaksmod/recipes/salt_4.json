@@ -3,6 +3,7 @@
   "ingredients": [
     {
       "item": "nethertweaksmod:bucket_stone_water"
+    }
   ],
   "result": {
     "item": "item_base",
