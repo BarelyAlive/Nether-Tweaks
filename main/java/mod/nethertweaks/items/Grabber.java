@@ -23,6 +23,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -101,6 +102,45 @@ public class Grabber extends ItemShears
 		final BlockInfo info = new BlockInfo(world.getBlockState(pos));
 		final Block block = info.getBlock();
 		final BlockPos playerPos = player.getPosition();
+		
+		if(block instanceof BlockVine)
+		{
+			BlockPos posi = pos;
+			int count = 0;
+			
+			while (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+				if (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+					posi = posi.add(0, -1, 0);
+				}
+			}
+			
+			posi = posi.add(0, 1, 0);
+			
+			while (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+				if (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+					posi = posi.add(0, 1, 0);
+					count++;
+				}
+			}
+			
+			posi = posi.add(0, -1, 0);
+			count--;
+			
+			for(int i = 0; i < count; i++)
+			{
+				if (!world.isRemote) {
+					world.setBlockToAir(posi);
+					if (!player.inventory.addItemStackToInventory(new ItemStack(block, 1))) {
+						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
+						world.spawnEntity(item);
+					}
+					posi = posi.add(0, -1, 0);
+				}
+				if (!player.capabilities.isCreativeMode)
+					player.getActiveItemStack().damageItem(1, player);
+				
+			}
+		}
 		
 		for (String name : tangibleList) {
 			final ResourceLocation loc = new ResourceLocation(name);
