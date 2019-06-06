@@ -179,14 +179,12 @@ public class TileNetherrackFurnace extends TileInventory
         {
             getStackInSlot(1).grow(itemstack.getCount());
         }
+	
+        this.getStackInSlot(0).shrink(1);
 
         if (this.getStackInSlot(0).getCount() <= 0)
         {
             this.setInventorySlotContents(0, ItemStack.EMPTY);
-        }
-        else
-        {
-            this.getStackInSlot(0).shrink(1);
         }
     }
 	
