@@ -22,7 +22,7 @@ import mod.sfhcore.blocks.container.ContainerBase;
 public class GuiNetherrackFurnace extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID, ":textures/gui/guinetherrackfurnace.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 	
 	public GuiNetherrackFurnace(InventoryPlayer inventory, TileNetherrackFurnace te) {
