@@ -69,8 +69,10 @@ public class TileNetherrackFurnace extends TileInventory
 		if(world.isRemote) return;
 		
     	checkInputOutput();
-        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+        NetherrackFurnace.setState(isWorking(), world, pos);
+        
 		NetworkHandler.sendNBTUpdate(this);
+		
 		if (!canSmelt())
         {
         	this.setWorkTime(0);
@@ -79,10 +81,11 @@ public class TileNetherrackFurnace extends TileInventory
         
         work();
         
-        if(this.getWorkTime() <= getMaxworkTime()) return;
-        
-        smeltItem();
-        this.setWorkTime(0);
+        if(this.getWorkTime() >= this.getMaxworkTime())
+		{
+			this.setWorkTime(0);
+			smeltItem();
+		}
     }
 	
 	private void checkInputOutput()
@@ -215,7 +218,6 @@ public class TileNetherrackFurnace extends TileInventory
         return "nethertweaksmod:gui_netherrack_furnace";
     }
     
-    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerNetherrackFurnace(playerInventory, this);
