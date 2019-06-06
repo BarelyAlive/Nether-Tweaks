@@ -28,8 +28,8 @@ public class GuiNetherrackFurnace extends GuiContainer
 	public GuiNetherrackFurnace(InventoryPlayer inventory, TileNetherrackFurnace te) {
         super(new ContainerNetherrackFurnace(inventory, te));
         entity = te;
-        xSize = 175;
-        ySize = 165;
+        xSize = 176;
+        ySize = 166;
 	}
 	
 	@Override
@@ -48,8 +48,8 @@ public class GuiNetherrackFurnace extends GuiContainer
     }
 	
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
-
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
         int x = (width - xSize) / 2;
@@ -69,7 +69,6 @@ public class GuiNetherrackFurnace extends GuiContainer
         
         x = x_old;
         y = y_old;
-        
     }
     
     @Override
