@@ -57,7 +57,7 @@ public class SmeltingNOreDictHandler {
 		}
 		if(Config.enableSeed)
 		{
-			for(int i = 1; i < 4; i++)
+			for(int i = 1; i < 3; i++)
 			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, i));
 		}
     	if(Config.enableLiquidImpossibility)

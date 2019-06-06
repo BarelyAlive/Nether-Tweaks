@@ -122,6 +122,7 @@ public class Grabber extends ItemShears
 					posi = posi.add(0, 1, 0);
 					count++;
 				}
+				
 			}
 			
 			posi = posi.add(0, -2, 0);
