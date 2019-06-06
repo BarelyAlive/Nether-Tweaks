@@ -22,8 +22,8 @@ tile.mean_vine.name=Vinha Média
 tile.sieve.name=Peneira
 tile.hellmart.name=Hellmart
 
-item.door_ntm_stone.name=Porta de pedra
-item.door_ntm_elder.name=Porta do Ancião
+item.stone_door.name=Porta de pedra
+item.elder_door.name=Porta do Ancião
 
 generator.hellworld=Hellworld
 

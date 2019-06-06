@@ -22,8 +22,8 @@ tile.mean_vine.name=Zarcillos desagradables
 tile.sieve.name=cedazo
 tile.hellmart.name=Hellmart
 
-item.door_ntm_stone.name=Puerta de piedra
-item.door_ntm_elder.name=Puerta de anciano
+item.stone_door.name=Puerta de piedra
+item.elder_door.name=Puerta de anciano
 
 generator.hellworld=Hellworld
 

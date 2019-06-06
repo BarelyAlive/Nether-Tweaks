@@ -22,8 +22,8 @@ tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
 
-item.door_ntm_stone.name=Stone Door
-item.door_ntm_elder.name=Elder Door
+item.stone_door.name=Stone Door
+item.elder_door.name=Elder Door
 
 generator.hellworld=Hellworld
 

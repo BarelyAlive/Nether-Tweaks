@@ -22,8 +22,8 @@ tile.mean_vine.name=Fiese Ranken
 tile.sieve.name=Sieb
 tile.hellmart.name=Hellmart
 
-item.door_ntm_stone.name=Steintür
-item.door_ntm_elder.name=Uralttür
+item.stone_door.name=Steintür
+item.elder_door.name=Uralttür
 
 generator.hellworld=Hölle auf Erden
 

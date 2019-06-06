@@ -99,6 +99,7 @@ public class Grabber extends ItemShears
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, final BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		//Grab vines except the highest one
 		final BlockInfo info = new BlockInfo(world.getBlockState(pos));
 		final Block block = info.getBlock();
 		final BlockPos playerPos = player.getPosition();
@@ -123,7 +124,7 @@ public class Grabber extends ItemShears
 				}
 			}
 			
-			posi = posi.add(0, -1, 0);
+			posi = posi.add(0, -2, 0);
 			count--;
 			
 			for(int i = 0; i < count; i++)
@@ -138,10 +139,11 @@ public class Grabber extends ItemShears
 				}
 				if (!player.capabilities.isCreativeMode)
 					player.getActiveItemStack().damageItem(1, player);
-				
 			}
+			return EnumActionResult.SUCCESS;
 		}
 		
+		//Pick up blocks like melons from the list
 		for (String name : tangibleList) {
 			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
