@@ -66,9 +66,11 @@ public class WorldHandler{
 				&& !ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack())) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
-			event.setResult(Event.Result.DEFAULT);
-			event.setCanceled(true);
-		}
+		        event.setCanceled(true);
+                        return;
+                }
+		event.setResult(Event.Result.DEFAULT);
+		event.setCanceled(true);
 		if (!event.getEntity().getEntityWorld().isRemote && Config.enableSaltRecipe)
 		{			
 			if (ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
