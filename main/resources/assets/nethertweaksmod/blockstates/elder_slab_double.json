@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=default": { "model": "nethertweaksmod:block/elder_planks" }
+    }
+}

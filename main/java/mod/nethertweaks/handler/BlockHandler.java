@@ -14,8 +14,8 @@ import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.items.ItemBlockElderSlab;
 import mod.sfhcore.Constants;
+import mod.sfhcore.blocks.BlockSlabCommon;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
@@ -52,18 +52,19 @@ public class BlockHandler implements INames
     public static final Block SIEVE 			   = new Sieve();
     public static final Block MEAN_VINE			   = new MeanVine();
     public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
+    public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
+    public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(MODID, INames.ELDER_DOOR), 15.0F, 2.0F);
+    public static final Block BLOCK_BASIC		   = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(MODID, INames.BLOCK_BASIC), 17.5f, 3.5f, TAB);
     public static final Block ELDER_LOG 		   = new ElderLog();
     public static final Block ELDER_LEAVES 		   = new ElderLeaves();
     public static final Block ELDER_PLANKS 		   = new ElderPlanks();
     public static final Block ELDER_SAPLING 	   = new ElderSapling();
-    public static final Block ELDER_SLAB_HALF 	   = new ElderSlab.Half();
-    public static final Block ELDER_SLAB_DOUBLE    = new ElderSlab.Double(ELDER_SLAB_HALF, new ElderSlab());
-    public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
-    public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(MODID, INames.ELDER_DOOR), 15.0F, 2.0F);
-    public static final Block BLOCK_BASIC		   = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(MODID, INames.BLOCK_BASIC), 17.5f, 3.5f, TAB);
+    
+    public static final BlockSlabCommon ELDER_SLAB_HALF = (BlockSlabCommon) new BlockSlabCommon.Half(INames.ELDER_SLAB, Material.WOOD).setCreativeTab(TAB).setResistance(10F).setHardness(2F);
+    public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setCreativeTab(TAB).setResistance(10F).setHardness(2F);
     
     //ItemBlocks
-    public static final ItemBlock ITEM_ELDER_SLAB  = new ItemBlockElderSlab();
+    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(ELDER_SLAB_HALF, ELDER_SLAB_HALF, ELDER_SLAB_DOUBLE).setRegistryName(MODID, ELDER_SLAB);
     public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, TAB);
 
     public static void init()
@@ -103,7 +104,6 @@ public class BlockHandler implements INames
 			/*just some of     */			Registry.registerBlock(ELDER_LEAVES);
 			/*these and not the*/			Registry.registerBlock(ELDER_PLANKS);
 			/*the whole tree   */			Registry.registerBlock(ELDER_SLAB_DOUBLE);
-			/*Ddtd!			   */			Registry.registerBlock(ITEM_ELDER_SLAB);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);

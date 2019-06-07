@@ -20,6 +20,7 @@ import mod.sfhcore.util.ItemInfo;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -56,6 +57,7 @@ public class ItemHandler implements INames
     //itemblocks
     public static final Item ITEM_STONE_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
     public static final Item ITEM_ELDER_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
+    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(BlockHandler.ELDER_SLAB_HALF, BlockHandler.ELDER_SLAB_HALF, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(MODID, ELDER_SLAB);
 
 	public static void init()
 	{
@@ -88,6 +90,7 @@ public class ItemHandler implements INames
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
         if(Config.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
         if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
+        if(Config.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
 
         //Food
     	if(Config.enableJerky)  			Registry.registerItem(COOKED_JERKY);
