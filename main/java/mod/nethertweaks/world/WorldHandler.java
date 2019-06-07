@@ -54,37 +54,62 @@ public class WorldHandler{
 	@SubscribeEvent
     public void salt(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event)
 	{
+		boolean activated = false;
 		BlockPos clicked = event.getPos();
 		final ItemInfo heldItem = new ItemInfo(event.getItemStack());
 		final ItemInfo bucket1 = new ItemInfo(Items.WATER_BUCKET);
 		final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 		final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
-		
 		World world = event.getEntity().getEntityWorld();
+		if (event.getEntity().getEntityWorld().isRemote) return;
 		if (!ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
 				&& !ItemStack.areItemsEqual(heldItem.getItemStack(), bucket2.getItemStack())
 				&& !ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack())) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
+			activated = true;
 			event.setCanceled(true);
-            return;
 		}
-		event.setResult(Event.Result.DEFAULT);
-		event.setCanceled(true);
-		
-		if (!event.getEntity().getEntityWorld().isRemote && Config.enableSaltRecipe)
-		{			
+		if (Config.enableSaltRecipe && !activated)
+		{
 			if (ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
 					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket2.getItemStack())
 					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack()))
 			{
 				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
 				{
-					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1, clicked.getZ(),
-							new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
-					world.spawnEntity(salt);
+					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
+					switch (event.getFace()) {
+					case UP:
+						salt.getPosition().up();
+						world.spawnEntity(salt);
+						break;
+					case NORTH:
+						salt.getPosition().north();
+						world.spawnEntity(salt);
+						break;
+					case EAST:
+						salt.getPosition().east();
+						world.spawnEntity(salt);
+						break;
+					case SOUTH:
+						salt.getPosition().south();
+						world.spawnEntity(salt);
+						break;
+					case WEST:
+						salt.getPosition().west();
+						world.spawnEntity(salt);
+						break;
+					case DOWN:
+						salt.getPosition().down();
+						world.spawnEntity(salt);
+						break;
+					default:
+						break;
+					}
 				}
-			} 
+			}
+			activated = false;
 		}
     }
 

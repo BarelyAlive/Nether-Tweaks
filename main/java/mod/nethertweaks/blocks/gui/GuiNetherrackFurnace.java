@@ -10,6 +10,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
@@ -18,11 +20,13 @@ import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.container.ContainerBase;
+import mod.sfhcore.blocks.tiles.TileInventory;
 
+@SideOnly(Side.CLIENT)
 public class GuiNetherrackFurnace extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID, "textures/gui/guinetherrackfurnace.png");
+	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(NetherTweaksMod.MODID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 	
 	public GuiNetherrackFurnace(InventoryPlayer inventory, TileNetherrackFurnace te) {
@@ -40,7 +44,7 @@ public class GuiNetherrackFurnace extends GuiContainer
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2){
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
 		/*
         fontRendererObj.drawString("BaseGenerator", 8, 6, 4210752);
         fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
@@ -48,27 +52,21 @@ public class GuiNetherrackFurnace extends GuiContainer
     }
 	
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
+        this.mc.getTextureManager().bindTexture(GUI_FURNACE);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        
-        int x_old = x;
-        int y_old = y;
-        
-        if(this.entity.isWorking(this.entity)){
-        	int k = this.entity.getWorkTimeRemainingScaled(12);
+        System.out.println(this.entity.getWorkTime());
+        if(TileInventory.isWorking(this.entity)){
+        	int k = this.entity.getWorkTimeRemainingScaled(13);
         	x += 57;
         	y += 36;
         	int k_inv = 12 - k;
         	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
         }
-        
-        x = x_old;
-        y = y_old;
     }
     
     @Override

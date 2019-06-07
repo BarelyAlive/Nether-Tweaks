@@ -21,22 +21,21 @@ public class ContainerNetherrackFurnace extends ContainerBase {
 		super(te);
 		tileEntity = te;
 		
-		addSlotToContainer(new Slot(tileEntity, 0, 57, 17));
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 57, 53));
+		addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 56, 53));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 9 + j * 18, 84 + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
 		for(int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, 9 + i * 18, 142));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateProgressBar(int id, int data) {
-		this.tileentity.setField(id, data);
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return true;
 	}
 }

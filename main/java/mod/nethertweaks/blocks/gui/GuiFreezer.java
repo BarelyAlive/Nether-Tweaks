@@ -48,7 +48,7 @@ public class GuiFreezer extends GuiContainer
     }
 		
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2)
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
 		String fName = "---";
 		FluidStack f = this.entity.getTank().getFluid();
@@ -60,7 +60,7 @@ public class GuiFreezer extends GuiContainer
     }
 	
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);

@@ -66,20 +66,19 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
     public void update()
 	{
-		if(world.isRemote) return;
-		
-    	checkInputOutput();
-        NetherrackFurnace.setState(isWorking(), world, pos);
-        
-		NetworkHandler.sendNBTUpdate(this);
-		
 		if (!canSmelt())
         {
         	this.setWorkTime(0);
         	return;
         }
-        
-        work();
+		else
+			work();
+		
+		if(this.world.isRemote) return;
+		
+    	checkInputOutput();
+        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+		NetworkHandler.sendNBTUpdate(this);		
         
         if(this.getWorkTime() >= this.getMaxworkTime())
 		{
