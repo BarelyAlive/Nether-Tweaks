@@ -41,12 +41,12 @@ public class ItemBlockElderSlab extends ItemBlock
 		{
 			if(clicked.getProperties().containsValue(EnumBlockHalf.BOTTOM) && facing == EnumFacing.UP)
 			{
-				worldIn.setBlockState(pos, slab);
+				worldIn.setBlockState(pos, slab, 2);
 			}
 			//wenn von unten auf ein vorhandenes slab gesetzt wird
 			if(clicked.getProperties().containsValue(EnumBlockHalf.TOP) && facing == EnumFacing.DOWN)
 			{
-				worldIn.setBlockState(pos, slab);
+				worldIn.setBlockState(pos, slab, 2);
 			}
 		}
 		else
@@ -58,12 +58,12 @@ public class ItemBlockElderSlab extends ItemBlock
 				{
 					if(clicked.getProperties().containsValue(EnumBlockHalf.BOTTOM))
 					{
-						worldIn.setBlockState(pos.down(1), slab);
+						worldIn.setBlockState(pos.down(1), slab, 2);
 					}
 				}
 				else if (clicked.getBlock().isAir(clicked, worldIn, pos.down(1)))
 				{
-					worldIn.setBlockState(pos.down(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, EnumBlockHalf.TOP));
+					worldIn.setBlockState(pos.down(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState().withProperty(BlockSlab.HALF, EnumBlockHalf.TOP), 2);
 				}
 				clicked = worldIn.getBlockState(pos.up(1));
 			}
@@ -74,12 +74,12 @@ public class ItemBlockElderSlab extends ItemBlock
 				{
 					if(clicked.getProperties().containsValue(EnumBlockHalf.TOP))
 					{
-						worldIn.setBlockState(pos.up(1), slab);
+						worldIn.setBlockState(pos.up(1), slab, 2);
 					}
 				}
 				else if (clicked.getBlock().isAir(clicked, worldIn, pos.up(1)))
 				{
-					worldIn.setBlockState(pos.up(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState());
+					worldIn.setBlockState(pos.up(1), BlockHandler.ELDER_SLAB_HALF.getDefaultState(), 2);
 				}
 				clicked = worldIn.getBlockState(pos.down(1));
 			}
@@ -90,19 +90,19 @@ public class ItemBlockElderSlab extends ItemBlock
 				switch (facing) {
 				case NORTH:
 					if(worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.north(1), slab);
+						worldIn.setBlockState(pos.north(1), slab, 2);
 					break;
 				case EAST:
 					if(worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.east(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.east(1), slab);
+						worldIn.setBlockState(pos.east(1), slab, 2);
 					break;
 				case SOUTH:
 					if(worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.south(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.south(1), slab);
+						worldIn.setBlockState(pos.south(1), slab, 2);
 					break;
 				case WEST:
 					if(worldIn.getBlockState(pos.west(1)).getProperties().containsValue(EnumBlockHalf.TOP) || worldIn.getBlockState(pos.north(1)).getProperties().containsValue(EnumBlockHalf.BOTTOM))
-						worldIn.setBlockState(pos.west(1), slab);
+						worldIn.setBlockState(pos.west(1), slab, 2);
 					break;
 				}
 			}		
