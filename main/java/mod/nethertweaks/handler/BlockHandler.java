@@ -64,7 +64,6 @@ public class BlockHandler implements INames
     public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setCreativeTab(TAB).setResistance(10F).setHardness(2F);
     
     //ItemBlocks
-    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(ELDER_SLAB_HALF, ELDER_SLAB_HALF, ELDER_SLAB_DOUBLE).setRegistryName(MODID, ELDER_SLAB);
     public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, TAB);
 
     public static void init()
@@ -103,7 +102,6 @@ public class BlockHandler implements INames
 			/*one wants to use */			Registry.registerBlock(ELDER_LOG);
 			/*just some of     */			Registry.registerBlock(ELDER_LEAVES);
 			/*these and not the*/			Registry.registerBlock(ELDER_PLANKS);
-			/*the whole tree   */			Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
