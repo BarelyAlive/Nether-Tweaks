@@ -66,6 +66,8 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
     public void update()
 	{
+    	checkInputOutput();
+    	
 		if (!canSmelt())
         {
         	this.setWorkTime(0);
