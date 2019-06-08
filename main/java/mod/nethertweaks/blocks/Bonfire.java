@@ -9,7 +9,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.nethertweaks.world.BonfireInfo;
-import mod.nethertweaks.world.WorldSpawnLoc;
+import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.Block;
@@ -79,9 +79,9 @@ public class Bonfire extends Block
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
+		if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
 		{
-			WorldSpawnLoc.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
+			WorldSpawnLocation.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
 		}
 	}
 	
@@ -145,25 +145,25 @@ public class Bonfire extends Block
 	
 	private void onBlockDestroy(World worldIn, BlockPos pos)
 	{
-		if (WorldSpawnLoc.bonfire_info.containsKey(pos))
+		if (WorldSpawnLocation.bonfire_info.containsKey(pos))
 		{
-			BonfireInfo binfo = WorldSpawnLoc.bonfire_info.get(pos);
+			BonfireInfo binfo = WorldSpawnLocation.bonfire_info.get(pos);
 			
 			List<UUID> player_list = binfo.getLastPlayerSpawn();
 			if (player_list.size() != 0)
 			{
 				for(UUID entry : player_list)
 				{
-					if (WorldSpawnLoc.lastSpawnLocas.containsKey(entry))
+					if (WorldSpawnLocation.lastSpawnLocas.containsKey(entry))
 					{
 						EntityPlayer player = worldIn.getPlayerEntityByUUID(entry);
 						if (worldIn.isRemote)
 							player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
-						WorldSpawnLoc.lastSpawnLocas.remove(entry);
+						WorldSpawnLocation.lastSpawnLocas.remove(entry);
 					}
 				}
 			}
-			WorldSpawnLoc.bonfire_info.remove(pos);
+			WorldSpawnLocation.bonfire_info.remove(pos);
 		}
 	}
 	

@@ -52,7 +52,7 @@ public class GuiBonfire extends GuiContainer {
 		this.toggle = true;
 		
 		this.bonfires = new HashMap<BlockPos, BonfireInfo>();
-		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLoc.bonfire_info.entrySet())
+		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.bonfire_info.entrySet())
 		{
 			if((entry.getValue().isPublic() || (!entry.getValue().isPublic() && entry.getValue().getOwner().equals(player.getUniqueID()))) && !entry.getKey().equals(this.pos))
 			{
@@ -73,7 +73,7 @@ public class GuiBonfire extends GuiContainer {
 		
 		GuiButton b;
 		
-		b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLoc.bonfire_info.get(this.pos).isPublic() ? "G" : "P");
+		b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLocation.bonfire_info.get(this.pos).isPublic() ? "G" : "P");
 		buttonList.add(b);
 		
 		Set<BlockPos> bonfires = this.bonfires.keySet();
@@ -105,7 +105,7 @@ public class GuiBonfire extends GuiContainer {
 		}
 		this.text = new GuiTextField(8, this.fontRenderer, posX - 30, posY - 40, 128, 14);
 		this.text.setMaxStringLength(26);
-		String name = WorldSpawnLoc.bonfire_info.get(this.pos).getName();
+		String name = WorldSpawnLocation.bonfire_info.get(this.pos).getName();
 		this.text.setText(name == "" ? "" : name);
 		if (name == "")
 		{
@@ -134,7 +134,7 @@ public class GuiBonfire extends GuiContainer {
 		if(!this.world.isRemote) return;
 		if(button.id == 0)
 		{
-			WorldSpawnLoc.bonfire_info.get(this.pos).isPublic(!WorldSpawnLoc.bonfire_info.get(this.pos).isPublic());
+			WorldSpawnLocation.bonfire_info.get(this.pos).isPublic(!WorldSpawnLocation.bonfire_info.get(this.pos).isPublic());
 		}
 		if (button.id > 0 && button.id < 6)
 		{
@@ -216,7 +216,7 @@ public class GuiBonfire extends GuiContainer {
 		
 		if (this.text.isFocused())
 		{
-			WorldSpawnLoc.bonfire_info.get(this.pos).setName(this.text.getText());
+			WorldSpawnLocation.bonfire_info.get(this.pos).setName(this.text.getText());
 		}
 		
 		if (!(keyCode == Keyboard.KEY_E && this.text.isFocused()))

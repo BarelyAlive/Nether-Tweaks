@@ -100,5 +100,6 @@ public class BlockHandler implements INames
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
         if(Config.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
         if(Config.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
+        if(Config.enableBonfire)			Registry.registerBlock(BONFIRE);
     }
 }
