@@ -34,7 +34,7 @@ import mod.sfhcore.registries.RegisterFluid;
 import mod.sfhcore.registries.Registry;
 import mod.sfhcore.util.BlockInfo;
 
-public class BucketNFluidHandler
+public class BucketNFluidHandler implements INames
 {
 	//Fluids
 	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
@@ -55,8 +55,8 @@ public class BucketNFluidHandler
 	private static void registerBuckets()
 	{
 		if(Config.enableWoodBucket)
-			BucketHandler.addBucket("wood", "Wood", 505, 16, INames.NTM, 0x80874633, NetherTweaksMod.TABNTM);
+			BucketHandler.addBucket("wood", "Wood", 505, 16, MODID, 0x80874633, TAB);
 		if(Config.enableStoneBucket)
-			BucketHandler.addBucket("stone", "Stone", -1, 16, INames.NTM, 0x80778899, NetherTweaksMod.TABNTM);
+			BucketHandler.addBucket("stone", "Stone", -1, 16, MODID, 0x80778899, TAB);
 	}
 }

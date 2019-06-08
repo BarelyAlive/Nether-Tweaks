@@ -21,12 +21,12 @@ public class PickaxeNTM extends ItemPickaxe{
 		if(tool == ToolMaterial.STONE)
 		{
 			setMaxDamage(Config.durabilityPickRack);
-			return INames.PICKAXENETHERRACK;
+			return INames.PICKAXE_NETHERRACK;
 		}
 		else
 		{
 			setMaxDamage(Config.durabilityPickBrick);
-			return INames.PICKAXENETHERBRICK;
+			return INames.PICKAXE_NETHERBRICK;
 		}
 	}
 }

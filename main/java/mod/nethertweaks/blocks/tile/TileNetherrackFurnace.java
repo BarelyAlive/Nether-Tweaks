@@ -59,30 +59,33 @@ import net.minecraftforge.items.ItemStackHandler;
 public class TileNetherrackFurnace extends TileInventory
 {	
     public TileNetherrackFurnace() {
-		super(2, INames.TENETHERRACKFURNACE);
+		super(2, INames.TE_NETHERRACKFURNACE);
 		this.setMaxworkTime(Config.burnTimeFurnace);
 	}
 
 	@Override
     public void update()
 	{
-		if(world.isRemote) return;
-		
-    	checkInputOutput();
-        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
-		NetworkHandler.sendNBTUpdate(this);
+		if(!this.world.isRemote) checkInputOutput();
+
 		if (!canSmelt())
         {
         	this.setWorkTime(0);
         	return;
         }
+		else
+			work();
+		
+		if(this.world.isRemote) return;
+		
+        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+		NetworkHandler.sendNBTUpdate(this);		
         
-        work();
-        
-        if(this.getWorkTime() <= getMaxworkTime()) return;
-        
-        smeltItem();
-        this.setWorkTime(0);
+        if(this.getWorkTime() >= this.getMaxworkTime())
+		{
+			this.setWorkTime(0);
+			smeltItem();
+		}
     }
 	
 	private void checkInputOutput()
@@ -176,14 +179,12 @@ public class TileNetherrackFurnace extends TileInventory
         {
             getStackInSlot(1).grow(itemstack.getCount());
         }
+	
+        this.getStackInSlot(0).shrink(1);
 
         if (this.getStackInSlot(0).getCount() <= 0)
         {
             this.setInventorySlotContents(0, ItemStack.EMPTY);
-        }
-        else
-        {
-            this.getStackInSlot(0).shrink(1);
         }
     }
 	
@@ -215,7 +216,6 @@ public class TileNetherrackFurnace extends TileInventory
         return "nethertweaksmod:gui_netherrack_furnace";
     }
     
-    @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerNetherrackFurnace(playerInventory, this);

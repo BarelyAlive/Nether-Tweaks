@@ -18,14 +18,20 @@ public class Config
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
 	
-	public static int durabilityPickRack  = 64;
-	public static int durabilityPickBrick = 64;
+	public static int durabilityPickRack  = 132;
+	public static int durabilityPickBrick = 251;
 	
 	public static int durabilityHWood 	 = 64;
 	public static int durabilityHGold 	 = 80;
 	public static int durabilityHStone 	 = 160;
 	public static int durabilityHIron 	 = 640;
 	public static int durabilityHDiamond = 5120;
+	
+	public static int durabilityGWood 	 = 64;
+	public static int durabilityGGold 	 = 80;
+	public static int durabilityGStone 	 = 160;
+	public static int durabilityGIron 	 = 640;
+	public static int durabilityGDiamond = 5120;
 	
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
@@ -69,18 +75,19 @@ public class Config
 	public static boolean thinCrucibleModel = true;
 	
 	//Liquid Impossibility
-	public static int densityLI = 1000;
-	public static int luminosityLI = 15;
-	public static int viscosityLI = 1000;
 	public static int temperatureLI = 0;
+	public static int luminosityLI  = 15;
+	public static int densityLI 	= 1000;
+	public static int viscosityLI   = 1000;
 	public static boolean doesLIVaporize = false;
 	public static boolean spawnSkeleton  = true;
 	public static boolean spawnSlime 	 = true;
 	public static boolean spawnWaterMobs = true;
 	
-	public static boolean isHellworld = true;
+	public static boolean isHellworld 	 = true;
 	public static boolean enableTeleport = true;
-	public static String[] grabberBlocks = Grabber.getTangible();
+	public static boolean enableSaltRecipe = true;
+	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
 	//JSON
 	public static boolean enableJSONLoading = true;
@@ -88,12 +95,12 @@ public class Config
 	// Mod-Compatibility
 	public static List<String> fluidList;
 	public static int fillAmount = 1000;
-	public static boolean enableMooFluid = true;
-	public static boolean enableHarvestcraft = false;
-	public static boolean preventUnidict = true;
-	public static boolean dankNullIntegration = true;
-	public static boolean generalItemHandlerCompat = false;
-	public static boolean fluidListIsBlackList = true;
+	public static boolean enableMooFluid 			= true;
+	public static boolean preventUnidict 			= true;
+	public static boolean dankNullIntegration 		= true;
+	public static boolean fluidListIsBlackList 		= true;
+	public static boolean enableHarvestcraft 		= false;
+	public static boolean generalItemHandlerCompat  = false;
 	public static String chunkBaseOreDictName = "Chunk";
 	public static String dustBaseOreDictName  = "Dust";
 	public static String pieceBaseOreDictName = "Piece";
@@ -128,12 +135,16 @@ public class Config
 	public static boolean enableJerky 				= true;
 	public static boolean enablePickAxeNetherrack 	= true;
 	public static boolean enablePickAxeNetherbrick 	= true;
-	public static boolean enableGrabber 			= true;
 	public static boolean enableHammerWood 			= true;
 	public static boolean enableHammerStone 		= true;
 	public static boolean enableHammerGold 			= true;
 	public static boolean enableHammerIron 			= true;
 	public static boolean enableHammerDiamond 		= true;
+	public static boolean enableGrabberWood			= true;
+	public static boolean enableGrabberStone 		= true;
+	public static boolean enableGrabberGold			= true;
+	public static boolean enableGrabberIron			= true;
+	public static boolean enableGrabberDiamond 		= true;
 	public static boolean enableFlintNBlaze 		= true;
 	public static boolean enableStoneDoor 			= true;
 	public static boolean enableElderDoor 			= true;
@@ -148,17 +159,17 @@ public class Config
         burnTimeHellfayah 				= config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
         burnTimeHellfayahBlock 			= config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
         burnTimeFurnace 				= config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", Grabber.getTangible()).getStringList();
+        grabberBlocks	 				= config.get("Tweak", "Whick blocks should be tangible with the grabber?", grabberBlocks).getStringList();
         
         autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
         autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
         
-        capacityFreezer					= config.get("Tweak", "Freezer fluid capacity in mb", 16000).getInt();
-        freezeTimeFreezer 				= config.get("Tweak", "Freezer worktime in ticks", 6000).getInt();
+        capacityFreezer					= config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
+        freezeTimeFreezer 				= config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
         
-        dryTimeCondenser 				= config.get("Tweak", "Condenser worktime in ticks", 2400).getInt();
-        capacityCondenser 				= config.get("Tweak", "Condenser fluid capacity in mb", 16000).getInt();
-        fluidOutputAmount 				= config.get("Tweak", "Condenser max. fluid auto output in mB/Sec", 200, "0 disables it").getInt();
+        dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
+        capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
+        fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 1, Integer.MAX_VALUE, "0 disables it");
         
         durabilityPickRack				= config.getInt("Durability for Netherrack Pickaxe", "Tweak", 132, 1, Integer.MAX_VALUE, "");
         durabilityPickBrick				= config.getInt("Durability for Netherbrick Pickaxe", "Tweak", 251, 1, Integer.MAX_VALUE, "");
@@ -168,9 +179,16 @@ public class Config
     	durabilityHStone				= config.getInt("Durability for Stone Hammer", "Tweak", 160, 1, Integer.MAX_VALUE, "");
     	durabilityHIron					= config.getInt("Durability for Iron Hammer", "Tweak", 640, 1, Integer.MAX_VALUE, "");
     	durabilityHDiamond				= config.getInt("Durability for Diamond Hammer", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+    	
+    	durabilityGWood					= config.getInt("Durability for Wood Grabber", "Tweak", 64, 1, Integer.MAX_VALUE, "");
+    	durabilityGGold					= config.getInt("Durability for Gold Grabber", "Tweak", 80, 1, Integer.MAX_VALUE, "");
+    	durabilityGStone				= config.getInt("Durability for Stone Grabber", "Tweak", 160, 1, Integer.MAX_VALUE, "");
+    	durabilityGIron					= config.getInt("Durability for Iron Grabber", "Tweak", 640, 1, Integer.MAX_VALUE, "");
+    	durabilityGDiamond				= config.getInt("Durability for Diamond Grabber", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
         
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
+        enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
         enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
         
         //Ore
@@ -203,9 +221,9 @@ public class Config
         thinCrucibleModel			 	= config.get("Crucible", "Do you want a thin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
-        densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
         luminosityLI					= config.getInt("Luminosity for Liquid Impossibility", "Fluid", 15, 0, 15, "");
-        viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, 1000, "");
+        viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
         temperatureLI					= config.getInt("Temperatur of Liquid Impossibility in Kelvin", "Fluid", 0, 0, Integer.MAX_VALUE, ""); 
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
         spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
@@ -261,12 +279,16 @@ public class Config
     	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
     	enablePickAxeNetherrack 		= config.get("Items", "Enable Netherrack Pickaxe?", true).getBoolean();
     	enablePickAxeNetherbrick 		= config.get("Items", "Enable Netherbrick Pickaxe?", true).getBoolean();
-    	enableGrabber					= config.get("Items", "Enable Grabber?", true).getBoolean();
     	enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
     	enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
     	enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
     	enableHammerIron 				= config.get("Items", "Enable Iron Hammer?", true).getBoolean();
     	enableHammerDiamond 			= config.get("Items", "Enable Diamond Hammer?", true).getBoolean();
+    	enableGrabberWood 				= config.get("Items", "Enable Wood Grabber?", true).getBoolean();
+    	enableGrabberStone 				= config.get("Items", "Enable Stone Grabber?", true).getBoolean();
+    	enableGrabberGold 				= config.get("Items", "Enable Gold Grabber?", true).getBoolean();
+    	enableGrabberIron 				= config.get("Items", "Enable Iron Grabber?", true).getBoolean();
+    	enableGrabberDiamond 			= config.get("Items", "Enable Diamond Grabber?", true).getBoolean();
     	enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
     	enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
     	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();

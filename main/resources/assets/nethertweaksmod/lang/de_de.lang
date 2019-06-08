@@ -11,8 +11,8 @@ tile.elder_log.name=Uraltholz
 tile.elder_leaves.name=Uraltlaub
 tile.elder_planks.name=Uraltbretter
 tile.elder_sapling.name=Uraltsetzling
-tile.elder_slab_half.name=Uraltstufe
-tile.elder_slab.name=Uraltdoppelstufe
+tile.elder_slab.name=Uraltstufe
+tile.elder_slab_double.name=Uraltdoppelstufe
 tile.netherrack_gravel.name=Nethergesteinkies
 tile.barrel0.name=Holzfass
 tile.barrel1.name=Steinfass
@@ -22,15 +22,19 @@ tile.mean_vine.name=Fiese Ranken
 tile.sieve.name=Sieb
 tile.hellmart.name=Hellmart
 
-item.door_ntm_stone.name=Steintür
-item.door_ntm_elder.name=Uralttür
+item.stone_door.name=Steintür
+item.elder_door.name=Uralttür
 
 generator.hellworld=Hölle auf Erden
 
 item.cooked_jerky.name="Essbar"
 item.pickaxe_netherrack.name=Nethegesteinspitzhacke
 item.pickaxe_netherbrick.name=Netherziegelspitzhacke
-item.grabber.name=Greifzange
+item.grabber_wood.name=Greifzange
+item.grabber_gold.name=Greifzange
+item.grabber_stone.name=Greifzange
+item.grabber_iron.name=Greifzange
+item.grabber_diamond.name=Greifzange
 
 item.hammer_wood.name=Holzhammer
 item.hammer_gold.name=Goldhammer
@@ -56,6 +60,7 @@ item.item_base_4.name=Lichtpulver
 item.item_base_5.name=Salz
 item.item_base_6.name=Steinstange
 item.item_base_7.name=Faden
+item.item_base_8.name=Porzellanton
 
 item.item_mesh_string.name=Fadengeflecht
 item.item_mesh_flint.name=Feuersteingeflecht
@@ -90,5 +95,6 @@ item.item_doll_llama.name=Llamapuppe
 item.item_doll_polar_bear.name=Polarbärpuppe
 item.item_doll_wolf.name=Wolfspuppe
 item.item_doll_villager.name=Dorfbewohnerpuppe
+item.item_doll_pig.name=Schweinspuppe
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks

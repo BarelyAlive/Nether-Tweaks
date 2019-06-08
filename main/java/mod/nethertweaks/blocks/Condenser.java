@@ -72,13 +72,16 @@ public class Condenser extends CubeContainerHorizontal
     	if(world.isRemote) return true;
     	if(player.isSneaking()) return false;
     	
-		if(TankUtil.drainWaterIntoBottle(te, player, te.getTank()))	return true;
+    	boolean success;
     	
+		success = TankUtil.drainWaterIntoBottle(te, player, te.getTank());
+    	if(success) return true;
+		
     	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
-			FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
-			return true;
+			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
+			if(success) return true;
 		}
 		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idCondenser, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;

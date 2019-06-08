@@ -67,7 +67,6 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
                         .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
                         .registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
                         .registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
-                        .registerTypeAdapter(EntityInfo.class, new CustomEntityInfoJson())
                         .registerTypeAdapter(HellmartData.class, new CustomHellmartDataJson())
                         .enableComplexMapKeySerialization()
                         .create(),
@@ -121,10 +120,15 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
         HellmartData buyable = new HellmartData(itemStack, currency, price);
         register(ingredient, buyable);
 	}
+	
+	@Override
+	public void register(@Nonnull ItemInfo product, @Nonnull ItemInfo currency, int price) {
+		register(product.getItemStack(), currency.getItemStack(), price);
+	}
 
 	@Override
 	public void register(@Nonnull ResourceLocation location, @Nonnull ResourceLocation currency, int price) {
-		register(ForgeRegistries.ITEMS.getValue(location), ForgeRegistries.ITEMS.getValue(currency), price);
+		register(new ItemStack(ForgeRegistries.ITEMS.getValue(location)), new ItemStack(ForgeRegistries.ITEMS.getValue(currency)), price);
 	}
 
 	@Override
@@ -174,11 +178,4 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 	public boolean containsItem(@Nonnull StackInfo info) {
 		return containsItem(info.getItemStack());
 	}
-
-	@Override
-	public void register(Item product, Item currency, int price) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

@@ -59,7 +59,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
     public NetherrackFurnace()
     {
-        super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERRACKFURNACE));
+        super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERRACK_FURNACE));
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
         setResistance(17.5F);
         setHardness(3.5F);
@@ -97,27 +97,28 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     	if(b == Blocks.AIR.getDefaultState()) return;
         TileEntity tileentity = worldIn.getTileEntity(pos);
         if(tileentity == null) return;
+        TileNetherrackFurnace furnace = (TileNetherrackFurnace) tileentity;
     	
         //Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
 	        b = b.withProperty(ISBURNING, true);
 	        worldIn.setBlockState(pos, b, 3);
-	        validate(worldIn, pos, tileentity);
+	        validate(worldIn, pos, furnace);
 		}
 		else if(!active && b.getValue(ISBURNING)) {
     		b = b.withProperty(ISBURNING, false);
 	        worldIn.setBlockState(pos, b, 3);
-	        validate(worldIn, pos, tileentity);
+	        validate(worldIn, pos, furnace);
     	}
     }
     
-    private static void validate(World world, BlockPos pos, TileEntity tileentity)
+    private static void validate(World world, BlockPos pos, TileNetherrackFurnace furnace)
     {
-    	if (tileentity != null)
+    	if (furnace != null)
         {
-            tileentity.validate();
-            world.setTileEntity(pos, tileentity);
-            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), tileentity);
+            furnace.validate();
+            world.setTileEntity(pos, furnace);
+            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), furnace);
         }
     }
 

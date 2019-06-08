@@ -51,7 +51,7 @@ public class TileFreezer extends TileFluidInventory
 	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 
 	public TileFreezer() {
-		super(3, INames.TEFREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
+		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
 		this.setMaxworkTime(Config.freezeTimeFreezer);
 	}
 

@@ -56,7 +56,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
         this.setTickRandomly(true);
         this.setCreativeTab(NetherTweaksMod.TABNTM);
-        this.setRegistryName(NetherTweaksMod.MODID, INames.ELDERLEAVES);
+        this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_LEAVES);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
@@ -198,7 +198,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(BlockHandler.ELDERSAPLING);
+        return Item.getItemFromBlock(BlockHandler.ELDER_SAPLING);
     }
 
     @Override
@@ -319,7 +319,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 		java.util.List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
-		ret.add(new ItemStack(BlockHandler.ELDERLEAVES));
+		ret.add(new ItemStack(BlockHandler.ELDER_LEAVES));
 		
 		return ret;
 	}

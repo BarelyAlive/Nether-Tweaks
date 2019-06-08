@@ -19,7 +19,9 @@ import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
 import mod.nethertweaks.registry.types.Compostable;
 import mod.nethertweaks.registry.types.Dryable;
+import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.json.CustomItemInfoJson;
+import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;
 import mod.sfhcore.util.StackInfo;
@@ -44,6 +46,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
                         .registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
                         .registerTypeAdapter(Dryable.class, new CustomDryableJson())
                         .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
                         .enableComplexMapKeySerialization()
                         .create(),
                 new TypeToken<Map<Ingredient, Dryable>>() {
@@ -96,15 +99,15 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
         Dryable dryable = new Dryable(itemStack, value);
         register(ingredient, dryable);
 	}
+	
+	@Override
+	public void register(@Nonnull BlockInfo info, int value) {
+		register(info.getItemStack(), value);
+	}
 
 	@Override
 	public void register(@Nonnull Item item, int meta, int value) {
 		register(new ItemStack(item, 1, meta), value);
-	}
-
-	@Override
-	public void register(@Nonnull Block block, int meta, int value) {
-		register(new ItemStack(block, 1, meta), value);
 	}
 
 	@Override

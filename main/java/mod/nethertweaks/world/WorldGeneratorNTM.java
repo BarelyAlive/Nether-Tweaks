@@ -20,7 +20,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private int frequency;
 	private WorldGenerator tree = new WorldGenNetherTree(true);
-	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.BLOCKBASIC.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
+	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.BLOCK_BASIC.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
 	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {
 		super();

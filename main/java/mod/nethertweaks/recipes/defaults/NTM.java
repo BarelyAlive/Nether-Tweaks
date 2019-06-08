@@ -13,6 +13,8 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.items.ItemChunk;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemOre;
 import mod.nethertweaks.items.Seed;
@@ -65,9 +67,10 @@ public class NTM implements IRecipeDefaults
 	}
 
 	@Override
-    public void registerCompost(CompostRegistry registry) {
+    public void registerCompost(CompostRegistry registry)
+	{
         BlockInfo dirtState = new BlockInfo(Blocks.DIRT);
-
+        
         registry.register(new ItemInfo(Items.ROTTEN_FLESH), 0.1f, dirtState, new Color("C45631"));
         registry.register(new ItemInfo(Items.SPIDER_EYE), 0.08f, dirtState, new Color("963E44"));
         registry.register(new ItemInfo(Items.WHEAT), 0.08f, dirtState, new Color("E3E162"));
@@ -119,68 +122,68 @@ public class NTM implements IRecipeDefaults
     {
     	//Dolls
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
-			registry.register(new ItemStack(ItemHandler.DOLL, 1, i.getKey()), new ItemStack(Blocks.ICE), 3);
+			registry.register(new ItemInfo(ItemHandler.DOLL, i.getKey()), new ItemInfo(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemStack(ItemHandler.CRYSTAL, 1, 1), new ItemStack(Blocks.ICE), 10);
+    	registry.register(new ItemInfo(ItemHandler.CRYSTAL, 1), new ItemInfo(Blocks.ICE), 10);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");
     	for(ItemStack ore : ingredient.getMatchingStacks())
-    		registry.register(ore, new ItemStack(Blocks.ICE), 3);
+    		registry.register(new ItemInfo(ore), new ItemInfo(Blocks.ICE), 3);
     }
     
     @Override
     public void registerCondenser(CondenserRegistry registry)
     {
-    	registry.register(new ItemStack(Items.ROTTEN_FLESH), 112);
-		registry.register(new ItemStack(Items.APPLE), 80);
-		registry.register(new ItemStack(Items.CHORUS_FRUIT), 42);
-		registry.register(new ItemStack(Items.CHORUS_FRUIT_POPPED), 42);
-		registry.register(new ItemStack(Items.CARROT), 42);
-		registry.register(new ItemStack(Items.EGG), 42);	
+    	registry.register(new ItemInfo(Items.ROTTEN_FLESH), 90);
+		registry.register(new ItemInfo(Items.APPLE), 80);
+		registry.register(new ItemInfo(Items.CHORUS_FRUIT), 42);
+		registry.register(new ItemInfo(Items.CHORUS_FRUIT_POPPED), 42);
+		registry.register(new ItemInfo(Items.CARROT), 42);
+		registry.register(new ItemInfo(Items.EGG), 42);	
 		//fish
-		registry.register(new ItemStack(Items.FISH), 63);
+		registry.register(new ItemInfo(Items.FISH), 63);
 		//cooked fish
-		registry.register(new ItemStack(Items.COOKED_FISH), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH), 63);
 		//salmon
-		registry.register(new ItemStack(Items.FISH, 1, 1), 63);
+		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemStack(Items.COOKED_FISH, 1, 1), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);
 			
 		//clownfish
-		registry.register(new ItemStack(Items.FISH, 1, 2), 63);
+		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
-		registry.register(new ItemStack(Items.FISH, 1, 3), 63);
+		registry.register(new ItemInfo(Items.FISH, 3), 63);
 		
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.BROWN_MUSHROOM)), 63);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.RED_MUSHROOM)), 63);
-		registry.register(new ItemStack(Items.MELON), 38);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.MELON_BLOCK)), 350);	
-		registry.register(new ItemStack(Items.POISONOUS_POTATO), 42);
-		registry.register(new ItemStack(Items.PORKCHOP), 63);
-		registry.register(new ItemStack(Items.COOKED_PORKCHOP), 63);	
-		registry.register(new ItemStack(Items.POTATO), 42);	
-		registry.register(new ItemStack(Items.BAKED_POTATO), 42);
-		registry.register(new ItemStack(Items.BEEF), 63);	
-		registry.register(new ItemStack(Items.COOKED_BEEF), 63);	
-		registry.register(new ItemStack(Items.CHICKEN), 63);	
-		registry.register(new ItemStack(Items.COOKED_CHICKEN), 63);
-		registry.register(new ItemStack(Items.RABBIT_STEW), 100);
-		registry.register(new ItemStack(Items.RABBIT), 63);
-		registry.register(new ItemStack(Items.COOKED_RABBIT), 63);
-		registry.register(new ItemStack(Items.MUTTON), 63);
-		registry.register(new ItemStack(Items.COOKED_MUTTON), 63);
-		registry.register(new ItemStack(Items.MAGMA_CREAM), 78);
-		registry.register(new ItemStack(Items.SLIME_BALL), 88);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)), 800);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PUMPKIN)), 250);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.CACTUS)), 300);
+		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
+		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
+		registry.register(new ItemInfo(Items.MELON), 38);
+		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
+		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
+		registry.register(new ItemInfo(Items.PORKCHOP), 63);
+		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 63);	
+		registry.register(new ItemInfo(Items.POTATO), 42);	
+		registry.register(new ItemInfo(Items.BAKED_POTATO), 42);
+		registry.register(new ItemInfo(Items.BEEF), 63);	
+		registry.register(new ItemInfo(Items.COOKED_BEEF), 63);	
+		registry.register(new ItemInfo(Items.CHICKEN), 63);	
+		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 63);
+		registry.register(new ItemInfo(Items.RABBIT_STEW), 100);
+		registry.register(new ItemInfo(Items.RABBIT), 63);
+		registry.register(new ItemInfo(Items.COOKED_RABBIT), 63);
+		registry.register(new ItemInfo(Items.MUTTON), 63);
+		registry.register(new ItemInfo(Items.COOKED_MUTTON), 63);
+		registry.register(new ItemInfo(Items.MAGMA_CREAM), 68);
+		registry.register(new ItemInfo(Items.SLIME_BALL), 45);
+		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
+		registry.register(new BlockInfo(Blocks.PUMPKIN), 250);
+		registry.register(new BlockInfo(Blocks.CACTUS), 300);
 		
 		//Back to water 1:1
-        registry.register(new ItemStack(Items.SNOWBALL), 250);
-		registry.register(new ItemStack(Item.getItemFromBlock(Blocks.PACKED_ICE)), 9000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.ICE)), 1000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW)), 1000);
-        registry.register(new ItemStack(Item.getItemFromBlock(Blocks.SNOW_LAYER)), 125); //Blame Mojang for their unfair recipe
+        registry.register(new ItemInfo(Items.SNOWBALL), 250);
+		registry.register(new BlockInfo(Blocks.PACKED_ICE), 9000);
+        registry.register(new BlockInfo(Blocks.ICE), 1000);
+        registry.register(new BlockInfo(Blocks.SNOW), 1000);
+        registry.register(new BlockInfo(Blocks.SNOW_LAYER), 125); //Blame Mojang for their unfair recipe
         
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);
@@ -267,8 +270,7 @@ public class NTM implements IRecipeDefaults
         {
         	Block leafBlock = Block.getBlockFromItem(leaves.getItem());
         	IBlockState state = leafBlock.getDefaultState();
-        	Random rand = new Random();
-        	
+        	Random rand = new Random();      	
         	Item sapling = leafBlock.getItemDropped(state, rand, 0);
         	
         	if (Block.getBlockFromItem(sapling) instanceof IPlantable)
@@ -279,7 +281,6 @@ public class NTM implements IRecipeDefaults
         			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
         		else if(!hc)
         			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
-        			
 				
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
 				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());
@@ -289,58 +290,53 @@ public class NTM implements IRecipeDefaults
         }
 
         // Custom Ores for other mods
-        OreRegistry oreRegistry = NTMRegistryManager.ORE_REGISTRY;
-
-        // Gold from nether rack
-        ItemOre gold = oreRegistry.getOreItem("gold");
-        if(gold != null)
-        {
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.FLINT.getID());
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.25f), MeshType.IRON.getID());
-            registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(gold, 0), getDropChance(0.4f), MeshType.DIAMOND.getID());
-        }
-
         // All default Ores
-        for (ItemOre ore : oreRegistry.getItemOreRegistry()) {
-            if(oreRegistry.getSieveBlackList().contains(ore)) continue;
-            ItemInfo info = new ItemInfo(ore);
-            switch (ore.getOre().getName()) {
-                case "iron":
-                    registry.register("gravel", info.copy(), getDropChance(0.1f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.25f), MeshType.DIAMOND.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.5f), MeshType.DIAMOND.getID());
-                    break;
-                case "aluminum":
-                case "aluminium":
-                    registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "copper":
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "silver":
-                    registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-                case "tin":
-                    registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    break;
-                case "uranium":
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.10f), MeshType.DIAMOND.getID());
-                    break;
-                case "zinc":
-                    registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-                default:
-                    registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
-                    registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
-                    break;
-            }
+        for (ItemChunk ore : OreHandler.mod_chunks.values()) {
+            for (int i = 0; i < ore.getMaxSubItems(); i++) {
+				ItemInfo info = new ItemInfo(ore, i);
+				String name = ore.getOreName(i);
+				switch (name) {
+				case "iron":
+					registry.register("gravel", info.copy(), getDropChance(0.1f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.25f), MeshType.DIAMOND.getID());
+					registry.register("sand", info.copy(), getDropChance(0.5f), MeshType.DIAMOND.getID());
+					break;
+				case "gold":
+					registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f), MeshType.FLINT.getID());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f), MeshType.IRON.getID());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.4f), MeshType.DIAMOND.getID());
+				case "aluminum":
+				case "aluminium":
+					registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "copper":
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "silver":
+					registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				case "tin":
+					registry.register("sand", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					break;
+				case "uranium":
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.10f), MeshType.DIAMOND.getID());
+					break;
+				case "zinc":
+					registry.register("sand", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					registry.register("sand", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				default:
+					registry.register("gravel", info.copy(), getDropChance(0.05f), MeshType.FLINT.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.075f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.15f), MeshType.DIAMOND.getID());
+					break;
+				}
+			}
         }
         // Seeds
         for (int i = 0; i < 2; i++)
@@ -376,15 +372,15 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHammer(HammerRegistry registry)
     {
-    	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACKGRAVEL, 1), 0, 1.0F, 0.0F);
-    	registry.register(BlockHandler.NETHERRACKGRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
+    	registry.register("netherrack", new ItemStack(BlockHandler.NETHERRACK_GRAVEL, 1), 0, 1.0F, 0.0F);
+    	registry.register(BlockHandler.NETHERRACK_GRAVEL.getDefaultState(), new ItemStack(Blocks.SAND, 1, 1), 0, 1.0F, 0.0F);
     	registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
         registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
         
         //Yes, I have to do this otherwise i can'split the outputs
         for(ItemStack block : OreDictionary.getOres("gravel"))
         {
-        	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACKGRAVEL))
+        	if(block.getItem() != Item.getItemFromBlock(BlockHandler.NETHERRACK_GRAVEL))
         		registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
         }
         registry.register("sand", new ItemStack(BlockHandler.DUST, 1), 0, 1.0F, 0.0F);
@@ -392,6 +388,8 @@ public class NTM implements IRecipeDefaults
         // Hammer concrete into concrete powder
         for (int meta = 0; meta < 16; meta++)
             registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
+        
+        registry.register(Blocks.GLOWSTONE.getDefaultState(), new ItemStack(Items.GLOWSTONE_DUST, 4), 0, 1.0F, 0.0F);
     }
 
     @Override
@@ -467,26 +465,26 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerFluidBlockTransform(FluidBlockTransformerRegistry registry)
     {
-        registry.register(FluidRegistry.WATER, "dust", new ItemInfo(new ItemStack(Blocks.CLAY)));
-        registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "dust", new ItemInfo(new ItemStack(Blocks.CLAY)));
-        registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(new ItemStack(Blocks.NETHERRACK)));
-        registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(new ItemStack(Blocks.END_STONE)));
+        registry.register(FluidRegistry.WATER, "dust", new ItemInfo(Blocks.CLAY));
+        registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "dust", new ItemInfo(Blocks.CLAY));
+        registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
+        registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
 
         if(FluidRegistry.isFluidRegistered("milk")){
-            registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(new ItemStack(Blocks.BROWN_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
-            registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(new ItemStack(Blocks.RED_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
+            registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+            registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
         }
         else {
             // No milk, fall back to liquid impossibility
-            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(new ItemStack(Blocks.BROWN_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
-            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(new ItemStack(Blocks.RED_MUSHROOM)), new ItemInfo(new ItemStack(Blocks.SLIME_BLOCK)), "Slime");
+            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
         }
 
         // Vanilla Concrete
         for (int meta = 0; meta < 16; meta++)
         {
-            registry.register(FluidRegistry.WATER, new ItemInfo(new ItemStack(Blocks.CONCRETE_POWDER, 1, meta)), new ItemInfo(new ItemStack(Blocks.CONCRETE, 1, meta)));
-            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(new ItemStack(Blocks.CONCRETE_POWDER, 1, meta)), new ItemInfo(new ItemStack(Blocks.CONCRETE, 1, meta)));
+            registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+            registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
         }
     }
 
