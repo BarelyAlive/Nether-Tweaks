@@ -40,14 +40,14 @@ public class TileBonfire extends TileEntity {
 		{
 			for(UUID entry : this.registeredPlayer)
 			{
-				if (WorldSpawnLoc.spawnLocas.containsKey(entry))
+				if (WorldSpawnLoc.lastSpawnLocas.containsKey(entry))
 				{
 					EntityPlayer player = getPlayer(entry);
 					
 					if(world.isRemote)
 						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 					
-					WorldSpawnLoc.spawnLocas.remove(entry);
+					WorldSpawnLoc.lastSpawnLocas.remove(entry);
 				}
 			}
 		}
@@ -74,20 +74,20 @@ public class TileBonfire extends TileEntity {
 	
 	public PlayerPosition getSpawnLocationForPlayer(EntityPlayer player)
 	{
-		if(WorldSpawnLoc.spawnLocas.containsKey(getUUID(player))) {
-			return WorldSpawnLoc.spawnLocas.get(getUUID(player));
+		if(WorldSpawnLoc.lastSpawnLocas.containsKey(getUUID(player))) {
+			return WorldSpawnLoc.lastSpawnLocas.get(getUUID(player));
 		}
 		return null;
 	}
 	
 	private void addGlobalEntry(UUID uuid, PlayerPosition pos)
 	{
-		WorldSpawnLoc.spawnLocas.put(uuid, pos);
+		WorldSpawnLoc.lastSpawnLocas.put(uuid, pos);
 	}
 	
 	private void removeGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldSpawnLoc.spawnLocas.remove(uuid, pos);
+		WorldSpawnLoc.lastSpawnLocas.remove(uuid, pos);
 	}
 	
 	@Override
