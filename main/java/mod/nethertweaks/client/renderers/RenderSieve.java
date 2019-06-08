@@ -18,6 +18,10 @@ import mod.sfhcore.client.renderers.RenderUtils;
 import java.util.List;
 
 public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
+	
+	//Why the hell is this class sometimes not found?
+	private RenderUtils renderUtils = new RenderUtils();
+	
     @Override
     public void render(TileSieve te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         Tessellator tes = Tessellator.getInstance();
@@ -92,7 +96,7 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
         worldRendererBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         // worldRendererBuffer.setTranslation(-.5, -.5, -.5);
 
-        RenderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
+        renderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
 
         // worldRendererBuffer.setTranslation(0, 0, 0);
         tessellator.draw();
