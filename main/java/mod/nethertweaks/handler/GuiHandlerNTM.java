@@ -1,9 +1,11 @@
 package mod.nethertweaks.handler;
 
+import mod.nethertweaks.blocks.container.ContainerBonfire;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.container.ContainerHellmart;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
+import mod.nethertweaks.blocks.gui.GuiBonfire;
 import mod.nethertweaks.blocks.gui.GuiCondenser;
 import mod.nethertweaks.blocks.gui.GuiFreezer;
 import mod.nethertweaks.blocks.gui.GuiHellmart;
@@ -26,6 +28,7 @@ public class GuiHandlerNTM implements IGuiHandler
 	public static final int idCondenser = 1;
 	public static final int idFreezer = 2;
 	public static final int idHellmart = 3;
+	public static final int idBonfire = 4;
 	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
@@ -40,6 +43,8 @@ public class GuiHandlerNTM implements IGuiHandler
 			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
 		case idHellmart:
 			return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
+		case idBonfire:
+			return new ContainerBonfire();
 		default:
 			return null;
 		}
@@ -58,6 +63,8 @@ public class GuiHandlerNTM implements IGuiHandler
 			return new GuiFreezer(player.inventory, (TileFreezer) world.getTileEntity(new BlockPos(x, y, z)));
 		case idHellmart:
 			return new GuiHellmart(player.inventory, (TileHellmart) world.getTileEntity(new BlockPos(x, y, z)));
+		case idBonfire:
+			return new GuiBonfire(new BlockPos(x, y, z), world, player);
 		default:
 			return null;
 		}

@@ -11,7 +11,7 @@ public class BonfireInfo {
 	
 	public BonfireInfo()
 	{
-		this("Bonfire");
+		this("");
 	}
 	
 	public BonfireInfo(String name)

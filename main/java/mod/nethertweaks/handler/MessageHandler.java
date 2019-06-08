@@ -6,6 +6,7 @@ import mod.nethertweaks.network.MessageFluidLevelUpdate;
 import mod.nethertweaks.network.MessageFluidUpdate;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
+import mod.nethertweaks.network.MessageTeleportPlayer;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
@@ -23,5 +24,6 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageCheckLight.MessageCheckLightHandler.class, MessageCheckLight.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageHellmartClosed.MessageHellmartClosedHandler.class, MessageHellmartClosed.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageTeleportPlayer.MessageTeleportPlayerHandler.class, MessageTeleportPlayer.class, Side.SERVER);
 	}
 }

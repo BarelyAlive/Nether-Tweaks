@@ -128,6 +128,7 @@ public class WorldHandler{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			WorldSpawnLoc.setLastSpawnLocations(worldsave.getLastSpawnLocations());
+			WorldSpawnLoc.setBonfireInfo(worldsave.getBonfireInfo());
 		}
 	}
 
@@ -138,6 +139,7 @@ public class WorldHandler{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			worldsave.setLastSpawnLocations(WorldSpawnLoc.getLastSpawnLocations());
+			worldsave.setBonfireInfo(WorldSpawnLoc.getBonfireInfo());
 			worldsave.markDirty();
 		}
 	}
@@ -149,6 +151,7 @@ public class WorldHandler{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			worldsave.setLastSpawnLocations(WorldSpawnLoc.getLastSpawnLocations());
+			worldsave.setBonfireInfo(WorldSpawnLoc.getBonfireInfo());
 			worldsave.markDirty();
 		}
 	}
