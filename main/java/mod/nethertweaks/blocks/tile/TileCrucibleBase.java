@@ -27,6 +27,7 @@ import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.types.Meltable;
 import mod.sfhcore.blocks.tiles.TileBase;
 import mod.sfhcore.client.renderers.SpriteColor;
+import mod.sfhcore.fluid.FluidTankBase;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;

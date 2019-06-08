@@ -66,8 +66,8 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
     public void update()
 	{
-    	checkInputOutput();
-    	
+		if(!this.world.isRemote) checkInputOutput();
+
 		if (!canSmelt())
         {
         	this.setWorkTime(0);
@@ -78,7 +78,6 @@ public class TileNetherrackFurnace extends TileInventory
 		
 		if(this.world.isRemote) return;
 		
-    	checkInputOutput();
         NetherrackFurnace.setState(isWorking(), this.world, this.pos);
 		NetworkHandler.sendNBTUpdate(this);		
         

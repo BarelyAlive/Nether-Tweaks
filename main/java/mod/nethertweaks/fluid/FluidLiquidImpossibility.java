@@ -10,7 +10,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.sfhcore.blocks.Fluid;
+import mod.sfhcore.fluid.Fluid;
 import mod.sfhcore.helper.FluidStateMapper;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
