@@ -54,7 +54,7 @@ public class GuiBonfire extends GuiContainer {
 		this.bonfires = new HashMap<BlockPos, BonfireInfo>();
 		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLoc.bonfire_info.entrySet())
 		{
-			if(entry.getValue().isPublic() && !entry.getKey().equals(this.pos))
+			if((entry.getValue().isPublic() || (!entry.getValue().isPublic() && entry.getValue().getOwner().equals(player.getUniqueID()))) && !entry.getKey().equals(this.pos))
 			{
 				this.bonfires.put(entry.getKey(), entry.getValue());
 			}
@@ -103,10 +103,18 @@ public class GuiBonfire extends GuiContainer {
 			b = new GuiButton(7, posX + 54, posY + 85, 74, 20, "--->");
 			buttonList.add(b);
 		}
-		this.text = new GuiTextField(8, this.fontRenderer, posX - 30, posY + 42, 128, 20);
-		this.text.setMaxStringLength(23);
-		this.text.setText(WorldSpawnLoc.bonfire_info.get(this.pos).getName() == "" ? "" : WorldSpawnLoc.bonfire_info.get(this.pos).getName());
-		this.text.setFocused(true);
+		this.text = new GuiTextField(8, this.fontRenderer, posX - 30, posY - 40, 128, 14);
+		this.text.setMaxStringLength(26);
+		String name = WorldSpawnLoc.bonfire_info.get(this.pos).getName();
+		this.text.setText(name == "" ? "" : name);
+		if (name == "")
+		{
+			this.text.setFocused(true);
+		}
+		else
+		{
+			this.text.setFocused(false);
+		}
 	}
 	
 	private int testPosition(BlockPos destination)
@@ -204,14 +212,22 @@ public class GuiBonfire extends GuiContainer {
 
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
-		super.keyTyped(typedChar, keyCode);
 		this.text.textboxKeyTyped(typedChar, keyCode);
+		
+		if (this.text.isFocused())
+		{
+			WorldSpawnLoc.bonfire_info.get(this.pos).setName(this.text.getText());
+		}
+		
+		if (!(keyCode == Keyboard.KEY_E && this.text.isFocused()))
+		{
+			super.keyTyped(typedChar, keyCode);
+		}
 	}
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.drawDefaultBackground();
-		this.text.drawTextBox();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 	
@@ -227,5 +243,6 @@ public class GuiBonfire extends GuiContainer {
 		int l = (width - xSize) / 2;
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1 - 10, 0, 0, xSize, ySize + 21);
+		this.text.drawTextBox();
 	}
 }

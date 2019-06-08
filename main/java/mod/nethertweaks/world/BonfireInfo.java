@@ -7,31 +7,43 @@ import net.minecraft.entity.player.EntityPlayer;
 public class BonfireInfo {
 	private String name;
 	private boolean seeable;
+	private UUID owner;
 	private List<UUID> lastSpawnPlayer;
 	
-	public BonfireInfo()
+	public BonfireInfo(UUID owner)
 	{
-		this("");
+		this("", owner);
 	}
 	
-	public BonfireInfo(String name)
+	public BonfireInfo(String name, UUID owner)
 	{
-		this(name, false);
+		this(name, false, owner);
 	}
 	
-	public BonfireInfo(String name, boolean seeable)
+	public BonfireInfo(String name, boolean seeable, UUID owner)
 	{
-		this(name, seeable, null);
+		this(name, seeable, owner, null);
 	}
 	
-	public BonfireInfo(String name, boolean seeable, List<UUID> lastSpawnPlayer)
+	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer)
 	{
 		this.name = name;
 		this.seeable = seeable;
+		this.owner = owner;
 		if (lastSpawnPlayer == null)
 			this.lastSpawnPlayer = new ArrayList<UUID>();
 		else
 			this.lastSpawnPlayer = lastSpawnPlayer;
+	}
+	
+	public void setOwner(UUID owner)
+	{
+		this.owner = owner;
+	}
+	
+	public UUID getOwner()
+	{
+		return this.owner;
 	}
 	
 	public void setName(String name)
@@ -101,7 +113,7 @@ public class BonfireInfo {
 	
 	public BonfireInfo copy()
 	{
-		BonfireInfo bi = new BonfireInfo();
+		BonfireInfo bi = new BonfireInfo(this.owner);
 		bi.setName(this.getName());
 		bi.isPublic(this.isPublic());
 		bi.setLastPlayerSpawn(this.getLastPlayerSpawn());

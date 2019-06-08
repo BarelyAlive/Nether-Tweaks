@@ -88,11 +88,16 @@ public class WorldSaveData extends WorldSavedData {
 			is_public = tag.getBoolean("NTM.seeable");
 			name = tag.getString("NTM.Name");
 			
+			long ownerlBits = tag.getLong("NTM.ownerLeastSignificantBits");
+			long ownermBits = tag.getLong("NTM.ownerMostSignificantBits");
+		
+			UUID owner = new UUID(ownermBits, ownerlBits);
+			
 			x = tag.getInteger("NTM.PosX");
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, player_list));
+			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list));
 		}
 	}
 
@@ -129,6 +134,9 @@ public class WorldSaveData extends WorldSavedData {
 			tag.setInteger("NTM.PosX", entry.getKey().getX());
 			tag.setInteger("NTM.PosY", entry.getKey().getY());
 			tag.setInteger("NTM.PosZ", entry.getKey().getZ());
+			
+			tag.setLong("NTM.ownerLeastSignificantBits", entry.getValue().getOwner().getLeastSignificantBits());
+			tag.setLong("NTM.ownermostSignificantBits", entry.getValue().getOwner().getMostSignificantBits());
 			
 			tag.setString("NTM.Name", entry.getValue().getName());
 			tag.setBoolean("NTM.seeable", entry.getValue().isPublic());

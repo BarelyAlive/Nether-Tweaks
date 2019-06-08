@@ -76,11 +76,11 @@ public class Bonfire extends Block
 	}
 	
 	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-		super.onBlockAdded(worldIn, pos, state);
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
 		{
-			WorldSpawnLoc.bonfire_info.put(pos, new BonfireInfo());
+			WorldSpawnLoc.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class Bonfire extends Block
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if(!worldIn.isBlockLoaded(pos)) return false;
-		if(!playerIn.onGround) return false;
+		if(playerIn.isSneaking()) return false;
 		
 		/*
 		BonfireInfo binfo;
@@ -117,7 +117,6 @@ public class Bonfire extends Block
 		
 		WorldSpawnLoc.bonfire_info.put(pos, binfo.copy());
 		*/
-		
 		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idBonfire, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		
 		return true;
