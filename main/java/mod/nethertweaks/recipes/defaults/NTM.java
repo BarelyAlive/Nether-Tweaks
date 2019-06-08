@@ -513,9 +513,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-        if(Config.isHellworld)
-            return chance;
-        else return chance / 100f * (float) Config.normalDropPercent;
+    	return chance / 100f * (float) Config.normalDropPercent;
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()
