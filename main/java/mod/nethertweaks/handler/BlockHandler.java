@@ -5,14 +5,7 @@ import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.blocks.tile.TileBonfire;
-import mod.nethertweaks.blocks.tile.TileCondenser;
-import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileHellmart;
-import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.blocks.tile.*;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CubeFalling;
@@ -74,7 +67,6 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity
-    	if(Config.enableBonfire) 			Registry.registerTileEntity(BONFIRE, TileBonfire.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);

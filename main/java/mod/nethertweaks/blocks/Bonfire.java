@@ -1,16 +1,17 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileBonfire;
+import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.world.BonfireInfo;
+import mod.nethertweaks.world.WorldSpawnLoc;
 import mod.sfhcore.proxy.IVariantProvider;
+import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
@@ -76,17 +77,49 @@ public class Bonfire extends Block
 	}
 	
 	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
+		{
+			WorldSpawnLoc.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
+		}
+	}
+	
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if(!worldIn.isBlockLoaded(pos)) return false;
-		if(!playerIn.onGround) return false;
+		if(playerIn.isSneaking()) return false;
 		
-		TileEntity te = worldIn.getTileEntity(pos);
-		if(te ==  null) return false;
-		if(!(te instanceof TileBonfire)) return false;
+		/*
+		BonfireInfo binfo;
+		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
+		{
+			binfo = new BonfireInfo();
+		}
+		else
+		{
+			binfo = WorldSpawnLoc.bonfire_info.get(pos);
+		}
 		
-		((TileBonfire) te).setSpawnLocationForPlayer(playerIn, pos);
+		for (BonfireInfo entry : WorldSpawnLoc.bonfire_info.values())
+		{
+			if (entry.hasPlayer(playerIn))
+			{
+				entry.removePlayer(playerIn);
+			}
+		}
+			
+		binfo.addPlayer(playerIn);
+		WorldSpawnLoc.lastSpawnLocas.put(playerIn.getUUID(playerIn.getGameProfile()), new PlayerPosition(new BlockPos(playerIn), playerIn.rotationYaw, playerIn.rotationPitch));
+		if(worldIn.isRemote)
+		    playerIn.sendMessage(new TextComponentString(playerIn.getName() + " rested at: " + playerIn.getPosition() + "!"));
+		
+		WorldSpawnLoc.bonfire_info.put(pos, binfo.copy());
+		*/
+		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idBonfire, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		
 		return true;
 	}
 	
@@ -112,13 +145,26 @@ public class Bonfire extends Block
 	
 	private void onBlockDestroy(World worldIn, BlockPos pos)
 	{
-		if (!worldIn.isRemote) return;	
-		if (worldIn.getTileEntity(pos) == null) return;	
-		if (!(worldIn.getTileEntity(pos) instanceof TileBonfire)) return;
-		
-		TileBonfire bonfire = (TileBonfire) worldIn.getTileEntity(pos);
-		
-		bonfire.deleteSpawnLocationsIfDestroyed();
+		if (WorldSpawnLoc.bonfire_info.containsKey(pos))
+		{
+			BonfireInfo binfo = WorldSpawnLoc.bonfire_info.get(pos);
+			
+			List<UUID> player_list = binfo.getLastPlayerSpawn();
+			if (player_list.size() != 0)
+			{
+				for(UUID entry : player_list)
+				{
+					if (WorldSpawnLoc.lastSpawnLocas.containsKey(entry))
+					{
+						EntityPlayer player = worldIn.getPlayerEntityByUUID(entry);
+						if (worldIn.isRemote)
+							player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+						WorldSpawnLoc.lastSpawnLocas.remove(entry);
+					}
+				}
+			}
+			WorldSpawnLoc.bonfire_info.remove(pos);
+		}
 	}
 	
 	@Override

@@ -201,6 +201,7 @@ public class WorldEvents{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			WorldSpawnLocation.setLastSpawnLocations(worldsave.getLastSpawnLocations());
+			WorldSpawnLocation.setBonfireInfo(worldsave.getBonfireInfo());
 		}
 	}
 
@@ -211,6 +212,7 @@ public class WorldEvents{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
+			worldsave.setBonfireInfo(WorldSpawnLocation.getBonfireInfo());
 			worldsave.markDirty();
 		}
 	}
@@ -222,6 +224,7 @@ public class WorldEvents{
 			worldsave = WorldSaveData.get(event.getWorld());
 			
 			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
+			worldsave.setBonfireInfo(WorldSpawnLocation.getBonfireInfo());
 			worldsave.markDirty();
 		}
 	}
