@@ -57,7 +57,7 @@ public class ItemHandler implements INames
     //itemblocks
     public static final Item ITEM_STONE_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
     public static final Item ITEM_ELDER_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
-    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(BlockHandler.ELDER_SLAB_HALF, BlockHandler.ELDER_SLAB_HALF, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(MODID, ELDER_SLAB);
+    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(INames.MODID, "item_" + INames.ELDER_SLAB);
 
 	public static void init()
 	{
@@ -67,6 +67,8 @@ public class ItemHandler implements INames
 
     private static void registerItems()
     {
+    	//ITEM_ELDER_SLAB.setCreativeTab(TAB);
+    	
     	//Multi ID Item
     	if(Config.enableMultiItem)  		Registry.registerItem(ITEM_BASE);
     	if(Config.enableSeed) 				Registry.registerItem(SEED);

@@ -15,7 +15,6 @@ import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.Constants;
-import mod.sfhcore.blocks.BlockSlabCommon;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
@@ -60,8 +59,8 @@ public class BlockHandler implements INames
     public static final Block ELDER_PLANKS 		   = new ElderPlanks();
     public static final Block ELDER_SAPLING 	   = new ElderSapling();
     
-    public static final BlockSlabCommon ELDER_SLAB_HALF = (BlockSlabCommon) new BlockSlabCommon.Half(INames.ELDER_SLAB, Material.WOOD).setCreativeTab(TAB).setResistance(10F).setHardness(2F);
-    public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setCreativeTab(TAB).setResistance(10F).setHardness(2F);
+    public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(INames.ELDER_SLAB, Material.WOOD).setCreativeTab(TAB).setResistance(10.0F).setHardness(2.0F);
+    public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
     
     //ItemBlocks
     public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, TAB);
@@ -102,6 +101,8 @@ public class BlockHandler implements INames
 			/*one wants to use */			Registry.registerBlock(ELDER_LOG);
 			/*just some of     */			Registry.registerBlock(ELDER_LEAVES);
 			/*these and not the*/			Registry.registerBlock(ELDER_PLANKS);
+											Registry.registerBlock(ELDER_SLAB);
+											Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);

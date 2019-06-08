@@ -67,9 +67,10 @@ public class NTM implements IRecipeDefaults
 	}
 
 	@Override
-    public void registerCompost(CompostRegistry registry) {
+    public void registerCompost(CompostRegistry registry)
+	{
         BlockInfo dirtState = new BlockInfo(Blocks.DIRT);
-
+        
         registry.register(new ItemInfo(Items.ROTTEN_FLESH), 0.1f, dirtState, new Color("C45631"));
         registry.register(new ItemInfo(Items.SPIDER_EYE), 0.08f, dirtState, new Color("963E44"));
         registry.register(new ItemInfo(Items.WHEAT), 0.08f, dirtState, new Color("E3E162"));

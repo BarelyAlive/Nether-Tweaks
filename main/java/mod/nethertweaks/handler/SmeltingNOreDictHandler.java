@@ -50,7 +50,7 @@ public class SmeltingNOreDictHandler {
 		if(Config.enableElderTree)
 		{
 			OreDictionary.registerOre("plankWood", BlockHandler.ELDER_PLANKS);
-			OreDictionary.registerOre("slabWood", BlockHandler.ELDER_SLAB_HALF);
+			OreDictionary.registerOre("slabWood", BlockHandler.ELDER_SLAB);
 			OreDictionary.registerOre("logWood", BlockHandler.ELDER_LOG);
 			OreDictionary.registerOre("treeSapling", BlockHandler.ELDER_SAPLING);
 			OreDictionary.registerOre("treeLeaves", BlockHandler.ELDER_LEAVES);
