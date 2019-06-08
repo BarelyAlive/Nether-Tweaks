@@ -200,7 +200,7 @@ public class Config
         sieveFortuneMaxLevel 			= config.get("Sieving", "Max Level for sieve fortune enchanting?", 3).getInt();
         sieveEfficiencyMaxLevel 		= config.get("Sieving", "Max Level for sieve efficiency enchanting?", 5).getInt();
         sieveLuckOfTheSeaMaxLevel 		= config.get("Sieving", "Max Level for sieve luck of the sea enchanting?", 3).getInt();
-        normalDropPercent 				= config.get("Sieving", "The normal drop percent chance outside Hellworld", 100).getInt();
+        normalDropPercent 				= config.getInt("The normal drop percent chance with any sieve mesh?", "Sieving", 100, 1, 100, "");
         sievesAutoOutput 				= config.get("Sieving", "Sieve Auto output?", false).getBoolean();
         fakePlayersCanSieve 			= config.get("Sieving", "Fake players can sieve", false).getBoolean();
         setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users", false).getBoolean();
