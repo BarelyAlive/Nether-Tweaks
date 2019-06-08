@@ -51,12 +51,12 @@ public class WorldSpawnLoc {
 		
 		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
 		
-		if(spawnLocas.containsKey(playerID))
+		if(lastSpawnLocas.containsKey(playerID))
 		{
-			spawnLocas.replace(playerID, new PlayerPosition(player.getPosition()));
+			lastSpawnLocas.replace(playerID, new PlayerPosition(player.getPosition()));
 		}
 		else
-			spawnLocas.put(playerID, new PlayerPosition(player.getPosition()));
+			lastSpawnLocas.put(playerID, new PlayerPosition(player.getPosition()));
 		
 		return new PlayerPosition(player.getPosition());
 	}
@@ -67,9 +67,9 @@ public class WorldSpawnLoc {
 		
 		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
 		
-		if(spawnLocas.containsKey(playerID))
+		if(lastSpawnLocas.containsKey(playerID))
 		{
-			PlayerPosition pos = spawnLocas.get(playerID);
+			PlayerPosition pos = lastSpawnLocas.get(playerID);
 			pos = getInitialPosition();
 			return pos;
 		}
