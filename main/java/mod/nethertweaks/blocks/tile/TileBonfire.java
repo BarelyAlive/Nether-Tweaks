@@ -11,7 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.mojang.realmsclient.dto.WorldDownload;
 
-import mod.nethertweaks.world.WorldHandler;
+import mod.nethertweaks.world.WorldEvents;
 import mod.nethertweaks.world.WorldSaveData;
 import mod.nethertweaks.world.WorldSpawnLoc;
 import mod.sfhcore.vars.PlayerPosition;

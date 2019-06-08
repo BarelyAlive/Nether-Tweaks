@@ -42,7 +42,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-public class WorldHandler{
+public class WorldEvents{
 
 	public final static String key = "ntm.firstSpawn";
 	public final static String coodX = "ntm.cood.x";

@@ -43,7 +43,7 @@ import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.FluidBlockTransformer;
 import mod.nethertweaks.world.WorldGeneratorNTM;
-import mod.nethertweaks.world.WorldHandler;
+import mod.nethertweaks.world.WorldEvents;
 import mod.nethertweaks.world.WorldTypeHellworld;
 import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.CustomDoor;
@@ -170,7 +170,7 @@ public class NetherTweaksMod
         
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCK_BASIC.getDefaultState(), 16, 16), 1);
         
-        MinecraftForge.EVENT_BUS.register(new WorldHandler());
+        MinecraftForge.EVENT_BUS.register(new WorldEvents());
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
     	MinecraftForge.EVENT_BUS.register(this);
     	
@@ -199,7 +199,7 @@ public class NetherTweaksMod
     {
 		OreHandler.registerFurnaceRecipe();
     	//Mobs
-    	if(Config.spawnWaterMobs) WorldHandler.addWaterMobs();
+    	if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
     	        
 		BarrelModeRegistry.registerDefaults();
     	
