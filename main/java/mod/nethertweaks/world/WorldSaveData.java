@@ -181,12 +181,12 @@ public class WorldSaveData extends WorldSavedData {
 		return nbt;
 	}
 	
-	public void setSpawnLocations(Map<UUID, PlayerPosition> spawnLocas)
+	public void setLastSpawnLocations(Map<UUID, PlayerPosition> spawnLocas)
 	{
 		this.lastSpawnLocas = spawnLocas;
 	}
 	
-	public Map<UUID, PlayerPosition> getSpawnLocations()
+	public Map<UUID, PlayerPosition> getLastSpawnLocations()
 	{
 		return this.lastSpawnLocas;
 	}
