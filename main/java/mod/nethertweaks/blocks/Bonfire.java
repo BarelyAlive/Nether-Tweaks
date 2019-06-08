@@ -14,6 +14,7 @@ import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
@@ -38,7 +39,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Bonfire extends BlockContainer
+public class Bonfire extends Block
 {
 	//public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
@@ -125,19 +126,26 @@ public class Bonfire extends BlockContainer
 		return EnumBlockRenderType.MODEL;
 	}
 
-    public boolean isFullCube(IBlockState state)
-    {
+	@Override
+    public boolean isTopSolid(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    @Deprecated
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
     
     @Override
-    public boolean hasTileEntity(IBlockState state) {
-    	return true;
-    }
-    
-    @Override
-    public TileEntity createNewTileEntity(World world, int meta) {
-    	return new TileBonfire();
+    @Deprecated
+    public boolean isFullBlock(IBlockState state) {
+        return false;
     }
 
+    @Override
+    @Deprecated
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 }
