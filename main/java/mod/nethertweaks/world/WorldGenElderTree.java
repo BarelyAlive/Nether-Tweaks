@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class WorldGenNetherTree extends WorldGenAbstractTree
+public class WorldGenElderTree extends WorldGenAbstractTree
 {
     private static final IBlockState DEFAULT_TRUNK = BlockHandler.ELDER_LOG.getDefaultState();
     private static final IBlockState DEFAULT_LEAF = BlockHandler.ELDER_LEAVES.getDefaultState();
@@ -33,12 +33,12 @@ public class WorldGenNetherTree extends WorldGenAbstractTree
     /** The metadata value of the leaves to use in tree generation. */
     private final IBlockState metaLeaves;
 
-    public WorldGenNetherTree(boolean notify)
+    public WorldGenElderTree(boolean notify)
     {
         this(notify, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
     }
 
-    public WorldGenNetherTree(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean vinesGrow)
+    public WorldGenElderTree(boolean notify, int minTreeHeight, IBlockState metaWood, IBlockState metaLeaves, boolean vinesGrow)
     {
         super(false);
         this.minTreeHeight = minTreeHeight;

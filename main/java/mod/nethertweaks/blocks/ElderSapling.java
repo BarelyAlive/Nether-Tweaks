@@ -9,7 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.world.WorldGenNetherTree;
+import mod.nethertweaks.world.WorldGenElderTree;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockPlanks;
@@ -89,7 +89,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenNetherTree(true);
+        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenElderTree(true);
         int i = 0;
         int j = 0;
         boolean flag = false;

@@ -10,7 +10,7 @@ import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
-public class WorldSpawnLoc {
+public class WorldSpawnLocation {
 	
 	//The initial Location when entering a world
 	private static PlayerPosition initialPosition;

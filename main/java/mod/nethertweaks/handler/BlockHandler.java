@@ -77,16 +77,16 @@ public class BlockHandler implements INames
     	if(Config.enableBonfire) 			Registry.registerTileEntity(BONFIRE, TileBonfire.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrel) {				
-    										Registry.registerTileEntity(BARREL, TileBarrel.class);
-    										Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
-        }
     	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
+    	if(Config.enableBarrel) {				
+											Registry.registerTileEntity(BARREL, TileBarrel.class);
+											Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
+    	}
     	if(Config.enableCrucible) {
-    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
-    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
+								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
+								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
     }
         
@@ -97,11 +97,11 @@ public class BlockHandler implements INames
         if(Config.enableDust) 				Registry.registerBlock(DUST);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree) {
-			/*I think, that no */			Registry.registerBlock(ELDER_SAPLING);
-			/*one wants to use */			Registry.registerBlock(ELDER_LOG);
-			/*just some of     */			Registry.registerBlock(ELDER_LEAVES);
-			/*these and not the*/			Registry.registerBlock(ELDER_PLANKS);
-											Registry.registerBlock(ELDER_SLAB);
+			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);
+			/*one wants to use  */			Registry.registerBlock(ELDER_LOG);
+			/*just some of      */			Registry.registerBlock(ELDER_LEAVES);
+			/*these and not the */			Registry.registerBlock(ELDER_PLANKS);
+			/*whole tree, right?*/			Registry.registerBlock(ELDER_SLAB);
 											Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);

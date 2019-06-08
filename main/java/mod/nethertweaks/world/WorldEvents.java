@@ -120,7 +120,7 @@ public class WorldEvents{
 
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(player);
-    		if (!WorldSpawnLoc.lastSpawnLocas.containsKey(player.getUUID(player.getGameProfile())))
+    		if (!WorldSpawnLocation.lastSpawnLocas.containsKey(player.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
@@ -140,7 +140,7 @@ public class WorldEvents{
     		}
     		else
     		{
-    			PlayerPosition pos = WorldSpawnLoc.lastSpawnLocas.get(player.getUUID(player.getGameProfile()));
+    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocas.get(player.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}
@@ -200,7 +200,7 @@ public class WorldEvents{
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 			
-			WorldSpawnLoc.setLastSpawnLocations(worldsave.getLastSpawnLocations());
+			WorldSpawnLocation.setLastSpawnLocations(worldsave.getLastSpawnLocations());
 		}
 	}
 
@@ -210,7 +210,7 @@ public class WorldEvents{
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 			
-			worldsave.setLastSpawnLocations(WorldSpawnLoc.getLastSpawnLocations());
+			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
 			worldsave.markDirty();
 		}
 	}
@@ -221,7 +221,7 @@ public class WorldEvents{
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 			
-			worldsave.setLastSpawnLocations(WorldSpawnLoc.getLastSpawnLocations());
+			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
 			worldsave.markDirty();
 		}
 	}

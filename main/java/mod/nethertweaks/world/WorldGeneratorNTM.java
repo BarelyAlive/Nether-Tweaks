@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private int frequency;
-	private WorldGenerator tree = new WorldGenNetherTree(true);
+	private WorldGenerator tree = new WorldGenElderTree(true);
 	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.BLOCK_BASIC.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
 	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {

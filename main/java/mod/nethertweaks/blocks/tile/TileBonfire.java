@@ -13,7 +13,7 @@ import com.mojang.realmsclient.dto.WorldDownload;
 
 import mod.nethertweaks.world.WorldEvents;
 import mod.nethertweaks.world.WorldSaveData;
-import mod.nethertweaks.world.WorldSpawnLoc;
+import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -40,14 +40,14 @@ public class TileBonfire extends TileEntity {
 		{
 			for(UUID entry : this.registeredPlayer)
 			{
-				if (WorldSpawnLoc.lastSpawnLocas.containsKey(entry))
+				if (WorldSpawnLocation.lastSpawnLocas.containsKey(entry))
 				{
 					EntityPlayer player = getPlayer(entry);
 					
 					if(world.isRemote)
 						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 					
-					WorldSpawnLoc.lastSpawnLocas.remove(entry);
+					WorldSpawnLocation.lastSpawnLocas.remove(entry);
 				}
 			}
 		}
@@ -74,20 +74,20 @@ public class TileBonfire extends TileEntity {
 	
 	public PlayerPosition getSpawnLocationForPlayer(EntityPlayer player)
 	{
-		if(WorldSpawnLoc.lastSpawnLocas.containsKey(getUUID(player))) {
-			return WorldSpawnLoc.lastSpawnLocas.get(getUUID(player));
+		if(WorldSpawnLocation.lastSpawnLocas.containsKey(getUUID(player))) {
+			return WorldSpawnLocation.lastSpawnLocas.get(getUUID(player));
 		}
 		return null;
 	}
 	
 	private void addGlobalEntry(UUID uuid, PlayerPosition pos)
 	{
-		WorldSpawnLoc.lastSpawnLocas.put(uuid, pos);
+		WorldSpawnLocation.lastSpawnLocas.put(uuid, pos);
 	}
 	
 	private void removeGlobalEntry(UUID uuid, BlockPos pos)
 	{
-		WorldSpawnLoc.lastSpawnLocas.remove(uuid, pos);
+		WorldSpawnLocation.lastSpawnLocas.remove(uuid, pos);
 	}
 	
 	@Override
