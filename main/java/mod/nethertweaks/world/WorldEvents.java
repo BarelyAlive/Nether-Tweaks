@@ -120,7 +120,7 @@ public class WorldEvents{
 
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		teleportPlayer(player);
-    		if (!WorldSpawnLocation.lastSpawnLocas.containsKey(player.getUUID(player.getGameProfile())))
+    		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(player.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
@@ -140,7 +140,7 @@ public class WorldEvents{
     		}
     		else
     		{
-    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocas.get(player.getUUID(player.getGameProfile()));
+    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(player.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}

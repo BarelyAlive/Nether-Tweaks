@@ -154,12 +154,12 @@ public class Bonfire extends Block
 			{
 				for(UUID entry : player_list)
 				{
-					if (WorldSpawnLocation.lastSpawnLocas.containsKey(entry))
+					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
 					{
 						EntityPlayer player = worldIn.getPlayerEntityByUUID(entry);
 						if (worldIn.isRemote)
 							player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
-						WorldSpawnLocation.lastSpawnLocas.remove(entry);
+						WorldSpawnLocation.lastSpawnLocations.remove(entry);
 					}
 				}
 			}

@@ -24,17 +24,17 @@ public class WorldSpawnLocation {
 	}
 
 	//This is for the players™ and their individual spawns locations
-	public static  Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<UUID, PlayerPosition>();
+	public static  Map<UUID, PlayerPosition> lastSpawnLocations = new HashMap<UUID, PlayerPosition>();
 	public static Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<BlockPos, BonfireInfo>();
 	
 	public static void setLastSpawnLocations(Map<UUID, PlayerPosition> map)
 	{
-		lastSpawnLocas = map;
+		lastSpawnLocations = map;
 	}
 	
 	public static Map<UUID, PlayerPosition> getLastSpawnLocations()
 	{
-		return lastSpawnLocas;
+		return lastSpawnLocations;
 	}
 	
 	public static void setBonfireInfo(Map<BlockPos, BonfireInfo> map)
@@ -53,12 +53,12 @@ public class WorldSpawnLocation {
 		
 		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
 		
-		if(lastSpawnLocas.containsKey(playerID))
+		if(lastSpawnLocations.containsKey(playerID))
 		{
-			lastSpawnLocas.replace(playerID, new PlayerPosition(player.getPosition()));
+			lastSpawnLocations.replace(playerID, new PlayerPosition(player.getPosition()));
 		}
 		else
-			lastSpawnLocas.put(playerID, new PlayerPosition(player.getPosition()));
+			lastSpawnLocations.put(playerID, new PlayerPosition(player.getPosition()));
 		
 		return new PlayerPosition(player.getPosition());
 	}
@@ -69,9 +69,9 @@ public class WorldSpawnLocation {
 		
 		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
 		
-		if(lastSpawnLocas.containsKey(playerID))
+		if(lastSpawnLocations.containsKey(playerID))
 		{
-			PlayerPosition pos = lastSpawnLocas.get(playerID);
+			PlayerPosition pos = lastSpawnLocations.get(playerID);
 			pos = getInitialPosition();
 			return pos;
 		}
