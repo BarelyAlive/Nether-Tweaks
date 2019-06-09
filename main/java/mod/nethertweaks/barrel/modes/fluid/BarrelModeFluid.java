@@ -21,9 +21,11 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
 
+import forestry.apiculture.items.ItemHabitatLocator;
 import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.FluidTransformer;
@@ -193,6 +195,15 @@ public class BarrelModeFluid implements IBarrelMode {
 
     @Override
     public void addItem(ItemStack stack, TileBarrel barrel) {
+    	FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
+    	handler.setBarrel(barrel);
+    	//handler.getBarrel().getMode().getFluidHandler(barrel).setFluid(fstack);
+    	System.out.println(fstack);
+    	barrel.getTank().fill(fstack, true);
+    	if(handler.getStackInSlot(0).isEmpty())
+    	{
+    		handler.insertItem(0, stack, false);
+    	}
     }
 
     @Override

@@ -29,12 +29,14 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
         super(1);
         this.barrel = barrel;
     }
-
+	
     @Override
     @Nonnull
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
         FluidTank tank = barrel.getTank();
-
+        
+        System.out.println(tank.getFluid());
+        
         if (tank.getFluid() == null)
             return stack;
 
@@ -80,14 +82,13 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
                 barrel.setMode("fluid");
                 NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("fluid", barrel.getPos()), barrel);
                 
-                barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
-                /*
-                if (spawnCount > 0)
+                //barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
+                barrel.getMode().addItem(stack.copy(), barrel);
+                if (spawnCount == 0)
                 {
                 	tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
                 	NetworkHandler.sendNBTUpdate(barrel);
                 }
-                */
             }
             ItemStack ret = stack.copy();
             ret.shrink(1);
