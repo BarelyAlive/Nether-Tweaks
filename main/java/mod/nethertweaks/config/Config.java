@@ -101,6 +101,10 @@ public class Config
 	public static boolean fluidListIsBlackList 		= true;
 	public static boolean enableHarvestcraft 		= false;
 	public static boolean generalItemHandlerCompat  = false;
+	public static String chunkBaseOreDictName = "Chunk";
+	public static String dustBaseOreDictName  = "Dust";
+	public static String pieceBaseOreDictName = "Piece";
+	public static String ingotBaseOreDictName = "Ingot";
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
@@ -240,6 +244,10 @@ public class Config
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
         dankNullIntegration 			= config.get("Compatibility", "Enable Dank-Null Integration?", true).getBoolean();
         preventUnidict 					= config.get("Compatibility", "Enable Unidictionary?", true).getBoolean();
+    	chunkBaseOreDictName 			= config.get("ChunkBaseName", "Base Name for Chunks", "Chunk").getString();
+    	dustBaseOreDictName 			= config.get("DustBaseName", "Base Name for Dusts", "Dust").getString();
+    	pieceBaseOreDictName 			= config.get("PieceBaseName", "Base Name for Pieces", "Piece").getString();
+    	ingotBaseOreDictName 			= config.get("IngotBaseName", "Base Name for Ingots", "Ingot").getString();
         
     	//BlockEnable
     	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
