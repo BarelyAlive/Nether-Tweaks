@@ -10,6 +10,7 @@
   "authorList": ["Angayoco", "Gaprosys"],
   "credits": "Gaprosys for his love & great contributions",
   "logoFile": "",
+  "parent": "sfhcore",
   "screenshots": [],
   "dependencies": []
 }
