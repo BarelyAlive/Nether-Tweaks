@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.world.BonfireInfo;
-import mod.nethertweaks.world.WorldSpawnLoc;
+import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,19 +68,19 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			ctx.getServerHandler().setPlayerLocation(message.x + 0.5, message.y, message.z + 0.5, player.cameraYaw, player.cameraPitch);
 			
-			WorldSpawnLoc.lastSpawnLocas.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
+			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 			
 			BonfireInfo binfo;
-			if (!WorldSpawnLoc.bonfire_info.containsKey(message.looking_block))
+			if (!WorldSpawnLocation.bonfire_info.containsKey(message.looking_block))
 			{
 				binfo = new BonfireInfo(player.getUniqueID());
 			}
 			else
 			{
-				binfo = WorldSpawnLoc.bonfire_info.get(message.looking_block);
+				binfo = WorldSpawnLocation.bonfire_info.get(message.looking_block);
 			}
 			
-			for (BonfireInfo entry : WorldSpawnLoc.bonfire_info.values())
+			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
 			{
 				if (entry.hasPlayer(player))
 				{
@@ -90,7 +90,7 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			binfo.addPlayer(player);
 			
-			WorldSpawnLoc.bonfire_info.put(message.looking_block, binfo.copy());
+			WorldSpawnLocation.bonfire_info.put(message.looking_block, binfo.copy());
 			
 			player.closeScreen();
 			
