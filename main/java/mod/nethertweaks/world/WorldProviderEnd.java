@@ -6,6 +6,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.ChunkGeneratorEnd;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
 import net.minecraft.world.gen.IChunkGenerator;
 
@@ -48,7 +49,7 @@ public class WorldProviderEnd extends WorldProvider {
 	
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkGeneratorOverworld(this.world, this.getSeed(), false, null);
+		return new ChunkGeneratorEnd(this.world, false, this.getSeed(), null);
 	}
 	
 	@Override
