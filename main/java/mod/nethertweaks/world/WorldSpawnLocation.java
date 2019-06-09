@@ -68,10 +68,11 @@ public class WorldSpawnLocation {
 		UUID playerID = player.getUUID(player.getGameProfile());
 		
 		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
-		
+
 		if(lastSpawnLocations.containsKey(playerID))
 		{
 			PlayerPosition pos = lastSpawnLocations.get(playerID);
+
 			pos = getInitialPosition();
 			return pos;
 		}

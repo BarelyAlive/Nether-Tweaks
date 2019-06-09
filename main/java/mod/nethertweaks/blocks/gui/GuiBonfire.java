@@ -24,6 +24,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.config.*;
 import net.minecraftforge.fml.relauncher.Side;
@@ -142,7 +143,9 @@ public class GuiBonfire extends GuiContainer {
 			id = (this.page * 5) + id;
 			if (id >= this.bonfires.size())
 			{
-				id = this.bonfires.size() - 1;
+				this.buttonList.clear();
+				this.initGui();
+				return;
 			}
 			
 			BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
@@ -180,6 +183,7 @@ public class GuiBonfire extends GuiContainer {
 			{
 				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), destination.getZ(), destination, player));
 			}
+		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + destination + "!"));
 		}
 		if (button.id == 6)
 		{
