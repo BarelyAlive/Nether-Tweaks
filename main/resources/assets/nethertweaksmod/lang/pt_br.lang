@@ -42,25 +42,24 @@ item.hammer_iron.name=Martelo de ferro
 item.hammer_diamond.name=Martelo de diamante
 item.hammer_stone.name=Martelo de Pedra
 
-item.seed_0.name=Esporos de Cogumelos
-item.seed_1.name=Sementes de gramíneas
-item.seed_2.name=Sementes de Cacto
-item.seed_3.name=Sementes de borracha
+item.mushroom_spores.name=Esporos de Cogumelos
+item.grass_seeds.name=Sementes de gramíneas
+item.cactus_seeds.name=Sementes de Cacto
 
 item.flint_and_blaze.name=Flint and Blaze
 
-item.crystal_0.nameCristal de Luz
-item.crystal_1.name=Cristal de Ender
+item.crystal_of_light.name=Cristal de Luz
+item.ender_crystal.name=Cristal de Ender
 
-item.item_base_0.name=End Box
-item.item_base_1.name=Núcleo do Portal
-item.item_base_2.name=Moldura com Infusão Ender
-item.item_base_3.name=Hellfayah
-item.item_base_4.name=Pó de Luz
-item.item_base_5.name=Sal
-item.item_base_6.name=Barra de Pedra
-item.item_base_7.name=Corda
-item.item_base_8.name=Argila de Porcelana
+item.end_box.name=End Box
+item.portal_core.name=Núcleo do Portal
+item.ender_infused_frame.name=Moldura com Infusão Ender
+item.hellfayah.name=Hellfayah
+item.powder_of_light.name=Pó de Luz
+item.salt.name=Sal
+item.stone_bar.name=Barra de Pedra
+item.string.name=Corda
+item.porcelain_clay.name=Argila de Porcelana
 
 item.item_mesh_string.name=Malha de Cordas
 item.item_mesh_flint.name=Malha de sílex
@@ -72,13 +71,9 @@ item.item_pebble_1.name=Pedra de granito
 item.item_pebble_2.name=Pedra de Diorita
 item.item_pebble_3.name=Calhau Andesita
 
-item.item_block_basic_ore_hellfayah.name=Minério de Hellfayah
-item.item_block_basic_hellfayah_block.name=Bloco de Hellfayah
-item.item_block_basic_blocksalt.name=Bloco de sal
-
-tile.block_basic_ore_hellfayah.name=Minério de Hellfayah
-tile.block_basic_hellfayah_block.name=Bloco de Hellfayah
-tile.block_basic_blocksalt.name=Bloco de sal
+tile.hellfayah_ore.name=Minério de Hellfayah
+tile.block_of_hellfayah.name=Bloco de Hellfayah
+tile.block_of_salt.name=Bloco de sal
 
 item.item_doll_bat.name=Boneca do Morcego
 item.item_doll_chicken.name=Boneca de Galinha

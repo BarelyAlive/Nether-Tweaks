@@ -38,10 +38,11 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 
-public class Crystal extends CustomItem{
+public class Crystal extends Item implements INames{
 		
-	public Crystal() {
-		super(null, 1, NetherTweaksMod.TABNTM, true, 2, new ResourceLocation(NetherTweaksMod.MODID, INames.CRYSTAL));
+	public Crystal(String name) {
+		setCreativeTab(TAB);
+		setRegistryName(MODID, name);
 	}
 	
 	@Override
@@ -56,9 +57,10 @@ public class Crystal extends CustomItem{
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
     	ItemStack itemstack = playerIn.getHeldItem(handIn);
+    	String name = itemstack.getItem().getRegistryName().getResourcePath();
     	
-    	switch (itemstack.getItemDamage()) {	
-		case 1:
+    	switch (name) {	
+		case ENDER_CRYSTAL:
 			if (Config.enableCrystalEnder) {
 				worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 						SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F,
@@ -78,12 +80,15 @@ public class Crystal extends CustomItem{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		switch (stack.getItemDamage()) {
-		case 0:
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	{
+		String name = stack.getItem().getRegistryName().getResourcePath();
+		
+		switch (name) {
+		case CRYSTAL_OF_LIGHT:
 			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
 			break;
-		case 1:
+		case ENDER_CRYSTAL:
 			tooltip.add("This Crystal allows you to teleport, like Ender Pearls");
 			break;
 		default:

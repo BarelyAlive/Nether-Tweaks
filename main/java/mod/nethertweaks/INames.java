@@ -36,7 +36,9 @@ public interface INames {
 	public static String SIEVE 						= "sieve";
 	public static String HELLMART 					= "hellmart";
 	
-	public static String BLOCK_BASIC 				= "block_basic";
+	public static String HELLFAYAH_ORE 				= "hellfayah_ore";
+	public static String BLOCK_OF_HELLFAYAH			= "block_of_hellfayah";
+	public static String BLOCK_OF_SALT 				= "block_of_salt";
 	
 	//Tile ENtities
 	public static String TE_NETHERRACKFURNACE		= "tileentity_netherrack_furnace";
@@ -48,13 +50,28 @@ public interface INames {
 	
 	//items
 	public static String FLINT_N_BLAZE 				= "flint_and_blaze";
-	public static String STRING 					= "string";
-	public static String SEED						= "seed";
 	public static String PEBBLE						= "item_pebble";
 	
+	public static String MUSHROOM_SPORES			= "mushroom_spores";
+	public static String GRASS_SEEDS				= "grass_seeds";
+	public static String CACTUS_SEEDS				= "cactus_seeds";
+	
+	public static String CRYSTAL_OF_LIGHT			= "crystal_of_light";
+	public static String ENDER_CRYSTAL				= "ender_crystal";
+	
 	public static String DOLL 						= "item_doll";
-	public static String CRYSTAL 					= "crystal";
+	
 	public static String ITEM_BASE 					= "item_base";
+	
+	public static String STONE_BAR 					= "stone_bar";
+	public static String PORTAL_CORE				= "portal_core";
+	public static String END_BOX 					= "end_box";
+	public static String SALT 						= "salt";
+	public static String HELLFAYAH 					= "hellfayah";
+	public static String ENDER_INFUSED_FRAME		= "ender_infused_frame";
+	public static String STRING						= "string";
+	public static String PORCELAIN_CLAY				= "porcelain_clay";
+	public static String POWDER_OF_LIGHT			= "powder_of_light";
 	
 	public static String COOKED_JERKY 				= "cooked_jerky";
 	

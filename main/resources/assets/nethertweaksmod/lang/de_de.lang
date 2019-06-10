@@ -42,25 +42,24 @@ item.hammer_iron.name=Eisenhammer
 item.hammer_diamond.name=Diamanthammer
 item.hammer_stone.name=Steinhammer
 
-item.seed_0.name=Pilzsporen
-item.seed_1.name=Grassamen
-item.seed_2.name=Kaktussamen
-item.seed_3.name=Gummibaumsamen
+item.mushroom_spores.name=Pilzsporen
+item.grass_seeds.name=Grassamen
+item.cactus_seeds.name=Kaktussamen
 
 item.flint_and_blaze.name=Feuerzeug
 
-item.crystal_0.name=Lichtkristall
-item.crystal_1.name=Enderkristall
+item.crystal_of_light.name=Lichtkristall
+item.ender_crystal.name=Enderkristall
 
-item.item_base_0.name=Endbox
-item.item_base_1.name=Portalkern
-item.item_base_2.name=Enderdurzogener Rahmen
-item.item_base_3.name=Hellfayah
-item.item_base_4.name=Lichtpulver
-item.item_base_5.name=Salz
-item.item_base_6.name=Steinstange
-item.item_base_7.name=Faden
-item.item_base_8.name=Porzellanton
+item.end_box.name=Endbox
+item.portal_core.name=Portalkern
+item.ender_infused_frame.name=Enderdurzogener Rahmen
+item.hellfayah.name=Hellfayah
+item.powder_of_light.name=Lichtpulver
+item.salt.name=Salz
+item.stone_bar.name=Steinstange
+item.string.name=Faden
+item.porcelain_clay.name=Porzellanton
 
 item.item_mesh_string.name=Fadengeflecht
 item.item_mesh_flint.name=Feuersteingeflecht
@@ -72,13 +71,9 @@ item.item_pebble_1.name=Granitkieselstein
 item.item_pebble_2.name=Dioritkieselstein
 item.item_pebble_3.name=Andesitkieselstein
 
-item.item_block_basic_ore_hellfayah.name=Hellfayaherz
-item.item_block_basic_hellfayah_block.name=Hellfayahblock
-item.item_block_basic_blocksalt.name=Salzblock
-
-tile.block_basic_ore_hellfayah.name=Hellfayaherz
-tile.block_basic_hellfayah_block.name=Hellfayahblock
-tile.block_basic_blocksalt.name=Salzblock
+tile.hellfayah_ore.name=Hellfayaherz
+tile.block_of_hellfayah.name=Hellfayahblock
+tile.block_of_salt.name=Salzblock
 
 item.item_doll_bat.name=Fledermauspuppe
 item.item_doll_chicken.name=Hühnchenpuppe
