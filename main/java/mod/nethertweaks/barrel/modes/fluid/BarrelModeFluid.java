@@ -1,5 +1,17 @@
 package mod.nethertweaks.barrel.modes.fluid;
 
+import java.util.List;
+
+import mod.nethertweaks.barrel.BarrelFluidHandler;
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -14,32 +26,24 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-import java.util.List;
-
-import forestry.apiculture.items.ItemHabitatLocator;
-import mod.nethertweaks.barrel.BarrelFluidHandler;
-import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.FluidTransformer;
-import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.Util;
-
 public class BarrelModeFluid implements IBarrelMode {
 
     private final BarrelItemHandlerFluid handler;
+    public int workTime;
+    private final int maxWorkTime = 1200;
 
     public BarrelModeFluid() {
         handler = new BarrelItemHandlerFluid(null);
+        workTime = 0;
     }
 
     @Override
@@ -190,16 +194,26 @@ public class BarrelModeFluid implements IBarrelMode {
                     if (found) break;
                 }
             }
+            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+            if(transformFluidItem != null)
+            {
+            	this.workTime++;
+            	if(this.maxWorkTime < this.workTime)
+            	{
+            		barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
+                	tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
+            	}
+            }
+
         }
     }
 
     @Override
     public void addItem(ItemStack stack, TileBarrel barrel) {
+    	if (this.workTime != 0)
+    		return;
     	FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
     	handler.setBarrel(barrel);
-    	//handler.getBarrel().getMode().getFluidHandler(barrel).setFluid(fstack);
-    	System.out.println(fstack);
-    	barrel.getTank().fill(fstack, true);
     	if(handler.getStackInSlot(0).isEmpty())
     	{
     		handler.insertItem(0, stack, false);
