@@ -91,7 +91,7 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
                 {
                 	tank.fill(fstack, true);
                 	barrel.getItemHandler().setStackInSlot(0, stack);
-                	System.out.println(barrel.getItemHandler().getStackInSlot(0));
+                	((BarrelModeFluid)barrel.getMode()).maxWorkTime = spawnCount;
                 	NetworkHandler.sendNBTUpdate(barrel);
                 }
             }

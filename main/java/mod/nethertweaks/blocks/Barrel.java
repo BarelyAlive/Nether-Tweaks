@@ -115,7 +115,7 @@ public class Barrel extends Block implements ITileEntityProvider
     		{
     			if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
     			{
-    				return false;
+    				return true;
     			}
     		}
     	}

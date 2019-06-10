@@ -39,7 +39,9 @@ public class BarrelModeFluid implements IBarrelMode {
 
     private final BarrelItemHandlerFluid handler;
     public int workTime;
-    private final int maxWorkTime = 1200;
+    public int maxWorkTime = 1200;
+    public Color impossFluidColor = new Color(25, 75, 75, 255);
+    
 
     public BarrelModeFluid() {
         handler = new BarrelItemHandlerFluid(null);
@@ -48,14 +50,14 @@ public class BarrelModeFluid implements IBarrelMode {
 
     @Override
     public void writeToNBT(NBTTagCompound tag) {
-        // TODO Auto-generated method stub
-
+    	tag.setInteger("maxWorkTime", this.maxWorkTime);
+    	tag.setInteger("workTime", this.workTime);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
-        // TODO Auto-generated method stub
-
+    	this.maxWorkTime = tag.getInteger("maxWorkTime");
+    	this.workTime = tag.getInteger("workTime");
     }
 
     @Override
@@ -77,10 +79,13 @@ public class BarrelModeFluid implements IBarrelMode {
     public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
         if (barrel.getTank().getFluid() != null) {
             currenttip.add(barrel.getTank().getFluid().getLocalizedName());
-            currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
             if (this.workTime > 0)
             {
-            	currenttip.add("Transformation: " + (this.maxWorkTime / this.workTime * 100.0F) + " %");
+            	currenttip.add("Transformation: " + (((float)(((double)this.maxWorkTime) / ((double)this.workTime))) * 100.0F) + " %");
+            }
+            else
+            {
+                currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
             }
         } else {
             currenttip.add("Empty");
@@ -117,7 +122,24 @@ public class BarrelModeFluid implements IBarrelMode {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
-        return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
+    	/*
+    	if (workTime > 0)
+    	{
+	    	if (((float)(((double)this.maxWorkTime) / ((double)this.maxWorkTime))) < 0.5F)
+	    	{
+	    		return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
+	    	}
+	    	else
+	    	{
+	            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+	            if(transformFluidItem != null)
+	            {
+	            	return Util.getTextureFromFluidStack(FluidRegistry.getFluidStack(transformFluidItem, barrel.getTank().getCapacity()));
+	            }
+	    	}
+    	}
+    	*/
+    	return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
     }
 
     @Override
@@ -125,8 +147,10 @@ public class BarrelModeFluid implements IBarrelMode {
     	if (this.workTime == 0)
     		return Util.whiteColor;
     	else
-            return Color.average(Util.blackColor, Util.whiteColor,
-                    2 * Math.abs(this.maxWorkTime / this.workTime - 0.5F));
+    	{
+            return Color.average(Util.whiteColor, Util.greenColor,  //new Color(0.09f, 0.29f, 0.29f, 1f),
+                    2 * Math.abs((float)(((double)this.workTime) / ((double)this.maxWorkTime))));
+    	}
 
     }
 
@@ -203,17 +227,20 @@ public class BarrelModeFluid implements IBarrelMode {
                     if (found) break;
                 }
             }
-            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
-            if(transformFluidItem != null)
+            if(barrel.getItemHandler().getStackInSlot(0) != null && barrel.getTank().getFluid() != null)
             {
-            	this.workTime++;
-            	if(this.maxWorkTime < this.workTime)
-            	{
-            		barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
-                	tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
-            	}
+	            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+	            if(transformFluidItem != null)
+	            {
+	            	this.workTime++;
+	            	if(this.maxWorkTime < this.workTime)
+	            	{
+	            		barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
+	                	tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
+	            	}
+	            	NetworkHandler.sendNBTUpdate(barrel);
+	            }
             }
-
         }
     }
 
