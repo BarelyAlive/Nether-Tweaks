@@ -1,5 +1,16 @@
 package mod.nethertweaks.blocks;
 
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.INames;
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.barrel.modes.block.BarrelModeBlock;
+import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
+import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluid;
+import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluidTransform;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.config.Config;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -12,26 +23,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import org.apache.commons.lang3.StringUtils;
-
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.barrel.modes.block.BarrelModeBlock;
-import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
-import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluid;
-import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluidTransform;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.config.Config;
-import mod.sfhcore.util.Util;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Barrel extends Block implements ITileEntityProvider
 {
@@ -114,7 +109,14 @@ public class Barrel extends Block implements ITileEntityProvider
     	if(worldIn.isRemote) return true;
     	TileEntity te = worldIn.getTileEntity(pos);
     	if(!(te instanceof TileBarrel)) return false;
-    		return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    	if (((TileBarrel) te).getMode().getName().equals("fluid"))
+		{
+    		if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
+     		{
+    			return false;
+    		}
+		}
+    	return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 
     @Override
