@@ -3,7 +3,6 @@ package mod.nethertweaks.handler;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
-import mod.nethertweaks.blocks.enums.EnumBlockBasic;
 import mod.nethertweaks.blocks.tile.*;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.Constants;
