@@ -23,7 +23,7 @@ public class SmeltingNOreDictHandler {
 		//Schmelz-Rezepte
 		if(Config.enableJerky) 								 GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
 		if(Config.enableElderTree) 							 GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(Config.enableCrystalLight)						 GameRegistry.addSmelting(Konstanten.POWDER_OF_LIGHT, Konstanten.CRYSTAL_LIGHT, 2.0F);
+		if(Config.enableCrystalLight)						 GameRegistry.addSmelting(Konstanten.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
 		if(Config.enableMultiBlock && Config.enableMultiItem)GameRegistry.addSmelting(Konstanten.HELLFAYAH_ORE, Konstanten.HELLFAYAH, 2.0F);
 		if(Config.enableCrucible)							 GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
 	}
@@ -57,8 +57,9 @@ public class SmeltingNOreDictHandler {
 		}
 		if(Config.enableSeed)
 		{
-			for(int i = 1; i < 3; i++)
-			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SEED, 1, i));
+			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.MUSHROOM_SPORES));
+			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.GRASS_SEEDS));
+			OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.CACTUS_SEEDS));
 		}
     	if(Config.enableLiquidImpossibility)
 			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));

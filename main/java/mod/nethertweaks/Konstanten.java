@@ -23,11 +23,4 @@ public class Konstanten
     public static final ItemStack HELLFAYAH_ORE = new ItemStack(BlockHandler.BLOCK_BASIC, 1, 0);
     public static final ItemStack HELLFAYAH_BLOCK = new ItemStack(BlockHandler.BLOCK_BASIC, 1, 1);
     public static final ItemStack SALTB_LOCK = new ItemStack(BlockHandler.BLOCK_BASIC, 1, 2);
-    
-    public static final ItemStack CRYSTAL_LIGHT = new ItemStack(ItemHandler.CRYSTAL, 1, 0);
-    public static final ItemStack CRYSTAL_ENDER = new ItemStack(ItemHandler.CRYSTAL, 1, 1);
-    
-    public static final ItemStack MUSHROOM_SPORES = new ItemStack(ItemHandler.SEED, 1, 0);
-    public static final ItemStack SEED_GRASS = new ItemStack(ItemHandler.SEED, 1, 1);
-    public static final ItemStack SEED_CACTUS = new ItemStack(ItemHandler.SEED, 1, 2);
 }

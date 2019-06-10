@@ -124,7 +124,7 @@ public class NTM implements IRecipeDefaults
     	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
 			registry.register(new ItemInfo(ItemHandler.DOLL, i.getKey()), new ItemInfo(Blocks.ICE), 3);
 		}
-    	registry.register(new ItemInfo(ItemHandler.CRYSTAL, 1), new ItemInfo(Blocks.ICE), 10);
+    	registry.register(new ItemInfo(ItemHandler.ENDER_CRYSTAL), new ItemInfo(Blocks.ICE), 10);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");
     	for(ItemStack ore : ingredient.getMatchingStacks())
@@ -227,9 +227,9 @@ public class NTM implements IRecipeDefaults
         registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
 
         //Mushroom Spores
-        registry.register("dirt", new ItemInfo(ItemHandler.SEED, 0), getDropChance(0.05f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getID());
         //Grass Seeds
-        registry.register("dirt", new ItemInfo(ItemHandler.SEED, 1), getDropChance(0.05f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
 
         registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getID());
         registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getID());
@@ -339,12 +339,9 @@ public class NTM implements IRecipeDefaults
 			}
         }
         // Seeds
-        for (int i = 0; i < 2; i++)
-        {
-        	if(i == 0)
-        		registry.register("sand", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.SEED, i), getDropChance(0.05f), MeshType.STRING.getID());
-        }
+        	registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getID());
+            registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
+            registry.register("dirt", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
         
         getLeavesSapling().forEach((leaves, sapling) ->
         {
@@ -491,7 +488,7 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
-    	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
+    	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
     }
 
     @Override

@@ -49,11 +49,16 @@ public interface INames {
 	//items
 	public static String FLINT_N_BLAZE 				= "flint_and_blaze";
 	public static String STRING 					= "string";
-	public static String SEED						= "seed";
 	public static String PEBBLE						= "item_pebble";
 	
+	public static String MUSHROOM_SPORES			= "mushroom_spores";
+	public static String GRASS_SEEDS				= "grass_seeds";
+	public static String CACTUS_SEEDS				= "cactus_seeds";
+	
+	public static String CRYSTAL_OF_LIGHT			= "crystal_of light";
+	public static String ENDER_CRYSTAL				= "ender_crystal";
+	
 	public static String DOLL 						= "item_doll";
-	public static String CRYSTAL 					= "crystal";
 	public static String ITEM_BASE 					= "item_base";
 	
 	public static String COOKED_JERKY 				= "cooked_jerky";

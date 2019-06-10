@@ -26,20 +26,20 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class ItemHandler implements INames
 {
-	//ITEMS
-    public static final Item SEED 			  = new Seed();
+	//SEEDS
+    public static final Item MUSHROOM_SPORES  = new Seed(INames.MUSHROOM_SPORES);
+    public static final Item GRASS_SEEDS	  = new Seed(INames.GRASS_SEEDS);
+    public static final Item CACTUS_SEEDS	  = new Seed(INames.CACTUS_SEEDS);
+    //CRYSTALS
+    public static final Item CRYSTAL_OF_LIGHT = new Crystal(INames.CRYSTAL_OF_LIGHT);
+    public static final Item ENDER_CRYSTAL	  = new Crystal(INames.ENDER_CRYSTAL);
+    //MESHES
     public static final Item MESH 			  = new ItemMesh();
     public static final Item DOLL 			  = new ItemDoll();
     public static final Item PEBBLE 		  = new ItemPebble();
-    public static final Item CRYSTAL 		  = new Crystal();
     public static final Item FLINT_N_BLAZE 	  = new FlintAndBlaze();
-
     //Multi ID Item
 	public static final Item ITEM_BASE 		  = new CustomItem(null, 64, TAB, true, 9, new ResourceLocation(MODID, INames.ITEM_BASE));
-
-	//Food
-    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
-
     //Werkzeuge
     public static final Item GRABBER_WOOD 	  = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
     public static final Item GRABBER_GOLD 	  = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
@@ -53,6 +53,8 @@ public class ItemHandler implements INames
     public static final Item HAMMER_STONE	  = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
     public static final Item HAMMER_IRON 	  = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
     public static final Item HAMMER_DIAMOND	  = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+    //Food
+    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
     //itemblocks
     public static final Item ITEM_STONE_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
@@ -71,9 +73,11 @@ public class ItemHandler implements INames
     	
     	//Multi ID Item
     	if(Config.enableMultiItem)  		Registry.registerItem(ITEM_BASE);
-    	if(Config.enableSeed) 				Registry.registerItem(SEED);
-    	if(Config.enableCrystalLight || Config.enableCrystalEnder)
-    										Registry.registerItem(CRYSTAL);
+    	if(Config.enableSeed) 				Registry.registerItem(MUSHROOM_SPORES);
+    	if(Config.enableSeed) 				Registry.registerItem(GRASS_SEEDS);
+    	if(Config.enableSeed) 				Registry.registerItem(CACTUS_SEEDS);
+    	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
+		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
         if(Config.enableMeshes)  			Registry.registerItem(MESH);
         if(Config.enableDolls)  			Registry.registerItem(DOLL);
