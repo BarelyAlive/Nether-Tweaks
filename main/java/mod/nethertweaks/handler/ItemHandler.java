@@ -39,15 +39,15 @@ public class ItemHandler implements INames
     public static final Item PEBBLE 		  	 = new ItemPebble();
     public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
     //Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
 	
     //Werkzeuge
     public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
