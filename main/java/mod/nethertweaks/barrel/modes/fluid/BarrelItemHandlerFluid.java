@@ -87,10 +87,11 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
                 
                 //barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
                 barrel.getMode().addItem(stack.copy(), barrel);
-                if (spawnCount == 0)
+                if (spawnCount > 0)
                 {
                 	tank.fill(fstack, true);
                 	barrel.getItemHandler().setStackInSlot(0, stack);
+                	System.out.println(barrel.getItemHandler().getStackInSlot(0));
                 	NetworkHandler.sendNBTUpdate(barrel);
                 }
             }

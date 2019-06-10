@@ -109,13 +109,16 @@ public class Barrel extends Block implements ITileEntityProvider
     	if(worldIn.isRemote) return true;
     	TileEntity te = worldIn.getTileEntity(pos);
     	if(!(te instanceof TileBarrel)) return false;
-    	if (((TileBarrel) te).getMode().getName().equals("fluid"))
-		{
-    		if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
-     		{
-    			return false;
+    	if (((TileBarrel) te).getMode() != null)
+    	{
+    		if (((TileBarrel) te).getMode().getName().equals("fluid"))
+    		{
+    			if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
+    			{
+    				return false;
+    			}
     		}
-		}
+    	}
     	return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 

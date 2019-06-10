@@ -78,6 +78,10 @@ public class BarrelModeFluid implements IBarrelMode {
         if (barrel.getTank().getFluid() != null) {
             currenttip.add(barrel.getTank().getFluid().getLocalizedName());
             currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
+            if (this.workTime > 0)
+            {
+            	currenttip.add("Transformation: " + (this.maxWorkTime / this.workTime * 100.0F) + " %");
+            }
         } else {
             currenttip.add("Empty");
         }
@@ -118,7 +122,12 @@ public class BarrelModeFluid implements IBarrelMode {
 
     @Override
     public Color getColorForRender() {
-        return Util.whiteColor;
+    	if (this.workTime == 0)
+    		return Util.whiteColor;
+    	else
+            return Color.average(Util.blackColor, Util.whiteColor,
+                    2 * Math.abs(this.maxWorkTime / this.workTime - 0.5F));
+
     }
 
     @Override
