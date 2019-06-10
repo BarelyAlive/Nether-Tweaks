@@ -14,8 +14,7 @@
       "ore": "ingotIron"
     },
     "y": {
-      "item": "item_base",
-      "data": 6
+      "item": "stone_bar"
     }
   }
 }

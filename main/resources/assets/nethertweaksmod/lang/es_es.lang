@@ -42,25 +42,24 @@ item.hammer_iron.name=Martillo de hierro
 item.hammer_diamond.name=Martillo de diamante
 item.hammer_stone.name=Martillo de piedra
 
-item.seed_0.name=Esporas de hongos
-item.seed_1.name=Semillas de cesped
-item.seed_2.name=Semillas de cactus
-item.seed_3.name=Semillas de caucho
+item.mushroom_spores.name=Esporas de hongos
+item.grass_seeds.name=Semillas de cesped
+item.cactus_seeds.name=Semillas de cactus
 
 item.flint_and_blaze.name=Flint and Blaze
 
-item.crystal_0.name=Cristal de luz
-item.crystal_1.name=Cristal de Ender
+item.crystal_of_light.name=Cristal de luz
+item.ender_crystal.name=Cristal de Ender
 
-item.item_base_0.name=End Box
-item.item_base_1.name=Núcleo del Portal
-item.item_base_2.name=Marco Ender Infundido
-item.item_base_3.name=Hellfayah
-item.item_base_4.name=Polvo de luz
-item.item_base_5.name=sal
-item.item_base_6.name=Barra de piedra
-item.item_base_7.name=Cuerda
-item.item_base_8.name=Gres Porcelánico
+item.end_box.name=End Box
+item.portal_core.name=Núcleo del Portal
+item.ender_infused_frame.name=Marco Ender Infundido
+item.hellfayah.name=Hellfayah
+item.powder_of_light.name=Polvo de luz
+item.salt.name=Sal
+item.stone_bar.name=Barra de piedra
+item.string.name=Cuerda
+item.porcelain_clay.name=Gres Porcelánico
 
 item.item_mesh_string.name=Malla de cadena
 item.item_mesh_flint.name=Malla de pedernal
@@ -72,13 +71,9 @@ item.item_pebble_1.name=Guijarro de granito
 item.item_pebble_2.name=Guijarro de diorita
 item.item_pebble_3.name=Andesita guijarro
 
-item.item_block_basic_ore_hellfayah.name=Mineral de Hellfayah
-item.item_block_basic_hellfayah_block.name=Bloque de Hellfayah
-item.item_block_basic_blocksalt.name=Bloque de sal
-
-tile.block_basic_ore_hellfayah.name=Mineral de Hellfayah
-tile.block_basic_hellfayah_block.name=Bloque de Hellfayah
-tile.block_basic_blocksalt.name=Bloque de sal
+tile.hellfayah_ore.name=Mineral de Hellfayah
+tile.block_of_hellfayah.name=Bloque de Hellfayah
+tile.block_of_salt.name=Bloque de sal
 
 item.item_doll_bat.name=Muñeca de murciélago
 item.item_doll_chicken.name=Muñeca de pollo

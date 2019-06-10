@@ -20,7 +20,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private int frequency;
 	private WorldGenerator tree = new WorldGenElderTree(true);
-	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.BLOCK_BASIC.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
+	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
 	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {
 		super();
@@ -42,7 +42,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
     private void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY)
     {	
         int differenzMinMaxY = maxY - minY;
-        if (Config.enableMultiBlock)
+        if (Config.enableHellfayahOre)
         {
 			for (int i = 0; i < spawnChancen; i++) {
 				int positionX = posX + random.nextInt(maxX);

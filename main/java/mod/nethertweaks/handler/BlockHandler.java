@@ -1,13 +1,13 @@
 package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
-import mod.nethertweaks.Konstanten;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.*;
 import mod.nethertweaks.blocks.enums.EnumBlockBasic;
 import mod.nethertweaks.blocks.tile.*;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.Constants;
+import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.base.BlockEnum;
@@ -46,7 +46,9 @@ public class BlockHandler implements INames
     public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
     public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
     public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(MODID, INames.ELDER_DOOR), 15.0F, 2.0F);
-    public static final Block BLOCK_BASIC		   = new BlockEnum(Material.ROCK, EnumBlockBasic.class, new ResourceLocation(MODID, INames.BLOCK_BASIC), 17.5f, 3.5f, TAB);
+    public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.HELLFAYAH_ORE));
+    public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.BLOCK_OF_HELLFAYAH));
+    public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.BLOCK_OF_SALT));
     public static final Block ELDER_LOG 		   = new ElderLog();
     public static final Block ELDER_LEAVES 		   = new ElderLeaves();
     public static final Block ELDER_PLANKS 		   = new ElderPlanks();
@@ -55,9 +57,6 @@ public class BlockHandler implements INames
     public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(INames.ELDER_SLAB, Material.WOOD).setCreativeTab(TAB).setResistance(10.0F).setHardness(2.0F);
     public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
     
-    //ItemBlocks
-    public static final ItemBlock ITEM_BLOCK_BASIC = new ItemBlockEnum(BLOCK_BASIC, TAB);
-
     public static void init()
     {
     	registerBlockTiles();
@@ -85,7 +84,9 @@ public class BlockHandler implements INames
     //Registering all the blocks
     private static void registerBlocks()
     {
-    	if(Config.enableMultiBlock) 		Registry.registerBlock(ITEM_BLOCK_BASIC);
+    	if(Config.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
+    	if(Config.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
+    	if(Config.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
         if(Config.enableDust) 				Registry.registerBlock(DUST);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree) {

@@ -108,7 +108,9 @@ public class Config
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
-	public static boolean enableMultiBlock 			= true;
+	public static boolean enableHellfayahOre		= true;
+	public static boolean enableHellfayahBlock		= true;
+	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
 	public static boolean enableBarrel 				= true;
 	public static boolean enableBonfire 			= true;
@@ -125,8 +127,18 @@ public class Config
 	public static boolean enableCrucible 			= true;
 	
 	//ItemEnable
-	public static boolean enableMultiItem 			= true;
-	public static boolean enableSeed 				= true;
+	public static boolean enableStoneBar 			= true;
+	public static boolean enablePortalCore 			= true;
+	public static boolean enableEndBox	 			= true;
+	public static boolean enableSalt	 			= true;
+	public static boolean enableHellfayah 			= true;
+	public static boolean enableEnderInfusedFrame	= true;
+	public static boolean enableString	 			= true;
+	public static boolean enablePorcelainClay		= true;
+	public static boolean enablePowderOfLight		= true;
+	public static boolean enableMushroomSpores		= true;
+	public static boolean enableGrassSeeds			= true;
+	public static boolean enableCactusSeeds			= true;
 	public static boolean enableCrystalLight 		= true;
 	public static boolean enableCrystalEnder 		= true;
 	public static boolean enablePebbles 			= true;
@@ -251,7 +263,9 @@ public class Config
         
     	//BlockEnable
     	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiBlock 				= config.get("Blocks", "Enable Hellfayah Block, Ore & Salt?", true).getBoolean();
+    	enableHellfayahOre 				= config.get("Blocks", "Enable Hellfayah Block?", true).getBoolean();
+    	enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
+    	enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
     	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
     	enableBarrel 					= config.get("Blocks", "Enable Barrel?", true).getBoolean();
     	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
@@ -269,8 +283,18 @@ public class Config
     	
     	//ItemEnable
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiItem 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableSeed 						= config.get("Items", "Enable Seeds?", true).getBoolean();
+    	enableStoneBar	 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enablePortalCore 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableEndBox 					= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableSalt 						= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableHellfayah 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableEnderInfusedFrame			= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableString 					= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enablePorcelainClay				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enablePowderOfLight				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
+    	enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
+    	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enablePebbles 					= config.get("Items", "Enable Pebbles?", true).getBoolean();

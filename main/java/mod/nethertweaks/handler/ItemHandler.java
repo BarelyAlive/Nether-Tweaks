@@ -27,39 +27,48 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class ItemHandler implements INames
 {
 	//SEEDS
-    public static final Item MUSHROOM_SPORES  = new Seed(INames.MUSHROOM_SPORES);
-    public static final Item GRASS_SEEDS	  = new Seed(INames.GRASS_SEEDS);
-    public static final Item CACTUS_SEEDS	  = new Seed(INames.CACTUS_SEEDS);
+    public static final Item MUSHROOM_SPORES  	 = new Seed(INames.MUSHROOM_SPORES);
+    public static final Item GRASS_SEEDS	  	 = new Seed(INames.GRASS_SEEDS);
+    public static final Item CACTUS_SEEDS	  	 = new Seed(INames.CACTUS_SEEDS);
     //CRYSTALS
-    public static final Item CRYSTAL_OF_LIGHT = new Crystal(INames.CRYSTAL_OF_LIGHT);
-    public static final Item ENDER_CRYSTAL	  = new Crystal(INames.ENDER_CRYSTAL);
+    public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
+    public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
     //MESHES
-    public static final Item MESH 			  = new ItemMesh();
-    public static final Item DOLL 			  = new ItemDoll();
-    public static final Item PEBBLE 		  = new ItemPebble();
-    public static final Item FLINT_N_BLAZE 	  = new FlintAndBlaze();
-    //Multi ID Item
-	public static final Item ITEM_BASE 		  = new CustomItem(null, 64, TAB, true, 9, new ResourceLocation(MODID, INames.ITEM_BASE));
+    public static final Item MESH 			  	 = new ItemMesh();
+    public static final Item DOLL 			  	 = new ItemDoll();
+    public static final Item PEBBLE 		  	 = new ItemPebble();
+    public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+    //Crafting Components
+	public static final Item STONE_BAR 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(null, 64, TAB, false, 1, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
+	
     //Werkzeuge
-    public static final Item GRABBER_WOOD 	  = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
-    public static final Item GRABBER_GOLD 	  = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
-    public static final Item GRABBER_STONE 	  = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
-    public static final Item GRABBER_IRON 	  = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
-    public static final Item GRABBER_DIAMOND  = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
-    public static final Item PICK_NETHERRACK  = new PickaxeNTM(ToolMaterial.STONE);
-    public static final Item PICK_NETHERBRICK = new PickaxeNTM(ToolMaterial.IRON);
-    public static final Item HAMMER_WOOD	  = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
-    public static final Item HAMMER_GOLD 	  = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
-    public static final Item HAMMER_STONE	  = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
-    public static final Item HAMMER_IRON 	  = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
-    public static final Item HAMMER_DIAMOND	  = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+    public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
+    public static final Item GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
+    public static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
+    public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
+    public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
+    public static final Item PICK_NETHERRACK  	 = new PickaxeNTM(ToolMaterial.STONE);
+    public static final Item PICK_NETHERBRICK 	 = new PickaxeNTM(ToolMaterial.IRON);
+    public static final Item HAMMER_WOOD	  	 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
+    public static final Item HAMMER_GOLD 	  	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
+    public static final Item HAMMER_STONE	  	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
+    public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
+    public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
     //Food
-    public static final Item COOKED_JERKY 	  = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
+    public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
     //itemblocks
-    public static final Item ITEM_STONE_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
-    public static final Item ITEM_ELDER_DOOR  = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
-    public static final Item ITEM_ELDER_SLAB  = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(INames.MODID, "item_" + INames.ELDER_SLAB);
+    public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
+    public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
+    public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(INames.MODID, "item_" + INames.ELDER_SLAB);
 
 	public static void init()
 	{
@@ -68,14 +77,20 @@ public class ItemHandler implements INames
 	}
 
     private static void registerItems()
-    {
-    	//ITEM_ELDER_SLAB.setCreativeTab(TAB);
-    	
+    { 	
     	//Multi ID Item
-    	if(Config.enableMultiItem)  		Registry.registerItem(ITEM_BASE);
-    	if(Config.enableSeed) 				Registry.registerItem(MUSHROOM_SPORES);
-    	if(Config.enableSeed) 				Registry.registerItem(GRASS_SEEDS);
-    	if(Config.enableSeed) 				Registry.registerItem(CACTUS_SEEDS);
+    	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
+    	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
+    	if(Config.enableEndBox)		  		Registry.registerItem(END_BOX);
+    	if(Config.enableSalt)		  		Registry.registerItem(SALT);
+    	if(Config.enableHellfayah)  		Registry.registerItem(HELLFAYAH);
+    	if(Config.enableEnderInfusedFrame)	Registry.registerItem(ENDER_INFUSED_FRAME);
+    	if(Config.enableString)		  		Registry.registerItem(STRING);
+    	if(Config.enablePorcelainClay) 		Registry.registerItem(PORCELAIN_CLAY);
+    	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
+    	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
+    	if(Config.enableGrassSeeds)			Registry.registerItem(GRASS_SEEDS);
+    	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
 		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
@@ -110,9 +125,9 @@ public class ItemHandler implements INames
     {
     	if(Config.enableStoneBucket)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
-    	if(Config.enableMultiItem)
-    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.ITEM_BASE, 3), Config.burnTimeHellfayah);
-    	if(Config.enableMultiBlock)
-    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.ITEM_BLOCK_BASIC, 1), Config.burnTimeHellfayahBlock);
+    	if(Config.enableHellfayah)
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.HELLFAYAH), Config.burnTimeHellfayah);
+    	if(Config.enableHellfayahBlock)
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
     }
 }

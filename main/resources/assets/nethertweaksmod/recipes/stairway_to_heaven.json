@@ -7,12 +7,10 @@
   ],
   "key": {
     "X": {
-      "item": "item_base",
-      "data": 0
+      "item": "end_box"
     },
     "Y": {
-      "item": "item_base",
-      "data": 1
+      "item": "portal_core"
     }
   },
   "result": {
