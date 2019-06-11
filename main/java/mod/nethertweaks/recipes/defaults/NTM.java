@@ -224,14 +224,14 @@ public class NTM implements IRecipeDefaults
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE, 1), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE, 1), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE, 2), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE, 2), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE, 3), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE, 3), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.1f), MeshType.STRING.getID());
 
         registry.register("dirt", new ItemInfo(Items.WHEAT_SEEDS), getDropChance(0.7f), MeshType.STRING.getID());
         registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
