@@ -520,7 +520,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-    	return chance / 100f * (float) Config.normalDropPercent;
+    	return chance / 100f * ((float) Config.normalDropPercent / 100);
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()
