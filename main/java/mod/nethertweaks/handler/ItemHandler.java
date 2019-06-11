@@ -35,7 +35,24 @@ public class ItemHandler implements INames
     public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
     //MESHES
     public static final Item MESH 			  	 = new ItemMesh();
-    public static final Item DOLL 			  	 = new ItemDoll();
+    //DOLLS
+    public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
+    public static final Item DOLL_CHICKEN	  	 = new ItemDoll(INames.DOLL_CHICKEN);
+    public static final Item DOLL_COW		  	 = new ItemDoll(INames.DOLL_COW);
+    public static final Item DOLL_DONKEY	  	 = new ItemDoll(INames.DOLL_DONKEY);
+    public static final Item DOLL_HORSE		  	 = new ItemDoll(INames.DOLL_HORSE);
+    public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll(INames.DOLL_RED_MOOSHROOM);
+    public static final Item DOLL_MULE		  	 = new ItemDoll(INames.DOLL_MULE);
+    public static final Item DOLL_OCELOT	  	 = new ItemDoll(INames.DOLL_OCELOT);
+    public static final Item DOLL_PARROT	  	 = new ItemDoll(INames.DOLL_PARROT);
+    public static final Item DOLL_RABBIT	  	 = new ItemDoll(INames.DOLL_RABBIT);
+    public static final Item DOLL_SHEEP		  	 = new ItemDoll(INames.DOLL_SHEEP);
+    public static final Item DOLL_LLAMA		  	 = new ItemDoll(INames.DOLL_LLAMA);
+    public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll(INames.DOLL_POLAR_BEAR);
+    public static final Item DOLL_WOLF		  	 = new ItemDoll(INames.DOLL_WOLF);
+    public static final Item DOLL_VILLAGER	  	 = new ItemDoll(INames.DOLL_VILLAGER);
+    public static final Item DOLL_PIG		  	 = new ItemDoll(INames.DOLL_PIG);
+    
     public static final Item PEBBLE 		  	 = new ItemPebble();
     public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
     //Crafting Components
@@ -95,7 +112,22 @@ public class ItemHandler implements INames
 		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
         if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
         if(Config.enableMeshes)  			Registry.registerItem(MESH);
-        if(Config.enableDolls)  			Registry.registerItem(DOLL);
+        if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);
+        if(Config.enableDollChicken)  		Registry.registerItem(DOLL_CHICKEN);
+        if(Config.enableDollCow)  			Registry.registerItem(DOLL_COW);
+        if(Config.enableDollDonkey)  		Registry.registerItem(DOLL_DONKEY);
+        if(Config.enableDollHorse)  		Registry.registerItem(DOLL_HORSE);
+        if(Config.enableDollLlama)  		Registry.registerItem(DOLL_LLAMA);
+        if(Config.enableDollMule)  			Registry.registerItem(DOLL_MULE);
+        if(Config.enableDollOcelot)  		Registry.registerItem(DOLL_OCELOT);
+        if(Config.enableDollParrot)  		Registry.registerItem(DOLL_PARROT);
+        if(Config.enableDollPig)  			Registry.registerItem(DOLL_PIG);
+        if(Config.enableDollPolarBear)  	Registry.registerItem(DOLL_POLAR_BEAR);
+        if(Config.enableDollRabbit)  		Registry.registerItem(DOLL_RABBIT);
+        if(Config.enableDollRedMooshroom)	Registry.registerItem(DOLL_RED_MOOSHROOM);
+        if(Config.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
+        if(Config.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
+        if(Config.enableDollWolf)  			Registry.registerItem(DOLL_WOLF);
 
         //Werkzeuge
         if(Config.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);

@@ -8,22 +8,22 @@
     "type": {
       "stone": {
         "textures": {
-          "layer0": "nethertweaksmod:items/item_pebble"
+          "layer0": "nethertweaksmod:items/pebble"
         }
       },
       "granite": {
         "textures": {
-          "layer0": "nethertweaksmod:items/item_pebble_granite"
+          "layer0": "nethertweaksmod:items/pebble_granite"
         }
       },
       "diorite": {
         "textures": {
-          "layer0": "nethertweaksmod:items/item_pebble_diorite"
+          "layer0": "nethertweaksmod:items/pebble_diorite"
         }
       },
       "andesite": {
         "textures": {
-          "layer0": "nethertweaksmod:items/item_pebble_andesite"
+          "layer0": "nethertweaksmod:items/pebble_andesite"
         }
       }
     }

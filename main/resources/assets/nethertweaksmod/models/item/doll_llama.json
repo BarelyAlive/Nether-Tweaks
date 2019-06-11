@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/hammer_wood"
+      "layer0": "nethertweaksmod:items/doll_llama"
     }
 }

@@ -59,7 +59,22 @@ public interface INames {
 	public static String CRYSTAL_OF_LIGHT			= "crystal_of_light";
 	public static String ENDER_CRYSTAL				= "ender_crystal";
 	
-	public static String DOLL 						= "item_doll";
+	public static String DOLL_BAT					= "doll_bat";
+	public static String DOLL_CHICKEN				= "doll_chicken";
+	public static String DOLL_COW					= "doll_cow";
+	public static String DOLL_DONKEY				= "doll_donkey";
+	public static String DOLL_HORSE					= "doll_horse";
+	public static String DOLL_RED_MOOSHROOM			= "doll_red_mooshroom";
+	public static String DOLL_MULE					= "doll_mule";
+	public static String DOLL_OCELOT				= "doll_ocelot";
+	public static String DOLL_PARROT				= "doll_parrot";
+	public static String DOLL_RABBIT				= "doll_rabbit";
+	public static String DOLL_SHEEP					= "doll_sheep";
+	public static String DOLL_LLAMA					= "doll_llama";
+	public static String DOLL_POLAR_BEAR			= "doll_polar_bear";
+	public static String DOLL_WOLF					= "doll_wolf";
+	public static String DOLL_VILLAGER				= "doll_villager";
+	public static String DOLL_PIG					= "doll_pig";
 	
 	public static String ITEM_BASE 					= "item_base";
 	

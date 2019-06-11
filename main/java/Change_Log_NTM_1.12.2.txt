@@ -20,7 +20,6 @@ ChangeLog NTM 2.0.0
 * The Condenser is also able to melt water from snowballs, snow, ice and pack ice (1:1)
 * FlintNBlaze are now twice as durable
 * Hammers are now more durable
-* Changed icon of creative tab
 * Changed some recipes
 * Demon Water is now called Liquid Impossibility because of new features!
 * Liquid Impossibility is now as bright as lava! (makes it perfect for crop fields)
