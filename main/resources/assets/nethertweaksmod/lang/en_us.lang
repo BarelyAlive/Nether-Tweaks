@@ -66,10 +66,10 @@ item.item_mesh_flint.name=Flint Mesh
 item.item_mesh_iron.name=Iron Mesh
 item.item_mesh_diamond.name=Diamond Mesh
 
-item.item_pebble_0.name=Stone Pebble
-item.item_pebble_1.name=Granite Pebble
-item.item_pebble_2.name=Diorite Pebble
-item.item_pebble_3.name=Andesite Pebble
+item.pebble_stone.name=Stone Pebble
+item.pebble_granite.name=Granite Pebble
+item.pebble_diorite.name=Diorite Pebble
+item.pebble_andesite.name=Andesite Pebble
 
 tile.hellfayah_ore.name=Hellfayah Ore
 tile.block_of_hellfayah.name=Block of Hellfayah

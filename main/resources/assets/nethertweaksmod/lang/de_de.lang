@@ -66,10 +66,10 @@ item.item_mesh_flint.name=Feuersteingeflecht
 item.item_mesh_iron.name=Eisengeflecht
 item.item_mesh_diamond.name=Diamantgeflecht
 
-item.item_pebble_0.name=Kieselstein
-item.item_pebble_1.name=Granitkieselstein
-item.item_pebble_2.name=Dioritkieselstein
-item.item_pebble_3.name=Andesitkieselstein
+item.pebble_stone.name=Kieselstein
+item.pebble_granite.name=Granitkieselstein
+item.pebble_diorite.name=Dioritkieselstein
+item.pebble_andesite.name=Andesitkieselstein
 
 tile.hellfayah_ore.name=Hellfayaherz
 tile.block_of_hellfayah.name=Hellfayahblock

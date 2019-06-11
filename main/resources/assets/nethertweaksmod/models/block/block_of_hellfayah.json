@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "nethertweaksmod:blocks/hellfayah_block"
+        "all": "nethertweaksmod:blocks/block_of_hellfayah"
     }
 }

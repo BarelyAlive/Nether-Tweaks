@@ -50,7 +50,11 @@ public interface INames {
 	
 	//items
 	public static String FLINT_N_BLAZE 				= "flint_and_blaze";
-	public static String PEBBLE						= "item_pebble";
+	
+	public static String PEBBLE_STONE				= "pebble_stone";
+	public static String PEBBLE_GRANITE				= "pebble_granite";
+	public static String PEBBLE_DIORITE				= "pebble_diorite";
+	public static String PEBBLE_ANDESITE			= "pebble_andesite";
 	
 	public static String MUSHROOM_SPORES			= "mushroom_spores";
 	public static String GRASS_SEEDS				= "grass_seeds";
@@ -75,9 +79,7 @@ public interface INames {
 	public static String DOLL_WOLF					= "doll_wolf";
 	public static String DOLL_VILLAGER				= "doll_villager";
 	public static String DOLL_PIG					= "doll_pig";
-	
-	public static String ITEM_BASE 					= "item_base";
-	
+		
 	public static String STONE_BAR 					= "stone_bar";
 	public static String PORTAL_CORE				= "portal_core";
 	public static String END_BOX 					= "end_box";

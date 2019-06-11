@@ -66,10 +66,10 @@ item.item_mesh_flint.name=Malla de pedernal
 item.item_mesh_iron.name=Malla de hierro
 item.item_mesh_diamond.name=Malla de diamante
 
-item.item_pebble_0.name=Piedra Guijarro
-item.item_pebble_1.name=Guijarro de granito
-item.item_pebble_2.name=Guijarro de diorita
-item.item_pebble_3.name=Andesita guijarro
+item.pebble_stone.name=Piedra Guijarro
+item.pebble_granite.name=Guijarro de granito
+item.pebble_diorite.name=Guijarro de diorita
+item.pebble_andesite.name=Andesita guijarro
 
 tile.hellfayah_ore.name=Mineral de Hellfayah
 tile.block_of_hellfayah.name=Bloque de Hellfayah

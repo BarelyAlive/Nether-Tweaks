@@ -141,7 +141,10 @@ public class Config
 	public static boolean enableCactusSeeds			= true;
 	public static boolean enableCrystalLight 		= true;
 	public static boolean enableCrystalEnder 		= true;
-	public static boolean enablePebbles 			= true;
+	public static boolean enablePebbleStone			= true;
+	public static boolean enablePebbleGranite		= true;
+	public static boolean enablePebbleDiorite		= true;
+	public static boolean enablePebbleAndesite		= true;
 	public static boolean enableMeshes 				= true;
 	public static boolean enableDollBat				= true;
 	public static boolean enableDollChicken			= true;
@@ -298,21 +301,24 @@ public class Config
     	
     	//ItemEnable
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
-    	enableStoneBar	 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enablePortalCore 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableEndBox 					= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableSalt 						= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableHellfayah 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableEnderInfusedFrame			= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableString 					= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enablePorcelainClay				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enablePowderOfLight				= config.get("Items", "Enable Multi Item?", true).getBoolean();
+    	enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
+    	enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
+    	enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
+    	enableSalt 						= config.get("Items", "Enable Salt?", true).getBoolean();
+    	enableHellfayah 				= config.get("Items", "Enable Hellfayah?", true).getBoolean();
+    	enableEnderInfusedFrame			= config.get("Items", "Enable Ender Infused Frame?", true).getBoolean();
+    	enableString 					= config.get("Items", "Enable String?", true).getBoolean();
+    	enablePorcelainClay				= config.get("Items", "Enable Porcelain Clay?", true).getBoolean();
+    	enablePowderOfLight				= config.get("Items", "Enable Powder of Light?", true).getBoolean();
     	enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
     	enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
     	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
-    	enablePebbles 					= config.get("Items", "Enable Pebbles?", true).getBoolean();
+    	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
+    	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
+    	enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
+    	enablePebbleAndesite			= config.get("Items", "Enable Andesite Pebbles?", true).getBoolean();
     	enableMeshes 					= config.get("Items", "Enable Meshes?", true).getBoolean();
     	enableDollBat 					= config.get("Items", "Enable Bat Doll?", true).getBoolean();
     	enableDollChicken 				= config.get("Items", "Enable Chicken Doll?", true).getBoolean();

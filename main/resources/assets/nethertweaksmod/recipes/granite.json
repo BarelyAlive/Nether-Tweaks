@@ -10,8 +10,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
-      "item": "item_pebble",
-      "data": 1
+      "item": "pebble_granite"
     }
   }
 }

@@ -30,11 +30,14 @@ public class ItemHandler implements INames
     public static final Item MUSHROOM_SPORES  	 = new Seed(INames.MUSHROOM_SPORES);
     public static final Item GRASS_SEEDS	  	 = new Seed(INames.GRASS_SEEDS);
     public static final Item CACTUS_SEEDS	  	 = new Seed(INames.CACTUS_SEEDS);
+    
     //CRYSTALS
     public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
     public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
+    
     //MESHES
     public static final Item MESH 			  	 = new ItemMesh();
+    
     //DOLLS
     public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
     public static final Item DOLL_CHICKEN	  	 = new ItemDoll(INames.DOLL_CHICKEN);
@@ -53,8 +56,12 @@ public class ItemHandler implements INames
     public static final Item DOLL_VILLAGER	  	 = new ItemDoll(INames.DOLL_VILLAGER);
     public static final Item DOLL_PIG		  	 = new ItemDoll(INames.DOLL_PIG);
     
-    public static final Item PEBBLE 		  	 = new ItemPebble();
-    public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+    //PEBBLES
+    public static final Item PEBBLE_STONE	  	 = new ItemPebble(INames.PEBBLE_STONE);
+    public static final Item PEBBLE_GRANITE	  	 = new ItemPebble(INames.PEBBLE_GRANITE);
+    public static final Item PEBBLE_ANDESITE  	 = new ItemPebble(INames.PEBBLE_DIORITE);
+    public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(INames.PEBBLE_ANDESITE);
+    
     //Crafting Components
 	public static final Item STONE_BAR 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STONE_BAR));
 	public static final Item PORTAL_CORE	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORTAL_CORE));
@@ -79,6 +86,8 @@ public class ItemHandler implements INames
     public static final Item HAMMER_STONE	  	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
     public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
     public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+    public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+    
     //Food
     public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
@@ -95,7 +104,7 @@ public class ItemHandler implements INames
 
     private static void registerItems()
     { 	
-    	//Multi ID Item
+    	//Crafting Components
     	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
     	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
     	if(Config.enableEndBox)		  		Registry.registerItem(END_BOX);
@@ -105,13 +114,26 @@ public class ItemHandler implements INames
     	if(Config.enableString)		  		Registry.registerItem(STRING);
     	if(Config.enablePorcelainClay) 		Registry.registerItem(PORCELAIN_CLAY);
     	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
+    	
+    	//Seeds
     	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
     	if(Config.enableGrassSeeds)			Registry.registerItem(GRASS_SEEDS);
     	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
+    	
+    	//Crystals
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
 		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
-        if(Config.enablePebbles)  			Registry.registerItem(PEBBLE);
+		
+		//Pebbles
+        if(Config.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
+        if(Config.enablePebbleGranite)		Registry.registerItem(PEBBLE_GRANITE);
+        if(Config.enablePebbleDiorite)		Registry.registerItem(PEBBLE_DIORITE);
+        if(Config.enablePebbleAndesite)		Registry.registerItem(PEBBLE_ANDESITE);
+        
+        //Meshes
         if(Config.enableMeshes)  			Registry.registerItem(MESH);
+        
+        //Dolls
         if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);
         if(Config.enableDollChicken)  		Registry.registerItem(DOLL_CHICKEN);
         if(Config.enableDollCow)  			Registry.registerItem(DOLL_COW);
@@ -128,7 +150,7 @@ public class ItemHandler implements INames
         if(Config.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
         if(Config.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
         if(Config.enableDollWolf)  			Registry.registerItem(DOLL_WOLF);
-
+        
         //Werkzeuge
         if(Config.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
         if(Config.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
