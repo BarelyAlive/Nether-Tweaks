@@ -1,6 +1,7 @@
 package mod.nethertweaks.world;
 
 import com.ibm.icu.impl.Differ;
+import com.mojang.realmsclient.dto.RealmsServer.WorldType;
 
 import java.util.*;
 import mod.nethertweaks.config.Config;
@@ -27,10 +28,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Teleporter.PortalPosition;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeHell;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -48,6 +52,7 @@ public class WorldEvents{
 	public final static String coodX = "ntm.cood.x";
 	public final static String coodY = "ntm.cood.y";
 	public final static String coodZ = "ntm.cood.z";
+	public static boolean is_hellworld = false;
 
 	//HELLWORLD
 	
@@ -119,6 +124,7 @@ public class WorldEvents{
 		int range = 32;
 
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+    		is_hellworld = true;
     		teleportPlayer(player);
     		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(player.getUUID(player.getGameProfile())))
     		{
@@ -145,6 +151,10 @@ public class WorldEvents{
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}
 		}
+    	else
+    	{
+    		is_hellworld = false;
+    	}
     }
 
     @SubscribeEvent
@@ -152,14 +162,14 @@ public class WorldEvents{
     {
     	EntityPlayer player = event.player;
 
-    	if(player.dimension != -1) teleportPlayer(player);
+    	if(is_hellworld && player.dimension == 0) teleportPlayer(player);
 	}
 
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
 		EntityPlayer player = event.player;
-
-		if(player.dimension != -1) teleportPlayer(player);
+		
+		if(is_hellworld && player.dimension == 0) teleportPlayer(player);
 	}
 
 	//Enitity Interaction
@@ -193,7 +203,7 @@ public class WorldEvents{
     }
 
     //WORLD DATA
-
+    
     @SubscribeEvent
 	public void LoadPlayerList(WorldEvent.Load event) {
 		if(!(event.getWorld().isRemote)) {
@@ -203,6 +213,18 @@ public class WorldEvents{
 			WorldSpawnLocation.setLastSpawnLocations(worldsave.getLastSpawnLocations());
 			WorldSpawnLocation.setBonfireInfo(worldsave.getBonfireInfo());
 		}
+		
+    	if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
+    	{
+    		is_hellworld = true;
+    		DimensionManager.unregisterDimension(1);
+    		DimensionType.register("the_end", "_end", 1, WorldProviderEnd.class, true);
+    		DimensionManager.registerDimension(1, DimensionType.valueOf("the_end"));
+    	}
+    	else
+    	{
+    		is_hellworld = false;
+    	}
 	}
 
 	@SubscribeEvent
