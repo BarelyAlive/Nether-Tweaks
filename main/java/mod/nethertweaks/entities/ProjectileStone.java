@@ -71,7 +71,7 @@ public class ProjectileStone extends EntityThrowable {
         if (tag.hasKey("pebbleStack")) {
             stack = new ItemStack((NBTTagCompound) tag.getTag("pebbleStack"));
         } else {
-            stack = new ItemStack(ItemHandler.PEBBLE);
+            stack = new ItemStack(ItemHandler.PEBBLE_STONE);
         }
     }
 }

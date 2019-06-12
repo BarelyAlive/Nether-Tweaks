@@ -217,32 +217,28 @@ public class NTM implements IRecipeDefaults
     public void registerSieve(SieveRegistry registry)
     {
         //Stone Pebble
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(0.1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        //Granite Pebble
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 1), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 1), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        //Diorite Pebble
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 2), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 2), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.1f), MeshType.STRING.getID());
 
-        //Andesite Pebble
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 3), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE, 3), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.5f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.1f), MeshType.STRING.getID());
 
         registry.register("dirt", new ItemInfo(Items.WHEAT_SEEDS), getDropChance(0.7f), MeshType.STRING.getID());
         registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
         registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
 
-        //Mushroom Spores
+        //Seeds
         registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getID());
-        //Grass Seeds
         registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
 
         registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getID());
@@ -524,7 +520,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-    	return chance / 100f * (float) Config.normalDropPercent;
+    	return chance / 100f * ((float) Config.normalDropPercent / 100);
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()

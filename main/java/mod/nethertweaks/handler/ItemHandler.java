@@ -30,14 +30,17 @@ public class ItemHandler implements INames
     public static final Item MUSHROOM_SPORES  	 = new Seed(INames.MUSHROOM_SPORES);
     public static final Item GRASS_SEEDS	  	 = new Seed(INames.GRASS_SEEDS);
     public static final Item CACTUS_SEEDS	  	 = new Seed(INames.CACTUS_SEEDS);
+    
     //CRYSTALS
     public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
     public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
+    
     //MESHES
     public static final Item STRING_MESH	  	 = new ItemMesh(INames.STRING_MESH);
     public static final Item FLINT_MESH		  	 = new ItemMesh(INames.FLINT_MESH);
     public static final Item IRON_MESH		  	 = new ItemMesh(INames.IRON_MESH);
     public static final Item DIAMOND_MESH	  	 = new ItemMesh(INames.DIAMOND_MESH);
+
     
     //DOLLS
     public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
@@ -88,6 +91,7 @@ public class ItemHandler implements INames
     public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
     public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
     public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+
     //Food
     public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
@@ -104,7 +108,7 @@ public class ItemHandler implements INames
 
     private static void registerItems()
     { 	
-    	//Multi ID Item
+    	//Crafting Components
     	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
     	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
     	if(Config.enableEndBox)		  		Registry.registerItem(END_BOX);
@@ -114,9 +118,13 @@ public class ItemHandler implements INames
     	if(Config.enableString)		  		Registry.registerItem(STRING);
     	if(Config.enablePorcelainClay) 		Registry.registerItem(PORCELAIN_CLAY);
     	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
+    	
+    	//Seeds
     	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
     	if(Config.enableGrassSeeds)			Registry.registerItem(GRASS_SEEDS);
     	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
+    	
+    	//Crystals
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
 		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
 		
@@ -131,6 +139,7 @@ public class ItemHandler implements INames
         if(Config.enableMeshes)  			Registry.registerItem(FLINT_MESH);
         if(Config.enableMeshes)  			Registry.registerItem(IRON_MESH);
         if(Config.enableMeshes)  			Registry.registerItem(DIAMOND_MESH);
+
         
         //Dolls
         if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);

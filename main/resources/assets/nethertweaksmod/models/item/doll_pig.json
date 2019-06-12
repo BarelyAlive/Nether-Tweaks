@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/flint_and_blaze"
+      "layer0": "nethertweaksmod:items/doll_pig"
     }
 }

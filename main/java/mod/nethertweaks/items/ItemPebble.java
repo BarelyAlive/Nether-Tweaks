@@ -39,23 +39,10 @@ public class ItemPebble extends Item implements IVariantProvider
 {
     private static List<String> names = Lists.newArrayList("stone", "granite", "diorite", "andesite");
     
-    public ItemPebble()
+    public ItemPebble(String type)
     {
-        this.setHasSubtypes(true);
-        this.setRegistryName(NetherTweaksMod.MODID, INames.PEBBLE);
+        this.setRegistryName(NetherTweaksMod.MODID, type);
         this.setCreativeTab(NetherTweaksMod.TABNTM);
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-    	if(tab.equals(this.getCreativeTab()))
-		{
-    		for (int i = 0; i < names.size(); i++)
-            {
-                items.add(new ItemStack(this, 1, i));
-            }
-		}
     }
     
     @Override
@@ -81,13 +68,8 @@ public class ItemPebble extends Item implements IVariantProvider
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-    	return "item." + INames.PEBBLE + "_" + stack.getItemDamage();
+    	return "item." + getRegistryName().getResourcePath();
 
-    }
-    
-    public static ItemStack getPebbleStack(String name)
-    {
-        return new ItemStack(ItemHandler.PEBBLE, 1, names.indexOf(name));
     }
     
     @Override
@@ -95,10 +77,8 @@ public class ItemPebble extends Item implements IVariantProvider
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
         
-        for(int i = 0; i < names.size(); i++)
-		{
-			ret.add(new ImmutablePair<Integer, String>(i, "type=" + names.get(i)));
-		}
+		ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
+			
         return ret;
     }
 }

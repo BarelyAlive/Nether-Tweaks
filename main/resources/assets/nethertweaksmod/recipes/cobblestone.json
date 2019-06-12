@@ -9,8 +9,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
-      "item": "item_pebble",
-      "data": 0
+      "item": "pebble_stone"
     }
   }
 }

@@ -66,30 +66,32 @@ item.mesh_flint.name=Malha de sílex
 item.mesh_iron.name=Malha de Ferro
 item.mesh_diamond.name=Malha em losango
 
+
 item.pebble_stone.name=Calhau de Pedra
 item.pebble_granite.name=Pedra de granito
 item.pebble_diorite.name=Pedra de Diorita
 item.pebble_andesite.name=Calhau Andesita
 
+
 tile.hellfayah_ore.name=Minério de Hellfayah
 tile.block_of_hellfayah.name=Bloco de Hellfayah
 tile.block_of_salt.name=Bloco de sal
 
-item.item_doll_bat.name=Boneca do Morcego
-item.item_doll_chicken.name=Boneca de Galinha
-item.item_doll_cow.name=Boneca de Vaca
-item.item_doll_donkey.name=Boneca de burro
-item.item_doll_horse.name=Boneca de Cavalo
-item.item_doll_red_mooshroom.name=Boneca Red Mooshroom
-item.item_doll_mule.name=Boneca de Mula
-item.item_doll_ocelot.name=Boneca de Jaguatirica
-item.item_doll_parrot.name=Boneca de Papagaio
-item.item_doll_rabbit.name=Boneca de Coelho
-item.item_doll_sheep.name=Boneca de Ovelhas
-item.item_doll_llama.name=Boneca de Llama
-item.item_doll_polar_bear.name=Boneca de Urso Polar
-item.item_doll_wolf.name=Boneca do Lobo
-item.item_doll_villager.name=Boneca de Aldeia
-item.item_doll_villager.name=Boneca de Porco
+item.doll_bat.name=Boneca do Morcego
+item.doll_chicken.name=Boneca de Galinha
+item.doll_cow.name=Boneca de Vaca
+item.doll_donkey.name=Boneca de burro
+item.doll_horse.name=Boneca de Cavalo
+item.doll_red_mooshroom.name=Boneca Red Mooshroom
+item.doll_mule.name=Boneca de Mula
+item.doll_ocelot.name=Boneca de Jaguatirica
+item.doll_parrot.name=Boneca de Papagaio
+item.doll_rabbit.name=Boneca de Coelho
+item.doll_sheep.name=Boneca de Ovelhas
+item.doll_llama.name=Boneca de Llama
+item.doll_polar_bear.name=Boneca de Urso Polar
+item.doll_wolf.name=Boneca do Lobo
+item.doll_villager.name=Boneca de Aldeia
+item.doll_villager.name=Boneca de Porco
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks

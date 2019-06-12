@@ -94,7 +94,7 @@ public class BlockHandler implements INames
 			/*just some of      */			Registry.registerBlock(ELDER_LEAVES);
 			/*these and not the */			Registry.registerBlock(ELDER_PLANKS);
 			/*whole tree, right?*/			Registry.registerBlock(ELDER_SLAB);
-											Registry.registerBlock(ELDER_SLAB_DOUBLE);
+			/*RIGHT?			*/			Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
