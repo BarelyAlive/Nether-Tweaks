@@ -10,6 +10,7 @@ import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Siftable;
 import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -90,7 +91,7 @@ public class TileSieve extends TileBase {
         if (meshStack.isEmpty()) {
             if (!simulate) {
                 meshStack = newMesh.copy();
-                meshType = Sieve.MeshType.getMeshTypeByID(newMesh.getMetadata());
+                meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(newMesh));
 
                 this.markDirtyClient();
             }
@@ -304,7 +305,7 @@ public class TileSieve extends TileBase {
 
         if (tag.hasKey("mesh")) {
             meshStack = new ItemStack(tag.getCompoundTag("mesh"));
-            meshType = Sieve.MeshType.getMeshTypeByID(meshStack.getMetadata());
+            meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(meshStack));
         } else {
             meshStack = ItemStack.EMPTY;
             meshType = Sieve.MeshType.NONE;

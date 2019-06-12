@@ -121,9 +121,23 @@ public class NTM implements IRecipeDefaults
     public void registerHellmart(HellmartRegistry registry)
     {
     	//Dolls
-    	for (Pair<Integer, String> i : ((ItemDoll)ItemHandler.DOLL).getVariants()) {
-			registry.register(new ItemInfo(ItemHandler.DOLL, i.getKey()), new ItemInfo(Blocks.ICE), 3);
-		}
+		registry.register(new ItemInfo(ItemHandler.DOLL_BAT), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_CHICKEN), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_COW), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_DONKEY), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_HORSE), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_LLAMA), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_MULE), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_OCELOT), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_PARROT), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_PIG), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_POLAR_BEAR), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_RABBIT), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_RED_MOOSHROOM), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_SHEEP), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_VILLAGER), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_WOLF), new ItemInfo(Blocks.ICE), 3);
+		
     	registry.register(new ItemInfo(ItemHandler.ENDER_CRYSTAL), new ItemInfo(Blocks.ICE), 10);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");

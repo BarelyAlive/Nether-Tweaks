@@ -215,17 +215,17 @@ public class Sieve extends BlockContainer {
             return id > 0 && id < 5;
         }
 
-        public static MeshType getMeshTypeByID(int meta) {
-            switch (meta) {
-                case 1:
+        public static MeshType getMeshTypeByID(String type) {
+            switch (type) {
+                case INames.STRING_MESH:
                     return STRING;
-                case 2:
+                case INames.FLINT_MESH:
                     return FLINT;
-                case 3:
+                case INames.IRON_MESH:
                     return IRON;
-                case 4:
+                case INames.DIAMOND_MESH:
                     return DIAMOND;
-                case 5:
+                case "idk":
                     return NO_RENDER;
             }
 

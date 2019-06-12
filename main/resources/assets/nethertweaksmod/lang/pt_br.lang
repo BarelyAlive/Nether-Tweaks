@@ -61,15 +61,15 @@ item.stone_bar.name=Barra de Pedra
 item.string.name=Corda
 item.porcelain_clay.name=Argila de Porcelana
 
-item.item_mesh_string.name=Malha de Cordas
-item.item_mesh_flint.name=Malha de sílex
-item.item_mesh_iron.name=Malha de Ferro
-item.item_mesh_diamond.name=Malha em losango
+item.mesh_string.name=Malha de Cordas
+item.mesh_flint.name=Malha de sílex
+item.mesh_iron.name=Malha de Ferro
+item.mesh_diamond.name=Malha em losango
 
-item.item_pebble_0.name=Calhau de Pedra
-item.item_pebble_1.name=Pedra de granito
-item.item_pebble_2.name=Pedra de Diorita
-item.item_pebble_3.name=Calhau Andesita
+item.pebble_stone.name=Calhau de Pedra
+item.pebble_granite.name=Pedra de granito
+item.pebble_diorite.name=Pedra de Diorita
+item.pebble_andesite.name=Calhau Andesita
 
 tile.hellfayah_ore.name=Minério de Hellfayah
 tile.block_of_hellfayah.name=Bloco de Hellfayah
