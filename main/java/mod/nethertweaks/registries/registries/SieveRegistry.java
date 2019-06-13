@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.ISieveRegistry;
 import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.json.CustomIngredientJson;
@@ -49,7 +50,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
         );
     }
 
-    public void register(@Nonnull ItemStack itemStack, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull ItemStack itemStack, @Nonnull StackInfo drop, float chance, String meshLevel) {
         if (itemStack.isEmpty()) {
             return;
         }
@@ -59,27 +60,27 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
             register(CraftingHelper.getIngredient(itemStack), new Siftable(new ItemInfo(drop.getItemStack()), chance, meshLevel));
     }
 
-    public void register(@Nonnull Item item, int meta, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull Item item, int meta, @Nonnull StackInfo drop, float chance, String meshLevel) {
         register(new ItemStack(item, 1, meta), drop, chance, meshLevel);
     }
 
-    public void register(@Nonnull StackInfo item, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull StackInfo item, @Nonnull StackInfo drop, float chance, String meshLevel) {
         register(item.getItemStack(), drop, chance, meshLevel);
     }
 
-    public void register(@Nonnull Block block, int meta, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull Block block, int meta, @Nonnull StackInfo drop, float chance, String meshLevel) {
         register(new ItemStack(block, 1, meta), drop, chance, meshLevel);
     }
 
-    public void register(@Nonnull IBlockState state, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull IBlockState state, @Nonnull StackInfo drop, float chance, String meshLevel) {
         register(new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state)), drop, chance, meshLevel);
     }
 
-    public void register(@Nonnull ResourceLocation location, int meta, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull ResourceLocation location, int meta, @Nonnull StackInfo drop, float chance, String meshLevel) {
         register(new ItemStack(ForgeRegistries.ITEMS.getValue(location), 1, meta), drop, chance, meshLevel);
     }
 
-    public void register(@Nonnull String name, @Nonnull StackInfo drop, float chance, int meshLevel) {
+    public void register(@Nonnull String name, @Nonnull StackInfo drop, float chance, String meshLevel) {
         if (drop instanceof ItemInfo)
             register(new OreIngredientStoring(name), new Siftable((ItemInfo)drop, chance, meshLevel));
         else
@@ -137,7 +138,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
     }
 
     @Nonnull
-    public List<ItemStack> getRewardDrops(@Nonnull Random random, @Nonnull IBlockState block, int meshLevel, int fortuneLevel) {
+    public List<ItemStack> getRewardDrops(@Nonnull Random random, @Nonnull IBlockState block, String meshLevel, int fortuneLevel) {
         if (block == null) {
             return null;
         }
@@ -145,7 +146,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
         List<ItemStack> drops = new ArrayList<>();
 
         getDrops(new BlockInfo(block)).forEach(siftable -> {
-            if (canSieve(siftable.getMeshLevel(), meshLevel)) {
+            if (canSieve(siftable.getMeshLevel(), MeshType.getMeshTypeByID(meshLevel))) {
                 int triesWithFortune = Math.max(random.nextInt(fortuneLevel + 2), 1);
 
                 for (int i = 0; i < triesWithFortune; i++) {
@@ -181,8 +182,8 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
         }
     }
 
-    public static boolean canSieve(int dropLevel, Sieve.MeshType meshType){
-        return canSieve(dropLevel, meshType.getID());
+    public static boolean canSieve(String dropLevel, Sieve.MeshType meshType){
+        return canSieve(MeshType.getMeshTypeByID(dropLevel).getID(), meshType.getID());
     }
 
     public static boolean canSieve(int dropLevel, int meshLevel){

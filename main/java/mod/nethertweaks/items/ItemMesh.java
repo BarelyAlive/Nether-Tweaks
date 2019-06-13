@@ -39,13 +39,13 @@ public class ItemMesh extends Item implements IVariantProvider{
 	{
 	    switch(NameHelper.getName(stack))
 	    {
-	        case INames.STRING_MESH:
+	        case INames.MESH_STRING:
 	            return 15;
-	        case INames.FLINT_MESH:
+	        case INames.MESH_FLINT:
 	            return 7;
-	        case INames.IRON_MESH:
+	        case INames.MESH_IRON:
 	            return 14;
-	        case INames.DIAMOND_MESH:
+	        case INames.MESH_DIAMOND:
 	            return 10;
 	        default:
 	            return 0;

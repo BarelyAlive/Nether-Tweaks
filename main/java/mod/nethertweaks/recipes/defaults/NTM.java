@@ -217,63 +217,63 @@ public class NTM implements IRecipeDefaults
     public void registerSieve(SieveRegistry registry)
     {
         //Stone Pebble
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.1f), MeshType.STRING.getName());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.5f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_GRANITE), getDropChance(0.1f), MeshType.STRING.getName());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.5f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_DIORITE), getDropChance(0.1f), MeshType.STRING.getName());
 
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.5f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.5f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_ANDESITE), getDropChance(0.1f), MeshType.STRING.getName());
 
-        registry.register("dirt", new ItemInfo(Items.WHEAT_SEEDS), getDropChance(0.7f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(Items.WHEAT_SEEDS), getDropChance(0.7f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
 
         //Seeds
-        registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getID());
-        registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
+        registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
+        registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
 
-        registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getID());
-        registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getID());
+        registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getName());
+        registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getName());
 
         // There needs to be a way to get flint without a flint mesh
-        registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.STRING.getID());
-        registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.FLINT.getID());
-        registry.register("gravel", new ItemInfo(Items.COAL), getDropChance(0.125f), MeshType.FLINT.getID());
-        registry.register("gravel", new ItemInfo(Items.DYE, 4), getDropChance(0.05f), MeshType.FLINT.getID());
+        registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.STRING.getName());
+        registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.FLINT.getName());
+        registry.register("gravel", new ItemInfo(Items.COAL), getDropChance(0.125f), MeshType.FLINT.getName());
+        registry.register("gravel", new ItemInfo(Items.DYE, 4), getDropChance(0.05f), MeshType.FLINT.getName());
 
-        registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.008f), MeshType.IRON.getID());
-        registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.008f), MeshType.IRON.getID());
+        registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.008f), MeshType.IRON.getName());
+        registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.008f), MeshType.IRON.getName());
 
-        registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.016f), MeshType.DIAMOND.getID());
-        registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.016f), MeshType.DIAMOND.getID());
+        registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.016f), MeshType.DIAMOND.getName());
+        registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.016f), MeshType.DIAMOND.getName());
 
 
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.FLINT.getID());
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.33f), MeshType.FLINT.getID());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.FLINT.getName());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.33f), MeshType.FLINT.getName());
 
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.NETHER_WART), getDropChance(0.1f), MeshType.STRING.getID());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.NETHER_WART), getDropChance(0.1f), MeshType.STRING.getName());
 
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.GHAST_TEAR), getDropChance(0.02f), MeshType.DIAMOND.getID());
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.DIAMOND.getID());
-        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.8f), MeshType.DIAMOND.getID());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.GHAST_TEAR), getDropChance(0.02f), MeshType.DIAMOND.getName());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.DIAMOND.getName());
+        registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.8f), MeshType.DIAMOND.getName());
 
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.DYE, 15), getDropChance(0.2f), MeshType.STRING.getID());
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GUNPOWDER), getDropChance(0.07f), MeshType.STRING.getID());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.DYE, 15), getDropChance(0.2f), MeshType.STRING.getName());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GUNPOWDER), getDropChance(0.07f), MeshType.STRING.getName());
 
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.REDSTONE), getDropChance(0.125f), MeshType.IRON.getID());
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.REDSTONE), getDropChance(0.25f), MeshType.DIAMOND.getID());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.REDSTONE), getDropChance(0.125f), MeshType.IRON.getName());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.REDSTONE), getDropChance(0.25f), MeshType.DIAMOND.getName());
 
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GLOWSTONE_DUST), getDropChance(0.0625f), MeshType.IRON.getID());
-        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getID());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GLOWSTONE_DUST), getDropChance(0.0625f), MeshType.IRON.getName());
+        registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getName());
         	
         //Damit Saplinge erfasst werden, die auch von ihren Leaves gedroppt werden sollen
         for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
@@ -288,14 +288,14 @@ public class NTM implements IRecipeDefaults
         		boolean hc = NameHelper.getModID(sapling) == "harvestcraft";
         		
         		if(hc && Config.enableHarvestcraft)
-        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getName());
         		else if(!hc)
-        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getID());
+        			registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getName());
 				
-				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getID());
-				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getID());
-				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.60f), MeshType.IRON.getID());
-				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.80f), MeshType.DIAMOND.getID());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.20f), MeshType.STRING.getName());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.40f), MeshType.FLINT.getName());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.60f), MeshType.IRON.getName());
+				registry.register(new BlockInfo(state), new ItemInfo(sapling), getDropChance(0.80f), MeshType.DIAMOND.getName());
 			}
         }
 
@@ -307,72 +307,72 @@ public class NTM implements IRecipeDefaults
 				String name = ore.getOreName(i);
 				switch (name) {
 				case "iron":
-					registry.register("gravel", info.copy(), getDropChance(0.1f/4.0f), MeshType.FLINT.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.15f/4.0f), MeshType.IRON.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.25f/4.0f), MeshType.DIAMOND.getID());
-					registry.register("sand", info.copy(), getDropChance(0.5f/4.0f), MeshType.DIAMOND.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.1f/4.0f), MeshType.FLINT.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.15f/4.0f), MeshType.IRON.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.25f/4.0f), MeshType.DIAMOND.getName());
+					registry.register("sand", info.copy(), getDropChance(0.5f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				case "gold":
-					registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f/4.0f), MeshType.FLINT.getID());
-		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f/4.0f), MeshType.IRON.getID());
-		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.4f/4.0f), MeshType.DIAMOND.getID());
+					registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f/4.0f), MeshType.FLINT.getName());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.25f/4.0f), MeshType.IRON.getName());
+		            registry.register(new ItemStack(BlockHandler.DUST), info.copy(), getDropChance(0.4f/4.0f), MeshType.DIAMOND.getName());
 				case "aluminum":
 				case "aluminium":
-					registry.register("sand", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getID());
-					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getID());
+					registry.register("sand", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getName());
+					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getName());
 					break;
 				case "copper":
-					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getName());
 					break;
 				case "silver":
-					registry.register("sand", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getID());
+					registry.register("sand", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				case "tin":
-					registry.register("sand", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getID());
-					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getID());
+					registry.register("sand", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getName());
+					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getName());
 					break;
 				case "uranium":
-					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.IRON.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.10f/4.0f), MeshType.DIAMOND.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.IRON.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.10f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				case "zinc":
-					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getID());
-					registry.register("sand", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getID());
+					registry.register("sand", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getName());
+					registry.register("sand", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				default:
-					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getID());
-					registry.register("gravel", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getID());
+					registry.register("gravel", info.copy(), getDropChance(0.05f/4.0f), MeshType.FLINT.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.075f/4.0f), MeshType.IRON.getName());
+					registry.register("gravel", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				}
 			}
         }
         // Seeds
-        	registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
-            registry.register("dirt", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getID());
+        	registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
+            registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
+            registry.register("dirt", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
         
         getLeavesSapling().forEach((leaves, sapling) ->
         {
             float chance = 20f / 100f;
 
-            registry.register(leaves, sapling, Math.min(chance * 1, 1.0f), MeshType.STRING.getID());
-            registry.register(leaves, sapling, Math.min(chance * 2, 1.0f), MeshType.FLINT.getID());
-            registry.register(leaves, sapling, Math.min(chance * 3, 1.0f), MeshType.IRON.getID());
-            registry.register(leaves, sapling, Math.min(chance * 4, 1.0f), MeshType.DIAMOND.getID());
+            registry.register(leaves, sapling, Math.min(chance * 1, 1.0f), MeshType.STRING.getName());
+            registry.register(leaves, sapling, Math.min(chance * 2, 1.0f), MeshType.FLINT.getName());
+            registry.register(leaves, sapling, Math.min(chance * 3, 1.0f), MeshType.IRON.getName());
+            registry.register(leaves, sapling, Math.min(chance * 4, 1.0f), MeshType.DIAMOND.getName());
 
             //Apple
-            registry.register(leaves, new ItemInfo(Items.APPLE), 0.05f, MeshType.STRING.getID());
-            registry.register(leaves, new ItemInfo(Items.APPLE), 0.10f, MeshType.FLINT.getID());
-            registry.register(leaves, new ItemInfo(Items.APPLE), 0.15f, MeshType.IRON.getID());
-            registry.register(leaves, new ItemInfo(Items.APPLE), 0.20f, MeshType.DIAMOND.getID());
+            registry.register(leaves, new ItemInfo(Items.APPLE), 0.05f, MeshType.STRING.getName());
+            registry.register(leaves, new ItemInfo(Items.APPLE), 0.10f, MeshType.FLINT.getName());
+            registry.register(leaves, new ItemInfo(Items.APPLE), 0.15f, MeshType.IRON.getName());
+            registry.register(leaves, new ItemInfo(Items.APPLE), 0.20f, MeshType.DIAMOND.getName());
 
             //Golden Apple
-            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.001f, MeshType.STRING.getID());
-            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.003f, MeshType.FLINT.getID());
-            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.005f, MeshType.IRON.getID());
-            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.01f, MeshType.DIAMOND.getID());
+            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.001f, MeshType.STRING.getName());
+            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.003f, MeshType.FLINT.getName());
+            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.005f, MeshType.IRON.getName());
+            registry.register(leaves, new ItemInfo(Items.GOLDEN_APPLE), 0.01f, MeshType.DIAMOND.getName());
         });
     }
 
@@ -520,7 +520,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-    	return chance / 100f * ((float) Config.normalDropPercent / 100);
+    	return chance / 100f * (float) Config.normalDropPercent;
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()

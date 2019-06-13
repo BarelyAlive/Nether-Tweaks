@@ -36,10 +36,10 @@ public class ItemHandler implements INames
     public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
     
     //MESHES
-    public static final Item STRING_MESH	  	 = new ItemMesh(INames.STRING_MESH);
-    public static final Item FLINT_MESH		  	 = new ItemMesh(INames.FLINT_MESH);
-    public static final Item IRON_MESH		  	 = new ItemMesh(INames.IRON_MESH);
-    public static final Item DIAMOND_MESH	  	 = new ItemMesh(INames.DIAMOND_MESH);
+    public static final Item STRING_MESH	  	 = new ItemMesh(INames.MESH_STRING);
+    public static final Item FLINT_MESH		  	 = new ItemMesh(INames.MESH_FLINT);
+    public static final Item IRON_MESH		  	 = new ItemMesh(INames.MESH_IRON);
+    public static final Item DIAMOND_MESH	  	 = new ItemMesh(INames.MESH_DIAMOND);
 
     
     //DOLLS

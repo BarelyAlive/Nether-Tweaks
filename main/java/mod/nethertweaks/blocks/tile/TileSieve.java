@@ -117,9 +117,9 @@ public class TileSieve extends TileBase {
         if (!currentStack.isValid() && NTMRegistryManager.SIEVE_REGISTRY.canBeSifted(stack)) {
             if (meshStack.isEmpty())
                 return false;
-            int meshLevel = meshStack.getItemDamage();
+            String meshLevel = NameHelper.getName(meshStack);
             for (Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack)) {
-                if (siftable.getMeshLevel() == meshLevel) {
+                if (("mesh_" + siftable.getMeshLevel()).equals(meshLevel)) {
                     currentStack = new BlockInfo(stack);
                     markDirtyClient();
                     return true;
@@ -179,7 +179,7 @@ public class TileSieve extends TileBase {
             markDirtyClient();
 
             if (progress >= 100) {
-                List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), meshStack.getMetadata(), fortune);
+                List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
 
                 if (drops == null) {
                     drops = new ArrayList<>();

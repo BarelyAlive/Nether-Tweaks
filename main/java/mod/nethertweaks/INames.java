@@ -20,10 +20,10 @@ public interface INames {
 	public static String FREEZER 					= "freezer";
 	public static String CRUCIBLE					= "crucible";
 	
-	public static String STRING_MESH				= "mesh_string";
-	public static String FLINT_MESH					= "mesh_flint";
-	public static String IRON_MESH					= "mesh_iron";
-	public static String DIAMOND_MESH				= "mesh_diamond";
+	public static String MESH_STRING				= "mesh_string";
+	public static String MESH_FLINT					= "mesh_flint";
+	public static String MESH_IRON					= "mesh_iron";
+	public static String MESH_DIAMOND				= "mesh_diamond";
 	
 	public static String STONE_DOOR					= "stone_door";
 	public static String ELDER_DOOR					= "elder_door";
