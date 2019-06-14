@@ -73,13 +73,11 @@ public class TileNetherrackFurnace extends TileInventory
 		else
 			work();
 		
-		if(this.world.isRemote) return;
-		
 		checkInputOutput();
-        NetherrackFurnace.setState(isWorking(), this.world, this.pos);
+		NetherrackFurnace.setState(isWorking(), this.world, this.pos);
 		NetworkHandler.sendNBTUpdate(this);
-        
-        if(this.getWorkTime() >= this.getMaxworkTime())
+        		
+        if(this.getWorkTime() >= this.getMaxworkTime() && !this.world.isRemote)
 		{
 			this.setWorkTime(0);
 			smeltItem();
@@ -88,6 +86,8 @@ public class TileNetherrackFurnace extends TileInventory
 	
 	private void checkInputOutput()
 	{
+		if(this.world.isRemote) return;
+		
 		if(Config.autoExtractItems)
 			extractFromInventory(pos.up(), EnumFacing.DOWN);
     	if(Config.autoOutputItems) {

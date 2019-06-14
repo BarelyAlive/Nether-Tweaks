@@ -4,8 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.SerializationUtils;
-
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileBarrel;
@@ -106,12 +104,12 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         //Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
 	        b = b.withProperty(ISBURNING, true);
-	        worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), b, 3);
+	        worldIn.setBlockState(pos, b, 3);
 	        validate(worldIn, pos, furnace);
 		}
 		else if(!active && b.getValue(ISBURNING)) {
     		b = b.withProperty(ISBURNING, false);
-	        worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), b, 3);
+	        worldIn.setBlockState(pos, b, 3);
 	        validate(worldIn, pos, furnace);
     	}
     }
