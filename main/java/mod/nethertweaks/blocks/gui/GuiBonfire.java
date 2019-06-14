@@ -18,6 +18,7 @@ import mod.nethertweaks.registry.types.*;
 import mod.nethertweaks.world.*;
 import mod.sfhcore.network.*;
 import mod.sfhcore.util.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.*;
 import net.minecraft.client.renderer.*;
@@ -37,6 +38,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.*;
 import net.minecraftforge.server.permission.context.*;
+import p455w0rdslib.util.ChunkUtils;
 
 public class GuiBonfire extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guibonfire.png");
@@ -124,31 +126,6 @@ public class GuiBonfire extends GuiContainer {
 		}
 	}
 	
-	private BlockPos testPosition(final BlockPos destination)
-	{		
-		boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
-		boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
-		boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
-		boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
-		
-		boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
-		boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
-		boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
-		boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
-		
-		if(north) return destination.north();
-		if(east) return destination.east();
-		if(south) return destination.south();
-		if(west) return destination.west();
-		
-		if(northEast) return destination.north().east();
-		if(southEast) return destination.south().east();
-		if(southWest) return destination.south().west();
-		if(northWest) return destination.north().west();
-		
-		return null;
-	}
-	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		super.actionPerformed(button);
@@ -172,13 +149,7 @@ public class GuiBonfire extends GuiContainer {
 			
 			int result = 0;
 			
-			BlockPos resultPos = this.testPosition(destination);
-			
-			if (resultPos != null)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer(resultPos.getX(), resultPos.getY(), resultPos.getZ(), resultPos, player));
-			}
-		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + destination + "!"));
+			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), destination.getY(), destination.getZ(), destination, player));
 		}
 		if (button.id == 6)
 		{

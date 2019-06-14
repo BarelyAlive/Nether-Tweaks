@@ -24,29 +24,29 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandlerNTM implements IGuiHandler
 {
-	public static final int idFurnace = 0;
-	public static final int idCondenser = 1;
-	public static final int idFreezer = 2;
-	public static final int idHellmart = 3;
-	public static final int idBonfire = 4;
+	public static final int ID_FURNACE = 0;
+	public static final int ID_CONDENSER = 1;
+	public static final int ID_FREEZER = 2;
+	public static final int ID_HELLMART = 3;
+	public static final int ID_BONFIRE = 4;
 	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
 		switch (ID)
 		{
-		case idFurnace:
-			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
-		case idCondenser:
-			return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
-		case idFreezer:
-			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
-		case idHellmart:
-			return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
-		case idBonfire:
-			return new ContainerBonfire();
-		default:
-			return null;
+			case ID_FURNACE:
+				return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+			case ID_CONDENSER:
+				return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
+			case ID_FREEZER:
+				return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
+			case ID_HELLMART:
+				return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
+			case ID_BONFIRE:
+				return new ContainerBonfire();
+			default:
+				return null;
 		}
 	}
 		
@@ -55,15 +55,15 @@ public class GuiHandlerNTM implements IGuiHandler
 	{
 		switch (ID)
 		{
-		case idFurnace:
+		case ID_FURNACE:
 			return new GuiNetherrackFurnace(player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
-		case idCondenser:
+		case ID_CONDENSER:
 			return new GuiCondenser(player.inventory, (TileCondenser) world.getTileEntity(new BlockPos(x, y, z)));
-		case idFreezer:
+		case ID_FREEZER:
 			return new GuiFreezer(player.inventory, (TileFreezer) world.getTileEntity(new BlockPos(x, y, z)));
-		case idHellmart:
+		case ID_HELLMART:
 			return new GuiHellmart(player.inventory, (TileHellmart) world.getTileEntity(new BlockPos(x, y, z)));
-		case idBonfire:
+		case ID_BONFIRE:
 			return new GuiBonfire(new BlockPos(x, y, z), world, player);
 		default:
 			return null;

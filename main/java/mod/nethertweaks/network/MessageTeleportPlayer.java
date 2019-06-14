@@ -9,10 +9,14 @@ import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import p455w0rdslib.util.ChunkUtils;
 
 public class MessageTeleportPlayer implements IMessage {
 
@@ -57,16 +61,55 @@ public class MessageTeleportPlayer implements IMessage {
 	
 	public static class MessageTeleportPlayerHandler implements IMessageHandler<MessageTeleportPlayer, IMessage>
 	{
+		private BlockPos testPosition(World world, final BlockPos destination)
+		{		
+			boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
+			boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
+			boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
+			boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
+			
+			boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
+			boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
+			boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
+			boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
+			
+			if(north) return destination.north();
+			if(east) return destination.east();
+			if(south) return destination.south();
+			if(west) return destination.west();
+			
+			if(northEast) return destination.north().east();
+			if(southEast) return destination.south().east();
+			if(southWest) return destination.south().west();
+			if(northWest) return destination.north().west();
+			
+			return null;
+		}
+
 		@Override
 		public IMessage onMessage(MessageTeleportPlayer message, MessageContext ctx) {
 			
 			EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
+
+			Minecraft.getMinecraft().world.getChunkProvider().loadChunk(ChunkUtils.getChunkPos(Minecraft.getMinecraft().world, message.looking_block).x, ChunkUtils.getChunkPos(Minecraft.getMinecraft().world, message.looking_block).z);
 			
-			player.setPositionAndRotation(message.x + 0.5, message.y, message.z + 0.5, player.cameraYaw, player.cameraPitch);
+			System.out.println(Minecraft.getMinecraft().world.getBlockState(message.looking_block.up()).getBlock());
+			System.out.println(Minecraft.getMinecraft().world.getBlockState(message.looking_block).getBlock());
+			System.out.println(Minecraft.getMinecraft().world.getBlockState(message.looking_block.down()).getBlock());
+			System.out.println(Minecraft.getMinecraft().world.getBlockState(message.looking_block.down(2)).getBlock());
+			
+			BlockPos resultPos = testPosition(Minecraft.getMinecraft().world, message.looking_block.down());
+			
+			if (resultPos == null)
+			{
+				resultPos = message.looking_block.up();
+			}
+			
+			player.setPositionAndRotation(resultPos.getX() + 0.5, resultPos.getY(), resultPos.getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 			
 			LookAt(message.looking_block.getX() + 0.5, message.looking_block.getY(), message.looking_block.getZ() + 0.5, player);
 			
-			ctx.getServerHandler().setPlayerLocation(message.x + 0.5, message.looking_block.getY(), message.z + 0.5, player.cameraYaw, player.cameraPitch);
+			ctx.getServerHandler().setPlayerLocation(resultPos.getX() + 0.5, resultPos.getY(), resultPos.getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 			
 			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 			
@@ -90,7 +133,9 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			binfo.addPlayer(player);
 			
-			WorldSpawnLocation.bonfire_info.put(message.looking_block, binfo.copy());
+			WorldSpawnLocation.bonfire_info.put(message.looking_block, binfo);
+			
+			player.sendMessage(new TextComponentString(player.getName() + " rested at: " + resultPos + "!"));
 			
 			player.closeScreen();
 			

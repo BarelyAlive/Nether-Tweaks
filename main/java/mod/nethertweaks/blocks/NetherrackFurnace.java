@@ -82,7 +82,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 			return false;
 		}
 		
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idFurnace, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     

@@ -83,7 +83,7 @@ public class Condenser extends CubeContainerHorizontal
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if(success) return true;
 		}
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idCondenser, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_CONDENSER, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     
