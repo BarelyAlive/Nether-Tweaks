@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileBarrel;
@@ -49,8 +51,10 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import p455w0rdslib.util.ChunkUtils;
  
 public class NetherrackFurnace extends CubeContainerHorizontal {
      
@@ -102,12 +106,12 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
         //Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
 	        b = b.withProperty(ISBURNING, true);
-	        worldIn.setBlockState(pos, b, 3);
+	        worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), b, 3);
 	        validate(worldIn, pos, furnace);
 		}
 		else if(!active && b.getValue(ISBURNING)) {
     		b = b.withProperty(ISBURNING, false);
-	        worldIn.setBlockState(pos, b, 3);
+	        worldIn.notifyBlockUpdate(pos, worldIn.getBlockState(pos), b, 3);
 	        validate(worldIn, pos, furnace);
     	}
     }
