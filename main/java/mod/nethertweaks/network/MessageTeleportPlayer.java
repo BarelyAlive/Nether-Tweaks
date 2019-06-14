@@ -66,7 +66,7 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			LookAt(message.looking_block.getX() + 0.5, message.looking_block.getY(), message.looking_block.getZ() + 0.5, player);
 			
-			ctx.getServerHandler().setPlayerLocation(message.x + 0.5, message.y, message.z + 0.5, player.cameraYaw, player.cameraPitch);
+			ctx.getServerHandler().setPlayerLocation(message.x + 0.5, message.looking_block.getY(), message.z + 0.5, player.cameraYaw, player.cameraPitch);
 			
 			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 			

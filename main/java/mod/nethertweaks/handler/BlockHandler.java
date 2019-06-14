@@ -65,11 +65,11 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity
-    	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
-    	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
+    	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+    	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
     	if(Config.enableBarrel) {				
 											Registry.registerTileEntity(BARREL, TileBarrel.class);
 											Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);

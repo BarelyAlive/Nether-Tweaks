@@ -145,7 +145,10 @@ public class Config
 	public static boolean enablePebbleGranite		= true;
 	public static boolean enablePebbleDiorite		= true;
 	public static boolean enablePebbleAndesite		= true;
-	public static boolean enableMeshes 				= true;
+	public static boolean enableStringMeshes		= true;
+	public static boolean enableFlintMeshes			= true;
+	public static boolean enableIronMeshes			= true;
+	public static boolean enableDiamondMeshes		= true;
 	public static boolean enableDollBat				= true;
 	public static boolean enableDollChicken			= true;
 	public static boolean enableDollCow				= true;
@@ -319,7 +322,10 @@ public class Config
     	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
     	enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
     	enablePebbleAndesite			= config.get("Items", "Enable Andesite Pebbles?", true).getBoolean();
-    	enableMeshes 					= config.get("Items", "Enable Meshes?", true).getBoolean();
+    	enableStringMeshes 				= config.get("Items", "Enable String Meshes?", true).getBoolean();
+    	enableFlintMeshes 				= config.get("Items", "Enable Flint Meshes?", true).getBoolean();
+    	enableIronMeshes 				= config.get("Items", "Enable Iron Meshes?", true).getBoolean();
+    	enableDiamondMeshes				= config.get("Items", "Enable Diamond Meshes?", true).getBoolean();
     	enableDollBat 					= config.get("Items", "Enable Bat Doll?", true).getBoolean();
     	enableDollChicken 				= config.get("Items", "Enable Chicken Doll?", true).getBoolean();
     	enableDollCow 					= config.get("Items", "Enable Cow Doll?", true).getBoolean();

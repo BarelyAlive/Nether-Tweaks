@@ -3,6 +3,8 @@ package mod.nethertweaks.blocks.gui;
 import java.io.IOException;
 import java.util.*;
 
+import javax.print.attribute.standard.Destination;
+
 import org.lwjgl.input.*;
 import org.lwjgl.opengl.*;
 
@@ -19,6 +21,7 @@ import mod.sfhcore.util.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.command.server.CommandTeleport;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -26,6 +29,9 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraftforge.fml.client.config.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -118,15 +124,29 @@ public class GuiBonfire extends GuiContainer {
 		}
 	}
 	
-	private int testPosition(BlockPos destination)
-	{
-		if (world.isSideSolid(destination.down(2), EnumFacing.UP) && world.isAirBlock(destination.down()) && world.isAirBlock(destination))
-			return 0;
-		if (world.isSideSolid(destination.down(), EnumFacing.UP) && world.isAirBlock(destination) && world.isAirBlock(destination.up()))
-			return 1;
-		if (world.isSideSolid(destination, EnumFacing.UP) && world.isAirBlock(destination.up()) && world.isAirBlock(destination.up(2)))
-			return 2;
-		return -1;
+	private BlockPos testPosition(final BlockPos destination)
+	{		
+		boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
+		boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
+		boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
+		boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
+		
+		boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
+		boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
+		boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
+		boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
+		
+		if(north) return destination.north();
+		if(east) return destination.east();
+		if(south) return destination.south();
+		if(west) return destination.west();
+		
+		if(northEast) return destination.north().east();
+		if(southEast) return destination.south().east();
+		if(southWest) return destination.south().west();
+		if(northWest) return destination.north().west();
+		
+		return null;
 	}
 	
 	@Override
@@ -148,40 +168,15 @@ public class GuiBonfire extends GuiContainer {
 				return;
 			}
 			
-			BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
+			final BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
 			
 			int result = 0;
-			if ((result = this.testPosition(destination.add(1, 0, 1))) != -1)
+			
+			BlockPos resultPos = this.testPosition(destination);
+			
+			if (resultPos != null)
 			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(0, 0, 1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, 1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, 0))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), destination.getZ(), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(0, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(1, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(1, 0, 0))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), destination.getZ(), destination, player));
+				NetworkHandler.sendToServer(new MessageTeleportPlayer(resultPos.getX(), resultPos.getY(), resultPos.getZ(), resultPos, player));
 			}
 		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + destination + "!"));
 		}

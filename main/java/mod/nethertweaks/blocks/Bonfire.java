@@ -46,7 +46,7 @@ public class Bonfire extends Block
 	
 	public Bonfire() {
 		super(Material.ROCK);
-		setLightLevel(12);
+		setLightLevel(12.0F);
 		setRegistryName(NetherTweaksMod.MODID, INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.TABNTM);
         //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -92,32 +92,6 @@ public class Bonfire extends Block
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		if(playerIn.isSneaking()) return false;
 		
-		/*
-		BonfireInfo binfo;
-		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
-		{
-			binfo = new BonfireInfo();
-		}
-		else
-		{
-			binfo = WorldSpawnLoc.bonfire_info.get(pos);
-		}
-		
-		for (BonfireInfo entry : WorldSpawnLoc.bonfire_info.values())
-		{
-			if (entry.hasPlayer(playerIn))
-			{
-				entry.removePlayer(playerIn);
-			}
-		}
-			
-		binfo.addPlayer(playerIn);
-		WorldSpawnLoc.lastSpawnLocas.put(playerIn.getUUID(playerIn.getGameProfile()), new PlayerPosition(new BlockPos(playerIn), playerIn.rotationYaw, playerIn.rotationPitch));
-		if(worldIn.isRemote)
-		    playerIn.sendMessage(new TextComponentString(playerIn.getName() + " rested at: " + playerIn.getPosition() + "!"));
-		
-		WorldSpawnLoc.bonfire_info.put(pos, binfo.copy());
-		*/
 		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idBonfire, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		
 		return true;

@@ -40,7 +40,6 @@ public class ItemHandler implements INames
     public static final Item FLINT_MESH		  	 = new ItemMesh(INames.MESH_FLINT);
     public static final Item IRON_MESH		  	 = new ItemMesh(INames.MESH_IRON);
     public static final Item DIAMOND_MESH	  	 = new ItemMesh(INames.MESH_DIAMOND);
-
     
     //DOLLS
     public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
@@ -135,10 +134,10 @@ public class ItemHandler implements INames
         if(Config.enablePebbleAndesite)		Registry.registerItem(PEBBLE_ANDESITE);
         
         //Meshes
-        if(Config.enableMeshes)  			Registry.registerItem(STRING_MESH);
-        if(Config.enableMeshes)  			Registry.registerItem(FLINT_MESH);
-        if(Config.enableMeshes)  			Registry.registerItem(IRON_MESH);
-        if(Config.enableMeshes)  			Registry.registerItem(DIAMOND_MESH);
+        if(Config.enableStringMeshes)		Registry.registerItem(STRING_MESH);
+        if(Config.enableFlintMeshes) 		Registry.registerItem(FLINT_MESH);
+        if(Config.enableIronMeshes)  		Registry.registerItem(IRON_MESH);
+        if(Config.enableDiamondMeshes)		Registry.registerItem(DIAMOND_MESH);
 
         
         //Dolls
