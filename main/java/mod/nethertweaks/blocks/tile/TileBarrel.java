@@ -33,6 +33,7 @@ import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.modules.MooFluid.*;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
@@ -103,6 +104,17 @@ public class TileBarrel extends TileBase implements ITickable {
             boolean result = false;
             if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
+            if (!result)
+            {
+            	if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
+            	{
+            		if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
+            		{
+            			this.getItemHandler().insertItem(0, stack, true);
+            		}
+            	}
+            }
+            
             if (result) {
                 if (!player.isCreative()) {
                     stack.shrink(1);
@@ -176,7 +188,7 @@ public class TileBarrel extends TileBase implements ITickable {
 
             return true;
         }
-
+        
         return true;
     }
 

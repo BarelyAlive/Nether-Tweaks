@@ -3,12 +3,14 @@ package mod.nethertweaks.world;
 import java.util.*;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 
 public class BonfireInfo {
 	private String name;
 	private boolean seeable;
 	private UUID owner;
 	private List<UUID> lastSpawnPlayer;
+	private BlockPos spawnPos;
 	
 	public BonfireInfo(UUID owner)
 	{
@@ -17,7 +19,7 @@ public class BonfireInfo {
 	
 	public BonfireInfo(String name, UUID owner)
 	{
-		this(name, false, owner);
+		this(name, true, owner);
 	}
 	
 	public BonfireInfo(String name, boolean seeable, UUID owner)
@@ -30,6 +32,7 @@ public class BonfireInfo {
 		this.name = name;
 		this.seeable = seeable;
 		this.owner = owner;
+		this.spawnPos = null;
 		if (lastSpawnPlayer == null)
 			this.lastSpawnPlayer = new ArrayList<UUID>();
 		else
@@ -54,6 +57,16 @@ public class BonfireInfo {
 	public String getName()
 	{
 		return this.name;
+	}
+	
+	public void setSpawnPos(BlockPos pos)
+	{
+		this.spawnPos = pos;
+	}
+	
+	public BlockPos getSpawnPos()
+	{
+		return this.spawnPos;
 	}
 	
 	public void isPublic(boolean seeable)

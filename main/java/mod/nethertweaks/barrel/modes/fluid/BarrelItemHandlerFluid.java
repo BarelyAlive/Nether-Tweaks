@@ -13,7 +13,7 @@ import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -29,12 +29,12 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
         super(1);
         this.barrel = barrel;
     }
-
+	
     @Override
     @Nonnull
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
         FluidTank tank = barrel.getTank();
-
+        
         if (tank.getFluid() == null)
             return stack;
 
@@ -76,18 +76,24 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
             boolean isConsumable = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getConsumable(tank.getFluid().getFluid(), stack);
             
             if (!simulate) {
-                tank.drain(tank.getCapacity(), true);
+                FluidStack fstack = tank.drain(tank.getCapacity(), true);
                 barrel.setMode("fluid");
                 NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("fluid", barrel.getPos()), barrel);
                 
-                barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
-                /*
+                if(((BarrelModeFluid) barrel.getMode()).workTime != 0)
+                {
+                	return stack;
+                }
+                
+                //barrel.getMode().addItem(new ItemStack(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()).getFluid().getBlock()), barrel);
+                barrel.getMode().addItem(stack.copy(), barrel);
                 if (spawnCount > 0)
                 {
-                	tank.fill(FluidRegistry.getFluidStack(fluidItemFluidOutput, tank.getCapacity()), true);
+                	tank.fill(fstack, true);
+                	barrel.getItemHandler().setStackInSlot(0, stack);
+                	((BarrelModeFluid)barrel.getMode()).maxWorkTime = spawnCount;
                 	NetworkHandler.sendNBTUpdate(barrel);
                 }
-                */
             }
             ItemStack ret = stack.copy();
             ret.shrink(1);

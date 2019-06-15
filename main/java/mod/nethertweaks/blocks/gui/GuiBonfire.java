@@ -148,8 +148,7 @@ public class GuiBonfire extends GuiContainer {
 			final BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
 			
 			int result = 0;
-			
-			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), destination.getY(), destination.getZ(), destination, player));
+			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));
 		}
 		if (button.id == 6)
 		{

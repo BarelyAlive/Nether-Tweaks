@@ -1,5 +1,17 @@
 package mod.nethertweaks.barrel.modes.fluid;
 
+import java.util.List;
+
+import mod.nethertweaks.barrel.BarrelFluidHandler;
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -14,42 +26,38 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-import java.util.List;
-
-import mod.nethertweaks.barrel.BarrelFluidHandler;
-import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.FluidTransformer;
-import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.Util;
-
 public class BarrelModeFluid implements IBarrelMode {
 
     private final BarrelItemHandlerFluid handler;
+    public int workTime;
+    public int maxWorkTime = 1200;
+    public Color impossFluidColor = new Color(25, 75, 75, 255);
+    
 
     public BarrelModeFluid() {
         handler = new BarrelItemHandlerFluid(null);
+        workTime = 0;
     }
 
     @Override
     public void writeToNBT(NBTTagCompound tag) {
-        // TODO Auto-generated method stub
-
+    	tag.setInteger("maxWorkTime", this.maxWorkTime);
+    	tag.setInteger("workTime", this.workTime);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
-        // TODO Auto-generated method stub
-
+    	this.maxWorkTime = tag.getInteger("maxWorkTime");
+    	this.workTime = tag.getInteger("workTime");
     }
 
     @Override
@@ -71,7 +79,14 @@ public class BarrelModeFluid implements IBarrelMode {
     public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
         if (barrel.getTank().getFluid() != null) {
             currenttip.add(barrel.getTank().getFluid().getLocalizedName());
-            currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
+            if (this.workTime > 0)
+            {
+            	currenttip.add("Transformation: " + (((float)(((double)this.maxWorkTime) / ((double)this.workTime))) * 100.0F) + " %");
+            }
+            else
+            {
+                currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
+            }
         } else {
             currenttip.add("Empty");
         }
@@ -107,12 +122,36 @@ public class BarrelModeFluid implements IBarrelMode {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
-        return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
+    	/*
+    	if (workTime > 0)
+    	{
+	    	if (((float)(((double)this.maxWorkTime) / ((double)this.maxWorkTime))) < 0.5F)
+	    	{
+	    		return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
+	    	}
+	    	else
+	    	{
+	            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+	            if(transformFluidItem != null)
+	            {
+	            	return Util.getTextureFromFluidStack(FluidRegistry.getFluidStack(transformFluidItem, barrel.getTank().getCapacity()));
+	            }
+	    	}
+    	}
+    	*/
+    	return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
     }
 
     @Override
     public Color getColorForRender() {
-        return Util.whiteColor;
+    	if (this.workTime == 0)
+    		return Util.whiteColor;
+    	else
+    	{
+            return Color.average(Util.whiteColor, Util.greenColor,  //new Color(0.09f, 0.29f, 0.29f, 1f),
+                    2 * Math.abs((float)(((double)this.workTime) / ((double)this.maxWorkTime))));
+    	}
+
     }
 
     @Override
@@ -188,11 +227,33 @@ public class BarrelModeFluid implements IBarrelMode {
                     if (found) break;
                 }
             }
+            if(barrel.getItemHandler().getStackInSlot(0) != null && barrel.getTank().getFluid() != null)
+            {
+	            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+	            if(transformFluidItem != null)
+	            {
+	            	this.workTime++;
+	            	if(this.maxWorkTime < this.workTime)
+	            	{
+	            		barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
+	                	tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
+	            	}
+	            	NetworkHandler.sendNBTUpdate(barrel);
+	            }
+            }
         }
     }
 
     @Override
     public void addItem(ItemStack stack, TileBarrel barrel) {
+    	if (this.workTime != 0)
+    		return;
+    	FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
+    	handler.setBarrel(barrel);
+    	if(handler.getStackInSlot(0).isEmpty())
+    	{
+    		handler.insertItem(0, stack, false);
+    	}
     }
 
     @Override

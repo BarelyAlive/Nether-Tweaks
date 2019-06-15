@@ -62,6 +62,7 @@ import net.minecraft.world.WorldType;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -120,10 +121,7 @@ public class NetherTweaksMod
     				{
     					continue;
     				}
-            		for (ItemStack stack : OreDictionary.getOres(ore_name))
-            		{
-                		OreHandler.add(stack, 1);
-            		}
+                	OreHandler.add(OreDictionary.getOres(ore_name).get(0), 1);
     			}
     		}
     		OreHandler.register(event.getRegistry());
