@@ -30,7 +30,7 @@ ChangeLog NTM 2.0.0
 * Mobs like squids etc. can now spawn in Liquid Impossibility
 * Much more and better config options!
 * Forgotten Tree is now called Elder Tree & looks different
-* Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast 
+* Elder Leaves now become transparent or opaque depending on whether graphics are fancy or fast
 * Sieve meshes can be enchanted (fortune, efficiency and luck of the sea)
 * Grabber now works with melon blocks, cactus, cobweb, fern, dead bushes and shearable entities like sheep (configurable)
 * Grabber now spares the highest block when harvesting vines
@@ -45,6 +45,7 @@ ChangeLog NTM 2.0.0
 * Stone & Wood Bucket are now like forge's universal bucket (Wood Buckets can't hold/pick up hot fluids)
     (actually this is from SFHCore and every mod can add them if they use SFHCore)
 * IF SOMETHING IS NOT CLEAR PLEASE HAVE A LOOK INTO MY WIKI: https://nethertweaksmod.wordpress.com/
+* In the End, water does vaporize (lel)
 - Removed old ore blocks and items
 - Removed Holy Earth
 - Removed Sanctuary Crystal
