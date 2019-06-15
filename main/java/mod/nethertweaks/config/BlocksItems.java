@@ -36,6 +36,7 @@ public class BlocksItems
 	public static boolean enableMushroomSpores		= true;
 	public static boolean enableGrassSeeds			= true;
 	public static boolean enableCactusSeeds			= true;
+	public static boolean enableSugarcaneSeeds		= true;
 	public static boolean enableCrystalLight 		= true;
 	public static boolean enableCrystalEnder 		= true;
 	public static boolean enablePebbleStone			= true;
@@ -117,6 +118,7 @@ public class BlocksItems
     	enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
     	enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
     	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
+    	enableSugarcaneSeeds			= config.get("Items", "Enable Sugarcane Seeds?", true).getBoolean();
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();

@@ -45,6 +45,7 @@ item.hammer_stone.name=Martillo de piedra
 item.mushroom_spores.name=Esporas de hongos
 item.grass_seeds.name=Semillas de cesped
 item.cactus_seeds.name=Semillas de cactus
+item.sugarcane_seeds.name=Semillas de caña de azúcar
 
 item.flint_and_blaze.name=Flint and Blaze
 
