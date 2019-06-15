@@ -64,6 +64,7 @@ public interface INames {
 	public String MUSHROOM_SPORES			= "mushroom_spores";
 	public String GRASS_SEEDS				= "grass_seeds";
 	public String CACTUS_SEEDS				= "cactus_seeds";
+	public String SUGARCANE_SEEDS			= "sugarcane_seeds";
 	
 	public String CRYSTAL_OF_LIGHT			= "crystal_of_light";
 	public String ENDER_CRYSTAL				= "ender_crystal";

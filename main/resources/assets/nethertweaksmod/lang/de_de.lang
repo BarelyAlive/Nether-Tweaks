@@ -45,6 +45,7 @@ item.hammer_stone.name=Steinhammer
 item.mushroom_spores.name=Pilzsporen
 item.grass_seeds.name=Grassamen
 item.cactus_seeds.name=Kaktussamen
+item.sugarcane_seeds.name=Zuckerrohrsamen
 
 item.flint_and_blaze.name=Feuerzeug
 

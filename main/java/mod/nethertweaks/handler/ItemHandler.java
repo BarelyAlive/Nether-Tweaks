@@ -30,6 +30,7 @@ public class ItemHandler implements INames
     public static final Item MUSHROOM_SPORES  	 = new Seed(INames.MUSHROOM_SPORES);
     public static final Item GRASS_SEEDS	  	 = new Seed(INames.GRASS_SEEDS);
     public static final Item CACTUS_SEEDS	  	 = new Seed(INames.CACTUS_SEEDS);
+    public static final Item SUGARCANE_SEEDS  	 = new Seed(INames.SUGARCANE_SEEDS);
     
     //CRYSTALS
     public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
@@ -122,6 +123,7 @@ public class ItemHandler implements INames
     	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
     	if(Config.enableGrassSeeds)			Registry.registerItem(GRASS_SEEDS);
     	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
+    	if(Config.enableSugarcaneSeeds)		Registry.registerItem(SUGARCANE_SEEDS);
     	
     	//Crystals
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);

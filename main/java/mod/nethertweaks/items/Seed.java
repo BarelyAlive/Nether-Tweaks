@@ -67,6 +67,11 @@ public class Seed extends Item implements INames
 				if(!worldIn.isRemote)
 					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
 			break;
+		case SUGARCANE_SEEDS:
+			if(Blocks.REEDS.canPlaceBlockAt(worldIn, pos.up()))
+				if(!worldIn.isRemote)
+					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.REEDS.getDefaultState());
+			break;
 		default:
 			break;
 		}

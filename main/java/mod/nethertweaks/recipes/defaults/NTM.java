@@ -352,6 +352,7 @@ public class NTM implements IRecipeDefaults
         	registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
             registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
             registry.register("dirt", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
+            registry.register("dirt", new ItemInfo(ItemHandler.SUGARCANE_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
         
         getLeavesSapling().forEach((leaves, sapling) ->
         {
