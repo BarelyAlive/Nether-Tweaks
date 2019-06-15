@@ -9,7 +9,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-
 public class Config extends BlocksItems
 {		
 	//int
