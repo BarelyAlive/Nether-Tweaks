@@ -187,9 +187,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void load(FMLInitializationEvent event)
     {
-
- 	SmeltingNOreDictHandler.load();
-
+    	SmeltingNOreDictHandler.load();
     }
      
     @Mod.EventHandler
@@ -199,11 +197,9 @@ public class NetherTweaksMod
     	//Mobs
     	if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
     	        
-		BarrelModeRegistry.registerDefaults();
-    	
+		BarrelModeRegistry.registerDefaults();  	
 		NTMDefaultRecipes.registerDefaults();
-		
-    	JsonRecipeHandler.loadJasonVorhees(configDirectory);
+		JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }
     
     @SubscribeEvent

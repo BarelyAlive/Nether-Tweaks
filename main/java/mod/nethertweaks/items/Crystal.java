@@ -61,7 +61,6 @@ public class Crystal extends Item implements INames{
     	
     	switch (name) {	
 		case ENDER_CRYSTAL:
-			if (Config.enableCrystalEnder) {
 				worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 						SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F,
 						0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -73,7 +72,6 @@ public class Crystal extends Item implements INames{
 				}
 				playerIn.addStat(StatList.getObjectUseStats(this));
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-			}
 		default:
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 		}

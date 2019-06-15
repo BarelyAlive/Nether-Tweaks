@@ -60,8 +60,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 				tree.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
 			}
 			/*Wichtige Anmerkung der Autorin:
-			* Da Minecraft in vielen Dingen, so wie bei der Weltgeneration
-			* zu dumm zum kacken ist, muss die spawn position der Bäume
+			* Es muss die spawn position der Bäume
 			* um 8 versetzt werden, da es sonst zu sogenanntem
 			* "cascading world gen lag" kommt.*/
 		}

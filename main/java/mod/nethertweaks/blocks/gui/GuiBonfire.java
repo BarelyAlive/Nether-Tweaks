@@ -3,6 +3,8 @@ package mod.nethertweaks.blocks.gui;
 import java.io.IOException;
 import java.util.*;
 
+import javax.print.attribute.standard.Destination;
+
 import org.lwjgl.input.*;
 import org.lwjgl.opengl.*;
 
@@ -16,9 +18,11 @@ import mod.nethertweaks.registry.types.*;
 import mod.nethertweaks.world.*;
 import mod.sfhcore.network.*;
 import mod.sfhcore.util.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.*;
 import net.minecraft.client.renderer.*;
+import net.minecraft.command.server.CommandTeleport;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -26,11 +30,15 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraftforge.fml.client.config.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.*;
 import net.minecraftforge.server.permission.context.*;
+import p455w0rdslib.util.ChunkUtils;
 
 public class GuiBonfire extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guibonfire.png");
@@ -118,17 +126,6 @@ public class GuiBonfire extends GuiContainer {
 		}
 	}
 	
-	private int testPosition(BlockPos destination)
-	{
-		if (world.isSideSolid(destination.down(2), EnumFacing.UP) && world.isAirBlock(destination.down()) && world.isAirBlock(destination))
-			return 0;
-		if (world.isSideSolid(destination.down(), EnumFacing.UP) && world.isAirBlock(destination) && world.isAirBlock(destination.up()))
-			return 1;
-		if (world.isSideSolid(destination, EnumFacing.UP) && world.isAirBlock(destination.up()) && world.isAirBlock(destination.up(2)))
-			return 2;
-		return -1;
-	}
-	
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException {
 		super.actionPerformed(button);
@@ -148,7 +145,7 @@ public class GuiBonfire extends GuiContainer {
 				return;
 			}
 			
-			BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
+			final BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
 			
 			int result = 0;
 			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));

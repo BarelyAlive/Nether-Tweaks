@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Sieve.MeshType;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,13 +26,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMesh extends Item implements IVariantProvider{
-	
-	private final String name = "item_mesh";
-	
-	public ItemMesh() {
+		
+	public ItemMesh(String type) {
 		super();
-		this.setHasSubtypes(true);
-		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, name));
+		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, type));
 		this.setMaxStackSize(1);
 		this.setCreativeTab(NetherTweaksMod.TABNTM);
 	}
@@ -39,15 +37,15 @@ public class ItemMesh extends Item implements IVariantProvider{
 	@Override
 	public int getItemEnchantability(ItemStack stack)
 	{
-	    switch(stack.getMetadata())
+	    switch(NameHelper.getName(stack))
 	    {
-	        case 1:
+	        case INames.MESH_STRING:
 	            return 15;
-	        case 2:
+	        case INames.MESH_FLINT:
 	            return 7;
-	        case 3:
+	        case INames.MESH_IRON:
 	            return 14;
-	        case 4:
+	        case INames.MESH_DIAMOND:
 	            return 10;
 	        default:
 	            return 0;
@@ -56,7 +54,7 @@ public class ItemMesh extends Item implements IVariantProvider{
 	
 	@Override
     public String getUnlocalizedName(ItemStack stack) {
-    	return "item." + name + "_" + MeshType.getMeshTypeByID(stack.getItemDamage());
+    	return "item." + getRegistryName().getResourcePath();
 
     }
 	
@@ -73,21 +71,13 @@ public class ItemMesh extends Item implements IVariantProvider{
     }
 
 	@Override
-    public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> list) {
-        if (this.isInCreativeTab(tab))
-            for (int i = 1; i < MeshType.values().length - 1; i++) { //0 is the "none" case, 5 the "no render" case
-                list.add(new ItemStack(this, 1, i));
-            }
-	}
-
-	@Override
 	public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
         
         for(int i = 1; i < MeshType.values().length -1; i++)
 		{
-			ret.add(new ImmutablePair<Integer, String>(i, "mesh=" + MeshType.getMeshTypeByID(i).getName()));
+			ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
 		}
         return ret;
     }

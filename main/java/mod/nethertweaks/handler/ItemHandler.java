@@ -36,7 +36,10 @@ public class ItemHandler implements INames
     public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
     
     //MESHES
-    public static final Item MESH 			  	 = new ItemMesh();
+    public static final Item STRING_MESH	  	 = new ItemMesh(INames.MESH_STRING);
+    public static final Item FLINT_MESH		  	 = new ItemMesh(INames.MESH_FLINT);
+    public static final Item IRON_MESH		  	 = new ItemMesh(INames.MESH_IRON);
+    public static final Item DIAMOND_MESH	  	 = new ItemMesh(INames.MESH_DIAMOND);
     
     //DOLLS
     public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
@@ -87,7 +90,7 @@ public class ItemHandler implements INames
     public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
     public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
     public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
-    
+
     //Food
     public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
@@ -131,7 +134,11 @@ public class ItemHandler implements INames
         if(Config.enablePebbleAndesite)		Registry.registerItem(PEBBLE_ANDESITE);
         
         //Meshes
-        if(Config.enableMeshes)  			Registry.registerItem(MESH);
+        if(Config.enableStringMeshes)		Registry.registerItem(STRING_MESH);
+        if(Config.enableFlintMeshes) 		Registry.registerItem(FLINT_MESH);
+        if(Config.enableIronMeshes)  		Registry.registerItem(IRON_MESH);
+        if(Config.enableDiamondMeshes)		Registry.registerItem(DIAMOND_MESH);
+
         
         //Dolls
         if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);

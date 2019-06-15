@@ -95,7 +95,7 @@ public class Sieve extends BlockContainer {
             ItemStack stack = cap.getStackInSlot(slot);
             if(!stack.isEmpty() && stack.getItem() instanceof ItemMesh){
                 // Adding a mesh
-                boolean added = te.setMesh(cap.extractItem(slot,1,true));
+                boolean added = te.setMesh(cap.extractItem(slot, 1, true));
                 if(added){
                     cap.extractItem(slot, 1, player.isCreative());
                     return true;
@@ -215,17 +215,17 @@ public class Sieve extends BlockContainer {
             return id > 0 && id < 5;
         }
 
-        public static MeshType getMeshTypeByID(int meta) {
-            switch (meta) {
-                case 1:
+        public static MeshType getMeshTypeByID(String type) {
+            switch (type) {
+                case INames.MESH_STRING:
                     return STRING;
-                case 2:
+                case INames.MESH_FLINT:
                     return FLINT;
-                case 3:
+                case INames.MESH_IRON:
                     return IRON;
-                case 4:
+                case INames.MESH_DIAMOND:
                     return DIAMOND;
-                case 5:
+                case "idk":
                     return NO_RENDER;
             }
 

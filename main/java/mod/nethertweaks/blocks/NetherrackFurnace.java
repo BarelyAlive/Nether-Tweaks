@@ -49,8 +49,10 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import p455w0rdslib.util.ChunkUtils;
  
 public class NetherrackFurnace extends CubeContainerHorizontal {
      
@@ -80,7 +82,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 			return false;
 		}
 		
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idFurnace, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     

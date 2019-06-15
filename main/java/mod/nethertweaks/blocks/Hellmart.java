@@ -51,7 +51,7 @@ public class Hellmart extends BlockContainer
     	if(te == null) return false;
 		if(!(te instanceof TileHellmart)) return false;
 		
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idHellmart, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_HELLMART, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

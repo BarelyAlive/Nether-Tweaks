@@ -4,7 +4,7 @@ import mod.sfhcore.util.ItemInfo;
 
 public class Siftable {
 	
-	public Siftable(ItemInfo info, float chance, int meshLevel)
+	public Siftable(ItemInfo info, float chance, String meshLevel)
 	{
 		this.drop = info;
 		this.chance = chance;
@@ -26,9 +26,9 @@ public class Siftable {
 		return chance;
 	}
 	
-	private int meshLevel;
+	private String meshLevel;
 	
-	public int getMeshLevel()
+	public String getMeshLevel()
 	{
 		return meshLevel;
 	}

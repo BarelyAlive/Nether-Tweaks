@@ -13,13 +13,13 @@ import mod.sfhcore.util.StackInfo;
 
 public interface ISieveRegistry extends IRegistryMappedList<Ingredient, Siftable> {
 
-    void register(ItemStack itemStack, StackInfo drop, float chance, int meshLevel);
-    void register(Item item, int meta, StackInfo drop, float chance, int meshLevel);
-    void register(StackInfo item, StackInfo drop, float chance, int meshLevel);
-    void register(Block block, int meta, StackInfo drop, float chance, int meshLevel);
-    void register(IBlockState state, StackInfo drop, float chance, int meshLevel);
-    void register(ResourceLocation location, int meta, StackInfo drop, float chance, int meshLevel);
-    void register(String name, StackInfo drop, float chance, int meshLevel);
+    void register(ItemStack itemStack, StackInfo drop, float chance, String  meshLevel);
+    void register(Item item, int meta, StackInfo drop, float chance, String  meshLevel);
+    void register(StackInfo item, StackInfo drop, float chance, String  meshLevel);
+    void register(Block block, int meta, StackInfo drop, float chance, String  meshLevel);
+    void register(IBlockState state, StackInfo drop, float chance, String  meshLevel);
+    void register(ResourceLocation location, int meta, StackInfo drop, float chance, String  meshLevel);
+    void register(String name, StackInfo drop, float chance, String  meshLevel);
     void register(Ingredient ingredient, Siftable drop);
 
     /**
@@ -43,6 +43,6 @@ public interface ISieveRegistry extends IRegistryMappedList<Ingredient, Siftable
     List<Siftable> getDrops(ItemStack stack);
     List<Siftable> getDrops(Ingredient ingredient);
 
-    List<ItemStack> getRewardDrops(Random random, IBlockState block, int meshLevel, int fortuneLevel);
+    List<ItemStack> getRewardDrops(Random random, IBlockState block, String meshLevel, int fortuneLevel);
     boolean canBeSifted(ItemStack stack);
 }

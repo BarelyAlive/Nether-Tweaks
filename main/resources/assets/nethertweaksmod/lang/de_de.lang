@@ -61,10 +61,10 @@ item.stone_bar.name=Steinstange
 item.string.name=Faden
 item.porcelain_clay.name=Porzellanton
 
-item.item_mesh_string.name=Fadengeflecht
-item.item_mesh_flint.name=Feuersteingeflecht
-item.item_mesh_iron.name=Eisengeflecht
-item.item_mesh_diamond.name=Diamantgeflecht
+item.mesh_string.name=Fadengeflecht
+item.mesh_flint.name=Feuersteingeflecht
+item.mesh_iron.name=Eisengeflecht
+item.mesh_diamond.name=Diamantgeflecht
 
 item.pebble_stone.name=Kieselstein
 item.pebble_granite.name=Granitkieselstein

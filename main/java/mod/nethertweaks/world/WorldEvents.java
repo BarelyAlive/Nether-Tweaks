@@ -38,6 +38,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -57,7 +58,7 @@ public class WorldEvents{
 	//HELLWORLD
 	
 	@SubscribeEvent
-    public void salt(net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock event)
+    public void salt(PlayerInteractEvent.RightClickBlock event)
 	{
 		boolean activated = false;
 		BlockPos clicked = event.getPos();
@@ -160,46 +161,39 @@ public class WorldEvents{
     @SubscribeEvent
 	public void changeToHomeDim(PlayerEvent.PlayerChangedDimensionEvent event)
     {
-    	EntityPlayer player = event.player;
-
-    	if(is_hellworld && player.dimension == 0) teleportPlayer(player);
+    	teleportPlayer(event.player);
 	}
 
 	@SubscribeEvent
-	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event) {
-		EntityPlayer player = event.player;
-		
-		if(is_hellworld && player.dimension == 0) teleportPlayer(player);
+	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event)
+	{
+		teleportPlayer(event.player);
 	}
 
 	//Enitity Interaction
     @SubscribeEvent
     public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event)
     {
-    	//if(!event.getWorld().isRemote)
-    	//{
-    		//Had to use ID instead of "instanceof EntityCow" because it could cause problems with MooFluids etc.
-	    	if(event.getTarget() instanceof EntityCow)
+    	if(event.getTarget() instanceof EntityCow)
+    	{
+    		if(! NotNull.checkNotNull(event.getItemStack()))
+    			return;
+    		
+    		ItemStack stack = event.getItemStack();
+    		Item item = stack.getItem();
+    		EntityPlayer player = event.getEntityPlayer();
+    		
+	    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
 	    	{
-	    		if(! NotNull.checkNotNull(event.getItemStack()))
-	    			return;
-	    		
-	    		ItemStack stack = event.getItemStack();
-	    		Item item = stack.getItem();
-	    		EntityPlayer player = event.getEntityPlayer();
-	    		
-		    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
-		    	{
-		    		stack.shrink(1);
-		    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
-		    	}
-		    	else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
-		    	{
-		    		stack.shrink(1);
-		    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
-		    	}
+	    		stack.shrink(1);
+	    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
 	    	}
-    	//}
+	    	else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
+	    	{
+	    		stack.shrink(1);
+	    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
+	    	}
+    	}
     }
 
     //WORLD DATA
@@ -254,7 +248,7 @@ public class WorldEvents{
 
 	private void teleportPlayer(EntityPlayer player) {
 
-		if(player.dimension != -1)
+		if(player.dimension != -1 || player.dimension != 1)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
 			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key)){

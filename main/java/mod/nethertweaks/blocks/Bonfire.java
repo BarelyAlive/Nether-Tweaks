@@ -19,6 +19,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -46,7 +47,7 @@ public class Bonfire extends Block
 {
 	public Bonfire() {
 		super(Material.ROCK);
-		setLightLevel(12);
+		setLightLevel(12.0F);
 		setRegistryName(NetherTweaksMod.MODID, INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
@@ -135,7 +136,7 @@ public class Bonfire extends Block
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		if(playerIn.isSneaking()) return false;
 		
-		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idBonfire, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_BONFIRE, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		
 		return true;
 	}

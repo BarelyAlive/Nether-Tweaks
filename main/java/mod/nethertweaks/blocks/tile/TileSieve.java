@@ -10,6 +10,7 @@ import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Siftable;
 import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.Util;
@@ -90,7 +91,7 @@ public class TileSieve extends TileBase {
         if (meshStack.isEmpty()) {
             if (!simulate) {
                 meshStack = newMesh.copy();
-                meshType = Sieve.MeshType.getMeshTypeByID(newMesh.getMetadata());
+                meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(newMesh));
 
                 this.markDirtyClient();
             }
@@ -116,9 +117,9 @@ public class TileSieve extends TileBase {
         if (!currentStack.isValid() && NTMRegistryManager.SIEVE_REGISTRY.canBeSifted(stack)) {
             if (meshStack.isEmpty())
                 return false;
-            int meshLevel = meshStack.getItemDamage();
+            String meshLevel = NameHelper.getName(meshStack);
             for (Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack)) {
-                if (siftable.getMeshLevel() == meshLevel) {
+                if (("mesh_" + siftable.getMeshLevel()).equals(meshLevel)) {
                     currentStack = new BlockInfo(stack);
                     markDirtyClient();
                     return true;
@@ -178,7 +179,7 @@ public class TileSieve extends TileBase {
             markDirtyClient();
 
             if (progress >= 100) {
-                List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), meshStack.getMetadata(), fortune);
+                List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
 
                 if (drops == null) {
                     drops = new ArrayList<>();
@@ -304,7 +305,7 @@ public class TileSieve extends TileBase {
 
         if (tag.hasKey("mesh")) {
             meshStack = new ItemStack(tag.getCompoundTag("mesh"));
-            meshType = Sieve.MeshType.getMeshTypeByID(meshStack.getMetadata());
+            meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(meshStack));
         } else {
             meshStack = ItemStack.EMPTY;
             meshType = Sieve.MeshType.NONE;

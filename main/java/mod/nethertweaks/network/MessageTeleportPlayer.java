@@ -10,6 +10,7 @@ import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Type;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import p455w0rdslib.util.ChunkUtils;
 
 public class MessageTeleportPlayer implements IMessage {
 
@@ -59,7 +61,7 @@ public class MessageTeleportPlayer implements IMessage {
 		public IMessage onMessage(MessageTeleportPlayer message, MessageContext ctx) {
 			
 			EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
-			
+
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
 			{
@@ -77,7 +79,6 @@ public class MessageTeleportPlayer implements IMessage {
 			ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 			
 			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
-			
 			
 			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
 			{

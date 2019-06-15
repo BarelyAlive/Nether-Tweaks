@@ -20,9 +20,4 @@ public class CreativeTabNTM extends CreativeTabs
 	public ItemStack getTabIconItem() {
 		return new ItemStack(ItemHandler.HELLFAYAH);
 	}
-
-	@Override
-	public boolean hasSearchBar() {
-		return true;
-	}
 }

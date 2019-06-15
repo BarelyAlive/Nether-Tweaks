@@ -61,10 +61,10 @@ item.stone_bar.name=Stone Bar
 item.string.name=String
 item.porcelain_clay.name=Porcelain Clay 
 
-item.item_mesh_string.name=String Mesh
-item.item_mesh_flint.name=Flint Mesh
-item.item_mesh_iron.name=Iron Mesh
-item.item_mesh_diamond.name=Diamond Mesh
+item.mesh_string.name=String Mesh
+item.mesh_flint.name=Flint Mesh
+item.mesh_iron.name=Iron Mesh
+item.mesh_diamond.name=Diamond Mesh
 
 item.pebble_stone.name=Stone Pebble
 item.pebble_granite.name=Granite Pebble
