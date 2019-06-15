@@ -32,11 +32,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
-public class Seed extends CustomItem
+public class Seed extends Item implements INames
 {
-	public Seed()
+	public Seed(String name)
 	{
-		super(null, 64, NetherTweaksMod.TABNTM, true, 3, new ResourceLocation(NetherTweaksMod.MODID, INames.SEED));
+		setCreativeTab(TAB);
+		setRegistryName(MODID, name);
 	}
 
 	/**
@@ -46,21 +47,22 @@ public class Seed extends CustomItem
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
+		String name = player.getHeldItem(hand).getItem().getRegistryName().getResourcePath();
 		
-		switch (player.getHeldItem(hand).getItemDamage()) {
-		case 0:
+		switch (name) {
+		case MUSHROOM_SPORES:
 			if(block == Blocks.DIRT || block == Blocks.GRASS){
 				if(!worldIn.isRemote)
 					worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
 			}
 			break;
-		case 1:
+		case GRASS_SEEDS:
 			if(block == Blocks.DIRT){
 				if(!worldIn.isRemote)
 					worldIn.setBlockState(pos, Blocks.GRASS.getDefaultState());
 			}
 			break;
-		case 2:
+		case CACTUS_SEEDS:
 			if(Blocks.CACTUS.canPlaceBlockAt(worldIn, pos.up()))
 				if(!worldIn.isRemote)
 					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());

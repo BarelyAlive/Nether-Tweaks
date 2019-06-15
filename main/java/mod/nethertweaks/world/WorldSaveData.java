@@ -2,7 +2,6 @@ package mod.nethertweaks.world;
 
 import java.util.*;
 
-import forestry.core.utils.NBTUtilForestry.NBTList;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

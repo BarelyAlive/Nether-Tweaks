@@ -108,7 +108,9 @@ public class Config
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 	
 	//BlockEnable
-	public static boolean enableMultiBlock 			= true;
+	public static boolean enableHellfayahOre		= true;
+	public static boolean enableHellfayahBlock		= true;
+	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
 	public static boolean enableBarrel 				= true;
 	public static boolean enableBonfire 			= true;
@@ -125,13 +127,41 @@ public class Config
 	public static boolean enableCrucible 			= true;
 	
 	//ItemEnable
-	public static boolean enableMultiItem 			= true;
-	public static boolean enableSeed 				= true;
+	public static boolean enableStoneBar 			= true;
+	public static boolean enablePortalCore 			= true;
+	public static boolean enableEndBox	 			= true;
+	public static boolean enableSalt	 			= true;
+	public static boolean enableHellfayah 			= true;
+	public static boolean enableEnderInfusedFrame	= true;
+	public static boolean enableString	 			= true;
+	public static boolean enablePorcelainClay		= true;
+	public static boolean enablePowderOfLight		= true;
+	public static boolean enableMushroomSpores		= true;
+	public static boolean enableGrassSeeds			= true;
+	public static boolean enableCactusSeeds			= true;
 	public static boolean enableCrystalLight 		= true;
 	public static boolean enableCrystalEnder 		= true;
-	public static boolean enablePebbles 			= true;
+	public static boolean enablePebbleStone			= true;
+	public static boolean enablePebbleGranite		= true;
+	public static boolean enablePebbleDiorite		= true;
+	public static boolean enablePebbleAndesite		= true;
 	public static boolean enableMeshes 				= true;
-	public static boolean enableDolls 				= true;
+	public static boolean enableDollBat				= true;
+	public static boolean enableDollChicken			= true;
+	public static boolean enableDollCow				= true;
+	public static boolean enableDollDonkey			= true;
+	public static boolean enableDollHorse			= true;
+	public static boolean enableDollRedMooshroom	= true;
+	public static boolean enableDollMule			= true;
+	public static boolean enableDollOcelot			= true;
+	public static boolean enableDollParrot			= true;
+	public static boolean enableDollRabbit			= true;
+	public static boolean enableDollSheep			= true;
+	public static boolean enableDollLlama			= true;
+	public static boolean enableDollPolarBear		= true;
+	public static boolean enableDollWolf			= true;
+	public static boolean enableDollVillager		= true;
+	public static boolean enableDollPig				= true;
 	public static boolean enableJerky 				= true;
 	public static boolean enablePickAxeNetherrack 	= true;
 	public static boolean enablePickAxeNetherbrick 	= true;
@@ -251,7 +281,9 @@ public class Config
         
     	//BlockEnable
     	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiBlock 				= config.get("Blocks", "Enable Hellfayah Block, Ore & Salt?", true).getBoolean();
+    	enableHellfayahOre 				= config.get("Blocks", "Enable Hellfayah Block?", true).getBoolean();
+    	enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
+    	enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
     	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
     	enableBarrel 					= config.get("Blocks", "Enable Barrel?", true).getBoolean();
     	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
@@ -269,13 +301,41 @@ public class Config
     	
     	//ItemEnable
     	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
-    	enableMultiItem 				= config.get("Items", "Enable Multi Item?", true).getBoolean();
-    	enableSeed 						= config.get("Items", "Enable Seeds?", true).getBoolean();
+    	enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
+    	enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
+    	enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
+    	enableSalt 						= config.get("Items", "Enable Salt?", true).getBoolean();
+    	enableHellfayah 				= config.get("Items", "Enable Hellfayah?", true).getBoolean();
+    	enableEnderInfusedFrame			= config.get("Items", "Enable Ender Infused Frame?", true).getBoolean();
+    	enableString 					= config.get("Items", "Enable String?", true).getBoolean();
+    	enablePorcelainClay				= config.get("Items", "Enable Porcelain Clay?", true).getBoolean();
+    	enablePowderOfLight				= config.get("Items", "Enable Powder of Light?", true).getBoolean();
+    	enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
+    	enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
+    	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
-    	enablePebbles 					= config.get("Items", "Enable Pebbles?", true).getBoolean();
+    	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
+    	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
+    	enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
+    	enablePebbleAndesite			= config.get("Items", "Enable Andesite Pebbles?", true).getBoolean();
     	enableMeshes 					= config.get("Items", "Enable Meshes?", true).getBoolean();
-    	enableDolls 					= config.get("Items", "Enable Dolls?", true).getBoolean();
+    	enableDollBat 					= config.get("Items", "Enable Bat Doll?", true).getBoolean();
+    	enableDollChicken 				= config.get("Items", "Enable Chicken Doll?", true).getBoolean();
+    	enableDollCow 					= config.get("Items", "Enable Cow Doll?", true).getBoolean();
+    	enableDollDonkey 				= config.get("Items", "Enable Donkey Doll?", true).getBoolean();
+    	enableDollHorse 				= config.get("Items", "Enable Horse Doll?", true).getBoolean();
+    	enableDollLlama 				= config.get("Items", "Enable Llama Doll?", true).getBoolean();
+    	enableDollMule 					= config.get("Items", "Enable Mule Doll?", true).getBoolean();
+    	enableDollOcelot 				= config.get("Items", "Enable Ocelot Doll?", true).getBoolean();
+    	enableDollParrot 				= config.get("Items", "Enable Parrot Doll?", true).getBoolean();
+    	enableDollPig 					= config.get("Items", "Enable Pig Doll?", true).getBoolean();
+    	enableDollPolarBear 			= config.get("Items", "Enable Polar Bear Doll?", true).getBoolean();
+    	enableDollRabbit 				= config.get("Items", "Enable Rabbit Doll?", true).getBoolean();
+    	enableDollRedMooshroom			= config.get("Items", "Enable Red Mooshroom Doll?", true).getBoolean();
+    	enableDollSheep 				= config.get("Items", "Enable Sheep Doll?", true).getBoolean();
+    	enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
+    	enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
     	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
     	enablePickAxeNetherrack 		= config.get("Items", "Enable Netherrack Pickaxe?", true).getBoolean();
     	enablePickAxeNetherbrick 		= config.get("Items", "Enable Netherbrick Pickaxe?", true).getBoolean();

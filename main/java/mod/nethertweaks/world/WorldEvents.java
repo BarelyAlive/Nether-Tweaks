@@ -83,7 +83,7 @@ public class WorldEvents{
 			{
 				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
 				{
-					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.ITEM_BASE, 2, 5));
+					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.SALT, 2));
 					switch (event.getFace()) {
 					case UP:
 						salt.getPosition().up();

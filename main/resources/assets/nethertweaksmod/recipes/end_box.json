@@ -7,15 +7,13 @@
   ],
   "key": {
     "Y": {
-      "item": "item_base",
-      "data": 2
+      "item": "ender_infused_frame"
     },
     "X": {
       "item": "minecraft:end_stone"
     }
   },
   "result": {
-    "item": "item_base",
-    "data": 0
+    "item": "end_box"
   }
 }

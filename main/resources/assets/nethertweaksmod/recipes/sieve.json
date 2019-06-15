@@ -7,8 +7,7 @@
   ],
   "key": {
     "s": {
-      "item": "item_base",
-      "data": 6
+      "item": "stone_bar"
     },
     "x": {
       "type": "forge:ore_dict",

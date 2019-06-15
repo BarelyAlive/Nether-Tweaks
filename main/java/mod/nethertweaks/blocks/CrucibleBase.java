@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import p455w0rd.danknull.api.ITOPInfoProvider;
 
 import javax.annotation.Nonnull;
 

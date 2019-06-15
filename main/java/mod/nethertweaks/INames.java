@@ -36,7 +36,9 @@ public interface INames {
 	public static String SIEVE 						= "sieve";
 	public static String HELLMART 					= "hellmart";
 	
-	public static String BLOCK_BASIC 				= "block_basic";
+	public static String HELLFAYAH_ORE 				= "hellfayah_ore";
+	public static String BLOCK_OF_HELLFAYAH			= "block_of_hellfayah";
+	public static String BLOCK_OF_SALT 				= "block_of_salt";
 	
 	//Tile ENtities
 	public static String TE_NETHERRACKFURNACE		= "tileentity_netherrack_furnace";
@@ -48,13 +50,45 @@ public interface INames {
 	
 	//items
 	public static String FLINT_N_BLAZE 				= "flint_and_blaze";
-	public static String STRING 					= "string";
-	public static String SEED						= "seed";
-	public static String PEBBLE						= "item_pebble";
 	
-	public static String DOLL 						= "item_doll";
-	public static String CRYSTAL 					= "crystal";
-	public static String ITEM_BASE 					= "item_base";
+	public static String PEBBLE_STONE				= "pebble_stone";
+	public static String PEBBLE_GRANITE				= "pebble_granite";
+	public static String PEBBLE_DIORITE				= "pebble_diorite";
+	public static String PEBBLE_ANDESITE			= "pebble_andesite";
+	
+	public static String MUSHROOM_SPORES			= "mushroom_spores";
+	public static String GRASS_SEEDS				= "grass_seeds";
+	public static String CACTUS_SEEDS				= "cactus_seeds";
+	
+	public static String CRYSTAL_OF_LIGHT			= "crystal_of_light";
+	public static String ENDER_CRYSTAL				= "ender_crystal";
+	
+	public static String DOLL_BAT					= "doll_bat";
+	public static String DOLL_CHICKEN				= "doll_chicken";
+	public static String DOLL_COW					= "doll_cow";
+	public static String DOLL_DONKEY				= "doll_donkey";
+	public static String DOLL_HORSE					= "doll_horse";
+	public static String DOLL_RED_MOOSHROOM			= "doll_red_mooshroom";
+	public static String DOLL_MULE					= "doll_mule";
+	public static String DOLL_OCELOT				= "doll_ocelot";
+	public static String DOLL_PARROT				= "doll_parrot";
+	public static String DOLL_RABBIT				= "doll_rabbit";
+	public static String DOLL_SHEEP					= "doll_sheep";
+	public static String DOLL_LLAMA					= "doll_llama";
+	public static String DOLL_POLAR_BEAR			= "doll_polar_bear";
+	public static String DOLL_WOLF					= "doll_wolf";
+	public static String DOLL_VILLAGER				= "doll_villager";
+	public static String DOLL_PIG					= "doll_pig";
+		
+	public static String STONE_BAR 					= "stone_bar";
+	public static String PORTAL_CORE				= "portal_core";
+	public static String END_BOX 					= "end_box";
+	public static String SALT 						= "salt";
+	public static String HELLFAYAH 					= "hellfayah";
+	public static String ENDER_INFUSED_FRAME		= "ender_infused_frame";
+	public static String STRING						= "string";
+	public static String PORCELAIN_CLAY				= "porcelain_clay";
+	public static String POWDER_OF_LIGHT			= "powder_of_light";
 	
 	public static String COOKED_JERKY 				= "cooked_jerky";
 	

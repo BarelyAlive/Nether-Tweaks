@@ -40,51 +40,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDoll extends Item implements IVariantProvider{
-	
-	public static final String BAT = "bat";
-	public static final String CHICKEN = "chicken";
-	public static final String COW = "cow";
-	public static final String DONKEY = "donkey";
-	public static final String HORSE = "horse";
-	public static final String RED_MOOSHROOM = "red_mooshroom";
-	public static final String MULE = "mule";
-	public static final String OCELOT = "ocelot";
-	public static final String PARROT = "parrot";
-	public static final String RABBIT = "rabbit";
-	public static final String SHEEP = "sheep";
-	public static final String LLAMA = "llama";
-	public static final String POLAR_BEAR = "polar_bear";
-	public static final String WOLF = "wolf";
-	public static final String VILLAGER = "villager";
-	public static final String PIG = "pig";
-	
-	private static ArrayList<String> names = new ArrayList<String>();
-	
-	public ItemDoll()
+public class ItemDoll extends Item implements IVariantProvider
+{	
+	public ItemDoll(String type)
 	{		
-		super();
-		setRegistryName(NetherTweaksMod.MODID, INames.DOLL);
-		
+		setRegistryName(NetherTweaksMod.MODID, type);		
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setHasSubtypes(true);
-		
-		names.add(BAT);
-		names.add(CHICKEN);
-		names.add(COW);
-		names.add(DONKEY);
-		names.add(HORSE);
-		names.add(RED_MOOSHROOM);
-		names.add(MULE);
-		names.add(OCELOT);
-		names.add(PARROT);
-		names.add(RABBIT);
-		names.add(SHEEP);
-		names.add(LLAMA);
-		names.add(POLAR_BEAR);
-		names.add(WOLF);
-		names.add(VILLAGER);
-		names.add(PIG);
 	}
 	
 	public Fluid getSpawnFluid(ItemStack stack) {
@@ -99,81 +60,85 @@ public class ItemDoll extends Item implements IVariantProvider{
 	 */
 	public boolean spawnMob(ItemStack stack, World world, BlockPos pos)
 	{
-		int dmg = stack.getItemDamage();
+		String name = stack.getItem().getRegistryName().getResourcePath();
 		
-		switch (dmg) {
-		case 0:
+		switch (name) {
+		case "doll_bat":
 			EntityBat bat = new EntityBat(world);
 			bat.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(bat);		
-		case 1:
+		case "doll_chicken":
 			EntityChicken chick = new EntityChicken(world);
 			chick.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(chick);
-		case 2:
+		case "doll_cow":
 			EntityCow cow = new EntityCow(world);
 			cow.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(cow);
-		case 3:
+		case "doll_donkey":
 			EntityDonkey donk = new EntityDonkey(world);
 			donk.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(donk);
-		case 4:
+		case "doll_horse":
 			EntityHorse horst = new EntityHorse(world);
 			horst.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(horst);
-		case 5:
+		case "doll_mooshroom":
 			EntityMooshroom moo = new EntityMooshroom(world);
 			moo.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(moo);
-		case 6:
+		case "doll_mule":
 			EntityMule mule = new EntityMule(world);
 			mule.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(mule);
-		case 7:
+		case "doll_ocelot":
 			EntityOcelot revolver_ocelot = new EntityOcelot(world);
 			revolver_ocelot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(revolver_ocelot);
-		case 8:
+		case "doll_parrot":
 			EntityParrot parrot = new EntityParrot(world);
 			parrot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(parrot);
-		case 9:
+		case "doll_rabbit":
 			EntityRabbit rabbit = new EntityRabbit(world);
 			rabbit.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(rabbit);
-		case 10:
+		case "doll_sheep":
 			EntitySheep sheep = new EntitySheep(world);
 			sheep.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(sheep);
-		case 11:
+		case "doll_llama":
 			EntityLlama llama = new EntityLlama(world);
 			llama.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(llama);
-		case 12:
+		case "doll_polar_bear":
 			EntityPolarBear pobear = new EntityPolarBear(world);
 			pobear.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(pobear);
-		case 13:
+		case "doll_wolf":
 			EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
-		case 14:
+			
+			return world.spawnEntity(wolf);
+		case "doll_villager":
 			EntityVillager derp = new EntityVillager(world);
 			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
-		case 15:
+			
+			return world.spawnEntity(derp);
+		case "doll_pig":
 			EntityPig pig = new EntityPig(world);
 			pig.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
@@ -185,16 +150,7 @@ public class ItemDoll extends Item implements IVariantProvider{
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return getUnlocalizedName() + "_" + names.get(stack.getItemDamage());
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (tab.equals(this.getCreativeTab())) {
-			for (int i = 0; i < names.size(); i++)
-				items.add(new ItemStack(this, 1, i));
-		}
+		return "item." + getRegistryName().getResourcePath();
 	}
 
 	@Override
@@ -202,10 +158,8 @@ public class ItemDoll extends Item implements IVariantProvider{
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
         
-        for(int i = 0; i < names.size(); i++)
-		{
-			ret.add(new ImmutablePair<Integer, String>(i, "type=" + names.get(i)));
-		}
+		ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
+		
         return ret;
     }
 }

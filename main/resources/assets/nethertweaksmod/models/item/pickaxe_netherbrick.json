@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/item_pickaxe_netherbrick"
+      "layer0": "nethertweaksmod:items/pickaxe_netherbrick"
     }
 }

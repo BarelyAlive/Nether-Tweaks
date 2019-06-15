@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-      "layer0": "nethertweaksmod:items/item_cooked_jerky"
+      "layer0": "nethertweaksmod:items/cooked_jerky"
     }
 }

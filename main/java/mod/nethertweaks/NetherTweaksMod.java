@@ -166,7 +166,7 @@ public class NetherTweaksMod
         BlockHandler.init();
         BucketNFluidHandler.init();
         
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.BLOCK_BASIC.getDefaultState(), 16, 16), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 16, 16), 1);
         
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
