@@ -151,39 +151,7 @@ public class GuiBonfire extends GuiContainer {
 			BlockPos destination = this.bonfires.keySet().toArray(new BlockPos[0])[id];
 			
 			int result = 0;
-			if ((result = this.testPosition(destination.add(1, 0, 1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(0, 0, 1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, 1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), (destination.getZ() + 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, 0))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), destination.getZ(), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(-1, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() - 1), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(0, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination.getX(), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(1, 0, -1))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), (destination.getZ() - 1), destination, player));
-			}
-			else if((result = this.testPosition(destination.add(1, 0, 0))) != -1)
-			{
-				NetworkHandler.sendToServer(new MessageTeleportPlayer((destination.getX() + 1), (destination.getY() + (result - 1)), destination.getZ(), destination, player));
-			}
-		    player.sendMessage(new TextComponentString(player.getName() + " rested at: " + destination + "!"));
+			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));
 		}
 		if (button.id == 6)
 		{

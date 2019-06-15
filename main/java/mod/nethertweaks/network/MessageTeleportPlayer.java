@@ -4,39 +4,40 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Type;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageTeleportPlayer implements IMessage {
 
-	int x, y, z;
 	int uuid_size;
-	BlockPos looking_block;
+	BlockPos bonfire_pos;
 	String uuid;
 	
 	public MessageTeleportPlayer() {}
 	
-	public MessageTeleportPlayer(int x, int y, int z, BlockPos looking_block, EntityPlayer player) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.looking_block = looking_block;
+	public MessageTeleportPlayer(BlockPos bonfire_pos, EntityPlayer player) {
+		this.bonfire_pos = bonfire_pos;
 		this.uuid = player.getUUID(player.getGameProfile()).toString();
 	}
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
-		this.looking_block = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+		this.bonfire_pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
 		this.uuid_size = buf.readInt();
 		byte[] temp_char_arr = new byte[this.uuid_size];
 		buf.readBytes(temp_char_arr);
@@ -45,12 +46,9 @@ public class MessageTeleportPlayer implements IMessage {
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		buf.writeInt(this.looking_block.getX());
-		buf.writeInt(this.looking_block.getY());
-		buf.writeInt(this.looking_block.getZ());
+		buf.writeInt(this.bonfire_pos.getX());
+		buf.writeInt(this.bonfire_pos.getY());
+		buf.writeInt(this.bonfire_pos.getZ());
 		buf.writeInt(uuid.getBytes(Charset.forName("ASCII")).length);
 		buf.writeBytes(uuid.getBytes(Charset.forName("ASCII")));
 	}
@@ -62,23 +60,24 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
 			
-			player.setPositionAndRotation(message.x + 0.5, message.y, message.z + 0.5, player.cameraYaw, player.cameraPitch);
-			
-			LookAt(message.looking_block.getX() + 0.5, message.looking_block.getY(), message.looking_block.getZ() + 0.5, player);
-			
-			ctx.getServerHandler().setPlayerLocation(message.x + 0.5, message.y, message.z + 0.5, player.cameraYaw, player.cameraPitch);
-			
-			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
-			
 			BonfireInfo binfo;
-			if (!WorldSpawnLocation.bonfire_info.containsKey(message.looking_block))
+			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
 			{
 				binfo = new BonfireInfo(player.getUniqueID());
 			}
 			else
 			{
-				binfo = WorldSpawnLocation.bonfire_info.get(message.looking_block);
+				binfo = WorldSpawnLocation.bonfire_info.get(message.bonfire_pos);
 			}
+			
+			player.setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			
+			LookAt(message.bonfire_pos.getX() + 0.5, message.bonfire_pos.getY(), message.bonfire_pos.getZ() + 0.5, player);
+			
+			ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			
+			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
+			
 			
 			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
 			{
@@ -90,7 +89,9 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			binfo.addPlayer(player);
 			
-			WorldSpawnLocation.bonfire_info.put(message.looking_block, binfo.copy());
+			WorldSpawnLocation.bonfire_info.put(message.bonfire_pos, binfo);
+			
+			player.sendMessage(new TextComponentString(player.getName() + " rested at: " + binfo.getSpawnPos() + "!"));
 			
 			player.closeScreen();
 			

@@ -37,19 +37,18 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Bonfire extends Block
 {
-	//public static final PropertyDirection FACING = BlockHorizontal.FACING;
-	
 	public Bonfire() {
 		super(Material.ROCK);
 		setLightLevel(12);
 		setRegistryName(NetherTweaksMod.MODID, INames.BONFIRE);
 		setCreativeTab(NetherTweaksMod.TABNTM);
-        //this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	
 	private int l = 0;
@@ -66,10 +65,10 @@ public class Bonfire extends Block
 			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
 			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
 			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
 			l = 0;
         	break;
 		}
@@ -83,6 +82,50 @@ public class Bonfire extends Block
 		{
 			WorldSpawnLocation.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
 		}
+		worldIn.scheduleUpdate(pos, state.getBlock(), 1);
+	}
+	
+	private BlockPos testPosition(World world, final BlockPos destination)
+	{		
+		boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
+		boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
+		boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
+		boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
+		
+		boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
+		boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
+		boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
+		boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
+		
+		if(north) return destination.north();
+		if(east) return destination.east();
+		if(south) return destination.south();
+		if(west) return destination.west();
+		
+		if(northEast) return destination.north().east();
+		if(southEast) return destination.south().east();
+		if(southWest) return destination.south().west();
+		if(northWest) return destination.north().west();
+		
+		return null;
+	}
+
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		super.updateTick(worldIn, pos, state, rand);
+		
+		BlockPos resultPos = testPosition(worldIn, pos);
+		
+		if(resultPos != null)
+		{
+			BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
+			
+			info.setSpawnPos(resultPos);
+			
+			WorldSpawnLocation.bonfire_info.put(pos, info);
+		}
+		
+		worldIn.scheduleUpdate(pos, state.getBlock(), 10);
 	}
 	
 	@Override
@@ -92,32 +135,6 @@ public class Bonfire extends Block
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		if(playerIn.isSneaking()) return false;
 		
-		/*
-		BonfireInfo binfo;
-		if (!WorldSpawnLoc.bonfire_info.containsKey(pos))
-		{
-			binfo = new BonfireInfo();
-		}
-		else
-		{
-			binfo = WorldSpawnLoc.bonfire_info.get(pos);
-		}
-		
-		for (BonfireInfo entry : WorldSpawnLoc.bonfire_info.values())
-		{
-			if (entry.hasPlayer(playerIn))
-			{
-				entry.removePlayer(playerIn);
-			}
-		}
-			
-		binfo.addPlayer(playerIn);
-		WorldSpawnLoc.lastSpawnLocas.put(playerIn.getUUID(playerIn.getGameProfile()), new PlayerPosition(new BlockPos(playerIn), playerIn.rotationYaw, playerIn.rotationPitch));
-		if(worldIn.isRemote)
-		    playerIn.sendMessage(new TextComponentString(playerIn.getName() + " rested at: " + playerIn.getPosition() + "!"));
-		
-		WorldSpawnLoc.bonfire_info.put(pos, binfo.copy());
-		*/
 		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.idBonfire, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		
 		return true;
