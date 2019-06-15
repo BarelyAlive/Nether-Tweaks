@@ -125,7 +125,7 @@ public class Config extends BlocksItems
         
         dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
         capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
-        fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 1, Integer.MAX_VALUE, "0 disables it");
+        fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
         
         durabilityPickRack				= config.getInt("Durability for Netherrack Pickaxe", "Tweak", 132, 1, Integer.MAX_VALUE, "");
         durabilityPickBrick				= config.getInt("Durability for Netherbrick Pickaxe", "Tweak", 251, 1, Integer.MAX_VALUE, "");

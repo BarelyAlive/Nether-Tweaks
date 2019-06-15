@@ -226,10 +226,11 @@ public class WorldEvents{
 
 	private void teleportPlayer(EntityPlayer player) {
 
-		if(player.dimension != -1 || player.dimension != 1)
+		if(player.dimension == 0)
 		{
 			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
-			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key)){
+			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key))
+			{
 				player.setPortal(player.getPosition());
 				player.getEntityData().setBoolean(key, true);
 			}
