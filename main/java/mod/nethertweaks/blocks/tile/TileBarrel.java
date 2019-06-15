@@ -108,7 +108,7 @@ public class TileBarrel extends TileBase implements ITickable {
             {
             	if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
             	{
-            		if (ItemStack.areItemsEqual(stack, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT, 1, 0)))
+            		if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
             		{
             			this.getItemHandler().insertItem(0, stack, true);
             		}
