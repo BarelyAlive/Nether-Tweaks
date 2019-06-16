@@ -161,8 +161,7 @@ public class NTM implements IRecipeDefaults
 		//salmon
 		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);
-			
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);		
 		//clownfish
 		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
