@@ -94,8 +94,8 @@ public class NetherTweaksMod
 {   
 	public static final String MODID = "nethertweaksmod";
 	public static final String MODNAME = "Nether Tweaks Mod";
-	public static final String VERSION = "2.0.0";
-	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.0];";
+	public static final String VERSION = "2.0.1";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.1];";
 	
     @Instance(value=MODID)
     public static NetherTweaksMod instance;
