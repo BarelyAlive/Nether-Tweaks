@@ -29,7 +29,7 @@ public class BlockHandler implements INames
 	//Tile Entity
     public static final Block CONDENSER 		   = new Condenser();
     public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
-    public static final Block BARREL 			   = new Barrel(0, Material.WOOD);
+    public static final Block BARREL_WOOD		   = new Barrel(0, Material.WOOD);
     public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK);
     public static final Block FREEZER 			   = new Freezer();
     public static final Block BONFIRE 			   = new Bonfire();
@@ -70,10 +70,8 @@ public class BlockHandler implements INames
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrel) {				
-											Registry.registerTileEntity(BARREL, TileBarrel.class);
-											Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
-    	}
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
+    	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
     	if(Config.enableCrucible) {
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);

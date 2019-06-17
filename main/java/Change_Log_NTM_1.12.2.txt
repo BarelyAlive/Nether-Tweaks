@@ -2,3 +2,4 @@ ChangeLog NTM 2.0.2
 
 * Fixed Hammers dropping the block's normal drops, when using its last durability point
 * Fixed Condenser processing and consuming items & blocks not registered as valid material
+* Both barrels can now be deactivated separately via config

@@ -78,7 +78,7 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public TileBarrel() {
-        this((Barrel) BlockHandler.BARREL);
+        this((Barrel) BlockHandler.BARREL_WOOD);
     }
 
     public TileBarrel(Barrel block) {

@@ -432,7 +432,7 @@ public class NTM implements IRecipeDefaults
     public void registerBarrelLiquidBlacklist(BarrelLiquidBlacklistRegistry registry) {
         for(Fluid fluid : FluidRegistry.getRegisteredFluids().values()){
             if(fluid.getTemperature() >= Config.woodBarrelMaxTemp)
-                registry.register(((Barrel)BlockHandler.BARREL).getTier(), fluid);
+                registry.register(((Barrel)BlockHandler.BARREL_WOOD).getTier(), fluid);
         }
     }
 
