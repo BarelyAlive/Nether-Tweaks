@@ -7,13 +7,16 @@ import com.google.common.collect.Sets;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IHammer;
+import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.HammerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 public class HammerBase extends ItemTool implements IHammer  {
 
@@ -26,6 +29,14 @@ public class HammerBase extends ItemTool implements IHammer  {
 		this.setMaxDamage(maxUses);
 		this.setCreativeTab(NetherTweaksMod.TABNTM);
 		this.miningLevel = material.getHarvestLevel();
+	}
+	
+	@Override
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+		if(itemstack.getItemDamage() == itemstack.getMaxDamage())
+			HammerHandler.setHammer(itemstack.copy());
+		
+		return super.onBlockStartBreak(itemstack, pos, player);
 	}
 	
 	private String getName(ToolMaterial m)

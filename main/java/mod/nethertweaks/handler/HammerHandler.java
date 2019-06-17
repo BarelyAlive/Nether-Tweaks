@@ -16,13 +16,30 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HammerHandler
 {
-    @SubscribeEvent(priority = EventPriority.LOW)
+	private static ItemStack hammer = ItemStack.EMPTY;
+	
+    public static ItemStack getHammer() {
+		return hammer;
+	}
+
+	public static void setHammer(ItemStack hammer) {
+		HammerHandler.hammer = hammer;
+	}
+
+	@SubscribeEvent(priority = EventPriority.LOW)
     public void hammer(BlockEvent.HarvestDropsEvent event)
     {
         if (event.getWorld().isRemote || event.getHarvester() == null || event.isSilkTouching())
             return;
+        
+        ItemStack held = ItemStack.EMPTY;
 
-        ItemStack held = event.getHarvester().getHeldItemMainhand();
+        if(!hammer.isEmpty())
+        {
+        	held =  hammer;
+        }
+        else
+        	held = event.getHarvester().getHeldItemMainhand();
 
         if (!isHammer(held))
             return;
@@ -35,6 +52,11 @@ public class HammerHandler
             event.setDropChance(1.0F);
             event.getDrops().addAll(rewards);
         }
+        
+        System.out.println(held.getItemDamage());
+        System.out.println(held.getMaxDamage());
+        
+        hammer =  ItemStack.EMPTY;
     }
     
     public static boolean isHammer(@Nullable ItemStack stack)
