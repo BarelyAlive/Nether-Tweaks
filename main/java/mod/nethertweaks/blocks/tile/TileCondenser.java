@@ -99,6 +99,7 @@ public class TileCondenser extends TileFluidInventory
 		if(calcMaxWorktime() == 0) return false;
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		
+		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
 		if(this.emptyRoom() < result.getValue()) return false;
