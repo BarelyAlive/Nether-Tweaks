@@ -70,7 +70,7 @@ public class TileNetherrackFurnace extends TileInventory
     private boolean canSmelt()
     {
         if(calcMaxWorktime() == 0) return false;
-    	if(((ItemStack)this.getStackInSlot(0)).isEmpty()) return false;      
+    	if(this.getStackInSlot(0).isEmpty()) return false;      
         ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStackInSlot(0));
         if(itemstack.isEmpty()) return false;
         ItemStack itemstack1 = this.getStackInSlot(1);
@@ -179,7 +179,8 @@ public class TileNetherrackFurnace extends TileInventory
         return "nethertweaksmod:gui_netherrack_furnace";
     }
     
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    @Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerNetherrackFurnace(playerInventory, this);
     }

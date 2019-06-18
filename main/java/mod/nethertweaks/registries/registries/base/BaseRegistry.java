@@ -21,7 +21,8 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
     protected RegType registry;
     protected Type typeOfSource;
 
-    public RegType getRegistry() {
+    @Override
+	public RegType getRegistry() {
 		return registry;
 	}
 
@@ -76,5 +77,6 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
     }
 
     public abstract List<?> getRecipeList();
-    public abstract void clearRegistry();
+    @Override
+	public abstract void clearRegistry();
 }

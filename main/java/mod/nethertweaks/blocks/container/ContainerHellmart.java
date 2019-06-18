@@ -26,10 +26,12 @@ public class ContainerHellmart extends Container {
 		}
 	}
 
+	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
 		return true;
 	}
 
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		final Slot slot = inventorySlots.get(slotIndex);

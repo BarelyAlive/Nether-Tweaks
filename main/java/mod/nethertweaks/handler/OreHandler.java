@@ -109,7 +109,7 @@ public class OreHandler {
 			}
 			else
 			{
-				chunks = (ItemChunk) mod_chunks.get(mod_domain);
+				chunks = mod_chunks.get(mod_domain);
 			}
 			
 			int[] ids = OreDictionary.getOreIDs(entry.getKey());

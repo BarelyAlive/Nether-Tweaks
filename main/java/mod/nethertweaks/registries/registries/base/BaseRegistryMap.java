@@ -16,7 +16,8 @@ public abstract class BaseRegistryMap<K, V> extends BaseRegistry<Map<K, V>> impl
         super(gson, new HashMap<>(), typeOfSource, defaultRecipeProviders);
     }
 
-    public void register(K key, V value) {
+    @Override
+	public void register(K key, V value) {
         registry.put(key, value);
     }
 

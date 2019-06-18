@@ -5,6 +5,7 @@ import java.util.Random;
 import mod.nethertweaks.blocks.ElderSapling;
 import mod.nethertweaks.blocks.MeanVine;
 import mod.nethertweaks.handler.BlockHandler;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -50,7 +51,8 @@ public class WorldGenElderTree extends WorldGenAbstractTree
         }
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    @Override
+	public boolean generate(World worldIn, Random rand, BlockPos position)
     {
         int i = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
@@ -146,22 +148,22 @@ public class WorldGenElderTree extends WorldGenAbstractTree
                             {
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(-1, j3, 0)))
                                 {
-                                    this.addVine(worldIn, position.add(-1, j3, 0), MeanVine.EAST);
+                                    this.addVine(worldIn, position.add(-1, j3, 0), BlockVine.EAST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(1, j3, 0)))
                                 {
-                                    this.addVine(worldIn, position.add(1, j3, 0), MeanVine.WEST);
+                                    this.addVine(worldIn, position.add(1, j3, 0), BlockVine.WEST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, -1)))
                                 {
-                                    this.addVine(worldIn, position.add(0, j3, -1), MeanVine.SOUTH);
+                                    this.addVine(worldIn, position.add(0, j3, -1), BlockVine.SOUTH);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, 1)))
                                 {
-                                    this.addVine(worldIn, position.add(0, j3, 1), MeanVine.NORTH);
+                                    this.addVine(worldIn, position.add(0, j3, 1), BlockVine.NORTH);
                                 }
                             }
                         }
@@ -191,22 +193,22 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos2))
                                         {
-                                            this.addHangingVine(worldIn, blockpos2, MeanVine.EAST);
+                                            this.addHangingVine(worldIn, blockpos2, BlockVine.EAST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos3))
                                         {
-                                            this.addHangingVine(worldIn, blockpos3, MeanVine.WEST);
+                                            this.addHangingVine(worldIn, blockpos3, BlockVine.WEST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos4))
                                         {
-                                            this.addHangingVine(worldIn, blockpos4, MeanVine.SOUTH);
+                                            this.addHangingVine(worldIn, blockpos4, BlockVine.SOUTH);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.isAirBlock(blockpos1))
                                         {
-                                            this.addHangingVine(worldIn, blockpos1, MeanVine.NORTH);
+                                            this.addHangingVine(worldIn, blockpos1, BlockVine.NORTH);
                                         }
                                     }
                                 }

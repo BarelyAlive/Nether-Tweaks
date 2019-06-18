@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.sfhcore.blocks.tiles.TileInventory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -60,7 +61,7 @@ public class GuiFreezer extends GuiContainer
         
         int x_old = x;
         int y_old = y;
-        if(this.entity.isWorking(this.entity)){
+        if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
         	x += 28;
         	y += 17;

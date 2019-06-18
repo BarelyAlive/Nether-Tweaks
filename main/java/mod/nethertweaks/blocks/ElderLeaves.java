@@ -61,7 +61,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		}
 		if(worldIn.isRemote) return;
 		
-	     if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
+	     if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
 	     {
 	         int i = 4;
 	         int j = 5;

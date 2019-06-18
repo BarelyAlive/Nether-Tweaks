@@ -57,7 +57,7 @@ public class WorldSaveData extends WorldSavedData {
 		NBTTagList bonfireNbtList = nbt.getTagList("NTM.Bonfires", 10);
 		
 		for(int i = 0; i < nbtList.tagCount(); i++) {
-			NBTTagCompound tag = (NBTTagCompound) nbtList.getCompoundTagAt(i);
+			NBTTagCompound tag = nbtList.getCompoundTagAt(i);
 			
 			lBits = tag.getLong("NTM.leastSignificantBits");
 			mBits = tag.getLong("NTM.mostSignificantBits");
@@ -74,7 +74,7 @@ public class WorldSaveData extends WorldSavedData {
 		}
 		
 		for(int i = 0; i < bonfireNbtList.tagCount(); i++) {
-			NBTTagCompound tag = (NBTTagCompound) bonfireNbtList.getCompoundTagAt(i);
+			NBTTagCompound tag = bonfireNbtList.getCompoundTagAt(i);
 			
 			NBTTagList nbt_player_list = tag.getTagList("NTM.UUIDs", 10);
 			
@@ -82,7 +82,7 @@ public class WorldSaveData extends WorldSavedData {
 			
 			for(int j = 0; j < nbt_player_list.tagCount(); j++)
 			{
-				NBTTagCompound player_tag = (NBTTagCompound) nbt_player_list.getCompoundTagAt(i);
+				NBTTagCompound player_tag = nbt_player_list.getCompoundTagAt(i);
 				lBits = player_tag.getLong("NTM.leastSignificantBits");
 				mBits = player_tag.getLong("NTM.mostSignificantBits");
 				index = new UUID(mBits, lBits);

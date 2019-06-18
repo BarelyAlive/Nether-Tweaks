@@ -25,7 +25,7 @@ public class MessageTeleportPlayer implements IMessage {
 	
 	public MessageTeleportPlayer(BlockPos bonfire_pos, EntityPlayer player) {
 		this.bonfire_pos = bonfire_pos;
-		this.uuid = player.getUUID(player.getGameProfile()).toString();
+		this.uuid = EntityPlayer.getUUID(player.getGameProfile()).toString();
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 			
-			WorldSpawnLocation.lastSpawnLocations.put(player.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
+			WorldSpawnLocation.lastSpawnLocations.put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 			
 			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
 			{

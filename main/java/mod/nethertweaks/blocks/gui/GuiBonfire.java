@@ -188,6 +188,7 @@ public class GuiBonfire extends GuiContainer {
 		this.text.mouseClicked(mouseX, mouseY, mouseButton);
 	}
 	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(gui);

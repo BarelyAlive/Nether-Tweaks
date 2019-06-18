@@ -51,7 +51,8 @@ public class NTM implements IRecipeDefaults
 {
     private final String MODID = NetherTweaksMod.MODID;
 
-    public String getMODID() {
+    @Override
+	public String getMODID() {
 		return MODID;
 	}
 
@@ -509,7 +510,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-    	return chance / 100f * (float) Config.normalDropPercent;
+    	return chance / 100f * Config.normalDropPercent;
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()

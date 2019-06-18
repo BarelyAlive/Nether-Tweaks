@@ -41,18 +41,18 @@ public class Bonfire extends Block
 		l++;
 		if (rand.nextDouble() < 0.1D)
         {
-            worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            worldIn.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
         }
 		switch(l) {
 		case 1:
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
-			worldIn.spawnParticle(EnumParticleTypes.FLAME, (double)pos.getX()+0.5D, (double)pos.getY(), (double)pos.getZ()+0.5D, (double)-(rand.nextDouble()%0.04D), (double)(rand.nextDouble()%0.08D), (double)-(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
+			worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
 			l = 0;
         	break;
 		}

@@ -26,10 +26,12 @@ public class CapabilityHeat implements ICapabilityHeat
 
 	int heatRate;
 
-    public int getHeatRate() {
+    @Override
+	public int getHeatRate() {
 		return heatRate;
 	}
 
+	@Override
 	public void setHeatRate(int heatRate) {
 		this.heatRate = heatRate;
 	}

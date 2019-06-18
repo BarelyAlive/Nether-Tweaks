@@ -136,7 +136,8 @@ public class BarrelModeCompost implements IBarrelMode {
         barrel.getWorld().setBlockState(barrel.getPos(), state);
     }
 
-    @SuppressWarnings("deprecation")
+    @Override
+	@SuppressWarnings("deprecation")
     public void addItem(ItemStack stack, TileBarrel barrel) {
         if (fillAmount < 1) {
             if (stack != null && !stack.isEmpty()) {

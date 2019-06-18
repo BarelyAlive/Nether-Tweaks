@@ -103,7 +103,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
      *              Otherwise, the hunk will be smelted into this.
      * @return Ore, containing the base Ore object.
      */
-    @Nonnull
+    @Override
+	@Nonnull
     public Ore register(@Nonnull String name, @Nonnull Color color, ItemInfo info, Map<String, String> translations, String oredictName) {
         Ore ore = new Ore(name, color, info, null, translations, oredictName);
         register(ore);
@@ -225,7 +226,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         }
     }
 
-    public ItemOre getOreItem(@Nonnull String name) {
+    @Override
+	public ItemOre getOreItem(@Nonnull String name) {
         for (ItemOre itemOre : itemOreRegistry) {
             if (itemOre.getOre().getName().equals(name)) {
                 return itemOre;
@@ -235,7 +237,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         return null;
     }
 
-    public boolean isRegistered(@Nonnull String name) {
+    @Override
+	public boolean isRegistered(@Nonnull String name) {
         for (Ore ore : registry) {
             if (ore.getName().equals(name)) {
                 return true;

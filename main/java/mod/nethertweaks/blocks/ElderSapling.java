@@ -59,7 +59,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 
     public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (((Integer)state.getValue(STAGE)).intValue() == 0)
+        if (state.getValue(STAGE).intValue() == 0)
         {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
         }
@@ -72,7 +72,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenElderTree(true);
+        WorldGenerator worldgenerator = new WorldGenElderTree(true);
         int i = 0;
         int j = 0;
         boolean flag = false;
@@ -116,7 +116,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return (double)worldIn.rand.nextFloat() < 0.45D;
+        return worldIn.rand.nextFloat() < 0.45D;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     @Override
     public int getMetaFromState(IBlockState state) {
     	int i = 0;
-        i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
+        i = i | state.getValue(STAGE).intValue() << 3;
         return i;
     }
 

@@ -24,6 +24,7 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
@@ -74,14 +75,14 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity
-    	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
-    	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
-    	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
-    	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
-    	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
-    	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
-    	if(Config.enableCrucible) {
+    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
+    	if(BlocksItems.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
+    	if(BlocksItems.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
+    	if(BlocksItems.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+    	if(BlocksItems.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
+    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
+    	if(BlocksItems.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
+    	if(BlocksItems.enableCrucible) {
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
@@ -90,12 +91,12 @@ public class BlockHandler implements INames
     //Registering all the blocks
     private static void registerBlocks()
     {
-    	if(Config.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
-    	if(Config.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
-    	if(Config.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
-        if(Config.enableDust) 				Registry.registerBlock(DUST);
-        if(Config.enableStwH) 				Registry.registerBlock(STWH);
-        if(Config.enableElderTree) {
+    	if(BlocksItems.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
+    	if(BlocksItems.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
+    	if(BlocksItems.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
+        if(BlocksItems.enableDust) 				Registry.registerBlock(DUST);
+        if(BlocksItems.enableStwH) 				Registry.registerBlock(STWH);
+        if(BlocksItems.enableElderTree) {
 			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);
 			/*one wants to use  */			Registry.registerBlock(ELDER_LOG);
 			/*just some of      */			Registry.registerBlock(ELDER_LEAVES);
@@ -103,10 +104,10 @@ public class BlockHandler implements INames
 			/*whole tree, right?*/			Registry.registerBlock(ELDER_SLAB);
 			/*RIGHT?			*/			Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
-        if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
-        if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
-        if(Config.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
-        if(Config.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
-        if(Config.enableBonfire)			Registry.registerBlock(BONFIRE);
+        if(BlocksItems.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
+        if(BlocksItems.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
+        if(BlocksItems.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
+        if(BlocksItems.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
+        if(BlocksItems.enableBonfire)			Registry.registerBlock(BONFIRE);
     }
 }

@@ -31,19 +31,23 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         );
     }
 
-    public void register(@Nonnull Entity entityOnTop, @Nonnull Fluid result, int amount, int coolDown) {
+    @Override
+	public void register(@Nonnull Entity entityOnTop, @Nonnull Fluid result, int amount, int coolDown) {
         registry.add(new Milkable(entityOnTop.getName(), result.getName(), amount, coolDown));
     }
 
-    public void register(@Nonnull String entityOnTop, @Nonnull String result, int amount, int coolDown) {
+    @Override
+	public void register(@Nonnull String entityOnTop, @Nonnull String result, int amount, int coolDown) {
         registry.add(new Milkable(entityOnTop, result, amount, coolDown));
     }
 
-    public boolean isValidRecipe(Entity entityOnTop) {
+    @Override
+	public boolean isValidRecipe(Entity entityOnTop) {
         return entityOnTop != null && this.isValidRecipe(entityOnTop.getName());
     }
 
-    public boolean isValidRecipe(String entityOnTop) {
+    @Override
+	public boolean isValidRecipe(String entityOnTop) {
         if (entityOnTop == null) {
             return false;
         }
@@ -55,7 +59,8 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         return false;
     }
 
-    public Milkable getMilkable(Entity entityOnTop) {
+    @Override
+	public Milkable getMilkable(Entity entityOnTop) {
         // Returns the entire milkable object instead of having use multiple functions
         if (entityOnTop == null) {
             return null;
@@ -68,7 +73,8 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         return null;
     }
 
-    public String getResult(@Nonnull Entity entityOnTop) {
+    @Override
+	public String getResult(@Nonnull Entity entityOnTop) {
         for (Milkable milk : registry) {
             if (milk.getEntityOnTop().equals(entityOnTop.getName())) {
                 return milk.getResult();
@@ -77,7 +83,8 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         return null;
     }
 
-    public int getAmount(@Nonnull Entity entityOnTop) {
+    @Override
+	public int getAmount(@Nonnull Entity entityOnTop) {
         for (Milkable milk : registry) {
             if (milk.getEntityOnTop().equals(entityOnTop.getName())) {
                 return milk.getAmount();
@@ -86,7 +93,8 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
         return 0;
     }
 
-    public int getCoolDown(@Nonnull Entity entityOnTop) {
+    @Override
+	public int getCoolDown(@Nonnull Entity entityOnTop) {
         for (Milkable milk : registry) {
             if (milk.getEntityOnTop().equals(entityOnTop.getName())) {
                 return milk.getCoolDown();

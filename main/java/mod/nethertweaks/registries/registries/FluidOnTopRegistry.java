@@ -30,16 +30,19 @@ public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implem
         );
     }
 
-    public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull BlockInfo result) {
+    @Override
+	public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull BlockInfo result) {
         registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), result));
     }
 
-    public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull ItemInfo result) {
+    @Override
+	public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull ItemInfo result) {
         if (result.hasBlock())
             registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), new BlockInfo(result.getItemStack())));
     }
 
-    public boolean isValidRecipe(Fluid fluidInBarrel, Fluid fluidOnTop) {
+    @Override
+	public boolean isValidRecipe(Fluid fluidInBarrel, Fluid fluidOnTop) {
         if (fluidInBarrel == null || fluidOnTop == null)
             return false;
         for (FluidFluidBlock fBlock : registry) {
@@ -51,7 +54,8 @@ public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implem
         return false;
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public BlockInfo getTransformedBlock(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop) {
         for (FluidFluidBlock fBlock : registry) {
             if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&

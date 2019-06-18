@@ -48,10 +48,10 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 
         if (te.getTexture() != null && te.getCurrentStack() != null) {
             TextureAtlasSprite icon = te.getTexture();
-            double minU = (double) icon.getMinU();
-            double maxU = (double) icon.getMaxU();
-            double minV = (double) icon.getMinV();
-            double maxV = (double) icon.getMaxV();
+            double minU = icon.getMinU();
+            double maxU = icon.getMaxU();
+            double minV = icon.getMinV();
+            double maxV = icon.getMaxV();
 
             this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
@@ -100,7 +100,7 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
         worldRendererBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         // worldRendererBuffer.setTranslation(-.5, -.5, -.5);
 
-        renderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
+        RenderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
 
         // worldRendererBuffer.setTranslation(0, 0, 0);
         tessellator.draw();

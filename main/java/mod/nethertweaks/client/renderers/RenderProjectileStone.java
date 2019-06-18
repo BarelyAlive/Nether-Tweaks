@@ -113,10 +113,10 @@ public class RenderProjectileStone extends Render<ProjectileStone> {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
 
-        double minU = (double) texture.getMinU();
-        double maxU = (double) texture.getMaxU();
-        double minV = (double) texture.getMinV();
-        double maxV = (double) texture.getMaxV();
+        double minU = texture.getMinU();
+        double maxU = texture.getMaxU();
+        double minV = texture.getMinV();
+        double maxV = texture.getMaxV();
 
         this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 

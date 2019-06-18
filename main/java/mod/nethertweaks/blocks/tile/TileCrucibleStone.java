@@ -78,7 +78,8 @@ public class TileCrucibleStone extends TileCrucibleBase {
         }
     }
 
-    public int getHeatRate() {
+    @Override
+	public int getHeatRate() {
         BlockPos posBelow = pos.add(0, -1, 0);
         IBlockState stateBelow = getWorld().getBlockState(posBelow);
 

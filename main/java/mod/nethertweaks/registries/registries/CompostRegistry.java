@@ -53,7 +53,8 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
         );
     }
 
-    public void register(@Nonnull ItemStack itemStack, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(@Nonnull ItemStack itemStack, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         if (itemStack.isEmpty())
             return;
 
@@ -67,23 +68,28 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
         register(ingredient, compostable);
     }
 
-    public void register(Item item, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(Item item, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         register(new ItemStack(item, 1, meta), value, state, color);
     }
 
-    public void register(@Nonnull Block block, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(@Nonnull Block block, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         register(new ItemStack(block, 1, meta), value, state, color);
     }
 
-    public void register(@Nonnull StackInfo item, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(@Nonnull StackInfo item, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         register(item.getItemStack(), value, state, color);
     }
 
-    public void register(@Nonnull ResourceLocation location, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(@Nonnull ResourceLocation location, int meta, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         register(ForgeRegistries.ITEMS.getValue(location), meta, value, state, color);
     }
 
-    public void register(@Nonnull String name, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
+    @Override
+	public void register(@Nonnull String name, float value, @Nonnull BlockInfo state, @Nonnull Color color) {
         Ingredient ingredient = new OreIngredientStoring(name);
         Compostable compostable = new Compostable(value, color, state);
         
@@ -96,16 +102,19 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
     /**
      * Registers a oredict for sifting with a dynamic color based on the itemColor
      */
-    public void register(@Nonnull String name, float value, @Nonnull BlockInfo state) {
+    @Override
+	public void register(@Nonnull String name, float value, @Nonnull BlockInfo state) {
         register(name, value, state, Color.INVALID_COLOR);
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public Compostable getItem(@Nonnull Item item, int meta) {
         return getItem(new ItemStack(item, meta));
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public Compostable getItem(@Nonnull ItemStack stack) {
         Ingredient ingredient = registry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
         if (ingredient != null) return registry.get(ingredient);
@@ -114,20 +123,24 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
         else return Compostable.getEMPTY();
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public Compostable getItem(@Nonnull StackInfo info) {
         return getItem(info.getItemStack());
     }
 
-    public boolean containsItem(@Nonnull Item item, int meta) {
+    @Override
+	public boolean containsItem(@Nonnull Item item, int meta) {
         return containsItem(new ItemStack(item, meta));
     }
 
-    public boolean containsItem(@Nonnull ItemStack stack) {
+    @Override
+	public boolean containsItem(@Nonnull ItemStack stack) {
         return registry.keySet().stream().anyMatch(entry -> entry.test(stack)) || oreRegistry.keySet().stream().anyMatch(entry -> entry.test(stack));
     }
 
-    public boolean containsItem(@Nonnull StackInfo info) {
+    @Override
+	public boolean containsItem(@Nonnull StackInfo info) {
         return containsItem(info.getItemStack());
     }
 

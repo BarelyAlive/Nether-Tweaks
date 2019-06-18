@@ -48,15 +48,18 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
         registry.put(info.toString(), heatAmount);
     }
 
-    public void register(@Nonnull ItemStack stack, int heatAmount) {
+    @Override
+	public void register(@Nonnull ItemStack stack, int heatAmount) {
         register(new BlockInfo(stack), heatAmount);
     }
 
+	@Override
 	public int getHeatAmount(@Nonnull ItemStack stack) {
 		return this.getHeatAmount(new BlockInfo(stack));
     }
 
-    public int getHeatAmount(@Nonnull BlockInfo info) {
+    @Override
+	public int getHeatAmount(@Nonnull BlockInfo info) {
         return this.getHeatAmount(info.toString());
     }
     

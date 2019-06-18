@@ -91,7 +91,7 @@ public class WorldEvents
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
     		is_hellworld = true;
     		teleportPlayer(player);
-    		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(player.getUUID(player.getGameProfile())))
+    		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
     		{
 	    		BlockPos posplayer = player.getPosition();
 	    		int yDifferenz = 0;
@@ -99,7 +99,7 @@ public class WorldEvents
 	    		{
 	    			yDifferenz = range - posplayer.getY();
 	    		}
-	    		Iterable<BlockPos> posi = PortalPosition.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
+	    		Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 
 	    		for(BlockPos pos : posi)
 	    		{
@@ -111,7 +111,7 @@ public class WorldEvents
     		}
     		else
     		{
-    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(player.getUUID(player.getGameProfile()));
+    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}

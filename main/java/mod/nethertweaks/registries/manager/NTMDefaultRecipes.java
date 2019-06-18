@@ -47,13 +47,15 @@ public class NTMDefaultRecipes
     }
     
     private static class CondenserDefaults implements ICondenserDefaultRegistryProvider {
-        public void registerRecipeDefaults(@Nonnull CondenserRegistry registry) {
+        @Override
+		public void registerRecipeDefaults(@Nonnull CondenserRegistry registry) {
             compat.registerCondenser(registry);
         }
     }
     
     private static class HellmartDefaults implements IHellmartDefaultRegistryProvider {
-        public void registerRecipeDefaults(@Nonnull HellmartRegistry registry) {
+        @Override
+		public void registerRecipeDefaults(@Nonnull HellmartRegistry registry) {
             compat.registerHellmart(registry);
         }
     }

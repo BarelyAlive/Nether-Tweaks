@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.LiquidImpossibility;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
 import mod.sfhcore.handler.BucketHandler;
@@ -23,15 +24,15 @@ public class BucketNFluidHandler implements INames
 
 	private static void registerFluids()
 	{
-		if (Config.enableLiquidImpossibility)
+		if (BlocksItems.enableLiquidImpossibility)
 			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 	}
 
 	private static void registerBuckets()
 	{
-		if(Config.enableWoodBucket)
+		if(BlocksItems.enableWoodBucket)
 			BucketHandler.addBucket("wood", "Wood", 505, 16, MODID, 0x80874633, TAB);
-		if(Config.enableStoneBucket)
+		if(BlocksItems.enableStoneBucket)
 			BucketHandler.addBucket("stone", "Stone", -1, 16, MODID, 0x80778899, TAB);
 	}
 }

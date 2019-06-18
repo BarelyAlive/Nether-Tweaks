@@ -26,12 +26,14 @@ public class BarrelLiquidBlacklistRegistry extends BaseRegistryMap<Integer, List
                 NTMRegistryManager.BARREL_LIQUID_BLACKLIST_DEFAULT_REGISTRY_PROVIDERS);
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public boolean isBlacklisted(int level, @Nonnull String fluid) {
         return level < 0 || registry.getOrDefault(level, Collections.EMPTY_LIST).contains(fluid);
     }
 
-    public void register(int level, @Nonnull String fluid) {
+    @Override
+	public void register(int level, @Nonnull String fluid) {
         List<String> list = registry.computeIfAbsent(level, k -> new ArrayList<>());
 
         list.add(fluid);

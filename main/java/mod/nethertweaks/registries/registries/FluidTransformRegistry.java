@@ -34,11 +34,13 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
                 NTMRegistryManager.FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS);
     }
 
-    public void register(@Nonnull String inputFluid, @Nonnull String outputFluid, int duration, @Nonnull BlockInfo[] transformingBlocks, @Nonnull BlockInfo[] blocksToSpawn) {
+    @Override
+	public void register(@Nonnull String inputFluid, @Nonnull String outputFluid, int duration, @Nonnull BlockInfo[] transformingBlocks, @Nonnull BlockInfo[] blocksToSpawn) {
         register(new FluidTransformer(inputFluid, outputFluid, duration, transformingBlocks, blocksToSpawn));
     }
 
-    public void register(@Nonnull FluidTransformer transformer) {
+    @Override
+	public void register(@Nonnull FluidTransformer transformer) {
         List<FluidTransformer> list = registry.get(transformer.getInputFluid());
 
         if (list == null) {
@@ -49,11 +51,13 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
         registry.put(transformer.getInputFluid(), list);
     }
 
-    public boolean containsKey(@Nonnull String inputFluid) {
+    @Override
+	public boolean containsKey(@Nonnull String inputFluid) {
         return registry.containsKey(inputFluid);
     }
 
-    public FluidTransformer getFluidTransformer(@Nonnull String inputFluid, @Nonnull String outputFluid) {
+    @Override
+	public FluidTransformer getFluidTransformer(@Nonnull String inputFluid, @Nonnull String outputFluid) {
         if (registry.containsKey(inputFluid)) {
             for (FluidTransformer transformer : registry.get(inputFluid)) {
                 if (transformer.getInputFluid().equals(inputFluid) && transformer.getOutputFluid().equals(outputFluid))
@@ -63,7 +67,8 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
         return null;
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public List<FluidTransformer> getFluidTransformers(@Nonnull String inputFluid) {
         return registry.get(inputFluid);
     }

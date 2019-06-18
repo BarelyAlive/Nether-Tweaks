@@ -65,7 +65,7 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
                         final double vertX = vert.x;
                         final double vertZ = vert.z;
 
-                        buffer.pos(vertX, (double) fill, vertZ);
+                        buffer.pos(vertX, fill, vertZ);
                         break;
 
                     case UV:

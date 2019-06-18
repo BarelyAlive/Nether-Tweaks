@@ -49,9 +49,9 @@ public class WorldSpawnLocation {
 	
 	public static PlayerPosition setNewSpawnLocation(@Nonnull EntityPlayer player)
 	{
-		UUID playerID = player.getUUID(player.getGameProfile());
+		UUID playerID = EntityPlayer.getUUID(player.getGameProfile());
 		
-		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
+		if(playerID == null) playerID = EntityPlayer.getOfflineUUID(player.getName());
 		
 		if(lastSpawnLocations.containsKey(playerID))
 		{
@@ -65,9 +65,9 @@ public class WorldSpawnLocation {
 	
 	public static PlayerPosition resetSpawnLocation(@Nonnull EntityPlayer player)
 	{
-		UUID playerID = player.getUUID(player.getGameProfile());
+		UUID playerID = EntityPlayer.getUUID(player.getGameProfile());
 		
-		if(playerID == null) playerID = player.getOfflineUUID(player.getName());
+		if(playerID == null) playerID = EntityPlayer.getOfflineUUID(player.getName());
 
 		if(lastSpawnLocations.containsKey(playerID))
 		{

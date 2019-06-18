@@ -234,12 +234,14 @@ public class TileCondenser extends TileFluidInventory
 		return index == 1;
 	}
 	
-    public String getGuiID()
+    @Override
+	public String getGuiID()
     {
         return "nethertweaksmod:gui_condenser";
     }
  
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    @Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerCondenser(playerInventory, this);
     }
