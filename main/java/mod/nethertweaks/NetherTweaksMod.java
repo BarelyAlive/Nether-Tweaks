@@ -95,7 +95,7 @@ public class NetherTweaksMod
 	public static final String MODID = "nethertweaksmod";
 	public static final String MODNAME = "Nether Tweaks Mod";
 	public static final String VERSION = "2.0.2";
-	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.1];";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.2];";
 	
     @Instance(value=MODID)
     public static NetherTweaksMod instance;
@@ -107,10 +107,10 @@ public class NetherTweaksMod
     }
     
     @Mod.EventBusSubscriber
-    public static class BucketRegistrationHandler
+    public static class OreRegistrationHandler
     {
     	@SubscribeEvent(priority = EventPriority.LOWEST)
-    	public static void registerBuckets (RegistryEvent.Register<Item> event)
+    	public static void registerOres (RegistryEvent.Register<Item> event)
     	{
     		String[] ore_names = OreDictionary.getOreNames();
     		for (String ore_name : ore_names)
@@ -135,7 +135,7 @@ public class NetherTweaksMod
         }
     	
     	@SubscribeEvent(priority = EventPriority.LOWEST)
-    	public static void registerBucketModels(ModelRegistryEvent event)
+    	public static void registerOreModels(ModelRegistryEvent event)
     	{
     		OreHandler.registerModels(event);
     	}

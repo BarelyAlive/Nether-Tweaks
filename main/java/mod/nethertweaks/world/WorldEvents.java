@@ -8,9 +8,11 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.handler.BucketHandler;
+import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
-import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.vars.PlayerPosition;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
@@ -41,14 +43,16 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-public class WorldEvents{
-
+public class WorldEvents
+{
 	public final static String key = "ntm.firstSpawn";
 	public final static String coodX = "ntm.cood.x";
 	public final static String coodY = "ntm.cood.y";
@@ -62,60 +66,44 @@ public class WorldEvents{
 	{
 		boolean activated = false;
 		BlockPos clicked = event.getPos();
-		final ItemInfo heldItem = new ItemInfo(event.getItemStack());
-		final ItemInfo bucket1 = new ItemInfo(Items.WATER_BUCKET);
-		final ItemInfo bucket2 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
-		final ItemInfo bucket3 = new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
+		ItemStack heldItem = event.getItemStack();
+		ItemStack bucket1 = new ItemStack(Items.WATER_BUCKET);
+		ItemStack bucket2 = new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
+		ItemStack bucket3 = new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 		World world = event.getEntity().getEntityWorld();
-		if (event.getEntity().getEntityWorld().isRemote) return;
-		if (!ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
-				&& !ItemStack.areItemsEqual(heldItem.getItemStack(), bucket2.getItemStack())
-				&& !ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack())) return;
+		boolean vaporize = world.provider.doesWaterVaporize();
+		
+		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null) return;
+		if (!BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER)) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
 			event.setCanceled(true);
 		}
-		if (Config.enableSaltRecipe && !activated)
+		if (!activated)
 		{
-			if (ItemStack.areItemsEqual(heldItem.getItemStack(), bucket1.getItemStack())
-					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket2.getItemStack())
-					|| ItemStack.areItemsEqual(heldItem.getItemStack(), bucket3.getItemStack()))
-			{
-				if (event.getEntity() instanceof EntityPlayer && event.getEntity().dimension == -1)
-				{
-					EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.SALT, 2));
-					switch (event.getFace()) {
-					case UP:
-						salt.getPosition().up();
-						world.spawnEntity(salt);
-						break;
-					case NORTH:
-						salt.getPosition().north();
-						world.spawnEntity(salt);
-						break;
-					case EAST:
-						salt.getPosition().east();
-						world.spawnEntity(salt);
-						break;
-					case SOUTH:
-						salt.getPosition().south();
-						world.spawnEntity(salt);
-						break;
-					case WEST:
-						salt.getPosition().west();
-						world.spawnEntity(salt);
-						break;
-					case DOWN:
-						salt.getPosition().down();
-						world.spawnEntity(salt);
-						break;
-					default:
-						break;
-					}
-				}
+			EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.SALT, 2));
+			switch (event.getFace()) {
+			case UP:
+				salt.getPosition().up();
+				break;
+			case NORTH:
+				salt.getPosition().north();
+				break;
+			case EAST:
+				salt.getPosition().east();
+				break;
+			case SOUTH:
+				salt.getPosition().south();
+				break;
+			case WEST:
+				salt.getPosition().west();
+				break;
+			case DOWN:
+				salt.getPosition().down();
+				break;
 			}
-			activated = false;
+			world.spawnEntity(salt);
 		}
     }
 
