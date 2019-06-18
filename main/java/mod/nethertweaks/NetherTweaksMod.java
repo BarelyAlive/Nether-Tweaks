@@ -131,7 +131,7 @@ public class NetherTweaksMod
         BlockHandler.init();
         BucketNFluidHandler.init();
         
-        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 16, 16), 1);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
         
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
@@ -162,7 +162,7 @@ public class NetherTweaksMod
     	//Mobs
     	if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
     	        
-		BarrelModeRegistry.registerDefaults();  	
+		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		JsonRecipeHandler.loadJasonVorhees(configDirectory);
     }

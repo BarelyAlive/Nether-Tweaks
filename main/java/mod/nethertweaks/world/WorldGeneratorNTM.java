@@ -22,9 +22,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	private WorldGenerator tree = new WorldGenElderTree(true);
 	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
-	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {
-		super();
-		this.frequency = frequency;
+	public WorldGeneratorNTM() {
 	}
 
 	@Override
