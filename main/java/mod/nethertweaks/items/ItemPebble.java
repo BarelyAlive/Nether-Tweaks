@@ -23,7 +23,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemPebble extends Item implements IVariantProvider
+public class ItemPebble extends Item
 {
     private static List<String> names = Lists.newArrayList("stone", "granite", "diorite", "andesite");
     
@@ -58,15 +58,5 @@ public class ItemPebble extends Item implements IVariantProvider
     public String getUnlocalizedName(ItemStack stack) {
     	return "item." + getRegistryName().getResourcePath();
 
-    }
-    
-    @Override
-	public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        
-		ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
-			
-        return ret;
     }
 }

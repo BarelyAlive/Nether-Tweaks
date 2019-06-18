@@ -15,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemMesh extends Item implements IVariantProvider{
+public class ItemMesh extends Item{
 		
 	public ItemMesh(String type) {
 		super();
@@ -58,17 +58,5 @@ public class ItemMesh extends Item implements IVariantProvider{
     public boolean isBookEnchantable(ItemStack stack, ItemStack book)
     {
         return stack.getCount() == 1;
-    }
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        
-        for(int i = 1; i < MeshType.values().length -1; i++)
-		{
-			ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
-		}
-        return ret;
     }
 }

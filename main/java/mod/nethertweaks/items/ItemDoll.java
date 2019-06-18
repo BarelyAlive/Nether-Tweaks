@@ -33,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-public class ItemDoll extends Item implements IVariantProvider, INames
+public class ItemDoll extends Item implements INames
 {	
 	public ItemDoll(String type)
 	{		
@@ -145,14 +145,4 @@ public class ItemDoll extends Item implements IVariantProvider, INames
 	public String getUnlocalizedName(ItemStack stack) {
 		return "item." + getRegistryName().getResourcePath();
 	}
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        
-		ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
-		
-        return ret;
-    }
 }

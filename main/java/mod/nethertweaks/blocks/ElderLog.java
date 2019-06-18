@@ -19,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
  
-public class ElderLog extends CubeFacingXYZ implements IVariantProvider{
+public class ElderLog extends CubeFacingXYZ{
         
     public ElderLog() {
     	super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, INames.ELDER_LOG));
@@ -60,13 +60,5 @@ public class ElderLog extends CubeFacingXYZ implements IVariantProvider{
     @Override
     public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
     	return false;
-    }
-    
-    @Override
-    public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-            ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
-        return ret;
     }
 }
