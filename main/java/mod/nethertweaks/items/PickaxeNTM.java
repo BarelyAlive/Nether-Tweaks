@@ -4,8 +4,6 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraftforge.common.util.EnumHelper;
 
 public class PickaxeNTM extends ItemPickaxe{
 	

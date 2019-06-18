@@ -1,6 +1,14 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -8,7 +16,6 @@ import mod.nethertweaks.api.ISieveRegistry;
 import mod.nethertweaks.blocks.Sieve;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.json.CustomIngredientJson;
 import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
@@ -28,11 +35,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import java.io.FileReader;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nonnull;
 
 public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> implements ISieveRegistry {
 

@@ -3,10 +3,8 @@ package mod.nethertweaks.api;
 import javax.annotation.Nullable;
 
 import mod.nethertweaks.registry.types.Dryable;
-import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;

@@ -1,5 +1,10 @@
 package mod.nethertweaks.client.renderers;
 
+import javax.annotation.Nonnull;
+
+import org.lwjgl.opengl.GL11;
+
+import mod.nethertweaks.entities.ProjectileStone;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -13,11 +18,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import org.lwjgl.opengl.GL11;
-
-import mod.nethertweaks.entities.ProjectileStone;
-
-import javax.annotation.Nonnull;
 
 public class RenderProjectileStone extends Render<ProjectileStone> {
     public RenderProjectileStone(RenderManager renderManager) {

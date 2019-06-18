@@ -1,27 +1,17 @@
 package mod.nethertweaks.blocks.gui;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.io.IOException;
-
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.sfhcore.Constants;
-import mod.sfhcore.util.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GuiFreezer extends GuiContainer
 {

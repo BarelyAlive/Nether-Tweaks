@@ -17,7 +17,6 @@ import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
-import mod.nethertweaks.registry.types.Compostable;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.json.CustomItemInfoJson;
@@ -25,14 +24,11 @@ import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;
 import mod.sfhcore.util.StackInfo;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreIngredient;
 
 public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> implements ICondenserRegistry
 {

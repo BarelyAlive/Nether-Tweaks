@@ -1,23 +1,21 @@
 package mod.nethertweaks.handler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.items.ItemChunk;
 import mod.nethertweaks.client.renderers.ChunkColorer;
-import mod.sfhcore.SFHCore;
+import mod.nethertweaks.items.ItemChunk;
 import mod.sfhcore.proxy.IVariantProvider;
-import mod.sfhcore.proxy.SFHCoreClientProxy;
-import mod.sfhcore.proxy.SFHCoreProxy;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.oredict.OreDictionary;

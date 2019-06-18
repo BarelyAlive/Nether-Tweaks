@@ -1,12 +1,18 @@
 package mod.nethertweaks.json;
 
-import com.google.gson.*;
+import java.lang.reflect.Type;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.LogUtil;
-
-import java.lang.reflect.Type;
 
 public class CustomColorJson implements JsonDeserializer<Color>, JsonSerializer<Color>
 {

@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.api.IHammer;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.sfhcore.util.ItemUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

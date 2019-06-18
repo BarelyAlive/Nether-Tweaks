@@ -1,6 +1,16 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,13 +45,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import wanion.unidict.UniDict;
-
-import org.apache.commons.lang3.StringUtils;
-
-import java.io.FileReader;
-import java.util.*;
-
-import javax.annotation.Nonnull;
 
 public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 

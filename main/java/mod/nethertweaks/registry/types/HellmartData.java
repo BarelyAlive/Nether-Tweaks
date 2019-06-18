@@ -1,6 +1,5 @@
 package mod.nethertweaks.registry.types;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class HellmartData

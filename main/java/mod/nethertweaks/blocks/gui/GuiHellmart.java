@@ -9,16 +9,13 @@ import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.util.TankUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.CapabilityItemHandler;
 

@@ -4,25 +4,16 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Type;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import p455w0rdslib.util.ChunkUtils;
 
 public class MessageTeleportPlayer implements IMessage {
 

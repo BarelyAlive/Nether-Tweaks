@@ -1,5 +1,14 @@
 package mod.nethertweaks.barrel.modes.block;
 
+import java.util.List;
+
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
+import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,16 +25,6 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
-
-import java.util.List;
-
-import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.Util;
 
 public class BarrelModeBlock implements IBarrelMode {
 

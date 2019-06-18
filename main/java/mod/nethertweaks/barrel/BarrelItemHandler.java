@@ -1,8 +1,7 @@
 package mod.nethertweaks.barrel;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 
@@ -11,9 +10,9 @@ import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
 import mod.sfhcore.network.NetworkHandler;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelItemHandler extends ItemStackHandler {
 

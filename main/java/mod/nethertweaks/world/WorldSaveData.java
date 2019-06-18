@@ -1,13 +1,18 @@
 package mod.nethertweaks.world;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
-import net.minecraft.world.storage.*;
+import net.minecraft.world.World;
+import net.minecraft.world.storage.MapStorage;
+import net.minecraft.world.storage.WorldSavedData;
 
 public class WorldSaveData extends WorldSavedData {
 	

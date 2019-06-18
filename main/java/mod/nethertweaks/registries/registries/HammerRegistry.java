@@ -1,8 +1,15 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.TreeTypeAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IHammerRegistry;
@@ -22,12 +29,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.CraftingHelper;
-
-import java.io.FileReader;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nonnull;
 
 public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerReward>> implements IHammerRegistry {
 

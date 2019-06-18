@@ -1,14 +1,5 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.GsonBuilder;
-
-import mod.nethertweaks.api.IBarrelLiquidBlacklistRegistry;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
-import net.minecraftforge.fluids.Fluid;
-
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
+
+import com.google.common.reflect.TypeToken;
+import com.google.gson.GsonBuilder;
+
+import mod.nethertweaks.api.IBarrelLiquidBlacklistRegistry;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
+import net.minecraftforge.fluids.Fluid;
 
 public class BarrelLiquidBlacklistRegistry extends BaseRegistryMap<Integer, List<String>> implements IBarrelLiquidBlacklistRegistry {
     public BarrelLiquidBlacklistRegistry() {

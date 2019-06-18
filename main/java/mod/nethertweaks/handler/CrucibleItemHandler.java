@@ -1,14 +1,13 @@
 package mod.nethertweaks.handler;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
-
 import javax.annotation.Nonnull;
 
 import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.types.Meltable;
 import mod.sfhcore.util.ItemInfo;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class CrucibleItemHandler extends ItemStackHandler {
 

@@ -1,5 +1,9 @@
 package mod.nethertweaks.network;
 
+import static mod.sfhcore.util.Util.whiteColor;
+
+import java.nio.charset.Charset;
+
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.tile.TileBarrel;
@@ -15,10 +19,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.nio.charset.Charset;
-
-import static mod.sfhcore.util.Util.whiteColor;
 
 public class MessageCompostUpdate implements IMessage {
     public static final Charset CHARSET = Charset.forName("UTF-8");

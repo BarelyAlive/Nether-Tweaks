@@ -1,5 +1,17 @@
 package mod.nethertweaks.blocks.tile;
 
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.handler.CrucibleItemHandler;
+import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registry.types.Meltable;
+import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.client.renderers.SpriteColor;
+import mod.sfhcore.fluid.FluidTankBase;
+import mod.sfhcore.texturing.Color;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,19 +31,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
-
-import javax.annotation.Nonnull;
-
-import mod.nethertweaks.handler.CrucibleItemHandler;
-import mod.nethertweaks.registries.registries.CrucibleRegistry;
-import mod.nethertweaks.registry.types.Meltable;
-import mod.sfhcore.blocks.tiles.TileBase;
-import mod.sfhcore.client.renderers.SpriteColor;
-import mod.sfhcore.fluid.FluidTankBase;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.Util;
 
 public abstract class TileCrucibleBase extends TileBase implements ITickable {
     public static final int MAX_ITEMS = 4;

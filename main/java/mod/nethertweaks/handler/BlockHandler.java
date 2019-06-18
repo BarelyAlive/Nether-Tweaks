@@ -1,28 +1,37 @@
 package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.*;
-import mod.nethertweaks.blocks.tile.*;
+import mod.nethertweaks.blocks.Barrel;
+import mod.nethertweaks.blocks.BlockSlabCommon;
+import mod.nethertweaks.blocks.Bonfire;
+import mod.nethertweaks.blocks.Condenser;
+import mod.nethertweaks.blocks.CrucibleStone;
+import mod.nethertweaks.blocks.ElderLeaves;
+import mod.nethertweaks.blocks.ElderLog;
+import mod.nethertweaks.blocks.ElderPlanks;
+import mod.nethertweaks.blocks.ElderSapling;
+import mod.nethertweaks.blocks.Freezer;
+import mod.nethertweaks.blocks.Hellmart;
+import mod.nethertweaks.blocks.MeanVine;
+import mod.nethertweaks.blocks.NetherrackFurnace;
+import mod.nethertweaks.blocks.NetherrackGravel;
+import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.blocks.StwH;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileCrucibleStone;
+import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
-import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
-import mod.sfhcore.blocks.base.BlockEnum;
-import mod.sfhcore.blocks.base.BlockEnumFalling;
-import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
-import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
-import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class BlockHandler implements INames
 {

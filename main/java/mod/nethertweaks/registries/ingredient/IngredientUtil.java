@@ -1,13 +1,12 @@
 package mod.nethertweaks.registries.ingredient;
 
+import java.util.Objects;
+
+import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CraftingHelper;
-
-import java.util.Objects;
-
-import mod.sfhcore.util.LogUtil;
 
 public class IngredientUtil {
     public static Ingredient parseFromString(String s) {

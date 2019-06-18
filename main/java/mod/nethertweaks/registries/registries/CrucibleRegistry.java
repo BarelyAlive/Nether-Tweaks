@@ -1,5 +1,12 @@
 package mod.nethertweaks.registries.registries;
 
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
@@ -25,9 +32,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import java.io.FileReader;
-import java.util.*;
 
 public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> implements ICrucibleRegistry {
     public CrucibleRegistry(List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {

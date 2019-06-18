@@ -1,10 +1,12 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.*;
-import mod.sfhcore.util.*;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
-import net.minecraftforge.fluids.*;
+import mod.nethertweaks.registry.types.Meltable;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.StackInfo;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.fluids.Fluid;
 
 public interface ICrucibleRegistry extends IRegistryMap<Ingredient, Meltable> {
 

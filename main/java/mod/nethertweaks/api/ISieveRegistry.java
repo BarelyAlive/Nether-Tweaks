@@ -1,15 +1,16 @@
 package mod.nethertweaks.api;
 
+import java.util.List;
+import java.util.Random;
+
+import mod.nethertweaks.registry.types.Siftable;
+import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import java.util.*;
-
-import mod.nethertweaks.registry.types.Siftable;
-import mod.sfhcore.util.StackInfo;
 
 public interface ISieveRegistry extends IRegistryMappedList<Ingredient, Siftable> {
 

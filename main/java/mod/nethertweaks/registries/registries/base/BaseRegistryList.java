@@ -1,11 +1,11 @@
 package mod.nethertweaks.registries.registries.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gson.Gson;
 
 import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BaseRegistryList<V> extends BaseRegistry<List<V>> {
 

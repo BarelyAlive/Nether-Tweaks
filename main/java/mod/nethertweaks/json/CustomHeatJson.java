@@ -1,14 +1,18 @@
 package mod.nethertweaks.json;
 
-import com.google.gson.*;
+import java.lang.reflect.Type;
 
-import mod.nethertweaks.registry.types.Compostable;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
 import mod.nethertweaks.registry.types.Heat;
 import mod.sfhcore.json.JsonHelper;
-import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
-
-import java.lang.reflect.Type;
 
 public class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<Heat>
 {

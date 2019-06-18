@@ -1,6 +1,7 @@
 package mod.nethertweaks.recipes.defaults;
 
 import org.apache.commons.lang3.text.WordUtils;
+
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;

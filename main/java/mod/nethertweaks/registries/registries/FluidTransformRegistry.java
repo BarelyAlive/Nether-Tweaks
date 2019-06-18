@@ -1,6 +1,16 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.io.IOUtils;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -12,17 +22,6 @@ import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
-import net.minecraftforge.fluids.FluidRegistry;
-import org.apache.commons.io.IOUtils;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
 
 public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTransformer>> implements IFluidTransformRegistry {
     public FluidTransformRegistry() {

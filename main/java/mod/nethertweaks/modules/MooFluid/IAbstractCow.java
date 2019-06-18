@@ -1,6 +1,6 @@
 package mod.nethertweaks.modules.MooFluid;
 
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
 
 public interface IAbstractCow {
 

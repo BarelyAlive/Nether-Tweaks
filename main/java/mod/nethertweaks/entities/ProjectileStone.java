@@ -1,5 +1,8 @@
 package mod.nethertweaks.entities;
 
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -11,11 +14,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import scala.tools.nsc.doc.model.ModelFactory.NonTemplateMemberImpl;
-
-import javax.annotation.Nonnull;
-
-import mod.nethertweaks.handler.ItemHandler;
 
 public class ProjectileStone extends EntityThrowable {
 

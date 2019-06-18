@@ -1,5 +1,9 @@
 package mod.nethertweaks.blocks;
 
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -13,14 +17,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-
-import javax.annotation.Nonnull;
-
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 
 public abstract class CrucibleBase extends Block
 {
