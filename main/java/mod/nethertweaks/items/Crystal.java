@@ -3,6 +3,7 @@ package mod.nethertweaks.items;
 import java.util.List;
 
 import mod.nethertweaks.INames;
+import mod.sfhcore.helper.NameHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +36,7 @@ public class Crystal extends Item implements INames{
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
     	ItemStack itemstack = playerIn.getHeldItem(handIn);
-    	String name = itemstack.getItem().getRegistryName().getResourcePath();
+    	String name = NameHelper.getName(itemstack);
     	
     	switch (name) {	
 		case ENDER_CRYSTAL:

@@ -9,6 +9,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.passive.EntityBat;
@@ -52,7 +53,7 @@ public class ItemDoll extends Item implements IVariantProvider, INames
 	 */
 	public boolean spawnMob(ItemStack stack, World world, BlockPos pos)
 	{
-		String name = stack.getItem().getRegistryName().getResourcePath();
+		String name = NameHelper.getName(stack);
 		
 		switch (name) {
 		case DOLL_BAT:

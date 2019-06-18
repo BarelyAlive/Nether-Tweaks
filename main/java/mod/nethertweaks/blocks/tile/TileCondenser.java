@@ -141,7 +141,6 @@ public class TileCondenser extends TileFluidInventory
     	if(input.isEmpty()) return;
     	if(this.getTank().getFluidAmount() == 0) return;
     	
-    	input.setCount(1);
 		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 		
 		if (input_handler != null)
@@ -155,7 +154,7 @@ public class TileCondenser extends TileFluidInventory
 			this.decrStackSize(2, 1);
 		}
 		
-		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (ItemStack.areItemsEqual(output, TankUtil.WATER_BOTTLE) || this.getStackInSlot(1).isEmpty()))
+		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && (ItemStack.areItemsEqual(output.copy(), TankUtil.WATER_BOTTLE) || this.getStackInSlot(1).isEmpty()))
 		{
 			if(this.getTank().getFluidAmount() >= 250)
 			{

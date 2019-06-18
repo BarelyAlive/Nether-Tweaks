@@ -1,6 +1,7 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.INames;
+import mod.sfhcore.helper.NameHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -26,7 +27,7 @@ public class Seed extends Item implements INames
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		Block block = worldIn.getBlockState(pos).getBlock();
-		String name = player.getHeldItem(hand).getItem().getRegistryName().getResourcePath();
+		String name = NameHelper.getName(player.getHeldItem(hand));
 		
 		switch (name) {
 		case MUSHROOM_SPORES:

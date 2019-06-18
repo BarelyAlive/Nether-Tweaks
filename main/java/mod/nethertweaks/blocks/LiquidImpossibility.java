@@ -27,7 +27,7 @@ public class LiquidImpossibility extends BlockFluidClassic
     public LiquidImpossibility()
     {
         super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
-        setRegistryName(NetherTweaksMod.MODID, INames.BLOCKLIQUIDIMPOSSIBILITY);
+        setRegistryName(NetherTweaksMod.MODID, INames.LIQUIDIMPOSSIBILITY);
         setLightLevel(Config.luminosityLI);
         setTemperature(Config.temperatureLI);
         setDensity(Config.densityLI);
