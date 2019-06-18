@@ -51,12 +51,9 @@ public class TileCondenser extends TileFluidInventory
 		NetworkHandler.sendNBTUpdate(this);
 				
 		if(!canDry())
-		{
 			this.setWorkTime(0);
-			return;
-		}
-		
-		work();
+		else
+			work();
 		
 		if(this.getWorkTime() >= this.getMaxworkTime())
 		{

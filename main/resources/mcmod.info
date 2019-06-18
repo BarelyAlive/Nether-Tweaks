@@ -12,6 +12,6 @@
   "logoFile": "",
   "parent": "sfhcore",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["sfhcore"]
 }
 ]

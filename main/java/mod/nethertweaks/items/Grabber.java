@@ -123,7 +123,7 @@ public class Grabber extends ItemShears
 					posi = posi.add(0, -1, 0);
 				}
 				if (!player.capabilities.isCreativeMode)
-					player.getActiveItemStack().damageItem(1, player);
+					player.getHeldItem(hand).damageItem(1, player);
 			}
 			return EnumActionResult.SUCCESS;
 		}
@@ -140,7 +140,7 @@ public class Grabber extends ItemShears
 					}
 				}
 				if (!player.capabilities.isCreativeMode)
-					player.getActiveItemStack().damageItem(1, player);
+					player.getHeldItem(hand).damageItem(1, player);
 
 				return EnumActionResult.SUCCESS;
 			}

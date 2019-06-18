@@ -8,7 +8,7 @@ public interface INames {
 	public CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
 	//Fluids
-	public String LIQUIDIMPOSSIBILITY	= "liquid_impossibility";
+	public String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//Blocks
 	public String CONDENSER 				= "condenser";

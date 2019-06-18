@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class TileFreezer extends TileFluidInventory
 {
-	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	ItemStack ice = new ItemStack(Blocks.ICE, 1);
 
 	public TileFreezer() {
 		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
@@ -39,12 +39,9 @@ public class TileFreezer extends TileFluidInventory
 		NetworkHandler.sendNBTUpdate(this);
 
 		if(!canFreeze())
-		{
 			this.setWorkTime(0);
-			return;
-		}
-
-		work();
+		else
+			work();
 
 		if(getWorkTime() >= this.getMaxworkTime())
 		{
@@ -69,7 +66,7 @@ public class TileFreezer extends TileFluidInventory
     {
 		if(!world.isBlockPowered(pos)) return false;
         if(this.getTank().getFluidAmount() < 1000) return false;
-        if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
+        if(this.getStackInSlot(0).getCount() == ice.copy().getMaxStackSize()) return false;
         return true;
     }
 
@@ -78,7 +75,7 @@ public class TileFreezer extends TileFluidInventory
     	this.getTank().drain(1000, true);
 
         if(this.getStackInSlot(0).isEmpty())
-            this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
+            this.setInventorySlotContents(0, new ItemStack(ice.copy().getItem()));
 
         else if(this.getStackInSlot(0).getCount() >= 1)
         	this.getStackInSlot(0).grow(1);
@@ -104,13 +101,10 @@ public class TileFreezer extends TileFluidInventory
 
 			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
 
-			System.out.println(handler.getContainer());
-
 			if(output.isEmpty())
 			{
 				this.setInventorySlotContents(1, new ItemStack(handler.getContainer().getItem()));
 				this.getStackInSlot(2).shrink(1);
-				System.out.println(getStackInSlot(2));
 			}
 			if(ItemStack.areItemsEqual(output, handler.getContainer()))
 			{

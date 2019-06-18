@@ -21,6 +21,6 @@ public class WorldTypeHellworld extends WorldType
 	@Override
 	public int getSpawnFuzz(WorldServer world, MinecraftServer server)
 	{
-		return 100;
+		return 32;
 	}
 }
