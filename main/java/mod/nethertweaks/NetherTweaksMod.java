@@ -149,7 +149,9 @@ public class NetherTweaksMod
     	*/
     	
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());	
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
+		
+		RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
     }
     
     @Mod.EventHandler
@@ -177,7 +179,5 @@ public class NetherTweaksMod
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
-    	
-    	RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
     }
 }
