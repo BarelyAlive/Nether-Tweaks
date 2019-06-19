@@ -1,7 +1,7 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
-import mod.nethertweaks.config.BlocksItems;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
@@ -110,86 +110,85 @@ public class ItemHandler implements INames
     private static void registerItems()
     { 	
     	//Crafting Components
-    	if(BlocksItems.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
-    	if(BlocksItems.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
-    	if(BlocksItems.enableEndBox)		  	Registry.registerItem(END_BOX);
-    	if(BlocksItems.enableSalt)		  		Registry.registerItem(SALT);
-    	if(BlocksItems.enableHellfayah)  		Registry.registerItem(HELLFAYAH);
-    	if(BlocksItems.enableEnderInfusedFrame)	Registry.registerItem(ENDER_INFUSED_FRAME);
-    	if(BlocksItems.enableString)		  	Registry.registerItem(STRING);
-    	if(BlocksItems.enablePorcelainClay) 	Registry.registerItem(PORCELAIN_CLAY);
-    	if(BlocksItems.enablePowderOfLight) 	Registry.registerItem(POWDER_OF_LIGHT);
+    	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
+    	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
+    	if(Config.enableEndBox)		  	Registry.registerItem(END_BOX);
+    	if(Config.enableSalt)		  		Registry.registerItem(SALT);
+    	if(Config.enableHellfayah)  		Registry.registerItem(HELLFAYAH);
+    	if(Config.enableEnderInfusedFrame)	Registry.registerItem(ENDER_INFUSED_FRAME);
+    	if(Config.enableString)		  	Registry.registerItem(STRING);
+    	if(Config.enablePorcelainClay) 	Registry.registerItem(PORCELAIN_CLAY);
+    	if(Config.enablePowderOfLight) 	Registry.registerItem(POWDER_OF_LIGHT);
     	
     	//Seeds
-    	if(BlocksItems.enableMushroomSpores)	Registry.registerItem(MUSHROOM_SPORES);
-    	if(BlocksItems.enableGrassSeeds)		Registry.registerItem(GRASS_SEEDS);
-    	if(BlocksItems.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
-    	if(BlocksItems.enableSugarcaneSeeds)	Registry.registerItem(SUGARCANE_SEEDS);
+    	if(Config.enableMushroomSpores)	Registry.registerItem(MUSHROOM_SPORES);
+    	if(Config.enableGrassSeeds)		Registry.registerItem(GRASS_SEEDS);
+    	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
+    	if(Config.enableSugarcaneSeeds)	Registry.registerItem(SUGARCANE_SEEDS);
     	
     	//Crystals
-    	if(BlocksItems.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
-		if(BlocksItems.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
+    	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
+		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
 		
 		//Pebbles
-        if(BlocksItems.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
-        if(BlocksItems.enablePebbleGranite)		Registry.registerItem(PEBBLE_GRANITE);
-        if(BlocksItems.enablePebbleDiorite)		Registry.registerItem(PEBBLE_DIORITE);
-        if(BlocksItems.enablePebbleAndesite)	Registry.registerItem(PEBBLE_ANDESITE);
+        if(Config.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
+        if(Config.enablePebbleGranite)		Registry.registerItem(PEBBLE_GRANITE);
+        if(Config.enablePebbleDiorite)		Registry.registerItem(PEBBLE_DIORITE);
+        if(Config.enablePebbleAndesite)	Registry.registerItem(PEBBLE_ANDESITE);
         
         //Meshes
-        if(BlocksItems.enableStringMeshes)		Registry.registerItem(STRING_MESH);
-        if(BlocksItems.enableFlintMeshes) 		Registry.registerItem(FLINT_MESH);
-        if(BlocksItems.enableIronMeshes)  		Registry.registerItem(IRON_MESH);
-        if(BlocksItems.enableDiamondMeshes)		Registry.registerItem(DIAMOND_MESH);
-
+        if(Config.enableStringMeshes)		Registry.registerItem(STRING_MESH);
+        if(Config.enableFlintMeshes) 		Registry.registerItem(FLINT_MESH);
+        if(Config.enableIronMeshes)  		Registry.registerItem(IRON_MESH);
+        if(Config.enableDiamondMeshes)		Registry.registerItem(DIAMOND_MESH);
         
         //Dolls
-        if(BlocksItems.enableDollBat)  			Registry.registerItem(DOLL_BAT);
-        if(BlocksItems.enableDollChicken)  		Registry.registerItem(DOLL_CHICKEN);
-        if(BlocksItems.enableDollCow)  			Registry.registerItem(DOLL_COW);
-        if(BlocksItems.enableDollDonkey)  		Registry.registerItem(DOLL_DONKEY);
-        if(BlocksItems.enableDollHorse)  		Registry.registerItem(DOLL_HORSE);
-        if(BlocksItems.enableDollLlama)  		Registry.registerItem(DOLL_LLAMA);
-        if(BlocksItems.enableDollMule)  		Registry.registerItem(DOLL_MULE);
-        if(BlocksItems.enableDollOcelot)  		Registry.registerItem(DOLL_OCELOT);
-        if(BlocksItems.enableDollParrot)  		Registry.registerItem(DOLL_PARROT);
-        if(BlocksItems.enableDollPig)  			Registry.registerItem(DOLL_PIG);
-        if(BlocksItems.enableDollPolarBear)  	Registry.registerItem(DOLL_POLAR_BEAR);
-        if(BlocksItems.enableDollRabbit)  		Registry.registerItem(DOLL_RABBIT);
-        if(BlocksItems.enableDollRedMooshroom)	Registry.registerItem(DOLL_RED_MOOSHROOM);
-        if(BlocksItems.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
-        if(BlocksItems.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
-        if(BlocksItems.enableDollWolf)  		Registry.registerItem(DOLL_WOLF);
+        if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);
+        if(Config.enableDollChicken)  		Registry.registerItem(DOLL_CHICKEN);
+        if(Config.enableDollCow)  			Registry.registerItem(DOLL_COW);
+        if(Config.enableDollDonkey)  		Registry.registerItem(DOLL_DONKEY);
+        if(Config.enableDollHorse)  		Registry.registerItem(DOLL_HORSE);
+        if(Config.enableDollLlama)  		Registry.registerItem(DOLL_LLAMA);
+        if(Config.enableDollMule)  		Registry.registerItem(DOLL_MULE);
+        if(Config.enableDollOcelot)  		Registry.registerItem(DOLL_OCELOT);
+        if(Config.enableDollParrot)  		Registry.registerItem(DOLL_PARROT);
+        if(Config.enableDollPig)  			Registry.registerItem(DOLL_PIG);
+        if(Config.enableDollPolarBear)  	Registry.registerItem(DOLL_POLAR_BEAR);
+        if(Config.enableDollRabbit)  		Registry.registerItem(DOLL_RABBIT);
+        if(Config.enableDollRedMooshroom)	Registry.registerItem(DOLL_RED_MOOSHROOM);
+        if(Config.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
+        if(Config.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
+        if(Config.enableDollWolf)  		Registry.registerItem(DOLL_WOLF);
         
         //Werkzeuge
-        if(BlocksItems.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
-        if(BlocksItems.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
-        if(BlocksItems.enableGrabberStone)		Registry.registerItem(GRABBER_STONE);
-        if(BlocksItems.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
-        if(BlocksItems.enableGrabberDiamond)	Registry.registerItem(GRABBER_DIAMOND);
-        if(BlocksItems.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
-        if(BlocksItems.enablePickAxeNetherrack) Registry.registerItem(PICK_NETHERRACK);
-        if(BlocksItems.enablePickAxeNetherbrick)Registry.registerItem(PICK_NETHERBRICK);
-        if(BlocksItems.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
-        if(BlocksItems.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
-        if(BlocksItems.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
-        if(BlocksItems.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
-        if(BlocksItems.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
-        if(BlocksItems.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
+        if(Config.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
+        if(Config.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
+        if(Config.enableGrabberStone)		Registry.registerItem(GRABBER_STONE);
+        if(Config.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
+        if(Config.enableGrabberDiamond)	Registry.registerItem(GRABBER_DIAMOND);
+        if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
+        if(Config.enablePickAxeNetherrack) Registry.registerItem(PICK_NETHERRACK);
+        if(Config.enablePickAxeNetherbrick)Registry.registerItem(PICK_NETHERBRICK);
+        if(Config.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
+        if(Config.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
+        if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
+        if(Config.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
+        if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
+        if(Config.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
 
         //Food
-    	if(BlocksItems.enableJerky)  			Registry.registerItem(COOKED_JERKY);
+    	if(Config.enableJerky)  			Registry.registerItem(COOKED_JERKY);
 
         //Doors
-        if(BlocksItems.enableStoneDoor)  		Registry.registerItem(ITEM_STONE_DOOR);
-        if(BlocksItems.enableElderDoor)			Registry.registerItem(ITEM_ELDER_DOOR);
+        if(Config.enableStoneDoor)  		Registry.registerItem(ITEM_STONE_DOOR);
+        if(Config.enableElderDoor)			Registry.registerItem(ITEM_ELDER_DOOR);
     }
 
     private static void addItemBurnTime()
     {
-    	if(BlocksItems.enableHellfayah)
+    	if(Config.enableHellfayah)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.HELLFAYAH), Config.burnTimeHellfayah);
-    	if(BlocksItems.enableHellfayahBlock)
+    	if(Config.enableHellfayahBlock)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
     }
 }
