@@ -13,4 +13,4 @@ ChangeLog NTM 2.0.2
 * Fixed Respawn in Hellworld
 * Bonfires are now able to save the player's spawn location even if there's no other bonfire to teleport to
 * Graphical things are now better separated (server/client)
-* Fixed Condenser not handling ItemStacks correctly (input/output slots)
+* Fixed Condenser/Freezer not handling ItemStacks correctly (input/output slots)

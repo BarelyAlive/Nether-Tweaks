@@ -51,6 +51,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
  
 @Mod(modid=NetherTweaksMod.MODID, name=NetherTweaksMod.MODNAME, version=NetherTweaksMod.VERSION, dependencies=NetherTweaksMod.DEPENDENCIES)
@@ -98,6 +100,7 @@ public class NetherTweaksMod
         	OreHandler.registerItemHandlers(event);
         }
     	
+        @SideOnly(Side.CLIENT)
     	@SubscribeEvent(priority = EventPriority.LOWEST)
     	public static void registerOreModels(ModelRegistryEvent event)
     	{
@@ -168,6 +171,7 @@ public class NetherTweaksMod
     }
     
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void registerModels(ModelRegistryEvent event)
     {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
