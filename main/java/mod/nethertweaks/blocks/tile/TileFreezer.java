@@ -21,7 +21,12 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class TileFreezer extends TileFluidInventory
 {
-	ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	
+	private ItemStack ice()
+	{
+		return ice.copy();
+	}
 
 	public TileFreezer() {
 		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
@@ -66,7 +71,7 @@ public class TileFreezer extends TileFluidInventory
     {
 		if(!world.isBlockPowered(pos)) return false;
         if(this.getTank().getFluidAmount() < 1000) return false;
-        if(this.getStackInSlot(0).getCount() == ice.copy().getMaxStackSize()) return false;
+        if(this.getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
         return true;
     }
 
@@ -75,7 +80,7 @@ public class TileFreezer extends TileFluidInventory
     	this.getTank().drain(1000, true);
 
         if(this.getStackInSlot(0).isEmpty())
-            this.setInventorySlotContents(0, new ItemStack(ice.copy().getItem()));
+            this.setInventorySlotContents(0, new ItemStack(ice().getItem()));
 
         else if(this.getStackInSlot(0).getCount() >= 1)
         	this.getStackInSlot(0).grow(1);
@@ -91,7 +96,9 @@ public class TileFreezer extends TileFluidInventory
 		if(input.isEmpty()) return;
 		if(output.getCount() == output.getMaxStackSize()) return;
 
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input.copy());
+		ItemStack copy = input.copy();
+		
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
 
 		if(handler != null)
 		{
@@ -99,7 +106,7 @@ public class TileFreezer extends TileFluidInventory
     		if (f == null) return;
     		
     		//Z.b. der leere bucket bei nem Wassereimer
-    		ItemStack containerItem = input.copy().getItem().getContainerItem(handler.getContainer());
+    		ItemStack containerItem = handler.getContainer();
 
     		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
 
@@ -119,11 +126,10 @@ public class TileFreezer extends TileFluidInventory
 			{
        			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
 
-       			if(output.isEmpty())
-       			{
-       				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-       				this.decrStackSize(2, 1);
-       			}
+       			ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
+       			
+   				setInventorySlotContents(1, bottles);
+   				this.decrStackSize(2, 1);
 			}
 		}
 	}
