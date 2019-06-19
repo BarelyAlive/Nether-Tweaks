@@ -52,18 +52,12 @@ public class HammerHandler
             event.getDrops().addAll(rewards);
         }
         
-        System.out.println(held.getItemDamage());
-        System.out.println(held.getMaxDamage());
-        
         hammer =  ItemStack.EMPTY;
     }
     
     public static boolean isHammer(@Nullable ItemStack stack)
 	{
-	    if (stack == null)
-	        return false;
-	
-	    if (stack.getItem() == Items.AIR)
+	    if (stack.isEmpty())
 	        return false;
 	
 	    if (stack.getItem() instanceof IHammer)

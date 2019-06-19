@@ -61,7 +61,7 @@ public class Hellmart extends BlockContainer
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileHellmart();
 	}
 }

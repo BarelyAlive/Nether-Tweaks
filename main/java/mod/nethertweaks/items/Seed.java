@@ -24,38 +24,33 @@ public class Seed extends Item implements INames
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		Block block = worldIn.getBlockState(pos).getBlock();
+		Block block = world.getBlockState(pos).getBlock();
 		String name = NameHelper.getName(player.getHeldItem(hand));
 		
-		switch (name) {
-		case MUSHROOM_SPORES:
-			if(block == Blocks.DIRT || block == Blocks.GRASS){
-				if(!worldIn.isRemote)
-					worldIn.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
+		if (!world.isRemote) {
+			switch (name) {
+			case MUSHROOM_SPORES:
+				if (block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS))
+					world.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
+				break;
+			case GRASS_SEEDS:
+				if (block.equals(Blocks.DIRT))
+					world.setBlockState(pos, Blocks.GRASS.getDefaultState());
+				break;
+			case CACTUS_SEEDS:
+				if (Blocks.CACTUS.canPlaceBlockAt(world, pos.up()))
+					world.setBlockState(pos.up(), Blocks.CACTUS.getDefaultState());
+				break;
+			case SUGARCANE_SEEDS:
+				if (Blocks.REEDS.canPlaceBlockAt(world, pos.up()))
+					world.setBlockState(pos.up(), Blocks.REEDS.getDefaultState());
+				break;
+			default:
+				break;
 			}
-			break;
-		case GRASS_SEEDS:
-			if(block == Blocks.DIRT){
-				if(!worldIn.isRemote)
-					worldIn.setBlockState(pos, Blocks.GRASS.getDefaultState());
-			}
-			break;
-		case CACTUS_SEEDS:
-			if(Blocks.CACTUS.canPlaceBlockAt(worldIn, pos.up()))
-				if(!worldIn.isRemote)
-					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.CACTUS.getDefaultState());
-			break;
-		case SUGARCANE_SEEDS:
-			if(Blocks.REEDS.canPlaceBlockAt(worldIn, pos.up()))
-				if(!worldIn.isRemote)
-					worldIn.setBlockState(pos.add(0, 1, 0), Blocks.REEDS.getDefaultState());
-			break;
-		default:
-			break;
 		}
-		
 		return EnumActionResult.SUCCESS;
 	}
 }

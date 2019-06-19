@@ -89,43 +89,41 @@ public class TileFreezer extends TileFluidInventory
 		ItemStack output = this.getStackInSlot(1);
 
 		if(input.isEmpty()) return;
+		if(output.getCount() == output.getMaxStackSize()) return;
 
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input.copy());
 
 		if(handler != null)
 		{
     		FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
     		if (f == null) return;
+    		
+    		//Z.b. der leere bucket bei nem Wassereimer
+    		ItemStack containerItem = input.copy().getItem().getContainerItem(handler.getContainer());
 
-    		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, handler.getContainer().getItem().getContainerItem(handler.getContainer()))) return;
+    		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
 
 			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
 
-			if(output.isEmpty())
-			{
-				this.setInventorySlotContents(1, new ItemStack(handler.getContainer().getItem()));
-				this.getStackInSlot(2).shrink(1);
-			}
-			if(ItemStack.areItemsEqual(output, handler.getContainer()))
-			{
-				this.getStackInSlot(1).grow(1);
-				this.decrStackSize(2, 1);
-			}
+			//Das veränderte Fluid Item
+			ItemStack container = handler.getContainer();
+			container.setCount(output.getCount()+1);
+			
+			this.setInventorySlotContents(1, container);
+			this.getStackInSlot(2).shrink(1);
 		}
 
 		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
-			if(getTank().getFluidAmount() < getTank().getCapacity())
+			if(emptyRoom() >= 250)
 			{
        			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
 
        			if(output.isEmpty())
-				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-
-       			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
-				this.getStackInSlot(1).grow(1);
-
-				this.decrStackSize(2, 1);
+       			{
+       				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
+       				this.decrStackSize(2, 1);
+       			}
 			}
 		}
 	}

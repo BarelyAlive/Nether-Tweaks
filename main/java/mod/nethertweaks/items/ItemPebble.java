@@ -24,9 +24,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemPebble extends Item
-{
-    private static List<String> names = Lists.newArrayList("stone", "granite", "diorite", "andesite");
-    
+{    
     public ItemPebble(String type)
     {
         this.setRegistryName(NetherTweaksMod.MODID, type);

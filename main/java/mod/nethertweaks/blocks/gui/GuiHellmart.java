@@ -17,8 +17,11 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+@SideOnly(Side.CLIENT)
 public class GuiHellmart extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
 

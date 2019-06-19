@@ -46,9 +46,11 @@ public abstract class CrucibleBase extends Block
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote)
-            return true;
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+    	if(!world.isBlockLoaded(pos)) return false;
+        if (world.isRemote) return true;
+        if(player.isSneaking()) return false;
 
         TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
 

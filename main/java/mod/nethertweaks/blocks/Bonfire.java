@@ -25,6 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Bonfire extends Block
 {
@@ -37,6 +39,7 @@ public class Bonfire extends Block
 	
 	private int l = 0;
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand) {
 		l++;
 		if (rand.nextDouble() < 0.1D)

@@ -157,8 +157,6 @@ public class NTM implements IRecipeDefaults
 		//blowfish
 		registry.register(new ItemInfo(Items.FISH, 3), 63);
 		
-		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
-		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
 		registry.register(new ItemInfo(Items.MELON), 38);
 		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
@@ -180,6 +178,8 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
 		registry.register(new BlockInfo(Blocks.PUMPKIN), 250);
 		registry.register(new BlockInfo(Blocks.CACTUS), 300);
+		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
+		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
 		
 		//Back to water 1:1
         registry.register(new ItemInfo(Items.SNOWBALL), 250);

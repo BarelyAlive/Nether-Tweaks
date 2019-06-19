@@ -2,6 +2,7 @@ package mod.nethertweaks.blocks.container;
 
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.sfhcore.blocks.container.ContainerBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
@@ -30,9 +31,8 @@ public class ContainerCondenser extends ContainerBase {
 		}
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateProgressBar(int id, int data) {
-		this.tileentity.setField(id, data);
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return true;
 	}
 }

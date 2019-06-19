@@ -136,11 +136,11 @@ public class WorldEvents
 
 	//Enitity Interaction
     @SubscribeEvent
-    public void getMilk(net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract event)
+    public void getMilk(PlayerInteractEvent.EntityInteract event)
     {
     	if(event.getTarget() instanceof EntityCow)
     	{
-    		if(! NotNull.checkNotNull(event.getItemStack()))
+    		if(!NotNull.checkNotNull(event.getItemStack()))
     			return;
     		
     		ItemStack stack = event.getItemStack();

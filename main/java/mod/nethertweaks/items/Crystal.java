@@ -33,23 +33,23 @@ public class Crystal extends Item implements INames{
      * Called when the equipped item is right clicked.
      */
 	@Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-    	ItemStack itemstack = playerIn.getHeldItem(handIn);
+    	ItemStack itemstack = player.getHeldItem(hand);
     	String name = NameHelper.getName(itemstack);
     	
     	switch (name) {	
 		case ENDER_CRYSTAL:
-				worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
+				world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
 						SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F,
 						0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-				playerIn.getCooldownTracker().setCooldown(this, 20);
-				if (!worldIn.isRemote) {
-					EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, playerIn);
-					entityenderpearl.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-					worldIn.spawnEntity(entityenderpearl);
+				player.getCooldownTracker().setCooldown(this, 20);
+				if (!world.isRemote) {
+					EntityEnderPearl entityenderpearl = new EntityEnderPearl(world, player);
+					entityenderpearl.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+					world.spawnEntity(entityenderpearl);
 				}
-				playerIn.addStat(StatList.getObjectUseStats(this));
+				player.addStat(StatList.getObjectUseStats(this));
 				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 		default:
 			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
@@ -57,7 +57,7 @@ public class Crystal extends Item implements INames{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		String name = stack.getItem().getRegistryName().getResourcePath();
 		

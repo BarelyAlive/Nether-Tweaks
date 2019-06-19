@@ -66,28 +66,27 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     { 	
-    	if(state.getValue(ISBURNING)) return 12;
-    	return 0;
+    	return state.getValue(ISBURNING) ? 12 : 0;
     }
     
-    public static void setState(boolean active, World worldIn, BlockPos pos)
+    public static void setState(boolean active, World world, BlockPos pos)
     {
-    	IBlockState b = worldIn.getBlockState(pos);
+    	IBlockState b = world.getBlockState(pos);
     	if(b == Blocks.AIR.getDefaultState()) return;
-        TileEntity tileentity = worldIn.getTileEntity(pos);
+        TileEntity tileentity = world.getTileEntity(pos);
         if(tileentity == null) return;
         TileNetherrackFurnace furnace = (TileNetherrackFurnace) tileentity;
     	
         //Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
 	        b = b.withProperty(ISBURNING, true);
-	        worldIn.setBlockState(pos, b, 3);
-	        validate(worldIn, pos, furnace);
+	        world.setBlockState(pos, b, 3);
+	        validate(world, pos, furnace);
 		}
 		else if(!active && b.getValue(ISBURNING)) {
     		b = b.withProperty(ISBURNING, false);
-	        worldIn.setBlockState(pos, b, 3);
-	        validate(worldIn, pos, furnace);
+	        world.setBlockState(pos, b, 3);
+	        validate(world, pos, furnace);
     	}
     }
     
@@ -104,7 +103,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     @Override
 	@SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
+    public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand)
     {
         if (stateIn.getValue(ISBURNING))
         {
@@ -117,26 +116,26 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
             if (rand.nextDouble() < 0.1D)
             {
-                worldIn.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
 
             switch (enumfacing)
             {
                 case WEST:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.FLAME, d0 - d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
                     break;
                 case EAST:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.FLAME, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D, new int[0]);
                     break;
                 case NORTH:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - d3, 0.0D, 0.0D, 0.0D, new int[0]);
                     break;
                 case SOUTH:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
+                    world.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + d3, 0.0D, 0.0D, 0.0D, new int[0]);
                     break;
             }
         }
@@ -149,7 +148,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
     }
     
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileNetherrackFurnace();
     }
 }

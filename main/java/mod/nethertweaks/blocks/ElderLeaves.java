@@ -52,14 +52,14 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     }
 
     @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
 		if(this.leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
 		{
 			this.leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-			worldIn.setBlockState(pos, this.getDefaultState());
+			world.setBlockState(pos, this.getDefaultState());
 		}
-		if(worldIn.isRemote) return;
+		if(world.isRemote) return;
 		
 	     if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
 	     {
@@ -77,7 +77,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	             this.surroundings = new int[32768];
 	         }
 	
-	         if (worldIn.isAreaLoaded(new BlockPos(k - 5, l - 5, i1 - 5), new BlockPos(k + 5, l + 5, i1 + 5)))
+	         if (world.isAreaLoaded(new BlockPos(k - 5, l - 5, i1 - 5), new BlockPos(k + 5, l + 5, i1 + 5)))
 	         {
 	             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 	
@@ -87,12 +87,12 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	                 {
 	                     for (int k2 = -4; k2 <= 4; ++k2)
 	                     {
-	                         IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
+	                         IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
 	                         Block block = iblockstate.getBlock();
 	
-	                         if (!block.canSustainLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+	                         if (!block.canSustainLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
 	                         {
-	                             if (block.isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
+	                             if (block.isLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
 	                             {
 	                                 this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
 	                             }
@@ -159,19 +159,19 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	
 	         if (l2 >= 0)
 	         {
-	             worldIn.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
+	             world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
 	         }
 	         else
 	         {
-	             this.destroy(worldIn, pos);
+	             this.destroy(world, pos);
 	         }
 	     }
     }
 
-    private void destroy(World worldIn, BlockPos pos)
+    private void destroy(World world, BlockPos pos)
     {
-        this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
-        worldIn.setBlockToAir(pos);
+        this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+        world.setBlockToAir(pos);
     }
 
     @Override
@@ -191,9 +191,9 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     }
 
     @Override
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+    public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+        super.dropBlockAsItemWithChance(world, pos, state, chance, fortune);
     }
 
     @Override

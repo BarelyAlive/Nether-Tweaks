@@ -138,7 +138,10 @@ public class TileCondenser extends TileFluidInventory
     	if(input.isEmpty()) return;
     	if(this.getTank().getFluidAmount() == 0) return;
     	
-		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+    	ItemStack copy = input.copy();
+    	copy.setCount(1);
+    	
+		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(copy);
 		
 		if (input_handler != null)
 		{
@@ -147,7 +150,11 @@ public class TileCondenser extends TileFluidInventory
 			
 			FluidUtil.tryFluidTransfer(input_handler, this.getTank(), Integer.MAX_VALUE, true);
 			
-			this.setInventorySlotContents(1, input_handler.getContainer());
+			ItemStack container = input_handler.getContainer();
+			
+			System.out.println(container);
+			
+			this.setInventorySlotContents(1, container);
 			this.decrStackSize(2, 1);
 		}
 		

@@ -24,8 +24,8 @@ public interface INames {
 	public String ELDER_SAPLING 			= "elder_sapling";
 	public String ELDER_LEAVES 				= "elder_leaves";
 	public String ELDER_PLANKS				= "elder_planks";
-	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_SLAB				= "elder_slab";
+	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_LOG 				= "elder_log";
 	public String NETHERRACK_GRAVEL			= "netherrack_gravel";
 	public String BONFIRE 					= "bonfire";
