@@ -121,6 +121,10 @@ public class NetherTweaksMod
     				{
     					continue;
     				}
+    				if (OreDictionary.getOres(ore_name).size() == 0)
+    				{
+    					continue;
+    				}
                 	OreHandler.add(OreDictionary.getOres(ore_name).get(0), 1);
     			}
     		}

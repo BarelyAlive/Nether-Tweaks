@@ -473,8 +473,8 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerFluidBlockTransform(FluidBlockTransformerRegistry registry)
     {
-        registry.register(FluidRegistry.WATER, "dust", new ItemInfo(Blocks.CLAY));
-        registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "dust", new ItemInfo(Blocks.CLAY));
+        registry.register(FluidRegistry.WATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
+        registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
         registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
         registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
 

@@ -106,12 +106,21 @@ public class TileBarrel extends TileBase implements ITickable {
 
             if (!result)
             {
-            	if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
+            	if (fluidHandler.getTankProperties().length != 0)
             	{
-            		if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
-            		{
-            			this.getItemHandler().insertItem(0, stack, true);
-            		}
+                	if (fluidHandler.getTankProperties()[0].getContents() != null)
+                	{
+                    	if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
+                    	{
+		            		if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
+		            		{
+		            			if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
+		            			{
+		            				this.getItemHandler().insertItem(0, stack, true);
+		            			}
+		            		}
+                    	}
+                	}
             	}
             }
             
