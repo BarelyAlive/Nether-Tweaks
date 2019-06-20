@@ -52,7 +52,7 @@ public class GuiNetherrackFurnace extends GuiContainer
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
        
-        this.entity = getTE(this.entity.getPos());
+        this.getTE();
         
         if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(13);
@@ -63,9 +63,9 @@ public class GuiNetherrackFurnace extends GuiContainer
         }
     }
     
-    private TileNetherrackFurnace getTE (BlockPos pos)
+    private void getTE ()
     {
-    	return (TileNetherrackFurnace) Minecraft.getMinecraft().player.world.getTileEntity(pos);
+    	this.entity = (TileNetherrackFurnace) Minecraft.getMinecraft().player.world.getTileEntity(this.entity.getPos());
     }
     
     @Override
