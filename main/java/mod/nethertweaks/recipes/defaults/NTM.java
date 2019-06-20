@@ -4,8 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.Sieve.MeshType;
@@ -15,12 +13,7 @@ import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.items.ItemChunk;
-import mod.nethertweaks.items.ItemDoll;
-import mod.nethertweaks.items.ItemOre;
-import mod.nethertweaks.items.Seed;
-import mod.nethertweaks.registries.ingredient.IngredientUtil;
 import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
@@ -36,17 +29,13 @@ import mod.nethertweaks.registries.registries.MilkEntityRegistry;
 import mod.nethertweaks.registries.registries.OreRegistry;
 import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.nethertweaks.registry.types.HammerReward;
-import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.helper.NameHelper;
-import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
-import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -62,7 +51,8 @@ public class NTM implements IRecipeDefaults
 {
     private final String MODID = NetherTweaksMod.MODID;
 
-    public String getMODID() {
+    @Override
+	public String getMODID() {
 		return MODID;
 	}
 
@@ -161,15 +151,12 @@ public class NTM implements IRecipeDefaults
 		//salmon
 		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);
-			
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);		
 		//clownfish
 		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
 		registry.register(new ItemInfo(Items.FISH, 3), 63);
 		
-		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
-		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
 		registry.register(new ItemInfo(Items.MELON), 38);
 		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
@@ -191,6 +178,8 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
 		registry.register(new BlockInfo(Blocks.PUMPKIN), 250);
 		registry.register(new BlockInfo(Blocks.CACTUS), 300);
+		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
+		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
 		
 		//Back to water 1:1
         registry.register(new ItemInfo(Items.SNOWBALL), 250);
@@ -433,7 +422,7 @@ public class NTM implements IRecipeDefaults
     public void registerBarrelLiquidBlacklist(BarrelLiquidBlacklistRegistry registry) {
         for(Fluid fluid : FluidRegistry.getRegisteredFluids().values()){
             if(fluid.getTemperature() >= Config.woodBarrelMaxTemp)
-                registry.register(((Barrel)BlockHandler.BARREL).getTier(), fluid);
+                registry.register(((Barrel)BlockHandler.BARREL_WOOD).getTier(), fluid);
         }
     }
 
@@ -467,7 +456,7 @@ public class NTM implements IRecipeDefaults
 
     @Override
     public void registerFluidTransform(FluidTransformRegistry registry) {
-        registry.register("water", "witchwater", 12000, new BlockInfo[]{new BlockInfo(Blocks.MYCELIUM.getDefaultState())}, new BlockInfo[]{new BlockInfo(Blocks.BROWN_MUSHROOM.getDefaultState()), new BlockInfo(Blocks.RED_MUSHROOM.getDefaultState())});
+        //registry.register("water", "witchwater", 12000, new BlockInfo[]{new BlockInfo(Blocks.MYCELIUM.getDefaultState())}, new BlockInfo[]{new BlockInfo(Blocks.BROWN_MUSHROOM.getDefaultState()), new BlockInfo(Blocks.RED_MUSHROOM.getDefaultState())});
     }
 
     @Override
@@ -521,7 +510,7 @@ public class NTM implements IRecipeDefaults
     }
 
     private float getDropChance(float chance) {
-    	return chance / 100f * (float) Config.normalDropPercent;
+    	return chance / 100f * Config.normalDropPercent;
     }
 
     private static Map<BlockInfo, BlockInfo> getLeavesSapling()

@@ -3,7 +3,6 @@ package mod.nethertweaks.registry.types;
 import java.util.Arrays;
 
 import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.ItemInfo;
 
 public class FluidTransformer {
 	

@@ -12,36 +12,20 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.WorldGenElderTree;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenBirchTree;
-import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
-import net.minecraft.world.gen.feature.WorldGenSavannaTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
@@ -51,6 +35,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 
     public ElderSapling()
     {
+    	this.setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.TABNTM);
         this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SAPLING);
@@ -62,83 +47,83 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     }
 
     @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    	if (!worldIn.isRemote)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+    	if (!world.isRemote)
         {
-            super.updateTick(worldIn, pos, state, rand);
+            super.updateTick(world, pos, state, rand);
 
             if (rand.nextInt(7) == 0)
             {
-                this.grow(worldIn, pos, state, rand);
+                this.grow(world, pos, state, rand);
             }
         }
     }
 
-    public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void grow(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (((Integer)state.getValue(STAGE)).intValue() == 0)
+        if (state.getValue(STAGE).intValue() == 0)
         {
-            worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
+            world.setBlockState(pos, state.cycleProperty(STAGE), 4);
         }
         else
         {
-            this.generateTree(worldIn, pos, state, rand);
+            this.generateTree(world, pos, state, rand);
         }
     }
     
-    public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void generateTree(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = (WorldGenerator) new WorldGenElderTree(true);
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, pos)) return;
+        WorldGenerator worldgenerator = new WorldGenElderTree(true);
         int i = 0;
         int j = 0;
         boolean flag = false;
 
-    	worldgenerator.generate(worldIn, rand, pos);
+    	worldgenerator.generate(world, rand, pos);
 
         IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
         if (flag)
         {
-            worldIn.setBlockState(pos.add(i, 0, j), iblockstate2, 4);
-            worldIn.setBlockState(pos.add(i + 1, 0, j), iblockstate2, 4);
-            worldIn.setBlockState(pos.add(i, 0, j + 1), iblockstate2, 4);
-            worldIn.setBlockState(pos.add(i + 1, 0, j + 1), iblockstate2, 4);
+            world.setBlockState(pos.add(i, 0, j), iblockstate2, 4);
+            world.setBlockState(pos.add(i + 1, 0, j), iblockstate2, 4);
+            world.setBlockState(pos.add(i, 0, j + 1), iblockstate2, 4);
+            world.setBlockState(pos.add(i + 1, 0, j + 1), iblockstate2, 4);
         }
         else
         {
-            worldIn.setBlockState(pos, iblockstate2, 4);
+            world.setBlockState(pos, iblockstate2, 4);
         }
 
-        if (!worldgenerator.generate(worldIn, rand, pos.add(i, 0, j)))
+        if (!worldgenerator.generate(world, rand, pos.add(i, 0, j)))
         {
             if (flag)
             {
-                worldIn.setBlockState(pos.add(i, 0, j), state, 4);
-                worldIn.setBlockState(pos.add(i + 1, 0, j), state, 4);
-                worldIn.setBlockState(pos.add(i, 0, j + 1), state, 4);
-                worldIn.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
+                world.setBlockState(pos.add(i, 0, j), state, 4);
+                world.setBlockState(pos.add(i + 1, 0, j), state, 4);
+                world.setBlockState(pos.add(i, 0, j + 1), state, 4);
+                world.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
             }
             else
             {
-                worldIn.setBlockState(pos, state, 4);
+                world.setBlockState(pos, state, 4);
             }
         }
     }
 
     @Override
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
     	return true;
     }
 
     @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return (double)worldIn.rand.nextFloat() < 0.45D;
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state) {
+        return world.rand.nextFloat() < 0.45D;
     }
 
     @Override
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        this.grow(worldIn, pos, state, rand);
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+        this.grow(world, pos, state, rand);
     }
 
     @Override
@@ -149,7 +134,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     @Override
     public int getMetaFromState(IBlockState state) {
     	int i = 0;
-        i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
+        i = i | state.getValue(STAGE).intValue() << 3;
         return i;
     }
 
@@ -172,8 +157,9 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=0,type=oak"));
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=1,type=oak"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=0"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=1"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=2"));
         return ret;
     }
 }

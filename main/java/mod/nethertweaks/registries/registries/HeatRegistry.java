@@ -1,31 +1,21 @@
 package mod.nethertweaks.registries.registries;
 
 import java.io.FileReader;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import com.google.common.collect.Lists;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IHeatRegistry;
 import mod.nethertweaks.compatibility.HeatSourcesRecipe;
-import mod.nethertweaks.json.CustomHeatJson;
-import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.registries.ingredient.IngredientUtil;
-import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
-import mod.nethertweaks.registry.types.Compostable;
-import mod.nethertweaks.registry.types.Dryable;
-import mod.nethertweaks.registry.types.Heat;
-import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IHeatRegistry {
 	
@@ -58,15 +48,18 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
         registry.put(info.toString(), heatAmount);
     }
 
-    public void register(@Nonnull ItemStack stack, int heatAmount) {
+    @Override
+	public void register(@Nonnull ItemStack stack, int heatAmount) {
         register(new BlockInfo(stack), heatAmount);
     }
 
+	@Override
 	public int getHeatAmount(@Nonnull ItemStack stack) {
 		return this.getHeatAmount(new BlockInfo(stack));
     }
 
-    public int getHeatAmount(@Nonnull BlockInfo info) {
+    @Override
+	public int getHeatAmount(@Nonnull BlockInfo info) {
         return this.getHeatAmount(info.toString());
     }
     

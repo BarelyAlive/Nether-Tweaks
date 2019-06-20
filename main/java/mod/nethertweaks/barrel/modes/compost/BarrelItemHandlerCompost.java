@@ -1,12 +1,11 @@
 package mod.nethertweaks.barrel.modes.compost;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
-
 import javax.annotation.Nonnull;
 
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelItemHandlerCompost extends ItemStackHandler {
 

@@ -1,9 +1,7 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.Heat;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 
 public interface IHeatRegistry extends IRegistryMap<String, Integer> {
 

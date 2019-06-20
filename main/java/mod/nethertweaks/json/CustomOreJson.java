@@ -1,14 +1,20 @@
 package mod.nethertweaks.json;
 
-import com.google.gson.*;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import mod.nethertweaks.registry.types.Ore;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
-
-import java.lang.reflect.Type;
-import java.util.*;
 
 public class CustomOreJson implements JsonDeserializer<Ore>, JsonSerializer<Ore>
 {

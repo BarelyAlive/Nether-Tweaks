@@ -140,7 +140,6 @@ public class ItemHandler implements INames
         if(Config.enableFlintMeshes) 		Registry.registerItem(FLINT_MESH);
         if(Config.enableIronMeshes)  		Registry.registerItem(IRON_MESH);
         if(Config.enableDiamondMeshes)		Registry.registerItem(DIAMOND_MESH);
-
         
         //Dolls
         if(Config.enableDollBat)  			Registry.registerItem(DOLL_BAT);
@@ -167,8 +166,8 @@ public class ItemHandler implements INames
         if(Config.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
         if(Config.enableGrabberDiamond)		Registry.registerItem(GRABBER_DIAMOND);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
-        if(Config.enablePickAxeNetherrack)  Registry.registerItem(PICK_NETHERRACK);
-        if(Config.enablePickAxeNetherbrick) Registry.registerItem(PICK_NETHERBRICK);
+        if(Config.enablePickAxeNetherrack) 	Registry.registerItem(PICK_NETHERRACK);
+        if(Config.enablePickAxeNetherbrick)	Registry.registerItem(PICK_NETHERBRICK);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);

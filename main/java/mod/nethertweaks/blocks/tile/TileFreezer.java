@@ -1,54 +1,32 @@
 package mod.nethertweaks.blocks.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import mod.nethertweaks.INames;
-import mod.nethertweaks.blocks.Freezer;
-import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
-import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.util.ItemStackItemHandler;
-import mod.sfhcore.util.ItemUtil;
 import mod.sfhcore.util.TankUtil;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import scala.Int;
 
 public class TileFreezer extends TileFluidInventory
 {
-	final ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	
+	private ItemStack ice()
+	{
+		return ice.copy();
+	}
 
 	public TileFreezer() {
 		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
@@ -66,12 +44,9 @@ public class TileFreezer extends TileFluidInventory
 		NetworkHandler.sendNBTUpdate(this);
 
 		if(!canFreeze())
-		{
 			this.setWorkTime(0);
-			return;
-		}
-
-		work();
+		else
+			work();
 
 		if(getWorkTime() >= this.getMaxworkTime())
 		{
@@ -96,7 +71,7 @@ public class TileFreezer extends TileFluidInventory
     {
 		if(!world.isBlockPowered(pos)) return false;
         if(this.getTank().getFluidAmount() < 1000) return false;
-        if(this.getStackInSlot(0).getCount() == ice.getMaxStackSize()) return false;
+        if(this.getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
         return true;
     }
 
@@ -105,7 +80,7 @@ public class TileFreezer extends TileFluidInventory
     	this.getTank().drain(1000, true);
 
         if(this.getStackInSlot(0).isEmpty())
-            this.setInventorySlotContents(0, new ItemStack(ice.getItem()));
+            this.setInventorySlotContents(0, new ItemStack(ice().getItem()));
 
         else if(this.getStackInSlot(0).getCount() >= 1)
         	this.getStackInSlot(0).grow(1);
@@ -119,46 +94,42 @@ public class TileFreezer extends TileFluidInventory
 		ItemStack output = this.getStackInSlot(1);
 
 		if(input.isEmpty()) return;
+		if(output.getCount() == output.getMaxStackSize()) return;
 
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
+		ItemStack copy = input.copy();
+		
+		IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
 
 		if(handler != null)
 		{
     		FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
     		if (f == null) return;
+    		
+    		//Z.b. der leere bucket bei nem Wassereimer
+    		ItemStack containerItem = handler.getContainer();
 
-    		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, handler.getContainer().getItem().getContainerItem(handler.getContainer()))) return;
+    		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
 
 			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
 
-			System.out.println(handler.getContainer());
-
-			if(output.isEmpty())
-			{
-				this.setInventorySlotContents(1, new ItemStack(handler.getContainer().getItem()));
-				this.getStackInSlot(2).shrink(1);
-				System.out.println(getStackInSlot(2));
-			}
-			if(ItemStack.areItemsEqual(output, handler.getContainer()))
-			{
-				this.getStackInSlot(1).grow(1);
-				this.decrStackSize(2, 1);
-			}
+			//Das veränderte Fluid Item
+			ItemStack container = handler.getContainer();
+			container.setCount(output.getCount()+1);
+			
+			this.setInventorySlotContents(1, container);
+			this.getStackInSlot(2).shrink(1);
 		}
 
 		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
 		{
-			if(getTank().getFluidAmount() < getTank().getCapacity())
+			if(emptyRoom() >= 250)
 			{
        			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
 
-       			if(output.isEmpty())
-				setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE));
-
-       			else if(ItemStack.areItemsEqual(output, new ItemStack(Items.GLASS_BOTTLE)))
-				this.getStackInSlot(1).grow(1);
-
-				this.decrStackSize(2, 1);
+       			ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
+       			
+   				setInventorySlotContents(1, bottles);
+   				this.decrStackSize(2, 1);
 			}
 		}
 	}
@@ -186,12 +157,14 @@ public class TileFreezer extends TileFluidInventory
 		return index != 2;
 	}
 
+	@Override
 	public String getGuiID()
     {
         return "nethertweaksmod:gui_freezer";
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    @Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerFreezer(playerInventory, this);
     }

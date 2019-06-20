@@ -1,58 +1,34 @@
 package mod.nethertweaks.registries.registries;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import mod.nethertweaks.api.IHellmartRegistry;
+import mod.nethertweaks.json.CustomHellmartDataJson;
+import mod.nethertweaks.json.CustomIngredientJson;
+import mod.nethertweaks.registries.ingredient.IngredientUtil;
+import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
+import mod.nethertweaks.registry.types.HellmartData;
+import mod.sfhcore.json.CustomBlockInfoJson;
+import mod.sfhcore.json.CustomItemInfoJson;
+import mod.sfhcore.util.BlockInfo;
+import mod.sfhcore.util.ItemInfo;
+import mod.sfhcore.util.LogUtil;
+import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import javax.annotation.Nonnull;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import mod.nethertweaks.api.ICondenserRegistry;
-import mod.nethertweaks.api.IHellmartRegistry;
-import mod.nethertweaks.items.*;
-import mod.nethertweaks.json.CustomDryableJson;
-import mod.nethertweaks.json.CustomHellmartDataJson;
-import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.registries.ingredient.IngredientUtil;
-import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
-import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.base.BaseRegistryList;
-import mod.nethertweaks.registries.registries.base.BaseRegistryMap;
-import mod.nethertweaks.registry.types.HellmartData;
-import mod.nethertweaks.registry.types.Dryable;
-import mod.nethertweaks.registry.types.HammerReward;
-import mod.nethertweaks.registry.types.HellmartData;
-import mod.sfhcore.json.CustomBlockInfoJson;
-import mod.sfhcore.json.CustomEntityInfoJson;
-import mod.sfhcore.json.CustomItemInfoJson;
-import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.EntityInfo;
-import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.LogUtil;
-import mod.sfhcore.util.StackInfo;
 
 public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> implements IHellmartRegistry
 {

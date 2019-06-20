@@ -3,8 +3,6 @@ package mod.nethertweaks.handler;
 import java.io.File;
 
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.CondenserRegistry;
-import mod.nethertweaks.registries.registries.HellmartRegistry;
 
 public class JsonRecipeHandler
 {

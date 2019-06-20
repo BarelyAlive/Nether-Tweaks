@@ -9,19 +9,19 @@ import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.util.TankUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+@SideOnly(Side.CLIENT)
 public class GuiHellmart extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
 
@@ -112,6 +112,7 @@ public class GuiHellmart extends GuiContainer {
 		super.onGuiClosed();
 	}
 
+	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 13, 4210752);
 
@@ -145,6 +146,7 @@ public class GuiHellmart extends GuiContainer {
 		RenderHelper.enableStandardItemLighting();
 	}
 
+	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
@@ -155,6 +157,7 @@ public class GuiHellmart extends GuiContainer {
 		}
 	}
 
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(gui);

@@ -1,14 +1,20 @@
 package mod.nethertweaks.json;
 
-import com.google.gson.*;
+import java.lang.reflect.Type;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.ItemStack;
-
-import java.lang.reflect.Type;
 
 public class CustomHammerRewardJson implements JsonDeserializer<HammerReward>, JsonSerializer<HammerReward>
 {

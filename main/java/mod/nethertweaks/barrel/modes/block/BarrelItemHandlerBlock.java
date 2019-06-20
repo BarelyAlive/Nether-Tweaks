@@ -20,7 +20,8 @@ public class BarrelItemHandlerBlock extends ItemStackHandler
         this.barrel = barrel;
     }
     
-    protected int getStackLimit(int slot, ItemStack stack)
+    @Override
+	protected int getStackLimit(int slot, ItemStack stack)
     {
         return stack.getMaxStackSize();
     }

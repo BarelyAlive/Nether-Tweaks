@@ -11,17 +11,9 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registry.types.Compostable;
 import mod.nethertweaks.registry.types.Dryable;
-import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.json.JsonHelper;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.LogUtil;
-import mod.sfhcore.util.StackInfo;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSerializer<Dryable>
 {

@@ -1,6 +1,16 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,13 +45,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import wanion.unidict.UniDict;
-
-import org.apache.commons.lang3.StringUtils;
-
-import java.io.FileReader;
-import java.util.*;
-
-import javax.annotation.Nonnull;
 
 public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
@@ -100,7 +103,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
      *              Otherwise, the hunk will be smelted into this.
      * @return Ore, containing the base Ore object.
      */
-    @Nonnull
+    @Override
+	@Nonnull
     public Ore register(@Nonnull String name, @Nonnull Color color, ItemInfo info, Map<String, String> translations, String oredictName) {
         Ore ore = new Ore(name, color, info, null, translations, oredictName);
         register(ore);
@@ -222,7 +226,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         }
     }
 
-    public ItemOre getOreItem(@Nonnull String name) {
+    @Override
+	public ItemOre getOreItem(@Nonnull String name) {
         for (ItemOre itemOre : itemOreRegistry) {
             if (itemOre.getOre().getName().equals(name)) {
                 return itemOre;
@@ -232,7 +237,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
         return null;
     }
 
-    public boolean isRegistered(@Nonnull String name) {
+    @Override
+	public boolean isRegistered(@Nonnull String name) {
         for (Ore ore : registry) {
             if (ore.getName().equals(name)) {
                 return true;

@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks.container;
 
 import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
@@ -26,10 +27,12 @@ public class ContainerHellmart extends Container {
 		}
 	}
 
+	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
 		return true;
 	}
 
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		final Slot slot = inventorySlots.get(slotIndex);
@@ -38,7 +41,7 @@ public class ContainerHellmart extends Container {
 			itemStack = slotStack.copy();
 
 			if(slotIndex >= 1) {
-				if(slotStack.getItem() == Items.EMERALD) {
+				if(ItemStack.areItemsEqual(slotStack, NTMRegistryManager.HELLMART_REGISTRY.getItem(slotStack).getItem())) {
 					if(!mergeItemStack(slotStack, 0, 1, false)) {
 						return ItemStack.EMPTY;
 					}

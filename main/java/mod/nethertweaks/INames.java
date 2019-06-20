@@ -8,10 +8,7 @@ public interface INames {
 	public CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
 	//Fluids
-	public String FLUIDLIQUIDIMPOSSIBILITY	= "liquid_impossibility";
-	
-	//Fluidblocks
-	public String BLOCKLIQUIDIMPOSSIBILITY	= "liquid_impossibility";
+	public String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//Blocks
 	public String CONDENSER 				= "condenser";
@@ -27,8 +24,8 @@ public interface INames {
 	public String ELDER_SAPLING 			= "elder_sapling";
 	public String ELDER_LEAVES 				= "elder_leaves";
 	public String ELDER_PLANKS				= "elder_planks";
-	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_SLAB				= "elder_slab";
+	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_LOG 				= "elder_log";
 	public String NETHERRACK_GRAVEL			= "netherrack_gravel";
 	public String BONFIRE 					= "bonfire";
@@ -41,12 +38,12 @@ public interface INames {
 	public String BLOCK_OF_SALT 			= "block_of_salt";
 	
 	//Tile ENtities
-	public String TE_NETHERRACKFURNACE		= "tileentity_netherrack_furnace";
-	public String TE_CONDENSER 				= "tileentity_condenser";
-	public String TE_BARREL 				= "tileentity_barrel";
-	public String TE_FREEZER				= "tileentity_freezer";
-	public String TE_SIEVE					= "tileentity_sieve";
-	public String TE_HELLMART				= "tileentity_hellmart";
+	public String TE_NETHERRACKFURNACE		= "ntm.tile.netherrack_furnace";
+	public String TE_CONDENSER 				= "ntm.tile.condenser";
+	public String TE_BARREL 				= "ntm.tile.barrel";
+	public String TE_FREEZER				= "ntm.tile.freezer";
+	public String TE_SIEVE					= "ntm.tile.sieve";
+	public String TE_HELLMART				= "ntm.tile.hellmart";
 
 	//Items
 	public String MESH_STRING				= "mesh_string";

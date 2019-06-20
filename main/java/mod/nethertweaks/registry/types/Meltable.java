@@ -2,8 +2,6 @@ package mod.nethertweaks.registry.types;
 
 import mod.sfhcore.util.BlockInfo;
 
-import javax.annotation.Nonnull;
-
 public class Meltable {
 
 	public static final Meltable EMPTY = new Meltable("", 0);

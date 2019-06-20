@@ -3,7 +3,6 @@ package mod.nethertweaks.network;
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.HellmartRegistry;
 import mod.nethertweaks.registry.types.HellmartData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;

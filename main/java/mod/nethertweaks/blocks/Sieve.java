@@ -1,14 +1,22 @@
 package mod.nethertweaks.blocks;
 
-import net.minecraft.block.Block;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.INames;
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.config.Config;
+import mod.nethertweaks.items.ItemMesh;
+import mod.sfhcore.util.ItemStackItemHandler;
+import mod.sfhcore.util.Util;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +24,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -25,28 +32,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import p455w0rd.danknull.util.DankNullUtils;
 
-import javax.annotation.Nonnull;
-
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.nethertweaks.blocks.tile.TileSieve;
-import mod.nethertweaks.config.Config;
-import mod.nethertweaks.items.ItemMesh;
-import mod.sfhcore.util.ItemStackItemHandler;
-import mod.sfhcore.util.Util;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class Sieve extends BlockContainer {
 
     public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
 
     public Sieve() {
-        super(Material.WOOD);
+        super(Material.ROCK);
+        this.setResistance(30.0F);
         this.setHardness(2.0f);
         this.setRegistryName(NetherTweaksMod.MODID, INames.SIEVE);
         this.setCreativeTab(NetherTweaksMod.TABNTM);

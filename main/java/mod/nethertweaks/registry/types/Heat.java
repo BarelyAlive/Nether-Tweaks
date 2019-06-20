@@ -1,10 +1,6 @@
 package mod.nethertweaks.registry.types;
 
-import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 
 public class Heat

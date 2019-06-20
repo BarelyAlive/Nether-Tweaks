@@ -1,28 +1,22 @@
 package mod.nethertweaks.blocks.gui;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.io.IOException;
-
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.sfhcore.Constants;
-import mod.sfhcore.util.Util;
+import mod.sfhcore.blocks.tiles.TileInventory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiFreezer extends GuiContainer
 {
 	private int xSize, ySize;
@@ -70,7 +64,7 @@ public class GuiFreezer extends GuiContainer
         
         int x_old = x;
         int y_old = y;
-        if(this.entity.isWorking(this.entity)){
+        if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(12);
         	x += 28;
         	y += 17;

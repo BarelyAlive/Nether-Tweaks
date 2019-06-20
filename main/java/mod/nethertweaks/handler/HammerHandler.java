@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.api.IHammer;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.sfhcore.util.ItemUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,13 +15,30 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HammerHandler
 {
-    @SubscribeEvent(priority = EventPriority.LOW)
+	private static ItemStack hammer = ItemStack.EMPTY;
+	
+    public static ItemStack getHammer() {
+		return hammer;
+	}
+
+	public static void setHammer(ItemStack hammer) {
+		HammerHandler.hammer = hammer;
+	}
+
+	@SubscribeEvent(priority = EventPriority.LOW)
     public void hammer(BlockEvent.HarvestDropsEvent event)
     {
         if (event.getWorld().isRemote || event.getHarvester() == null || event.isSilkTouching())
             return;
+        
+        ItemStack held = ItemStack.EMPTY;
 
-        ItemStack held = event.getHarvester().getHeldItemMainhand();
+        if(!hammer.isEmpty())
+        {
+        	held =  hammer;
+        }
+        else
+        	held = event.getHarvester().getHeldItemMainhand();
 
         if (!isHammer(held))
             return;
@@ -35,14 +51,13 @@ public class HammerHandler
             event.setDropChance(1.0F);
             event.getDrops().addAll(rewards);
         }
+        
+        hammer =  ItemStack.EMPTY;
     }
     
     public static boolean isHammer(@Nullable ItemStack stack)
 	{
-	    if (stack == null)
-	        return false;
-	
-	    if (stack.getItem() == Items.AIR)
+	    if (stack.isEmpty())
 	        return false;
 	
 	    if (stack.getItem() instanceof IHammer)

@@ -4,10 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.items.Grabber;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class Config extends BlocksItems
 {		

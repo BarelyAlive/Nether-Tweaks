@@ -1,17 +1,19 @@
 package mod.nethertweaks.compatibility;
 
-import java.util.*;
+import java.util.List;
 
-import javax.annotation.*;
+import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
 
-import mezz.jei.api.ingredients.*;
-import mezz.jei.api.recipe.*;
-
-import net.minecraft.client.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fluids.*;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 
 public class CrucibleRecipe implements IRecipeWrapper {
     private final List<List<ItemStack>> inputs;

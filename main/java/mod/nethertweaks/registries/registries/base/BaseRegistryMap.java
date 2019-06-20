@@ -1,14 +1,14 @@
 package mod.nethertweaks.registries.registries.base;
 
-import com.google.gson.Gson;
-
-import mod.nethertweaks.api.IRegistryMap;
-import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
-
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
+
+import mod.nethertweaks.api.IRegistryMap;
+import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 public abstract class BaseRegistryMap<K, V> extends BaseRegistry<Map<K, V>> implements IRegistryMap<K, V> {
 
@@ -16,7 +16,8 @@ public abstract class BaseRegistryMap<K, V> extends BaseRegistry<Map<K, V>> impl
         super(gson, new HashMap<>(), typeOfSource, defaultRecipeProviders);
     }
 
-    public void register(K key, V value) {
+    @Override
+	public void register(K key, V value) {
         registry.put(key, value);
     }
 

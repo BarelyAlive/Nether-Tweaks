@@ -1,8 +1,15 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.TreeTypeAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IHammerRegistry;
@@ -22,12 +29,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.CraftingHelper;
-
-import java.io.FileReader;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nonnull;
 
 public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerReward>> implements IHammerRegistry {
 
@@ -74,31 +75,37 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
      * @param chance        Chance of drop
      * @param fortuneChance Chance of drop per level of fortune
      */
-    public void register(@Nonnull IBlockState state, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
+    @Override
+	public void register(@Nonnull IBlockState state, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
         register(new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state)), new HammerReward(reward, miningLevel, chance, fortuneChance));
     }
 
-    public void register(@Nonnull Block block, int meta, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
+    @Override
+	public void register(@Nonnull Block block, int meta, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
         register(new ItemStack(block, 1, meta), new HammerReward(reward, miningLevel, chance, fortuneChance));
     }
 
-    public void register(@Nonnull StackInfo stackInfo, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
+    @Override
+	public void register(@Nonnull StackInfo stackInfo, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
         register(stackInfo.getItemStack(), new HammerReward(reward, miningLevel, chance, fortuneChance));
     }
 
-    public void register(@Nonnull ItemStack stack, @Nonnull HammerReward reward) {
+    @Override
+	public void register(@Nonnull ItemStack stack, @Nonnull HammerReward reward) {
         if (stack.isEmpty())
             return;
         Ingredient ingredient = CraftingHelper.getIngredient(stack);
         register(ingredient, reward);
     }
 
-    public void register(@Nonnull String name, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
+    @Override
+	public void register(@Nonnull String name, @Nonnull ItemStack reward, int miningLevel, float chance, float fortuneChance) {
         Ingredient ingredient = new OreIngredientStoring(name);
         register(ingredient, new HammerReward(reward, miningLevel, chance, fortuneChance));
     }
 
-    public void register(@Nonnull Ingredient ingredient, @Nonnull HammerReward reward) {
+    @Override
+	public void register(@Nonnull Ingredient ingredient, @Nonnull HammerReward reward) {
         Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
 
         if (search != null) {
@@ -110,7 +117,8 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
         }
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public NonNullList<ItemStack> getRewardDrops(@Nonnull Random random, @Nonnull IBlockState block, int miningLevel, int fortuneLevel) {
         NonNullList<ItemStack> rewards = NonNullList.create();
 
@@ -125,17 +133,20 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
         return rewards;
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public NonNullList<HammerReward> getRewards(@Nonnull IBlockState block) {
         return getRewards(new BlockInfo(block));
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public NonNullList<HammerReward> getRewards(@Nonnull Block block, int meta) {
         return getRewards(new BlockInfo(block, meta));
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public NonNullList<HammerReward> getRewards(@Nonnull BlockInfo stackInfo) {
         NonNullList<HammerReward> drops = NonNullList.create();
         if (stackInfo.isValid())
@@ -143,18 +154,21 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
         return drops;
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public NonNullList<HammerReward> getRewards(@Nonnull Ingredient ingredient) {
         NonNullList<HammerReward> drops = NonNullList.create();
         registry.entrySet().stream().filter(entry -> entry.getKey() == ingredient).forEach(entry -> drops.addAll(entry.getValue()));
         return drops;
     }
 
-    public boolean isRegistered(@Nonnull IBlockState block) {
+    @Override
+	public boolean isRegistered(@Nonnull IBlockState block) {
         return isRegistered(new BlockInfo(block));
     }
 
-    public boolean isRegistered(@Nonnull Block block) {
+    @Override
+	public boolean isRegistered(@Nonnull Block block) {
         return isRegistered(new BlockInfo(block.getDefaultState()));
     }
 
@@ -166,7 +180,8 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
         return isRegistered(new BlockInfo(block.getDefaultState()));
     }
 
-    public boolean isRegistered(@Nonnull BlockInfo stackInfo) {
+    @Override
+	public boolean isRegistered(@Nonnull BlockInfo stackInfo) {
         return registry.keySet().stream().anyMatch(ingredient -> ingredient.test(stackInfo.getItemStack()));
     }
 

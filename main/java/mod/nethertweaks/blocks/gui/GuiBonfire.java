@@ -1,45 +1,30 @@
 package mod.nethertweaks.blocks.gui;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-import javax.print.attribute.standard.Destination;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
-import org.lwjgl.input.*;
-import org.lwjgl.opengl.*;
-
-import mod.nethertweaks.blocks.container.*;
-import mod.nethertweaks.blocks.tile.*;
-import mod.nethertweaks.handler.MessageHandler;
-import mod.nethertweaks.network.*;
-import mod.nethertweaks.registries.manager.*;
-import mod.nethertweaks.registries.registries.*;
-import mod.nethertweaks.registry.types.*;
-import mod.nethertweaks.world.*;
-import mod.sfhcore.network.*;
-import mod.sfhcore.util.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.inventory.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.command.server.CommandTeleport;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
-import net.minecraft.util.text.TextComponentString;
+import mod.nethertweaks.blocks.container.ContainerBonfire;
+import mod.nethertweaks.network.MessageTeleportPlayer;
+import mod.nethertweaks.world.BonfireInfo;
+import mod.nethertweaks.world.WorldSpawnLocation;
+import mod.sfhcore.network.NetworkHandler;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderServer;
-import net.minecraftforge.fml.client.config.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.*;
-import net.minecraftforge.server.permission.context.*;
-import p455w0rdslib.util.ChunkUtils;
 
+@SideOnly(Side.CLIENT)
 public class GuiBonfire extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guibonfire.png");
 
@@ -206,6 +191,7 @@ public class GuiBonfire extends GuiContainer {
 		this.text.mouseClicked(mouseX, mouseY, mouseButton);
 	}
 	
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(gui);

@@ -1,5 +1,13 @@
 package mod.nethertweaks.blocks.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.google.common.base.Objects;
 
 import mod.nethertweaks.blocks.Sieve;
@@ -37,14 +45,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
 
 public class TileSieve extends TileBase {
 
@@ -159,7 +159,7 @@ public class TileSieve extends TileBase {
             int efficiency = EnchantmentHelper.getEnchantmentLevel(EnchantmentEfficiency.EFFICIENCY, meshStack);
             efficiency += EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, meshStack);
             if(Config.hasteIncreaseSpeed && player != null && player.isPotionActive(MobEffects.HASTE)){
-                efficiency *= 1.0F + (float)(player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
+                efficiency *= 1.0F + (player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
             }
 
             int fortune = EnchantmentHelper.getEnchantmentLevel(EnchantmentFortune.FORTUNE, meshStack);
@@ -320,14 +320,16 @@ public class TileSieve extends TileBase {
         return Objects.hashCode(pos.getX(), pos.getY(), pos.getZ());
     }
     
-    public void markDirtyClient() {
+    @Override
+	public void markDirtyClient() {
         markDirty();
         NetworkHandler.sendNBTUpdate(this);
     }
     
     //Move to sfh tile base
 
-    public void markDirtyChunk() {
+    @Override
+	public void markDirtyChunk() {
         markDirty();
         IBlockState state = getWorld().getBlockState(getPos());
         getWorld().notifyBlockUpdate(getPos(), state, state, 3);

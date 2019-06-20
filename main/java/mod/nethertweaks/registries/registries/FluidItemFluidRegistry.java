@@ -34,11 +34,13 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         );
     }
 
-    public void register(@Nonnull String inputFluid, @Nonnull StackInfo reactant, @Nonnull String outputFluid) {
+    @Override
+	public void register(@Nonnull String inputFluid, @Nonnull StackInfo reactant, @Nonnull String outputFluid) {
         registry.add(new FluidItemFluid(inputFluid, reactant, outputFluid));
     }
 
-    public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid) {
+    @Override
+	public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid) {
         registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
     }
 
@@ -50,7 +52,8 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
         registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
     }
 
-    public String getFluidForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
+    @Override
+	public String getFluidForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
         ItemInfo info = new ItemInfo(stack);
 
         for (FluidItemFluid transformer : registry) {

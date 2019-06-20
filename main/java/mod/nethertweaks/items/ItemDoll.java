@@ -8,12 +8,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.proxy.IVariantProvider;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
@@ -32,15 +29,11 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDoll extends Item implements IVariantProvider
+public class ItemDoll extends Item implements INames
 {	
 	public ItemDoll(String type)
 	{		
@@ -60,85 +53,85 @@ public class ItemDoll extends Item implements IVariantProvider
 	 */
 	public boolean spawnMob(ItemStack stack, World world, BlockPos pos)
 	{
-		String name = stack.getItem().getRegistryName().getResourcePath();
+		String name = NameHelper.getName(stack);
 		
 		switch (name) {
-		case "doll_bat":
+		case DOLL_BAT:
 			EntityBat bat = new EntityBat(world);
 			bat.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(bat);		
-		case "doll_chicken":
+		case DOLL_CHICKEN:
 			EntityChicken chick = new EntityChicken(world);
 			chick.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(chick);
-		case "doll_cow":
+		case DOLL_COW:
 			EntityCow cow = new EntityCow(world);
 			cow.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(cow);
-		case "doll_donkey":
+		case DOLL_DONKEY:
 			EntityDonkey donk = new EntityDonkey(world);
 			donk.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(donk);
-		case "doll_horse":
+		case DOLL_HORSE:
 			EntityHorse horst = new EntityHorse(world);
 			horst.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(horst);
-		case "doll_mooshroom":
+		case DOLL_RED_MOOSHROOM:
 			EntityMooshroom moo = new EntityMooshroom(world);
 			moo.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(moo);
-		case "doll_mule":
+		case DOLL_MULE:
 			EntityMule mule = new EntityMule(world);
 			mule.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(mule);
-		case "doll_ocelot":
+		case DOLL_OCELOT:
 			EntityOcelot revolver_ocelot = new EntityOcelot(world);
 			revolver_ocelot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(revolver_ocelot);
-		case "doll_parrot":
+		case DOLL_PARROT:
 			EntityParrot parrot = new EntityParrot(world);
 			parrot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(parrot);
-		case "doll_rabbit":
+		case DOLL_RABBIT:
 			EntityRabbit rabbit = new EntityRabbit(world);
 			rabbit.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(rabbit);
-		case "doll_sheep":
+		case DOLL_SHEEP:
 			EntitySheep sheep = new EntitySheep(world);
 			sheep.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(sheep);
-		case "doll_llama":
+		case DOLL_LLAMA:
 			EntityLlama llama = new EntityLlama(world);
 			llama.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(llama);
-		case "doll_polar_bear":
+		case DOLL_POLAR_BEAR:
 			EntityPolarBear pobear = new EntityPolarBear(world);
 			pobear.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(pobear);
-		case "doll_wolf":
+		case DOLL_WOLF:
 			EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 			
 			return world.spawnEntity(wolf);
-		case "doll_villager":
+		case DOLL_VILLAGER:
 			EntityVillager derp = new EntityVillager(world);
 			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 			
 			return world.spawnEntity(derp);
-		case "doll_pig":
+		case DOLL_PIG:
 			EntityPig pig = new EntityPig(world);
 			pig.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
@@ -152,14 +145,4 @@ public class ItemDoll extends Item implements IVariantProvider
 	public String getUnlocalizedName(ItemStack stack) {
 		return "item." + getRegistryName().getResourcePath();
 	}
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-    {
-        List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        
-		ret.add(new ImmutablePair<Integer, String>(0, "inventory"));
-		
-        return ret;
-    }
 }

@@ -1,35 +1,44 @@
 package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.*;
-import mod.nethertweaks.blocks.tile.*;
+import mod.nethertweaks.blocks.Barrel;
+import mod.nethertweaks.blocks.BlockSlabCommon;
+import mod.nethertweaks.blocks.Bonfire;
+import mod.nethertweaks.blocks.Condenser;
+import mod.nethertweaks.blocks.CrucibleStone;
+import mod.nethertweaks.blocks.ElderLeaves;
+import mod.nethertweaks.blocks.ElderLog;
+import mod.nethertweaks.blocks.ElderPlanks;
+import mod.nethertweaks.blocks.ElderSapling;
+import mod.nethertweaks.blocks.Freezer;
+import mod.nethertweaks.blocks.Hellmart;
+import mod.nethertweaks.blocks.MeanVine;
+import mod.nethertweaks.blocks.NetherrackFurnace;
+import mod.nethertweaks.blocks.NetherrackGravel;
+import mod.nethertweaks.blocks.Sieve;
+import mod.nethertweaks.blocks.StwH;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileCrucibleStone;
+import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
-import mod.sfhcore.Constants;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
-import mod.sfhcore.blocks.base.BlockEnum;
-import mod.sfhcore.blocks.base.BlockEnumFalling;
-import mod.sfhcore.blocks.itemblocks.ItemBlockEnum;
-import mod.sfhcore.blocks.itemblocks.ItemBlockEnumFalling;
-import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
  
 public class BlockHandler implements INames
 {
 	//Tile Entity
     public static final Block CONDENSER 		   = new Condenser();
     public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
-    public static final Block BARREL 			   = new Barrel(0, Material.WOOD);
+    public static final Block BARREL_WOOD		   = new Barrel(0, Material.WOOD);
     public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK);
     public static final Block FREEZER 			   = new Freezer();
     public static final Block BONFIRE 			   = new Bonfire();
@@ -70,10 +79,8 @@ public class BlockHandler implements INames
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrel) {				
-											Registry.registerTileEntity(BARREL, TileBarrel.class);
-											Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
-    	}
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
+    	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
     	if(Config.enableCrucible) {
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);

@@ -1,7 +1,6 @@
 package mod.nethertweaks.registry.types;
 
 import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.ItemInfo;
 
 public class FluidFluidBlock {
 

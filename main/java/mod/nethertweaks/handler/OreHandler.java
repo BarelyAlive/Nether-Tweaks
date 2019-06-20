@@ -1,21 +1,21 @@
 package mod.nethertweaks.handler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.client.renderers.ChunkColorer;
 import mod.nethertweaks.items.ItemChunk;
-import mod.sfhcore.SFHCore;
 import mod.sfhcore.proxy.IVariantProvider;
-import mod.sfhcore.proxy.SFHCoreClientProxy;
-import mod.sfhcore.proxy.SFHCoreProxy;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +37,7 @@ public class OreHandler {
 	public static Map<String, ItemChunk> mod_chunks = new HashMap<String, ItemChunk>();
 	private static List<String> disabled_chunks = new ArrayList<String>();
 	private static List<String> enable_chunks = new ArrayList<String>();
-	
+
 	public static void add(Item stack, int rarity)
 	{
 		String reg_domain = stack.getRegistryName().getResourceDomain();
@@ -67,13 +67,13 @@ public class OreHandler {
 				}
 			}
 		}
-		
+
 		if (!ore_list.containsKey(stack))
 		{
 			ore_list.put(stack, rarity);
 		}
 	}
-	
+
 	public static void disableOre(String name)
 	{
 		if (!disabled_chunks.contains(name))
@@ -81,7 +81,7 @@ public class OreHandler {
 			disabled_chunks.add(name);
 		}
 	}
-	
+
 	public static void enableOre(String name)
 	{
 		if (!enable_chunks.contains(name))
@@ -89,7 +89,7 @@ public class OreHandler {
 			enable_chunks.add(name);
 		}
 	}
-	
+
 	public static void remove(Item stack)
 	{
 		if (ore_list.containsKey(stack))
@@ -97,7 +97,7 @@ public class OreHandler {
 			ore_list.remove(stack);
 		}
 	}
-	
+
 	public static void register(IForgeRegistry<Item> registry) {
 		ItemChunk chunks;
 		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
@@ -111,9 +111,9 @@ public class OreHandler {
 			}
 			else
 			{
-				chunks = (ItemChunk) mod_chunks.get(mod_domain);
+				chunks = mod_chunks.get(mod_domain);
 			}
-			
+
 			int[] ids = OreDictionary.getOreIDs(new ItemStack(entry.getKey()));
 			if (ids.length != 0)
 			{
@@ -122,7 +122,7 @@ public class OreHandler {
 			mod_chunks.put(mod_domain, chunks);
 			chunks = null;
 		}
-		
+
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 			registry.register(entry.getValue());
 	}
@@ -143,7 +143,7 @@ public class OreHandler {
             }
 		}
 	}
-	
+
 	public static void registerFurnaceRecipe()
 	{
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
@@ -154,5 +154,5 @@ public class OreHandler {
 			}
 		}
 	}
-	
+
 }

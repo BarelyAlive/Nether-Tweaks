@@ -1,6 +1,16 @@
 package mod.nethertweaks.registries.registries;
 
-import com.google.common.collect.Lists;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import org.apache.commons.io.IOUtils;
+
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
@@ -12,17 +22,6 @@ import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.json.CustomItemInfoJson;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
-import net.minecraftforge.fluids.FluidRegistry;
-import org.apache.commons.io.IOUtils;
-
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
 
 public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTransformer>> implements IFluidTransformRegistry {
     public FluidTransformRegistry() {
@@ -35,11 +34,13 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
                 NTMRegistryManager.FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS);
     }
 
-    public void register(@Nonnull String inputFluid, @Nonnull String outputFluid, int duration, @Nonnull BlockInfo[] transformingBlocks, @Nonnull BlockInfo[] blocksToSpawn) {
+    @Override
+	public void register(@Nonnull String inputFluid, @Nonnull String outputFluid, int duration, @Nonnull BlockInfo[] transformingBlocks, @Nonnull BlockInfo[] blocksToSpawn) {
         register(new FluidTransformer(inputFluid, outputFluid, duration, transformingBlocks, blocksToSpawn));
     }
 
-    public void register(@Nonnull FluidTransformer transformer) {
+    @Override
+	public void register(@Nonnull FluidTransformer transformer) {
         List<FluidTransformer> list = registry.get(transformer.getInputFluid());
 
         if (list == null) {
@@ -50,11 +51,13 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
         registry.put(transformer.getInputFluid(), list);
     }
 
-    public boolean containsKey(@Nonnull String inputFluid) {
+    @Override
+	public boolean containsKey(@Nonnull String inputFluid) {
         return registry.containsKey(inputFluid);
     }
 
-    public FluidTransformer getFluidTransformer(@Nonnull String inputFluid, @Nonnull String outputFluid) {
+    @Override
+	public FluidTransformer getFluidTransformer(@Nonnull String inputFluid, @Nonnull String outputFluid) {
         if (registry.containsKey(inputFluid)) {
             for (FluidTransformer transformer : registry.get(inputFluid)) {
                 if (transformer.getInputFluid().equals(inputFluid) && transformer.getOutputFluid().equals(outputFluid))
@@ -64,7 +67,8 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
         return null;
     }
 
-    @Nonnull
+    @Override
+	@Nonnull
     public List<FluidTransformer> getFluidTransformers(@Nonnull String inputFluid) {
         return registry.get(inputFluid);
     }

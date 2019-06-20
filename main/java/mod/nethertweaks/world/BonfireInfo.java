@@ -1,6 +1,8 @@
 package mod.nethertweaks.world;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -91,7 +93,7 @@ public class BonfireInfo {
 
 	public void addPlayer(EntityPlayer player)
 	{
-		this.addPlayer(player.getUUID(player.getGameProfile()));
+		this.addPlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
 	
 	public void addPlayer(UUID player)
@@ -104,7 +106,7 @@ public class BonfireInfo {
 	
 	public void removePlayer(EntityPlayer player)
 	{
-		this.removePlayer(player.getUUID(player.getGameProfile()));
+		this.removePlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
 	
 	public void removePlayer(UUID player)
@@ -116,7 +118,7 @@ public class BonfireInfo {
 	
 	public boolean hasPlayer(EntityPlayer player)
 	{
-		return this.hasPlayer(player.getUUID(player.getGameProfile()));
+		return this.hasPlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
 	
 	public boolean hasPlayer(UUID player)

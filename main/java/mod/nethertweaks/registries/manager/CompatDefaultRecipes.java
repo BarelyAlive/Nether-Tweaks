@@ -4,8 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.recipes.defaults.*;
-import mod.nethertweaks.registries.registries.*;
+import mod.nethertweaks.recipes.defaults.IRecipeDefaults;
+import mod.nethertweaks.recipes.defaults.NTM;
+import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
+import mod.nethertweaks.registries.registries.CompostRegistry;
+import mod.nethertweaks.registries.registries.CondenserRegistry;
+import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
+import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
+import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registries.registries.FluidTransformRegistry;
+import mod.nethertweaks.registries.registries.HammerRegistry;
+import mod.nethertweaks.registries.registries.HeatRegistry;
+import mod.nethertweaks.registries.registries.HellmartRegistry;
+import mod.nethertweaks.registries.registries.MilkEntityRegistry;
+import mod.nethertweaks.registries.registries.OreRegistry;
+import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 

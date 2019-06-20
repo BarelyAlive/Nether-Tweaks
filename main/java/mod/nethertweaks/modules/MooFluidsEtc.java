@@ -1,11 +1,13 @@
 package mod.nethertweaks.modules;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.modules.ISFHCoreModule;
-import net.minecraftforge.fluids.*;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 public class MooFluidsEtc implements ISFHCoreModule {
 	

@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "nethertweaksmod:item_mesh",
-    "data": 3
+    "item": "nethertweaksmod:mesh_iron"
   },
   "pattern": [
     "x x",
@@ -14,8 +13,7 @@
       "item": "minecraft:iron_ingot"
     },
     "y": {
-      "item": "nethertweaksmod:item_mesh",
-      "data": 2
+      "item": "nethertweaksmod:mesh_flint"
     }
   }
 }

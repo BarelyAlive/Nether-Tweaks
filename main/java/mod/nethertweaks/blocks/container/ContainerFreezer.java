@@ -4,11 +4,8 @@ import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.sfhcore.blocks.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,12 +29,10 @@ public class ContainerFreezer extends ContainerBase {
 		for(int i = 0; i < 9; i++) {
 			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
 		}
-
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateProgressBar(int id, int data) {
-		this.tileentity.setField(id, data);
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return true;
 	}
 }

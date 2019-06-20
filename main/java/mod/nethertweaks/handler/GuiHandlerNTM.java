@@ -14,8 +14,6 @@ import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.sfhcore.blocks.container.ContainerBase;
-import mod.sfhcore.handler.GuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.math.BlockPos;
@@ -24,11 +22,11 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandlerNTM implements IGuiHandler
 {
-	public static final int ID_FURNACE = 0;
+	public static final int ID_FURNACE 	 = 0;
 	public static final int ID_CONDENSER = 1;
-	public static final int ID_FREEZER = 2;
-	public static final int ID_HELLMART = 3;
-	public static final int ID_BONFIRE = 4;
+	public static final int ID_FREEZER   = 2;
+	public static final int ID_HELLMART  = 3;
+	public static final int ID_BONFIRE 	 = 4;
 	
 	@Override
 	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)

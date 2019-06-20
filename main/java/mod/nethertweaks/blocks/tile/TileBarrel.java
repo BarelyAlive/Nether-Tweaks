@@ -1,13 +1,34 @@
 package mod.nethertweaks.blocks.tile;
 
+import static mod.nethertweaks.registries.manager.NTMRegistryManager.MILK_ENTITY_REGISTRY;
+
+import java.util.ArrayList;
+
+import javax.annotation.Nonnull;
+
+import mod.nethertweaks.barrel.BarrelFluidHandler;
+import mod.nethertweaks.barrel.BarrelItemHandler;
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.blocks.Barrel;
+import mod.nethertweaks.config.Config;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.modules.MooFluidsEtc;
+import mod.nethertweaks.modules.MooFluid.AbstractCowFactory;
+import mod.nethertweaks.modules.MooFluid.IAbstractCow;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
+import mod.nethertweaks.registries.registries.BarrelModeRegistry;
+import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
+import mod.nethertweaks.registry.types.Milkable;
+import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.network.MessageCheckLight;
+import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
@@ -20,34 +41,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import mod.nethertweaks.barrel.BarrelFluidHandler;
-import mod.nethertweaks.barrel.BarrelItemHandler;
-import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.Barrel;
-import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.modules.MooFluidsEtc;
-import mod.nethertweaks.modules.MooFluid.*;
-import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
-import mod.nethertweaks.registry.types.Milkable;
-import mod.sfhcore.blocks.tiles.TileBase;
-import mod.sfhcore.network.MessageCheckLight;
-import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.util.TankUtil;
-
-import java.util.ArrayList;
-
-import static mod.nethertweaks.registries.manager.NTMRegistryManager.MILK_ENTITY_REGISTRY;
 
 public class TileBarrel extends TileBase implements ITickable {
 
@@ -78,7 +72,7 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public TileBarrel() {
-        this((Barrel) BlockHandler.BARREL);
+        this((Barrel) BlockHandler.BARREL_WOOD);
     }
 
     public TileBarrel(Barrel block) {

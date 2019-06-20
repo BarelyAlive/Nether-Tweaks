@@ -1,14 +1,15 @@
 package mod.nethertweaks.api;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 
 import mod.nethertweaks.registry.types.HammerReward;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 
 public interface IHammerRegistry extends IRegistryMappedList<Ingredient, HammerReward>
 {

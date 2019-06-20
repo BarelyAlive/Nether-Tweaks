@@ -1,21 +1,25 @@
 package mod.nethertweaks.client.renderers;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.Sieve;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.sfhcore.client.renderers.RenderUtils;
-
-import java.util.List;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 	
@@ -44,10 +48,10 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 
         if (te.getTexture() != null && te.getCurrentStack() != null) {
             TextureAtlasSprite icon = te.getTexture();
-            double minU = (double) icon.getMinU();
-            double maxU = (double) icon.getMaxU();
-            double minV = (double) icon.getMinV();
-            double maxV = (double) icon.getMaxV();
+            double minU = icon.getMinU();
+            double maxU = icon.getMaxU();
+            double minV = icon.getMinV();
+            double maxV = icon.getMaxV();
 
             this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
@@ -96,7 +100,7 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
         worldRendererBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
         // worldRendererBuffer.setTranslation(-.5, -.5, -.5);
 
-        renderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
+        RenderUtils.renderModelTESRFast(quadsSieve, worldRendererBuffer, tile.getWorld(), tile.getPos());
 
         // worldRendererBuffer.setTranslation(0, 0, 0);
         tessellator.draw();

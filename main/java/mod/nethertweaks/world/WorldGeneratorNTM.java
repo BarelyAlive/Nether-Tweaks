@@ -2,9 +2,9 @@ package mod.nethertweaks.world;
  
 import java.util.Random;
 
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -22,9 +22,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	private WorldGenerator tree = new WorldGenElderTree(true);
 	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
-	public WorldGeneratorNTM(IBlockState state, int blockCount, int frequency) {
-		super();
-		this.frequency = frequency;
+	public WorldGeneratorNTM() {
 	}
 
 	@Override
@@ -42,7 +40,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
     private void oreGenerationNether(World world, Random random, int posX, int posZ, int maxX, int maxZ, int maxAderLaenge, int spawnChancen, int minY, int maxY)
     {	
         int differenzMinMaxY = maxY - minY;
-        if (Config.enableHellfayahOre)
+        if (BlocksItems.enableHellfayahOre)
         {
 			for (int i = 0; i < spawnChancen; i++) {
 				int positionX = posX + random.nextInt(maxX);
@@ -51,7 +49,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 				nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
 			} 
 		}
-		if (Config.enableElderTree) {
+		if (BlocksItems.enableElderTree) {
 			for (int i = 0; i < 15; i++) // 15 is rarity
 			{
 				int randPosX = posX + random.nextInt(16)+8;
