@@ -65,7 +65,7 @@ public class GuiNetherrackFurnace extends GuiContainer
     
     private void getTE ()
     {
-    	this.entity = (TileNetherrackFurnace) Minecraft.getMinecraft().player.world.getTileEntity(this.entity.getPos());
+    	this.entity = (TileNetherrackFurnace) this.mc.player.world.getTileEntity(this.entity.getPos());
     }
     
     @Override
