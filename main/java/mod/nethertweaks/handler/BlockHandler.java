@@ -75,16 +75,16 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity
-    	if(Config.enableSieve) 			Registry.registerTileEntity(SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
-    	if(Config.enableCondenser) 		Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+    	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrelWood)		Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
     	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
     	if(Config.enableCrucible) {
-								    			Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
-								    			Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
+								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
+								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
     }
         
@@ -93,20 +93,20 @@ public class BlockHandler implements INames
     {
     	if(Config.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
     	if(Config.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
-    	if(Config.enableSaltBlock) 		Registry.registerBlock(BLOCK_OF_SALT);
+    	if(Config.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
         if(Config.enableDust) 				Registry.registerBlock(DUST);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree) {
-			/*I think, that no  */				Registry.registerBlock(ELDER_SAPLING);
-			/*one wants to use  */				Registry.registerBlock(ELDER_LOG);
-			/*just some of      */				Registry.registerBlock(ELDER_LEAVES);
-			/*these and not the */				Registry.registerBlock(ELDER_PLANKS);
-			/*whole tree, right?*/				Registry.registerBlock(ELDER_SLAB);
-			/*RIGHT?			*/				Registry.registerBlock(ELDER_SLAB_DOUBLE);
+			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);
+			/*one wants to use  */			Registry.registerBlock(ELDER_LOG);
+			/*just some of      */			Registry.registerBlock(ELDER_LEAVES);
+			/*these and not the */			Registry.registerBlock(ELDER_PLANKS);
+			/*whole tree, right?*/			Registry.registerBlock(ELDER_SLAB);
+			/*RIGHT?			*/			Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(Config.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
-        if(Config.enableStoneDoor) 		Registry.registerBlock(STONE_DOOR);
+        if(Config.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
         if(Config.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
         if(Config.enableBonfire)			Registry.registerBlock(BONFIRE);
     }

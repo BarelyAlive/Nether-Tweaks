@@ -58,27 +58,28 @@ public class WorldEvents
 		}
 		if (!activated)
 		{
-			EntityItem salt = new EntityItem(world, clicked.getX(), clicked.getY() + 1.0d, clicked.getZ(), new ItemStack(ItemHandler.SALT, 2));
+			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
 			switch (event.getFace()) {
 			case UP:
-				salt.getPosition().up();
+				pos = pos.up();
 				break;
 			case NORTH:
-				salt.getPosition().north();
+				pos = pos.north();
 				break;
 			case EAST:
-				salt.getPosition().east();
+				pos = pos.east();
 				break;
 			case SOUTH:
-				salt.getPosition().south();
+				pos = pos.south();
 				break;
 			case WEST:
-				salt.getPosition().west();
+				pos = pos.west();
 				break;
 			case DOWN:
-				salt.getPosition().down();
+				pos = pos.down();
 				break;
 			}
+			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 2));
 			world.spawnEntity(salt);
 		}
     }
