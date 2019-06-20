@@ -74,25 +74,27 @@ public class Bonfire extends Block
 	
 	private BlockPos testPosition(World world, final BlockPos destination)
 	{		
-		boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
-		boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
-		boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
-		boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
-		
-		boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
-		boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
-		boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
-		boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
-		
-		if(north) return destination.north();
-		if(east) return destination.east();
-		if(south) return destination.south();
-		if(west) return destination.west();
-		
-		if(northEast) return destination.north().east();
-		if(southEast) return destination.south().east();
-		if(southWest) return destination.south().west();
-		if(northWest) return destination.north().west();
+		if (!world.isRemote) {
+			boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
+			boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
+			boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
+			boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
+			
+			boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
+			boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
+			boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
+			boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
+			
+			if(north) return destination.north();
+			if(east) return destination.east();
+			if(south) return destination.south();
+			if(west) return destination.west();
+			
+			if(northEast) return destination.north().east();
+			if(southEast) return destination.south().east();
+			if(southWest) return destination.south().west();
+			if(northWest) return destination.north().west();
+		}
 		
 		return null;
 	}
@@ -103,7 +105,7 @@ public class Bonfire extends Block
 		
 		BlockPos resultPos = testPosition(world, pos);
 		
-		if(resultPos != null)
+		if(resultPos != null && !world.isRemote)
 		{
 			BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
 			
@@ -120,6 +122,7 @@ public class Bonfire extends Block
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if(!world.isBlockLoaded(pos)) return false;
+		if(world.isRemote) return true;
 		if(playerIn.isSneaking()) return false;
 		
 		playerIn.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_BONFIRE, world, pos.getX(), pos.getY(), pos.getZ());
@@ -149,7 +152,7 @@ public class Bonfire extends Block
 	
 	private void onBlockDestroy(World world, BlockPos pos)
 	{
-		if (WorldSpawnLocation.bonfire_info.containsKey(pos))
+		if (WorldSpawnLocation.bonfire_info.containsKey(pos) && !world.isRemote)
 		{
 			BonfireInfo binfo = WorldSpawnLocation.bonfire_info.get(pos);
 			
@@ -161,8 +164,9 @@ public class Bonfire extends Block
 					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
 					{
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
-						if (world.isRemote)
-							player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+						
+						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+						
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
 					}
 				}
@@ -197,5 +201,10 @@ public class Bonfire extends Block
     @Deprecated
     public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+    
+    @Override
+    public boolean isTranslucent(IBlockState state) {
+    	return true;
     }
 }

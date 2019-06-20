@@ -57,7 +57,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		if(this.leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
 		{
 			this.leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-			world.setBlockState(pos, this.getDefaultState());
+			world.markBlockRangeForRenderUpdate(pos, pos);
 		}
 		if(world.isRemote) return;
 		
