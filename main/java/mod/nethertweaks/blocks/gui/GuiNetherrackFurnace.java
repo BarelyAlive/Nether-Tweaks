@@ -63,7 +63,7 @@ public class GuiNetherrackFurnace extends GuiContainer
         }
     }
     
-    private void getTE ()
+    private void getTE()
     {
     	this.entity = (TileNetherrackFurnace) this.mc.player.world.getTileEntity(this.entity.getPos());
     }
