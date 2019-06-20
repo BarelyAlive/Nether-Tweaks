@@ -13,6 +13,7 @@ import mod.nethertweaks.world.WorldGenElderTree;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -34,6 +35,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 
     public ElderSapling()
     {
+    	this.setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(NetherTweaksMod.TABNTM);
         this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SAPLING);
@@ -155,8 +157,9 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
     public List<Pair<Integer, String>> getVariants()
     {
         List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=0,type=oak"));
-        ret.add(new ImmutablePair<Integer, String>(0, "stage=1,type=oak"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=0"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=1"));
+        ret.add(new ImmutablePair<Integer, String>(0, "stage=2"));
         return ret;
     }
 }

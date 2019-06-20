@@ -15,3 +15,5 @@ ChangeLog NTM 2.0.2
 * Graphical things are now better separated (server/client)
 * Fixed Condenser/Freezer not handling ItemStacks correctly (input/output slots)
 * Fixed salt repeatedly spawning into blocks
+* Fixed Elder Sapling not being rendered as flat item
+* Fixed Elder Sapling making "rock sounds"
