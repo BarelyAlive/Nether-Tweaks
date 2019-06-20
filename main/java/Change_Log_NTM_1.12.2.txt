@@ -17,3 +17,4 @@ ChangeLog NTM 2.0.2
 * Fixed salt repeatedly spawning into blocks
 * Fixed Elder Sapling not being rendered as flat item
 * Fixed Elder Sapling making "rock sounds"
+* Fixed NTM not running on server-only instances

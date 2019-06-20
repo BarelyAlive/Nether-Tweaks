@@ -2,7 +2,6 @@ package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.Grabber;
@@ -112,19 +111,19 @@ public class ItemHandler implements INames
     	//Crafting Components
     	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
     	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
-    	if(Config.enableEndBox)		  	Registry.registerItem(END_BOX);
+    	if(Config.enableEndBox)		  		Registry.registerItem(END_BOX);
     	if(Config.enableSalt)		  		Registry.registerItem(SALT);
     	if(Config.enableHellfayah)  		Registry.registerItem(HELLFAYAH);
     	if(Config.enableEnderInfusedFrame)	Registry.registerItem(ENDER_INFUSED_FRAME);
-    	if(Config.enableString)		  	Registry.registerItem(STRING);
-    	if(Config.enablePorcelainClay) 	Registry.registerItem(PORCELAIN_CLAY);
-    	if(Config.enablePowderOfLight) 	Registry.registerItem(POWDER_OF_LIGHT);
+    	if(Config.enableString)		  		Registry.registerItem(STRING);
+    	if(Config.enablePorcelainClay) 		Registry.registerItem(PORCELAIN_CLAY);
+    	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
     	
     	//Seeds
-    	if(Config.enableMushroomSpores)	Registry.registerItem(MUSHROOM_SPORES);
-    	if(Config.enableGrassSeeds)		Registry.registerItem(GRASS_SEEDS);
+    	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
+    	if(Config.enableGrassSeeds)			Registry.registerItem(GRASS_SEEDS);
     	if(Config.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
-    	if(Config.enableSugarcaneSeeds)	Registry.registerItem(SUGARCANE_SEEDS);
+    	if(Config.enableSugarcaneSeeds)		Registry.registerItem(SUGARCANE_SEEDS);
     	
     	//Crystals
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
@@ -134,7 +133,7 @@ public class ItemHandler implements INames
         if(Config.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
         if(Config.enablePebbleGranite)		Registry.registerItem(PEBBLE_GRANITE);
         if(Config.enablePebbleDiorite)		Registry.registerItem(PEBBLE_DIORITE);
-        if(Config.enablePebbleAndesite)	Registry.registerItem(PEBBLE_ANDESITE);
+        if(Config.enablePebbleAndesite)		Registry.registerItem(PEBBLE_ANDESITE);
         
         //Meshes
         if(Config.enableStringMeshes)		Registry.registerItem(STRING_MESH);
@@ -149,7 +148,7 @@ public class ItemHandler implements INames
         if(Config.enableDollDonkey)  		Registry.registerItem(DOLL_DONKEY);
         if(Config.enableDollHorse)  		Registry.registerItem(DOLL_HORSE);
         if(Config.enableDollLlama)  		Registry.registerItem(DOLL_LLAMA);
-        if(Config.enableDollMule)  		Registry.registerItem(DOLL_MULE);
+        if(Config.enableDollMule)  			Registry.registerItem(DOLL_MULE);
         if(Config.enableDollOcelot)  		Registry.registerItem(DOLL_OCELOT);
         if(Config.enableDollParrot)  		Registry.registerItem(DOLL_PARROT);
         if(Config.enableDollPig)  			Registry.registerItem(DOLL_PIG);
@@ -158,17 +157,17 @@ public class ItemHandler implements INames
         if(Config.enableDollRedMooshroom)	Registry.registerItem(DOLL_RED_MOOSHROOM);
         if(Config.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
         if(Config.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
-        if(Config.enableDollWolf)  		Registry.registerItem(DOLL_WOLF);
+        if(Config.enableDollWolf)  			Registry.registerItem(DOLL_WOLF);
         
         //Werkzeuge
         if(Config.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
         if(Config.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
         if(Config.enableGrabberStone)		Registry.registerItem(GRABBER_STONE);
         if(Config.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
-        if(Config.enableGrabberDiamond)	Registry.registerItem(GRABBER_DIAMOND);
+        if(Config.enableGrabberDiamond)		Registry.registerItem(GRABBER_DIAMOND);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
-        if(Config.enablePickAxeNetherrack) Registry.registerItem(PICK_NETHERRACK);
-        if(Config.enablePickAxeNetherbrick)Registry.registerItem(PICK_NETHERBRICK);
+        if(Config.enablePickAxeNetherrack) 	Registry.registerItem(PICK_NETHERRACK);
+        if(Config.enablePickAxeNetherbrick)	Registry.registerItem(PICK_NETHERBRICK);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
