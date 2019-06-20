@@ -6,9 +6,11 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.tiles.TileInventory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -49,6 +51,9 @@ public class GuiNetherrackFurnace extends GuiContainer
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+       
+        if(this.entity.getWorkTime() < 2) this.getTE(this.entity.getPos());
+        
         if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(13);
         	x += 57;
@@ -56,6 +61,11 @@ public class GuiNetherrackFurnace extends GuiContainer
         	int k_inv = 13 - k;
         	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
         }
+    }
+    
+    private TileNetherrackFurnace getTE (BlockPos pos)
+    {
+    	return (TileNetherrackFurnace) Minecraft.getMinecraft().player.world.getTileEntity(pos);
     }
     
     @Override
