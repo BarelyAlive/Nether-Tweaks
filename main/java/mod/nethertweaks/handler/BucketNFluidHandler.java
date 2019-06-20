@@ -40,19 +40,23 @@ public class BucketNFluidHandler implements INames
 	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
 	public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
 
-	public static void init()
+	public static void init(Side side)
 	{
-		registerFluids(); //1.
-		registerBuckets(); //2.
+		registerFluids(side);
+		registerBuckets();
 	}
-
-	private static void registerFluids()
+	
+	public static void registerFluids(Side side)
 	{
 		if (Config.enableLiquidImpossibility)
+		{
 			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+			if(side == Side.CLIENT)
+				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+		}
 	}
 
-	private static void registerBuckets()
+	public static void registerBuckets()
 	{
 		if(Config.enableWoodBucket)
 			BucketHandler.addBucket("wood", "Wood", 505, 16, MODID, 0x80874633, TAB);

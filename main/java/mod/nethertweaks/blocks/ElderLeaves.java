@@ -65,12 +65,15 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-		if(this.leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
-		{
-			this.leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-			worldIn.setBlockState(pos, this.getDefaultState());
-		}
-		if(worldIn.isRemote) return;
+    	if(worldIn.isRemote)
+    	{
+    		if(this.leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
+			{
+				this.leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
+				worldIn.setBlockState(pos, this.getDefaultState());
+			}
+			return;
+    	}
 		
 	     if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
 	     {

@@ -91,7 +91,7 @@ import net.minecraftforge.registries.RegistryManager;
  
 @Mod(modid=NetherTweaksMod.MODID, name=NetherTweaksMod.MODNAME, version=NetherTweaksMod.VERSION, dependencies=NetherTweaksMod.DEPENDENCIES)
 public class NetherTweaksMod
-{   
+{
 	public static final String MODID = "nethertweaksmod";
 	public static final String MODNAME = "Nether Tweaks Mod";
 	public static final String VERSION = "2.0.0";
@@ -101,7 +101,7 @@ public class NetherTweaksMod
     public static NetherTweaksMod instance;
     
     static
-    {   
+    {
     	FluidRegistry.enableUniversalBucket();
     	MessageHandler.init();
     }
@@ -125,19 +125,25 @@ public class NetherTweaksMod
     				{
     					continue;
     				}
-                	OreHandler.add(OreDictionary.getOres(ore_name).get(0), 1);
+    				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().contains("air"))
+    				{
+    					continue;
+    				}
+                	OreHandler.add(OreDictionary.getOres(ore_name).get(0).getItem(), 1);
     			}
     		}
     		OreHandler.register(event.getRegistry());
     	}
     	
         @SubscribeEvent(priority = EventPriority.LOWEST)
+    	@SideOnly(Side.CLIENT)
         public static void registerItemHandlers(ColorHandlerEvent.Item event)
         {
         	OreHandler.registerItemHandlers(event);
         }
     	
     	@SubscribeEvent(priority = EventPriority.LOWEST)
+    	@SideOnly(Side.CLIENT)
     	public static void registerBucketModels(ModelRegistryEvent event)
     	{
     		OreHandler.registerModels(event);
@@ -168,7 +174,7 @@ public class NetherTweaksMod
 
         ItemHandler.init();    	
         BlockHandler.init();
-        BucketNFluidHandler.init();
+        BucketNFluidHandler.init(event.getSide());
         
         GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 16, 16), 1);
         
@@ -176,8 +182,11 @@ public class NetherTweaksMod
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
     	MinecraftForge.EVENT_BUS.register(this);
     	
-    	OreHandler.disableOre("minecraft:redstone");
-    	OreHandler.disableOre("minecraft:coal");
+        if(event.getSide() == Side.CLIENT)
+        {
+        	OreHandler.disableOre("minecraft:redstone");
+    		OreHandler.disableOre("minecraft:coal");
+        }
     	// Disable all copper ores except all ores from thermal foundation
     	/*
     	OreHandler.disableOre("copper");
@@ -197,7 +206,7 @@ public class NetherTweaksMod
     @Mod.EventHandler
     public void PostInit(FMLPostInitializationEvent event)
     {
-		OreHandler.registerFurnaceRecipe();
+    	OreHandler.registerFurnaceRecipe();
     	//Mobs
     	if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
     	        
@@ -207,6 +216,7 @@ public class NetherTweaksMod
     }
     
     @SubscribeEvent
+	@SideOnly(Side.CLIENT)
     public void registerModels(ModelRegistryEvent event)
     {
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());

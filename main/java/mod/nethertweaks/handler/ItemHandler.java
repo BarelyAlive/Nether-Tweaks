@@ -186,8 +186,6 @@ public class ItemHandler implements INames
 
     private static void addItemBurnTime()
     {
-    	if(Config.enableStoneBucket)
-    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone")), 20000);
     	if(Config.enableHellfayah)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.HELLFAYAH), Config.burnTimeHellfayah);
     	if(Config.enableHellfayahBlock)

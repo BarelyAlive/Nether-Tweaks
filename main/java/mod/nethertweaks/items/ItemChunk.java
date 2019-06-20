@@ -18,7 +18,7 @@ import net.minecraft.util.text.translation.I18n;
 
 public class ItemChunk extends Item implements IVariantProvider {
 
-	private Map<String, ItemStack> chunks = new HashMap<String, ItemStack>();
+	private Map<String, Item> chunks = new HashMap<String, Item>();
 	
 	public ItemChunk() {
 		super();
@@ -26,7 +26,7 @@ public class ItemChunk extends Item implements IVariantProvider {
 		setHasSubtypes(true);
 	}
 	
-	public void add(String identifier, ItemStack stack)
+	public void add(String identifier, Item stack)
 	{
 		if (! chunks.containsKey(identifier))
 		{
@@ -41,11 +41,11 @@ public class ItemChunk extends Item implements IVariantProvider {
 	
 	public ItemStack getContainedBlock(int i)
 	{
-		Collection<ItemStack> entrys = chunks.values();
-		ItemStack[] entry_array = entrys.toArray(new ItemStack[0]);
+		Collection<Item> entrys = chunks.values();
+		Item[] entry_array = entrys.toArray(new Item[0]);
 		if (entry_array.length <= i)
 			return ItemStack.EMPTY;
-		return entry_array[i];
+		return new ItemStack(entry_array[i]);
 	}
 	
 	public String getOreName(int i)
@@ -120,7 +120,7 @@ public class ItemChunk extends Item implements IVariantProvider {
 	public List<Pair<Integer, String>> getVariants() {
 		List<Pair<Integer, String>> l = new ArrayList<Pair<Integer,String>>();
 		int i = 0;
-		for(Map.Entry<String, ItemStack> entry : chunks.entrySet())
+		for(Map.Entry<String, Item> entry : chunks.entrySet())
 		{
 			l.add(new ImmutablePair<Integer, String>(i, entry.getKey()));
 			i++;

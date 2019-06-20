@@ -7,19 +7,19 @@ import org.apache.commons.lang3.tuple.Pair;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemChunk;
-import mod.nethertweaks.client.renderers.ChunkColorer;
 import mod.sfhcore.SFHCore;
 import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.proxy.SFHCoreClientProxy;
 import mod.sfhcore.proxy.SFHCoreProxy;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -33,18 +33,18 @@ class OreInfo
 
 public class OreHandler {
 
-	private static Map<ItemStack, Integer> ore_list = new HashMap<ItemStack, Integer>();
+	private static Map<Item, Integer> ore_list = new HashMap<Item, Integer>();
 	public static Map<String, ItemChunk> mod_chunks = new HashMap<String, ItemChunk>();
 	private static List<String> disabled_chunks = new ArrayList<String>();
 	private static List<String> enable_chunks = new ArrayList<String>();
 	
-	public static void add(ItemStack stack, int rarity)
+	public static void add(Item stack, int rarity)
 	{
-		String reg_domain = stack.getItem().getRegistryName().getResourceDomain();
-		String reg_path = stack.getItem().getRegistryName().getResourcePath();
+		String reg_domain = stack.getRegistryName().getResourceDomain();
+		String reg_path = stack.getRegistryName().getResourcePath();
 		String reg = reg_domain + ":" + reg_path;
 		String unlocalized_name = stack.getUnlocalizedName();
-		String display_name = stack.getDisplayName().toLowerCase();
+		String display_name = (new ItemStack(stack)).getDisplayName().toLowerCase();
 		for (int i = 0; i < disabled_chunks.size(); i++)
 		{
 			String dis_name = disabled_chunks.get(i);
@@ -90,7 +90,7 @@ public class OreHandler {
 		}
 	}
 	
-	public static void remove(ItemStack stack)
+	public static void remove(Item stack)
 	{
 		if (ore_list.containsKey(stack))
 		{
@@ -100,9 +100,9 @@ public class OreHandler {
 	
 	public static void register(IForgeRegistry<Item> registry) {
 		ItemChunk chunks;
-		for(Map.Entry<ItemStack, Integer> entry : ore_list.entrySet())
+		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
 		{
-			String mod_domain  = entry.getKey().getItem().getRegistryName().getResourceDomain();
+			String mod_domain  = entry.getKey().getRegistryName().getResourceDomain();
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
@@ -114,7 +114,7 @@ public class OreHandler {
 				chunks = (ItemChunk) mod_chunks.get(mod_domain);
 			}
 			
-			int[] ids = OreDictionary.getOreIDs(entry.getKey());
+			int[] ids = OreDictionary.getOreIDs(new ItemStack(entry.getKey()));
 			if (ids.length != 0)
 			{
 				chunks.add(OreDictionary.getOreName(ids[0]).toLowerCase().substring(3), entry.getKey());
@@ -127,17 +127,19 @@ public class OreHandler {
 			registry.register(entry.getValue());
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void registerItemHandlers(net.minecraftforge.client.event.ColorHandlerEvent.Item event) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
-			event.getItemColors().registerItemColorHandler(new ChunkColorer(), entry.getValue());
+			event.getItemColors().registerItemColorHandler(new mod.nethertweaks.client.renderers.ChunkColorer(), entry.getValue());
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void registerModels(ModelRegistryEvent event) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 		{
             for (Pair<Integer, String> variant : ((IVariantProvider)entry.getValue()).getVariants())
             {
-                ModelLoader.setCustomModelResourceLocation(entry.getValue(), variant.getLeft(), new ModelResourceLocation(INames.MODID + ":chunk", variant.getRight()));
+                ModelLoader.setCustomModelResourceLocation(entry.getValue(), variant.getLeft(), new net.minecraft.client.renderer.block.model.ModelResourceLocation(INames.MODID + ":chunk", variant.getRight()));
             }
 		}
 	}
