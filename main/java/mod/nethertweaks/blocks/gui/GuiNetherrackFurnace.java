@@ -52,7 +52,7 @@ public class GuiNetherrackFurnace extends GuiContainer
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
        
-        if(this.entity.getWorkTime() < 2) this.getTE(this.entity.getPos());
+        this.entity = getTE(this.entity.getPos());
         
         if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(13);
