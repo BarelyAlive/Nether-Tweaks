@@ -7,7 +7,6 @@ import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -51,7 +50,7 @@ public class MessageTeleportPlayer implements IMessage {
 		@Override
 		public IMessage onMessage(MessageTeleportPlayer message, MessageContext ctx) {
 			
-			EntityPlayer player = Minecraft.getMinecraft().world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
+			EntityPlayer player = ctx.getServerHandler().player.world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
 
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
