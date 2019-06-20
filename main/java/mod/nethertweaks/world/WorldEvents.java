@@ -106,7 +106,7 @@ public class WorldEvents
 	    		{
 	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 	    			{
-	    				player.setPosition(pos.getX(), pos.getY(), pos.getZ());
+	    				player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 	    			}
 	    		}
     		}
