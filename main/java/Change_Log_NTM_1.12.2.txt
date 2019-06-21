@@ -21,3 +21,4 @@ ChangeLog NTM 2.0.2
 * Fixed Condenser progress bar which was not corectly scaled
 * Fixed Furnace progress bar which did not update correctly when Furnace startet working after GUI was opened the first time
 * Fixed Mean Vines not being rendered as flat items
+* Fixed a bug where when milking a cow, if the inventory can't hold a milk bucket anymore, the milk bucket could be deleted
