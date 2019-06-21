@@ -5,6 +5,7 @@ import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
+import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
@@ -17,7 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.Teleporter.PortalPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -49,8 +49,7 @@ public class WorldEvents
 		World world = event.getEntity().getEntityWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
 		
-		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null) return;
-		if (!BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER)) return;
+		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null || !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER)) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
@@ -151,12 +150,12 @@ public class WorldEvents
 	    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
 	    	{
 	    		stack.shrink(1);
-	    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
+	    		PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
 	    	}
 	    	else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
 	    	{
 	    		stack.shrink(1);
-	    		player.addItemStackToInventory(new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
+	    		PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
 	    	}
     	}
     }
