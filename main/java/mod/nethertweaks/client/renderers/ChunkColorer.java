@@ -18,7 +18,7 @@ public class ChunkColorer implements IItemColor {
         ItemChunk chunk = (ItemChunk) stack.getItem();
         if (tintIndex == 0)
         { 
-	        ItemStack b = chunk.getResult(stack.getItemDamage());
+	        ItemStack b = chunk.getResult();
 	        if (b.isEmpty())
 	        {
 	        	return pixel;

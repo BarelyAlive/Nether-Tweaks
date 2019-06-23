@@ -20,9 +20,10 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 
-public class ItemChunk extends Item implements IVariantProvider {
+public class ItemChunk extends Item {
 
-	private Map<String, Item> chunks = new HashMap<String, Item>();
+	private Item results;
+	private String ore_name = "";
 	
 	public ItemChunk() {
 		super();
@@ -30,48 +31,29 @@ public class ItemChunk extends Item implements IVariantProvider {
 		setHasSubtypes(true);
 	}
 	
-	public void add(String identifier, Item stack)
+	public void setResult(String ore_name, Item stack)
 	{
-		if (! chunks.containsKey(identifier))
-		{
-			chunks.put(identifier, stack);
-		}
+			results = stack;
+			this.ore_name = ore_name;
 	}
 	
-	public int getMaxSubItems()
+	public ItemStack getContainedBlock()
 	{
-		return chunks.size();
-	}
-	
-	public ItemStack getContainedBlock(int i)
-	{
-		Collection<Item> entrys = chunks.values();
-		Item[] entry_array = entrys.toArray(new Item[0]);
-		if (entry_array.length <= i)
+		if (results == null)
 			return ItemStack.EMPTY;
-		return new ItemStack(entry_array[i]);
+		return new ItemStack(this.results);
 	}
 	
-	public String getOreName(int i)
+	public String getOreName()
 	{
-		Set<String> entrys = chunks.keySet();
-		String[] entry_array = entrys.toArray(new String[0]);
-		if (entry_array.length <= i)
+		if (ore_name != "" && results == null)
 			return "";
-		return entry_array[i];
+		return ore_name;
 	}
 	
-	public ItemStack getResult(int i)
+	public ItemStack getResult()
 	{
-		return FurnaceRecipes.instance().getSmeltingResult(this.getContainedBlock(i));
-	}
-	
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (tab.equals(this.getCreativeTab())) {
-			for (int i = 0; i < chunks.size(); i++)
-				items.add(new ItemStack(this, 1, i));
-		}
+		return FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
 	}
 	
 	@Override
@@ -92,7 +74,7 @@ public class ItemChunk extends Item implements IVariantProvider {
 
 	public String getLocalizedName(ItemStack stack)
 	{
-		String name = this.getResult(stack.getItemDamage()).getDisplayName();
+		String name = this.getResult().getDisplayName();
 		String[] name_split = name.split(" ");
 		if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
 		{
@@ -120,16 +102,4 @@ public class ItemChunk extends Item implements IVariantProvider {
 		return "tile." + stack.getDisplayName().toLowerCase().replace(' ', '_');
 	}
 	
-	@Override
-	public List<Pair<Integer, String>> getVariants() {
-		List<Pair<Integer, String>> l = new ArrayList<Pair<Integer,String>>();
-		int i = 0;
-		for(Map.Entry<String, Item> entry : chunks.entrySet())
-		{
-			l.add(new ImmutablePair<Integer, String>(i, entry.getKey()));
-			i++;
-		}
-		return l;
-	}
-
 }
