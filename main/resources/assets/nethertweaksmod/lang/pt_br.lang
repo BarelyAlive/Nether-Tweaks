@@ -61,6 +61,8 @@ item.salt.name=Sal
 item.stone_bar.name=Barra de Pedra
 item.string.name=Corda
 item.porcelain_clay.name=Argila de Porcelana
+item.ash.name=Cinzas
+item.wood_chippings.name=Aparas de madeira
 
 item.mesh_string.name=Malha de Cordas
 item.mesh_flint.name=Malha de sílex

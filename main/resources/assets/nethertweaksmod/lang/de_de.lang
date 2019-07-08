@@ -61,6 +61,8 @@ item.salt.name=Salz
 item.stone_bar.name=Steinstange
 item.string.name=Faden
 item.porcelain_clay.name=Porzellanton
+item.ash.name=Asche
+item.wood_chippings.name=Holzspäne
 
 item.mesh_string.name=Fadengeflecht
 item.mesh_flint.name=Feuersteingeflecht

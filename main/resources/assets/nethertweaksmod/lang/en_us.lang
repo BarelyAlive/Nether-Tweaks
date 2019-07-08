@@ -60,7 +60,9 @@ item.powder_of_light.name=Powder of Light
 item.salt.name=Salt
 item.stone_bar.name=Stone Bar
 item.string.name=String
-item.porcelain_clay.name=Porcelain Clay 
+item.porcelain_clay.name=Porcelain Clay
+item.ash.name=Ash
+item.wood_chippings.name=Wood Chippings
 
 item.mesh_string.name=String Mesh
 item.mesh_flint.name=Flint Mesh

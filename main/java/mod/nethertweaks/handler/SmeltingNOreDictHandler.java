@@ -26,6 +26,7 @@ public class SmeltingNOreDictHandler {
 		if(BlocksItems.enableCrystalLight)						 		 GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
 		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah)GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
 		if(BlocksItems.enableCrucible)							 		 GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
+		if(BlocksItems.enableWoodChippings)								 GameRegistry.addSmelting(ItemHandler.WOOD_CHIPPINGS, new ItemStack(ItemHandler.ASH), 0.0F);
 	}
 
 	//Ore-Dictionary
@@ -45,7 +46,7 @@ public class SmeltingNOreDictHandler {
 		{
 											  OreDictionary.registerOre("plankWood", BlockHandler.ELDER_PLANKS);
 											  OreDictionary.registerOre("slabWood", BlockHandler.ELDER_SLAB);
-											  OreDictionary.registerOre("logWood", BlockHandler.ELDER_LOG);
+											  OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDER_LOG, 1, OreDictionary.WILDCARD_VALUE));
 											  OreDictionary.registerOre("treeSapling", BlockHandler.ELDER_SAPLING);
 											  OreDictionary.registerOre("treeLeaves", BlockHandler.ELDER_LEAVES);
 		}

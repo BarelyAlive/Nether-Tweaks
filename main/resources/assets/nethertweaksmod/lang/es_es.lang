@@ -61,6 +61,8 @@ item.salt.name=Sal
 item.stone_bar.name=Barra de piedra
 item.string.name=Cuerda
 item.porcelain_clay.name=Gres Porcelánico
+item.ash.name=Ceniza
+item.wood_chippings.name=Astillas de madera
 
 item.mesh_string.name=Malla de cadena
 item.mesh_flint.name=Malla de pedernal

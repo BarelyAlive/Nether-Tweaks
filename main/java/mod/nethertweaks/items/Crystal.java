@@ -29,33 +29,6 @@ public class Crystal extends Item implements INames{
 		return true;
 	}
 	
-	/**
-     * Called when the equipped item is right clicked.
-     */
-	@Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
-    {
-    	ItemStack itemstack = player.getHeldItem(hand);
-    	String name = NameHelper.getName(itemstack);
-    	
-    	switch (name) {	
-		case ENDER_CRYSTAL:
-				world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ,
-						SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F,
-						0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-				player.getCooldownTracker().setCooldown(this, 20);
-				if (!world.isRemote) {
-					EntityEnderPearl entityenderpearl = new EntityEnderPearl(world, player);
-					entityenderpearl.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-					world.spawnEntity(entityenderpearl);
-				}
-				player.addStat(StatList.getObjectUseStats(this));
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-		default:
-			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
-		}
-	}
-	
 	@Override
 	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flagIn)
 	{
@@ -64,9 +37,6 @@ public class Crystal extends Item implements INames{
 		switch (name) {
 		case CRYSTAL_OF_LIGHT:
 			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
-			break;
-		case ENDER_CRYSTAL:
-			tooltip.add("This Crystal allows you to teleport, like Ender Pearls");
 			break;
 		default:
 			break;

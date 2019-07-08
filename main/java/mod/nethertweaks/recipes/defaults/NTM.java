@@ -127,8 +127,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(ItemHandler.DOLL_SHEEP), new ItemInfo(Blocks.ICE), 3);
 		registry.register(new ItemInfo(ItemHandler.DOLL_VILLAGER), new ItemInfo(Blocks.ICE), 3);
 		registry.register(new ItemInfo(ItemHandler.DOLL_WOLF), new ItemInfo(Blocks.ICE), 3);
-		
-    	registry.register(new ItemInfo(ItemHandler.ENDER_CRYSTAL), new ItemInfo(Blocks.ICE), 10);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");
     	for(ItemStack ore : ingredient.getMatchingStacks())
@@ -387,6 +385,8 @@ public class NTM implements IRecipeDefaults
             registry.register(BlockInfo.getStateFromMeta(Blocks.CONCRETE, meta), new ItemStack(Blocks.CONCRETE_POWDER, 1, meta), 1, 1.0f, 0.0f);
         
         registry.register(Blocks.GLOWSTONE.getDefaultState(), new ItemStack(Items.GLOWSTONE_DUST, 4), 0, 1.0F, 0.0F);
+        registry.register("logWood", new ItemStack(ItemHandler.WOOD_CHIPPINGS, 4), 0, 1.0F, 0.0F);
+        registry.register("plankWood", new ItemStack(ItemHandler.WOOD_CHIPPINGS, 1), 0, 1.0F, 0.0F);
     }
 
     @Override
