@@ -1,6 +1,7 @@
 package mod.nethertweaks.world;
 
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
@@ -16,8 +17,10 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DimensionType;
@@ -30,6 +33,7 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.item.ItemEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -159,7 +163,34 @@ public class WorldEvents
     {
     	teleportPlayer(event.player);
 	}
-
+    
+    @SubscribeEvent
+    public void dropItem(EntityJoinWorldEvent event)
+    {
+    	if (event.getEntity() instanceof EntityItemLava) return;
+    	
+    	if (event.getEntity() instanceof EntityItem)
+    	{
+    		EntityItem item = (EntityItem) event.getEntity();
+    		if(item.getItem().getItem() == Items.IRON_SWORD)
+    		{
+    			System.out.println("EXCHANGE");
+        		event.setCanceled(false);
+        		EntityItemLava new_item = new EntityItemLava(
+        				item.getEntityWorld(), 
+        				item.getPosition().getX(), 
+        				item.getPosition().getY(), 
+        				item.getPosition().getZ(),
+        				item.getItem()
+        			);
+        		new_item.copyLocationAndAnglesFrom(item);
+        		new_item.readFromNBT(item.writeToNBT(new NBTTagCompound()));
+        		item.world.spawnEntity(new_item);
+        		item.lifespan = 1;
+    		}
+    	}
+    }
+    
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event)
 	{

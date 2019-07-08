@@ -289,9 +289,8 @@ public class NTM implements IRecipeDefaults
         // Custom Ores for other mods
         // All default Ores
         for (ItemChunk ore : OreHandler.mod_chunks.values()) {
-            for (int i = 0; i < ore.getMaxSubItems(); i++) {
-				ItemInfo info = new ItemInfo(ore, i);
-				String name = ore.getOreName(i);
+				ItemInfo info = new ItemInfo(ore);
+				String name = ore.getOreName();
 				switch (name) {
 				case "iron":
 					registry.register("gravel", info.copy(), getDropChance(0.1f/4.0f), MeshType.FLINT.getName());
@@ -333,7 +332,6 @@ public class NTM implements IRecipeDefaults
 					registry.register("gravel", info.copy(), getDropChance(0.15f/4.0f), MeshType.DIAMOND.getName());
 					break;
 				}
-			}
         }
         // Seeds
         	registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());

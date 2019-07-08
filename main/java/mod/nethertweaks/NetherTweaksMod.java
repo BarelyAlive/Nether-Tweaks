@@ -83,7 +83,8 @@ public class NetherTweaksMod
     		{
     			if (ore_name.startsWith("ore"))
     			{
-    				if(!OreDictionary.doesOreNameExist("ingot" + ore_name.substring(3)))
+    				String ore_raw_name = ore_name.substring(3);
+    				if(!OreDictionary.doesOreNameExist("ingot" + ore_raw_name))
     				{
     					continue;
     				}
@@ -93,6 +94,7 @@ public class NetherTweaksMod
     				}
     				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().contains("air"))
     				{
+    					System.out.println(OreDictionary.getOres(ore_name).get(0).getDisplayName());
     					continue;
     				}
                 	OreHandler.add(OreDictionary.getOres(ore_name).get(0).getItem(), 1);

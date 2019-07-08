@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
+import scala.actors.threadpool.Arrays;
 
 class OreInfo
 {
@@ -102,24 +103,21 @@ public class OreHandler {
 		ItemChunk chunks;
 		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
 		{
-			String mod_domain  = entry.getKey().getRegistryName().getResourceDomain();
+			String[] name_array = (new ItemStack(entry.getKey())).getDisplayName().split(" ");
+			System.out.println(name_array);
+			List<String> name_list = new ArrayList<String>(Arrays.asList(name_array));
+			name_list.remove(name_list.size() - 1);
+			String mod_domain  = String.join("_", name_list);
+			mod_domain = mod_domain.toLowerCase();
+			
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
-				chunks.setRegistryName(INames.MODID, (mod_domain == "minecraft" ? INames.CHUNK : mod_domain + "_" + INames.CHUNK));
+				chunks.setRegistryName(INames.MODID, INames.CHUNK + "_" + mod_domain);
 				chunks.setCreativeTab(NetherTweaksMod.TABNTM);
+				chunks.setResult(mod_domain, entry.getKey());
+				mod_chunks.put(mod_domain, chunks);
 			}
-			else
-			{
-				chunks = mod_chunks.get(mod_domain);
-			}
-
-			int[] ids = OreDictionary.getOreIDs(new ItemStack(entry.getKey()));
-			if (ids.length != 0)
-			{
-				chunks.add(OreDictionary.getOreName(ids[0]).toLowerCase().substring(3), entry.getKey());
-			}
-			mod_chunks.put(mod_domain, chunks);
 			chunks = null;
 		}
 
@@ -137,10 +135,7 @@ public class OreHandler {
 	public static void registerModels(ModelRegistryEvent event) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 		{
-            for (Pair<Integer, String> variant : ((IVariantProvider)entry.getValue()).getVariants())
-            {
-                ModelLoader.setCustomModelResourceLocation(entry.getValue(), variant.getLeft(), new net.minecraft.client.renderer.block.model.ModelResourceLocation(INames.MODID + ":chunk", variant.getRight()));
-            }
+            ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(INames.MODID + ":chunk"));
 		}
 	}
 
@@ -148,10 +143,7 @@ public class OreHandler {
 	{
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 		{
-			for(int j = 0; j < entry.getValue().getMaxSubItems(); j++)
-			{
-				FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1, j), entry.getValue().getResult(j), 1.0f);
-			}
+			FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1), entry.getValue().getResult(), 1.0f);
 		}
 	}
 
