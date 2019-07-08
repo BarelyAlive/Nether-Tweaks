@@ -63,6 +63,8 @@ item.string.name=String
 item.porcelain_clay.name=Porcelain Clay
 item.ash.name=Ash
 item.wood_chippings.name=Wood Chippings
+item.coiled_sword.name=Coiled Sword
+item.ash_bone_pile.name=Ash Bone Pile
 
 item.mesh_string.name=String Mesh
 item.mesh_flint.name=Flint Mesh

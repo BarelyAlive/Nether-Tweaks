@@ -1,5 +1,6 @@
 package mod.nethertweaks.entities;
 
+import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,8 @@ public class EntityItemLava extends EntityItem {
 	@Override
 	protected void setOnFireFromLava() {
 		super.setOnFireFromLava();
-		System.out.println(this.world.getBlockState(this.getPosition()).getBlock());
+		EntityItem coiledSword = new EntityItem(world, posX, posY, posZ, new ItemStack(ItemHandler.COILED_SWORD));
+		this.world.spawnEntity(coiledSword);
 	}
 	
 }

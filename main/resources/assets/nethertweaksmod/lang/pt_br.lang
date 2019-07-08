@@ -63,6 +63,8 @@ item.string.name=Corda
 item.porcelain_clay.name=Argila de Porcelana
 item.ash.name=Cinzas
 item.wood_chippings.name=Aparas de madeira
+item.coiled_sword.name=Espada espiral
+item.ash_bone_pile.name=Pilha de Osso de Cinzas
 
 item.mesh_string.name=Malha de Cordas
 item.mesh_flint.name=Malha de sílex

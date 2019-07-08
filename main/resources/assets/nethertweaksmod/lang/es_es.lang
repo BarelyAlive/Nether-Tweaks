@@ -63,6 +63,8 @@ item.string.name=Cuerda
 item.porcelain_clay.name=Gres Porcelánico
 item.ash.name=Ceniza
 item.wood_chippings.name=Astillas de madera
+item.coiled_sword.name=Espada en espiral
+item.ash_bone_pile.name=Pila de hueso de ceniza
 
 item.mesh_string.name=Malla de cadena
 item.mesh_flint.name=Malla de pedernal
