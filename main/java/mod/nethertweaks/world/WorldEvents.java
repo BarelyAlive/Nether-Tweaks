@@ -8,22 +8,30 @@ import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -39,9 +47,8 @@ public class WorldEvents
 	public static boolean is_hellworld = false;
 
 	//HELLWORLD
-	
 	@SubscribeEvent
-    public void salt(PlayerInteractEvent.RightClickBlock event)
+    public void createSalt(PlayerInteractEvent.RightClickBlock event)
 	{
 		boolean activated = false;
 		BlockPos clicked = event.getPos();
@@ -82,6 +89,31 @@ public class WorldEvents
 			world.spawnEntity(salt);
 		}
     }
+	
+	@SubscribeEvent
+	public void createCoiledSword(net.minecraftforge.event.entity.item.ItemEvent e)
+	{
+		System.out.println(e.getEntity());
+
+		if(e.getEntity().dimension == -1)
+		{
+			RayTraceResult ray = e.get;
+			BlockPos hitPos = ray.getBlockPos();
+			EntityThrowable throwable = e.getThrowable();
+			World world =  e.getEntity().world;
+			IBlockState hitState =  world.getBlockState(hitPos);
+			
+			throwable.entityDropItem(new ItemStack(ItemHandler.COILED_SWORD), 0);
+			
+			
+			  if(hitState.getBlock().equals(Blocks.FLOWING_LAVA) || hitState.getBlock().equals(Blocks.LAVA))
+			  {
+				  EntityItem coiledSword = new EntityItem(world, hitPos.getX(), hitPos.getY()+1.0D, hitPos.getZ(), new ItemStack(ItemHandler.COILED_SWORD, 1));
+				  coiledSword.setEntityInvulnerable(true);
+				  world.spawnEntity(coiledSword);
+			  }
+		}
+	}
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
