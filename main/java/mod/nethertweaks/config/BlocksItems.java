@@ -9,6 +9,7 @@ public class BlocksItems
 	public static boolean enableHellfayahBlock		= true;
 	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
+	public static boolean enableAshBonePile			= true;
 	public static boolean enableBarrelWood			= true;
 	public static boolean enableBarrelStone			= true;
 	public static boolean enableBonfire 			= true;
@@ -90,6 +91,7 @@ public class BlocksItems
     	enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
     	enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
     	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
+    	enableAshBonePile				= config.get("Blocks", "Enable Ash Bone Pile?", true).getBoolean();
     	enableBarrelWood				= config.get("Blocks", "Enable Wooden Barrel?", true).getBoolean();
     	enableBarrelStone				= config.get("Blocks", "Enable Stone Barrel?", true).getBoolean();
     	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();

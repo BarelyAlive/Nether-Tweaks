@@ -16,7 +16,11 @@ public interface INames {
 	public String BARREL					= "barrel";
 	public String FREEZER 					= "freezer";
 	public String CRUCIBLE					= "crucible";
+	public String HELLMART 					= "hellmart";
+	public String SIEVE 					= "sieve";
+	public String BONFIRE 					= "bonfire";
 	
+	public String ASH_BONE_PILE				= "ash_bone_pile";
 	public String STONE_DOOR				= "stone_door";
 	public String ELDER_DOOR				= "elder_door";
 	public String DUST 						= "dust";
@@ -28,10 +32,7 @@ public interface INames {
 	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_LOG 				= "elder_log";
 	public String NETHERRACK_GRAVEL			= "netherrack_gravel";
-	public String BONFIRE 					= "bonfire";
 	public String MEAN_VINE 				= "mean_vine";
-	public String SIEVE 					= "sieve";
-	public String HELLMART 					= "hellmart";
 	
 	public String HELLFAYAH_ORE 			= "hellfayah_ore";
 	public String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";
