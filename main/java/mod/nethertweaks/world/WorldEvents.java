@@ -93,31 +93,6 @@ public class WorldEvents
 			world.spawnEntity(salt);
 		}
     }
-	
-//	@SubscribeEvent
-//	public void createCoiledSword(net.minecraftforge.event.entity.item.ItemEvent e)
-//	{
-//		System.out.println(e.getEntity());
-//
-//		if(e.getEntity().dimension == -1)
-//		{
-//			RayTraceResult ray = e.get;
-//			BlockPos hitPos = ray.getBlockPos();
-//			EntityThrowable throwable = e.getThrowable();
-//			World world =  e.getEntity().world;
-//			IBlockState hitState =  world.getBlockState(hitPos);
-//			
-//			throwable.entityDropItem(new ItemStack(ItemHandler.COILED_SWORD), 0);
-//			
-//			
-//			  if(hitState.getBlock().equals(Blocks.FLOWING_LAVA) || hitState.getBlock().equals(Blocks.LAVA))
-//			  {
-//				  EntityItem coiledSword = new EntityItem(world, hitPos.getX(), hitPos.getY()+1.0D, hitPos.getZ(), new ItemStack(ItemHandler.COILED_SWORD, 1));
-//				  coiledSword.setEntityInvulnerable(true);
-//				  world.spawnEntity(coiledSword);
-//			  }
-//		}
-//	}
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
@@ -167,6 +142,7 @@ public class WorldEvents
     @SubscribeEvent
     public void dropItem(EntityJoinWorldEvent event)
     {
+    	if(event.getEntity().dimension != -1) return;
     	if (event.getEntity() instanceof EntityItemLava) return;
     	
     	if (event.getEntity() instanceof EntityItem)

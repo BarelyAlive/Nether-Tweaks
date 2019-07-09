@@ -5,8 +5,11 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.sfhcore.blocks.CubeFacingHorizontal;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,8 +22,13 @@ import net.minecraft.world.World;
 
 public class AshBonePile extends CubeFacingHorizontal
 {
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	public static final PropertyBool LIT = PropertyBool.create("lit");
+	
 	public AshBonePile() {
 		super(Material.SAND, new ResourceLocation(NetherTweaksMod.MODID, INames.ASH_BONE_PILE));
+		this.setTickRandomly(true);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 		setResistance(2.0F);
 		setHardness(0.4F);
 		setCreativeTab(NetherTweaksMod.TABNTM);
@@ -37,44 +45,42 @@ public class AshBonePile extends CubeFacingHorizontal
 		
 		if(playerIn.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
 		{
+			IBlockState b = world.getBlockState(pos);
 			playerIn.setHeldItem(hand, ItemStack.EMPTY);
-			world.setBlockState(pos, BlockHandler.BONFIRE.getDefaultState());
+			world.setBlockState(pos, b.withProperty(LIT, true));
 			return true;
 		}
 		
-		return super.onBlockActivated(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+		return false;
 	}
+	
+	@Override
+    public int getLightValue(IBlockState state) {
+        if (state.getValue(LIT)) {
+            return 8;
+        } else {
+            return 0;
+        }
+	}
+	
+	@Override
+    public int tickRate(World worldIn) {
+        return 20;
+    }
+
+    @Override
+    public boolean getTickRandomly() {
+        return true;
+    }
 
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
 	}
 
-	@Override
-    public boolean isTopSolid(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-    
-    @Override
-    @Deprecated
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-    
-    @Override
-    public boolean isTranslucent(IBlockState state) {
-    	return true;
-    }
+	@Override public boolean isTopSolid(IBlockState state) { return false; }
+    @Override public boolean isTranslucent(IBlockState state) {	return true; }
+    @Override @Deprecated public boolean isFullCube(IBlockState state) { return false; }
+    @Override @Deprecated public boolean isFullBlock(IBlockState state) { return false; }
+    @Override @Deprecated public boolean isOpaqueCube(IBlockState state) { return false; }
 }
