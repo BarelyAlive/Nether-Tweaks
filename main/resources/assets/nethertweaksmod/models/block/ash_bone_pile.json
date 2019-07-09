@@ -3,7 +3,7 @@
     "ambientocclusion": "true",
     "textures": {
         "0": "nethertweaksmod:blocks/ash_block",
-        "1": "minecraft:blocks/bone_block"
+        "1": "minecraft:blocks/bone_block_side"
     },
     "elements": [
         {
