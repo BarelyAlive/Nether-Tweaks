@@ -40,18 +40,17 @@ public class AshBonePile extends CubeContainerHorizontal
 	}
 	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if(!world.isBlockLoaded(pos)) return false;
 		if(world.isRemote) return true;
-		if(playerIn.isSneaking()) return false;
+		if(player.isSneaking()) return false;
 		
-		if(playerIn.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
+		if(player.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
 		{
-			IBlockState b = world.getBlockState(pos);
-			playerIn.setHeldItem(hand, ItemStack.EMPTY);
-			world.setBlockState(pos, b.withProperty(LIT, true));
+			player.setHeldItem(hand, ItemStack.EMPTY);
+			world.setBlockState(pos, state.withProperty(LIT, true));
 		}
 		
 		return world.getBlockState(pos).getValue(LIT);
