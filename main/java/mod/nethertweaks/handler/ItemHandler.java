@@ -1,6 +1,7 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.Crystal;
@@ -185,8 +186,10 @@ public class ItemHandler implements INames
 
     private static void addItemBurnTime()
     {
+    	if(Config.enableWoodChippings)
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
     	if(Config.enableHellfayah)
-    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.HELLFAYAH), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
     	if(Config.enableHellfayahBlock)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
     }
