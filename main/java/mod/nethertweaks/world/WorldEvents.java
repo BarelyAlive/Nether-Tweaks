@@ -45,10 +45,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public class WorldEvents
 {
 	public final static String key = "ntm.firstSpawn";
-	public final static String coodX = "ntm.cood.x";
-	public final static String coodY = "ntm.cood.y";
-	public final static String coodZ = "ntm.cood.z";
-	public static boolean is_hellworld = false;
 
 	//HELLWORLD
 	@SubscribeEvent
@@ -100,7 +96,6 @@ public class WorldEvents
 		int range = 32;
 
     	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
-    		is_hellworld = true;
     		teleportPlayer(player);
     		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
     		{
@@ -127,10 +122,6 @@ public class WorldEvents
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
     		}
 		}
-    	else
-    	{
-    		is_hellworld = false;
-    	}
     }
 
     @SubscribeEvent
@@ -212,14 +203,9 @@ public class WorldEvents
 		
     	if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
     	{
-    		is_hellworld = true;
     		DimensionManager.unregisterDimension(1);
     		DimensionType.register("the_end", "_end", 1, WorldProviderEnd.class, true);
     		DimensionManager.registerDimension(1, DimensionType.valueOf("the_end"));
-    	}
-    	else
-    	{
-    		is_hellworld = false;
     	}
 	}
 

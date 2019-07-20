@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
  
 public class WorldGeneratorNTM implements IWorldGenerator{
 
-	private int frequency;
 	private WorldGenerator tree = new WorldGenElderTree(true);
 	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 	
@@ -52,9 +51,9 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 		if (BlocksItems.enableElderTree) {
 			for (int i = 0; i < 15; i++) // 15 is rarity
 			{
-				int randPosX = posX + random.nextInt(16)+8;
+				int randPosX = posX + random.nextInt(16) +8;
 				int randPosY = random.nextInt(128); //Max Y coordinate
-				int randPosZ = posZ + random.nextInt(16)+8;
+				int randPosZ = posZ + random.nextInt(16) +8;
 				tree.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
 			}
 			/*Wichtige Anmerkung der Autorin:

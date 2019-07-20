@@ -23,4 +23,7 @@ ChangeLog NTM 2.0.2
 * Fixed Mean Vines not being rendered as flat items
 * Fixed a bug where when milking a cow, if the inventory can't hold a milk bucket anymore, the milk bucket could be deleted
 * Removed Ender Crystal and Pickaxes
+* New crafting for bonfires! Check the wiki at https://wordpress.com/posts/nethertweaksmod.wordpress.com
+* New model for bonfire
++ Added alternative recipe for paper
 + Added Ash & Wood Chippings
