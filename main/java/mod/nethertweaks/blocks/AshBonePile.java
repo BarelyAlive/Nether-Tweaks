@@ -68,7 +68,7 @@ public class AshBonePile extends CubeContainerHorizontal
 	
 	@Override
     public int getLightValue(IBlockState state)
-	{        
+	{
         return state.getValue(LIT) ? 8 : 0;
 	}
 	
