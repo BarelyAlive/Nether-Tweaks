@@ -32,6 +32,7 @@ public class SmeltingNOreDictHandler {
 	//Ore-Dictionary
 	private static void oreRegistration()
     {
+		if(BlocksItems.enableAsh)			  OreDictionary.registerOre("dustAsh", ItemHandler.ASH);
 		if(BlocksItems.enableMeanVine) 		  OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
 		if(BlocksItems.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
 		if(BlocksItems.enableJerky)			  OreDictionary.registerOre("listAllmeatcooked", ItemHandler.COOKED_JERKY);

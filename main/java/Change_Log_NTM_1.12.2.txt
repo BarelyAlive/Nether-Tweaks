@@ -27,3 +27,4 @@ ChangeLog NTM 2.0.2
 * New model for bonfire
 + Added alternative recipe for paper
 + Added Ash & Wood Chippings
++ Added Ash Bone Pile
