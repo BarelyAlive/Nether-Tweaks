@@ -54,16 +54,13 @@ public class AshBonePile extends CubeContainerHorizontal
 		
 		if(player.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
 		{
-			player.setHeldItem(hand, ItemStack.EMPTY);
+			if (!player.capabilities.isCreativeMode) {
+				player.setHeldItem(hand, ItemStack.EMPTY);
+			}
 			world.setBlockState(pos, state.withProperty(LIT, true));
 		}
 		
 		return world.getBlockState(pos).getValue(LIT);
-	}
-	
-	@Override
-	public String getUnlocalizedName() {
-		return this.lightValue == 8 ? "tile.bonfire" : "tile.ash_bone_pile";
 	}
 	
 	@Override
