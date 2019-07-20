@@ -108,7 +108,7 @@ public class ItemHandler implements INames
 	}
 
     private static void registerItems()
-    { 	
+    {
     	//Crafting Components
     	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
     	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
