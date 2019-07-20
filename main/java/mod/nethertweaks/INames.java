@@ -16,7 +16,11 @@ public interface INames {
 	public String BARREL					= "barrel";
 	public String FREEZER 					= "freezer";
 	public String CRUCIBLE					= "crucible";
+	public String HELLMART 					= "hellmart";
+	public String SIEVE 					= "sieve";
+	public String BONFIRE 					= "bonfire";
 	
+	public String ASH_BONE_PILE				= "ash_bone_pile";
 	public String STONE_DOOR				= "stone_door";
 	public String ELDER_DOOR				= "elder_door";
 	public String DUST 						= "dust";
@@ -28,10 +32,7 @@ public interface INames {
 	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
 	public String ELDER_LOG 				= "elder_log";
 	public String NETHERRACK_GRAVEL			= "netherrack_gravel";
-	public String BONFIRE 					= "bonfire";
 	public String MEAN_VINE 				= "mean_vine";
-	public String SIEVE 					= "sieve";
-	public String HELLMART 					= "hellmart";
 	
 	public String HELLFAYAH_ORE 			= "hellfayah_ore";
 	public String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";
@@ -64,7 +65,6 @@ public interface INames {
 	public String SUGARCANE_SEEDS			= "sugarcane_seeds";
 	
 	public String CRYSTAL_OF_LIGHT			= "crystal_of_light";
-	public String ENDER_CRYSTAL				= "ender_crystal";
 	
 	public String DOLL_BAT					= "doll_bat";
 	public String DOLL_CHICKEN				= "doll_chicken";
@@ -92,11 +92,11 @@ public interface INames {
 	public String STRING					= "string";
 	public String PORCELAIN_CLAY			= "porcelain_clay";
 	public String POWDER_OF_LIGHT			= "powder_of_light";
+	public String ASH						= "ash";
+	public String WOOD_CHIPPINGS			= "wood_chippings";
+	public String COILED_SWORD				= "coiled_sword";
 	
 	public String COOKED_JERKY 				= "cooked_jerky";
-	
-	public String PICKAXE_NETHERRACK 		= "pickaxe_netherrack";
-	public String PICKAXE_NETHERBRICK		= "pickaxe_netherbrick";
 	
 	public String GRABBER_WOOD				= "grabber_wood";
 	public String GRABBER_GOLD				= "grabber_gold";

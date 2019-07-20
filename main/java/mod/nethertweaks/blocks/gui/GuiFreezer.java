@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.tiles.TileInventory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -62,6 +63,8 @@ public class GuiFreezer extends GuiContainer
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         
+        this.getTE();
+        
         int x_old = x;
         int y_old = y;
         if(TileInventory.isWorking(this.entity)){
@@ -100,6 +103,11 @@ public class GuiFreezer extends GuiContainer
         	}
     		GL11.glPopMatrix();
         }
+    }
+    
+    private void getTE()
+    {
+    	this.entity = (TileFreezer) this.mc.player.world.getTileEntity(this.entity.getPos());
     }
     
     @Override

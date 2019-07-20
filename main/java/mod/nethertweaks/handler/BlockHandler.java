@@ -1,6 +1,7 @@
 package mod.nethertweaks.handler;
  
 import mod.nethertweaks.INames;
+import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.BlockSlabCommon;
 import mod.nethertweaks.blocks.Bonfire;
@@ -48,6 +49,7 @@ public class BlockHandler implements INames
     
     //Blocks
     public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
+    public static final Block ASH_BONE_PILE		   = new AshBonePile();
     public static final Block STWH 				   = new StwH();
     public static final Block SIEVE 			   = new Sieve();
     public static final Block MEAN_VINE			   = new MeanVine();
@@ -94,6 +96,7 @@ public class BlockHandler implements INames
     	if(Config.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
     	if(Config.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
         if(Config.enableDust) 				Registry.registerBlock(DUST);
+        if(Config.enableAshBonePile)		Registry.registerBlock(ASH_BONE_PILE);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree) {
 			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);

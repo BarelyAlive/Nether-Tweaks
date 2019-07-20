@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.Grabber;
@@ -9,7 +10,6 @@ import mod.nethertweaks.items.HammerBase;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
-import mod.nethertweaks.items.PickaxeNTM;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.handler.BucketHandler;
@@ -34,7 +34,6 @@ public class ItemHandler implements INames
     
     //CRYSTALS
     public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
-    public static final Item ENDER_CRYSTAL	  	 = new Crystal(INames.ENDER_CRYSTAL);
     
     //MESHES
     public static final Item STRING_MESH	  	 = new ItemMesh(INames.MESH_STRING);
@@ -76,6 +75,9 @@ public class ItemHandler implements INames
 	public static final Item STRING 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STRING));
 	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
 	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
+	public static final Item ASH			  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.ASH));
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.WOOD_CHIPPINGS));
+	public static final Item COILED_SWORD	  	 = new CoiledSword();
 	
     //Werkzeuge
     public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -83,8 +85,6 @@ public class ItemHandler implements INames
     public static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
     public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
     public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
-    public static final Item PICK_NETHERRACK  	 = new PickaxeNTM(ToolMaterial.STONE);
-    public static final Item PICK_NETHERBRICK 	 = new PickaxeNTM(ToolMaterial.IRON);
     public static final Item HAMMER_WOOD	  	 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
     public static final Item HAMMER_GOLD 	  	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
     public static final Item HAMMER_STONE	  	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
@@ -118,6 +118,9 @@ public class ItemHandler implements INames
     	if(Config.enableString)		  		Registry.registerItem(STRING);
     	if(Config.enablePorcelainClay) 		Registry.registerItem(PORCELAIN_CLAY);
     	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
+    	if(Config.enableAsh) 				Registry.registerItem(ASH);
+    	if(Config.enableWoodChippings)		Registry.registerItem(WOOD_CHIPPINGS);
+    	if(Config.enableCoiledSword)		Registry.registerItem(COILED_SWORD);
     	
     	//Seeds
     	if(Config.enableMushroomSpores)		Registry.registerItem(MUSHROOM_SPORES);
@@ -127,7 +130,6 @@ public class ItemHandler implements INames
     	
     	//Crystals
     	if(Config.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
-		if(Config.enableCrystalEnder)		Registry.registerItem(ENDER_CRYSTAL);
 		
 		//Pebbles
         if(Config.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
@@ -166,8 +168,6 @@ public class ItemHandler implements INames
         if(Config.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
         if(Config.enableGrabberDiamond)		Registry.registerItem(GRABBER_DIAMOND);
         if(Config.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
-        if(Config.enablePickAxeNetherrack) 	Registry.registerItem(PICK_NETHERRACK);
-        if(Config.enablePickAxeNetherbrick)	Registry.registerItem(PICK_NETHERBRICK);
         if(Config.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
         if(Config.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);

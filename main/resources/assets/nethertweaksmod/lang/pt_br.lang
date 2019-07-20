@@ -21,6 +21,7 @@ tile.unfired_crucible.name=Cadinho não queimado
 tile.mean_vine.name=Vinha Média
 tile.sieve.name=Peneira
 tile.hellmart.name=Hellmart
+tile.ash_bone_pile.name=Pilha de Osso de Cinzas
 
 item.stone_door.name=Porta de pedra
 item.elder_door.name=Porta do Ancião
@@ -61,6 +62,9 @@ item.salt.name=Sal
 item.stone_bar.name=Barra de Pedra
 item.string.name=Corda
 item.porcelain_clay.name=Argila de Porcelana
+item.ash.name=Cinzas
+item.wood_chippings.name=Aparas de madeira
+item.coiled_sword.name=Espada espiral
 
 item.mesh_string.name=Malha de Cordas
 item.mesh_flint.name=Malha de sílex

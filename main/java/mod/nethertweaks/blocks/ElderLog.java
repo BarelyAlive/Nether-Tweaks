@@ -30,35 +30,25 @@ public class ElderLog extends CubeFacingXYZ{
 	}
     
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
     	int i = 4;
         int j = 5;
 
-        if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))
+        if (world.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))
         {
             for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4)))
             {
-                IBlockState iblockstate = worldIn.getBlockState(blockpos);
+                IBlockState iblockstate = world.getBlockState(blockpos);
 
-                if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos))
+                if (iblockstate.getBlock().isLeaves(iblockstate, world, blockpos))
                 {
-                    iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+                    iblockstate.getBlock().beginLeavesDecay(iblockstate, world, blockpos);
                 }
             }
         }
     }
 
-    @Override public boolean canSustainLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos){ 
-    	return true; 
-    }
-    
-    @Override
-    public boolean isWood(IBlockAccess world, BlockPos pos) {
-    	return true;
-    }
-    
-    @Override
-    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-    	return false;
-    }
+    @Override public boolean canSustainLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; }
+    @Override public boolean isWood(net.minecraft.world.IBlockAccess world, BlockPos pos){ return true; } 
+    @Override public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {	return false; }
 }

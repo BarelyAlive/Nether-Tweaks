@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "item_ash_bone_pile"
+  },
+  "pattern": [
+    "yxy",
+    "xxx"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "ash"
+    },
+    "y": {
+      "item": "minecraft:bone"
+    }
+  }
+}

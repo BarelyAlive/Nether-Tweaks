@@ -182,6 +182,7 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 
     @Override
 	public boolean isRegistered(@Nonnull BlockInfo stackInfo) {
+    	System.out.println(stackInfo);
         return registry.keySet().stream().anyMatch(ingredient -> ingredient.test(stackInfo.getItemStack()));
     }
 

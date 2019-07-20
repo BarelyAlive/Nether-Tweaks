@@ -21,6 +21,7 @@ tile.unfired_crucible.name=Unfired Crucible
 tile.mean_vine.name=Mean Vine
 tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
+tile.ash_bone_pile.name=Ash Bone Pile
 
 item.stone_door.name=Stone Door
 item.elder_door.name=Elder Door
@@ -60,7 +61,10 @@ item.powder_of_light.name=Powder of Light
 item.salt.name=Salt
 item.stone_bar.name=Stone Bar
 item.string.name=String
-item.porcelain_clay.name=Porcelain Clay 
+item.porcelain_clay.name=Porcelain Clay
+item.ash.name=Ash
+item.wood_chippings.name=Wood Chippings
+item.coiled_sword.name=Coiled Sword
 
 item.mesh_string.name=String Mesh
 item.mesh_flint.name=Flint Mesh

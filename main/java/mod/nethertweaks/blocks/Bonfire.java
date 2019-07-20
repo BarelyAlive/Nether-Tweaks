@@ -191,31 +191,9 @@ public class Bonfire extends Block
 		return EnumBlockRenderType.MODEL;
 	}
 
-	@Override
-    public boolean isTopSolid(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-    
-    @Override
-    @Deprecated
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @Deprecated
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-    
-    @Override
-    public boolean isTranslucent(IBlockState state) {
-    	return true;
-    }
+	@Override public boolean isTopSolid(IBlockState state) { return false; }
+    @Override public boolean isTranslucent(IBlockState state) {	return true; }
+    @Override @Deprecated public boolean isFullCube(IBlockState state) { return false; }
+    @Override @Deprecated public boolean isFullBlock(IBlockState state) { return false; }
+    @Override @Deprecated public boolean isOpaqueCube(IBlockState state) { return false; }
 }

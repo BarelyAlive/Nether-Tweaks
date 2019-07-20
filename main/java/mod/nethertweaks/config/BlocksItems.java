@@ -9,6 +9,7 @@ public class BlocksItems
 	public static boolean enableHellfayahBlock		= true;
 	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
+	public static boolean enableAshBonePile			= true;
 	public static boolean enableBarrelWood			= true;
 	public static boolean enableBarrelStone			= true;
 	public static boolean enableBonfire 			= true;
@@ -39,7 +40,9 @@ public class BlocksItems
 	public static boolean enableCactusSeeds			= true;
 	public static boolean enableSugarcaneSeeds		= true;
 	public static boolean enableCrystalLight 		= true;
-	public static boolean enableCrystalEnder 		= true;
+	public static boolean enableAsh			 		= true;
+	public static boolean enableWoodChippings 		= true;
+	public static boolean enableCoiledSword 		= true;
 	public static boolean enablePebbleStone			= true;
 	public static boolean enablePebbleGranite		= true;
 	public static boolean enablePebbleDiorite		= true;
@@ -65,8 +68,6 @@ public class BlocksItems
 	public static boolean enableDollVillager		= true;
 	public static boolean enableDollPig				= true;
 	public static boolean enableJerky 				= true;
-	public static boolean enablePickAxeNetherrack 	= true;
-	public static boolean enablePickAxeNetherbrick 	= true;
 	public static boolean enableHammerWood 			= true;
 	public static boolean enableHammerStone 		= true;
 	public static boolean enableHammerGold 			= true;
@@ -91,6 +92,7 @@ public class BlocksItems
     	enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
     	enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
     	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
+    	enableAshBonePile				= config.get("Blocks", "Enable Ash Bone Pile?", true).getBoolean();
     	enableBarrelWood				= config.get("Blocks", "Enable Wooden Barrel?", true).getBoolean();
     	enableBarrelStone				= config.get("Blocks", "Enable Stone Barrel?", true).getBoolean();
     	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
@@ -122,7 +124,9 @@ public class BlocksItems
     	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
     	enableSugarcaneSeeds			= config.get("Items", "Enable Sugarcane Seeds?", true).getBoolean();
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
-    	enableCrystalEnder				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
+    	enableAsh						= config.get("Items", "Enable Ash?", true).getBoolean();
+    	enableWoodChippings				= config.get("Items", "Enable Wood Chippings?", true).getBoolean();
+    	enableCoiledSword				= config.get("Items", "Enable Coiled Sword?", true).getBoolean();
     	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
     	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
     	enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
@@ -148,8 +152,6 @@ public class BlocksItems
     	enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
     	enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
     	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
-    	enablePickAxeNetherrack 		= config.get("Items", "Enable Netherrack Pickaxe?", true).getBoolean();
-    	enablePickAxeNetherbrick 		= config.get("Items", "Enable Netherbrick Pickaxe?", true).getBoolean();
     	enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
     	enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
     	enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
