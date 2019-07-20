@@ -29,8 +29,6 @@ item.elder_door.name=Elder Door
 generator.hellworld=Hellworld
 
 item.cooked_jerky.name=Cooked Jerky
-item.pickaxe_netherrack.name=Netherrack Pickaxe
-item.pickaxe_netherbrick.name=Netherbrick Pickaxe
 item.grabber_wood.name=Grabber
 item.grabber_gold.name=Grabber
 item.grabber_stone.name=Grabber
@@ -51,7 +49,6 @@ item.sugarcane_seeds.name=Sugarcane Seeds
 item.flint_and_blaze.name=Flint and Blaze
 
 item.crystal_of_light.name=Crystal of Light
-item.ender_crystal.name=Ender Crystal
 
 item.end_box.name=End Box
 item.portal_core.name=Portal Core
