@@ -18,6 +18,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
@@ -78,7 +79,8 @@ public class AshBonePile extends CubeContainerHorizontal
 		if(state.getValue(LIT))
 			drops.add(new ItemStack(ItemHandler.COILED_SWORD));
 		
-		super.getDrops(drops, world, pos, state, fortune);
+		drops.add(new ItemStack(ItemHandler.ASH, 4));
+		drops.add(new ItemStack(Items.BONE, 2));
 	}
 	
 	@Override
