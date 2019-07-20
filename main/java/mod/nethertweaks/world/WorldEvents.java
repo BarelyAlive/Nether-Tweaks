@@ -3,9 +3,11 @@ package mod.nethertweaks.world;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
@@ -13,6 +15,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -20,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.Teleporter.PortalPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -164,6 +166,7 @@ public class WorldEvents
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event)
 	{
 		teleportPlayer(event.player);
+		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
 	}
 
 	//Enitity Interaction
@@ -193,7 +196,7 @@ public class WorldEvents
     }
 
     //WORLD DATA
-    
+        
     @SubscribeEvent
 	public void LoadPlayerList(WorldEvent.Load event) {
 		if(!(event.getWorld().isRemote)) {

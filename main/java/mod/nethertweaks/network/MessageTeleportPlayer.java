@@ -4,8 +4,11 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
+import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
+import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -55,7 +58,7 @@ public class MessageTeleportPlayer implements IMessage {
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
 			{
-				binfo = new BonfireInfo(player.getUniqueID());
+				binfo = new BonfireInfo(player.getUniqueID(), player.world.provider.getDimension());
 			}
 			else
 			{
@@ -85,6 +88,8 @@ public class MessageTeleportPlayer implements IMessage {
 			player.sendMessage(new TextComponentString(player.getName() + " rested at: " + binfo.getSpawnPos() + "!"));
 			
 			player.closeScreen();
+			
+			NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
 			
 			return null;
 		}

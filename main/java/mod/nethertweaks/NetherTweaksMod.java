@@ -92,9 +92,8 @@ public class NetherTweaksMod
     				{
     					continue;
     				}
-    				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().contains("air"))
+    				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().equals("air"))
     				{
-    					System.out.println(OreDictionary.getOres(ore_name).get(0).getDisplayName());
     					continue;
     				}
                 	OreHandler.add(OreDictionary.getOres(ore_name).get(0).getItem(), 1);

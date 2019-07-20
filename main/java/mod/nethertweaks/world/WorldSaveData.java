@@ -101,7 +101,9 @@ public class WorldSaveData extends WorldSavedData {
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
-			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list));
+			int dimension = tag.getInteger("NTM.Dimension");
+			
+			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list, dimension));
 		}
 	}
 
@@ -155,6 +157,8 @@ public class WorldSaveData extends WorldSavedData {
 				list.appendTag(player_tag);
 			}
 			
+			nbt.setInteger("NTM.Dimension", entry.getValue().getDimension());
+						
 			nbt.setTag("NTM.UUIDs", list);
 			
 			tagList.appendTag(tag);

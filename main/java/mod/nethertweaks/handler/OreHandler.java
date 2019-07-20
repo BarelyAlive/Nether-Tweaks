@@ -104,7 +104,6 @@ public class OreHandler {
 		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
 		{
 			String[] name_array = (new ItemStack(entry.getKey())).getDisplayName().split(" ");
-			System.out.println(name_array);
 			List<String> name_list = new ArrayList<String>(Arrays.asList(name_array));
 			name_list.remove(name_list.size() - 1);
 			String mod_domain  = String.join("_", name_list);

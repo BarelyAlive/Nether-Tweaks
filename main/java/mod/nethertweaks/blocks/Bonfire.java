@@ -7,13 +7,19 @@ import java.util.UUID;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.network.bonfire.UpdateStatus;
+import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
+import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
+import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
@@ -67,7 +73,8 @@ public class Bonfire extends Block
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
 		if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
 		{
-			WorldSpawnLocation.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID()));
+			WorldSpawnLocation.bonfire_info.put(pos, new BonfireInfo(placer.getUniqueID(), world.provider.getDimension()));
+			NetworkHandler.INSTANCE.sendToServer(new MessageBonfireUpdate(UpdateStatus.ADD, pos, new BonfireInfo(placer.getUniqueID(), world.provider.getDimension())));
 		}
 		world.scheduleUpdate(pos, state.getBlock(), 1);
 	}
@@ -107,11 +114,15 @@ public class Bonfire extends Block
 		
 		if(resultPos != null && !world.isRemote)
 		{
-			BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
-			
-			info.setSpawnPos(resultPos);
-			
-			WorldSpawnLocation.bonfire_info.put(pos, info);
+			if (WorldSpawnLocation.bonfire_info.containsKey(pos))
+			{
+				BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
+				if(info != null)
+				{
+					info.setSpawnPos(resultPos);
+					NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
+				}
+			}
 		}
 		
 		world.scheduleUpdate(pos, state.getBlock(), 10);
@@ -164,14 +175,14 @@ public class Bonfire extends Block
 					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
 					{
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
-						
 						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
-						
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
+						NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
 				}
 			}
 			WorldSpawnLocation.bonfire_info.remove(pos);
+			NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}
 	}
 	
