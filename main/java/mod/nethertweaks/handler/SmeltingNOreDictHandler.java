@@ -42,7 +42,7 @@ public class SmeltingNOreDictHandler {
 		if(Config.enableSalt)	 		  OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
 		if(Config.enableSalt)			  OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
 		if(Config.enableString)		  	  OreDictionary.registerOre("string", ItemHandler.STRING);
-		if(Config.enableHellfayah)		  OreDictionary.registerOre("itemHellfayah", ItemHandler.HELLFAYAH);
+		if(Config.enableHellfayah)		  OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
 		if(Config.enableHellfayahOre) 	  OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));
 		if(Config.enableHellfayahBlock)   OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
 		if(Config.enableSaltBlock)		  OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
