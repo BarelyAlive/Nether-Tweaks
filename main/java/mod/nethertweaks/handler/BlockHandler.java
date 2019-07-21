@@ -4,7 +4,6 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.BlockSlabCommon;
-import mod.nethertweaks.blocks.Bonfire;
 import mod.nethertweaks.blocks.Condenser;
 import mod.nethertweaks.blocks.CrucibleStone;
 import mod.nethertweaks.blocks.ElderLeaves;
@@ -42,7 +41,6 @@ public class BlockHandler implements INames
     public static final Block BARREL_WOOD		   = new Barrel(0, Material.WOOD);
     public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK);
     public static final Block FREEZER 			   = new Freezer();
-    public static final Block BONFIRE 			   = new Bonfire();
     public static final Block HELLMART 			   = new Hellmart();
     public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
@@ -110,6 +108,5 @@ public class BlockHandler implements INames
         if(Config.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
         if(Config.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
         if(Config.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
-        if(Config.enableBonfire)			Registry.registerBlock(BONFIRE);
     }
 }

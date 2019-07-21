@@ -24,7 +24,6 @@ public class CrucibleStone extends CrucibleBase implements INames
         this.setHardness(2.0f);
         this.fired = fired;
         
-        this.setDefaultState(this.blockState.getBaseState().withProperty(THIN, Config.thinCrucibleModel));   //.withProperty(FIRED, fired);
     }
 
     @Override
@@ -37,21 +36,5 @@ public class CrucibleStone extends CrucibleBase implements INames
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return this.fired;
-    }
-
-    @Override
-    @Nonnull
-    public BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, THIN);    //, FIRED);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return this.fired ? 1 : 0;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return getMetaFromState(state);
     }
 }

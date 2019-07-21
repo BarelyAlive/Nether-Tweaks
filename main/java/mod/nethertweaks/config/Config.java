@@ -15,9 +15,6 @@ public class Config extends BlocksItems
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
 	
-	public static int durabilityPickRack  = 132;
-	public static int durabilityPickBrick = 251;
-	
 	public static int durabilityHWood 	 = 64;
 	public static int durabilityHGold 	 = 80;
 	public static int durabilityHStone 	 = 160;
@@ -32,10 +29,6 @@ public class Config extends BlocksItems
 	
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
-	
-	//Ore
-	public static boolean shouldOreDictOreChunks = true;
-	public static boolean shouldOreDictOreDusts  = true;
 	
 	//Freezer
 	public static int freezeTimeFreezer  = 6000;
@@ -69,7 +62,6 @@ public class Config extends BlocksItems
 	public static boolean enableBarrelTransformLighting = true;
 	
 	//Crucible
-	public static boolean thinCrucibleModel = true;
 	
 	//Liquid Impossibility
 	public static int temperatureLI = 0;
@@ -124,9 +116,6 @@ public class Config extends BlocksItems
         capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
         fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
         
-        durabilityPickRack				= config.getInt("Durability for Netherrack Pickaxe", "Tweak", 132, 1, Integer.MAX_VALUE, "");
-        durabilityPickBrick				= config.getInt("Durability for Netherbrick Pickaxe", "Tweak", 251, 1, Integer.MAX_VALUE, "");
-        
         durabilityHWood					= config.getInt("Durability for Wood Hammer", "Tweak", 64, 1, Integer.MAX_VALUE, "");
     	durabilityHGold					= config.getInt("Durability for Gold Hammer", "Tweak", 80, 1, Integer.MAX_VALUE, "");
     	durabilityHStone				= config.getInt("Durability for Stone Hammer", "Tweak", 160, 1, Integer.MAX_VALUE, "");
@@ -145,8 +134,6 @@ public class Config extends BlocksItems
         enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
         
         //Ore
-		shouldOreDictOreChunks 			= config.get("Compatibilitiy", "Enable OreDict Ore Chunks?", true).getBoolean();
-		shouldOreDictOreDusts 			= config.get("Compatibilitiy", "Enable OreDict Ore Dusts?", true).getBoolean();
         
         ///Sieve
         sieveSimilarRadius 				= config.get("Sieving", "Sieve Similar Radius", 2).getInt();
@@ -171,7 +158,6 @@ public class Config extends BlocksItems
         enableBarrelTransformLighting 	= config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
         
         //Crucible
-        //thinCrucibleModel			 	= config.get("Crucible", "Do you want a thin crucible model?", true).getBoolean();
         
         //Liquid Impossibility
         densityLI						= config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
@@ -191,7 +177,7 @@ public class Config extends BlocksItems
         //Mod-Compatibility
         fluidListIsBlackList			= config.get("Compatibility", "Is the Moo-Fluids-List a blacklist?", true).getBoolean();
         enableMooFluid 					= config.get("Compatibility", "Enable Moo-Fluids-Compatibility?", true).getBoolean();
-        enableHarvestcraft				= config.get("Compatibility", "Enable Harvestcraft-Spaling_Sifting?", false, "Disabled by default, cuz HC wants you to buy or find its saplings").getBoolean();
+        enableHarvestcraft				= config.get("Compatibility", "Enable sifting of Harvestcraft-Saplings?", false, "Disabled by default, cuz HC wants you to buy or find its saplings").getBoolean();
         fillAmount 						= config.get("FillAmount", "How many mB milk should be produced?", 1000).getInt();
         oreDictPreferenceOrder 			= config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "");
         generalItemHandlerCompat 		= config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();

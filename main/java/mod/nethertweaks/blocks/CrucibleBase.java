@@ -22,9 +22,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public abstract class CrucibleBase extends Block
 {
-    public static final PropertyBool THIN = PropertyBool.create("thin");
-
-
     public CrucibleBase(String name, Material material) {
         super(material);
         setRegistryName(name);
