@@ -60,8 +60,8 @@ public class WorldEvents
 		boolean vaporize = world.provider.doesWaterVaporize();
 		FluidStack f = FluidUtil.getFluidContained(heldItem);
 		
-		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null || !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER)) return;
-		if (!f.getFluid().doesVaporize(f)) return;
+		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
+				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
@@ -174,8 +174,7 @@ public class WorldEvents
     {
     	if(event.getTarget() instanceof EntityCow)
     	{
-    		if(!NotNull.checkNotNull(event.getItemStack()))
-    			return;
+    		if(!NotNull.checkNotNull(event.getItemStack())) return;
     		
     		ItemStack stack = event.getItemStack();
     		Item item = stack.getItem();
