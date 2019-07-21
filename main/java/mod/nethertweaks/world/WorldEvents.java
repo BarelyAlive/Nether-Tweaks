@@ -37,7 +37,10 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -55,8 +58,10 @@ public class WorldEvents
 		ItemStack heldItem = event.getItemStack();
 		World world = event.getEntity().getEntityWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
+		FluidStack f = FluidUtil.getFluidContained(heldItem);
 		
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null || !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER)) return;
+		if (!f.getFluid().doesVaporize(f)) return;
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;

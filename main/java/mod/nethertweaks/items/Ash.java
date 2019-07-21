@@ -25,8 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Ash extends Item{
-
+public class Ash extends Item
+{
 	public Ash() {
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ASH));
@@ -43,19 +43,14 @@ public class Ash extends Item{
         }
         else
         {
-            EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
-
-            if (enumdyecolor == EnumDyeColor.WHITE)
+            if (applyBonemeal(itemstack, worldIn, pos, player, hand))
             {
-                if (applyBonemeal(itemstack, worldIn, pos, player, hand))
+                if (!worldIn.isRemote)
                 {
-                    if (!worldIn.isRemote)
-                    {
-                        worldIn.playEvent(2005, pos, 0);
-                    }
-
-                    return EnumActionResult.SUCCESS;
+                    worldIn.playEvent(2005, pos, 0);
                 }
+
+                return EnumActionResult.SUCCESS;
             }
         }
         return EnumActionResult.PASS;
