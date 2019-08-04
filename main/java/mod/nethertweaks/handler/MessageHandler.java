@@ -6,6 +6,10 @@ import mod.nethertweaks.network.MessageFluidUpdate;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
 import mod.nethertweaks.network.MessageTeleportPlayer;
+import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
+import mod.nethertweaks.network.bonfire.MessageBonfireSetSpawnPoint;
+import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
+import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
@@ -23,5 +27,18 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageHellmartBuy.MessageHellmartBuyHandler.class, MessageHellmartBuy.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageHellmartClosed.MessageHellmartClosedHandler.class, MessageHellmartClosed.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageTeleportPlayer.MessageTeleportPlayerHandler.class, MessageTeleportPlayer.class, Side.SERVER);
+		/*
+		NetworkHandler.registerMessage(MessageBonfireCreate.MessageBonfireCreateHandler.class, MessageBonfireCreate.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageBonfireRemove.MessageBonfireRemoveHandler.class, MessageBonfireRemove.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageWorldSaveData.MessageWorldSaveDataHandler.class, MessageWorldSaveData.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageWorldSaveData.MessageWorldSaveDataHandler.class, MessageWorldSaveData.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageBonfireGetListServer.MessageBonfireGetListServerHandler.class, MessageBonfireGetListServer.class, Side.SERVER);
+		*/
+		NetworkHandler.registerMessage(MessageBonfireSetSpawnPoint.MessageBonfireSetSpawnPointHandler.class, MessageBonfireSetSpawnPoint.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageBonfireGetList.MessageWorldSaveDataHandler.class, MessageBonfireGetList.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.CLIENT);
 	}
 }

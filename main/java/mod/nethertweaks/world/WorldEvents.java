@@ -3,9 +3,11 @@ package mod.nethertweaks.world;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
@@ -15,7 +17,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -134,13 +136,13 @@ public class WorldEvents
     {
     	teleportPlayer(event.player);
 	}
-    
+
     @SubscribeEvent
     public void dropItem(EntityJoinWorldEvent event)
     {
     	if(event.getEntity().dimension != -1) return;
     	if (event.getEntity() instanceof EntityItemLava) return;
-    	
+
     	if (event.getEntity() instanceof EntityItem)
     	{
     		EntityItem item = (EntityItem) event.getEntity();
@@ -148,9 +150,9 @@ public class WorldEvents
     		{
         		event.setCanceled(false);
         		EntityItemLava new_item = new EntityItemLava(
-        				item.getEntityWorld(), 
-        				item.getPosition().getX(), 
-        				item.getPosition().getY(), 
+        				item.getEntityWorld(),
+        				item.getPosition().getX(),
+        				item.getPosition().getY(),
         				item.getPosition().getZ(),
         				item.getItem()
         			);
@@ -161,11 +163,12 @@ public class WorldEvents
     		}
     	}
     }
-    
+
 	@SubscribeEvent
 	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event)
 	{
 		teleportPlayer(event.player);
+		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
 	}
 
 	//Enitity Interaction
@@ -175,11 +178,11 @@ public class WorldEvents
     	if(event.getTarget() instanceof EntityCow)
     	{
     		if(!NotNull.checkNotNull(event.getItemStack())) return;
-    		
+			
     		ItemStack stack = event.getItemStack();
     		Item item = stack.getItem();
     		EntityPlayer player = event.getEntityPlayer();
-    		
+
 	    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
 	    	{
 	    		stack.shrink(1);
@@ -194,17 +197,17 @@ public class WorldEvents
     }
 
     //WORLD DATA
-    
+
     @SubscribeEvent
 	public void LoadPlayerList(WorldEvent.Load event) {
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
-			
+
 			WorldSpawnLocation.setLastSpawnLocations(worldsave.getLastSpawnLocations());
 			WorldSpawnLocation.setBonfireInfo(worldsave.getBonfireInfo());
 		}
-		
+
     	if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
     	{
     		DimensionManager.unregisterDimension(1);
@@ -218,7 +221,7 @@ public class WorldEvents
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
-			
+
 			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
 			worldsave.setBonfireInfo(WorldSpawnLocation.getBonfireInfo());
 			worldsave.markDirty();
@@ -230,7 +233,7 @@ public class WorldEvents
 		if(!(event.getWorld().isRemote)) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
-			
+
 			worldsave.setLastSpawnLocations(WorldSpawnLocation.getLastSpawnLocations());
 			worldsave.setBonfireInfo(WorldSpawnLocation.getBonfireInfo());
 			worldsave.markDirty();

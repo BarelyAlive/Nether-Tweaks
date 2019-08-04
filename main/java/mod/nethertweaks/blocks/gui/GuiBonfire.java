@@ -11,6 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerBonfire;
 import mod.nethertweaks.network.MessageTeleportPlayer;
+import mod.nethertweaks.network.bonfire.UpdateStatus;
+import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;
@@ -67,7 +69,14 @@ public class GuiBonfire extends GuiContainer {
 		
 		GuiButton b;
 		
-		b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLocation.bonfire_info.get(this.pos).isPublic() ? "G" : "P");
+		if(WorldSpawnLocation.bonfire_info.containsKey(this.pos))
+		{
+			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLocation.bonfire_info.get(this.pos).isPublic() ? "G" : "P");
+		}
+		else
+		{
+			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, "G");
+		}
 		buttonList.add(b);
 		
 		Set<BlockPos> bonfires = this.bonfires.keySet();
@@ -118,6 +127,7 @@ public class GuiBonfire extends GuiContainer {
 		if(button.id == 0)
 		{
 			WorldSpawnLocation.bonfire_info.get(this.pos).isPublic(!WorldSpawnLocation.bonfire_info.get(this.pos).isPublic());
+			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, this.pos, WorldSpawnLocation.bonfire_info.get(this.pos)));
 		}
 		if (button.id > 0 && button.id < 6)
 		{
@@ -171,6 +181,7 @@ public class GuiBonfire extends GuiContainer {
 		if (this.text.isFocused())
 		{
 			WorldSpawnLocation.bonfire_info.get(this.pos).setName(this.text.getText());
+			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, this.pos, WorldSpawnLocation.bonfire_info.get(this.pos)));
 		}
 		
 		if (!(keyCode == Keyboard.KEY_E && this.text.isFocused()))

@@ -8,33 +8,41 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
 public class BonfireInfo {
+	
+	private int dim;
 	private String name;
 	private boolean seeable;
 	private UUID owner;
 	private List<UUID> lastSpawnPlayer;
 	private BlockPos spawnPos;
 	
-	public BonfireInfo(UUID owner)
+	public BonfireInfo(UUID owner, int dim)
 	{
-		this("", owner);
+		this("", owner, dim);
 	}
 	
-	public BonfireInfo(String name, UUID owner)
+	public BonfireInfo(String name, UUID owner, int dim)
 	{
-		this(name, true, owner);
+		this(name, true, owner, dim);
 	}
 	
-	public BonfireInfo(String name, boolean seeable, UUID owner)
+	public BonfireInfo(String name, boolean seeable, UUID owner, int dim)
 	{
-		this(name, seeable, owner, null);
+		this(name, seeable, owner, null, dim);
 	}
 	
-	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer)
+	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, int dim)
+	{
+		this(name, seeable, owner, lastSpawnPlayer, null, dim);
+	}
+	
+	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, BlockPos spawnPos, int dim)
 	{
 		this.name = name;
 		this.seeable = seeable;
+		this.dim = dim;
 		this.owner = owner;
-		this.spawnPos = null;
+		this.spawnPos = spawnPos;
 		if (lastSpawnPlayer == null)
 			this.lastSpawnPlayer = new ArrayList<UUID>();
 		else
@@ -126,9 +134,19 @@ public class BonfireInfo {
 		return (this.lastSpawnPlayer.indexOf(player) != -1);
 	}
 	
+	public int getDimension()
+	{
+		return this.dim;
+	}
+	
+	public void setDimension(int dim)
+	{
+		this.dim = dim;
+	}
+	
 	public BonfireInfo copy()
 	{
-		BonfireInfo bi = new BonfireInfo(this.owner);
+		BonfireInfo bi = new BonfireInfo(this.owner, this.dim);
 		bi.setName(this.getName());
 		bi.isPublic(this.isPublic());
 		bi.setLastPlayerSpawn(this.getLastPlayerSpawn());

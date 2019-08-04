@@ -4,32 +4,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.blocks.tile.*;
 import mod.nethertweaks.capabilities.NTMCapabilities;
-import mod.nethertweaks.client.renderers.RenderBarrel;
-import mod.nethertweaks.client.renderers.RenderCrucible;
-import mod.nethertweaks.client.renderers.RenderProjectileStone;
-import mod.nethertweaks.client.renderers.RenderSieve;
+import mod.nethertweaks.client.renderers.*;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.GuiHandlerNTM;
-import mod.nethertweaks.handler.HammerHandler;
-import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.JsonRecipeHandler;
-import mod.nethertweaks.handler.MessageHandler;
-import mod.nethertweaks.handler.OreHandler;
-import mod.nethertweaks.handler.SmeltingNOreDictHandler;
+import mod.nethertweaks.handler.*;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
-import mod.nethertweaks.world.WorldEvents;
-import mod.nethertweaks.world.WorldGeneratorNTM;
-import mod.nethertweaks.world.WorldTypeHellworld;
+import mod.nethertweaks.world.*;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
@@ -92,9 +77,8 @@ public class NetherTweaksMod
     				{
     					continue;
     				}
-    				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().contains("air"))
+    				if(OreDictionary.getOres(ore_name).get(0).getDisplayName().toLowerCase().equals("air"))
     				{
-    					System.out.println(OreDictionary.getOres(ore_name).get(0).getDisplayName());
     					continue;
     				}
                 	OreHandler.add(OreDictionary.getOres(ore_name).get(0).getItem(), 1);
@@ -180,7 +164,7 @@ public class NetherTweaksMod
     	OreHandler.registerFurnaceRecipe();
     	//Mobs
     	if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
-    	        
+    	
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		JsonRecipeHandler.loadJasonVorhees(configDirectory);
@@ -193,5 +177,6 @@ public class NetherTweaksMod
     	ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
     	ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
+    	ClientRegistry.bindTileEntitySpecialRenderer(TileAshBonePile.class, new RenderAshBonePile());
     }
 }
