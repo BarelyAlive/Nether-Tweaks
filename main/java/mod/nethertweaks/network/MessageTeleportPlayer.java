@@ -89,7 +89,7 @@ public class MessageTeleportPlayer implements IMessage {
 			
 			player.closeScreen();
 			
-			NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
 			
 			return null;
 		}

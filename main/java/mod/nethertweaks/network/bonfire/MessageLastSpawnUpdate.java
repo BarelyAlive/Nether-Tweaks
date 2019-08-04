@@ -32,7 +32,16 @@ public class MessageLastSpawnUpdate implements IMessage {
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		pos = new PlayerPosition(new BlockPos(buf.readInt(), buf.readInt(), buf.readInt()), buf.readFloat(), buf.readFloat());
+		
+		if (buf.readBoolean())
+		{
+			pos = null;
+		}
+		else
+		{
+			pos = new PlayerPosition(new BlockPos(buf.readInt(), buf.readInt(), buf.readInt()), buf.readFloat(), buf.readFloat());
+		}
+		
 		if (buf.readBoolean())
 		{
 			info = null;
@@ -49,11 +58,15 @@ public class MessageLastSpawnUpdate implements IMessage {
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.pos.getPos().getX());
-		buf.writeInt(this.pos.getPos().getY());
-		buf.writeInt(this.pos.getPos().getZ());
-		buf.writeFloat(this.pos.getYaw());
-		buf.writeFloat(this.pos.getAng());
+		buf.writeBoolean(pos == null);
+		if (pos != null)
+		{
+			buf.writeInt(this.pos.getPos().getX());
+			buf.writeInt(this.pos.getPos().getY());
+			buf.writeInt(this.pos.getPos().getZ());
+			buf.writeFloat(this.pos.getYaw());
+			buf.writeFloat(this.pos.getAng());
+		}
 		
 		buf.writeBoolean(info == null);
 		if (info != null)
@@ -65,7 +78,7 @@ public class MessageLastSpawnUpdate implements IMessage {
 		buf.writeInt(status == UpdateStatus.ADD ? 1 : (status == UpdateStatus.UPDATE ? 2 : (status == UpdateStatus.REMOVE ? 3 : 0)));
 	}
 
-	public static class MessageBonfireUpdateHandler implements IMessageHandler<MessageLastSpawnUpdate, IMessage>
+	public static class MessageLastSpawnUpdateHandler implements IMessageHandler<MessageLastSpawnUpdate, IMessage>
 	{
 		@Override
 		public IMessage onMessage(MessageLastSpawnUpdate msg, MessageContext ctx) {

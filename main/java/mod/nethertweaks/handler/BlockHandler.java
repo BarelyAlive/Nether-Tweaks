@@ -18,6 +18,7 @@ import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.NetherrackGravel;
 import mod.nethertweaks.blocks.Sieve;
 import mod.nethertweaks.blocks.StwH;
+import mod.nethertweaks.blocks.tile.TileAshBonePile;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
@@ -76,6 +77,7 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity
+        if(Config.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);

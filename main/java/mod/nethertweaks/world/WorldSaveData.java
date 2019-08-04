@@ -97,13 +97,19 @@ public class WorldSaveData extends WorldSavedData {
 		
 			UUID owner = new UUID(ownermBits, ownerlBits);
 			
+			x = tag.getInteger("NTM.SpawnPosX");
+			y = tag.getInteger("NTM.SpawnPosY");
+			z = tag.getInteger("NTM.SpawnPosZ");
+			
+			BlockPos spawnPos = new BlockPos(x, y, z);
+			
 			x = tag.getInteger("NTM.PosX");
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 			
 			int dimension = tag.getInteger("NTM.Dimension");
 			
-			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list, dimension));
+			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list, spawnPos, dimension));
 		}
 	}
 
@@ -146,6 +152,10 @@ public class WorldSaveData extends WorldSavedData {
 			
 			tag.setString("NTM.Name", entry.getValue().getName());
 			tag.setBoolean("NTM.seeable", entry.getValue().isPublic());
+			tag.setInteger("NTM.SpawnPosX", entry.getValue().getSpawnPos().getX());
+			tag.setInteger("NTM.SpawnPosY", entry.getValue().getSpawnPos().getY());
+			tag.setInteger("NTM.SpawnPosZ", entry.getValue().getSpawnPos().getZ());
+			tag.setInteger("NTM.Dimension", entry.getValue().getDimension());
 			
 			NBTTagList list = new NBTTagList();
 			
@@ -157,9 +167,7 @@ public class WorldSaveData extends WorldSavedData {
 				list.appendTag(player_tag);
 			}
 			
-			nbt.setInteger("NTM.Dimension", entry.getValue().getDimension());
-						
-			nbt.setTag("NTM.UUIDs", list);
+			tag.setTag("NTM.UUIDs", list);
 			
 			tagList.appendTag(tag);
 			

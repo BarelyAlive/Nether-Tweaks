@@ -177,12 +177,12 @@ public class Bonfire extends Block
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
 						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
-						NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
+						NetworkHandler.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
 				}
 			}
 			WorldSpawnLocation.bonfire_info.remove(pos);
-			NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
+			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}
 	}
 	

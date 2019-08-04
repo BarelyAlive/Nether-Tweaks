@@ -33,11 +33,16 @@ public class BonfireInfo {
 	
 	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, int dim)
 	{
+		this(name, seeable, owner, lastSpawnPlayer, null, dim);
+	}
+	
+	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, BlockPos spawnPos, int dim)
+	{
 		this.name = name;
 		this.seeable = seeable;
 		this.dim = dim;
 		this.owner = owner;
-		this.spawnPos = null;
+		this.spawnPos = spawnPos;
 		if (lastSpawnPlayer == null)
 			this.lastSpawnPlayer = new ArrayList<UUID>();
 		else

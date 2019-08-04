@@ -10,6 +10,7 @@ import mod.nethertweaks.network.MessageTeleportPlayer;
 import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.nethertweaks.network.bonfire.MessageBonfireSetSpawnPoint;
 import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
+import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
@@ -39,5 +40,7 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageBonfireGetList.MessageWorldSaveDataHandler.class, MessageBonfireGetList.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.SERVER);
+		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.CLIENT);
 	}
 }
