@@ -27,6 +27,7 @@ ChangeLog NTM 2.0.2
 * New crafting for bonfires!
 * New model for bonfire
 * Bonfire now drops its crafting components when destroyed
+* Flattened crucible
 + Added alternative recipe for paper
 + Added Ash & Wood Chippings
 + Added Ash Bone Pile
