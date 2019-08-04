@@ -2,7 +2,6 @@ package mod.nethertweaks.handler;
 
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
-import mod.nethertweaks.network.MessageFluidLevelUpdate;
 import mod.nethertweaks.network.MessageFluidUpdate;
 import mod.nethertweaks.network.MessageHellmartBuy;
 import mod.nethertweaks.network.MessageHellmartClosed;
@@ -22,7 +21,6 @@ public class MessageHandler
 	{
 		NetworkHandler.registerMessage(MessageBarrelModeUpdate.MessageBarrelModeUpdateHandler.class, MessageBarrelModeUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageCompostUpdate.MessageCompostAmountUpdateHandler.class, MessageCompostUpdate.class, Side.CLIENT);
-		NetworkHandler.registerMessage(MessageFluidLevelUpdate.MessageFluidLevelUpdateHandler.class, MessageFluidLevelUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageFluidUpdate.MessageFluidUpdateHandler.class, MessageFluidUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageNBTUpdate.MessageNBTUpdateHandler.class, MessageNBTUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageCheckLight.MessageCheckLightHandler.class, MessageCheckLight.class, Side.CLIENT);

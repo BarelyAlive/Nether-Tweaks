@@ -1,7 +1,9 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.items.Ash;
 import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
@@ -75,7 +77,7 @@ public class ItemHandler implements INames
 	public static final Item STRING 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STRING));
 	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
 	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
-	public static final Item ASH			  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.ASH));
+	public static final Item ASH			  	 = new Ash();
 	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.WOOD_CHIPPINGS));
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
 	
@@ -107,7 +109,7 @@ public class ItemHandler implements INames
 	}
 
     private static void registerItems()
-    { 	
+    {
     	//Crafting Components
     	if(Config.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
     	if(Config.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
@@ -185,8 +187,10 @@ public class ItemHandler implements INames
 
     private static void addItemBurnTime()
     {
+    	if(Config.enableWoodChippings)
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
     	if(Config.enableHellfayah)
-    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(ItemHandler.HELLFAYAH), Config.burnTimeHellfayah);
+    		CustomFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
     	if(Config.enableHellfayahBlock)
     		CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
     }

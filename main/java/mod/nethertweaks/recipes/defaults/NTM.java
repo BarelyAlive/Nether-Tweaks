@@ -91,7 +91,7 @@ public class NTM implements IRecipeDefaults
         registry.register(new ItemInfo(Items.REEDS), 0.08f, dirtState, new Color("9BFF8A"));
         registry.register(new ItemInfo(Items.STRING), 0.04f, dirtState, Util.whiteColor);
 
-        //Register any missed items
+        //Register any missed organic items
         registry.register("listAllfruit", 0.10f, dirtState, new Color("35A82A"));
         registry.register("listAllveggie", 0.10f, dirtState, new Color("FFF1B5"));
         registry.register("listAllGrain", 0.08f, dirtState, new Color("E3E162"));
@@ -110,27 +110,29 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerHellmart(HellmartRegistry registry)
     {
+    	ItemInfo ice = new ItemInfo(Blocks.ICE);
+    	
     	//Dolls
-		registry.register(new ItemInfo(ItemHandler.DOLL_BAT), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_CHICKEN), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_COW), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_DONKEY), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_HORSE), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_LLAMA), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_MULE), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_OCELOT), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_PARROT), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_PIG), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_POLAR_BEAR), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_RABBIT), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_RED_MOOSHROOM), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_SHEEP), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_VILLAGER), new ItemInfo(Blocks.ICE), 3);
-		registry.register(new ItemInfo(ItemHandler.DOLL_WOLF), new ItemInfo(Blocks.ICE), 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_BAT), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_CHICKEN), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_COW), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_DONKEY), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_HORSE), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_LLAMA), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_MULE), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_OCELOT), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_PARROT), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_PIG), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_POLAR_BEAR), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_RABBIT), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_RED_MOOSHROOM), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_SHEEP), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_VILLAGER), ice, 3);
+		registry.register(new ItemInfo(ItemHandler.DOLL_WOLF), ice, 3);
     	
     	Ingredient ingredient = new OreIngredientStoring("treeSapling");
     	for(ItemStack ore : ingredient.getMatchingStacks())
-    		registry.register(new ItemInfo(ore), new ItemInfo(Blocks.ICE), 3);
+    		registry.register(new ItemInfo(ore), ice, 3);
     }
     
     @Override
@@ -439,17 +441,17 @@ public class NTM implements IRecipeDefaults
         registry.register("gold", new Color("FFFF00"), new ItemInfo(Items.GOLD_INGOT, 0), OreDictUtil.getOreDictEntry("dustGold"));
         registry.register("iron", new Color("BF8040"), new ItemInfo(Items.IRON_INGOT, 0), OreDictUtil.getOreDictEntry("dustIron"));
 
-        for(EnumModdedMetals metal : EnumModdedMetals.values()) {
-            if(metal.getRegistryName().equals("aluminum") &&
-                    (!OreDictionary.getOres("oreAluminium").isEmpty() ||
-                            !OreDictionary.getOres("oreAluminum").isEmpty())) {
-                // Blame Humphry Davy
-                registry.register("aluminium", metal.getColor(), metal.getIngot(), metal.getDust());
-            }
-            else if(!OreDictionary.getOres(metal.getOreName()).isEmpty()) {
-                registry.register(metal.getRegistryName(), metal.getColor(), metal.getIngot(), metal.getDust());
-            }
-        }
+//        for(EnumModdedMetals metal : EnumModdedMetals.values()) {
+//            if(metal.getRegistryName().equals("aluminum") &&
+//                    (!OreDictionary.getOres("oreAluminium").isEmpty() ||
+//                            !OreDictionary.getOres("oreAluminum").isEmpty())) {
+//                // Blame Humphry Davy
+//                registry.register("aluminium", metal.getColor(), metal.getIngot(), metal.getDust());
+//            }
+//            else if(!OreDictionary.getOres(metal.getOreName()).isEmpty()) {
+//                registry.register(metal.getRegistryName(), metal.getColor(), metal.getIngot(), metal.getDust());
+//            }
+//        }
     }
 
     @Override

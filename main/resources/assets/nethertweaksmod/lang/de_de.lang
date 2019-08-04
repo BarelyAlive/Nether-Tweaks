@@ -29,8 +29,6 @@ item.elder_door.name=Uralttür
 generator.hellworld=Hölle auf Erden
 
 item.cooked_jerky.name="Essbar"
-item.pickaxe_netherrack.name=Nethegesteinspitzhacke
-item.pickaxe_netherbrick.name=Netherziegelspitzhacke
 item.grabber_wood.name=Greifzange
 item.grabber_gold.name=Greifzange
 item.grabber_stone.name=Greifzange
@@ -51,7 +49,6 @@ item.sugarcane_seeds.name=Zuckerrohrsamen
 item.flint_and_blaze.name=Feuerzeug
 
 item.crystal_of_light.name=Lichtkristall
-item.ender_crystal.name=Enderkristall
 
 item.end_box.name=Endbox
 item.portal_core.name=Portalkern
