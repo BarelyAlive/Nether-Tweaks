@@ -126,6 +126,8 @@ public class ItemHandler implements INames
     	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
     	if(Config.enableAsh) 				Registry.registerItem(ASH);
     	if(Config.enableWoodChippings)		Registry.registerItem(WOOD_CHIPPINGS);
+    	
+    	//Weapons
     	if(Config.enableCoiledSword)		Registry.registerItem(COILED_SWORD);
     	
     	//Seeds
@@ -179,6 +181,8 @@ public class ItemHandler implements INames
         if(Config.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
         if(Config.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
         if(Config.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
+        
+        //Tree
         if(Config.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
 
         //Food
