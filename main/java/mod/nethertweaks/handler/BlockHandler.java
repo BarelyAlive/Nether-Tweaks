@@ -87,7 +87,6 @@ public class BlockHandler implements INames
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
-        if(Config.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
     }
         
     //Registering all the blocks
