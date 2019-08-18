@@ -55,7 +55,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 		if (world.isRemote) return;		
 		if (entity.isDead) return;
 		
-		if (Config.spawnSkeleton) {
+		if (Config.spawnSkeletons) {
 			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null)
 			{
 				EntitySkeleton skeleton = new EntitySkeleton(world);
@@ -74,7 +74,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 			}
 		}
 			
-		if (Config.spawnSlime) {
+		if (Config.spawnSlimes) {
 			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null)
 			{
 

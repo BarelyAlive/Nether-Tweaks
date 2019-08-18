@@ -64,6 +64,12 @@ public class WorldEvents
 		
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
+		
+		for(String fluidName : Config.blacklistSalt)
+		{
+			if(f.getFluid() == FluidRegistry.getFluid(fluidName)) return;
+		}
+		
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
@@ -72,25 +78,26 @@ public class WorldEvents
 		if (!activated)
 		{
 			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
+			
 			switch (event.getFace()) {
-			case UP:
-				pos = pos.up();
-				break;
-			case NORTH:
-				pos = pos.north();
-				break;
-			case EAST:
-				pos = pos.east();
-				break;
-			case SOUTH:
-				pos = pos.south();
-				break;
-			case WEST:
-				pos = pos.west();
-				break;
-			case DOWN:
-				pos = pos.down();
-				break;
+				case UP:
+					pos = pos.up();
+					break;
+				case NORTH:
+					pos = pos.north();
+					break;
+				case EAST:
+					pos = pos.east();
+					break;
+				case SOUTH:
+					pos = pos.south();
+					break;
+				case WEST:
+					pos = pos.west();
+					break;
+				case DOWN:
+					pos = pos.down();
+					break;
 			}
 			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 2));
 			world.spawnEntity(salt);

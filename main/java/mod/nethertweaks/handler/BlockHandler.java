@@ -37,6 +37,7 @@ import net.minecraft.util.ResourceLocation;
 public class BlockHandler implements INames
 {
 	//Tile Entity
+	public static final Block ASH_BONE_PILE		   = new AshBonePile();
     public static final Block CONDENSER 		   = new Condenser();
     public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
     public static final Block BARREL_WOOD		   = new Barrel(0, Material.WOOD);
@@ -48,7 +49,6 @@ public class BlockHandler implements INames
     
     //Blocks
     public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
-    public static final Block ASH_BONE_PILE		   = new AshBonePile();
     public static final Block STWH 				   = new StwH();
     public static final Block SIEVE 			   = new Sieve();
     public static final Block MEAN_VINE			   = new MeanVine();

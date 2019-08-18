@@ -5,9 +5,10 @@ import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.Fluid;
 
 public class Config extends BlocksItems
-{		
+{
 	//int
 	public static int endDim  = -1;
 	public static int nethDim = -1;
@@ -46,7 +47,7 @@ public class Config extends BlocksItems
 	public static int sieveEfficiencyMaxLevel 	  = 5;
 	public static int normalDropPercent 		  = 100;
 	public static boolean setFireToMacroUsers 	  = true;
-	public static boolean hellworldfeatures 	  = true;
+	public static boolean hellworldFeatures 	  = true;
 	public static boolean hasteIncreaseSpeed 	  = true;
 	public static boolean enableSieveEfficiency   = true;
 	public static boolean enableSieveFortune 	  = true;
@@ -69,13 +70,13 @@ public class Config extends BlocksItems
 	public static int densityLI 	= 1000;
 	public static int viscosityLI   = 1000;
 	public static boolean doesLIVaporize = false;
-	public static boolean spawnSkeleton  = true;
-	public static boolean spawnSlime 	 = true;
+	public static boolean spawnSkeletons = true;
+	public static boolean spawnSlimes 	 = true;
 	public static boolean spawnWaterMobs = true;
 	
-	public static boolean isHellworld 	 = true;
-	public static boolean enableTeleport = true;
+	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
+	public static String[] blacklistSalt = {""};
 	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
 	//JSON
@@ -131,7 +132,9 @@ public class Config extends BlocksItems
         nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
         enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
+        
         enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
+        blacklistSalt					= config.getStringList("Fluids that sould not work for the salt recipe", "Mechanics", blacklistSalt, "Example: minecraft:water");
         
         //Ore
         
@@ -144,7 +147,7 @@ public class Config extends BlocksItems
         sievesAutoOutput 				= config.get("Sieving", "Sieve Auto output?", false).getBoolean();
         fakePlayersCanSieve 			= config.get("Sieving", "Fake players can sieve?", false).getBoolean();
         setFireToMacroUsers 			= config.get("Sieving", "Set fire to Macro Users?", false).getBoolean();
-        hellworldfeatures 				= config.get("Sieving", "Enable Hellowrld features?", false).getBoolean();
+        hellworldFeatures 				= config.get("Sieving", "Enable Hellworld features?", false).getBoolean();
         enableSieveFortune 				= config.get("Sieving", "Enable sieve fortune enchanting?", true).getBoolean();
         enableSieveEfficiency 			= config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
         hasteIncreaseSpeed 				= config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
@@ -153,7 +156,7 @@ public class Config extends BlocksItems
         
         //Barrel
         compostingTicks 				= config.get("Barrel", "Ticks to form Dirt", 600).getInt();
-        woodBarrelMaxTemp 				= config.get("Barrel", "How hot can a fluid be in a wodden barrel (in Kelvin)?", 301).getInt();
+        woodBarrelMaxTemp 				= config.get("Barrel", "How hot can a fluid be in a wooden barrel (in Kelvin)?", 301).getInt();
         shouldBarrelsFillWithRain 		= config.get("Barrel", "Barrels fill with rain?", true).getBoolean();
         enableBarrelTransformLighting 	= config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
         
@@ -165,12 +168,10 @@ public class Config extends BlocksItems
         viscosityLI						= config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
         temperatureLI					= config.getInt("Temperatur of Liquid Impossibility in Kelvin", "Fluid", 0, 0, Integer.MAX_VALUE, ""); 
         doesLIVaporize 					= config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
-        spawnSkeleton 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
-        spawnSlime 						= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
+        spawnSkeletons 					= config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
+        spawnSlimes 					= config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
         spawnWaterMobs					= config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
-        
-        isHellworld 					= config.get("WorldType", "Are you playing Hellworld?", true).getBoolean();
-        
+                
         //JSON
         enableJSONLoading 				= config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON configuration causes problems");
         
