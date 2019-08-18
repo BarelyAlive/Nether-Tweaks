@@ -87,6 +87,7 @@ public class BlockHandler implements INames
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
+        if(Config.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
     }
         
     //Registering all the blocks
@@ -96,7 +97,6 @@ public class BlockHandler implements INames
     	if(Config.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
     	if(Config.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
         if(Config.enableDust) 				Registry.registerBlock(DUST);
-        if(Config.enableAshBonePile)		Registry.registerBlock(ASH_BONE_PILE);
         if(Config.enableStwH) 				Registry.registerBlock(STWH);
         if(Config.enableElderTree) {
 			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);

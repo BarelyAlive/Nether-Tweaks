@@ -79,25 +79,29 @@ public class ItemHandler implements INames
 	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.WOOD_CHIPPINGS));
+	
+	//Weapons
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
 	
-    //Werkzeuge
+    //Tools
     public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
     public static final Item GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
     public static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
     public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
     public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
+    
     public static final Item HAMMER_WOOD	  	 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
     public static final Item HAMMER_GOLD 	  	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
     public static final Item HAMMER_STONE	  	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
     public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
     public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+    
     public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
     //Food
     public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 
-    //itemblocks
+    //ItemBlocks
     public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
     public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
     public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(INames.MODID, "item_" + INames.ELDER_SLAB);
