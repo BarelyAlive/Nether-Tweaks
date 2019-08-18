@@ -135,7 +135,7 @@ public class AshBonePile extends CubeContainerHorizontal
 				if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
 				{
 					BlockPos resultPos = testPosition(world, pos);
-					BonfireInfo info = new BonfireInfo(player.getUniqueID(), world.provider.getDimension());
+					BonfireInfo info = new BonfireInfo(player.getUUID(player.getGameProfile()), world.provider.getDimension());
 					if(resultPos != null)
 					{
 						info.setSpawnPos(resultPos);
