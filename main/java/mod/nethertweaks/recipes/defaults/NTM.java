@@ -232,6 +232,11 @@ public class NTM implements IRecipeDefaults
 
         registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getName());
         registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getName());
+        
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.02f), MeshType.STRING.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.04f), MeshType.FLINT.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.08f), MeshType.IRON.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.10f), MeshType.DIAMOND.getName());
 
         // There needs to be a way to get flint without a flint mesh
         registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.STRING.getName());
@@ -489,6 +494,7 @@ public class NTM implements IRecipeDefaults
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
     	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
+    	registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 1000, true);
     }
 
     @Override
