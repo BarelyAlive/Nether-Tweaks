@@ -103,6 +103,11 @@ public class WorldEvents
 			world.spawnEntity(salt);
 		}
     }
+	
+	@SubscribeEvent
+	public void climateCheck(net.minecraftforge.event.world.BlockEvent.FluidPlaceBlockEvent event) {
+		
+	}
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
