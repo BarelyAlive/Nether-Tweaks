@@ -5,6 +5,7 @@ import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
@@ -35,7 +36,7 @@ public class TileCondenser extends TileFluidInventory
 	private int fillTick = 0;
 	
     public TileCondenser() {
-		super(3, INames.TE_CONDENSER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityCondenser));
+		super(3, INames.TE_CONDENSER, new FluidTankSingle(Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER, 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
 	}
 
@@ -91,7 +92,7 @@ public class TileCondenser extends TileFluidInventory
 	{
 		fillTick++;
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
+			FluidStack water = new FluidStack(Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER, Config.fluidOutputAmount);
 			if (this.getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
 				BlockPos north = this.getPos().north();
 				BlockPos east = this.getPos().east();
@@ -158,6 +159,8 @@ public class TileCondenser extends TileFluidInventory
 			this.decrStackSize(2, 1);
 		}
 		
+		if(Config.enableDistilledWater) return;
+		
 		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && this.getStackInSlot(1).isEmpty())
 		{
 			if(this.getTank().getFluidAmount() >= 250)
@@ -223,7 +226,7 @@ public class TileCondenser extends TileFluidInventory
 		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		case 1: return false;
 		case 2:
-			if(stack.getItem() == Items.GLASS_BOTTLE) return true;
+			if(stack.getItem() == Items.GLASS_BOTTLE && !Config.enableDistilledWater) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}
@@ -250,14 +253,14 @@ public class TileCondenser extends TileFluidInventory
     }
     
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
-    	fillTick = compound.getInteger("fillTick");
-    	super.readFromNBT(compound);
+    public void readFromNBT(NBTTagCompound nbt) {
+    	fillTick = nbt.getInteger("fillTick");
+    	super.readFromNBT(nbt);
     }
     
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-    	compound.setInteger("fillTick", fillTick);
-    	return super.writeToNBT(compound);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    	nbt.setInteger("fillTick", fillTick);
+    	return super.writeToNBT(nbt);
     }
 }

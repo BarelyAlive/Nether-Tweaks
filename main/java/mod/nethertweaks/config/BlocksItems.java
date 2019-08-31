@@ -18,6 +18,7 @@ public class BlocksItems
 	public static boolean enableFreezer 			= true;
 	public static boolean enableHellmart 			= true;
 	public static boolean enableLiquidImpossibility = true;
+	public static boolean enableDistilledWater		= true;
 	public static boolean enableMeanVine 			= true;
 	public static boolean enableElderTree 			= true;
 	public static boolean enableNetherrackFurnace 	= true;
@@ -100,6 +101,8 @@ public class BlocksItems
     	enableStwH 						= config.get("Blocks", "Enable Stairway to Heaven?", true).getBoolean();
     	enableFreezer 					= config.get("Blocks", "Enable Freezer?", true).getBoolean();
     	enableHellmart 					= config.get("Blocks", "Enable Hellmart?", true).getBoolean();
+    	enableDistilledWater	 		= config.get("Blocks", "Enable Distilled Water?", true, 
+    			"If you deactivate this fluid, the Condenser will produce vanilla water.").getBoolean();
     	enableLiquidImpossibility 		= config.get("Blocks", "Enable Liquid Impossibility?", true).getBoolean();
     	enableMeanVine 					= config.get("Blocks", "Enable Mean Vines?", true).getBoolean();
     	enableElderTree 				= config.get("Blocks", "Enable Elder Tree?", true).getBoolean();

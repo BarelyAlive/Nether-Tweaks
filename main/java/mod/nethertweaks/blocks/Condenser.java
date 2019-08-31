@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.GuiHandlerNTM;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
@@ -48,10 +49,13 @@ public class Condenser extends CubeContainerHorizontal
     	
     	boolean success;
     	
-		success = TankUtil.drainWaterIntoBottle(te, player, te.getTank());
-    	if(success) return true;
+		if (!Config.enableDistilledWater) {
+			success = TankUtil.drainWaterIntoBottle(te, player, te.getTank());
+			if (success)
+				return true;
+		}
 		
-    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+		IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
