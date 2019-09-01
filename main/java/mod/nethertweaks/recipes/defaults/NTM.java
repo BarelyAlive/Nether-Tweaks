@@ -36,6 +36,7 @@ import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -180,13 +181,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.CACTUS), 300);
 		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
 		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
-		
-		//Back to water 1:1
-        registry.register(new ItemInfo(Items.SNOWBALL), 250);
-		registry.register(new BlockInfo(Blocks.PACKED_ICE), 9000);
-        registry.register(new BlockInfo(Blocks.ICE), 1000);
-        registry.register(new BlockInfo(Blocks.SNOW), 1000);
-        registry.register(new BlockInfo(Blocks.SNOW_LAYER), 125); //Blame Mojang for their unfair recipe
         
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);
@@ -235,7 +229,7 @@ public class NTM implements IRecipeDefaults
         
         registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.02f), MeshType.STRING.getName());
         registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.04f), MeshType.FLINT.getName());
-        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.08f), MeshType.IRON.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.06f), MeshType.IRON.getName());
         registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.10f), MeshType.DIAMOND.getName());
 
         // There needs to be a way to get flint without a flint mesh
@@ -260,6 +254,7 @@ public class NTM implements IRecipeDefaults
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.DIAMOND.getName());
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.8f), MeshType.DIAMOND.getName());
 
+        //DUST
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.DYE, 15), getDropChance(0.2f), MeshType.STRING.getName());
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GUNPOWDER), getDropChance(0.07f), MeshType.STRING.getName());
 
@@ -494,7 +489,7 @@ public class NTM implements IRecipeDefaults
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
     	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
-    	registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 1000, true);
+    	registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 100, true);
     }
 
     @Override
@@ -508,6 +503,13 @@ public class NTM implements IRecipeDefaults
         // 1:1 Back to lava
         registry.register("netherrack", FluidRegistry.LAVA, 1000);
         registry.register("obsidian", FluidRegistry.LAVA, 1000);
+        
+        //Back to water 1:1
+        registry.register(new ItemInfo(Items.SNOWBALL), FluidRegistry.WATER, 250);
+		registry.register(new BlockInfo(Blocks.PACKED_ICE), FluidRegistry.WATER, 9000);
+        registry.register(new BlockInfo(Blocks.ICE), FluidRegistry.WATER, 1000);
+        registry.register(new BlockInfo(Blocks.SNOW), FluidRegistry.WATER, 1000);
+        registry.register(new BlockInfo(Blocks.SNOW_LAYER), FluidRegistry.WATER, 125); //Blame Mojang for their unfair recipe
     }
 
     @Override

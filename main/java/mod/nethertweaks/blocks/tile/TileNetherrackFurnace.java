@@ -116,18 +116,16 @@ public class TileNetherrackFurnace extends TileInventory
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		int workTime = Config.burnTimeFurnace;
+		int workTime = 0;
 		if (heat != 0) {
-			workTime *= 3;
-			workTime /= heat;
-			this.setMaxworkTime(workTime);
-			return workTime;
+			workTime = Config.burnTimeFurnace * 3 / heat;
 		}
 		else
 		{
 			this.setWorkTime(0);
-			return 0;
 		}
+		this.setMaxworkTime(workTime);
+		return workTime;
 	}
 
     /**

@@ -25,6 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -35,8 +36,13 @@ public class TileCondenser extends TileFluidInventory
 {	
 	private int fillTick = 0;
 	
+	private static Fluid distilled()
+	{
+		return Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
+	}
+	
     public TileCondenser() {
-		super(3, INames.TE_CONDENSER, new FluidTankSingle(Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER, 0, Config.capacityCondenser));
+		super(3, INames.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
 	}
 
@@ -92,7 +98,7 @@ public class TileCondenser extends TileFluidInventory
 	{
 		fillTick++;
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER, Config.fluidOutputAmount);
+			FluidStack water = new FluidStack(distilled(), Config.fluidOutputAmount);
 			if (this.getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
 				BlockPos north = this.getPos().north();
 				BlockPos east = this.getPos().east();
@@ -201,19 +207,20 @@ public class TileCondenser extends TileFluidInventory
 	
 	private int calcMaxWorktime()
 	{
-		int heat = getHeatRate();
-		int workTime = Config.dryTimeCondenser;
+		int heat = this.getHeatRate();
+		int workTime = 0;
 		if (heat != 0) {
-			workTime *= 3;
-			workTime /= heat;
-			this.setMaxworkTime(workTime);
-			return workTime;
+			workTime = Config.dryTimeCondenser * 3 / heat;
+		}
+		else if(this.getWorld().provider.doesWaterVaporize())
+		{
+			workTime = Config.dryTimeCondenser * 4 / 3;
 		}
 		else
-		{
 			this.setWorkTime(0);
-			return 0;
-		}
+		
+		this.setMaxworkTime(workTime);
+		return workTime;
 	}
 	
 	@Override
