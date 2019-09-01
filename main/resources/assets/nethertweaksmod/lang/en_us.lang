@@ -22,9 +22,16 @@ tile.barrel1.name=Barrel
 tile.crucible.name=Crucible
 tile.unfired_crucible.name=Unfired Crucible
 tile.mean_vine.name=Mean Vine
-tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Ash Bone Pile
+
+tile.stone_sieve.name=Sieve
+tile.oak_sieve.name=Sieve
+tile.birch_sieve.name=Sieve
+tile.spruce_sieve.name=Sieve
+tile.jungle_sieve.name=Sieve
+tile.dark_oak_sieve.name=Sieve
+tile.elder_sieve.name=Sieve
 
 item.stone_door.name=Stone Door
 item.elder_door.name=Elder Door

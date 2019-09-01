@@ -22,9 +22,16 @@ tile.barrel1.name=Barril
 tile.crucible.name=Cadinho
 tile.unfired_crucible.name=Cadinho não queimado
 tile.mean_vine.name=Vinha Média
-tile.sieve.name=Peneira
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Pilha de Osso de Cinzas
+
+tile.stone_sieve.name=Peneira
+tile.oak_sieve.name=Peneira
+tile.birch_sieve.name=Peneira
+tile.spruce_sieve.name=Peneira
+tile.jungle_sieve.name=Peneira
+tile.dark_oak_sieve.name=Peneira
+tile.elder_sieve.name=Peneira
 
 item.stone_door.name=Porta de pedra
 item.elder_door.name=Porta do Ancião

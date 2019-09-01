@@ -22,9 +22,16 @@ tile.barrel1.name=Steinfass
 tile.crucible.name=Schmelze
 tile.unfired_crucible.name=Ungebrannte Schmelze
 tile.mean_vine.name=Fiese Ranken
-tile.sieve.name=Sieb
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Knochen-Asche-Haufen
+
+tile.stone_sieve.name=Sieb
+tile.oak_sieve.name=Sieb
+tile.birch_sieve.name=Sieb
+tile.spruce_sieve.name=Sieb
+tile.jungle_sieve.name=Sieb
+tile.dark_oak_sieve.name=Sieb
+tile.elder_sieve.name=Sieb
 
 item.stone_door.name=Steintür
 item.elder_door.name=Uralttür

@@ -47,13 +47,15 @@ public class BlockHandler implements INames
     public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
     
-    public static final Block OAK_SIEVE			   = new Sieve(INames.OAK_SIEVE);
-    public static final Block BIRCH_SIEVE		   = new Sieve(INames.BIRCH_SIEVE);
-    public static final Block SPRUCE_SIEVE		   = new Sieve(INames.SPRUCE_SIEVE);
-    public static final Block JUNGLE_SIEVE		   = new Sieve(INames.JUNGLE_SIEVE);
-    public static final Block ACACIA_SIEVE		   = new Sieve(INames.ACACIA_SIEVE);
-    public static final Block DARK_OAK_SIEVE	   = new Sieve(INames.DARK_OAK_SIEVE);
-    public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE);
+    public static final Block STONE_SIEVE		   = new Sieve(INames.STONE_SIEVE, Material.ROCK);
+    
+    public static final Block OAK_SIEVE			   = new Sieve(INames.OAK_SIEVE, Material.WOOD);
+    public static final Block BIRCH_SIEVE		   = new Sieve(INames.BIRCH_SIEVE, Material.WOOD);
+    public static final Block SPRUCE_SIEVE		   = new Sieve(INames.SPRUCE_SIEVE, Material.WOOD);
+    public static final Block JUNGLE_SIEVE		   = new Sieve(INames.JUNGLE_SIEVE, Material.WOOD);
+    public static final Block ACACIA_SIEVE		   = new Sieve(INames.ACACIA_SIEVE, Material.WOOD);
+    public static final Block DARK_OAK_SIEVE	   = new Sieve(INames.DARK_OAK_SIEVE, Material.WOOD);
+    public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE, Material.WOOD);
     
     //Blocks
     public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));

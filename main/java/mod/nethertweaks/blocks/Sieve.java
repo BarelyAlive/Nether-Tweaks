@@ -36,8 +36,8 @@ public class Sieve extends BlockContainer {
 
     public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
 
-    public Sieve(String name) {
-        super(Material.WOOD);
+    public Sieve(String name, Material material) {
+        super(material);
         this.setResistance(30.0F);
         this.setHardness(2.0f);
         this.setRegistryName(NetherTweaksMod.MODID, name);

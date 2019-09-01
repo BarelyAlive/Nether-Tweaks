@@ -19,7 +19,9 @@ public interface INames {
 	public String CRUCIBLE					= "crucible";
 	public String HELLMART 					= "hellmart";
 	public String BONFIRE 					= "bonfire";
-		
+	
+	public String STONE_SIEVE				= "stone_sieve";
+	
 	public String OAK_SIEVE					= "oak_sieve";
 	public String BIRCH_SIEVE				= "birch_sieve";
 	public String SPRUCE_SIEVE				= "spruce_sieve";
