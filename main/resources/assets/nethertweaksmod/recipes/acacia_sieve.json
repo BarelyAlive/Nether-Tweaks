@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x x",
+    "xyx",
+    "s s"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "x": {
+      "item": "minecraft:planks",
+      "data": 4
+    },
+    "y": {
+      "item": "minecraft:wooden_slab",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "item_acacia_sieve"
+  }
+}

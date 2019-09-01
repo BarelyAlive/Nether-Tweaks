@@ -47,10 +47,17 @@ public class BlockHandler implements INames
     public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
     
+    public static final Block OAK_SIEVE			   = new Sieve(INames.OAK_SIEVE);
+    public static final Block BIRCH_SIEVE		   = new Sieve(INames.BIRCH_SIEVE);
+    public static final Block SPRUCE_SIEVE		   = new Sieve(INames.SPRUCE_SIEVE);
+    public static final Block JUNGLE_SIEVE		   = new Sieve(INames.JUNGLE_SIEVE);
+    public static final Block ACACIA_SIEVE		   = new Sieve(INames.ACACIA_SIEVE);
+    public static final Block DARK_OAK_SIEVE	   = new Sieve(INames.DARK_OAK_SIEVE);
+    public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE);
+    
     //Blocks
     public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
     public static final Block STWH 				   = new StwH();
-    public static final Block SIEVE 			   = new Sieve();
     public static final Block MEAN_VINE			   = new MeanVine();
     public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
     public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
@@ -76,7 +83,13 @@ public class BlockHandler implements INames
     {
     	//Tile Entity
         if(Config.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
-    	if(Config.enableSieve) 				Registry.registerTileEntity(SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(JUNGLE_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
+    	if(Config.enableSieve) 				Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);

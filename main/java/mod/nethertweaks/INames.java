@@ -18,8 +18,15 @@ public interface INames {
 	public String FREEZER 					= "freezer";
 	public String CRUCIBLE					= "crucible";
 	public String HELLMART 					= "hellmart";
-	public String SIEVE 					= "sieve";
 	public String BONFIRE 					= "bonfire";
+	
+	public String OAK_SIEVE					= "oak_sieve";
+	public String BIRCH_SIEVE				= "birch_sieve";
+	public String SPRUCE_SIEVE				= "spruce_sieve";
+	public String JUNGLE_SIEVE 				= "jungle_sieve";
+	public String ACACIA_SIEVE				= "acacia_sieve";
+	public String DARK_OAK_SIEVE			= "dark_oak_sieve";
+	public String ELDER_SIEVE				= "elder_sieve";
 	
 	public String ASH_BONE_PILE				= "ash_bone_pile";
 	public String STONE_DOOR				= "stone_door";
