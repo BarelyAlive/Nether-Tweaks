@@ -159,8 +159,6 @@ public class TileCondenser extends TileFluidInventory
 			
 			ItemStack container = input_handler.getContainer();
 			
-			System.out.println(container);
-			
 			this.setInventorySlotContents(1, container);
 			this.decrStackSize(2, 1);
 		}
