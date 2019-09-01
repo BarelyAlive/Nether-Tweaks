@@ -33,11 +33,11 @@ public class Barrel extends Block implements ITileEntityProvider
     private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
     private final int tier;
 
-    public Barrel(int tier, Material material) {
+    public Barrel(int tier, Material material, String name) {
         super(material);
         this.tier = tier;
         this.setHardness(2.0f);
-        this.setRegistryName(NetherTweaksMod.MODID, INames.BARREL + tier);
+        this.setRegistryName(NetherTweaksMod.MODID, name);
         this.setCreativeTab(NetherTweaksMod.TABNTM);
     }
 

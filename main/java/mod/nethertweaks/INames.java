@@ -30,6 +30,17 @@ public interface INames {
 	public String DARK_OAK_SIEVE			= "dark_oak_sieve";
 	public String ELDER_SIEVE				= "elder_sieve";
 	
+
+	public String STONE_BARREL				= "stone_barrel";
+	
+	public String OAK_BARREL				= "oak_barrel";
+	public String BIRCH_BARREL				= "birch_barrel";
+	public String SPRUCE_BARREL				= "spruce_barrel";
+	public String JUNGLE_BARREL				= "jungle_barrel";
+	public String ACACIA_BARREL				= "acacia_barrel";
+	public String DARK_OAK_BARREL			= "dark_oak_barrel";
+	public String ELDER_BARREL				= "elder_barrel";
+	
 	public String ASH_BONE_PILE				= "ash_bone_pile";
 	public String STONE_DOOR				= "stone_door";
 	public String ELDER_DOOR				= "elder_door";

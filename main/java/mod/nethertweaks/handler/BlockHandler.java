@@ -40,13 +40,12 @@ public class BlockHandler implements INames
 	public static final Block ASH_BONE_PILE		   = new AshBonePile();
     public static final Block CONDENSER 		   = new Condenser();
     public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
-    public static final Block BARREL_WOOD		   = new Barrel(0, Material.WOOD);
-    public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK);
     public static final Block FREEZER 			   = new Freezer();
     public static final Block HELLMART 			   = new Hellmart();
     public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
     
+    //Sieves
     public static final Block STONE_SIEVE		   = new Sieve(INames.STONE_SIEVE, Material.ROCK);
     
     public static final Block OAK_SIEVE			   = new Sieve(INames.OAK_SIEVE, Material.WOOD);
@@ -56,6 +55,17 @@ public class BlockHandler implements INames
     public static final Block ACACIA_SIEVE		   = new Sieve(INames.ACACIA_SIEVE, Material.WOOD);
     public static final Block DARK_OAK_SIEVE	   = new Sieve(INames.DARK_OAK_SIEVE, Material.WOOD);
     public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE, Material.WOOD);
+    
+    //Barrels
+    public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK, INames.STONE_BARREL);
+    
+    public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD, INames.OAK_BARREL);
+    public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, INames.BIRCH_BARREL);
+    public static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD, INames.SPRUCE_BARREL);
+    public static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD, INames.JUNGLE_BARREL);
+    public static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD, INames.ACACIA_BARREL);
+    public static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD, INames.DARK_OAK_BARREL);
+    public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, INames.ELDER_BARREL);
     
     //Blocks
     public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
@@ -85,6 +95,9 @@ public class BlockHandler implements INames
     {
     	//Tile Entity
         if(Config.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
+        
+    	if(Config.enableSieve) 				Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
+    	
     	if(Config.enableSieve) 				Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
@@ -92,12 +105,21 @@ public class BlockHandler implements INames
     	if(Config.enableSieve) 				Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
     	if(Config.enableSieve) 				Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
+    	
     	if(Config.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(Config.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
-    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BARREL_WOOD, TileBarrel.class);
+    	
     	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
+    	
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(OAK_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(BIRCH_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(SPRUCE_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(JUNGLE_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(ACACIA_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(DARK_OAK_BARREL, TileBarrel.class);
+    	if(Config.enableBarrelWood)			Registry.registerTileEntity(ELDER_BARREL, TileBarrel.class);
     	if(Config.enableCrucible) {
 								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
 								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
