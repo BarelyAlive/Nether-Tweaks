@@ -17,13 +17,21 @@ tile.elder_sapling.name=Rebento de Ancião
 tile.elder_slab.name=Laje de Ancião
 tile.elder_slab_double.name=Laje Dupla do Ancião
 tile.netherrack_gravel.name=Cascalho Netherrack
-tile.barrel0.name=Barril
-tile.barrel1.name=Barril
 tile.crucible.name=Cadinho
 tile.unfired_crucible.name=Cadinho não queimado
 tile.mean_vine.name=Vinha Média
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Pilha de Osso de Cinzas
+
+tile.stone_barrel.name=Barril
+
+tile.oak_barrel.name=Barril
+tile.birch_barrel.name=Barril
+tile.spruce_barrel.name=Barril
+tile.jungle_barrel.name=Barril
+tile.acacia_barrel.name=Barril
+tile.dark_oak_barrel.name=Barril
+tile.elder_barrel.name=Barril
 
 tile.stone_sieve.name=Peneira
 tile.oak_sieve.name=Peneira

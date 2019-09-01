@@ -17,15 +17,24 @@ tile.elder_sapling.name=Uraltsetzling
 tile.elder_slab.name=Uraltstufe
 tile.elder_slab_double.name=Uraltdoppelstufe
 tile.netherrack_gravel.name=Nethergesteinkies
-tile.barrel0.name=Holzfass
-tile.barrel1.name=Steinfass
 tile.crucible.name=Schmelze
 tile.unfired_crucible.name=Ungebrannte Schmelze
 tile.mean_vine.name=Fiese Ranken
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Knochen-Asche-Haufen
 
+tile.stone_barrel.name=Fass
+
+tile.oak_barrel.name=Fass
+tile.birch_barrel.name=Fass
+tile.spruce_barrel.name=Fass
+tile.jungle_barrel.name=Fass
+tile.acacia_barrel.name=Fass
+tile.dark_oak_barrel.name=Fass
+tile.elder_barrel.name=Fass
+
 tile.stone_sieve.name=Sieb
+
 tile.oak_sieve.name=Sieb
 tile.birch_sieve.name=Sieb
 tile.spruce_sieve.name=Sieb

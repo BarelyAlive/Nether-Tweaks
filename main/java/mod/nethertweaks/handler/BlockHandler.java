@@ -57,7 +57,7 @@ public class BlockHandler implements INames
     public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE, Material.WOOD);
     
     //Barrels
-    public static final Block BARREL_STONE 		   = new Barrel(1, Material.ROCK, INames.STONE_BARREL);
+    public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, INames.STONE_BARREL);
     
     public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD, INames.OAK_BARREL);
     public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, INames.BIRCH_BARREL);
@@ -111,7 +111,7 @@ public class BlockHandler implements INames
     	if(Config.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(Config.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
     	
-    	if(Config.enableBarrelStone)		Registry.registerTileEntity(BARREL_STONE, TileBarrel.class);
+    	if(Config.enableBarrelStone)		Registry.registerTileEntity(STONE_BARREL, TileBarrel.class);
     	
     	if(Config.enableBarrelWood)			Registry.registerTileEntity(OAK_BARREL, TileBarrel.class);
     	if(Config.enableBarrelWood)			Registry.registerTileEntity(BIRCH_BARREL, TileBarrel.class);

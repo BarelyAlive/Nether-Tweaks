@@ -1,5 +1,5 @@
 {
-    "parent": "nethertweaksmod:block/acacia_barrel",
+    "parent": "nethertweaksmod:block/oak_barrel",
     "textures": {
         "particle": "minecraft:blocks/planks_acacia",
         "texture": "minecraft:blocks/planks_acacia"
