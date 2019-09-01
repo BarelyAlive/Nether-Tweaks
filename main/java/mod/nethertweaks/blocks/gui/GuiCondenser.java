@@ -68,11 +68,11 @@ public class GuiCondenser extends GuiContainer
         int x_old = x;
         int y_old = y;
         if(TileInventory.isWorking(this.entity)){
-        	int k = this.entity.getWorkTimeRemainingScaled(13);
+        	int k = this.entity.getWorkTimeRemainingScaled(16);
+        	k += 1;
         	x += 28;
         	y += 18;
-        	int k_inv = 13 - k;
-        	drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
+        	drawTexturedModalRect(x, y, 176, 0, 14, k);
         }
         
         x = x_old;

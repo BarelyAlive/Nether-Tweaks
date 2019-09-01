@@ -1,6 +1,9 @@
+fluid.distilled_water=Água destilada
 fluid.liquid_impossibility=Impossibilidade Líquida
 
+tile.distilled_water.name=Água destilada
 tile.liquid_impossibility.name=Impossibilidade Líquida
+
 tile.condenser.name=Condensador
 tile.netherrack_furnace.name=Fornalha Netherrack
 tile.stairway_to_heaven.name=Stairway to Heaven

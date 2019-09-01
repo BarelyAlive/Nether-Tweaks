@@ -244,7 +244,6 @@ public class NTM implements IRecipeDefaults
         registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.016f), MeshType.DIAMOND.getName());
         registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.016f), MeshType.DIAMOND.getName());
 
-
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.FLINT.getName());
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.33f), MeshType.FLINT.getName());
 
@@ -505,7 +504,7 @@ public class NTM implements IRecipeDefaults
         registry.register("obsidian", FluidRegistry.LAVA, 1000);
         
         //Back to water 1:1
-        registry.register(new ItemInfo(Items.SNOWBALL), FluidRegistry.WATER, 250);
+        //registry.register(new ItemInfo(Items.SNOWBALL), FluidRegistry.WATER, 250);
 		registry.register(new BlockInfo(Blocks.PACKED_ICE), FluidRegistry.WATER, 9000);
         registry.register(new BlockInfo(Blocks.ICE), FluidRegistry.WATER, 1000);
         registry.register(new BlockInfo(Blocks.SNOW), FluidRegistry.WATER, 1000);

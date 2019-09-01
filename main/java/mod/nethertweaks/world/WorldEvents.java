@@ -67,7 +67,7 @@ public class WorldEvents
 		
 		for(String fluidName : Config.blacklistSalt)
 		{
-			if(f.getFluid() == FluidRegistry.getFluid(fluidName)) return;
+			if(f.getFluid().getName().equals(fluidName)) return;
 		}
 		
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
@@ -99,15 +99,19 @@ public class WorldEvents
 					pos = pos.down();
 					break;
 			}
-			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 2));
+			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
 			world.spawnEntity(salt);
 		}
     }
 	
+	/*
+	
 	@SubscribeEvent
-	public void climateCheck(net.minecraftforge.event.world.BlockEvent.FluidPlaceBlockEvent event) {
+	public void climateCheck(FluidPlaceBlockEvent event) {
 		
 	}
+	
+	*/
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {

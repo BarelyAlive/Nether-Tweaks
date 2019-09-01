@@ -76,7 +76,7 @@ public class Config extends BlocksItems
 	
 	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
-	public static String[] blacklistSalt = {""};
+	public static String[] blacklistSalt = {"distilled_water"};
 	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 	
 	//JSON
