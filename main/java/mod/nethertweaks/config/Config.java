@@ -34,6 +34,7 @@ public class Config extends BlocksItems
 	//Freezer
 	public static int freezeTimeFreezer  = 6000;
 	public static int capacityFreezer  	 = 16000;
+	public static int cooldownFreezer  	 = 18000;
 		
 	//Condenser
 	public static int fluidOutputAmount  	 = 200;

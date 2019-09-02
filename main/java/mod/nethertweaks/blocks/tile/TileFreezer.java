@@ -25,7 +25,7 @@ public class TileFreezer extends TileFluidInventory
 	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	private float temp = 100f;
 	private int timer = 0;
-	private int maxTimer = 18000;
+	private int maxTimer = Config.cooldownFreezer;
 	
 	private ItemStack ice()
 	{
