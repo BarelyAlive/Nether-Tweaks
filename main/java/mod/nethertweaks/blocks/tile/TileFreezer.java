@@ -58,11 +58,10 @@ public class TileFreezer extends TileFluidInventory
 			}
 			
 			setTemp(100f - 130f * ((float)timer / (float)maxTimer));
-			
-			if(getTemp() < 0)
-			{
-				setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - (getTemp() / -90f ))));
-			}
+		}
+		if(getTemp() < 0)
+		{
+			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - (getTemp() / -90f ))));
 		}
 		if(!world.isBlockPowered(pos))
 		{
