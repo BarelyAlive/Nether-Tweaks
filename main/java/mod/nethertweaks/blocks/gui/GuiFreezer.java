@@ -6,6 +6,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileInventory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -45,13 +46,29 @@ public class GuiFreezer extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
 	{
+		getTE();
+		
+		//Fluid & amount
 		String fName = "---";
 		FluidStack f = this.entity.getTank().getFluid();
 		if(f != null) fName = f.getLocalizedName() + " : " + this.entity.getTank().getFluidAmount() + " mB";
 		else fName = fName +" : 0 mB";
-		int lenght = fontRenderer.getStringWidth(fName);
-		int x = 174 - lenght;
-		fontRenderer.drawStringWithShadow(fName, x, 73, 0xffffff);
+		int lenght0 = fontRenderer.getStringWidth(fName);
+		int x0 = 174 - lenght0;
+		fontRenderer.drawStringWithShadow(fName, x0, 73, 0xffffff);
+		
+		//Temperature in Celsius/Fahrenheit
+		String celsius = " °C";
+		String fahrenheit = " °F";
+		String text = "";
+		
+		if(Config.useMetricSystem) 
+			text = (int) this.entity.getTemp() + celsius;
+		else
+			text = (int)(this.entity.getTemp() * 1.8f + 32) + fahrenheit;
+		
+		int x1 = 104 - lenght0;
+		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
     }
 	
     @Override

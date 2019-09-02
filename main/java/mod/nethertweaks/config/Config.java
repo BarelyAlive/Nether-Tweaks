@@ -74,6 +74,7 @@ public class Config extends BlocksItems
 	public static boolean spawnSlimes 	 = true;
 	public static boolean spawnWaterMobs = true;
 	
+	public static boolean useMetricSystem  = true;
 	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
 	public static String[] blacklistSalt = {"distilled_water"};
@@ -133,6 +134,7 @@ public class Config extends BlocksItems
         endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
         enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
         
+        useMetricSystem					= config.get("Mechanics", "Use metric System?", true, "").getBoolean();
         enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
         blacklistSalt					= config.getStringList("Fluids that sould not work for the salt recipe", "Mechanics", blacklistSalt, "Example: minecraft:water");
         

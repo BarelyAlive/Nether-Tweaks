@@ -43,6 +43,7 @@ public class BlocksItems
 	public static boolean enableCrystalLight 		= true;
 	public static boolean enableAsh			 		= true;
 	public static boolean enableWoodChippings 		= true;
+	public static boolean enableCompressor	 		= true;
 	public static boolean enableCoiledSword 		= true;
 	public static boolean enablePebbleStone			= true;
 	public static boolean enablePebbleGranite		= true;
@@ -129,6 +130,7 @@ public class BlocksItems
     	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
     	enableAsh						= config.get("Items", "Enable Ash?", true).getBoolean();
     	enableWoodChippings				= config.get("Items", "Enable Wood Chippings?", true).getBoolean();
+    	enableCompressor				= config.get("Items", "Enable Wood Compressor?", true).getBoolean();
     	enableCoiledSword				= config.get("Items", "Enable Coiled Sword?", true).getBoolean();
     	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
     	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();

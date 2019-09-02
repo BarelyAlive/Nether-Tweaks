@@ -79,6 +79,8 @@ public class ItemHandler implements INames
 	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.WOOD_CHIPPINGS));
+	public static final Item COMPRESSOR	  	 	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.COMPRESSOR));
+	
 	
 	//Weapons
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
@@ -126,6 +128,7 @@ public class ItemHandler implements INames
     	if(Config.enablePowderOfLight) 		Registry.registerItem(POWDER_OF_LIGHT);
     	if(Config.enableAsh) 				Registry.registerItem(ASH);
     	if(Config.enableWoodChippings)		Registry.registerItem(WOOD_CHIPPINGS);
+    	if(Config.enableCompressor)			Registry.registerItem(COMPRESSOR);
     	
     	//Weapons
     	if(Config.enableCoiledSword)		Registry.registerItem(COILED_SWORD);
