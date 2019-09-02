@@ -148,11 +148,11 @@ public class NTM implements IRecipeDefaults
 		//fish
 		registry.register(new ItemInfo(Items.FISH), 63);
 		//cooked fish
-		registry.register(new ItemInfo(Items.COOKED_FISH), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH), 50);
 		//salmon
 		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);		
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 50);		
 		//clownfish
 		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
@@ -162,18 +162,18 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
 		registry.register(new ItemInfo(Items.PORKCHOP), 63);
-		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 63);	
+		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 50);	
 		registry.register(new ItemInfo(Items.POTATO), 42);	
-		registry.register(new ItemInfo(Items.BAKED_POTATO), 42);
+		registry.register(new ItemInfo(Items.BAKED_POTATO), 33);
 		registry.register(new ItemInfo(Items.BEEF), 63);	
-		registry.register(new ItemInfo(Items.COOKED_BEEF), 63);	
+		registry.register(new ItemInfo(Items.COOKED_BEEF), 50);	
 		registry.register(new ItemInfo(Items.CHICKEN), 63);	
-		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 63);
+		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 50);
 		registry.register(new ItemInfo(Items.RABBIT_STEW), 100);
 		registry.register(new ItemInfo(Items.RABBIT), 63);
-		registry.register(new ItemInfo(Items.COOKED_RABBIT), 63);
+		registry.register(new ItemInfo(Items.COOKED_RABBIT), 50);
 		registry.register(new ItemInfo(Items.MUTTON), 63);
-		registry.register(new ItemInfo(Items.COOKED_MUTTON), 63);
+		registry.register(new ItemInfo(Items.COOKED_MUTTON), 50);
 		registry.register(new ItemInfo(Items.MAGMA_CREAM), 68);
 		registry.register(new ItemInfo(Items.SLIME_BALL), 45);
 		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
@@ -429,8 +429,11 @@ public class NTM implements IRecipeDefaults
     public void registerFluidOnTop(FluidOnTopRegistry registry)
     {
         registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
         registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+        registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDDISTILLEDWATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+        
+        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+        registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
         registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
     }
 
@@ -463,6 +466,7 @@ public class NTM implements IRecipeDefaults
     {
         registry.register(FluidRegistry.WATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
         registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
+        registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
         registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
         registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
 
@@ -480,6 +484,7 @@ public class NTM implements IRecipeDefaults
         for (int meta = 0; meta < 16; meta++)
         {
             registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+            registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
             registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
         }
     }
