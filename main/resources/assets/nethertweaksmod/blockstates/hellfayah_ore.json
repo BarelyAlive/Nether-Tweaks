@@ -1,5 +1,14 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "nethertweaksmod:hellfayah_ore"
+    },
     "variants": {
-        "normal": { "model": "nethertweaksmod:hellfayah_ore" }
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
     }
 }

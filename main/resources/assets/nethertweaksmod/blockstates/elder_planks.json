@@ -1,5 +1,14 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "nethertweaksmod:elder_planks"
+    },
     "variants": {
-        "normal": { "model": "nethertweaksmod:elder_planks" }
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
     }
 }
