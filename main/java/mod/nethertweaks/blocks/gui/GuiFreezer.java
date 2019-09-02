@@ -62,10 +62,12 @@ public class GuiFreezer extends GuiContainer
 		String fahrenheit = " °F";
 		String text = "";
 		
+		double temp = Math.round(10.0 * this.entity.getTemp()) / 10.0;
+		
 		if(Config.useMetricSystem) 
-			text = (int) this.entity.getTemp() + celsius;
+			text = temp + celsius;
 		else
-			text = (int)(this.entity.getTemp() * 1.8f + 32) + fahrenheit;
+			text = (temp * 1.8f + 32) + fahrenheit;
 		
 		int x1 = 104 - lenght0;
 		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
