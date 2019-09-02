@@ -38,9 +38,15 @@ public class Sieve extends BlockContainer {
 
     public Sieve(String name, Material material) {
         super(material);
-        this.setResistance(30.0F);
-        this.setHardness(2.0f);
-        this.setRegistryName(NetherTweaksMod.MODID, name);
+        if (material == Material.ROCK) {
+			this.setResistance(30.0F);
+			this.setHardness(2.0f);
+		}
+        else
+        {
+			this.setHardness(2.0f);
+        }
+		this.setRegistryName(NetherTweaksMod.MODID, name);
         this.setCreativeTab(NetherTweaksMod.TABNTM);
         this.setDefaultState(this.blockState.getBaseState().withProperty(MESH, MeshType.NONE));
     }

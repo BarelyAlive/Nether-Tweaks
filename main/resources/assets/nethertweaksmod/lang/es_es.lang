@@ -34,10 +34,12 @@ tile.dark_oak_barrel.name=Barril
 tile.elder_barrel.name=Barril
 
 tile.stone_sieve.name=cedazo
+
 tile.oak_sieve.name=cedazo
 tile.birch_sieve.name=cedazo
 tile.spruce_sieve.name=cedazo
 tile.jungle_sieve.name=cedazo
+tile.acacia_sieve.name=cedazo
 tile.dark_oak_sieve.name=cedazo
 tile.elder_sieve.name=cedazo
 

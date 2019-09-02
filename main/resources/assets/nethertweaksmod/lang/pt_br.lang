@@ -34,10 +34,12 @@ tile.dark_oak_barrel.name=Barril
 tile.elder_barrel.name=Barril
 
 tile.stone_sieve.name=Peneira
+
 tile.oak_sieve.name=Peneira
 tile.birch_sieve.name=Peneira
 tile.spruce_sieve.name=Peneira
 tile.jungle_sieve.name=Peneira
+tile.acacia_sieve.name=Peneira
 tile.dark_oak_sieve.name=Peneira
 tile.elder_sieve.name=Peneira
 
