@@ -1,5 +1,0 @@
-ChangeLog NTM 2.0.3
-
-+ Added a config option to specify which liquids should not work for the salt recipe
-+ Added Distilled Water
-* Fixed that when taking up a liquid with a bucket the stack held is overwritten if it is more than one

@@ -115,10 +115,12 @@ public class Config extends BlocksItems
         
         capacityFreezer					= config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
         freezeTimeFreezer 				= config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
+        cooldownFreezer 				= config.getInt("Freezer cooldown time in ticks", "Tweak", 18000, 1, Integer.MAX_VALUE, "");
         
         dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
         capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
         fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
+        cooldownCondenser 				= config.getInt("Condenser heat up time in ticks", "Tweak", 200000, 1, Integer.MAX_VALUE, "");
         
         durabilityHWood					= config.getInt("Durability for Wood Hammer", "Tweak", 64, 1, Integer.MAX_VALUE, "");
     	durabilityHGold					= config.getInt("Durability for Gold Hammer", "Tweak", 80, 1, Integer.MAX_VALUE, "");
