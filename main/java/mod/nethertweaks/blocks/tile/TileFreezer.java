@@ -53,7 +53,7 @@ public class TileFreezer extends TileFluidInventory
 		setTemp(20f - 50f * ((float)timer / (float)maxTimer));
 		
 		if(getTemp() < 0)
-			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - (getTemp() / -90f ))));
+			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - getTemp() / -90f )));
 		else
 			setMaxworkTime(Config.freezeTimeFreezer);
 		
