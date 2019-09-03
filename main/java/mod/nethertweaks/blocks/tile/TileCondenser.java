@@ -61,25 +61,20 @@ public class TileCondenser extends TileFluidInventory
     public void update()
 	{
 		if(world.isRemote) return;
-		
-		System.out.println(getMaxworkTime());
-		
+				
     	checkInputOutput();
 		fillToItemSlot();
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
-				
-		if(!canDry()) this.setWorkTime(0);
 		
 		if(getHeatRate() == 0 && timer > 0) timer--;
 		
-		if(getHeatRate() > 0 && timer < getMaxTimer()) timer++;
-		
-		if(getHeatRate() > 0)
+		if(getHeatRate() > 0 ) {
+			if(timer < getMaxTimer()) timer++;
 			setMaxTimer(Config.cooldownCondenser / getHeatRate());
-		else
-			setMaxTimer(Config.cooldownCondenser);
+		}			
+		else setMaxTimer(Config.cooldownCondenser);
 		
 		setTemp(20f + 979f * ((float)timer / (float)getMaxTimer()));
 		
@@ -89,6 +84,7 @@ public class TileCondenser extends TileFluidInventory
 			setMaxworkTime(Config.dryTimeCondenser);
 		
 		if(canDry()) work();
+		else this.setWorkTime(0);
 		
 		if(this.getWorkTime() >= this.getMaxworkTime())
 		{
