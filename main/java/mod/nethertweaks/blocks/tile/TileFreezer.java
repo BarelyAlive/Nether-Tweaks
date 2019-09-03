@@ -23,7 +23,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileFreezer extends TileFluidInventory
 {
 	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
-	private float temp = 20f;
+	private float temp = 100f;
 	private int timer = 0;
 	private int maxTimer = Config.cooldownFreezer;
 	
@@ -52,7 +52,7 @@ public class TileFreezer extends TileFluidInventory
 		
 		if(world.isBlockPowered(pos) && timer < maxTimer) timer++;
 		
-		setTemp(getTemp() - 50f * ((float)timer / (float)maxTimer));
+		setTemp(100f - 130f * ((float)timer / (float)maxTimer));
 		
 		if(getTemp() < 0)
 			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - (getTemp() / -90f ))));
