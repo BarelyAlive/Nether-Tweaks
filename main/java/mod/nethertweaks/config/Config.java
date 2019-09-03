@@ -37,9 +37,10 @@ public class Config extends BlocksItems
 	public static int cooldownFreezer  	 = 18000;
 		
 	//Condenser
-	public static int fluidOutputAmount  	 = 200;
-	public static int dryTimeCondenser  	 = 2400;
-	public static int capacityCondenser  	 = 16000;
+	public static int fluidOutputAmount  = 200;
+	public static int dryTimeCondenser   = 2400;
+	public static int capacityCondenser  = 16000;
+	public static int cooldownCondenser	 = 200000;
 	
 	//Sieve
 	public static int sieveSimilarRadius 		  = 2;

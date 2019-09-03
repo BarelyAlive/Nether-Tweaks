@@ -35,7 +35,18 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileCondenser extends TileFluidInventory
 {	
 	private int fillTick = 0;
+	private float temp = 20f;
+	private int timer = 0;
+	private int maxTimer = Config.cooldownCondenser;
 	
+	public int getMaxTimer() {
+		return maxTimer;
+	}
+
+	public void setMaxTimer(int maxTimer) {
+		this.maxTimer = maxTimer;
+	}
+
 	private static Fluid distilled()
 	{
 		return Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
@@ -51,16 +62,33 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(world.isRemote) return;
 		
+		System.out.println(getMaxworkTime());
+		
     	checkInputOutput();
 		fillToItemSlot();
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
 				
-		if(!canDry())
-			this.setWorkTime(0);
+		if(!canDry()) this.setWorkTime(0);
+		
+		if(getHeatRate() == 0 && timer > 0) timer--;
+		
+		if(getHeatRate() > 0 && timer < getMaxTimer()) timer++;
+		
+		if(getHeatRate() > 0)
+			setMaxTimer(Config.cooldownCondenser / getHeatRate());
 		else
-			work();
+			setMaxTimer(Config.cooldownCondenser);
+		
+		setTemp(20f + 979f * ((float)timer / (float)getMaxTimer()));
+		
+		if(getTemp() > 100f)
+			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
+		else
+			setMaxworkTime(Config.dryTimeCondenser);
+		
+		if(canDry()) work();
 		
 		if(this.getWorkTime() >= this.getMaxworkTime())
 		{
@@ -71,7 +99,7 @@ public class TileCondenser extends TileFluidInventory
 	
 	private boolean canDry()
 	{
-		if(calcMaxWorktime() == 0) return false;
+		if(getTemp() < 100f) return false;
 		if(this.getStackInSlot(0).isEmpty()) return false;
 		
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
@@ -181,10 +209,6 @@ public class TileCondenser extends TileFluidInventory
         BlockPos posBelow = pos.add(0, -1, 0);
         IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
-        if(stateBelow == Blocks.AIR.getDefaultState()) {
-            return 0;
-        }
-
         // Try to match metadata
         int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
@@ -199,27 +223,15 @@ public class TileCondenser extends TileFluidInventory
         if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)) {
             return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
         }
+        
+        if(world.provider.doesWaterVaporize()) return 1;
+        
+        if(stateBelow == Blocks.AIR.getDefaultState()) {
+            return 0;
+        }
 
         return 0;
     }
-	
-	private int calcMaxWorktime()
-	{
-		int heat = this.getHeatRate();
-		int workTime = 0;
-		if (heat != 0) {
-			workTime = Config.dryTimeCondenser * 3 / heat;
-		}
-		else if(this.getWorld().provider.doesWaterVaporize())
-		{
-			workTime = Config.dryTimeCondenser * 4 / 3;
-		}
-		else
-			this.setWorkTime(0);
-		
-		this.setMaxworkTime(workTime);
-		return workTime;
-	}
 	
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
@@ -260,12 +272,26 @@ public class TileCondenser extends TileFluidInventory
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
     	fillTick = nbt.getInteger("fillTick");
+    	setTemp(nbt.getFloat("temperature"));
+    	timer = nbt.getInteger("timer");
+    	setMaxTimer(nbt.getInteger("maxTimer"));
     	super.readFromNBT(nbt);
     }
     
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-    	nbt.setInteger("fillTick", fillTick);
+    	nbt.setInteger("fillTick", fillTick);	
+    	nbt.setFloat("temperature", getTemp());
+    	nbt.setInteger("timer", timer);
+    	nbt.setInteger("maxTimer", getMaxTimer());
     	return super.writeToNBT(nbt);
     }
+    
+    public float getTemp() {
+		return temp;
+	}
+
+	public void setTemp(float temp) {
+		this.temp = temp;
+	}
 }
