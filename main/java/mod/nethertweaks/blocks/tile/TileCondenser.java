@@ -8,6 +8,7 @@ import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Dryable;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
@@ -124,12 +125,14 @@ public class TileCondenser extends TileFluidInventory
 						if (amount <= 1f && getCompostMeter() >= 100f)
 						{
 							if(barrel.getMode() == null) barrel.setMode("compost");
+							NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
 							((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
-							setCompostMeter(getCompostMeter() - 100f);
-							barrel.markDirtyClient();
+							//setCompostMeter(getCompostMeter() - 100f);
+							NetworkHandler.sendNBTUpdate(barrel);
+							barrel.markDirty();
+							this.getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
 						}
 					} 
-					
 				}
 			}
     	if(Config.autoOutputItems) {

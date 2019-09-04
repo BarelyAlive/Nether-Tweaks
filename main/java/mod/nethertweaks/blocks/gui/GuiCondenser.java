@@ -69,8 +69,9 @@ public class GuiCondenser extends GuiContainer
 		else
 			text = (temp * 1.8f + 32) + fahrenheit;
 		
-		int lenght1 = fontRenderer.getStringWidth(fName);
-		int x1 = 130 - lenght1;
+		int lenght1 = fontRenderer.getStringWidth(text);
+		lenght1 /= 2;
+		int x1 = 35 - lenght1;
 		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
     }
 	

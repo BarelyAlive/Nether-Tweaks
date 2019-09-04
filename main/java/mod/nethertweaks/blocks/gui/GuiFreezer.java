@@ -69,7 +69,9 @@ public class GuiFreezer extends GuiContainer
 		else
 			text = (temp * 1.8f + 32) + fahrenheit;
 		
-		int x1 = 104 - lenght0;
+		lenght0 = fontRenderer.getStringWidth(text);
+		lenght0 /= 2;
+		int x1 = 35 - lenght0;
 		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
     }
 	
