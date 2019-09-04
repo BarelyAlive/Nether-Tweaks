@@ -1,6 +1,8 @@
 package mod.nethertweaks.blocks.tile;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.barrel.IBarrelMode;
+import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.Config;
@@ -49,12 +51,15 @@ public class TileCondenser extends TileFluidInventory
     public TileCondenser() {
 		super(3, INames.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
+		this.setMaxCompost(Config.capacityCondenser);
 	}
 
 	@Override
     public void update()
 	{
 		if(world.isRemote) return;
+		
+		fillTick++;
 				
     	checkInputOutput();
 		fillToItemSlot();
@@ -81,13 +86,13 @@ public class TileCondenser extends TileFluidInventory
 		if(canDry()) work();
 		else this.setWorkTime(0);
 		
+		//WEnn alles durch ist
 		if(this.getWorkTime() >= this.getMaxworkTime())
 		{
 			this.setWorkTime(0);
 			dry();
 		}
-		
-		System.out.println(getCompostMeter());
+		if(fillTick >= 20) fillTick = 0;
 	}
 	
 	private boolean canDry()
@@ -106,6 +111,27 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(Config.autoExtractItems)
 			extractFromInventory(pos.up(), EnumFacing.DOWN);
+			if(getBarrel(getPos()))
+			{
+				if (fillTick == 20) {
+					TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
+										
+					if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
+						float amount = 0;
+						if (barrel.getMode() != null) {
+							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
+						}
+						if (amount <= 1f && getCompostMeter() >= 100f)
+						{
+							if(barrel.getMode() == null) barrel.setMode("compost");
+							((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
+							setCompostMeter(getCompostMeter() - 100f);
+							barrel.markDirtyClient();
+						}
+					} 
+					
+				}
+			}
     	if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);
@@ -114,9 +140,14 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 	
+	private boolean getBarrel(BlockPos pos)
+	{
+		TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
+		return barrel != null;
+	}
+	
 	private void fillToNeighborsTank()
 	{
-		fillTick++;
 		if (fillTick == 20) {
 			FluidStack water = new FluidStack(distilled(), Config.fluidOutputAmount);
 			if (this.getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
@@ -140,7 +171,6 @@ public class TileCondenser extends TileFluidInventory
 				if (hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(hwest, this.getTank(), water, true);
 			}
-			fillTick = 0;
 		}
 	}
 	
@@ -148,18 +178,18 @@ public class TileCondenser extends TileFluidInventory
 	{
 		ItemStack material = this.getStackInSlot(0);
 		
-		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
-		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
-		
-		if(amount > 0) this.getTank().fill(new FluidStack(distilled(), amount), true);
-		
 		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
 		{
 			float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
 			if(compostMeter <= (getMaxCompost() - waste)) compostMeter += waste;
 		}
-		
-		material.shrink(1);
+		if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
+		{
+			int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
+			if(amount > 0) this.getTank().fill(new FluidStack(distilled(), amount), true);
+			
+			material.shrink(1);
+		}
 	}
 	
 	private void fillToItemSlot()
