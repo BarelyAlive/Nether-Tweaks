@@ -143,11 +143,11 @@ public class TileCondenser extends TileFluidInventory
 	private void dry()
 	{
 		ItemStack material = this.getStackInSlot(0);
+		
 		if(NTMRegistryManager.CONDENSER_REGISTRY.getItem(material) == null) return;
 		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
-		if(amount > 0)
-			this.getTank().fill(new FluidStack(distilled(), amount), true);
+		if(amount > 0) this.getTank().fill(new FluidStack(distilled(), amount), true);
 		
 		material.shrink(1);
 	}
