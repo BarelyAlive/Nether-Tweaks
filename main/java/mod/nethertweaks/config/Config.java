@@ -39,7 +39,7 @@ public class Config extends BlocksItems
 	//Condenser
 	public static int fluidOutputAmount  = 200;
 	public static int dryTimeCondenser   = 2400;
-	public static int capacityCondenser  = 16000;
+	public static int capacityCondenser  = 8000;
 	public static int cooldownCondenser	 = 200000;
 	
 	//Sieve
@@ -118,7 +118,7 @@ public class Config extends BlocksItems
         cooldownFreezer 				= config.getInt("Freezer cooldown time in ticks", "Tweak", 18000, 1, Integer.MAX_VALUE, "");
         
         dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
-        capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
+        capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 8000, 1, Integer.MAX_VALUE, "");
         fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
         cooldownCondenser 				= config.getInt("Condenser heat up time in ticks", "Tweak", 200000, 1, Integer.MAX_VALUE, "");
         
