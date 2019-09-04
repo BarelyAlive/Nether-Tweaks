@@ -46,11 +46,19 @@ public class TileFreezer extends TileFluidInventory
     	fillFromItem();
 		NetworkHandler.sendNBTUpdate(this);
 		
-		if(!world.isBlockPowered(pos) && timer > 0) timer--;
-		
-		if(world.isBlockPowered(pos) && timer < maxTimer) timer++;
-		
-		setTemp(20f - 50f * ((float)timer / (float)maxTimer));
+		if(!world.isBlockPowered(pos))
+		{
+			if(timer > 0) timer--;
+			if(this.getWorld().provider.doesWaterVaporize())
+			{
+				if(getTemp() < 100f) setTemp(getTemp() + 0.025f);
+			}
+		}
+		else
+		{
+			if(timer < maxTimer) timer++;
+			setTemp(20f - 50f * ((float)timer / (float)maxTimer));
+		}
 		
 		if(getTemp() < 0)
 			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - getTemp() / -90f )));
