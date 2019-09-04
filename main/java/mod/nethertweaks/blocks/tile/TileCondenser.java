@@ -38,14 +38,6 @@ public class TileCondenser extends TileFluidInventory
 	private float temp = 20f;
 	private int timer = 0;
 	private int maxTimer = Config.cooldownCondenser;
-	
-	public int getMaxTimer() {
-		return maxTimer;
-	}
-
-	public void setMaxTimer(int maxTimer) {
-		this.maxTimer = maxTimer;
-	}
 
 	private static Fluid distilled()
 	{
@@ -67,14 +59,15 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
-		
-		if(getHeatRate() == 0 && timer > 0) timer--;
-		
-		if(getHeatRate() > 0 ) {
+				
+		if(getHeatRate() > 0) {
 			if(timer < getMaxTimer()) timer++;
 			setMaxTimer(Config.cooldownCondenser / getHeatRate());
 		}			
-		else setMaxTimer(Config.cooldownCondenser);
+		else {
+			if(timer > 0) timer--;
+			setMaxTimer(Config.cooldownCondenser);
+		}
 		
 		setTemp(20f + 979f * ((float)timer / (float)getMaxTimer()));
 		
@@ -96,8 +89,7 @@ public class TileCondenser extends TileFluidInventory
 	private boolean canDry()
 	{
 		if(getTemp() < 100f) return false;
-		if(this.getStackInSlot(0).isEmpty()) return false;
-		
+		if(this.getStackInSlot(0).isEmpty()) return false;		
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
@@ -289,5 +281,13 @@ public class TileCondenser extends TileFluidInventory
 
 	public void setTemp(float temp) {
 		this.temp = temp;
+	}
+	
+	public int getMaxTimer() {
+		return maxTimer;
+	}
+
+	public void setMaxTimer(int maxTimer) {
+		this.maxTimer = maxTimer;
 	}
 }

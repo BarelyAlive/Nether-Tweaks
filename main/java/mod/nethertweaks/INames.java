@@ -115,7 +115,7 @@ public interface INames {
 	public String POWDER_OF_LIGHT			= "powder_of_light";
 	public String ASH						= "ash";
 	public String WOOD_CHIPPINGS			= "wood_chippings";
-	public String COMPRESSOR				= "compressor";
+	public String COMPOSTING_MATERIAL		= "composting_material";
 	
 	public String COILED_SWORD				= "coiled_sword";
 	
