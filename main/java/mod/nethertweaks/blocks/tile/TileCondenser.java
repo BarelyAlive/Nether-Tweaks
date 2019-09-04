@@ -38,6 +38,8 @@ public class TileCondenser extends TileFluidInventory
 	private float temp = 20f;
 	private int timer = 0;
 	private int maxTimer = Config.cooldownCondenser;
+	private float compostMeter = 0;
+	private float maxCompost = 8000;
 
 	private static Fluid distilled()
 	{
@@ -84,6 +86,8 @@ public class TileCondenser extends TileFluidInventory
 			this.setWorkTime(0);
 			dry();
 		}
+		
+		System.out.println(getCompostMeter());
 	}
 	
 	private boolean canDry()
@@ -148,6 +152,12 @@ public class TileCondenser extends TileFluidInventory
 		int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 		
 		if(amount > 0) this.getTank().fill(new FluidStack(distilled(), amount), true);
+		
+		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
+		{
+			float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
+			if(compostMeter <= (getMaxCompost() - waste)) compostMeter += waste;
+		}
 		
 		material.shrink(1);
 	}
@@ -263,6 +273,7 @@ public class TileCondenser extends TileFluidInventory
     	setTemp(nbt.getFloat("temperature"));
     	timer = nbt.getInteger("timer");
     	setMaxTimer(nbt.getInteger("maxTimer"));
+    	setCompostMeter(nbt.getFloat("compostMeter"));
     	super.readFromNBT(nbt);
     }
     
@@ -272,6 +283,7 @@ public class TileCondenser extends TileFluidInventory
     	nbt.setFloat("temperature", getTemp());
     	nbt.setInteger("timer", timer);
     	nbt.setInteger("maxTimer", getMaxTimer());
+    	nbt.setFloat("compostMeter", getCompostMeter());
     	return super.writeToNBT(nbt);
     }
     
@@ -289,5 +301,21 @@ public class TileCondenser extends TileFluidInventory
 
 	public void setMaxTimer(int maxTimer) {
 		this.maxTimer = maxTimer;
+	}
+	
+	public float getCompostMeter() {
+		return compostMeter;
+	}
+
+	public void setCompostMeter(float compostMeter) {
+		this.compostMeter = compostMeter;
+	}
+	
+	public float getMaxCompost() {
+		return maxCompost;
+	}
+
+	public void setMaxCompost(float maxCompost) {
+		this.maxCompost = maxCompost;
 	}
 }

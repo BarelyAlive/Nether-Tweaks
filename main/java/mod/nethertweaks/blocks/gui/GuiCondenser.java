@@ -89,10 +89,22 @@ public class GuiCondenser extends GuiContainer
         int y_old = y;
         if(TileInventory.isWorking(this.entity)){
         	int k = this.entity.getWorkTimeRemainingScaled(14);
-        	System.out.println(k);
         	x += 28;
         	y += 18;
         	drawTexturedModalRect(x, y, 176, 0, 16, k);
+        }
+        
+        x = x_old;
+        y = y_old;
+        
+        if(this.entity.getCompostMeter() > 0)
+        {
+        	int k = (int) (this.entity.getCompostMeter() * 64 / this.entity.getMaxCompost());
+        	x += 155;
+        	y += 6;
+        	int k_inv = 64 - k;
+        	
+        	drawTexturedModalRect(x, y + k_inv, 176, 14, 16, k);
         }
         
         x = x_old;
@@ -123,6 +135,9 @@ public class GuiCondenser extends GuiContainer
         	}
     		GL11.glPopMatrix();
         }
+        
+        x = x_old;
+        y = y_old;
     }
     
     private void getTE()
