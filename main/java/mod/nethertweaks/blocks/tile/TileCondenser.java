@@ -42,7 +42,7 @@ public class TileCondenser extends TileFluidInventory
 	private int timer = 0;
 	private int maxTimer = Config.cooldownCondenser;
 	private float compostMeter = 0;
-	private float maxCompost = 8000;
+	private float maxCompost = Config.capacityCondenser;
 
 	private static Fluid distilled()
 	{
@@ -52,7 +52,6 @@ public class TileCondenser extends TileFluidInventory
     public TileCondenser() {
 		super(3, INames.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		this.setMaxworkTime(Config.dryTimeCondenser);
-		this.setMaxCompost(Config.capacityCondenser);
 	}
 
 	@Override
@@ -77,7 +76,9 @@ public class TileCondenser extends TileFluidInventory
 			setMaxTimer(Config.cooldownCondenser);
 		}
 		
-		setTemp(20f + 979f * ((float)timer / (float)getMaxTimer()));
+		if(getTemp() > getMaxTemp()) setTemp(getTemp() - 0.025f);
+		else
+			setTemp(20f + (getMaxTemp() - 20f) * ((float)timer / (float)getMaxTimer()));
 		
 		if(getTemp() > 100f)
 			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
@@ -147,6 +148,27 @@ public class TileCondenser extends TileFluidInventory
 	{
 		TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
 		return barrel != null;
+	}
+	
+	private float getMaxTemp()
+	{
+		int heat = getHeatRate();
+		
+		switch (heat) {
+		case 0:
+			return 0;
+		case 1:
+			return 100f;
+		case 2:
+			return 250f;
+		case 3:
+			return 600f;
+		case 4:
+			return 999f;
+
+		default:
+			return 999f;
+		}
 	}
 	
 	private void fillToNeighborsTank()
