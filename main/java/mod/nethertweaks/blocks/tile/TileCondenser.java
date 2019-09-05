@@ -132,9 +132,12 @@ public class TileCondenser extends TileFluidInventory
 					if (amount <= 1f && getCompostMeter() >= 100f)
 					{
 						if(barrel.getMode() == null) barrel.setMode("compost");
+						
+						((BarrelModeCompost) barrel.getMode()).setCompostState(Blocks.DIRT.getDefaultState());
+						
 						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
 						((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
-						//setCompostMeter(getCompostMeter() - 100f);
+						setCompostMeter(getCompostMeter() - 100f);
 						NetworkHandler.sendNBTUpdate(barrel);
 						barrel.markDirty();
 						this.getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
@@ -149,19 +152,19 @@ public class TileCondenser extends TileFluidInventory
 		int heat = getHeatRate();
 		
 		switch (heat) {
-		case 0:
-			return 0;
-		case 1:
-			return 100f;
-		case 2:
-			return 250f;
-		case 3:
-			return 600f;
-		case 4:
-			return 999f;
-
-		default:
-			return 999f;
+			case 0:
+				return 0;
+			case 1:
+				return 100f;
+			case 2:
+				return 250f;
+			case 3:
+				return 600f;
+			case 4:
+				return 999f;
+	
+			default:
+				return 999f;
 		}
 	}
 	

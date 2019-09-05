@@ -40,9 +40,9 @@ public class BarrelModeCompost implements IBarrelMode {
     private Color color = new Color("EEA96D");
     private Color originalColor;
     private float progress = 0;
-    private IBlockState compostState;
+    private IBlockState compostState;   
 
-    public float getFillAmount() {
+	public float getFillAmount() {
 		return fillAmount;
 	}
 
@@ -68,6 +68,10 @@ public class BarrelModeCompost implements IBarrelMode {
 
 	public IBlockState getCompostState() {
 		return compostState;
+	}
+	
+	public void setCompostState(IBlockState compostState) {
+		this.compostState = compostState;
 	}
 
 	public void setColor(Color color) {
