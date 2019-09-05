@@ -113,41 +113,35 @@ public class TileCondenser extends TileFluidInventory
 	{
 		if(Config.autoExtractItems)
 			extractFromInventory(pos.up(), EnumFacing.DOWN);
-			if(getBarrel(getPos()))
-			{
-				if (fillTick == 20) {
-					TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
-										
-					if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
-						float amount = 0;
-						if (barrel.getMode() != null) {
-							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
-						}
-						if (amount <= 1f && getCompostMeter() >= 100f)
-						{
-							if(barrel.getMode() == null) barrel.setMode("compost");
-							NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
-							((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
-							//setCompostMeter(getCompostMeter() - 100f);
-							NetworkHandler.sendNBTUpdate(barrel);
-							barrel.markDirty();
-							this.getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
-						}
-					} 
-				}
-			}
     	if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);
 			insertToInventory(pos.west(), EnumFacing.EAST);
 			insertToInventory(pos.east(), EnumFacing.WEST);
 		}
-	}
-	
-	private boolean getBarrel(BlockPos pos)
-	{
-		TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
-		return barrel != null;
+    	
+    	if (fillTick == 20) {
+	    	TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
+	    	if(barrel != null)
+			{						
+				if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
+					float amount = 0;
+					if (barrel.getMode() != null) {
+						amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
+					}
+					if (amount <= 1f && getCompostMeter() >= 100f)
+					{
+						if(barrel.getMode() == null) barrel.setMode("compost");
+						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
+						((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
+						//setCompostMeter(getCompostMeter() - 100f);
+						NetworkHandler.sendNBTUpdate(barrel);
+						barrel.markDirty();
+						this.getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
+					}
+				}
+			}
+    	}
 	}
 	
 	private float getMaxTemp()
