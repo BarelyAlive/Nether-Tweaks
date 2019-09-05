@@ -20,7 +20,7 @@ import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -163,7 +163,7 @@ public class NetherTweaksMod
     	*/
     	
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
 		if(event.getSide() == Side.CLIENT)
 			RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());

@@ -47,15 +47,15 @@ public class BlockHandler implements INames
     public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
     
     //Sieves
-    public static final Block STONE_SIEVE		   = new Sieve(INames.STONE_SIEVE, Material.ROCK);
+    public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, INames.STONE_SIEVE);
     
-    public static final Block OAK_SIEVE			   = new Sieve(INames.OAK_SIEVE, Material.WOOD);
-    public static final Block BIRCH_SIEVE		   = new Sieve(INames.BIRCH_SIEVE, Material.WOOD);
-    public static final Block SPRUCE_SIEVE		   = new Sieve(INames.SPRUCE_SIEVE, Material.WOOD);
-    public static final Block JUNGLE_SIEVE		   = new Sieve(INames.JUNGLE_SIEVE, Material.WOOD);
-    public static final Block ACACIA_SIEVE		   = new Sieve(INames.ACACIA_SIEVE, Material.WOOD);
-    public static final Block DARK_OAK_SIEVE	   = new Sieve(INames.DARK_OAK_SIEVE, Material.WOOD);
-    public static final Block ELDER_SIEVE		   = new Sieve(INames.ELDER_SIEVE, Material.WOOD);
+    public static final Block OAK_SIEVE			   = new Sieve(Material.WOOD, INames.OAK_SIEVE);
+    public static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD, INames.BIRCH_SIEVE);
+    public static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD, INames.SPRUCE_SIEVE);
+    public static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD, INames.JUNGLE_SIEVE);
+    public static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD, INames.ACACIA_SIEVE);
+    public static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD, INames.DARK_OAK_SIEVE);
+    public static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD, INames.ELDER_SIEVE);
     
     //Barrels
     public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, INames.STONE_BARREL);
@@ -94,10 +94,9 @@ public class BlockHandler implements INames
     
     private static void registerBlockTiles()
     {
-    	//Tile Entity       
-    	if(BlocksItems.enableSieve) 			Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
-    	
+    	//Tile Entity    	
     	if(BlocksItems.enableSieve) {
+    											Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
     											Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
     											Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
     											Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
@@ -141,12 +140,12 @@ public class BlockHandler implements INames
         if(BlocksItems.enableDust) 				Registry.registerBlock(DUST);
         if(BlocksItems.enableStwH) 				Registry.registerBlock(STWH);
         if(BlocksItems.enableElderTree) {
-			/*I think, that no  */				Registry.registerBlock(ELDER_SAPLING);
-			/*one wants to use  */				Registry.registerBlock(ELDER_LOG);
-			/*just some of      */				Registry.registerBlock(ELDER_LEAVES);
-			/*these and not the */				Registry.registerBlock(ELDER_PLANKS);
-			/*whole tree, right?*/				Registry.registerBlock(ELDER_SLAB);
-			/*RIGHT?			*/				Registry.registerBlock(ELDER_SLAB_DOUBLE);
+        										Registry.registerBlock(ELDER_SAPLING);
+        										Registry.registerBlock(ELDER_LOG);
+        										Registry.registerBlock(ELDER_LEAVES);
+        										Registry.registerBlock(ELDER_PLANKS);
+        										Registry.registerBlock(ELDER_SLAB);
+        										Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(BlocksItems.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(BlocksItems.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);

@@ -5,7 +5,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
@@ -62,7 +62,7 @@ public class Condenser extends CubeContainerHorizontal
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if(success) return true;
 		}
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_CONDENSER, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandler.ID_CONDENSER, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     

@@ -58,8 +58,12 @@ public class SmeltingNOreDictHandler {
 		if(BlocksItems.enableMushroomSpores)   OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.MUSHROOM_SPORES));
 		if(BlocksItems.enableGrassSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.GRASS_SEEDS));
 		if(BlocksItems.enableCactusSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.CACTUS_SEEDS));
+		
+		//Vanilla/Forge Buckets
     	if(BlocksItems.enableLiquidImpossibility)
 			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
+    	if(BlocksItems.enableDistilledWater)
+			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDISTILLEDWATER, 1000)));
 		
     	if(BlocksItems.enableStoneBucket)
 		{
@@ -69,6 +73,8 @@ public class SmeltingNOreDictHandler {
 			
 			if(BlocksItems.enableLiquidImpossibility)
 				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
+			if(BlocksItems.enableDistilledWater)
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDDISTILLEDWATER, "stone"));
 		}
 		if(BlocksItems.enableWoodBucket)
 		{
@@ -77,6 +83,8 @@ public class SmeltingNOreDictHandler {
 			
 			if(BlocksItems.enableLiquidImpossibility)
 				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
+			if(BlocksItems.enableDistilledWater)
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDDISTILLEDWATER, "wood"));
 		}
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);

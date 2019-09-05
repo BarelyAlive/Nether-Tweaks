@@ -7,7 +7,7 @@ import java.util.UUID;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
-import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
 import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
@@ -136,7 +136,7 @@ public class AshBonePile extends CubeContainerHorizontal
 		}
 		else
 		{
-			player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_BONFIRE, world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(NetherTweaksMod.instance, GuiHandler.ID_BONFIRE, world, pos.getX(), pos.getY(), pos.getZ());
 		}
 		
 		return world.getBlockState(pos).getValue(LIT);

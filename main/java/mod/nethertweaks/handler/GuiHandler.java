@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiHandlerNTM implements IGuiHandler
+public class GuiHandler implements IGuiHandler
 {
 	public static final int ID_FURNACE 	 = 0;
 	public static final int ID_CONDENSER = 1;
