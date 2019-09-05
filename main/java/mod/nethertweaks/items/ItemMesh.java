@@ -1,16 +1,8 @@
 package mod.nethertweaks.items;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.sfhcore.helper.NameHelper;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

@@ -2,16 +2,12 @@ package mod.nethertweaks.items;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -110,7 +106,7 @@ public class Ash extends Item
                 double d0 = itemRand.nextGaussian() * 0.02D;
                 double d1 = itemRand.nextGaussian() * 0.02D;
                 double d2 = itemRand.nextGaussian() * 0.02D;
-                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, (double)((float)pos.getX() + itemRand.nextFloat()), (double)pos.getY() + (double)itemRand.nextFloat() * iblockstate.getBoundingBox(worldIn, pos).maxY, (double)((float)pos.getZ() + itemRand.nextFloat()), d0, d1, d2);
+                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + itemRand.nextFloat() * iblockstate.getBoundingBox(worldIn, pos).maxY, pos.getZ() + itemRand.nextFloat(), d0, d1, d2);
             }
         }
         else
@@ -120,7 +116,7 @@ public class Ash extends Item
                 double d0 = itemRand.nextGaussian() * 0.02D;
                 double d1 = itemRand.nextGaussian() * 0.02D;
                 double d2 = itemRand.nextGaussian() * 0.02D;
-                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, (double)((float)pos.getX() + itemRand.nextFloat()), (double)pos.getY() + (double)itemRand.nextFloat() * 1.0f, (double)((float)pos.getZ() + itemRand.nextFloat()), d0, d1, d2, new int[0]);
+                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + (double)itemRand.nextFloat() * 1.0f, pos.getZ() + itemRand.nextFloat(), d0, d1, d2, new int[0]);
             }
         }
     }

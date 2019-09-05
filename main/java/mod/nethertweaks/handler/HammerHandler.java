@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.api.IHammer;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;

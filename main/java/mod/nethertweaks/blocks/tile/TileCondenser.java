@@ -1,10 +1,10 @@
 package mod.nethertweaks.blocks.tile;
 
 import mod.nethertweaks.INames;
-import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
@@ -46,7 +46,7 @@ public class TileCondenser extends TileFluidInventory
 
 	private static Fluid distilled()
 	{
-		return Config.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
+		return BlocksItems.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
 	}
 	
     public TileCondenser() {
@@ -76,7 +76,8 @@ public class TileCondenser extends TileFluidInventory
 			setMaxTimer(Config.cooldownCondenser);
 		}
 		
-		if(getTemp() > getMaxTemp()) setTemp(getTemp() - 0.025f);
+		if(getTemp() > getMaxTemp())
+			setTemp(getTemp() - 0.025f);
 		else
 			setTemp(20f + (getMaxTemp() - 20f) * ((float)timer / (float)getMaxTimer()));
 		
@@ -241,7 +242,7 @@ public class TileCondenser extends TileFluidInventory
 			this.decrStackSize(2, 1);
 		}
 		
-		if(Config.enableDistilledWater) return;
+		if(BlocksItems.enableDistilledWater) return;
 		
 		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && this.getStackInSlot(1).isEmpty())
 		{
@@ -293,7 +294,7 @@ public class TileCondenser extends TileFluidInventory
 		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		case 1: return false;
 		case 2:
-			if(stack.getItem() == Items.GLASS_BOTTLE && !Config.enableDistilledWater) return true;
+			if(stack.getItem() == Items.GLASS_BOTTLE && !BlocksItems.enableDistilledWater) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, this.getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}

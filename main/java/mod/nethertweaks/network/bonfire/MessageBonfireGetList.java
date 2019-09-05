@@ -8,16 +8,12 @@ import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.world.BonfireInfo;
-import mod.nethertweaks.world.WorldSaveData;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MessageBonfireGetList implements IMessage
 {

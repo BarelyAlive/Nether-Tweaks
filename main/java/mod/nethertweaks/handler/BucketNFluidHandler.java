@@ -3,6 +3,7 @@ package mod.nethertweaks.handler;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.DistilledWater;
 import mod.nethertweaks.blocks.LiquidImpossibility;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.fluid.FluidDistilledWater;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
@@ -29,13 +30,13 @@ public class BucketNFluidHandler implements INames
 
 	public static void registerFluids(Side side)
 	{
-		if (Config.enableLiquidImpossibility)
+		if (BlocksItems.enableLiquidImpossibility)
 		{
 			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 			if(side.isClient())
 				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 		}
-		if(Config.enableDistilledWater)
+		if(BlocksItems.enableDistilledWater)
 		{
 			RegisterFluid.register(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 			if(side.isClient())
@@ -45,9 +46,9 @@ public class BucketNFluidHandler implements INames
 
 	public static void registerBuckets()
 	{
-		if(Config.enableWoodBucket)
+		if(BlocksItems.enableWoodBucket)
 			BucketHandler.addBucket("wood", "Wood", 505, 16, MODID, 0x80874633, TAB);
-		if(Config.enableStoneBucket)
+		if(BlocksItems.enableStoneBucket)
 			BucketHandler.addBucket("stone", "Stone", -1, 16, MODID, 0x80778899, TAB);
 	}
 }

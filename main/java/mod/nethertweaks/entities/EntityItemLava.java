@@ -2,7 +2,6 @@ package mod.nethertweaks.entities;
 
 import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

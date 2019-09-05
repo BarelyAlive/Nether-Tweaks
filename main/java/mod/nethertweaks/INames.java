@@ -19,6 +19,7 @@ public interface INames {
 	public String CRUCIBLE					= "crucible";
 	public String HELLMART 					= "hellmart";
 	public String BONFIRE 					= "bonfire";
+	public String AIR_CONDITIONER			= "air_conditioner";
 	
 	public String STONE_SIEVE				= "stone_sieve";
 	
@@ -115,7 +116,6 @@ public interface INames {
 	public String POWDER_OF_LIGHT			= "powder_of_light";
 	public String ASH						= "ash";
 	public String WOOD_CHIPPINGS			= "wood_chippings";
-	public String COMPOSTING_MATERIAL		= "composting_material";
 	
 	public String COILED_SWORD				= "coiled_sword";
 	

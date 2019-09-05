@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks.container;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

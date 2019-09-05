@@ -36,7 +36,6 @@ import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

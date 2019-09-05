@@ -1,7 +1,6 @@
 package mod.nethertweaks.fluid;
 
 import mod.nethertweaks.INames;
-import mod.nethertweaks.config.Config;
 import mod.sfhcore.fluid.Fluid;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;

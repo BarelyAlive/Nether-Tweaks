@@ -6,11 +6,9 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.tiles.TileInventory;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

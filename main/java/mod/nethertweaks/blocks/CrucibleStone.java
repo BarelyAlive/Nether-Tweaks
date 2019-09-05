@@ -4,9 +4,7 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.config.Config;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

@@ -5,7 +5,6 @@ import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fluids.Fluid;
 
 public class Config extends BlocksItems
 {

@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileInventory;
 import net.minecraft.client.Minecraft;

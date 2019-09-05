@@ -7,11 +7,10 @@ import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
-import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.helper.PlayerInventory;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -24,22 +23,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.item.ItemEvent;
-import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -103,15 +95,6 @@ public class WorldEvents
 			world.spawnEntity(salt);
 		}
     }
-	
-	/*
-	
-	@SubscribeEvent
-	public void climateCheck(FluidPlaceBlockEvent event) {
-		
-	}
-	
-	*/
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {
