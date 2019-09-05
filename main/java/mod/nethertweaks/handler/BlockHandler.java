@@ -95,34 +95,40 @@ public class BlockHandler implements INames
     private static void registerBlockTiles()
     {
     	//Tile Entity       
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
+    	if(BlocksItems.enableSieve) 			Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
     	
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(JUNGLE_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
-    	if(BlocksItems.enableSieve) 				Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
+    	if(BlocksItems.enableSieve) {
+    											Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(JUNGLE_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
+    											Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
+    	}
+    	if(BlocksItems.enableSieve) 				
     	
         if(BlocksItems.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
     	if(BlocksItems.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(BlocksItems.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
-    	if(BlocksItems.enableCondenser) 			Registry.registerTileEntity(CONDENSER, TileCondenser.class);
+    	if(BlocksItems.enableCondenser) 		Registry.registerTileEntity(CONDENSER, TileCondenser.class);
     	if(BlocksItems.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
     	
     	if(BlocksItems.enableBarrelStone)		Registry.registerTileEntity(STONE_BARREL, TileBarrel.class);
     	
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(OAK_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(BIRCH_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(SPRUCE_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(JUNGLE_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(ACACIA_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(DARK_OAK_BARREL, TileBarrel.class);
-    	if(BlocksItems.enableBarrelWood)			Registry.registerTileEntity(ELDER_BARREL, TileBarrel.class);
+    	if(BlocksItems.enableBarrelWood) {		
+    											Registry.registerTileEntity(OAK_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(BIRCH_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(SPRUCE_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(JUNGLE_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(ACACIA_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(DARK_OAK_BARREL, TileBarrel.class);
+    											Registry.registerTileEntity(ELDER_BARREL, TileBarrel.class);
+    	}
+    	
     	if(BlocksItems.enableCrucible) {
-								    		Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
-								    		Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
+								    			Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
+								    			Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
     	}
     }
         
@@ -131,20 +137,20 @@ public class BlockHandler implements INames
     {
     	if(BlocksItems.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
     	if(BlocksItems.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
-    	if(BlocksItems.enableSaltBlock) 			Registry.registerBlock(BLOCK_OF_SALT);
+    	if(BlocksItems.enableSaltBlock) 		Registry.registerBlock(BLOCK_OF_SALT);
         if(BlocksItems.enableDust) 				Registry.registerBlock(DUST);
         if(BlocksItems.enableStwH) 				Registry.registerBlock(STWH);
         if(BlocksItems.enableElderTree) {
-			/*I think, that no  */			Registry.registerBlock(ELDER_SAPLING);
-			/*one wants to use  */			Registry.registerBlock(ELDER_LOG);
-			/*just some of      */			Registry.registerBlock(ELDER_LEAVES);
-			/*these and not the */			Registry.registerBlock(ELDER_PLANKS);
-			/*whole tree, right?*/			Registry.registerBlock(ELDER_SLAB);
-			/*RIGHT?			*/			Registry.registerBlock(ELDER_SLAB_DOUBLE);
+			/*I think, that no  */				Registry.registerBlock(ELDER_SAPLING);
+			/*one wants to use  */				Registry.registerBlock(ELDER_LOG);
+			/*just some of      */				Registry.registerBlock(ELDER_LEAVES);
+			/*these and not the */				Registry.registerBlock(ELDER_PLANKS);
+			/*whole tree, right?*/				Registry.registerBlock(ELDER_SLAB);
+			/*RIGHT?			*/				Registry.registerBlock(ELDER_SLAB_DOUBLE);
 		}
         if(BlocksItems.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
         if(BlocksItems.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
-        if(BlocksItems.enableStoneDoor) 			Registry.registerBlock(STONE_DOOR);
+        if(BlocksItems.enableStoneDoor) 		Registry.registerBlock(STONE_DOOR);
         if(BlocksItems.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
     }
 }
