@@ -2,6 +2,7 @@ package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileAirConditioner;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,6 +19,6 @@ public class AirConditioner extends Block{
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return super.createTileEntity(world, state);
+		return new TileAirConditioner();
 	}
 }
