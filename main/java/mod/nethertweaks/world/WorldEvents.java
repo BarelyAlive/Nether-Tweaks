@@ -11,6 +11,7 @@ import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -31,10 +32,12 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -95,6 +98,19 @@ public class WorldEvents
 			world.spawnEntity(salt);
 		}
     }
+	
+	@SubscribeEvent
+	public void noSource(CreateFluidSourceEvent event)
+	{
+		BlockPos pos = event.getPos();
+		IBlockState state = event.getState();
+		World world = event.getWorld();
+		
+		if(world.getWorldType() instanceof WorldTypeHellworld)
+		{
+			if(state.getMaterial() == Material.WATER) event.setResult(Result.DENY);
+		}
+	}
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {

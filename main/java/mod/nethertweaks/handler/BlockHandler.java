@@ -114,7 +114,7 @@ public class BlockHandler implements INames
     											Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
     											Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
     											Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
-    	}    	
+    	}
         if(BlocksItems.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
     	if(BlocksItems.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
     	if(BlocksItems.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
