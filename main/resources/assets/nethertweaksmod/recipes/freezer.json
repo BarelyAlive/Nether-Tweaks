@@ -8,7 +8,7 @@
       "item": "minecraft:redstone"
     },
     "Y": {
-      "item": "item_condenser"
+      "item": "minecraft:iron_block"
     },
     "Z": {
       "type": "forge:ore_dict",

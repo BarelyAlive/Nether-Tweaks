@@ -3,8 +3,8 @@
     "textures": {
         "top": "nethertweaksmod:blocks/freezer_top",
         "front": "nethertweaksmod:blocks/freezer_front",
-        "side": "nethertweaksmod:blocks/netherrack_furnace",
+        "side": "nethertweaksmod:blocks/metal_machine_side",
         "up": "nethertweaksmod:blocks/freezer_top",
-        "down": "nethertweaksmod:blocks/netherrack_furnace"
+        "down": "nethertweaksmod:blocks/metal_machine_side"
     }
 }
