@@ -151,7 +151,7 @@ public class NetherTweaksMod
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
     	MinecraftForge.EVENT_BUS.register(this);
     	
-        if(event.getSide() == Side.CLIENT)
+        if(event.getSide().isClient())
         {
         	OreHandler.disableOre("minecraft:redstone");
     		OreHandler.disableOre("minecraft:coal");
@@ -165,7 +165,7 @@ public class NetherTweaksMod
         //GUI
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
-		if(event.getSide() == Side.CLIENT)
+		if(event.getSide().isClient())
 			RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
     }
     

@@ -6,7 +6,7 @@ import java.util.List;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraftforge.common.config.Configuration;
 
-public class Config extends BlocksItems
+public class Config
 {
 	//int
 	public static int endDim  = -1;
