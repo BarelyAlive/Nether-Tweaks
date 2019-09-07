@@ -70,5 +70,4 @@ public class GuiNetherrackFurnace extends GuiContainer
     public boolean doesGuiPauseGame() {
     	return false;
     }
-
 }

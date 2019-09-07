@@ -87,9 +87,7 @@ public class TileNetherrackFurnace extends TileInventory
         BlockPos posBelow = pos.add(0, -1, 0);
         IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
-        if (stateBelow == Blocks.AIR.getDefaultState()) {
-            return 0;
-        }
+        if (stateBelow == Blocks.AIR.getDefaultState()) return 0;
 
         // Try to match metadata
         int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
@@ -98,8 +96,7 @@ public class TileNetherrackFurnace extends TileInventory
         if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
 
-        if (heat != 0)
-            return heat;
+        if (heat != 0) return heat;
 
         TileEntity tile = getWorld().getTileEntity(posBelow);
 
