@@ -40,7 +40,7 @@ public class TileCondenser extends TileFluidInventory
 	private int fillTick = 0;
 	private float temp = 20f;
 	private int timer = 0;
-	private int maxTimer = Config.cooldownCondenser;
+	private int maxTimer = Config.cooldownCondenser;	
 	private float compostMeter = 0;
 	private float maxCompost = Config.capacityCondenser;
 
@@ -66,7 +66,8 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 		
 		NetworkHandler.sendNBTUpdate(this);
-				
+		
+		//heatNStuff
 		if(getHeatRate() > 0) {
 			if(timer < getMaxTimer()) timer++;
 			setMaxTimer(Config.cooldownCondenser / getHeatRate());
@@ -77,14 +78,18 @@ public class TileCondenser extends TileFluidInventory
 		}
 		
 		if(getTemp() > getMaxTemp())
-			setTemp(getTemp() - 0.025f);
+			setTemp((getTemp() - getMaxTemp()) > 0f ? getTemp() - (2f * ((float)timer / (float)getMaxTimer())) : getTemp());
 		else
-			setTemp(20f + (getMaxTemp() - 20f) * ((float)timer / (float)getMaxTimer()));
+		{
+			setTemp((getMaxTemp() - getTemp()) > 0f ? getTemp() + (2f * ((float)timer / (float)getMaxTimer())) : getTemp());
+		}
 		
 		if(getTemp() > 100f)
 			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
 		else
 			setMaxworkTime(Config.dryTimeCondenser);
+		
+		//ENDE
 		
 		if(canDry()) work();
 		else this.setWorkTime(0);
@@ -345,7 +350,9 @@ public class TileCondenser extends TileFluidInventory
 	}
 
 	public void setTemp(float temp) {
-		this.temp = temp;
+		temp *= 100;
+		int itemp = (int)temp;
+		this.temp = ((float)itemp / 100);
 	}
 	
 	public int getMaxTimer() {
