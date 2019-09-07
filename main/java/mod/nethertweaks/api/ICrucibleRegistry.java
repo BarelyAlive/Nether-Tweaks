@@ -10,18 +10,18 @@ import net.minecraftforge.fluids.Fluid;
 
 public interface ICrucibleRegistry extends IRegistryMap<Ingredient, Meltable> {
 
-	public void register(String name, Fluid fluid, int amount, BlockInfo block);
-	public void register(StackInfo item, Fluid fluid, int amount);
-	public void register(StackInfo item, Meltable meltable);
-	public void register(ItemStack stack, Fluid fluid, int amount);
-	public void register(ItemStack stack, Meltable meltable);
-	public void register(String name, Fluid fluid, int amount);
-	public void register(String name, Meltable meltable);
+	void register(String name, Fluid fluid, int amount, BlockInfo block);
+	void register(StackInfo item, Fluid fluid, int amount);
+	void register(StackInfo item, Meltable meltable);
+	void register(ItemStack stack, Fluid fluid, int amount);
+	void register(ItemStack stack, Meltable meltable);
+	void register(String name, Fluid fluid, int amount);
+	void register(String name, Meltable meltable);
 
-	public boolean canBeMelted(ItemStack stack);
-	public boolean canBeMelted(StackInfo info);
-	
-	public Meltable getMeltable(ItemStack stack);
-	public Meltable getMeltable(StackInfo info);
-	public Meltable getMeltable(Item item, int meta);
+	boolean canBeMelted(ItemStack stack);
+	boolean canBeMelted(StackInfo info);
+
+	Meltable getMeltable(ItemStack stack);
+	Meltable getMeltable(StackInfo info);
+	Meltable getMeltable(Item item, int meta);
 }

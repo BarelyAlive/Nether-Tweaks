@@ -1,7 +1,6 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.config.BlocksItems;
-import mod.nethertweaks.config.Config;
 import mod.sfhcore.handler.BucketHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -31,11 +30,11 @@ public class SmeltingNOreDictHandler {
 
 	//Ore-Dictionary
 	private static void oreRegistration()
-    {
+	{
 		if(BlocksItems.enableAsh) {
-										  OreDictionary.registerOre("dustAsh", ItemHandler.ASH);
-										  OreDictionary.registerOre("dye", ItemHandler.ASH);
-										  OreDictionary.registerOre("dyeLightGray", ItemHandler.ASH);
+			OreDictionary.registerOre("dustAsh", ItemHandler.ASH);
+			OreDictionary.registerOre("dye", ItemHandler.ASH);
+			OreDictionary.registerOre("dyeLightGray", ItemHandler.ASH);
 		}
 		if(BlocksItems.enableMeanVine) 		  OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
 		if(BlocksItems.enableNetherrackGravel) OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
@@ -49,28 +48,28 @@ public class SmeltingNOreDictHandler {
 		if(BlocksItems.enableSaltBlock)		  OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
 		if(BlocksItems.enableElderTree)
 		{
-										  OreDictionary.registerOre("plankWood", BlockHandler.ELDER_PLANKS);
-										  OreDictionary.registerOre("slabWood", BlockHandler.ELDER_SLAB);
-										  OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDER_LOG, 1, OreDictionary.WILDCARD_VALUE));
-										  OreDictionary.registerOre("treeSapling", BlockHandler.ELDER_SAPLING);
-										  OreDictionary.registerOre("treeLeaves", BlockHandler.ELDER_LEAVES);
+			OreDictionary.registerOre("plankWood", BlockHandler.ELDER_PLANKS);
+			OreDictionary.registerOre("slabWood", BlockHandler.ELDER_SLAB);
+			OreDictionary.registerOre("logWood", new ItemStack(BlockHandler.ELDER_LOG, 1, OreDictionary.WILDCARD_VALUE));
+			OreDictionary.registerOre("treeSapling", BlockHandler.ELDER_SAPLING);
+			OreDictionary.registerOre("treeLeaves", BlockHandler.ELDER_LEAVES);
 		}
 		if(BlocksItems.enableMushroomSpores)   OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.MUSHROOM_SPORES));
 		if(BlocksItems.enableGrassSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.GRASS_SEEDS));
 		if(BlocksItems.enableCactusSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.CACTUS_SEEDS));
-		
+
 		//Vanilla/Forge Buckets
-    	if(BlocksItems.enableLiquidImpossibility)
+		if(BlocksItems.enableLiquidImpossibility)
 			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
-    	if(BlocksItems.enableDistilledWater)
+		if(BlocksItems.enableDistilledWater)
 			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDISTILLEDWATER, 1000)));
-		
-    	if(BlocksItems.enableStoneBucket)
+
+		if(BlocksItems.enableStoneBucket)
 		{
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "stone"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
-			
+
 			if(BlocksItems.enableLiquidImpossibility)
 				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
 			if(BlocksItems.enableDistilledWater)
@@ -80,7 +79,7 @@ public class SmeltingNOreDictHandler {
 		{
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
-			
+
 			if(BlocksItems.enableLiquidImpossibility)
 				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
 			if(BlocksItems.enableDistilledWater)
@@ -89,11 +88,11 @@ public class SmeltingNOreDictHandler {
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-		
+
 		if(BlocksItems.enableFlintNBlaze)
 		{
 			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
 			OreDictionary.registerOre("lighter", ItemHandler.FLINT_N_BLAZE);
 		}
-    }
+	}
 }

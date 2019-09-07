@@ -23,130 +23,130 @@ public class GuiCondenser extends GuiContainer
 	private int xSize, ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
-	
-	public GuiCondenser(InventoryPlayer inventoryPlayer, TileCondenser tileEntity) {
-        super(new ContainerCondenser(inventoryPlayer, tileEntity));
-        entity = tileEntity;
-   		xSize = 176;
+
+	public GuiCondenser(final InventoryPlayer inventoryPlayer, final TileCondenser tileEntity) {
+		super(new ContainerCondenser(inventoryPlayer, tileEntity));
+		entity = tileEntity;
+		xSize = 176;
 		ySize = 166;
 	}
-	
+
 	/**
-     * Draws the screen and all the components in it.
-     */
+	 * Draws the screen and all the components in it.
+	 */
 	@Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks)
-    {
-        this.drawDefaultBackground();
-        super.drawScreen(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
-    }
-	
+	public void drawScreen(final int mouseX, final int mouseY, final float partialTicks)
+	{
+		drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		renderHoveredToolTip(mouseX, mouseY);
+	}
+
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+	protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY)
 	{
 		getTE();
-		
+
 		//Fluid
 		String fName = "---";
-		FluidStack f = this.entity.getTank().getFluid();
-		if(f != null) fName = f.getLocalizedName() + " : " + this.entity.getTank().getFluidAmount() + " mB";
+		FluidStack f = entity.getTank().getFluid();
+		if(f != null) fName = f.getLocalizedName() + " : " + entity.getTank().getFluidAmount() + " mB";
 		else fName = fName +" : 0 mB";
 		int lenght = fontRenderer.getStringWidth(fName);
 		int x = 174 - lenght;
 		fontRenderer.drawStringWithShadow(fName, x, 73, 0xffffff);
-		
+
 		//Temperature in Celsius/Fahrenheit
 		String celsius = " °C";
 		String fahrenheit = " °F";
 		String text = "";
-		
-		double temp = Math.round(10.0 * this.entity.getTemp()) / 10.0;
-		
+
+		double temp = Math.round(10.0 * entity.getTemp()) / 10.0;
+
 		if(Config.useMetricSystem)
 			text = temp + celsius;
 		else
-			text = (temp * 1.8f + 32) + fahrenheit;
-		
+			text = temp * 1.8f + 32 + fahrenheit;
+
 		int lenght1 = fontRenderer.getStringWidth(text);
 		lenght1 /= 2;
 		int x1 = 35 - lenght1;
 		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
-    }
-	
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
-    {
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        
-        this.getTE();
-        
-        int x_old = x;
-        int y_old = y;
-        if(TileInventory.isWorking(this.entity)){
-        	int k = this.entity.getWorkTimeRemainingScaled(14);
-        	x += 28;
-        	y += 18;
-        	drawTexturedModalRect(x, y, 176, 0, 16, k);
-        }
-        
-        x = x_old;
-        y = y_old;
-        
-        if(this.entity.getCompostMeter() > 0)
-        {
-        	int k = (int) (this.entity.getCompostMeter() * 64 / this.entity.getMaxCompost());
-        	x += 155;
-        	y += 6;
-        	int k_inv = 64 - k;
-        	
-        	drawTexturedModalRect(x, y + k_inv, 176, 14, 16, k);
-        }
-        
-        x = x_old;
-        y = y_old;
-        
-        if(this.entity.getTank().getFluidAmount() != 0)
-        {
-    		int k = this.entity.getTank().getFluidAmount() * 64 / this.entity.getTank().getCapacity();
-        	x += 134;
-        	y += 6;
-        	int k_inv = 64 - k;
-        	
-        	GL11.glPushMatrix();
-    		GlStateManager.enableBlend();
-    		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+	}
 
-    		FluidStack fluid = this.entity.getTank().getFluid();
-    		
-        	TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-    		ResourceLocation res = this.entity.getTank().getFluid().getFluid().getStill(this.entity.getTank().getFluid());
-    		res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
-        	Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+	@Override
+	protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY)
+	{
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 10.F);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(backgroundimage);
+		int x = (width - xSize) / 2;
+		int y = (height - ySize) / 2;
+		drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        	for (int i = 0; i < 16; i++)
-        	{
-        		int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
-        		drawTexturedModalRect(x + i, y + k_inv, i* sprite.getIconHeight(), frame * sprite.getIconHeight() , 1, k);
-        	}
-    		GL11.glPopMatrix();
-        }
-        
-        x = x_old;
-        y = y_old;
-    }
-    
-    private void getTE()
-    {
-    	this.entity = (TileCondenser) this.mc.player.world.getTileEntity(this.entity.getPos());
-    }
-    
-    @Override
-    public boolean doesGuiPauseGame() {
-    	return false;
-    }
+		getTE();
+
+		int x_old = x;
+		int y_old = y;
+		if(TileInventory.isWorking(entity)){
+			int k = entity.getWorkTimeRemainingScaled(14);
+			x += 28;
+			y += 18;
+			drawTexturedModalRect(x, y, 176, 0, 16, k);
+		}
+
+		x = x_old;
+		y = y_old;
+
+		if(entity.getCompostMeter() > 0)
+		{
+			int k = (int) (entity.getCompostMeter() * 64 / entity.getMaxCompost());
+			x += 155;
+			y += 6;
+			int k_inv = 64 - k;
+
+			drawTexturedModalRect(x, y + k_inv, 176, 14, 16, k);
+		}
+
+		x = x_old;
+		y = y_old;
+
+		if(entity.getTank().getFluidAmount() != 0)
+		{
+			int k = entity.getTank().getFluidAmount() * 64 / entity.getTank().getCapacity();
+			x += 134;
+			y += 6;
+			int k_inv = 64 - k;
+
+			GL11.glPushMatrix();
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+			FluidStack fluid = entity.getTank().getFluid();
+
+			TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
+			ResourceLocation res = entity.getTank().getFluid().getFluid().getStill(entity.getTank().getFluid());
+			res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
+			Minecraft.getMinecraft().getTextureManager().bindTexture(res);
+
+			for (int i = 0; i < 16; i++)
+			{
+				int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
+				drawTexturedModalRect(x + i, y + k_inv, i* sprite.getIconHeight(), frame * sprite.getIconHeight() , 1, k);
+			}
+			GL11.glPopMatrix();
+		}
+
+		x = x_old;
+		y = y_old;
+	}
+
+	private void getTE()
+	{
+		entity = (TileCondenser) mc.player.world.getTileEntity(entity.getPos());
+	}
+
+	@Override
+	public boolean doesGuiPauseGame() {
+		return false;
+	}
 }

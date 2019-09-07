@@ -29,142 +29,132 @@ import net.minecraftforge.items.IItemHandler;
 
 public class Barrel extends Block implements ITileEntityProvider
 {
-    private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
-    private final int tier;
+	private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
+	private final int tier;
 
-    public Barrel(int tier, Material material, String name) {
-        super(material);
-        this.tier = tier;
-        this.setHardness(2.0f);
-        this.setRegistryName(NetherTweaksMod.MODID, name);
-        this.setCreativeTab(NetherTweaksMod.TABNTM);
-    }
+	public Barrel(final int tier, final Material material, final String name) {
+		super(material);
+		this.tier = tier;
+		setHardness(2.0f);
+		this.setRegistryName(NetherTweaksMod.MODID, name);
+		setCreativeTab(NetherTweaksMod.TABNTM);
+	}
 
-    @Override
-    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileBarrel) {
-            TileBarrel barrel = (TileBarrel) te;
+	@Override
+	public void breakBlock(@Nonnull final World worldIn, @Nonnull final BlockPos pos, @Nonnull final IBlockState state) {
+		TileEntity te = worldIn.getTileEntity(pos);
+		if (te instanceof TileBarrel) {
+			TileBarrel barrel = (TileBarrel) te;
 
-            if (barrel.getMode() != null && barrel.getMode().getName().equals("block")) {
-                IItemHandler barrelCap = barrel.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-                if (barrelCap != null) {
-                    ItemStack stack = barrelCap.getStackInSlot(0);
-                    if (!stack.isEmpty())
-                        Util.dropItemInWorld(te, null, stack, 0);
-                }
-            }
-        }
+			if (barrel.getMode() != null && barrel.getMode().getName().equals("block")) {
+				IItemHandler barrelCap = barrel.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				if (barrelCap != null) {
+					ItemStack stack = barrelCap.getStackInSlot(0);
+					if (!stack.isEmpty())
+						Util.dropItemInWorld(te, null, stack, 0);
+				}
+			}
+		}
 
-        super.breakBlock(worldIn, pos, state);
-    }
+		super.breakBlock(worldIn, pos, state);
+	}
 
-    @Override
-    public int getLightValue(@Nonnull IBlockState state, IBlockAccess world, @Nonnull BlockPos pos) {
-        TileEntity te = world.getTileEntity(pos);
-        
-        if(!(te instanceof TileBarrel)) return super.getLightValue(state, world, pos);
-        if(!Config.enableBarrelTransformLighting) return super.getLightValue(state, world, pos);
+	@Override
+	public int getLightValue(@Nonnull final IBlockState state, final IBlockAccess world, @Nonnull final BlockPos pos) {
+		TileEntity te = world.getTileEntity(pos);
 
-            TileBarrel tile = (TileBarrel) te;
-            if (tile.getMode() instanceof BarrelModeBlock) {
-                BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
+		if(!(te instanceof TileBarrel)) return super.getLightValue(state, world, pos);
+		if(!Config.enableBarrelTransformLighting) return super.getLightValue(state, world, pos);
 
-                if (mode.getBlock() != null) {
-                    return Block.getBlockFromItem(mode.getBlock().getItem()).getStateFromMeta(mode.getBlock().getMeta()).getLightValue();
-                }
-            } else if (tile.getMode() instanceof BarrelModeFluid) {
-                BarrelModeFluid mode = (BarrelModeFluid) tile.getMode();
+		TileBarrel tile = (TileBarrel) te;
+		if (tile.getMode() instanceof BarrelModeBlock) {
+			BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
 
-                if (mode.getFluidHandler(tile).getFluidAmount() > 0) {
-                    return Util.getLightValue(mode.getFluidHandler(tile).getFluid());
-                }
-            } else {
-                if (tile.getMode() instanceof BarrelModeCompost) {
-                    BarrelModeCompost mode = (BarrelModeCompost) tile.getMode();
+			if (mode.getBlock() != null)
+				return Block.getBlockFromItem(mode.getBlock().getItem()).getStateFromMeta(mode.getBlock().getMeta()).getLightValue();
+		} else if (tile.getMode() instanceof BarrelModeFluid) {
+			BarrelModeFluid mode = (BarrelModeFluid) tile.getMode();
 
-                    if (mode.getCompostState() != null) {
-                        int value = mode.getCompostState().getLightValue() / 2;
+			if (mode.getFluidHandler(tile).getFluidAmount() > 0)
+				return Util.getLightValue(mode.getFluidHandler(tile).getFluid());
+		} else if (tile.getMode() instanceof BarrelModeCompost) {
+			BarrelModeCompost mode = (BarrelModeCompost) tile.getMode();
 
-                        return Math.round(Util.weightedAverage((float) value / 2, value, mode.getProgress()));
-                    }
-                } else if (tile.getMode() instanceof BarrelModeFluidTransform) {
-                    BarrelModeFluidTransform mode = (BarrelModeFluidTransform) tile.getMode();
+			if (mode.getCompostState() != null) {
+				int value = mode.getCompostState().getLightValue() / 2;
 
-                    int inputValue = Util.getLightValue(mode.getInputStack());
-                    int outputValue = Util.getLightValue(mode.getOutputStack());
+				return Math.round(Util.weightedAverage((float) value / 2, value, mode.getProgress()));
+			}
+		} else if (tile.getMode() instanceof BarrelModeFluidTransform) {
+			BarrelModeFluidTransform mode = (BarrelModeFluidTransform) tile.getMode();
 
-                    return Math.round(Util.weightedAverage(outputValue, inputValue, mode.getProgress()));
-                }
-            }
+			int inputValue = Util.getLightValue(mode.getInputStack());
+			int outputValue = Util.getLightValue(mode.getOutputStack());
 
-        return super.getLightValue(state, world, pos);
-    }
+			return Math.round(Util.weightedAverage(outputValue, inputValue, mode.getProgress()));
+		}
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-    	if(!worldIn.isBlockLoaded(pos)) return false;
-    	if(worldIn.isRemote) return true;
-    	TileEntity te = worldIn.getTileEntity(pos);
-    	if(!(te instanceof TileBarrel)) return false;
-    	if (((TileBarrel) te).getMode() != null)
-    	{
-    		if (((TileBarrel) te).getMode().getName().equals("fluid"))
-    		{
-    			if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
-    			{
-    				return true;
-    			}
-    		}
-    	}
-    	return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-    }
+		return super.getLightValue(state, world, pos);
+	}
 
-    @Override
-    @Deprecated
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean onBlockActivated(final World worldIn, final BlockPos pos, final IBlockState state, final EntityPlayer playerIn, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
+	{
+		if(!worldIn.isBlockLoaded(pos)) return false;
+		if(worldIn.isRemote) return true;
+		TileEntity te = worldIn.getTileEntity(pos);
+		if(!(te instanceof TileBarrel)) return false;
+		if (((TileBarrel) te).getMode() != null)
+			if (((TileBarrel) te).getMode().getName().equals("fluid"))
+				if(((BarrelModeFluid)((TileBarrel) te).getMode()).workTime > 0)
+					return true;
+		return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+	}
 
-    @Override
-    @Deprecated
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	@Deprecated
+	public boolean isFullBlock(final IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(@Nonnull World worldIn, int meta) {
-        return new TileBarrel(this);
-    }
+	@Override
+	@Deprecated
+	public boolean isOpaqueCube(final IBlockState state) {
+		return false;
+	}
 
-    @Override
-    @Nonnull
-    @Deprecated
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return boundingBox;
-    }
+	@Override
+	public TileEntity createNewTileEntity(@Nonnull final World worldIn, final int meta) {
+		return new TileBarrel(this);
+	}
 
-    @Override
-    public boolean isTopSolid(IBlockState state) {
-        return false;
-    }
+	@Override
+	@Nonnull
+	@Deprecated
+	public AxisAlignedBB getBoundingBox(final IBlockState state, final IBlockAccess source, final BlockPos pos) {
+		return boundingBox;
+	}
 
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isTopSolid(final IBlockState state) {
+		return false;
+	}
 
-    public int getTier() {
-        return tier;
-    }
-    
- // Barrels will attempt to milk entities
-    @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-        TileEntity te = worldIn.getTileEntity(pos);
-        if (!(te instanceof TileBarrel)) return;
-            ((TileBarrel) te).entityOnTop(worldIn, entityIn);
-    }
+	@Override
+	@Deprecated
+	public boolean isFullCube(final IBlockState state) {
+		return false;
+	}
+
+	public int getTier() {
+		return tier;
+	}
+
+	// Barrels will attempt to milk entities
+	@Override
+	public void onEntityWalk(final World worldIn, final BlockPos pos, final Entity entityIn) {
+		TileEntity te = worldIn.getTileEntity(pos);
+		if (!(te instanceof TileBarrel)) return;
+		((TileBarrel) te).entityOnTop(worldIn, entityIn);
+	}
 }

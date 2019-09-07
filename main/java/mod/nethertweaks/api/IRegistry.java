@@ -1,7 +1,7 @@
 package mod.nethertweaks.api;
 
 public interface IRegistry<V> {
-    void clearRegistry();
+	void clearRegistry();
 
-    V getRegistry();
+	V getRegistry();
 }

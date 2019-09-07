@@ -8,35 +8,35 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
 public class BonfireInfo {
-	
+
 	private int dim;
 	private String name;
 	private boolean seeable;
 	private UUID owner;
 	private List<UUID> lastSpawnPlayer;
 	private BlockPos spawnPos;
-	
-	public BonfireInfo(UUID owner, int dim)
+
+	public BonfireInfo(final UUID owner, final int dim)
 	{
 		this("", owner, dim);
 	}
-	
-	public BonfireInfo(String name, UUID owner, int dim)
+
+	public BonfireInfo(final String name, final UUID owner, final int dim)
 	{
 		this(name, true, owner, dim);
 	}
-	
-	public BonfireInfo(String name, boolean seeable, UUID owner, int dim)
+
+	public BonfireInfo(final String name, final boolean seeable, final UUID owner, final int dim)
 	{
 		this(name, seeable, owner, null, dim);
 	}
-	
-	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, int dim)
+
+	public BonfireInfo(final String name, final boolean seeable, final UUID owner, final List<UUID> lastSpawnPlayer, final int dim)
 	{
 		this(name, seeable, owner, lastSpawnPlayer, null, dim);
 	}
-	
-	public BonfireInfo(String name, boolean seeable, UUID owner, List<UUID> lastSpawnPlayer, BlockPos spawnPos, int dim)
+
+	public BonfireInfo(final String name, final boolean seeable, final UUID owner, final List<UUID> lastSpawnPlayer, final BlockPos spawnPos, final int dim)
 	{
 		this.name = name;
 		this.seeable = seeable;
@@ -44,113 +44,111 @@ public class BonfireInfo {
 		this.owner = owner;
 		this.spawnPos = spawnPos;
 		if (lastSpawnPlayer == null)
-			this.lastSpawnPlayer = new ArrayList<UUID>();
+			this.lastSpawnPlayer = new ArrayList<>();
 		else
 			this.lastSpawnPlayer = lastSpawnPlayer;
 	}
-	
-	public void setOwner(UUID owner)
+
+	public void setOwner(final UUID owner)
 	{
 		this.owner = owner;
 	}
-	
+
 	public UUID getOwner()
 	{
-		return this.owner;
+		return owner;
 	}
-	
-	public void setName(String name)
+
+	public void setName(final String name)
 	{
 		this.name = name;
 	}
-	
+
 	public String getName()
 	{
-		return this.name;
+		return name;
 	}
-	
-	public void setSpawnPos(BlockPos pos)
+
+	public void setSpawnPos(final BlockPos pos)
 	{
-		this.spawnPos = pos;
+		spawnPos = pos;
 	}
-	
+
 	public BlockPos getSpawnPos()
 	{
-		return this.spawnPos;
+		return spawnPos;
 	}
-	
-	public void isPublic(boolean seeable)
+
+	public void isPublic(final boolean seeable)
 	{
 		this.seeable = seeable;
 	}
-	
+
 	public boolean isPublic()
 	{
-		return this.seeable;
+		return seeable;
 	}
-	
-	public void setLastPlayerSpawn(List<UUID> lastSpawnPlayer)
+
+	public void setLastPlayerSpawn(final List<UUID> lastSpawnPlayer)
 	{
 		this.lastSpawnPlayer = lastSpawnPlayer;
 	}
-	
+
 	public List<UUID> getLastPlayerSpawn()
 	{
-		return this.lastSpawnPlayer;
+		return lastSpawnPlayer;
 	}
 
-	public void addPlayer(EntityPlayer player)
+	public void addPlayer(final EntityPlayer player)
 	{
 		this.addPlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
-	
-	public void addPlayer(UUID player)
+
+	public void addPlayer(final UUID player)
 	{
-		if(!this.lastSpawnPlayer.contains(player))
-		{
-			this.lastSpawnPlayer.add(player);
-		}
+		if(!lastSpawnPlayer.contains(player))
+			lastSpawnPlayer.add(player);
 	}
-	
-	public void removePlayer(EntityPlayer player)
+
+	public void removePlayer(final EntityPlayer player)
 	{
 		this.removePlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
-	
-	public void removePlayer(UUID player)
+
+	public void removePlayer(final UUID player)
 	{
-		int index = this.lastSpawnPlayer.indexOf(player);
+		int index = lastSpawnPlayer.indexOf(player);
 		if (index == -1) return;
-		this.lastSpawnPlayer.remove(index);
+		lastSpawnPlayer.remove(index);
 	}
-	
-	public boolean hasPlayer(EntityPlayer player)
+
+	public boolean hasPlayer(final EntityPlayer player)
 	{
 		return this.hasPlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
-	
-	public boolean hasPlayer(UUID player)
+
+	public boolean hasPlayer(final UUID player)
 	{
-		return (this.lastSpawnPlayer.indexOf(player) != -1);
+		return lastSpawnPlayer.indexOf(player) != -1;
 	}
-	
+
 	public int getDimension()
 	{
-		return this.dim;
+		return dim;
 	}
-	
-	public void setDimension(int dim)
+
+	public void setDimension(final int dim)
 	{
 		this.dim = dim;
 	}
-	
+
 	public BonfireInfo copy()
 	{
-		BonfireInfo bi = new BonfireInfo(this.owner, this.dim);
-		bi.setName(this.getName());
+		BonfireInfo bi = new BonfireInfo(owner, dim);
+		bi.setName(getName());
 		bi.isPublic(this.isPublic());
-		bi.setLastPlayerSpawn(this.getLastPlayerSpawn());
+		bi.setLastPlayerSpawn(getLastPlayerSpawn());
 		return bi;
 	}
-	
+
 }

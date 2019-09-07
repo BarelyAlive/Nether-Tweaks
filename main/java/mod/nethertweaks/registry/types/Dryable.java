@@ -3,9 +3,9 @@ package mod.nethertweaks.registry.types;
 import net.minecraft.item.ItemStack;
 
 public class Dryable
-{	
+{
 	//Dry Helper
-	
+
 	@Override
 	public String toString() {
 		return "Dryable [item=" + item + ", value=" + value + "]";
@@ -15,13 +15,13 @@ public class Dryable
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + (item == null ? 0 : item.hashCode());
 		result = prime * result + value;
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -41,30 +41,30 @@ public class Dryable
 
 	private ItemStack item;
 	private int value;
-	
+
 	public static Dryable getEMPTY() {
 		return EMPTY;
 	}
 
-	public static void setEMPTY(Dryable eMPTY) {
+	public static void setEMPTY(final Dryable eMPTY) {
 		EMPTY = eMPTY;
 	}
 
 	static Dryable EMPTY = new Dryable(ItemStack.EMPTY, 0);
-	
-	public Dryable(ItemStack stack, int value)
+
+	public Dryable(final ItemStack stack, final int value)
 	{
-		this.item = stack;
+		item = stack;
 		this.value = value;
 	}
-	
+
 	public ItemStack getItem()
 	{
-		return this.item;
+		return item;
 	}
-	
+
 	public int getValue()
 	{
-		return this.value;
+		return value;
 	}
 }

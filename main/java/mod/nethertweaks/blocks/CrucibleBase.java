@@ -21,58 +21,57 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public abstract class CrucibleBase extends Block
 {
-    public CrucibleBase(String name, Material material) {
-        super(material);
-        setRegistryName(name);
-        setCreativeTab(NetherTweaksMod.TABNTM);
-    }
+	public CrucibleBase(final String name, final Material material) {
+		super(material);
+		setRegistryName(name);
+		setCreativeTab(NetherTweaksMod.TABNTM);
+	}
 
-    @Override
-    public abstract TileEntity createTileEntity(@Nonnull World worldIn, @Nonnull IBlockState state);
+	@Override
+	public abstract TileEntity createTileEntity(@Nonnull World worldIn, @Nonnull IBlockState state);
 
-    @Override
-    public int damageDropped(IBlockState state) {
-        return getMetaFromState(state);
-    }
+	@Override
+	public int damageDropped(final IBlockState state) {
+		return getMetaFromState(state);
+	}
 
-    @Override
-    @Nonnull
-    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player) {
-        return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
-    }
+	@Override
+	@Nonnull
+	public ItemStack getPickBlock(@Nonnull final IBlockState state, final RayTraceResult target, @Nonnull final World world, @Nonnull final BlockPos pos, final EntityPlayer player) {
+		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(world.getBlockState(pos)));
+	}
 
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-    	if(!world.isBlockLoaded(pos)) return false;
-        if (world.isRemote) return true;
-        if(player.isSneaking()) return false;
+	@Override
+	public boolean onBlockActivated(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ)
+	{
+		if(!world.isBlockLoaded(pos)) return false;
+		if (world.isRemote) return true;
+		if(player.isSneaking()) return false;
 
-        TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
+		TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
 
-        if (te != null) {
-            IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-            return te.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ, fluidHandler);
-        } else {
-            return true;
-        }
-    }
+		if (te != null) {
+			IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			return te.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ, fluidHandler);
+		} else
+			return true;
+	}
 
-    @Override
-    @Deprecated
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
+	@Override
+	@Deprecated
+	public boolean isFullBlock(final IBlockState state) {
+		return false;
+	}
 
-    @Override
-    @Deprecated
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	@Deprecated
+	public boolean isOpaqueCube(final IBlockState state) {
+		return false;
+	}
 
-    @Override
-    @Deprecated
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	@Deprecated
+	public boolean isFullCube(final IBlockState state) {
+		return false;
+	}
 }

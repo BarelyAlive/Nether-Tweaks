@@ -16,42 +16,42 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
 public class CrucibleRecipe implements IRecipeWrapper {
-    private final List<List<ItemStack>> inputs;
-    private final ItemStack output;
+	private final List<List<ItemStack>> inputs;
+	private final ItemStack output;
 
-    public CrucibleRecipe(Fluid fluid, List<List<ItemStack>> inputs) {
-        this.output = FluidUtil.getFilledBucket(new FluidStack(fluid, Fluid.BUCKET_VOLUME));
-        this.inputs = inputs;
-    }
+	public CrucibleRecipe(final Fluid fluid, final List<List<ItemStack>> inputs) {
+		output = FluidUtil.getFilledBucket(new FluidStack(fluid, Fluid.BUCKET_VOLUME));
+		this.inputs = inputs;
+	}
 
-    @Override
-    public void getIngredients(@Nonnull IIngredients ingredients) {
-        ingredients.setInputLists(VanillaTypes.ITEM, inputs);
-        ingredients.setOutput(VanillaTypes.ITEM, output);
-    }
+	@Override
+	public void getIngredients(@Nonnull final IIngredients ingredients) {
+		ingredients.setInputLists(VanillaTypes.ITEM, inputs);
+		ingredients.setOutput(VanillaTypes.ITEM, output);
+	}
 
-    public  List<List<ItemStack>> getInputs() {
-        return inputs;
-    }
+	public  List<List<ItemStack>> getInputs() {
+		return inputs;
+	}
 
-    public ItemStack getFluid()
-    {
-        return output;
-    }
+	public ItemStack getFluid()
+	{
+		return output;
+	}
 
-    @Override
-    public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-    }
+	@Override
+	public void drawInfo(@Nonnull final Minecraft minecraft, final int recipeWidth, final int recipeHeight, final int mouseX, final int mouseY) {
+	}
 
-    @Override
-    @Nonnull
-    public List<String> getTooltipStrings(int mouseX, int mouseY) {
-        return Lists.newArrayList();
-    }
+	@Override
+	@Nonnull
+	public List<String> getTooltipStrings(final int mouseX, final int mouseY) {
+		return Lists.newArrayList();
+	}
 
-    @Override
-    public boolean handleClick(@Nonnull Minecraft minecraft, int mouseX, int mouseY, int mouseButton) {
-        return false;
-    }
+	@Override
+	public boolean handleClick(@Nonnull final Minecraft minecraft, final int mouseX, final int mouseY, final int mouseButton) {
+		return false;
+	}
 
 }

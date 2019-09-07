@@ -15,58 +15,56 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class HammerHandler
 {
 	private static ItemStack hammer = ItemStack.EMPTY;
-	
-    public static ItemStack getHammer() {
+
+	public static ItemStack getHammer() {
 		return hammer;
 	}
 
-	public static void setHammer(ItemStack hammer) {
+	public static void setHammer(final ItemStack hammer) {
 		HammerHandler.hammer = hammer;
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOW)
-    public void hammer(BlockEvent.HarvestDropsEvent event)
-    {
-        if (event.getWorld().isRemote || event.getHarvester() == null || event.isSilkTouching())
-            return;
-        
-        ItemStack held = ItemStack.EMPTY;
-
-        if(!hammer.isEmpty())
-        {
-        	held =  hammer;
-        }
-        else
-        	held = event.getHarvester().getHeldItemMainhand();
-
-        if (!isHammer(held))
-            return;
-
-        List<ItemStack> rewards = NTMRegistryManager.HAMMER_REGISTRY.getRewardDrops(event.getWorld().rand, event.getState(), ((IHammer) held.getItem()).getMiningLevel(held), event.getFortuneLevel());
-
-        if (rewards != null && rewards.size() > 0)
-        {
-            event.getDrops().clear();
-            event.setDropChance(1.0F);
-            event.getDrops().addAll(rewards);
-        }
-        
-        hammer =  ItemStack.EMPTY;
-    }
-    
-    public static boolean isHammer(@Nullable ItemStack stack)
+	public void hammer(final BlockEvent.HarvestDropsEvent event)
 	{
-	    if (stack.isEmpty())
-	        return false;
-	
-	    if (stack.getItem() instanceof IHammer)
-	        return ((IHammer) stack.getItem()).isHammer(stack);
-	
-	    return false;
+		if (event.getWorld().isRemote || event.getHarvester() == null || event.isSilkTouching())
+			return;
+
+		ItemStack held = ItemStack.EMPTY;
+
+		if(!hammer.isEmpty())
+			held =  hammer;
+		else
+			held = event.getHarvester().getHeldItemMainhand();
+
+		if (!isHammer(held))
+			return;
+
+		List<ItemStack> rewards = NTMRegistryManager.HAMMER_REGISTRY.getRewardDrops(event.getWorld().rand, event.getState(), ((IHammer) held.getItem()).getMiningLevel(held), event.getFortuneLevel());
+
+		if (rewards != null && rewards.size() > 0)
+		{
+			event.getDrops().clear();
+			event.setDropChance(1.0F);
+			event.getDrops().addAll(rewards);
+		}
+
+		hammer =  ItemStack.EMPTY;
 	}
-	
-	public boolean isHammer(Item item)
+
+	public static boolean isHammer(@Nullable final ItemStack stack)
 	{
-	    return isHammer(new ItemStack(item));
+		if (stack.isEmpty())
+			return false;
+
+		if (stack.getItem() instanceof IHammer)
+			return ((IHammer) stack.getItem()).isHammer(stack);
+
+		return false;
+	}
+
+	public boolean isHammer(final Item item)
+	{
+		return isHammer(new ItemStack(item));
 	}
 }

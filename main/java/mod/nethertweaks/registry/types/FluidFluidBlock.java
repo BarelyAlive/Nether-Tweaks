@@ -7,7 +7,7 @@ public class FluidFluidBlock {
 	private String fluidInBarrel;
 	private String fluidOnTop;
 	private BlockInfo result;
-	
+
 	public String getFluidInBarrel() {
 		return fluidInBarrel;
 	}
@@ -20,25 +20,25 @@ public class FluidFluidBlock {
 		return result;
 	}
 
-	public FluidFluidBlock(String fluidInBarrel, String fluidOnTop, BlockInfo result) {
+	public FluidFluidBlock(final String fluidInBarrel, final String fluidOnTop, final BlockInfo result) {
 		super();
 		this.fluidInBarrel = fluidInBarrel;
 		this.fluidOnTop = fluidOnTop;
 		this.result = result;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((fluidInBarrel == null) ? 0 : fluidInBarrel.hashCode());
-		result = prime * result + ((fluidOnTop == null) ? 0 : fluidOnTop.hashCode());
-		result = prime * result + ((this.result == null) ? 0 : this.result.hashCode());
+		result = prime * result + (fluidInBarrel == null ? 0 : fluidInBarrel.hashCode());
+		result = prime * result + (fluidOnTop == null ? 0 : fluidOnTop.hashCode());
+		result = prime * result + (this.result == null ? 0 : this.result.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)

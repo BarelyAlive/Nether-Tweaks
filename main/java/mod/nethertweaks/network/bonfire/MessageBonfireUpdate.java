@@ -19,49 +19,45 @@ public class MessageBonfireUpdate implements IMessage {
 	private UpdateStatus status;
 	private BlockPos pos;
 	private BonfireInfo info;
-	
+
 	public MessageBonfireUpdate() {}
-	
-	public MessageBonfireUpdate(UpdateStatus status, BlockPos pos, BonfireInfo info) {
+
+	public MessageBonfireUpdate(final UpdateStatus status, final BlockPos pos, final BonfireInfo info) {
 		this.status = status;
 		this.pos = pos;
 		this.info = info;
 	}
-	
+
 	@Override
-	public void fromBytes(ByteBuf buf) {
+	public void fromBytes(final ByteBuf buf) {
 		pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
 		if (buf.readBoolean())
-		{
 			info = null;
-		}
 		else
 		{
 			info = new BonfireInfo(new UUID(buf.readLong(), buf.readLong()), buf.readInt());
-			
+
 			info.setSpawnPos(new BlockPos(buf.readInt(), buf.readInt(), buf.readInt()));
 			int length = buf.readInt();
 			info.setName(buf.readCharSequence(length, Charset.defaultCharset()).toString());
 			info.isPublic(buf.readBoolean());
-			
+
 			length = buf.readInt();
 			for(int j = 0; j < length; j++)
-			{
 				info.addPlayer(new UUID(buf.readLong(), buf.readLong()));
-			}
 		}
-		
+
 		int status_int = buf.readInt();
-		
-		status = (status_int == 1 ? UpdateStatus.ADD : (status_int == 2 ? UpdateStatus.UPDATE : (status_int == 3 ? UpdateStatus.REMOVE : UpdateStatus.UPDATE)));
+
+		status = status_int == 1 ? UpdateStatus.ADD : status_int == 2 ? UpdateStatus.UPDATE : status_int == 3 ? UpdateStatus.REMOVE : UpdateStatus.UPDATE;
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.pos.getX());
-		buf.writeInt(this.pos.getY());
-		buf.writeInt(this.pos.getZ());
-		
+	public void toBytes(final ByteBuf buf) {
+		buf.writeInt(pos.getX());
+		buf.writeInt(pos.getY());
+		buf.writeInt(pos.getZ());
+
 		buf.writeBoolean(info == null);
 		if (info != null)
 		{
@@ -92,23 +88,23 @@ public class MessageBonfireUpdate implements IMessage {
 				buf.writeLong(player_list.get(i).getLeastSignificantBits());
 			}
 		}
-		
-		buf.writeInt(status == UpdateStatus.ADD ? 1 : (status == UpdateStatus.UPDATE ? 2 : (status == UpdateStatus.REMOVE ? 3 : 0)));
+
+		buf.writeInt(status == UpdateStatus.ADD ? 1 : status == UpdateStatus.UPDATE ? 2 : status == UpdateStatus.REMOVE ? 3 : 0);
 	}
 
 	public static class MessageBonfireUpdateHandler implements IMessageHandler<MessageBonfireUpdate, IMessage>
 	{
 		@Override
-		public IMessage onMessage(MessageBonfireUpdate msg, MessageContext ctx) {
+		public IMessage onMessage(final MessageBonfireUpdate msg, final MessageContext ctx) {
 			if (msg.status == UpdateStatus.ADD || msg.status == UpdateStatus.UPDATE)
 				WorldSpawnLocation.bonfire_info.put(msg.pos, msg.info);
 			else if (msg.status == UpdateStatus.REMOVE)
 				WorldSpawnLocation.bonfire_info.remove(msg.pos);
-			
+
 			if (ctx.side == Side.SERVER)
 				NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(msg.status, msg.pos, WorldSpawnLocation.bonfire_info.containsKey(msg.pos) ? WorldSpawnLocation.bonfire_info.get(msg.pos) : null));
 			return null;
 		}
 	}
-	
+
 }

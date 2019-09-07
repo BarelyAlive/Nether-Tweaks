@@ -7,43 +7,43 @@ public class FluidItemFluid
 	public String getInputFluid() {
 		return inputFluid;
 	}
-	public void setInputFluid(String inputFluid) {
+	public void setInputFluid(final String inputFluid) {
 		this.inputFluid = inputFluid;
 	}
 	public StackInfo getReactant() {
 		return reactant;
 	}
-	public void setReactant(StackInfo reactant) {
+	public void setReactant(final StackInfo reactant) {
 		this.reactant = reactant;
 	}
 	public String getOutput() {
 		return output;
 	}
-	public void setOutput(String output) {
+	public void setOutput(final String output) {
 		this.output = output;
 	}
 	public int getTransformTime() {
-		return this.transformTime;
+		return transformTime;
 	}
-	public void setOutput(int transformTime) {
+	public void setOutput(final int transformTime) {
 		this.transformTime = transformTime;
 	}
 	public boolean isConsumable() {
-		return this.consume;
+		return consume;
 	}
 	@Override
 	public String toString() {
 		return "FluidItemFluid [inputFluid=" + inputFluid + ", reactant=" + reactant + ", output=" + output + "]";
 	}
-	public FluidItemFluid(String inputFluid, StackInfo reactant, String output) {
+	public FluidItemFluid(final String inputFluid, final StackInfo reactant, final String output) {
 		this(inputFluid, reactant, output, 0);
 	}
-	
-	public FluidItemFluid(String inputFluid, StackInfo reactant, String output, int transformTime) {
+
+	public FluidItemFluid(final String inputFluid, final StackInfo reactant, final String output, final int transformTime) {
 		this(inputFluid, reactant, output, 0, true);
 	}
-	
-	public FluidItemFluid(String inputFluid, StackInfo reactant, String output, int transformTime, boolean consume) {
+
+	public FluidItemFluid(final String inputFluid, final StackInfo reactant, final String output, final int transformTime, final boolean consume) {
 		super();
 		this.inputFluid = inputFluid;
 		this.reactant = reactant;
@@ -51,7 +51,7 @@ public class FluidItemFluid
 		this.transformTime = transformTime;
 		this.consume = consume;
 	}
-	
+
 	String inputFluid = null;
 	StackInfo reactant = null;
 	String output = null;

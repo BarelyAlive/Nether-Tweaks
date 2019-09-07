@@ -43,158 +43,151 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HeatSourcesRecipe implements IRecipeWrapper {
-    private final List<ItemStack> inputs;
-    private final BlockInfo blockInfo;
-    private final String heatAmountString;
+	private final List<ItemStack> inputs;
+	private final BlockInfo blockInfo;
+	private final String heatAmountString;
 
-    private static final Item torch = Item.getItemFromBlock(Blocks.TORCH);
+	private static final Item torch = Item.getItemFromBlock(Blocks.TORCH);
 
-    public HeatSourcesRecipe(BlockInfo blockInfo, int heatAmount) {
-        this.blockInfo = blockInfo;
-
-
-        ItemStack item = blockInfo.getItemStack();
-
-        if (item.getItem() == torch)
-            item = new ItemStack(torch, 1, 0);
-
-        if (item.isEmpty()) {
-            Fluid fluid = null;
-            Block block = blockInfo.getBlock();
-            if (block instanceof IFluidBlock) {
-                fluid = ((IFluidBlock) block).getFluid();
-            }
-            if (block == Blocks.LAVA || block == Blocks.FLOWING_LAVA) {
-                fluid = FluidRegistry.LAVA;
-            }
-            if (block == Blocks.WATER || block == Blocks.FLOWING_WATER) {
-                fluid = FluidRegistry.WATER;
-            }
-            if (fluid != null) {
-                item = FluidUtil.getFilledBucket(new FluidStack(fluid, 1000));
-            }
-            if (block == Blocks.FIRE) {
-                item = new ItemStack(Items.FLINT_AND_STEEL, 1);
-            }
-        }
+	public HeatSourcesRecipe(final BlockInfo blockInfo, final int heatAmount) {
+		this.blockInfo = blockInfo;
 
 
-        inputs = new ArrayList<>(Collections.singleton(item));
-        heatAmountString = heatAmount + "x";
-    }
+		ItemStack item = blockInfo.getItemStack();
 
-    @Override
-    public void getIngredients(@Nonnull IIngredients ingredients) {
-        ingredients.setInputs(VanillaTypes.ITEM, inputs);
-    }
+		if (item.getItem() == torch)
+			item = new ItemStack(torch, 1, 0);
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-        minecraft.fontRenderer.drawString(heatAmountString, 24, 12, Color.gray.getRGB());
+		if (item.isEmpty()) {
+			Fluid fluid = null;
+			Block block = blockInfo.getBlock();
+			if (block instanceof IFluidBlock)
+				fluid = ((IFluidBlock) block).getFluid();
+			if (block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)
+				fluid = FluidRegistry.LAVA;
+			if (block == Blocks.WATER || block == Blocks.FLOWING_WATER)
+				fluid = FluidRegistry.WATER;
+			if (fluid != null)
+				item = FluidUtil.getFilledBucket(new FluidStack(fluid, 1000));
+			if (block == Blocks.FIRE)
+				item = new ItemStack(Items.FLINT_AND_STEEL, 1);
+		}
 
-        // int reqX = (int) Math.ceil((float)(maxPos.getX() - minPos.getX() +2) / 2.0f);
-        // int reqZ = (int) Math.ceil((float)(maxPos.getZ() - minPos.getZ() +2) / 2.0f);
+
+		inputs = new ArrayList<>(Collections.singleton(item));
+		heatAmountString = heatAmount + "x";
+	}
+
+	@Override
+	public void getIngredients(@Nonnull final IIngredients ingredients) {
+		ingredients.setInputs(VanillaTypes.ITEM, inputs);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void drawInfo(final Minecraft minecraft, final int recipeWidth, final int recipeHeight, final int mouseX, final int mouseY) {
+		minecraft.fontRenderer.drawString(heatAmountString, 24, 12, Color.gray.getRGB());
+
+		// int reqX = (int) Math.ceil((float)(maxPos.getX() - minPos.getX() +2) / 2.0f);
+		// int reqZ = (int) Math.ceil((float)(maxPos.getZ() - minPos.getZ() +2) / 2.0f);
 
 
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(0F, 0F, 216.5F);
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(0F, 0F, 216.5F);
 
 
-        // minecraft.fontRenderer.drawString(recipe.getDimensionsString(), 153-mc.fontRenderer.getStringWidth(recipe.getDimensionsString()), 19 * 5 + 10, 0x444444);
+		// minecraft.fontRenderer.drawString(recipe.getDimensionsString(), 153-mc.fontRenderer.getStringWidth(recipe.getDimensionsString()), 19 * 5 + 10, 0x444444);
 
-        GlStateManager.popMatrix();
+		GlStateManager.popMatrix();
 
-        float angle = RenderTickCounter.getRenderTicks() * 45.0f / 128.0f;
+		float angle = RenderTickCounter.getRenderTicks() * 45.0f / 128.0f;
 
-        // When we want to render translucent blocks we might need this
-        BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
+		// When we want to render translucent blocks we might need this
+		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 
-        // Init GlStateManager
-        TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
-        textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
-        GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-        GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
-        GlStateManager.enableAlpha();
-        GlStateManager.alphaFunc(GL11.GL_GREATER, 0.1f);
-        GlStateManager.enableBlend();
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-        GlStateManager.disableFog();
-        GlStateManager.disableLighting();
-        RenderHelper.disableStandardItemLighting();
-        GlStateManager.enableBlend();
-        GlStateManager.enableCull();
-        GlStateManager.enableAlpha();
-        if (Minecraft.isAmbientOcclusionEnabled()) {
-            GlStateManager.shadeModel(7425);
-        } else {
-            GlStateManager.shadeModel(7424);
-        }
+		// Init GlStateManager
+		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+		textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+		GlStateManager.enableAlpha();
+		GlStateManager.alphaFunc(GL11.GL_GREATER, 0.1f);
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		GlStateManager.disableFog();
+		GlStateManager.disableLighting();
+		RenderHelper.disableStandardItemLighting();
+		GlStateManager.enableBlend();
+		GlStateManager.enableCull();
+		GlStateManager.enableAlpha();
+		if (Minecraft.isAmbientOcclusionEnabled())
+			GlStateManager.shadeModel(7425);
+		else
+			GlStateManager.shadeModel(7424);
 
-        GlStateManager.pushMatrix();
+		GlStateManager.pushMatrix();
 
-        // Center on recipe area
-        GlStateManager.translate(70, 30, 20);
+		// Center on recipe area
+		GlStateManager.translate(70, 30, 20);
 
-        // Shift it a bit down so one can properly see 3d
-        GlStateManager.rotate(-25.0f, 1.0f, 0.0f, 0.0f);
+		// Shift it a bit down so one can properly see 3d
+		GlStateManager.rotate(-25.0f, 1.0f, 0.0f, 0.0f);
 
-        // Rotate per our calculated time
-        GlStateManager.rotate(angle, 0.0f, 1.0f, 0.0f);
+		// Rotate per our calculated time
+		GlStateManager.rotate(angle, 0.0f, 1.0f, 0.0f);
 
-        // Scale down to gui scale
-        GlStateManager.scale(16.0f, -16.0f, 16.0f);
+		// Scale down to gui scale
+		GlStateManager.scale(16.0f, -16.0f, 16.0f);
 
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder buffer = tessellator.getBuffer();
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder buffer = tessellator.getBuffer();
 
-        buffer.setTranslation(-.5, 0, -.5);
+		buffer.setTranslation(-.5, 0, -.5);
 
-        GlStateManager.enableCull();
+		GlStateManager.enableCull();
 
-        //IBlockState crucible = ModBlocks.crucibleStone.getDefaultState().withProperty(Block.FIRED, true);
-        IBlockState state = blockInfo.getBlockState();
+		//IBlockState crucible = ModBlocks.crucibleStone.getDefaultState().withProperty(Block.FIRED, true);
+		IBlockState state = blockInfo.getBlockState();
 
-        BlockPos pos = new BlockPos(0, 0, 0);
-        /*if (blockInfo.getBlock() instanceof IFluidBlock || blockInfo.getBlock() instanceof BlockLiquid) {
+		BlockPos pos = new BlockPos(0, 0, 0);
+		/*if (blockInfo.getBlock() instanceof IFluidBlock || blockInfo.getBlock() instanceof BlockLiquid) {
             pos = pos.up();
         }*/
 
 
-        // Aaaand render
-        buffer.begin(7, DefaultVertexFormats.BLOCK);
-        GlStateManager.disableAlpha();
-        //this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.SOLID, crucible, new BlockPos(0, 1, 0), minecraft.world);
+		// Aaaand render
+		buffer.begin(7, DefaultVertexFormats.BLOCK);
+		GlStateManager.disableAlpha();
+		//this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.SOLID, crucible, new BlockPos(0, 1, 0), minecraft.world);
 
-        this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.SOLID, state, pos, minecraft.world);
-        GlStateManager.enableAlpha();
-        this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.CUTOUT_MIPPED, state, pos, minecraft.world);
-        this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.CUTOUT, state, pos, minecraft.world);
-        GlStateManager.shadeModel(7425);
-        this.renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.TRANSLUCENT, state, pos, minecraft.world);
-        tessellator.draw();
+		renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.SOLID, state, pos, minecraft.world);
+		GlStateManager.enableAlpha();
+		renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.CUTOUT_MIPPED, state, pos, minecraft.world);
+		renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.CUTOUT, state, pos, minecraft.world);
+		GlStateManager.shadeModel(7425);
+		renderBlock(blockrendererdispatcher, buffer, BlockRenderLayer.TRANSLUCENT, state, pos, minecraft.world);
+		tessellator.draw();
 
-        buffer.setTranslation(0, 0, 0);
-        GlStateManager.popMatrix();
-    }
+		buffer.setTranslation(0, 0, 0);
+		GlStateManager.popMatrix();
+	}
 
-    @SideOnly(Side.CLIENT)
-    public void renderBlock(BlockRendererDispatcher blockrendererdispatcher, BufferBuilder buffer, BlockRenderLayer renderLayer, IBlockState blockState, BlockPos pos, IBlockAccess access) {
+	@SideOnly(Side.CLIENT)
+	public void renderBlock(final BlockRendererDispatcher blockrendererdispatcher, final BufferBuilder buffer, final BlockRenderLayer renderLayer, final IBlockState blockState, final BlockPos pos, final IBlockAccess access) {
 
-        if (!blockState.getBlock().canRenderInLayer(blockState, renderLayer)) {
-            return;
-        }
+		if (!blockState.getBlock().canRenderInLayer(blockState, renderLayer))
+			return;
 
-        ForgeHooksClient.setRenderLayer(renderLayer);
+		ForgeHooksClient.setRenderLayer(renderLayer);
 
-        try {
-            blockrendererdispatcher.renderBlock(blockState, pos, access, buffer);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		try {
+			blockrendererdispatcher.renderBlock(blockState, pos, access, buffer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-        ForgeHooksClient.setRenderLayer(null);
-    }
+		ForgeHooksClient.setRenderLayer(null);
+	}
 }

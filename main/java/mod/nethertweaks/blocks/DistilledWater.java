@@ -12,25 +12,25 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 public class DistilledWater extends BlockFluidClassic
 {
-    public DistilledWater()
-    {
-        super(BucketNFluidHandler.FLUIDDISTILLEDWATER, Material.WATER);
-        setRegistryName(NetherTweaksMod.MODID, INames.DISTILLEDWATER);
-        setLightLevel(0);
-        setTemperature(FluidRegistry.WATER.getTemperature());
-        setDensity(FluidRegistry.WATER.getDensity());
-    }
-    
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return getBlockState().getBaseState().withProperty(LEVEL, meta);
-    }
-    
-    @Override
-    public Fluid getFluid() {
-    return BucketNFluidHandler.FLUIDDISTILLEDWATER;
-    }
-    
-    
+	public DistilledWater()
+	{
+		super(BucketNFluidHandler.FLUIDDISTILLEDWATER, Material.WATER);
+		setRegistryName(NetherTweaksMod.MODID, INames.DISTILLEDWATER);
+		setLightLevel(0);
+		setTemperature(FluidRegistry.WATER.getTemperature());
+		setDensity(FluidRegistry.WATER.getDensity());
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(final int meta)
+	{
+		return getBlockState().getBaseState().withProperty(LEVEL, meta);
+	}
+
+	@Override
+	public Fluid getFluid() {
+		return BucketNFluidHandler.FLUIDDISTILLEDWATER;
+	}
+
+
 }

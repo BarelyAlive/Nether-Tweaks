@@ -22,79 +22,73 @@ import net.minecraftforge.fluids.Fluid;
 
 public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> implements IFluidItemFluidRegistry {
 
-    public FluidItemFluidRegistry() {
-        super(
-                new GsonBuilder()
-                        .setPrettyPrinting()
-                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(StackInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
-                        .create(),
-                NTMRegistryManager.FLUID_ITEM_FLUID_DEFAULT_REGISTRY_PROVIDERS
-        );
-    }
+	public FluidItemFluidRegistry() {
+		super(
+				new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(StackInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+				.create(),
+				NTMRegistryManager.FLUID_ITEM_FLUID_DEFAULT_REGISTRY_PROVIDERS
+				);
+	}
 
-    @Override
-	public void register(@Nonnull String inputFluid, @Nonnull StackInfo reactant, @Nonnull String outputFluid) {
-        registry.add(new FluidItemFluid(inputFluid, reactant, outputFluid));
-    }
+	@Override
+	public void register(@Nonnull final String inputFluid, @Nonnull final StackInfo reactant, @Nonnull final String outputFluid) {
+		registry.add(new FluidItemFluid(inputFluid, reactant, outputFluid));
+	}
 
-    @Override
-	public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid) {
-        registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
-    }
+	@Override
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid) {
+		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
+	}
 
-    public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid, int transformTime) {
-        registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime));
-    }
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime) {
+		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime));
+	}
 
-    public void register(@Nonnull Fluid inputFluid, @Nonnull StackInfo reactant, @Nonnull Fluid outputFluid, int transformTime, boolean consumable) {
-        registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
-    }
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable) {
+		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
+	}
 
-    @Override
-	public String getFluidForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        ItemInfo info = new ItemInfo(stack);
+	@Override
+	public String getFluidForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		ItemInfo info = new ItemInfo(stack);
 
-        for (FluidItemFluid transformer : registry) {
-            if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant())) {
-                return transformer.getOutput();
-            }
-        }
+		for (FluidItemFluid transformer : registry)
+			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
+				return transformer.getOutput();
 
-        return null;
-    }
+		return null;
+	}
 
-    public int getTransformTime(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        ItemInfo info = new ItemInfo(stack);
+	public int getTransformTime(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		ItemInfo info = new ItemInfo(stack);
 
-        for (FluidItemFluid transformer : registry) {
-            if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant())) {
-                return transformer.getTransformTime();
-            }
-        }
+		for (FluidItemFluid transformer : registry)
+			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
+				return transformer.getTransformTime();
 
-        return 0;
-    }
-    
-    public boolean getConsumable(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        ItemInfo info = new ItemInfo(stack);
+		return 0;
+	}
 
-        for (FluidItemFluid transformer : registry) {
-            if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant())) {
-                return transformer.isConsumable();
-            }
-        }
+	public boolean getConsumable(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		ItemInfo info = new ItemInfo(stack);
 
-        return false;
-    }
+		for (FluidItemFluid transformer : registry)
+			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
+				return transformer.isConsumable();
 
-    @Override
-    protected void registerEntriesFromJSON(FileReader fr) {
-        List<FluidItemFluid> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidItemFluid>>() {
-        }.getType());
-        registry.addAll(gsonInput);
-    }
+		return false;
+	}
+
+	@Override
+	protected void registerEntriesFromJSON(final FileReader fr) {
+		List<FluidItemFluid> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidItemFluid>>() {
+		}.getType());
+		registry.addAll(gsonInput);
+	}
 
 	@Override
 	public List<?> getRecipeList() {

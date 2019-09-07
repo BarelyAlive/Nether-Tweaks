@@ -45,13 +45,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 public class TileBarrel extends TileBase implements ITickable {
 
-    private IBarrelMode mode;
-    private BarrelItemHandler itemHandler;
-    private BarrelFluidHandler tank;
-    private int tier;
-    private long entityWalkCooldown; //The time after which the barrel will attempt to milk an Entity. Based on the world clock
+	private IBarrelMode mode;
+	private BarrelItemHandler itemHandler;
+	private BarrelFluidHandler tank;
+	private int tier;
+	private long entityWalkCooldown; //The time after which the barrel will attempt to milk an Entity. Based on the world clock
 
-    public IBarrelMode getMode() {
+	public IBarrelMode getMode() {
 		return mode;
 	}
 
@@ -72,275 +72,256 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public TileBarrel() {
-        this((Barrel) BlockHandler.OAK_BARREL);
-    }
+		this((Barrel) BlockHandler.OAK_BARREL);
+	}
 
-    public TileBarrel(Barrel block) {
-        this.tier = block.getTier();
-        this.blockType = block;
-        itemHandler = new BarrelItemHandler(this);
-        tank = new BarrelFluidHandler(this);
-        this.entityWalkCooldown = 0;
-    }
+	public TileBarrel(final Barrel block) {
+		tier = block.getTier();
+		blockType = block;
+		itemHandler = new BarrelItemHandler(this);
+		tank = new BarrelFluidHandler(this);
+		entityWalkCooldown = 0;
+	}
 
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (mode == null || mode.getName().equals("fluid")) {
-            if (TankUtil.drainWaterFromBottle(this, player, tank))
-                return true;
+	public boolean onBlockActivated(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
+		if (mode == null || mode.getName().equals("fluid")) {
+			if (TankUtil.drainWaterFromBottle(this, player, tank))
+				return true;
 
-            if (tank != null && TankUtil.drainWaterIntoBottle(this, player, tank))
-                return true;
+			if (tank != null && TankUtil.drainWaterIntoBottle(this, player, tank))
+				return true;
 
 
-            ItemStack stack = player.getHeldItem(hand);
+			ItemStack stack = player.getHeldItem(hand);
 
-            IFluidHandler fluidHandler = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-            boolean result = false;
-            if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
+			IFluidHandler fluidHandler = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			boolean result = false;
+			if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
-            if (!result)
-            {
-            	if (fluidHandler.getTankProperties().length != 0)
-            	{
-                	if (fluidHandler.getTankProperties()[0].getContents() != null)
-                	{
-                    	if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
-                    	{
-		            		if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
-		            		{
-		            			if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
-		            			{
-		            				this.getItemHandler().insertItem(0, stack, true);
-		            			}
-		            		}
-                    	}
-                	}
-            	}
-            }
-            
-            if (result) {
-                if (!player.isCreative()) {
-                    stack.shrink(1);
-                }
+			if (!result)
+				if (fluidHandler.getTankProperties().length != 0)
+					if (fluidHandler.getTankProperties()[0].getContents() != null)
+						if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
+							if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
+								if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
+									getItemHandler().insertItem(0, stack, true);
 
-                NetworkHandler.sendNBTUpdate(this);
-                markDirty();
-                if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
-                    world.checkLight(pos);
-                    NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
-                }
+			if (result) {
+				if (!player.isCreative())
+					stack.shrink(1);
 
-                return true;
-            }
+				NetworkHandler.sendNBTUpdate(this);
+				markDirty();
+				if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
+					world.checkLight(pos);
+					NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
+				}
 
-            //Check for more fluid
-            IFluidHandler tank = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-            FluidStack bucketStack = FluidUtil.getFluidContained(stack);
+				return true;
+			}
 
-            if (tank == null) {
-                return false;
-            }
+			//Check for more fluid
+			IFluidHandler tank = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			FluidStack bucketStack = FluidUtil.getFluidContained(stack);
 
-            FluidStack tankStack = tank.drain(Integer.MAX_VALUE, false);
-            if (bucketStack != null && tankStack != null
-                    && bucketStack.getFluid() == tankStack.getFluid()
-                    && tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
-                tank.drain(Fluid.BUCKET_VOLUME, true);
-                if (fluidHandler != null)
-                    result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
+			if (tank == null)
+				return false;
 
-                if (result && !player.isCreative()) {
-                    stack.shrink(1);
-                }
+			FluidStack tankStack = tank.drain(Integer.MAX_VALUE, false);
+			if (bucketStack != null && tankStack != null
+					&& bucketStack.getFluid() == tankStack.getFluid()
+					&& tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
+				tank.drain(Fluid.BUCKET_VOLUME, true);
+				if (fluidHandler != null)
+					result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
-                NetworkHandler.sendNBTUpdate(this);
-            }
-        }
+				if (result && !player.isCreative())
+					stack.shrink(1);
 
-        if (mode == null) {
-            if (!player.getHeldItem(hand).isEmpty()) {
-                ItemStack stack = player.getHeldItem(hand);
-                ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
-                if (modes == null)
-                    return false;
-                for (IBarrelMode possibleMode : modes) {
-                    if (possibleMode.isTriggerItemStack(stack)) {
-                        setMode(possibleMode.getName());
-                        NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
-                        mode.onBlockActivated(world, this, pos, state, player, hand, side, hitX, hitY, hitZ);
-                        this.markDirty();
-                        this.getWorld().setBlockState(pos, state);
+				NetworkHandler.sendNBTUpdate(this);
+			}
+		}
 
-                        if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
-                            world.checkLight(pos);
-                            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
-                        }
+		if (mode == null) {
+			if (!player.getHeldItem(hand).isEmpty()) {
+				ItemStack stack = player.getHeldItem(hand);
+				ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
+				if (modes == null)
+					return false;
+				for (IBarrelMode possibleMode : modes)
+					if (possibleMode.isTriggerItemStack(stack)) {
+						setMode(possibleMode.getName());
+						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
+						mode.onBlockActivated(world, this, pos, state, player, hand, side, hitX, hitY, hitZ);
+						markDirty();
+						getWorld().setBlockState(pos, state);
 
-                        return true;
-                    }
-                }
-            }
-        } else {
-            mode.onBlockActivated(world, this, pos, state, player, hand, side, hitX, hitY, hitZ);
-            markDirty();
+						if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
+							world.checkLight(pos);
+							NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
+						}
 
-            if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
-                world.checkLight(pos);
-                NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
-            }
+						return true;
+					}
+			}
+		} else {
+			mode.onBlockActivated(world, this, pos, state, player, hand, side, hitX, hitY, hitZ);
+			markDirty();
 
-            return true;
-        }
-        
-        return true;
-    }
+			if (getBlockType().getLightValue(state, world, pos) != world.getLight(pos)) {
+				world.checkLight(pos);
+				NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
+			}
 
-    @Override
-    public void update() {
-        if (getWorld().isRemote)
-            return;
+			return true;
+		}
 
-        if (Config.shouldBarrelsFillWithRain && (mode == null || mode.getName().equalsIgnoreCase("fluid"))) {
-            BlockPos plusY = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-            if (getWorld().isRainingAt(plusY)) {
-                FluidStack stack = new FluidStack(FluidRegistry.WATER, 2);
-                tank.fill(stack, true);
-            }
-        }
-        if (mode != null)
-            mode.update(this);
+		return true;
+	}
 
-        if (getBlockType().getLightValue(getWorld().getBlockState(pos), getWorld(), pos) != getWorld().getLight(pos)) {
-            getWorld().checkLight(pos);
-            NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
-        }
-    }
+	@Override
+	public void update() {
+		if (getWorld().isRemote)
+			return;
 
-    @Override
-    @Nonnull
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tank.writeToNBT(tag);
+		if (Config.shouldBarrelsFillWithRain && (mode == null || mode.getName().equalsIgnoreCase("fluid"))) {
+			BlockPos plusY = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+			if (getWorld().isRainingAt(plusY)) {
+				FluidStack stack = new FluidStack(FluidRegistry.WATER, 2);
+				tank.fill(stack, true);
+			}
+		}
+		if (mode != null)
+			mode.update(this);
 
-        if (mode != null) {
-            NBTTagCompound barrelModeTag = new NBTTagCompound();
-            mode.writeToNBT(barrelModeTag);
-            barrelModeTag.setString("name", mode.getName());
-            tag.setTag("mode", barrelModeTag);
-        }
+		if (getBlockType().getLightValue(getWorld().getBlockState(pos), getWorld(), pos) != getWorld().getLight(pos)) {
+			getWorld().checkLight(pos);
+			NetworkHandler.sendToAllAround(new MessageCheckLight(pos), this);
+		}
+	}
 
-        NBTTagCompound handlerTag = itemHandler.serializeNBT();
-        tag.setTag("itemHandler", handlerTag);
-        tag.setInteger("barrelTier", tier);
+	@Override
+	@Nonnull
+	public NBTTagCompound writeToNBT(final NBTTagCompound tag) {
+		tank.writeToNBT(tag);
 
-        return super.writeToNBT(tag);
+		if (mode != null) {
+			NBTTagCompound barrelModeTag = new NBTTagCompound();
+			mode.writeToNBT(barrelModeTag);
+			barrelModeTag.setString("name", mode.getName());
+			tag.setTag("mode", barrelModeTag);
+		}
 
-    }
+		NBTTagCompound handlerTag = itemHandler.serializeNBT();
+		tag.setTag("itemHandler", handlerTag);
+		tag.setInteger("barrelTier", tier);
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        tank.readFromNBT(tag);
-        if (tag.hasKey("mode")) {
-            NBTTagCompound barrelModeTag = (NBTTagCompound) tag.getTag("mode");
-            this.setMode(barrelModeTag.getString("name"));
-            if (mode != null)
-                mode.readFromNBT(barrelModeTag);
-        }
+		return super.writeToNBT(tag);
 
-        if (tag.hasKey("itemHandler")) {
-            itemHandler.deserializeNBT((NBTTagCompound) tag.getTag("itemHandler"));
-        }
+	}
 
-        if (tag.hasKey("barrelTier")) {
-            tier = tag.getInteger("barrelTier");
-        }
-        super.readFromNBT(tag);
-    }
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		tank.readFromNBT(tag);
+		if (tag.hasKey("mode")) {
+			NBTTagCompound barrelModeTag = (NBTTagCompound) tag.getTag("mode");
+			this.setMode(barrelModeTag.getString("name"));
+			if (mode != null)
+				mode.readFromNBT(barrelModeTag);
+		}
 
-    public void setMode(String modeName) {
-        try {
-            if (modeName.equals("null"))
-                mode = null;
-            else
-                mode = BarrelModeRegistry.getModeByName(modeName).getClass().newInstance();
-            this.markDirty();
-        } catch (Exception e) {
-            e.printStackTrace(); //Naughty
-        }
-    }
+		if (tag.hasKey("itemHandler"))
+			itemHandler.deserializeNBT((NBTTagCompound) tag.getTag("itemHandler"));
 
-    public void setMode(IBarrelMode mode) {
-        this.mode = mode;
-        this.markDirty();
-    }
+		if (tag.hasKey("barrelTier"))
+			tier = tag.getInteger("barrelTier");
+		super.readFromNBT(tag);
+	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return (T) itemHandler;
-        }
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return (T) tank;
+	public void setMode(final String modeName) {
+		try {
+			if (modeName.equals("null"))
+				mode = null;
+			else
+				mode = BarrelModeRegistry.getModeByName(modeName).getClass().newInstance();
+			markDirty();
+		} catch (Exception e) {
+			e.printStackTrace(); //Naughty
+		}
+	}
 
-        return super.getCapability(capability, facing);
-    }
+	public void setMode(final IBarrelMode mode) {
+		this.mode = mode;
+		markDirty();
+	}
 
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
-                capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
-                super.hasCapability(capability, facing);
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getCapability(@Nonnull final Capability<T> capability, final EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+			return (T) itemHandler;
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return (T) tank;
 
-    public void entityOnTop(World world, Entity entityIn) {
-        long currentTime = world.getTotalWorldTime(); //Get the current time, shouldn't be affected by in-game /time command
-        if (currentTime < this.entityWalkCooldown) return; // Cooldown hasn't elapsed, do nothing
+		return super.getCapability(capability, facing);
+	}
 
-        if(MooFluidsEtc.isLoaded() && Config.enableMooFluid){
-            IAbstractCow cow = AbstractCowFactory.getCow(entityIn);
-            if(cow != null){
-                this.moofluidsEntityWalk(world, cow);
-                return;
-            }
-        }
+	@Override
+	public boolean hasCapability(@Nonnull final Capability<?> capability, final EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
+				capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
+				super.hasCapability(capability, facing);
+	}
 
-        Milkable milk = MILK_ENTITY_REGISTRY.getMilkable(entityIn);
-        if (milk == null) return; // Not a valid recipe
+	public void entityOnTop(final World world, final Entity entityIn) {
+		long currentTime = world.getTotalWorldTime(); //Get the current time, shouldn't be affected by in-game /time command
+		if (currentTime < entityWalkCooldown) return; // Cooldown hasn't elapsed, do nothing
 
-        // Attempt to add the fluid if it is a valid fluid
-        Fluid result = FluidRegistry.getFluid(milk.getResult());
-        if (result != null)
-            this.tank.fill(new FluidStack(result, milk.getAmount()), true);
+		if(MooFluidsEtc.isLoaded() && Config.enableMooFluid){
+			IAbstractCow cow = AbstractCowFactory.getCow(entityIn);
+			if(cow != null){
+				moofluidsEntityWalk(world, cow);
+				return;
+			}
+		}
 
-        //Set the new cooldown time
-        this.entityWalkCooldown = currentTime + milk.getCoolDown();
-    }
+		Milkable milk = MILK_ENTITY_REGISTRY.getMilkable(entityIn);
+		if (milk == null) return; // Not a valid recipe
 
-    private void moofluidsEntityWalk(World world, IAbstractCow cow) {
-        Fluid result = cow.getFluid();
-        if(result == null || !MooFluidsEtc.fluidIsAllowed(result))
-            return;
+		// Attempt to add the fluid if it is a valid fluid
+		Fluid result = FluidRegistry.getFluid(milk.getResult());
+		if (result != null)
+			tank.fill(new FluidStack(result, milk.getAmount()), true);
 
-        // Amount to fill
-        int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), Config.fillAmount);
+		//Set the new cooldown time
+		entityWalkCooldown = currentTime + milk.getCoolDown();
+	}
 
-        // Cow needs to cool down more
-        if(cow.getAvailableFluid() < amount)
-            return;
+	private void moofluidsEntityWalk(final World world, final IAbstractCow cow) {
+		Fluid result = cow.getFluid();
+		if(result == null || !MooFluidsEtc.fluidIsAllowed(result))
+			return;
 
-        // Do fill
-        int filled = this.tank.fill(new FluidStack(result, amount), true);
+		// Amount to fill
+		int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), Config.fillAmount);
 
-        // Reset everyone's timers
-        if(filled == 0)
-            return;
+		// Cow needs to cool down more
+		if(cow.getAvailableFluid() < amount)
+			return;
 
-        int appliedcooldown = cow.addCooldownEquivalent(filled);
-        this.entityWalkCooldown = world.getTotalWorldTime() + appliedcooldown;
-    }
+		// Do fill
+		int filled = tank.fill(new FluidStack(result, amount), true);
 
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
+		// Reset everyone's timers
+		if(filled == 0)
+			return;
+
+		int appliedcooldown = cow.addCooldownEquivalent(filled);
+		entityWalkCooldown = world.getTotalWorldTime() + appliedcooldown;
+	}
+
+	@Override
+	public boolean hasFastRenderer() {
+		return true;
+	}
 }

@@ -16,28 +16,28 @@ import mod.sfhcore.util.LogUtil;
 
 public class CustomColorJson implements JsonDeserializer<Color>, JsonSerializer<Color>
 {
-    public static final CustomColorJson INSTANCE = new CustomColorJson();
+	public static final CustomColorJson INSTANCE = new CustomColorJson();
 
 	@Override
-    public Color deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException{
-        if (json.isJsonPrimitive()) {
-            JsonPrimitive prim = json.getAsJsonPrimitive();
-            if(prim.isString())
-                return new Color(prim.getAsString());
-            if(prim.isNumber())
-            	return new Color(prim.getAsInt());
-                else LogUtil.warn("Invalid Color primitive for $json");
-        } else {
-            JsonHelper helper = new JsonHelper(json);
-            return new Color((float) helper.getDouble("r"), (float) helper.getDouble("g"), (float) helper.getDouble("b"), (float) helper.getDouble("a"));
-        }
+	public Color deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException{
+		if (json.isJsonPrimitive()) {
+			JsonPrimitive prim = json.getAsJsonPrimitive();
+			if(prim.isString())
+				return new Color(prim.getAsString());
+			if(prim.isNumber())
+				return new Color(prim.getAsInt());
+			else LogUtil.warn("Invalid Color primitive for $json");
+		} else {
+			JsonHelper helper = new JsonHelper(json);
+			return new Color((float) helper.getDouble("r"), (float) helper.getDouble("g"), (float) helper.getDouble("b"), (float) helper.getDouble("a"));
+		}
 
-        return Color.INVALID_COLOR;
-    }
+		return Color.INVALID_COLOR;
+	}
 
-    @Override
-    public JsonPrimitive serialize(Color src, Type typeOfSrc, JsonSerializationContext context)
-    {
-        return new JsonPrimitive(src.getAsHexNoAlpha());
-    }
+	@Override
+	public JsonPrimitive serialize(final Color src, final Type typeOfSrc, final JsonSerializationContext context)
+	{
+		return new JsonPrimitive(src.getAsHexNoAlpha());
+	}
 }

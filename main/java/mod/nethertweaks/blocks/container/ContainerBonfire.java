@@ -8,7 +8,7 @@ public class ContainerBonfire extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
+	public boolean canInteractWith(final EntityPlayer par1EntityPlayer) {
 		return true;
 	}
 }

@@ -7,23 +7,23 @@ import net.minecraft.world.World;
 
 public class EntityItemLava extends EntityItem {
 
-	public EntityItemLava(World worldIn, double x, double y, double z, ItemStack stack) {
+	public EntityItemLava(final World worldIn, final double x, final double y, final double z, final ItemStack stack) {
 		super(worldIn, x, y, z, stack);
 	}
-	
-	public EntityItemLava(World worldIn, double x, double y, double z) {
+
+	public EntityItemLava(final World worldIn, final double x, final double y, final double z) {
 		super(worldIn, x, y, z);
 	}
-	
-	public EntityItemLava(World worldIn) {
+
+	public EntityItemLava(final World worldIn) {
 		super(worldIn);
 	}
-	
+
 	@Override
 	protected void setOnFireFromLava() {
 		super.setOnFireFromLava();
-			EntityItem coiledSword = new EntityItem(world, posX, posY, posZ, new ItemStack(ItemHandler.COILED_SWORD));
-			this.world.spawnEntity(coiledSword);
+		EntityItem coiledSword = new EntityItem(world, posX, posY, posZ, new ItemStack(ItemHandler.COILED_SWORD));
+		world.spawnEntity(coiledSword);
 	}
-	
+
 }

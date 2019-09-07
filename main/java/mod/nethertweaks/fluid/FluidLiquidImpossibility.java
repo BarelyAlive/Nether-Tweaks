@@ -12,24 +12,24 @@ public class FluidLiquidImpossibility extends Fluid{
 
 	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
 	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
-	
+
 	public FluidLiquidImpossibility()
 	{
 		super(INames.LIQUIDIMPOSSIBILITY, STILL, FLOW);
-		
+
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);
-        setViscosity(Config.viscosityLI);
+		setViscosity(Config.viscosityLI);
 		setLuminosity(Config.luminosityLI);
 	}
-	
+
 	@Override
-	public SoundEvent getEmptySound(FluidStack stack) {
+	public SoundEvent getEmptySound(final FluidStack stack) {
 		return SoundEvents.ITEM_BUCKET_FILL;
 	}
-	
+
 	@Override
-	public boolean doesVaporize(FluidStack fluidStack) {
+	public boolean doesVaporize(final FluidStack fluidStack) {
 		return Config.doesLIVaporize;
 	}
 }

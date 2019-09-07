@@ -14,23 +14,23 @@ import net.minecraft.util.ResourceLocation;
 
 public interface ICompostRegistry extends IRegistryMap<Ingredient, Compostable>
 {
-    public void register(ItemStack itemStack, float value, BlockInfo state, Color color);
-    public void register(@Nullable Item item, int meta, float value, BlockInfo state, Color color);
-    public void register(Block block, int meta, float value, BlockInfo state, Color color);
-    public void register(StackInfo item, float value, BlockInfo state, Color color);
-    public void register(ResourceLocation location, int meta, float value, BlockInfo state, Color color);
-    public void register(String name, float value, BlockInfo state, Color color);
+	void register(ItemStack itemStack, float value, BlockInfo state, Color color);
+	void register(@Nullable Item item, int meta, float value, BlockInfo state, Color color);
+	void register(Block block, int meta, float value, BlockInfo state, Color color);
+	void register(StackInfo item, float value, BlockInfo state, Color color);
+	void register(ResourceLocation location, int meta, float value, BlockInfo state, Color color);
+	void register(String name, float value, BlockInfo state, Color color);
 
-    /**
-     * Registers a oredict for sifting with a dynamic color based on the itemColor
-     */
-    public void register(String name, float value, BlockInfo state);
+	/**
+	 * Registers a oredict for sifting with a dynamic color based on the itemColor
+	 */
+	void register(String name, float value, BlockInfo state);
 
-    public Compostable getItem(Item item, int meta);
-    public Compostable getItem(ItemStack stack);
-    public Compostable getItem(StackInfo info);
+	Compostable getItem(Item item, int meta);
+	Compostable getItem(ItemStack stack);
+	Compostable getItem(StackInfo info);
 
-    public boolean containsItem(Item item, int meta);
-    public boolean containsItem(ItemStack stack);
-    public boolean containsItem(StackInfo info);
+	boolean containsItem(Item item, int meta);
+	boolean containsItem(ItemStack stack);
+	boolean containsItem(StackInfo info);
 }

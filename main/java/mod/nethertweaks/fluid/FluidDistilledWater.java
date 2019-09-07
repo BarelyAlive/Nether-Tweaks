@@ -12,24 +12,24 @@ public class FluidDistilledWater extends Fluid{
 
 	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/distilled_water_still");
 	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/distilled_water_flow");
-	
+
 	public FluidDistilledWater()
 	{
 		super(INames.DISTILLEDWATER, STILL, FLOW);
-		
+
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());
-        setViscosity(FluidRegistry.WATER.getViscosity());
+		setViscosity(FluidRegistry.WATER.getViscosity());
 		setLuminosity(FluidRegistry.WATER.getLuminosity());
 	}
-	
+
 	@Override
-	public SoundEvent getEmptySound(FluidStack stack) {
+	public SoundEvent getEmptySound(final FluidStack stack) {
 		return SoundEvents.ITEM_BUCKET_FILL;
 	}
-	
+
 	@Override
-	public boolean doesVaporize(FluidStack fluidStack) {
+	public boolean doesVaporize(final FluidStack fluidStack) {
 		return true;
 	}
 }

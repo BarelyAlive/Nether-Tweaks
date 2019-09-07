@@ -20,15 +20,14 @@ public class TileHellmart extends TileEntity {
 	private ItemStackHandler itemstackhandler = new ItemStackHandler();
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(final Capability<?> capability, final EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+	public <T> T getCapability(final Capability<T> capability, final EnumFacing facing) {
+		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemstackhandler);
-		}
 		return super.getCapability(capability, facing);
 	}
 
@@ -38,14 +37,14 @@ public class TileHellmart extends TileEntity {
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound tagCompound) {
+	public void readFromNBT(final NBTTagCompound tagCompound) {
 		super.readFromNBT(tagCompound);
-		this.stockNum = tagCompound.getInteger("StockNum");
+		stockNum = tagCompound.getInteger("StockNum");
 		itemstackhandler.deserializeNBT((NBTTagCompound) tagCompound.getTag("Items"));
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+	public NBTTagCompound writeToNBT(final NBTTagCompound tagCompound) {
 		super.writeToNBT(tagCompound);
 		tagCompound.setInteger("StockNum", stockNum);
 		tagCompound.setTag("Items", itemstackhandler.serializeNBT());
@@ -61,7 +60,7 @@ public class TileHellmart extends TileEntity {
 		return stockNum;
 	}
 
-	public void setBrowsingInfo(int stockNum) {
+	public void setBrowsingInfo(final int stockNum) {
 		this.stockNum = stockNum;
 	}
 
@@ -71,7 +70,7 @@ public class TileHellmart extends TileEntity {
 		super.invalidate();
 	}
 
-	public boolean canInteractWith(EntityPlayer playerIn) {
+	public boolean canInteractWith(final EntityPlayer playerIn) {
 		// If we are too far away from this tile entity you cannot use it
 		return !isInvalid() && playerIn.getDistanceSq(pos.add(0.5D, 0.5D, 0.5D)) <= 64D;
 	}

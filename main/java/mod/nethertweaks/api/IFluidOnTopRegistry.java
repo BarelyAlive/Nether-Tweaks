@@ -8,10 +8,10 @@ import mod.sfhcore.util.ItemInfo;
 import net.minecraftforge.fluids.Fluid;
 
 public interface IFluidOnTopRegistry extends IRegistryList<FluidFluidBlock> {
-    public void register(Fluid fluidInBarrel, Fluid fluidOnTop, BlockInfo result);
-    public void register(Fluid fluidInBarrel, Fluid fluidOnTop, ItemInfo result);
+	void register(Fluid fluidInBarrel, Fluid fluidOnTop, BlockInfo result);
+	void register(Fluid fluidInBarrel, Fluid fluidOnTop, ItemInfo result);
 
-    public boolean isValidRecipe(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop);
+	boolean isValidRecipe(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop);
 
-    public BlockInfo getTransformedBlock(Fluid fluidInBarrel, Fluid fluidOnTop);
+	BlockInfo getTransformedBlock(Fluid fluidInBarrel, Fluid fluidOnTop);
 }

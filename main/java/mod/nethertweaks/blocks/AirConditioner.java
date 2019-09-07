@@ -13,12 +13,12 @@ public class AirConditioner extends Block{
 
 	public AirConditioner() {
 		super(Material.IRON);
-		
+
 		setRegistryName(NetherTweaksMod.MODID, INames.AIR_CONDITIONER);
 	}
 
 	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
+	public TileEntity createTileEntity(final World world, final IBlockState state) {
 		return new TileAirConditioner();
 	}
 }

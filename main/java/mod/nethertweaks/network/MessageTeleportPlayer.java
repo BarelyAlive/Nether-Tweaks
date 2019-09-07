@@ -22,102 +22,94 @@ public class MessageTeleportPlayer implements IMessage {
 	int uuid_size;
 	BlockPos bonfire_pos;
 	String uuid;
-	
+
 	public MessageTeleportPlayer() {}
-	
-	public MessageTeleportPlayer(BlockPos bonfire_pos, EntityPlayer player) {
+
+	public MessageTeleportPlayer(final BlockPos bonfire_pos, final EntityPlayer player) {
 		this.bonfire_pos = bonfire_pos;
-		this.uuid = EntityPlayer.getUUID(player.getGameProfile()).toString();
-	}
-	
-	@Override
-	public void fromBytes(ByteBuf buf) {
-		this.bonfire_pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-		this.uuid_size = buf.readInt();
-		byte[] temp_char_arr = new byte[this.uuid_size];
-		buf.readBytes(temp_char_arr);
-		this.uuid = new String(temp_char_arr, Charset.forName("ASCII"));
+		uuid = EntityPlayer.getUUID(player.getGameProfile()).toString();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.bonfire_pos.getX());
-		buf.writeInt(this.bonfire_pos.getY());
-		buf.writeInt(this.bonfire_pos.getZ());
+	public void fromBytes(final ByteBuf buf) {
+		bonfire_pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+		uuid_size = buf.readInt();
+		byte[] temp_char_arr = new byte[uuid_size];
+		buf.readBytes(temp_char_arr);
+		uuid = new String(temp_char_arr, Charset.forName("ASCII"));
+	}
+
+	@Override
+	public void toBytes(final ByteBuf buf) {
+		buf.writeInt(bonfire_pos.getX());
+		buf.writeInt(bonfire_pos.getY());
+		buf.writeInt(bonfire_pos.getZ());
 		buf.writeInt(uuid.getBytes(Charset.forName("ASCII")).length);
 		buf.writeBytes(uuid.getBytes(Charset.forName("ASCII")));
 	}
-	
+
 	public static class MessageTeleportPlayerHandler implements IMessageHandler<MessageTeleportPlayer, IMessage>
 	{
 		@Override
-		public IMessage onMessage(MessageTeleportPlayer message, MessageContext ctx) {
-			
+		public IMessage onMessage(final MessageTeleportPlayer message, final MessageContext ctx) {
+
 			EntityPlayer player = ctx.getServerHandler().player.world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
 
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
-			{
 				binfo = new BonfireInfo(player.getUniqueID(), player.world.provider.getDimension());
-			}
 			else
-			{
 				binfo = WorldSpawnLocation.bonfire_info.get(message.bonfire_pos);
-			}
-			
+
 			player.setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
-			
+
 			LookAt(message.bonfire_pos.getX() + 0.5, message.bonfire_pos.getY(), message.bonfire_pos.getZ() + 0.5, player);
-			
+
 			ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
-			
+
 			WorldSpawnLocation.lastSpawnLocations.put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
-			
+
 			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
-			{
 				if (entry.hasPlayer(player))
-				{
 					entry.removePlayer(player);
-				}
-			}
-			
+
 			binfo.addPlayer(player);
-			
+
 			WorldSpawnLocation.bonfire_info.put(message.bonfire_pos, binfo);
-			
+
 			player.sendMessage(new TextComponentString(player.getName() + " rested at: " + binfo.getSpawnPos() + "!"));
-			
+
 			player.closeScreen();
-			
+
 			NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
-			
+
 			return null;
 		}
-		
-		public static void LookAt(double px, double py, double pz , EntityPlayer player)
+
+		public static void LookAt(final double px, final double py, final double pz , final EntityPlayer player)
 		{
-		    double dirx = player.getPosition().getX() - px;
-		    double diry = player.getPosition().getY() - py;
-		    double dirz = player.getPosition().getZ() - pz;
+			double dirx = player.getPosition().getX() - px;
+			double diry = player.getPosition().getY() - py;
+			double dirz = player.getPosition().getZ() - pz;
 
-		    double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
+			double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
 
-		    dirx /= len;
-		    diry /= len;
-		    dirz /= len;
+			dirx /= len;
+			diry /= len;
+			dirz /= len;
 
-		    double pitch = Math.asin(diry);
-		    double yaw = Math.atan2(dirz, dirx);
+			double pitch = Math.asin(diry);
+			double yaw = Math.atan2(dirz, dirx);
 
-		    //to degree
-		    pitch = pitch * 180.0 / Math.PI;
-		    yaw = yaw * 180.0 / Math.PI;
+			//to degree
+			pitch = pitch * 180.0 / Math.PI;
+			yaw = yaw * 180.0 / Math.PI;
 
-		    yaw += 90f;
-		    player.rotationPitch = (float)pitch;
-		    player.rotationYaw = (float)yaw;
-		    player.cameraPitch = player.rotationPitch;
-		    player.cameraYaw = player.rotationYaw;
+			yaw += 90f;
+			player.rotationPitch = (float)pitch;
+			player.rotationYaw = (float)yaw;
+			player.cameraPitch = player.rotationPitch;
+			player.cameraYaw = player.rotationYaw;
 		}
 	}
 }

@@ -20,45 +20,45 @@ public class HammerBase extends ItemTool implements IHammer  {
 
 	private int miningLevel;
 
-	public HammerBase(int maxUses, ToolMaterial material)
+	public HammerBase(final int maxUses, final ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
 		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));
-		this.setMaxDamage(maxUses);
-		this.setCreativeTab(NetherTweaksMod.TABNTM);
-		this.miningLevel = material.getHarvestLevel();
+		setMaxDamage(maxUses);
+		setCreativeTab(NetherTweaksMod.TABNTM);
+		miningLevel = material.getHarvestLevel();
 	}
-	
+
 	@Override
-	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+	public boolean onBlockStartBreak(final ItemStack itemstack, final BlockPos pos, final EntityPlayer player) {
 		if(itemstack.getItemDamage() == itemstack.getMaxDamage())
 			HammerHandler.setHammer(itemstack.copy());
-		
+
 		return super.onBlockStartBreak(itemstack, pos, player);
 	}
-	
-	private String getName(ToolMaterial m)
-	{		
+
+	private String getName(final ToolMaterial m)
+	{
 		return "hammer_" + m.name();
 	}
-	
-    @Override
-    public boolean isHammer(ItemStack stack) {
-        return true;
-    }
 
-    @Override
-    public int getMiningLevel(ItemStack stack) {
-        return miningLevel;
-    }
+	@Override
+	public boolean isHammer(final ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    public float getDestroySpeed(@Nullable ItemStack stack, IBlockState state) {
-        return NTMRegistryManager.HAMMER_REGISTRY.isRegistered(state) ? this.efficiency : 1.0F;
-    }
+	@Override
+	public int getMiningLevel(final ItemStack stack) {
+		return miningLevel;
+	}
 
-    @Override
-    public boolean canHarvestBlock(IBlockState state) {
-        return NTMRegistryManager.HAMMER_REGISTRY.isRegistered(state);
-    }
+	@Override
+	public float getDestroySpeed(@Nullable final ItemStack stack, final IBlockState state) {
+		return NTMRegistryManager.HAMMER_REGISTRY.isRegistered(state) ? efficiency : 1.0F;
+	}
+
+	@Override
+	public boolean canHarvestBlock(final IBlockState state) {
+		return NTMRegistryManager.HAMMER_REGISTRY.isRegistered(state);
+	}
 }

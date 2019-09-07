@@ -10,10 +10,10 @@ public class Compatibility
 	public static void init()
 	{
 		if(Loader.isModLoaded("moofluids") ||
-                Loader.isModLoaded("minimoos") ||
-                Loader.isModLoaded("fluidcows") &&
-                Config.enableMooFluid)
-        	NetherTweaksMod.loadedModules.add(new MooFluidsEtc());
+				Loader.isModLoaded("minimoos") ||
+				Loader.isModLoaded("fluidcows") &&
+				Config.enableMooFluid)
+			NetherTweaksMod.loadedModules.add(new MooFluidsEtc());
 		/*
 		if(Loader.isModLoaded("appliedenergistics2"))
             NetherTweaksMod.loadedModules.add(new AppliedEnergistics2());
@@ -25,6 +25,6 @@ public class Compatibility
         	NetherTweaksMod.loadedModules.add(new OreBerries());
         if(Loader.isModLoaded("magneticraft") && Config.magneticraftHammersCompat)
         	NetherTweaksMod.loadedModules.add(Magneticraft.INSTANCE);
-        	*/
+		 */
 	}
 }

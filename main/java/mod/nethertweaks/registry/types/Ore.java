@@ -6,13 +6,13 @@ import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 
 public class Ore {
-	
-	
-	private String name;	
-	private Color color;	
+
+
+	private String name;
+	private Color color;
 	private ItemInfo result;
 	private ItemInfo dustResult;
-	
+
 	public ItemInfo getDustResult() {
 		return dustResult;
 	}
@@ -40,7 +40,7 @@ public class Ore {
 		return oredictName;
 	}
 
-	public Ore(String name, Color color, ItemInfo result, ItemInfo dustResult, Map<String, String> translations, String oredictName) {
+	public Ore(final String name, final Color color, final ItemInfo result, final ItemInfo dustResult, final Map<String, String> translations, final String oredictName) {
 		this.name = name;
 		this.color = color;
 		this.result = result;

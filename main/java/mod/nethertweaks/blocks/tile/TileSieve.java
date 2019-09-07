@@ -48,14 +48,14 @@ import net.minecraftforge.items.IItemHandler;
 
 public class TileSieve extends TileBase {
 
-    private static final Random rand = new Random();
-    @Nonnull
-    private BlockInfo currentStack = BlockInfo.EMPTY;
-    private byte progress = 0;
-    @Nonnull
-    private ItemStack meshStack = ItemStack.EMPTY;
-    private Sieve.MeshType meshType = Sieve.MeshType.NONE;
-    public BlockInfo getCurrentStack() {
+	private static final Random rand = new Random();
+	@Nonnull
+	private BlockInfo currentStack = BlockInfo.EMPTY;
+	private byte progress = 0;
+	@Nonnull
+	private ItemStack meshStack = ItemStack.EMPTY;
+	private Sieve.MeshType meshType = Sieve.MeshType.NONE;
+	public BlockInfo getCurrentStack() {
 		return currentStack;
 	}
 
@@ -72,287 +72,274 @@ public class TileSieve extends TileBase {
 	}
 
 	private long lastSieveAction = 0;
-    private UUID lastPlayer;
+	private UUID lastPlayer;
 
-    /**
-     * Sets the mesh type in the sieve.
-     *
-     * @param newMesh The mesh to set
-     * @return true if setting is successful.
-     */
-    public boolean setMesh(ItemStack newMesh) {
-        return setMesh(newMesh, false);
-    }
+	/**
+	 * Sets the mesh type in the sieve.
+	 *
+	 * @param newMesh The mesh to set
+	 * @return true if setting is successful.
+	 */
+	public boolean setMesh(final ItemStack newMesh) {
+		return setMesh(newMesh, false);
+	}
 
-    public boolean setMesh(ItemStack newMesh, boolean simulate) {
-        if (progress != 0 || currentStack.isValid())
-            return false;
+	public boolean setMesh(final ItemStack newMesh, final boolean simulate) {
+		if (progress != 0 || currentStack.isValid())
+			return false;
 
-        if (meshStack.isEmpty()) {
-            if (!simulate) {
-                meshStack = newMesh.copy();
-                meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(newMesh));
+		if (meshStack.isEmpty()) {
+			if (!simulate) {
+				meshStack = newMesh.copy();
+				meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(newMesh));
 
-                this.markDirtyClient();
-            }
-            return true;
-        }
+				markDirtyClient();
+			}
+			return true;
+		}
 
-        if (newMesh.isEmpty()) {
-            //Removing
-            if (!simulate) {
-                meshStack = ItemStack.EMPTY;
-                meshType = Sieve.MeshType.NONE;
+		if (newMesh.isEmpty()) {
+			//Removing
+			if (!simulate) {
+				meshStack = ItemStack.EMPTY;
+				meshType = Sieve.MeshType.NONE;
 
-                this.markDirtyClient();
-            }
-            return true;
-        }
+				markDirtyClient();
+			}
+			return true;
+		}
 
-        return false;
+		return false;
 
-    }
+	}
 
-    public boolean addBlock(ItemStack stack) {
-        if (!currentStack.isValid() && NTMRegistryManager.SIEVE_REGISTRY.canBeSifted(stack)) {
-            if (meshStack.isEmpty())
-                return false;
-            String meshLevel = NameHelper.getName(meshStack);
-            for (Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack)) {
-                if (("mesh_" + siftable.getMeshLevel()).equals(meshLevel)) {
-                    currentStack = new BlockInfo(stack);
-                    markDirtyClient();
-                    return true;
-                }
-            }
-        }
+	public boolean addBlock(final ItemStack stack) {
+		if (!currentStack.isValid() && NTMRegistryManager.SIEVE_REGISTRY.canBeSifted(stack)) {
+			if (meshStack.isEmpty())
+				return false;
+			String meshLevel = NameHelper.getName(meshStack);
+			for (Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack))
+				if (("mesh_" + siftable.getMeshLevel()).equals(meshLevel)) {
+					currentStack = new BlockInfo(stack);
+					markDirtyClient();
+					return true;
+				}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public void doSieving(EntityPlayer player, boolean automatedSieving) {
-        if (!world.isRemote) {
+	public void doSieving(final EntityPlayer player, final boolean automatedSieving) {
+		if (!world.isRemote) {
 
-            if (!currentStack.isValid()) {
-                return;
-            }
+			if (!currentStack.isValid())
+				return;
 
-            // 4 ticks is the same period of holding down right click
-            if (getWorld().getTotalWorldTime() - lastSieveAction < 4 && !automatedSieving) {
-                return;
-            }
+			// 4 ticks is the same period of holding down right click
+			if (getWorld().getTotalWorldTime() - lastSieveAction < 4 && !automatedSieving)
+				return;
 
-            // Really good chance that they're using a macro
-            if (!automatedSieving && player != null && getWorld().getTotalWorldTime() - lastSieveAction == 0 && lastPlayer.equals(player.getUniqueID())) {
-                if (Config.setFireToMacroUsers) {
-                    player.setFire(1);
-                }
+			// Really good chance that they're using a macro
+			if (!automatedSieving && player != null && getWorld().getTotalWorldTime() - lastSieveAction == 0 && lastPlayer.equals(player.getUniqueID())) {
+				if (Config.setFireToMacroUsers)
+					player.setFire(1);
 
-                player.sendMessage(new TextComponentString("Bad").setStyle(new Style().setColor(TextFormatting.RED).setBold(true)));
-            }
+				player.sendMessage(new TextComponentString("Bad").setStyle(new Style().setColor(TextFormatting.RED).setBold(true)));
+			}
 
-            lastSieveAction = getWorld().getTotalWorldTime();
-            if (player != null) {
-                lastPlayer = player.getUniqueID();
-            }
+			lastSieveAction = getWorld().getTotalWorldTime();
+			if (player != null)
+				lastPlayer = player.getUniqueID();
 
-            int efficiency = EnchantmentHelper.getEnchantmentLevel(EnchantmentEfficiency.EFFICIENCY, meshStack);
-            efficiency += EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, meshStack);
-            if(Config.hasteIncreaseSpeed && player != null && player.isPotionActive(MobEffects.HASTE)){
-                efficiency *= 1.0F + (player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
-            }
+			int efficiency = EnchantmentHelper.getEnchantmentLevel(EnchantmentEfficiency.EFFICIENCY, meshStack);
+			efficiency += EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, meshStack);
+			if(Config.hasteIncreaseSpeed && player != null && player.isPotionActive(MobEffects.HASTE))
+				efficiency *= 1.0F + (player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
 
-            int fortune = EnchantmentHelper.getEnchantmentLevel(EnchantmentFortune.FORTUNE, meshStack);
-            fortune += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, meshStack);
-            if (player != null) {
-                fortune += player.getLuck();
-            }
+			int fortune = EnchantmentHelper.getEnchantmentLevel(EnchantmentFortune.FORTUNE, meshStack);
+			fortune += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, meshStack);
+			if (player != null)
+				fortune += player.getLuck();
 
-            int luckOfTheSea = EnchantmentHelper.getEnchantmentLevel(EnchantmentLuckOfTheSea.LUCK_OF_THE_SEA, meshStack);
-            luckOfTheSea += EnchantmentHelper.getEnchantmentLevel(Enchantments.LUCK_OF_THE_SEA, meshStack);
+			int luckOfTheSea = EnchantmentHelper.getEnchantmentLevel(EnchantmentLuckOfTheSea.LUCK_OF_THE_SEA, meshStack);
+			luckOfTheSea += EnchantmentHelper.getEnchantmentLevel(Enchantments.LUCK_OF_THE_SEA, meshStack);
 
-            if (luckOfTheSea > 0 && player != null) {
-                luckOfTheSea += player.getLuck();
-            }
+			if (luckOfTheSea > 0 && player != null)
+				luckOfTheSea += player.getLuck();
 
-            progress += 10 + 5 * efficiency;
-            markDirtyClient();
+			progress += 10 + 5 * efficiency;
+			markDirtyClient();
 
-            if (progress >= 100) {
-                List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
+			if (progress >= 100) {
+				List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
 
-                if (drops == null) {
-                    drops = new ArrayList<>();
-                }
+				if (drops == null)
+					drops = new ArrayList<>();
 
-                // Fancy math to make the average fish dropped ~ luckOfTheSea / 2 fish, which is what it was before
+				// Fancy math to make the average fish dropped ~ luckOfTheSea / 2 fish, which is what it was before
 
-                int fishToDrop = (int) Math.round(rand.nextGaussian() + (luckOfTheSea / 2.0));
+				int fishToDrop = (int) Math.round(rand.nextGaussian() + luckOfTheSea / 2.0);
 
-                fishToDrop = MathHelper.clamp(fishToDrop, 0, luckOfTheSea);
+				fishToDrop = MathHelper.clamp(fishToDrop, 0, luckOfTheSea);
 
-                for (int i = 0; i < fishToDrop; i++) {
-                    /*
-                     * Gives fish following chances:
-                     *  Normal: 43% (3/7)
-                     *  Salmon: 29% (2/7)
-                     *  Clown:  14% (1/7)
-                     *  Puffer: 14% (1/7)
-                     */
+				for (int i = 0; i < fishToDrop; i++) {
+					/*
+					 * Gives fish following chances:
+					 *  Normal: 43% (3/7)
+					 *  Salmon: 29% (2/7)
+					 *  Clown:  14% (1/7)
+					 *  Puffer: 14% (1/7)
+					 */
 
-                    int fishMeta = 0;
+					int fishMeta = 0;
 
-                    switch (rand.nextInt(7)) {
-                        case 3:
-                        case 4:
-                            fishMeta = 1;
-                            break;
-                        case 5:
-                            fishMeta = 2;
-                            break;
-                        case 6:
-                            fishMeta = 3;
-                            break;
-                        default:
-                            break;
-                    }
+					switch (rand.nextInt(7)) {
+					case 3:
+					case 4:
+						fishMeta = 1;
+						break;
+					case 5:
+						fishMeta = 2;
+						break;
+					case 6:
+						fishMeta = 3;
+						break;
+					default:
+						break;
+					}
 
-                    drops.add(new ItemStack(Items.FISH, 1, fishMeta));
-                }
+					drops.add(new ItemStack(Items.FISH, 1, fishMeta));
+				}
 
-                TileEntity teUp = world.getTileEntity(pos.up());
-                IItemHandler cap;
+				TileEntity teUp = world.getTileEntity(pos.up());
+				IItemHandler cap;
 
-                if (teUp != null
-                        && teUp.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)
-                        && (cap = teUp.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)) != null) {
+				if (teUp != null
+						&& teUp.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)
+						&& (cap = teUp.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)) != null) {
 
-                    int slotAmount = cap.getSlots();
+					int slotAmount = cap.getSlots();
 
-                    for (ItemStack drop : drops) {
-                        ItemStack newStack = drop;
-                        for (int i = 0; i < slotAmount && !newStack.isEmpty(); i++) {
-                            newStack = cap.insertItem(i, newStack, false);
-                        }
+					for (ItemStack drop : drops) {
+						ItemStack newStack = drop;
+						for (int i = 0; i < slotAmount && !newStack.isEmpty(); i++)
+							newStack = cap.insertItem(i, newStack, false);
 
-                        if (!newStack.isEmpty()){
-                            Util.dropItemInWorld(this, player, newStack, 1);
-                        }
+						if (!newStack.isEmpty())
+							Util.dropItemInWorld(this, player, newStack, 1);
 
-                    }
-                } else {
-                    drops.forEach(stack -> Util.dropItemInWorld(this, player, stack, 1));
-                }
+					}
+				} else
+					drops.forEach(stack -> Util.dropItemInWorld(this, player, stack, 1));
 
 
 
-                resetSieve();
-            }
-        }
-    }
+				resetSieve();
+			}
+		}
+	}
 
-    public boolean isSieveSimilar(TileSieve sieve) {
-        return sieve != null && !meshStack.isEmpty() && !sieve.getMeshStack().isEmpty() && meshStack.getItemDamage() == sieve.getMeshStack().getItemDamage() && progress == sieve.getProgress() && currentStack.isValid() && currentStack.equals(sieve.getCurrentStack());
-    }
+	public boolean isSieveSimilar(final TileSieve sieve) {
+		return sieve != null && !meshStack.isEmpty() && !sieve.getMeshStack().isEmpty() && meshStack.getItemDamage() == sieve.getMeshStack().getItemDamage() && progress == sieve.getProgress() && currentStack.isValid() && currentStack.equals(sieve.getCurrentStack());
+	}
 
-    public boolean isSieveSimilarToInput(TileSieve sieve) {
-        return !meshStack.isEmpty() && !sieve.getMeshStack().isEmpty() && meshStack.getItemDamage() == sieve.getMeshStack().getItemDamage() && progress == sieve.getProgress() && !sieve.getCurrentStack().isValid();
-    }
+	public boolean isSieveSimilarToInput(final TileSieve sieve) {
+		return !meshStack.isEmpty() && !sieve.getMeshStack().isEmpty() && meshStack.getItemDamage() == sieve.getMeshStack().getItemDamage() && progress == sieve.getProgress() && !sieve.getCurrentStack().isValid();
+	}
 
-    private void resetSieve() {
-        progress = 0;
-        currentStack = BlockInfo.EMPTY;
-        markDirtyClient();
-    }
+	private void resetSieve() {
+		progress = 0;
+		currentStack = BlockInfo.EMPTY;
+		markDirtyClient();
+	}
 
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture() {
-        if (currentStack.isValid()) {
-            return Util.getTextureFromBlockState(currentStack.getBlockState());
-        }
-        return null;
-    }
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture() {
+		if (currentStack.isValid())
+			return Util.getTextureFromBlockState(currentStack.getBlockState());
+		return null;
+	}
 
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState, @Nonnull IBlockState newState) {
-        return oldState.getBlock() != newState.getBlock();
-    }
+	@Override
+	public boolean shouldRefresh(final World world, final BlockPos pos, @Nonnull final IBlockState oldState, @Nonnull final IBlockState newState) {
+		return oldState.getBlock() != newState.getBlock();
+	}
 
-    @Override
-    @Nonnull
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        if (currentStack.isValid()) {
-            NBTTagCompound stackTag = currentStack.writeToNBT(new NBTTagCompound());
-            tag.setTag("stack", stackTag);
-        }
+	@Override
+	@Nonnull
+	public NBTTagCompound writeToNBT(final NBTTagCompound tag) {
+		if (currentStack.isValid()) {
+			NBTTagCompound stackTag = currentStack.writeToNBT(new NBTTagCompound());
+			tag.setTag("stack", stackTag);
+		}
 
-        if (!meshStack.isEmpty()) {
-            NBTTagCompound meshTag = meshStack.writeToNBT(new NBTTagCompound());
-            tag.setTag("mesh", meshTag);
-        }
+		if (!meshStack.isEmpty()) {
+			NBTTagCompound meshTag = meshStack.writeToNBT(new NBTTagCompound());
+			tag.setTag("mesh", meshTag);
+		}
 
-        tag.setByte("progress", progress);
+		tag.setByte("progress", progress);
 
-        return super.writeToNBT(tag);
-    }
+		return super.writeToNBT(tag);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        if (tag.hasKey("stack"))
-            currentStack = BlockInfo.readFromNBT(tag.getCompoundTag("stack"));
-        else
-            currentStack = BlockInfo.EMPTY;
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		if (tag.hasKey("stack"))
+			currentStack = BlockInfo.readFromNBT(tag.getCompoundTag("stack"));
+		else
+			currentStack = BlockInfo.EMPTY;
 
-        if (tag.hasKey("mesh")) {
-            meshStack = new ItemStack(tag.getCompoundTag("mesh"));
-            meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(meshStack));
-        } else {
-            meshStack = ItemStack.EMPTY;
-            meshType = Sieve.MeshType.NONE;
-        }
+		if (tag.hasKey("mesh")) {
+			meshStack = new ItemStack(tag.getCompoundTag("mesh"));
+			meshType = Sieve.MeshType.getMeshTypeByID(NameHelper.getName(meshStack));
+		} else {
+			meshStack = ItemStack.EMPTY;
+			meshType = Sieve.MeshType.NONE;
+		}
 
-        progress = tag.getByte("progress");
-        super.readFromNBT(tag);
-    }
+		progress = tag.getByte("progress");
+		super.readFromNBT(tag);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(pos.getX(), pos.getY(), pos.getZ());
-    }
-    
-    @Override
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(pos.getX(), pos.getY(), pos.getZ());
+	}
+
+	@Override
 	public void markDirtyClient() {
-        markDirty();
-        NetworkHandler.sendNBTUpdate(this);
-    }
-    
-    //Move to sfh tile base
+		markDirty();
+		NetworkHandler.sendNBTUpdate(this);
+	}
 
-    @Override
+	//Move to sfh tile base
+
+	@Override
 	public void markDirtyChunk() {
-        markDirty();
-        IBlockState state = getWorld().getBlockState(getPos());
-        getWorld().notifyBlockUpdate(getPos(), state, state, 3);
-        NetworkHandler.sendNBTUpdate(this);
-    }
+		markDirty();
+		IBlockState state = getWorld().getBlockState(getPos());
+		getWorld().notifyBlockUpdate(getPos(), state, state, 3);
+		NetworkHandler.sendNBTUpdate(this);
+	}
 
-    @Nullable
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
-    }
+	@Nullable
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+	}
 
-    @Override
-    @Nonnull
-    public NBTTagCompound getUpdateTag() {
-        return writeToNBT(new NBTTagCompound());
-    }
+	@Override
+	@Nonnull
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        readFromNBT(pkt.getNbtCompound());
-        IBlockState state = world.getBlockState(pos);
-        world.notifyBlockUpdate(pos, state, state, 3);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onDataPacket(final NetworkManager net, final SPacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.getNbtCompound());
+		IBlockState state = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, state, state, 3);
+	}
 }

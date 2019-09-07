@@ -7,12 +7,12 @@ import mod.sfhcore.util.BlockInfo;
 
 public interface IFluidTransformRegistry extends IRegistryMappedList<String, FluidTransformer>
 {
-    public void register(String inputFluid, String outputFluid, int duration, BlockInfo[] transformingBlocks, BlockInfo[] blocksToSpawn);
-    public void register(FluidTransformer transformer);
+	void register(String inputFluid, String outputFluid, int duration, BlockInfo[] transformingBlocks, BlockInfo[] blocksToSpawn);
+	void register(FluidTransformer transformer);
 
-    public boolean containsKey(String inputFluid);
+	boolean containsKey(String inputFluid);
 
-    public FluidTransformer getFluidTransformer(String inputFluid, String outputFluid);
+	FluidTransformer getFluidTransformer(String inputFluid, String outputFluid);
 
-    public List<FluidTransformer> getFluidTransformers(String inputFluid);
+	List<FluidTransformer> getFluidTransformers(String inputFluid);
 }

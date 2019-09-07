@@ -14,13 +14,13 @@ public class FluidBlockTransformer
 	private EntityInfo toSpawn = EntityInfo.EMPTY;
 	private int spawnCount = 4;
 	private int spawnRange = 4;
-	
+
 	public FluidBlockTransformer copy()
 	{
-		FluidBlockTransformer cp = new FluidBlockTransformer(this.fluidName, this.input, this.output, this.toSpawn.getName(), this.spawnCount, this.spawnRange);
+		FluidBlockTransformer cp = new FluidBlockTransformer(fluidName, input, output, toSpawn.getName(), spawnCount, spawnRange);
 		return cp;
 	}
-	
+
 	public String getFluidName() {
 		return fluidName;
 	}
@@ -55,17 +55,17 @@ public class FluidBlockTransformer
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((fluidName == null) ? 0 : fluidName.hashCode());
-		result = prime * result + ((input == null) ? 0 : input.hashCode());
-		result = prime * result + ((output == null) ? 0 : output.hashCode());
+		result = prime * result + (fluidName == null ? 0 : fluidName.hashCode());
+		result = prime * result + (input == null ? 0 : input.hashCode());
+		result = prime * result + (output == null ? 0 : output.hashCode());
 		result = prime * result + spawnCount;
 		result = prime * result + spawnRange;
-		result = prime * result + ((toSpawn == null) ? 0 : toSpawn.hashCode());
+		result = prime * result + (toSpawn == null ? 0 : toSpawn.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -100,12 +100,12 @@ public class FluidBlockTransformer
 		return true;
 	}
 
-	public FluidBlockTransformer(String fluidName, Ingredient input, BlockInfo output, @Nullable String entityName, int spawnCount, int spawnRange)
+	public FluidBlockTransformer(final String fluidName, final Ingredient input, final BlockInfo output, @Nullable final String entityName, final int spawnCount, final int spawnRange)
 	{
 		this.fluidName = fluidName;
 		this.input = input;
 		this.output = output;
-		this.toSpawn = new EntityInfo(entityName);
+		toSpawn = new EntityInfo(entityName);
 		this.spawnCount = spawnCount;
 		this.spawnRange = spawnRange;
 	}

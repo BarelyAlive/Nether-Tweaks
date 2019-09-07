@@ -27,33 +27,33 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
 public class ItemDoll extends Item implements INames
-{	
-	public ItemDoll(String type)
-	{		
-		setRegistryName(NetherTweaksMod.MODID, type);		
+{
+	public ItemDoll(final String type)
+	{
+		setRegistryName(NetherTweaksMod.MODID, type);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
-	
-	public Fluid getSpawnFluid(ItemStack stack) {
+
+	public Fluid getSpawnFluid(final ItemStack stack) {
 		return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
 	}
-	
+
 	/**
 	 * Spawns the mob in the world at position
 	 * @param stack The Doll Stack
 	 * @param pos Blockpos
 	 * @return true if spawn is successful
 	 */
-	public boolean spawnMob(ItemStack stack, World world, BlockPos pos)
+	public boolean spawnMob(final ItemStack stack, final World world, final BlockPos pos)
 	{
 		String name = NameHelper.getName(stack);
-		
+
 		switch (name) {
 		case DOLL_BAT:
 			EntityBat bat = new EntityBat(world);
 			bat.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
-			return world.spawnEntity(bat);		
+			return world.spawnEntity(bat);
 		case DOLL_CHICKEN:
 			EntityChicken chick = new EntityChicken(world);
 			chick.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
@@ -117,12 +117,12 @@ public class ItemDoll extends Item implements INames
 		case DOLL_WOLF:
 			EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
-			
+
 			return world.spawnEntity(wolf);
 		case DOLL_VILLAGER:
 			EntityVillager derp = new EntityVillager(world);
 			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
-			
+
 			return world.spawnEntity(derp);
 		case DOLL_PIG:
 			EntityPig pig = new EntityPig(world);
@@ -133,9 +133,9 @@ public class ItemDoll extends Item implements INames
 			return false;
 		}
 	}
-	
+
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getUnlocalizedName(final ItemStack stack) {
 		return "item." + getRegistryName().getResourcePath();
 	}
 }

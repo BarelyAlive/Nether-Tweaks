@@ -3,135 +3,135 @@ package mod.nethertweaks;
 import net.minecraft.creativetab.CreativeTabs;
 
 public interface INames {
-	
-	public String MODID = NetherTweaksMod.MODID;
-	public CreativeTabs TAB = NetherTweaksMod.TABNTM;
+
+	String MODID = NetherTweaksMod.MODID;
+	CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
 	//Fluids
-	public String DISTILLEDWATER			= "distilled_water";
-	public String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
-	
-	//Blocks
-	public String CONDENSER 				= "condenser";
-	public String NETHERRACK_FURNACE 		= "netherrack_furnace";
-	public String BARREL					= "barrel";
-	public String FREEZER 					= "freezer";
-	public String CRUCIBLE					= "crucible";
-	public String HELLMART 					= "hellmart";
-	public String BONFIRE 					= "bonfire";
-	public String AIR_CONDITIONER			= "air_conditioner";
-	
-	public String STONE_SIEVE				= "stone_sieve";
-	
-	public String OAK_SIEVE					= "oak_sieve";
-	public String BIRCH_SIEVE				= "birch_sieve";
-	public String SPRUCE_SIEVE				= "spruce_sieve";
-	public String JUNGLE_SIEVE 				= "jungle_sieve";
-	public String ACACIA_SIEVE				= "acacia_sieve";
-	public String DARK_OAK_SIEVE			= "dark_oak_sieve";
-	public String ELDER_SIEVE				= "elder_sieve";
-	
+	String DISTILLEDWATER			= "distilled_water";
+	String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 
-	public String STONE_BARREL				= "stone_barrel";
-	
-	public String OAK_BARREL				= "oak_barrel";
-	public String BIRCH_BARREL				= "birch_barrel";
-	public String SPRUCE_BARREL				= "spruce_barrel";
-	public String JUNGLE_BARREL				= "jungle_barrel";
-	public String ACACIA_BARREL				= "acacia_barrel";
-	public String DARK_OAK_BARREL			= "dark_oak_barrel";
-	public String ELDER_BARREL				= "elder_barrel";
-	
-	public String ASH_BONE_PILE				= "ash_bone_pile";
-	public String STONE_DOOR				= "stone_door";
-	public String ELDER_DOOR				= "elder_door";
-	public String DUST 						= "dust";
-	public String STWH 						= "stairway_to_heaven";
-	public String ELDER_SAPLING 			= "elder_sapling";
-	public String ELDER_LEAVES 				= "elder_leaves";
-	public String ELDER_PLANKS				= "elder_planks";
-	public String ELDER_SLAB				= "elder_slab";
-	public String ELDER_SLAB_DOUBLE			= "elder_slab_double";
-	public String ELDER_LOG 				= "elder_log";
-	public String NETHERRACK_GRAVEL			= "netherrack_gravel";
-	public String MEAN_VINE 				= "mean_vine";
-	
-	public String HELLFAYAH_ORE 			= "hellfayah_ore";
-	public String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";
-	public String BLOCK_OF_SALT 			= "block_of_salt";
-	
+	//Blocks
+	String CONDENSER 				= "condenser";
+	String NETHERRACK_FURNACE 		= "netherrack_furnace";
+	String BARREL					= "barrel";
+	String FREEZER 					= "freezer";
+	String CRUCIBLE					= "crucible";
+	String HELLMART 					= "hellmart";
+	String BONFIRE 					= "bonfire";
+	String AIR_CONDITIONER			= "air_conditioner";
+
+	String STONE_SIEVE				= "stone_sieve";
+
+	String OAK_SIEVE					= "oak_sieve";
+	String BIRCH_SIEVE				= "birch_sieve";
+	String SPRUCE_SIEVE				= "spruce_sieve";
+	String JUNGLE_SIEVE 				= "jungle_sieve";
+	String ACACIA_SIEVE				= "acacia_sieve";
+	String DARK_OAK_SIEVE			= "dark_oak_sieve";
+	String ELDER_SIEVE				= "elder_sieve";
+
+
+	String STONE_BARREL				= "stone_barrel";
+
+	String OAK_BARREL				= "oak_barrel";
+	String BIRCH_BARREL				= "birch_barrel";
+	String SPRUCE_BARREL				= "spruce_barrel";
+	String JUNGLE_BARREL				= "jungle_barrel";
+	String ACACIA_BARREL				= "acacia_barrel";
+	String DARK_OAK_BARREL			= "dark_oak_barrel";
+	String ELDER_BARREL				= "elder_barrel";
+
+	String ASH_BONE_PILE				= "ash_bone_pile";
+	String STONE_DOOR				= "stone_door";
+	String ELDER_DOOR				= "elder_door";
+	String DUST 						= "dust";
+	String STWH 						= "stairway_to_heaven";
+	String ELDER_SAPLING 			= "elder_sapling";
+	String ELDER_LEAVES 				= "elder_leaves";
+	String ELDER_PLANKS				= "elder_planks";
+	String ELDER_SLAB				= "elder_slab";
+	String ELDER_SLAB_DOUBLE			= "elder_slab_double";
+	String ELDER_LOG 				= "elder_log";
+	String NETHERRACK_GRAVEL			= "netherrack_gravel";
+	String MEAN_VINE 				= "mean_vine";
+
+	String HELLFAYAH_ORE 			= "hellfayah_ore";
+	String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";
+	String BLOCK_OF_SALT 			= "block_of_salt";
+
 	//Tile ENtities
-	public String TE_NETHERRACKFURNACE		= "ntm.tile.netherrack_furnace";
-	public String TE_CONDENSER 				= "ntm.tile.condenser";
-	public String TE_BARREL 				= "ntm.tile.barrel";
-	public String TE_FREEZER				= "ntm.tile.freezer";
-	public String TE_SIEVE					= "ntm.tile.sieve";
-	public String TE_HELLMART				= "ntm.tile.hellmart";
+	String TE_NETHERRACKFURNACE		= "ntm.tile.netherrack_furnace";
+	String TE_CONDENSER 				= "ntm.tile.condenser";
+	String TE_BARREL 				= "ntm.tile.barrel";
+	String TE_FREEZER				= "ntm.tile.freezer";
+	String TE_SIEVE					= "ntm.tile.sieve";
+	String TE_HELLMART				= "ntm.tile.hellmart";
 
 	//Items
-	public String MESH_STRING				= "mesh_string";
-	public String MESH_FLINT				= "mesh_flint";
-	public String MESH_IRON					= "mesh_iron";
-	public String MESH_DIAMOND				= "mesh_diamond";
-	
-	public String FLINT_N_BLAZE 			= "flint_and_blaze";
-	
-	public String PEBBLE_STONE				= "pebble_stone";
-	public String PEBBLE_GRANITE			= "pebble_granite";
-	public String PEBBLE_DIORITE			= "pebble_diorite";
-	public String PEBBLE_ANDESITE			= "pebble_andesite";
-	
-	public String MUSHROOM_SPORES			= "mushroom_spores";
-	public String GRASS_SEEDS				= "grass_seeds";
-	public String CACTUS_SEEDS				= "cactus_seeds";
-	public String SUGARCANE_SEEDS			= "sugarcane_seeds";
-	
-	public String CRYSTAL_OF_LIGHT			= "crystal_of_light";
-	
-	public String DOLL_BAT					= "doll_bat";
-	public String DOLL_CHICKEN				= "doll_chicken";
-	public String DOLL_COW					= "doll_cow";
-	public String DOLL_DONKEY				= "doll_donkey";
-	public String DOLL_HORSE				= "doll_horse";
-	public String DOLL_RED_MOOSHROOM		= "doll_red_mooshroom";
-	public String DOLL_MULE					= "doll_mule";
-	public String DOLL_OCELOT				= "doll_ocelot";
-	public String DOLL_PARROT				= "doll_parrot";
-	public String DOLL_RABBIT				= "doll_rabbit";
-	public String DOLL_SHEEP				= "doll_sheep";
-	public String DOLL_LLAMA				= "doll_llama";
-	public String DOLL_POLAR_BEAR			= "doll_polar_bear";
-	public String DOLL_WOLF					= "doll_wolf";
-	public String DOLL_VILLAGER				= "doll_villager";
-	public String DOLL_PIG					= "doll_pig";
-		
-	public String STONE_BAR 				= "stone_bar";
-	public String PORTAL_CORE				= "portal_core";
-	public String END_BOX 					= "end_box";
-	public String SALT 						= "salt";
-	public String HELLFAYAH 				= "hellfayah";
-	public String ENDER_INFUSED_FRAME		= "ender_infused_frame";
-	public String STRING					= "string";
-	public String PORCELAIN_CLAY			= "porcelain_clay";
-	public String POWDER_OF_LIGHT			= "powder_of_light";
-	public String ASH						= "ash";
-	public String WOOD_CHIPPINGS			= "wood_chippings";
-	
-	public String COILED_SWORD				= "coiled_sword";
-	
-	public String COOKED_JERKY 				= "cooked_jerky";
-	
-	public String GRABBER_WOOD				= "grabber_wood";
-	public String GRABBER_GOLD				= "grabber_gold";
-	public String GRABBER_STONE				= "grabber_stone";
-	public String GRABBER_IRON				= "grabber_iron";
-	public String GRABBER_DIAMOND			= "grabber_diamond";
-	
-	public String HAMMER_WOOD 				= "hammer_wood";
-	public String HAMMER_GOLD 				= "hammer_gold";
-	public String HAMMER_STONE 				= "hammer_stone";
-	public String HAMMER_IRON				= "hammer_iron";
-	public String HAMMER_DIAMOND			= "hammer_diamond";
+	String MESH_STRING				= "mesh_string";
+	String MESH_FLINT				= "mesh_flint";
+	String MESH_IRON					= "mesh_iron";
+	String MESH_DIAMOND				= "mesh_diamond";
 
-	public String CHUNK						= "chunk";
+	String FLINT_N_BLAZE 			= "flint_and_blaze";
+
+	String PEBBLE_STONE				= "pebble_stone";
+	String PEBBLE_GRANITE			= "pebble_granite";
+	String PEBBLE_DIORITE			= "pebble_diorite";
+	String PEBBLE_ANDESITE			= "pebble_andesite";
+
+	String MUSHROOM_SPORES			= "mushroom_spores";
+	String GRASS_SEEDS				= "grass_seeds";
+	String CACTUS_SEEDS				= "cactus_seeds";
+	String SUGARCANE_SEEDS			= "sugarcane_seeds";
+
+	String CRYSTAL_OF_LIGHT			= "crystal_of_light";
+
+	String DOLL_BAT					= "doll_bat";
+	String DOLL_CHICKEN				= "doll_chicken";
+	String DOLL_COW					= "doll_cow";
+	String DOLL_DONKEY				= "doll_donkey";
+	String DOLL_HORSE				= "doll_horse";
+	String DOLL_RED_MOOSHROOM		= "doll_red_mooshroom";
+	String DOLL_MULE					= "doll_mule";
+	String DOLL_OCELOT				= "doll_ocelot";
+	String DOLL_PARROT				= "doll_parrot";
+	String DOLL_RABBIT				= "doll_rabbit";
+	String DOLL_SHEEP				= "doll_sheep";
+	String DOLL_LLAMA				= "doll_llama";
+	String DOLL_POLAR_BEAR			= "doll_polar_bear";
+	String DOLL_WOLF					= "doll_wolf";
+	String DOLL_VILLAGER				= "doll_villager";
+	String DOLL_PIG					= "doll_pig";
+
+	String STONE_BAR 				= "stone_bar";
+	String PORTAL_CORE				= "portal_core";
+	String END_BOX 					= "end_box";
+	String SALT 						= "salt";
+	String HELLFAYAH 				= "hellfayah";
+	String ENDER_INFUSED_FRAME		= "ender_infused_frame";
+	String STRING					= "string";
+	String PORCELAIN_CLAY			= "porcelain_clay";
+	String POWDER_OF_LIGHT			= "powder_of_light";
+	String ASH						= "ash";
+	String WOOD_CHIPPINGS			= "wood_chippings";
+
+	String COILED_SWORD				= "coiled_sword";
+
+	String COOKED_JERKY 				= "cooked_jerky";
+
+	String GRABBER_WOOD				= "grabber_wood";
+	String GRABBER_GOLD				= "grabber_gold";
+	String GRABBER_STONE				= "grabber_stone";
+	String GRABBER_IRON				= "grabber_iron";
+	String GRABBER_DIAMOND			= "grabber_diamond";
+
+	String HAMMER_WOOD 				= "hammer_wood";
+	String HAMMER_GOLD 				= "hammer_gold";
+	String HAMMER_STONE 				= "hammer_stone";
+	String HAMMER_IRON				= "hammer_iron";
+	String HAMMER_DIAMOND			= "hammer_diamond";
+
+	String CHUNK						= "chunk";
 }

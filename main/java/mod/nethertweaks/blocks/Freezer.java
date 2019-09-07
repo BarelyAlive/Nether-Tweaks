@@ -24,35 +24,35 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class Freezer extends CubeContainerHorizontal
 {
-    private static final PropertyDirection FACING = BlockHorizontal.FACING;
-	
+	private static final PropertyDirection FACING = BlockHorizontal.FACING;
+
 	public Freezer()
 	{
 		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player,
+			final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
 	{
 		if(!world.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) world.getTileEntity(pos);
 		if(te == null) return false;
 		if(!(te instanceof TileFreezer)) return false;
-    	if(world.isRemote) return true;
-    	if(player.isSneaking()) return false;
-    	
+		if(world.isRemote) return true;
+		if(player.isSneaking()) return false;
+
 		boolean success;
 		success = TankUtil.drainWaterFromBottle(te, player, te.getTank());
 		if(success) return true;
-    	
-    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
-    	
-    	if (item != null) {
+
+		IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+
+		if (item != null) {
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if(success) return true;
 		}
@@ -63,11 +63,11 @@ public class Freezer extends CubeContainerHorizontal
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-	    return new BlockStateContainer(this, new IProperty[] {FACING});
+		return new BlockStateContainer(this, new IProperty[] {FACING});
 	}
-	
+
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-	    return new TileFreezer();
+	public TileEntity createNewTileEntity(final World world, final int meta) {
+		return new TileFreezer();
 	}
 }

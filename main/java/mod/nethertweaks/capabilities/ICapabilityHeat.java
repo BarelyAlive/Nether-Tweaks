@@ -1,7 +1,7 @@
 package mod.nethertweaks.capabilities;
 
 public interface ICapabilityHeat {
-    int getHeatRate();
+	int getHeatRate();
 
-    void setHeatRate(int heatRate);
+	void setHeatRate(int heatRate);
 }

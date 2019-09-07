@@ -18,24 +18,24 @@ import mod.sfhcore.util.ItemInfo;
 public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSerializer<Dryable>
 {
 	@Override
-    public JsonElement serialize(Dryable src, Type typeOfSrc, JsonSerializationContext context)
-    {
-    	JsonObject obj = new JsonObject();
-        obj.addProperty("value", src.getValue());
-        obj.add("item", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
+	public JsonElement serialize(final Dryable src, final Type typeOfSrc, final JsonSerializationContext context)
+	{
+		JsonObject obj = new JsonObject();
+		obj.addProperty("value", src.getValue());
+		obj.add("item", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
 
-        return obj;
-    }
-	
-    @Override
-    public Dryable deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
-    	JsonHelper helper = new JsonHelper(json);
-        JsonObject obj = json.getAsJsonObject();
+		return obj;
+	}
 
-        int value =  helper.getInteger("value");
-        ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
+	@Override
+	public Dryable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
+	{
+		JsonHelper helper = new JsonHelper(json);
+		JsonObject obj = json.getAsJsonObject();
 
-        return new Dryable(result.getItemStack(), value);
-    }
+		int value =  helper.getInteger("value");
+		ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
+
+		return new Dryable(result.getItemStack(), value);
+	}
 }

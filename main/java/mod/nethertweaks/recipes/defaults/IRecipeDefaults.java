@@ -17,20 +17,20 @@ import mod.nethertweaks.registries.registries.SieveRegistry;
 
 public interface IRecipeDefaults
 {
-	 String getMODID();
-	
-	 default void registerCompost(CompostRegistry registry) {}
-	 default void registerCondenser(CondenserRegistry registry) {};
-	 default void registerHellmart(HellmartRegistry registry) {};
-	 default void registerSieve(SieveRegistry registry) {}
-	 default void registerHammer(HammerRegistry registry) {}
-	 default void registerHeat(HeatRegistry registry) {}
-	 default void registerBarrelLiquidBlacklist(BarrelLiquidBlacklistRegistry registry) {}
-	 default void registerFluidOnTop(FluidOnTopRegistry registry) {}
-	 default void registerOreChunks(OreRegistry registry) {}
-	 default void registerFluidTransform(FluidTransformRegistry registry) {}
-	 default void registerFluidBlockTransform(FluidBlockTransformerRegistry registry) {}
-	 default void registerFluidItemFluid(FluidItemFluidRegistry registry) {}
-	 default void registerCrucibleStone(CrucibleRegistry registry) {}
-	 default void registerMilk(MilkEntityRegistry registry) {}
+	String getMODID();
+
+	default void registerCompost(final CompostRegistry registry) {}
+	default void registerCondenser(final CondenserRegistry registry) {}
+	default void registerHellmart(final HellmartRegistry registry) {}
+	default void registerSieve(final SieveRegistry registry) {}
+	default void registerHammer(final HammerRegistry registry) {}
+	default void registerHeat(final HeatRegistry registry) {}
+	default void registerBarrelLiquidBlacklist(final BarrelLiquidBlacklistRegistry registry) {}
+	default void registerFluidOnTop(final FluidOnTopRegistry registry) {}
+	default void registerOreChunks(final OreRegistry registry) {}
+	default void registerFluidTransform(final FluidTransformRegistry registry) {}
+	default void registerFluidBlockTransform(final FluidBlockTransformerRegistry registry) {}
+	default void registerFluidItemFluid(final FluidItemFluidRegistry registry) {}
+	default void registerCrucibleStone(final CrucibleRegistry registry) {}
+	default void registerMilk(final MilkEntityRegistry registry) {}
 }

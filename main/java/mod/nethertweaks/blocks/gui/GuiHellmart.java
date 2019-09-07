@@ -28,7 +28,7 @@ public class GuiHellmart extends GuiContainer {
 	private int itemNum;
 	private final TileHellmart tileEntityMarket;
 
-	public GuiHellmart(InventoryPlayer inventoryplayer, TileHellmart tileEntityMarket) {
+	public GuiHellmart(final InventoryPlayer inventoryplayer, final TileHellmart tileEntityMarket) {
 		super(new ContainerHellmart(inventoryplayer, tileEntityMarket));
 		this.tileEntityMarket = tileEntityMarket;
 		tileEntityMarket.setBrowsingInfo(NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() -1);
@@ -52,27 +52,24 @@ public class GuiHellmart extends GuiContainer {
 		buttonList.add(right);
 		buttonList.add(button_buy);
 
-		this.itemNum = tileEntityMarket.getBrowsingInfo();
+		itemNum = tileEntityMarket.getBrowsingInfo();
 	}
 
 	@Override
-	protected void actionPerformed(GuiButton guibutton) {
-		if(!guibutton.enabled) {
+	protected void actionPerformed(final GuiButton guibutton) {
+		if(!guibutton.enabled)
 			return;
-		}
 		if(guibutton.id == 0) {
 			itemNum--;
-			if(itemNum < 0) {
+			if(itemNum < 0)
 				itemNum = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() - 1;
-			}
-			this.tileEntityMarket.setBrowsingInfo(itemNum);
+			tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 1) {
 			itemNum++;
-			if(itemNum > NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() - 1) {
+			if(itemNum > NTMRegistryManager.HELLMART_REGISTRY.getRegistry().size() - 1)
 				itemNum = 0;
-			}
-			this.tileEntityMarket.setBrowsingInfo(itemNum);
+			tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 2) {
 			ItemStack buySlot = tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
@@ -80,41 +77,36 @@ public class GuiHellmart extends GuiContainer {
 			if(buySlot != null) {
 				HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 				final HellmartData data = dataz[itemNum];
-				if(buySlot.getItem() == data.getCurrency().getItem()) {
+				if(buySlot.getItem() == data.getCurrency().getItem())
 					if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
 						int price = data.getPrice();
-						if(buySlot.getCount() == price) {
-
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
-									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
-									this.tileEntityMarket.getPos().getZ(), true));
-						}
-						else if(buySlot.getCount() > price && buySlot.getCount() > 1) {
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
-									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
-									this.tileEntityMarket.getPos().getZ(), false));
-						}
-						if(buySlot.getCount() == 0 && price == 1) {
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(this.itemNum,
-									this.tileEntityMarket.getPos().getX(), this.tileEntityMarket.getPos().getY(),
-									this.tileEntityMarket.getPos().getZ(), true));
-						}
+						if(buySlot.getCount() == price)
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+									tileEntityMarket.getPos().getZ(), true));
+						else if(buySlot.getCount() > price && buySlot.getCount() > 1)
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+									tileEntityMarket.getPos().getZ(), false));
+						if(buySlot.getCount() == 0 && price == 1)
+							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+									tileEntityMarket.getPos().getZ(), true));
 					}
-				}
 			}
 		}
 	}
 
 	@Override
 	public void onGuiClosed() {
-		NetworkHandler.INSTANCE.sendToServer(new MessageHellmartClosed(this.tileEntityMarket.getPos().getX(),
-				this.tileEntityMarket.getPos().getY(), this.tileEntityMarket.getPos().getZ()));
+		NetworkHandler.INSTANCE.sendToServer(new MessageHellmartClosed(tileEntityMarket.getPos().getX(),
+				tileEntityMarket.getPos().getY(), tileEntityMarket.getPos().getZ()));
 		super.onGuiClosed();
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 13, 4210752);
+	protected void drawGuiContainerForegroundLayer(final int par1, final int par2) {
+		fontRenderer.drawString("Inventory", 8, ySize - 96 + 13, 4210752);
 
 		GL11.glPushMatrix();
 		RenderHelper.enableGUIStandardItemLighting();
@@ -138,7 +130,7 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 
 		int price = data.getPrice();
-		this.fontRenderer.drawString("x" + Integer.toString(price), 116, 20, 0);
+		fontRenderer.drawString("x" + Integer.toString(price), 116, 20, 0);
 
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_LIGHTING);
@@ -147,20 +139,19 @@ public class GuiHellmart extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(int par1, int par2, float par3) {
+	public void drawScreen(final int par1, final int par2, final float par3) {
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
 		HellmartData[] item = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 
-		if(this.isPointInRegion(73, 16, 16, 16, par1, par2)) {
-			this.renderToolTip(item[itemNum].getItem(), par1, par2);
-		}
+		if(isPointInRegion(73, 16, 16, 16, par1, par2))
+			renderToolTip(item[itemNum].getItem(), par1, par2);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+	protected void drawGuiContainerBackgroundLayer(final float f, final int i, final int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
+		mc.getTextureManager().bindTexture(gui);
 		int l = (width - xSize) / 2;
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1 - 10, 0, 0, xSize, ySize + 21);

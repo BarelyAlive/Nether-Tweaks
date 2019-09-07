@@ -9,41 +9,40 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelItemHandlerCompost extends ItemStackHandler {
 
-    TileBarrel barrel;
+	TileBarrel barrel;
 
-    public void setBarrel(TileBarrel barrel) {
+	public void setBarrel(final TileBarrel barrel) {
 		this.barrel = barrel;
 	}
 
-	public BarrelItemHandlerCompost(TileBarrel barrel) {
-        super(1);
-        this.barrel = barrel;
-    }
+	public BarrelItemHandlerCompost(final TileBarrel barrel) {
+		super(1);
+		this.barrel = barrel;
+	}
 
-    @Override
-    @Nonnull
-    public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(stack)) {
-            BarrelModeCompost mode = (BarrelModeCompost) this.barrel.getMode();
+	@Override
+	@Nonnull
+	public ItemStack insertItem(final int slot, @Nonnull final ItemStack stack, final boolean simulate) {
+		if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(stack)) {
+			BarrelModeCompost mode = (BarrelModeCompost) barrel.getMode();
 
-            if (mode != null && mode.getFillAmount() < 1) {
-                ItemStack toReturn = stack.copy();
-                toReturn.shrink(1);
+			if (mode != null && mode.getFillAmount() < 1) {
+				ItemStack toReturn = stack.copy();
+				toReturn.shrink(1);
 
-                if (!simulate) {
-                    mode.addItem(stack, barrel);
-                }
+				if (!simulate)
+					mode.addItem(stack, barrel);
 
-                return toReturn;
-            }
-        }
+				return toReturn;
+			}
+		}
 
-        return stack;
-    }
+		return stack;
+	}
 
-    @Override
-    @Nonnull
-    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return ItemStack.EMPTY;
-    }
+	@Override
+	@Nonnull
+	public ItemStack extractItem(final int slot, final int amount, final boolean simulate) {
+		return ItemStack.EMPTY;
+	}
 }

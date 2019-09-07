@@ -2,7 +2,7 @@ package mod.nethertweaks.capabilities;
 
 public class CapabilityHeat implements ICapabilityHeat
 {
-    @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -11,7 +11,7 @@ public class CapabilityHeat implements ICapabilityHeat
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -26,21 +26,21 @@ public class CapabilityHeat implements ICapabilityHeat
 
 	int heatRate;
 
-    @Override
+	@Override
 	public int getHeatRate() {
 		return heatRate;
 	}
 
 	@Override
-	public void setHeatRate(int heatRate) {
+	public void setHeatRate(final int heatRate) {
 		this.heatRate = heatRate;
 	}
 
 	public CapabilityHeat() {
 
-    }
+	}
 
-    public CapabilityHeat(int heatRate) {
-        this.heatRate = heatRate;
-    }
+	public CapabilityHeat(final int heatRate) {
+		this.heatRate = heatRate;
+	}
 }

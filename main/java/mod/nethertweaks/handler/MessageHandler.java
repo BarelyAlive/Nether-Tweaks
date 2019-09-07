@@ -33,7 +33,7 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageWorldSaveData.MessageWorldSaveDataHandler.class, MessageWorldSaveData.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageWorldSaveData.MessageWorldSaveDataHandler.class, MessageWorldSaveData.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageBonfireGetListServer.MessageBonfireGetListServerHandler.class, MessageBonfireGetListServer.class, Side.SERVER);
-		*/
+		 */
 		NetworkHandler.registerMessage(MessageBonfireSetSpawnPoint.MessageBonfireSetSpawnPointHandler.class, MessageBonfireSetSpawnPoint.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageBonfireGetList.MessageWorldSaveDataHandler.class, MessageBonfireGetList.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.SERVER);

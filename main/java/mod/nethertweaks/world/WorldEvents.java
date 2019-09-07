@@ -48,7 +48,7 @@ public class WorldEvents
 
 	//HELLWORLD
 	@SubscribeEvent
-    public void createSalt(PlayerInteractEvent.RightClickBlock event)
+	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
 	{
 		boolean activated = false;
 		BlockPos clicked = event.getPos();
@@ -56,15 +56,13 @@ public class WorldEvents
 		World world = event.getEntity().getEntityWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
 		FluidStack f = FluidUtil.getFluidContained(heldItem);
-		
+
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
-		
+
 		for(String fluidName : Config.blacklistSalt)
-		{
 			if(f.getFluid().getName().equals(fluidName)) return;
-		}
-		
+
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
@@ -73,149 +71,141 @@ public class WorldEvents
 		if (!activated)
 		{
 			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
-			
+
 			switch (event.getFace()) {
-				case UP:
-					pos = pos.up();
-					break;
-				case NORTH:
-					pos = pos.north();
-					break;
-				case EAST:
-					pos = pos.east();
-					break;
-				case SOUTH:
-					pos = pos.south();
-					break;
-				case WEST:
-					pos = pos.west();
-					break;
-				case DOWN:
-					pos = pos.down();
-					break;
+			case UP:
+				pos = pos.up();
+				break;
+			case NORTH:
+				pos = pos.north();
+				break;
+			case EAST:
+				pos = pos.east();
+				break;
+			case SOUTH:
+				pos = pos.south();
+				break;
+			case WEST:
+				pos = pos.west();
+				break;
+			case DOWN:
+				pos = pos.down();
+				break;
 			}
 			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
 			world.spawnEntity(salt);
 		}
-    }
-	
+	}
+
 	@SubscribeEvent
-	public void noSource(CreateFluidSourceEvent event)
+	public void noSource(final CreateFluidSourceEvent event)
 	{
 		BlockPos pos = event.getPos();
 		IBlockState state = event.getState();
 		World world = event.getWorld();
-		
+
 		if(world.getWorldType() instanceof WorldTypeHellworld)
-		{
 			if(state.getMaterial() == Material.WATER) event.setResult(Result.DENY);
-		}
 	}
 
-    @SubscribeEvent
-    public void respawn(PlayerEvent.PlayerRespawnEvent event) {
+	@SubscribeEvent
+	public void respawn(final PlayerEvent.PlayerRespawnEvent event) {
 		EntityPlayer player = event.player;
 		int range = 32;
 
-    	if(player.world.getWorldType() instanceof WorldTypeHellworld) {
-    		teleportPlayer(player);
-    		if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
-    		{
-	    		BlockPos posplayer = player.getPosition();
-	    		int yDifferenz = 0;
-	    		if (posplayer.getY() < range)
-	    		{
-	    			yDifferenz = range - posplayer.getY();
-	    		}
-	    		Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
+		if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+			teleportPlayer(player);
+			if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
+			{
+				BlockPos posplayer = player.getPosition();
+				int yDifferenz = 0;
+				if (posplayer.getY() < range)
+					yDifferenz = range - posplayer.getY();
+				Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 
-	    		for(BlockPos pos : posi)
-	    		{
-	    			if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
-	    			{
-	    				player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
-	    			}
-	    		}
-    		}
-    		else
-    		{
-    			PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
+				for(BlockPos pos : posi)
+					if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+						player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
+			}
+			else
+			{
+				PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
-    		}
+			}
 		}
-    }
-
-    @SubscribeEvent
-	public void changeToHomeDim(PlayerEvent.PlayerChangedDimensionEvent event)
-    {
-    	teleportPlayer(event.player);
 	}
 
-    @SubscribeEvent
-    public void dropItem(EntityJoinWorldEvent event)
-    {
-    	if(event.getEntity().dimension != -1) return;
-    	if (event.getEntity() instanceof EntityItemLava) return;
-
-    	if (event.getEntity() instanceof EntityItem)
-    	{
-    		EntityItem item = (EntityItem) event.getEntity();
-    		if(item.getItem().getItem() == Items.IRON_SWORD)
-    		{
-        		event.setCanceled(false);
-        		EntityItemLava new_item = new EntityItemLava(
-        				item.getEntityWorld(),
-        				item.getPosition().getX(),
-        				item.getPosition().getY(),
-        				item.getPosition().getZ(),
-        				item.getItem()
-        			);
-        		new_item.copyLocationAndAnglesFrom(item);
-        		new_item.readFromNBT(item.writeToNBT(new NBTTagCompound()));
-        		item.world.spawnEntity(new_item);
-        		item.lifespan = 1;
-    		}
-    	}
-    }
+	@SubscribeEvent
+	public void changeToHomeDim(final PlayerEvent.PlayerChangedDimensionEvent event)
+	{
+		teleportPlayer(event.player);
+	}
 
 	@SubscribeEvent
-	public void firstSpawn(PlayerEvent.PlayerLoggedInEvent event)
+	public void dropItem(final EntityJoinWorldEvent event)
+	{
+		if(event.getEntity().dimension != -1) return;
+		if (event.getEntity() instanceof EntityItemLava) return;
+
+		if (event.getEntity() instanceof EntityItem)
+		{
+			EntityItem item = (EntityItem) event.getEntity();
+			if(item.getItem().getItem() == Items.IRON_SWORD)
+			{
+				event.setCanceled(false);
+				EntityItemLava new_item = new EntityItemLava(
+						item.getEntityWorld(),
+						item.getPosition().getX(),
+						item.getPosition().getY(),
+						item.getPosition().getZ(),
+						item.getItem()
+						);
+				new_item.copyLocationAndAnglesFrom(item);
+				new_item.readFromNBT(item.writeToNBT(new NBTTagCompound()));
+				item.world.spawnEntity(new_item);
+				item.lifespan = 1;
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void firstSpawn(final PlayerEvent.PlayerLoggedInEvent event)
 	{
 		teleportPlayer(event.player);
 		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
 	}
 
 	//Enitity Interaction
-    @SubscribeEvent
-    public void getMilk(PlayerInteractEvent.EntityInteract event)
-    {
-    	if(event.getTarget() instanceof EntityCow)
-    	{
-    		if(!NotNull.checkNotNull(event.getItemStack())) return;
-			
-    		ItemStack stack = event.getItemStack();
-    		Item item = stack.getItem();
-    		EntityPlayer player = event.getEntityPlayer();
+	@SubscribeEvent
+	public void getMilk(final PlayerInteractEvent.EntityInteract event)
+	{
+		if(event.getTarget() instanceof EntityCow)
+		{
+			if(!NotNull.checkNotNull(event.getItemStack())) return;
 
-	    	if(item == BucketHandler.getBucketFromFluid(null, "wood"))
-	    	{
-	    		stack.shrink(1);
-	    		PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
-	    	}
-	    	else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
-	    	{
-	    		stack.shrink(1);
-	    		PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
-	    	}
-    	}
-    }
+			ItemStack stack = event.getItemStack();
+			Item item = stack.getItem();
+			EntityPlayer player = event.getEntityPlayer();
 
-    //WORLD DATA
+			if(item == BucketHandler.getBucketFromFluid(null, "wood"))
+			{
+				stack.shrink(1);
+				PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
+			}
+			else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
+			{
+				stack.shrink(1);
+				PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
+			}
+		}
+	}
 
-    @SubscribeEvent
-	public void LoadPlayerList(WorldEvent.Load event) {
-		if(!(event.getWorld().isRemote)) {
+	//WORLD DATA
+
+	@SubscribeEvent
+	public void LoadPlayerList(final WorldEvent.Load event) {
+		if(!event.getWorld().isRemote) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 
@@ -223,17 +213,17 @@ public class WorldEvents
 			WorldSpawnLocation.setBonfireInfo(worldsave.getBonfireInfo());
 		}
 
-    	if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
-    	{
-    		DimensionManager.unregisterDimension(1);
-    		DimensionType.register("the_end", "_end", 1, WorldProviderEnd.class, true);
-    		DimensionManager.registerDimension(1, DimensionType.valueOf("the_end"));
-    	}
+		if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
+		{
+			DimensionManager.unregisterDimension(1);
+			DimensionType.register("the_end", "_end", 1, WorldProviderEnd.class, true);
+			DimensionManager.registerDimension(1, DimensionType.valueOf("the_end"));
+		}
 	}
 
 	@SubscribeEvent
-	public void UnloadPlayerList(WorldEvent.Unload event) {
-		if(!(event.getWorld().isRemote)) {
+	public void UnloadPlayerList(final WorldEvent.Unload event) {
+		if(!event.getWorld().isRemote) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 
@@ -244,8 +234,8 @@ public class WorldEvents
 	}
 
 	@SubscribeEvent
-	public void SavePlayerList(WorldEvent.Save event) {
-		if(!(event.getWorld().isRemote)) {
+	public void SavePlayerList(final WorldEvent.Save event) {
+		if(!event.getWorld().isRemote) {
 			WorldSaveData worldsave;
 			worldsave = WorldSaveData.get(event.getWorld());
 
@@ -256,7 +246,7 @@ public class WorldEvents
 	}
 	//*********************************************************************************************************************
 
-	private void teleportPlayer(EntityPlayer player) {
+	private void teleportPlayer(final EntityPlayer player) {
 
 		if(player.dimension == 0)
 		{

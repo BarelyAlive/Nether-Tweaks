@@ -33,18 +33,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 public abstract class TileCrucibleBase extends TileBase implements ITickable {
-    public static final int MAX_ITEMS = 4;
+	public static final int MAX_ITEMS = 4;
 
-    protected FluidTankBase tank;
-    protected int solidAmount;
+	protected FluidTankBase tank;
+	protected int solidAmount;
 
-    private ItemInfo currentItem = ItemInfo.EMPTY;
-    protected int ticksSinceLast = 0;
+	private ItemInfo currentItem = ItemInfo.EMPTY;
+	protected int ticksSinceLast = 0;
 
-    protected CrucibleItemHandler itemHandler;
-    protected CrucibleRegistry crucibleRegistry;
+	protected CrucibleItemHandler itemHandler;
+	protected CrucibleRegistry crucibleRegistry;
 
-    public FluidTankBase getTank() {
+	public FluidTankBase getTank() {
 		return tank;
 	}
 
@@ -64,194 +64,187 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		return crucibleRegistry;
 	}
 
-	public TileCrucibleBase(CrucibleRegistry crucibleRegistry) {
-        tank = new FluidTankBase(4 * Fluid.BUCKET_VOLUME, this);
-        tank.setCanFill(false);
+	public TileCrucibleBase(final CrucibleRegistry crucibleRegistry) {
+		tank = new FluidTankBase(4 * Fluid.BUCKET_VOLUME, this);
+		tank.setCanFill(false);
 
-        itemHandler = new CrucibleItemHandler(this, crucibleRegistry);
-        this.crucibleRegistry = crucibleRegistry;
-    }
+		itemHandler = new CrucibleItemHandler(this, crucibleRegistry);
+		this.crucibleRegistry = crucibleRegistry;
+	}
 
-    @Override
-    public abstract void update();
+	@Override
+	public abstract void update();
 
-    public abstract int getHeatRate();
+	public abstract int getHeatRate();
 
-    /**
-     * Returns array of FLUID color and Item Color
-     * ITEMCOLOR is index 0
-     * FLUIDCOLOR is index 1
-     */
-    @SideOnly(Side.CLIENT)
-    public SpriteColor[] getSpriteAndColor() {
-        SpriteColor[] spriteColors = new SpriteColor[2];
+	/**
+	 * Returns array of FLUID color and Item Color
+	 * ITEMCOLOR is index 0
+	 * FLUIDCOLOR is index 1
+	 */
+	@SideOnly(Side.CLIENT)
+	public SpriteColor[] getSpriteAndColor() {
+		SpriteColor[] spriteColors = new SpriteColor[2];
 
-        int noItems = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
-        if (noItems == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
-            return spriteColors;
+		int noItems = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		if (noItems == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
+			return spriteColors;
 
-        FluidStack fluid = tank.getFluid();
-        if (fluid != null && fluid.amount > 0) //Nothing being melted.
-        {
-            Color color = new Color(fluid.getFluid().getColor(), false);
-            spriteColors[1] = new SpriteColor(Util.getTextureFromFluidStack(fluid), color);
-        }
+		FluidStack fluid = tank.getFluid();
+		if (fluid != null && fluid.amount > 0) //Nothing being melted.
+		{
+			Color color = new Color(fluid.getFluid().getColor(), false);
+			spriteColors[1] = new SpriteColor(Util.getTextureFromFluidStack(fluid), color);
+		}
 
-        IBlockState block = null;
-        Color color = Util.whiteColor;
+		IBlockState block = null;
+		Color color = Util.whiteColor;
 
-        if (getCurrentItem().isValid()) {
-            Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
-            BlockInfo override = meltable.getTextureOverride();
-            if (override.isValid())
-                block = override.getBlockState();
-            else block = getCurrentItem().getBlockState();
-            color = new Color(Minecraft.getMinecraft().getBlockColors().colorMultiplier(block, world, pos, 0), true);
-        }
-        if (block != null) {
-            spriteColors[0] = new SpriteColor(Util.getTextureFromBlockState(block), color);
-        }
+		if (getCurrentItem().isValid()) {
+			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			BlockInfo override = meltable.getTextureOverride();
+			if (override.isValid())
+				block = override.getBlockState();
+			else block = getCurrentItem().getBlockState();
+			color = new Color(Minecraft.getMinecraft().getBlockColors().colorMultiplier(block, world, pos, 0), true);
+		}
+		if (block != null)
+			spriteColors[0] = new SpriteColor(Util.getTextureFromBlockState(block), color);
 
-        return spriteColors;
-    }
+		return spriteColors;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public float getFilledAmount() {
-        int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
-        if (itemCount == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
-            return 0;
+	@SideOnly(Side.CLIENT)
+	public float getFilledAmount() {
+		int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		if (itemCount == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
+			return 0;
 
-        float fluidProportion = ((float) tank.getFluidAmount()) / tank.getCapacity();
-        if (itemCount == 0 && !getCurrentItem().isValid()) //Nothing being melted.
-            return fluidProportion;
+		float fluidProportion = (float) tank.getFluidAmount() / tank.getCapacity();
+		if (itemCount == 0 && !getCurrentItem().isValid()) //Nothing being melted.
+			return fluidProportion;
 
-        float solidProportion = ((float) itemCount) / MAX_ITEMS;
-        if (getCurrentItem().isValid()) {
-            Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
-            if (meltable != Meltable.getEMPTY())
-                solidProportion += ((double) solidAmount) / (MAX_ITEMS * meltable.getAmount());
-        }
+		float solidProportion = (float) itemCount / MAX_ITEMS;
+		if (getCurrentItem().isValid()) {
+			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			if (meltable != Meltable.getEMPTY())
+				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
+		}
 
-        return solidProportion > fluidProportion ? solidProportion : fluidProportion;
-    }
+		return solidProportion > fluidProportion ? solidProportion : fluidProportion;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public float getFluidProportion() {
-        return ((float) tank.getFluidAmount()) / tank.getCapacity();
-    }
+	@SideOnly(Side.CLIENT)
+	public float getFluidProportion() {
+		return (float) tank.getFluidAmount() / tank.getCapacity();
+	}
 
-    @SideOnly(Side.CLIENT)
-    public float getSolidProportion() {
-        int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
-        float solidProportion = ((float) itemCount) / MAX_ITEMS;
-        if (getCurrentItem().isValid()) {
-            Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
-            if (meltable != Meltable.getEMPTY())
-                solidProportion += ((double) solidAmount) / (MAX_ITEMS * meltable.getAmount());
-        }
-        return solidProportion;
-    }
+	@SideOnly(Side.CLIENT)
+	public float getSolidProportion() {
+		int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		float solidProportion = (float) itemCount / MAX_ITEMS;
+		if (getCurrentItem().isValid()) {
+			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			if (meltable != Meltable.getEMPTY())
+				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
+		}
+		return solidProportion;
+	}
 
 
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ, IFluidHandler handler) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (stack.isEmpty()) {
-            return false;
-        }
+	public boolean onBlockActivated(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ, final IFluidHandler handler) {
+		ItemStack stack = player.getHeldItem(hand);
+		if (stack.isEmpty())
+			return false;
 
-        Boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
+		Boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
 
-        if (result) {
-            if (!player.isCreative()) {
-                stack.shrink(1);
-            }
+		if (result) {
+			if (!player.isCreative())
+				stack.shrink(1);
 
-            markDirtyClient();
-            return true;
-        }
+			markDirtyClient();
+			return true;
+		}
 
-        //Adding a meltable.
-        ItemStack addStack = stack.copy();
-        addStack.setCount(1);
-        ItemStack insertStack = itemHandler.insertItem(0, addStack, true);
-        if (!ItemStack.areItemStacksEqual(addStack, insertStack)) {
-            itemHandler.insertItem(0, addStack, false);
+		//Adding a meltable.
+		ItemStack addStack = stack.copy();
+		addStack.setCount(1);
+		ItemStack insertStack = itemHandler.insertItem(0, addStack, true);
+		if (!ItemStack.areItemStacksEqual(addStack, insertStack)) {
+			itemHandler.insertItem(0, addStack, false);
 
-            if (!getCurrentItem().isValid()) setCurrentItem(new ItemInfo(stack));
+			if (!getCurrentItem().isValid()) setCurrentItem(new ItemInfo(stack));
 
-            if (!player.isCreative()) stack.shrink(1);
+			if (!player.isCreative()) stack.shrink(1);
 
-            markDirtyClient();
-            return true;
-        }
-        return true;
-    }
+			markDirtyClient();
+			return true;
+		}
+		return true;
+	}
 
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            // itemHandler.setTe(this);
-            return (T) itemHandler;
-        }
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-            return (T) tank;
+	@Override
+	public <T> T getCapability(@Nonnull final Capability<T> capability, final EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+			// itemHandler.setTe(this);
+			return (T) itemHandler;
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return (T) tank;
 
-        return super.getCapability(capability, facing);
-    }
+		return super.getCapability(capability, facing);
+	}
 
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
-        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
-                capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
-                super.hasCapability(capability, facing);
-    }
+	@Override
+	public boolean hasCapability(@Nonnull final Capability<?> capability, final EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ||
+				capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ||
+				super.hasCapability(capability, facing);
+	}
 
-    @Override
-    @Nonnull
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        if (getCurrentItem().isValid()) {
-            NBTTagCompound currentItemTag = getCurrentItem().writeToNBT(new NBTTagCompound());
-            tag.setTag("currentItem", currentItemTag);
-        }
+	@Override
+	@Nonnull
+	public NBTTagCompound writeToNBT(final NBTTagCompound tag) {
+		if (getCurrentItem().isValid()) {
+			NBTTagCompound currentItemTag = getCurrentItem().writeToNBT(new NBTTagCompound());
+			tag.setTag("currentItem", currentItemTag);
+		}
 
-        tag.setInteger("solidAmount", solidAmount);
+		tag.setInteger("solidAmount", solidAmount);
 
-        NBTTagCompound itemHandlerTag = itemHandler.serializeNBT();
-        tag.setTag("itemHandler", itemHandlerTag);
+		NBTTagCompound itemHandlerTag = itemHandler.serializeNBT();
+		tag.setTag("itemHandler", itemHandlerTag);
 
-        NBTTagCompound tankTag = tank.writeToNBT(new NBTTagCompound());
-        tag.setTag("tank", tankTag);
+		NBTTagCompound tankTag = tank.writeToNBT(new NBTTagCompound());
+		tag.setTag("tank", tankTag);
 
-        return super.writeToNBT(tag);
-    }
+		return super.writeToNBT(tag);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        if (tag.hasKey("currentItem")) {
-            setCurrentItem(ItemInfo.readFromNBT(tag.getCompoundTag("currentItem")));
-        } else {
-            setCurrentItem(ItemInfo.EMPTY);
-        }
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		if (tag.hasKey("currentItem"))
+			setCurrentItem(ItemInfo.readFromNBT(tag.getCompoundTag("currentItem")));
+		else
+			setCurrentItem(ItemInfo.EMPTY);
 
-        solidAmount = tag.getInteger("solidAmount");
+		solidAmount = tag.getInteger("solidAmount");
 
-        if (tag.hasKey("itemHandler")) {
-            itemHandler.deserializeNBT((NBTTagCompound) tag.getTag("itemHandler"));
-        }
+		if (tag.hasKey("itemHandler"))
+			itemHandler.deserializeNBT((NBTTagCompound) tag.getTag("itemHandler"));
 
-        if (tag.hasKey("tank")) {
-            tank.readFromNBT((NBTTagCompound) tag.getTag("tank"));
-        }
+		if (tag.hasKey("tank"))
+			tank.readFromNBT((NBTTagCompound) tag.getTag("tank"));
 
-        super.readFromNBT(tag);
-    }
+		super.readFromNBT(tag);
+	}
 
-    @Override
-    public boolean hasFastRenderer() {
-        return true;
-    }
+	@Override
+	public boolean hasFastRenderer() {
+		return true;
+	}
 
-	public void setCurrentItem(ItemInfo currentItem) {
+	public void setCurrentItem(final ItemInfo currentItem) {
 		this.currentItem = currentItem;
 	}
 }

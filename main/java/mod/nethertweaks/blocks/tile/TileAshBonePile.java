@@ -5,31 +5,31 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileAshBonePile extends TileBase  {
 	boolean is_lit;
-	
+
 	public TileAshBonePile() {
 		is_lit = false;
 	}
-	
+
 	public boolean isLit()
 	{
-		return this.is_lit;
+		return is_lit;
 	}
-	
-	public void isLit(boolean is_lit)
+
+	public void isLit(final boolean is_lit)
 	{
 		this.is_lit = is_lit;
-		this.markDirtyClient();
+		markDirtyClient();
 	}
-	
+
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setBoolean("isLit", this.is_lit);
+	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
+		compound.setBoolean("isLit", is_lit);
 		return super.writeToNBT(compound);
 	}
-	
+
 	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		this.is_lit = compound.getBoolean("isLit");
+	public void readFromNBT(final NBTTagCompound compound) {
+		is_lit = compound.getBoolean("isLit");
 		super.readFromNBT(compound);
 	}
 }

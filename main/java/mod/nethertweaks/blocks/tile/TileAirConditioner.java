@@ -11,19 +11,19 @@ public class TileAirConditioner extends TileEntity implements ITickable
 {
 	private EnergyStorage energy = new EnergyStorage(30000, 100, 0, 200);
 	private boolean active = false;
-	
+
 	public boolean isActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(final boolean active) {
 		this.active = active;
 	}
 
 	@Override
 	public void update() {
 		if(world.isRemote) return;
-		
+
 		if(energy.getEnergyStored() >= 5)
 		{
 			setActive(true);
@@ -32,15 +32,15 @@ public class TileAirConditioner extends TileEntity implements ITickable
 		else
 			setActive(false);
 	}
-	
+
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability(final Capability<T> capability, final EnumFacing facing) {
 		if(capability == CapabilityEnergy.ENERGY && facing != EnumFacing.DOWN) return (T) energy;
 		return super.getCapability(capability, facing);
 	}
-	
+
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(final Capability<?> capability, final EnumFacing facing) {
 		return capability == CapabilityEnergy.ENERGY && facing != EnumFacing.DOWN;
 	}
 }

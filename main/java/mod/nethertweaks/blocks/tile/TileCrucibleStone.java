@@ -16,93 +16,85 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class TileCrucibleStone extends TileCrucibleBase {
 
-    public TileCrucibleStone() {
-        super(NTMRegistryManager.CRUCIBLE_STONE_REGISTRY);
-    }
+	public TileCrucibleStone() {
+		super(NTMRegistryManager.CRUCIBLE_STONE_REGISTRY);
+	}
 
-    @Override
-    public void update() {
-        if (getWorld().isRemote)
-            return;
+	@Override
+	public void update() {
+		if (getWorld().isRemote)
+			return;
 
-        ticksSinceLast++;
+		ticksSinceLast++;
 
-        if (ticksSinceLast >= 10) {
-            ticksSinceLast = 0;
+		if (ticksSinceLast >= 10) {
+			ticksSinceLast = 0;
 
-            int heatRate = getHeatRate();
+			int heatRate = getHeatRate();
 
-            if (heatRate <= 0)
-                return;
+			if (heatRate <= 0)
+				return;
 
-            if (solidAmount <= 0) {
-                if (!itemHandler.getStackInSlot(0).isEmpty()) {
-                    setCurrentItem(new ItemInfo(itemHandler.getStackInSlot(0)));
-                    itemHandler.getStackInSlot(0).shrink(1);
+			if (solidAmount <= 0)
+				if (!itemHandler.getStackInSlot(0).isEmpty()) {
+					setCurrentItem(new ItemInfo(itemHandler.getStackInSlot(0)));
+					itemHandler.getStackInSlot(0).shrink(1);
 
-                    if (itemHandler.getStackInSlot(0).isEmpty()) {
-                        itemHandler.setStackInSlot(0, ItemStack.EMPTY);
-                    }
+					if (itemHandler.getStackInSlot(0).isEmpty())
+						itemHandler.setStackInSlot(0, ItemStack.EMPTY);
 
-                    solidAmount = crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
-                } else {
-//                  onBlockActivated in TileCrucibleBase already updates the client item/fluid is removed
-                    return;
-                }
-            }
+					solidAmount = crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
+				} else
+					//                  onBlockActivated in TileCrucibleBase already updates the client item/fluid is removed
+					return;
 
-            if (!itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).isItemEqual(getCurrentItem().getItemStack())) {
-                // For meltables with a really small "amount"
-                while (heatRate > solidAmount && !itemHandler.getStackInSlot(0).isEmpty()) {
-                    solidAmount += crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
-                    itemHandler.getStackInSlot(0).shrink(1);
+			if (!itemHandler.getStackInSlot(0).isEmpty() && itemHandler.getStackInSlot(0).isItemEqual(getCurrentItem().getItemStack()))
+				// For meltables with a really small "amount"
+				while (heatRate > solidAmount && !itemHandler.getStackInSlot(0).isEmpty()) {
+					solidAmount += crucibleRegistry.getMeltable(getCurrentItem()).getAmount();
+					itemHandler.getStackInSlot(0).shrink(1);
 
-                    if (itemHandler.getStackInSlot(0).isEmpty()) {
-                        itemHandler.setStackInSlot(0, ItemStack.EMPTY);
-                    }
-                }
-            }
+					if (itemHandler.getStackInSlot(0).isEmpty())
+						itemHandler.setStackInSlot(0, ItemStack.EMPTY);
+				}
 
-            // Never take more than we have left
-            if (heatRate > solidAmount) {
-                heatRate = solidAmount;
-            }
+			// Never take more than we have left
+			if (heatRate > solidAmount)
+				heatRate = solidAmount;
 
-            if (heatRate > 0 && getCurrentItem().isValid() && crucibleRegistry.canBeMelted(getCurrentItem())) {
-                FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(getCurrentItem()).getFluid()), heatRate);
-                int filled = tank.fillInternal(toFill, true);
-                solidAmount -= filled;
+			if (heatRate > 0 && getCurrentItem().isValid() && crucibleRegistry.canBeMelted(getCurrentItem())) {
+				FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(getCurrentItem()).getFluid()), heatRate);
+				int filled = tank.fillInternal(toFill, true);
+				solidAmount -= filled;
 
-                // already done two lines above in fillinternal
-            }
-        }
-    }
+				// already done two lines above in fillinternal
+			}
+		}
+	}
 
-    @Override
+	@Override
 	public int getHeatRate() {
-        BlockPos posBelow = pos.add(0, -1, 0);
-        IBlockState stateBelow = getWorld().getBlockState(posBelow);
+		BlockPos posBelow = pos.add(0, -1, 0);
+		IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
-        if (stateBelow == Blocks.AIR.getDefaultState()) {
-            return 0;
-        }
+		if (stateBelow == Blocks.AIR.getDefaultState())
+			return 0;
 
-        // Try to match metadata
-        int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
+		// Try to match metadata
+		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
-        // Try to match without metadata
-        if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
-            heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
+		// Try to match without metadata
+		if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+			heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
 
-        if (heat != 0)
-            return heat;
+		if (heat != 0)
+			return heat;
 
-        TileEntity tile = getWorld().getTileEntity(posBelow);
+		TileEntity tile = getWorld().getTileEntity(posBelow);
 
-        if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)) {
-            return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
-        }
+		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
+			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
 
-        return 0;
-    }
+		return 0;
+	}
 }

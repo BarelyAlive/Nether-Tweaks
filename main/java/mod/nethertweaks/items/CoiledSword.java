@@ -14,9 +14,9 @@ public class CoiledSword extends Item{
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}
-	
+
 	@Override
-	public boolean onEntityItemUpdate(EntityItem entityItem) {
+	public boolean onEntityItemUpdate(final EntityItem entityItem) {
 		entityItem.setEntityInvulnerable(true);
 		entityItem.extinguish();
 		return super.onEntityItemUpdate(entityItem);
