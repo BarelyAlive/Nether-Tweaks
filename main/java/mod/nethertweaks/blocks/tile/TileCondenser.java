@@ -80,9 +80,7 @@ public class TileCondenser extends TileFluidInventory
 		if(getTemp() > getMaxTemp())
 			setTemp((getTemp() - getMaxTemp()) > 0f ? getTemp() - (2f * ((float)timer / (float)getMaxTimer())) : getTemp());
 		else
-		{
 			setTemp((getMaxTemp() - getTemp()) > 0f ? getTemp() + (2f * ((float)timer / (float)getMaxTimer())) : getTemp());
-		}
 		
 		if(getTemp() > 100f)
 			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
