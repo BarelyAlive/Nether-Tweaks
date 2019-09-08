@@ -13,37 +13,37 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageMovementSpeed implements IMessage {
 
-    private UUID uuid;
-    private int ms = 0;
+	private UUID uuid;
+	private int ms = 0;
 
-    public MessageMovementSpeed() {}
+	public MessageMovementSpeed() {}
 
-    public MessageMovementSpeed(EntityPlayer player, ThirstStats stats) {
-        uuid = player.getUniqueID();
-        ms = stats.getMovementSpeed(player);
-    }
+	public MessageMovementSpeed(final EntityPlayer player, final ThirstStats stats) {
+		uuid = player.getUniqueID();
+		ms = stats.getMovementSpeed(player);
+	}
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        uuid = UUID.fromString(ByteBufUtils.readUTF8String(buf));
-        ms = buf.readInt();
-    }
+	@Override
+	public void fromBytes(final ByteBuf buf) {
+		uuid = UUID.fromString(ByteBufUtils.readUTF8String(buf));
+		ms = buf.readInt();
+	}
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, uuid.toString());
-        buf.writeInt(ms);
-    }
+	@Override
+	public void toBytes(final ByteBuf buf) {
+		ByteBufUtils.writeUTF8String(buf, uuid.toString());
+		buf.writeInt(ms);
+	}
 
-    public void handleServerSide() {
-       NetherTweaksMod.getProxy().getStatsByUUID(uuid).movementSpeed = ms;
-    }
+	public void handleServerSide() {
+		NetherTweaksMod.getProxy().getStatsByUUID(uuid).movementSpeed = ms;
+	}
 
-    public static class Handler implements IMessageHandler<MessageMovementSpeed, IMessage> {
-        @Override
-        public IMessage onMessage(MessageMovementSpeed message, MessageContext ctx) {
-            message.handleServerSide();
-            return null;
-        }
-    }
+	public static class Handler implements IMessageHandler<MessageMovementSpeed, IMessage> {
+		@Override
+		public IMessage onMessage(final MessageMovementSpeed message, final MessageContext ctx) {
+			message.handleServerSide();
+			return null;
+		}
+	}
 }

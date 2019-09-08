@@ -196,7 +196,7 @@ public class NTM implements IRecipeDefaults
 		registry.register("listAllfishcooked", 63);
 		registry.register("listAllfishfresh", 63);
 	}
-	
+
 	@Override
 	public void registerDrink(final DrinkRegistry registry)
 	{

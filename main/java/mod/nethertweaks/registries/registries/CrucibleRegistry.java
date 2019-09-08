@@ -75,7 +75,7 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 		if (stack.isEmpty() || !FluidRegistry.isFluidRegistered(meltable.getFluid())) return;
 		if (registry.keySet().stream().anyMatch(ingredient -> ingredient.test(stack)))
 			LogUtil.warn("Crucible entry for " + stack.getDisplayName() + " with meta " + stack.getMetadata() + " already exists, skipping.");
-					else register(CraftingHelper.getIngredient(stack), meltable);
+		else register(CraftingHelper.getIngredient(stack), meltable);
 	}
 
 	@Override

@@ -83,8 +83,8 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 	 * Overridden as I don't want the registry to get saved directly,
 	 * rather a List that equals the contents of the registry
 	 */
-	 @Override
-	 public void saveJson(final File file) {
+	@Override
+	public void saveJson(final File file) {
 		FileWriter fw = null;
 		try {
 			fw = new FileWriter(file);
@@ -95,18 +95,18 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 		} finally {
 			IOUtils.closeQuietly(fw);
 		}
-	 }
+	}
 
-	 public List<FluidTransformer> getFluidTransformers() {
-		 List<FluidTransformer> fluidTransformers = new ArrayList<>();
-		 for (List<FluidTransformer> transformers : registry.values())
-			 fluidTransformers.addAll(transformers);
-		 return fluidTransformers;
-	 }
+	public List<FluidTransformer> getFluidTransformers() {
+		List<FluidTransformer> fluidTransformers = new ArrayList<>();
+		for (List<FluidTransformer> transformers : registry.values())
+			fluidTransformers.addAll(transformers);
+		return fluidTransformers;
+	}
 
-	 @Override
-	 public List<?> getRecipeList() {
-		 // TODO Auto-generated method stub
-		 return null;
-	 }
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

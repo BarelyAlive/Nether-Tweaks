@@ -62,7 +62,7 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
 			LogUtil.error("Compost Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
-					return;
+			return;
 		}
 		Compostable compostable = new Compostable(value, color, state);
 		register(ingredient, compostable);

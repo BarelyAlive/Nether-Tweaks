@@ -8,23 +8,23 @@ public class Drinkable
 	private int thirstReplenish;
 	private float saturationReplenish;
 	private float poisonChance;
-	
+
 	public ItemStack getItem() {
 		return item;
 	}
 
-	public void setItem(ItemStack item) {
+	public void setItem(final ItemStack item) {
 		this.item = item;
 	}
 
-	public void setThirstReplenish(int thirstReplenish) {
+	public void setThirstReplenish(final int thirstReplenish) {
 		this.thirstReplenish = thirstReplenish;
 	}
 
-	public void setSaturationReplenish(float saturationReplenish) {
+	public void setSaturationReplenish(final float saturationReplenish) {
 		this.saturationReplenish = saturationReplenish;
 	}
-	
+
 	public int getThirstReplenish() {
 		return thirstReplenish;
 	}
@@ -48,14 +48,14 @@ public class Drinkable
 		item = stack;
 		this.thirstReplenish = thirstReplenish;
 		this.saturationReplenish = saturationReplenish;
-		this.setPoisonChance(poisonChance);
+		setPoisonChance(poisonChance);
 	}
 
 	public float getPoisonChance() {
 		return poisonChance;
 	}
 
-	public void setPoisonChance(float poisonChance) {
+	public void setPoisonChance(final float poisonChance) {
 		this.poisonChance = poisonChance;
 	}
 }

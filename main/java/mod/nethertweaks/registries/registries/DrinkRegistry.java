@@ -59,8 +59,8 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("Drinkable JSON Entry for " + entry.getKey() + " already exists, skipping.");
-						else
-							register(ingr, entry.getValue());
+			else
+				register(ingr, entry.getValue());
 		}
 	}
 

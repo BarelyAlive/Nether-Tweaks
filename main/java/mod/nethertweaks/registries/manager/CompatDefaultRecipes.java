@@ -64,7 +64,7 @@ public class CompatDefaultRecipes
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerCondenser(registry));
 	}
-	
+
 	public void registerDrink(final DrinkRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerDrink(registry));

@@ -35,8 +35,8 @@ public class MessageHandler
 		NetworkHandler.registerMessage(MessageBonfireUpdate.MessageBonfireUpdateHandler.class, MessageBonfireUpdate.class, Side.CLIENT);
 		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.SERVER);
 		NetworkHandler.registerMessage(MessageLastSpawnUpdate.MessageLastSpawnUpdateHandler.class, MessageLastSpawnUpdate.class, Side.CLIENT);
-		
-        NetworkHandler.registerMessage(MessageThirstStats.Handler.class, MessageThirstStats.class, Side.CLIENT);
-        NetworkHandler.registerMessage(MessageMovementSpeed.Handler.class, MessageMovementSpeed.class, Side.SERVER);
+
+		NetworkHandler.registerMessage(MessageThirstStats.Handler.class, MessageThirstStats.class, Side.CLIENT);
+		NetworkHandler.registerMessage(MessageMovementSpeed.Handler.class, MessageMovementSpeed.class, Side.SERVER);
 	}
 }

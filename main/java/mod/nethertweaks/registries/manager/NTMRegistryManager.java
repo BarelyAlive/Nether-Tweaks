@@ -110,7 +110,7 @@ public final class NTMRegistryManager {
 	public static void registerCondenserDefaultRecipeHandler(final ICondenserDefaultRegistryProvider provider) {
 		CONDENSER_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
-	
+
 	public static void registerDrinkDefaultRecipeHandler(final IDrinkDefaultRegistryProvider provider) {
 		DRINK_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}

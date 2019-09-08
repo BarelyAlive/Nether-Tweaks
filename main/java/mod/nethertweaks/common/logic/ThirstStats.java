@@ -19,165 +19,154 @@ import net.minecraft.world.biome.BiomeDesert;
 
 public class ThirstStats {
 
-	public static final int POISON_DURATION = 60 * 20; 
-	
-    public int thirstLevel;
-    public float saturation;
-    public float exhaustion;
-    public int thirstTimer;
-    public boolean poisoned;
-    public int poisonTimer;
+	public static final int POISON_DURATION = 60 * 20;
 
-    public int movementSpeed;
+	public int thirstLevel;
+	public float saturation;
+	public float exhaustion;
+	public int thirstTimer;
+	public boolean poisoned;
+	public int poisonTimer;
 
-    public transient int lastThirstLevel;
-    public transient float lastSaturation;
-    public transient boolean lastPoisoned;
+	public int movementSpeed;
 
-    public transient Random random = new Random();
-    public transient DamageSource thirstDmgSource = new DamageThirst();
+	public transient int lastThirstLevel;
+	public transient float lastSaturation;
+	public transient boolean lastPoisoned;
 
-    public transient Field foodTimer;
+	public transient Random random = new Random();
+	public transient DamageSource thirstDmgSource = new DamageThirst();
 
-    public ThirstStats() {
-        lastThirstLevel = -1; // Trigger a refresh when this class is loaded.
-        resetStats();
-    }
+	public transient Field foodTimer;
 
-    public void update(EntityPlayer player) {
-        if (exhaustion > 5.0f) {
-            exhaustion -= 5.0f;
-            if (saturation > 0.0f) {
-                saturation = Math.max(saturation - 1.0f, 0);
-            } else if (player.world.getDifficulty() != EnumDifficulty.PEACEFUL) {
-                thirstLevel = Math.max(thirstLevel - 1, 0);
-            }
-        }
+	public ThirstStats() {
+		lastThirstLevel = -1; // Trigger a refresh when this class is loaded.
+		resetStats();
+	}
 
-        if (thirstLevel <= 6) {
-            player.setSprinting(false);
-            if (thirstLevel == 0) {
-                if (thirstTimer++ > 200) {
-                    if (player.getHealth() > 10.0f || player.world.getDifficulty() == EnumDifficulty.HARD || (player.world.getDifficulty() == EnumDifficulty.NORMAL && player.getHealth() > 1.0f)) {
-                        thirstTimer = 0;
-                        player.attackEntityFrom(this.thirstDmgSource, 1);
-                    }
-                }
-            }
-        }
+	public void update(final EntityPlayer player) {
+		if (exhaustion > 5.0f) {
+			exhaustion -= 5.0f;
+			if (saturation > 0.0f)
+				saturation = Math.max(saturation - 1.0f, 0);
+			else if (player.world.getDifficulty() != EnumDifficulty.PEACEFUL)
+				thirstLevel = Math.max(thirstLevel - 1, 0);
+		}
 
-        int ms = player.isRiding() ? 10 : movementSpeed;
-        float exhaustMultiplier = player.world.isDaytime() ? 1.0f : 0.9f;
-        exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? 2.0f : 1.0f;
+		if (thirstLevel <= 6) {
+			player.setSprinting(false);
+			if (thirstLevel == 0)
+				if (thirstTimer++ > 200)
+					if (player.getHealth() > 10.0f || player.world.getDifficulty() == EnumDifficulty.HARD || player.world.getDifficulty() == EnumDifficulty.NORMAL && player.getHealth() > 1.0f) {
+						thirstTimer = 0;
+						player.attackEntityFrom(thirstDmgSource, 1);
+					}
+		}
 
-        if (player.isInsideOfMaterial(Material.WATER) || player.isInWater()) {
-            addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
-        } else if (player.onGround) {
-            if (player.isSprinting()) {
-                addExhaustion(0.06f * ms * 0.018f * exhaustMultiplier);
-            } else {
-                addExhaustion(0.01f * ms * 0.018f * exhaustMultiplier);
-            }
-        } else if (!player.isRiding()) { // must be in the air/jumping
-            if (player.isSprinting()) {
-                addExhaustion(0.06f * ms * 0.025f * exhaustMultiplier);
-            } else {
-                addExhaustion(0.01f * ms * 0.025f * exhaustMultiplier);
-            }
-        }
+		int ms = player.isRiding() ? 10 : movementSpeed;
+		float exhaustMultiplier = player.world.isDaytime() ? 1.0f : 0.9f;
+		exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? 2.0f : 1.0f;
 
-        if (poisoned && thirstLevel > 0) {
-            if (poisonTimer++ < POISON_DURATION) {
-                if (player.getHealth() > 1.0f && player.world.getDifficulty() != EnumDifficulty.PEACEFUL && thirstTimer++ > 200) {
-                    thirstTimer = 0;
-                    player.attackEntityFrom(this.thirstDmgSource, 1);
-                }
-            } else {
-                poisoned = false;
-                poisonTimer = 0;
-            }
-        }
+		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
+			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
+		else if (player.onGround) {
+			if (player.isSprinting())
+				addExhaustion(0.06f * ms * 0.018f * exhaustMultiplier);
+			else
+				addExhaustion(0.01f * ms * 0.018f * exhaustMultiplier);
+		} else if (!player.isRiding())
+			if (player.isSprinting())
+				addExhaustion(0.06f * ms * 0.025f * exhaustMultiplier);
+			else
+				addExhaustion(0.01f * ms * 0.025f * exhaustMultiplier);
 
-        if (foodTimer == null) {
-            try {
-                foodTimer = player.getFoodStats().getClass().getDeclaredField("foodTimer");
-                foodTimer.setAccessible(true);
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-        }
+		if (poisoned && thirstLevel > 0)
+			if (poisonTimer++ < POISON_DURATION) {
+				if (player.getHealth() > 1.0f && player.world.getDifficulty() != EnumDifficulty.PEACEFUL && thirstTimer++ > 200) {
+					thirstTimer = 0;
+					player.attackEntityFrom(thirstDmgSource, 1);
+				}
+			} else {
+				poisoned = false;
+				poisonTimer = 0;
+			}
 
-        if (thirstLevel < 16 || poisoned) {
-            try {
-                foodTimer.setInt(player.getFoodStats(), 0);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
+		if (foodTimer == null)
+			try {
+				foodTimer = player.getFoodStats().getClass().getDeclaredField("foodTimer");
+				foodTimer.setAccessible(true);
+			} catch (NoSuchFieldException e) {
+				e.printStackTrace();
+			}
 
-        // Only send packet update if the thirst level or saturation has changed.
-        if (lastThirstLevel != thirstLevel || lastSaturation != saturation || lastPoisoned != poisoned) {
-            NetworkHandler.INSTANCE.sendTo(new MessageThirstStats(this), (EntityPlayerMP) player);
-            lastThirstLevel = thirstLevel;
-            lastSaturation = saturation;
-            lastPoisoned = poisoned;
-        }
+		if (thirstLevel < 16 || poisoned)
+			try {
+				foodTimer.setInt(player.getFoodStats(), 0);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
-            thirstLevel = Math.max(thirstLevel - 1, 0);
-        } else if (Keyboard.isKeyDown(Keyboard.KEY_K)) {
-            thirstLevel = Math.min(thirstLevel + 1, 20);
-        }
-    }
+		// Only send packet update if the thirst level or saturation has changed.
+		if (lastThirstLevel != thirstLevel || lastSaturation != saturation || lastPoisoned != poisoned) {
+			NetworkHandler.INSTANCE.sendTo(new MessageThirstStats(this), (EntityPlayerMP) player);
+			lastThirstLevel = thirstLevel;
+			lastSaturation = saturation;
+			lastPoisoned = poisoned;
+		}
 
-    public void addStats(int heal, float sat) {
-        thirstLevel = Math.min(thirstLevel + heal, 20);
-        saturation = Math.min(saturation + (heal * sat * 2.0f), thirstLevel);
-    }
+		if (Keyboard.isKeyDown(Keyboard.KEY_J))
+			thirstLevel = Math.max(thirstLevel - 1, 0);
+		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
+			thirstLevel = Math.min(thirstLevel + 1, 20);
+	}
 
-    public void addExhaustion(float exhaustion) {
-        this.exhaustion = Math.min(this.exhaustion + exhaustion, 40.0f);
-    }
+	public void addStats(final int heal, final float sat) {
+		thirstLevel = Math.min(thirstLevel + heal, 20);
+		saturation = Math.min(saturation + heal * sat * 2.0f, thirstLevel);
+	}
 
-    public void attemptToPoison(float chance) {
-        if (random.nextFloat() < chance) {
-            poisoned = true;
-        }
-    }
+	public void addExhaustion(final float exhaustion) {
+		this.exhaustion = Math.min(this.exhaustion + exhaustion, 40.0f);
+	}
 
-    public boolean canDrink() {
-        return thirstLevel < 20;
-    }
+	public void attemptToPoison(final float chance) {
+		if (random.nextFloat() < chance)
+			poisoned = true;
+	}
 
-    public int getMovementSpeed(EntityPlayer player) {
-        double x = player.posX - player.prevPosX;
-        double y = player.posY - player.prevPosY;
-        double z = player.posZ - player.prevPosZ;
-        return (int) Math.round(100.0d * Math.sqrt(x*x + y*y + z*z));
-    }
+	public boolean canDrink() {
+		return thirstLevel < 20;
+	}
 
-    public void resetStats() {
-        thirstLevel = 20;
-        saturation = 5f;
-        exhaustion = 0f;
-        poisoned = false;
-        poisonTimer = 0;
-    }
+	public int getMovementSpeed(final EntityPlayer player) {
+		double x = player.posX - player.prevPosX;
+		double y = player.posY - player.prevPosY;
+		double z = player.posZ - player.prevPosZ;
+		return (int) Math.round(100.0d * Math.sqrt(x*x + y*y + z*z));
+	}
 
-    public static class DamageThirst extends DamageSource {
-        public DamageThirst() {
-            super("thirst");
-            setDamageBypassesArmor();
-            setDamageIsAbsolute();
-        }
+	public void resetStats() {
+		thirstLevel = 20;
+		saturation = 5f;
+		exhaustion = 0f;
+		poisoned = false;
+		poisonTimer = 0;
+	}
 
-        @Override
-        public ITextComponent getDeathMessage(EntityLivingBase entity) {
-            if(entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer)entity;
-                return new TextComponentString(player.getDisplayName() + "'s body is now made up of 0% water!");
-            }
-            return super.getDeathMessage(entity);
-        }
-    }
+	public static class DamageThirst extends DamageSource {
+		public DamageThirst() {
+			super("thirst");
+			setDamageBypassesArmor();
+			setDamageIsAbsolute();
+		}
+
+		@Override
+		public ITextComponent getDeathMessage(final EntityLivingBase entity) {
+			if(entity instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer)entity;
+				return new TextComponentString(player.getDisplayName() + "'s body is now made up of 0% water!");
+			}
+			return super.getDeathMessage(entity);
+		}
+	}
 }

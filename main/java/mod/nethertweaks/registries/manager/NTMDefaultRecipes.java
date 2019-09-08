@@ -54,7 +54,7 @@ public class NTMDefaultRecipes
 			compat.registerCondenser(registry);
 		}
 	}
-	
+
 	private static class DrinkDefaults implements IDrinkDefaultRegistryProvider {
 		@Override
 		public void registerRecipeDefaults(@Nonnull final DrinkRegistry registry) {

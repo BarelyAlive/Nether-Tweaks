@@ -63,8 +63,8 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("HellmartData JSON Entry for " + entry.getKey() + " already exists, skipping.");
-						else
-							register(ingr, entry.getValue());
+			else
+				register(ingr, entry.getValue());
 		}
 	}
 

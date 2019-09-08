@@ -266,128 +266,122 @@ public class WorldEvents
 			worldsave.markDirty();
 		}
 	}
-	
+
 	//ThIRST
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onRenderGameOverlayEvent(RenderGameOverlayEvent event) {
-        GuiThirstBar.onRenderGameOverlayEvent(event);
-    }
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onRenderGameOverlayEvent(final RenderGameOverlayEvent event) {
+		GuiThirstBar.onRenderGameOverlayEvent(event);
+	}
 
-    @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if(!event.player.world.isRemote) {
-            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.player.getUniqueID());
-            if(stats != null) {
-                stats.update(event.player);
-            }
-        } else {
-            NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
-        }
-    }
+	@SubscribeEvent
+	public void onPlayerTick(final TickEvent.PlayerTickEvent event) {
+		if(!event.player.world.isRemote) {
+			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.player.getUniqueID());
+			if(stats != null)
+				stats.update(event.player);
+		} else
+			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
+	}
 
-    @SubscribeEvent
-    public void onAttack(AttackEntityEvent attack) {
-        if (!attack.getEntityPlayer().world.isRemote) {
-            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(attack.getEntityPlayer().getUniqueID());
-            stats.addExhaustion(0.5f);
-        }
-        attack.setResult(Result.DEFAULT);
-    }
+	@SubscribeEvent
+	public void onAttack(final AttackEntityEvent attack) {
+		if (!attack.getEntityPlayer().world.isRemote) {
+			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(attack.getEntityPlayer().getUniqueID());
+			stats.addExhaustion(0.5f);
+		}
+		attack.setResult(Result.DEFAULT);
+	}
 
-    @SubscribeEvent
-    public void onHurt(LivingHurtEvent hurt) {
-        if (hurt.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) hurt.getEntity();
-            if (!player.world.isRemote) {
-                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
-                stats.addExhaustion(0.4f);
-            }
-        }
-        hurt.setResult(Result.DEFAULT);
-    }
+	@SubscribeEvent
+	public void onHurt(final LivingHurtEvent hurt) {
+		if (hurt.getEntity() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) hurt.getEntity();
+			if (!player.world.isRemote) {
+				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				stats.addExhaustion(0.4f);
+			}
+		}
+		hurt.setResult(Result.DEFAULT);
+	}
 
-    @SubscribeEvent
-    public void onBlockBreak(BlockEvent.BreakEvent event) {
-        EntityPlayer player = event.getPlayer();
-        if(player != null) {
-            if(!player.world.isRemote) {
-                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
-                stats.addExhaustion(0.03f);
-            }
-        }
-        event.setResult(Result.DEFAULT);
-    }
+	@SubscribeEvent
+	public void onBlockBreak(final BlockEvent.BreakEvent event) {
+		EntityPlayer player = event.getPlayer();
+		if(player != null)
+			if(!player.world.isRemote) {
+				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				stats.addExhaustion(0.03f);
+			}
+		event.setResult(Result.DEFAULT);
+	}
 
-    public void playedCloned(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
-        if(!event.getEntityPlayer().world.isRemote) {
-            if(event.isWasDeath()) {
-                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
-                stats.resetStats();
-            }
-        }
-    }
+	public void playedCloned(final net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
+		if(!event.getEntityPlayer().world.isRemote)
+			if(event.isWasDeath()) {
+				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+				stats.resetStats();
+			}
+	}
 
-    @SubscribeEvent
-    public void onLoadPlayerData(net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
-        if (!event.getEntityPlayer().world.isRemote) {
-            EntityPlayer player = event.getEntityPlayer();
-            File saveFile = event.getPlayerFile("nethertweaksmod");
-            if(!saveFile.exists()) {
-                NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
-            } else {
-                try {
-                    FileReader reader = new FileReader(saveFile);
-                    ThirstStats stats = gsonInstance.fromJson(reader, ThirstStats.class);
-                    if (stats == null) {
-                        NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
-                    } else {
-                        NetherTweaksMod.getProxy().registerPlayer(player, stats);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+	@SubscribeEvent
+	public void onLoadPlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
+		if (!event.getEntityPlayer().world.isRemote) {
+			EntityPlayer player = event.getEntityPlayer();
+			File saveFile = event.getPlayerFile("nethertweaksmod");
+			if(!saveFile.exists())
+				NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+			else
+				try {
+					FileReader reader = new FileReader(saveFile);
+					ThirstStats stats = gsonInstance.fromJson(reader, ThirstStats.class);
+					if (stats == null)
+						NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+					else
+						NetherTweaksMod.getProxy().registerPlayer(player, stats);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+	}
 
-    @SubscribeEvent
-    public void onSavePlayerData(net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
-        if (!event.getEntityPlayer().world.isRemote) {
-            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
-            File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".thirstmod");
-            try {
-                String write = gsonInstance.toJson(stats);
-                saveFile.createNewFile();
-                BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
-                writer.write(write);
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	@SubscribeEvent
+	public void onSavePlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
+		if (!event.getEntityPlayer().world.isRemote) {
+			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".thirstmod");
+			try {
+				String write = gsonInstance.toJson(stats);
+				saveFile.createNewFile();
+				BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+				writer.write(write);
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    @SubscribeEvent
-    public void onFinishUsingItem(LivingEntityUseItemEvent.Finish event) {
-        if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
-            ItemStack eventItem = event.getItem();
-            // have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
-            eventItem.setCount(eventItem.getCount() + 1);
-            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-            
-            if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
-            	Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
-            	
-                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
-                stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
-                stats.attemptToPoison(drink.getPoisonChance());
-            }
-                
-            eventItem.setCount(eventItem.getCount() - 1);
-        }
-    }
+	@SubscribeEvent
+	public void onFinishUsingItem(final LivingEntityUseItemEvent.Finish event) {
+		if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
+			ItemStack eventItem = event.getItem();
+			// have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
+			eventItem.setCount(eventItem.getCount() + 1);
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+			if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
+				Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
+
+				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
+				stats.attemptToPoison(drink.getPoisonChance());
+			}
+
+			eventItem.setCount(eventItem.getCount() - 1);
+		}
+	}
 	//*********************************************************************************************************************
 
 	private void teleportPlayer(final EntityPlayer player) {

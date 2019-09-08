@@ -62,8 +62,8 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("Dryable JSON Entry for " + entry.getKey() + " already exists, skipping.");
-						else
-							register(ingr, entry.getValue());
+			else
+				register(ingr, entry.getValue());
 		}
 	}
 

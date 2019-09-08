@@ -118,89 +118,89 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	 * @return ArrayList of {@linkplain Siftable}
 	 * that could *potentially* be dropped.
 	 */
-	 @Override
-	 @Nonnull
-	 public List<Siftable> getDrops(@Nonnull final StackInfo stack) {
-		 return getDrops(stack.getItemStack());
-	 }
+	@Override
+	@Nonnull
+	public List<Siftable> getDrops(@Nonnull final StackInfo stack) {
+		return getDrops(stack.getItemStack());
+	}
 
-	 /**
-	  * Gets *all* possible drops from the sieve. It is up to the dropper to
-	  * check whether or not the drops should be dropped!
-	  *
-	  * @param stack The ItemStack to get the sieve drops for
-	  * @return ArrayList of {@linkplain Siftable}
-	  * that could *potentially* be dropped.
-	  */
-	 @Override
-	 @Nonnull
-	 public List<Siftable> getDrops(@Nonnull final ItemStack stack) {
-		 List<Siftable> drops = new ArrayList<>();
-		 if (!stack.isEmpty())
-			 registry.entrySet().stream().filter(entry -> entry.getKey().test(stack)).forEach(entry -> drops.addAll(entry.getValue()));
-		 return drops;
-	 }
+	/**
+	 * Gets *all* possible drops from the sieve. It is up to the dropper to
+	 * check whether or not the drops should be dropped!
+	 *
+	 * @param stack The ItemStack to get the sieve drops for
+	 * @return ArrayList of {@linkplain Siftable}
+	 * that could *potentially* be dropped.
+	 */
+	@Override
+	@Nonnull
+	public List<Siftable> getDrops(@Nonnull final ItemStack stack) {
+		List<Siftable> drops = new ArrayList<>();
+		if (!stack.isEmpty())
+			registry.entrySet().stream().filter(entry -> entry.getKey().test(stack)).forEach(entry -> drops.addAll(entry.getValue()));
+		return drops;
+	}
 
-	 @Override
-	 @Nonnull
-	 public List<Siftable> getDrops(@Nonnull final Ingredient ingredient) {
-		 List<Siftable> drops = new ArrayList<>();
-		 registry.entrySet().stream().filter(entry -> entry.getKey() == ingredient).forEach(entry -> drops.addAll(entry.getValue()));
-		 return drops;
-	 }
+	@Override
+	@Nonnull
+	public List<Siftable> getDrops(@Nonnull final Ingredient ingredient) {
+		List<Siftable> drops = new ArrayList<>();
+		registry.entrySet().stream().filter(entry -> entry.getKey() == ingredient).forEach(entry -> drops.addAll(entry.getValue()));
+		return drops;
+	}
 
-	 @Override
-	 @Nonnull
-	 public List<ItemStack> getRewardDrops(@Nonnull final Random random, @Nonnull final IBlockState block, final String meshLevel, final int fortuneLevel) {
-		 if (block == null)
-			 return null;
+	@Override
+	@Nonnull
+	public List<ItemStack> getRewardDrops(@Nonnull final Random random, @Nonnull final IBlockState block, final String meshLevel, final int fortuneLevel) {
+		if (block == null)
+			return null;
 
-		 List<ItemStack> drops = new ArrayList<>();
+		List<ItemStack> drops = new ArrayList<>();
 
-		 getDrops(new BlockInfo(block)).forEach(siftable -> {
-			 if (canSieve(siftable.getMeshLevel(), MeshType.getMeshTypeByID(meshLevel))) {
-				 int triesWithFortune = Math.max(random.nextInt(fortuneLevel + 2), 1);
+		getDrops(new BlockInfo(block)).forEach(siftable -> {
+			if (canSieve(siftable.getMeshLevel(), MeshType.getMeshTypeByID(meshLevel))) {
+				int triesWithFortune = Math.max(random.nextInt(fortuneLevel + 2), 1);
 
-				 for (int i = 0; i < triesWithFortune; i++)
-					 if (random.nextDouble() < siftable.getChance())
-						 drops.add(siftable.getDrop().getItemStack());
-			 }
-		 });
+				for (int i = 0; i < triesWithFortune; i++)
+					if (random.nextDouble() < siftable.getChance())
+						drops.add(siftable.getDrop().getItemStack());
+			}
+		});
 
-		 return drops;
-	 }
+		return drops;
+	}
 
-	 @Override
-	 public boolean canBeSifted(@Nonnull final ItemStack stack) {
-		 return !stack.isEmpty() && registry.keySet().stream().anyMatch(entry -> entry.test(stack));
-	 }
+	@Override
+	public boolean canBeSifted(@Nonnull final ItemStack stack) {
+		return !stack.isEmpty() && registry.keySet().stream().anyMatch(entry -> entry.test(stack));
+	}
 
-	 @Override
-	 public void registerEntriesFromJSON(final FileReader fr) {
-		 HashMap<Ingredient, ArrayList<Siftable>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Ingredient, ArrayList<Siftable>>>() {
-		 }.getType());
+	@Override
+	public void registerEntriesFromJSON(final FileReader fr) {
+		HashMap<Ingredient, ArrayList<Siftable>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Ingredient, ArrayList<Siftable>>>() {
+		}.getType());
 
-		 for (Map.Entry<Ingredient, ArrayList<Siftable>> input : gsonInput.entrySet()) {
-			 Ingredient key = input.getKey();
+		for (Map.Entry<Ingredient, ArrayList<Siftable>> input : gsonInput.entrySet()) {
+			Ingredient key = input.getKey();
 
-			 if (key != null && key != Ingredient.EMPTY)
-				 for (Siftable siftable : input.getValue())
-					 if (siftable.getDrop().isValid())
-						 register(key, siftable);
-		 }
-	 }
+			if (key != null && key != Ingredient.EMPTY)
+				for (Siftable siftable : input.getValue())
+					if (siftable.getDrop().isValid())
+						register(key, siftable);
+		}
+	}
 
-	 public static boolean canSieve(final String dropLevel, final Sieve.MeshType meshType){
-		 return canSieve(MeshType.getMeshTypeByID(dropLevel).getID(), meshType.getID());
-	 }
+	public static boolean canSieve(final String dropLevel, final Sieve.MeshType meshType){
+		return canSieve(MeshType.getMeshTypeByID(dropLevel).getID(), meshType.getID());
+	}
 
-	 public static boolean canSieve(final int dropLevel, final int meshLevel){
-		 return Config.flattenSieveRecipes ? meshLevel >= dropLevel : meshLevel == dropLevel;
-	 }
+	public static boolean canSieve(final int dropLevel, final int meshLevel){
+		return Config.flattenSieveRecipes ? meshLevel >= dropLevel : meshLevel == dropLevel;
+	}
 
-	 @Override
-	 public List<?> getRecipeList() {
-		 // TODO Auto-generated method stub
-		 return null;
-	 }
+	@Override
+	public List<?> getRecipeList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

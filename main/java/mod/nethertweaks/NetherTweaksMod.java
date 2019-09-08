@@ -78,20 +78,20 @@ public class NetherTweaksMod
 		FluidRegistry.enableUniversalBucket();
 		MessageHandler.init();
 	}
-	
+
 	@SidedProxy(clientSide="mod.nethertweaks.client.logic.ClientProxy", serverSide="mod.nethertweaks.common.logic.CommonProxy", modId=MODID)
-    private static CommonProxy commonProxy;
+	private static CommonProxy commonProxy;
 
-    public static CommonProxy getProxy() {
-        return commonProxy;
-    }
+	public static CommonProxy getProxy() {
+		return commonProxy;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public static ClientProxy getClientProxy() {
-        return (ClientProxy) commonProxy;
-    }
-    
-    public static Gson gsonInstance = new Gson();
+	@SideOnly(Side.CLIENT)
+	public static ClientProxy getClientProxy() {
+		return (ClientProxy) commonProxy;
+	}
+
+	public static Gson gsonInstance = new Gson();
 
 	@Mod.EventBusSubscriber
 	public static class OreRegistrationHandler
@@ -167,7 +167,7 @@ public class NetherTweaksMod
     	OreHandler.disableOre("copper");
     	OreHandler.enableOre("thermalfoundation:ore");
 		 */
-		
+
 		getProxy().preInit();
 	}
 
@@ -199,9 +199,9 @@ public class NetherTweaksMod
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileAshBonePile.class, new RenderAshBonePile());
 	}
-	
+
 	@Mod.EventHandler
-    public void onServerStopped(FMLServerStoppedEvent event) {
-        getProxy().loadedPlayers.clear();
-    }
+	public void onServerStopped(final FMLServerStoppedEvent event) {
+		getProxy().loadedPlayers.clear();
+	}
 }
