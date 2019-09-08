@@ -13,7 +13,9 @@ import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.*;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.world.*;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
@@ -84,6 +86,13 @@ public class NetherTweaksMod
                 	OreHandler.add(OreDictionary.getOres(ore_name).get(0).getItem(), 1);
     			}
     		}
+    		
+    		// Reading JSON out
+    		// Processing JSON and Disable CHunks here
+    		// Add Chunks if not enabled and Disabled
+    		// Rewrite of new JSON possible?
+    		
+    		
     		OreHandler.register(event.getRegistry());
     	}
     	
@@ -116,7 +125,7 @@ public class NetherTweaksMod
     	configDirectory = new File(event.getModConfigurationDirectory(), MODID);
     	
     	LogUtil.setup(MODID, configDirectory);
-
+    	
     	Config.init();
     	
     	Compatibility.init();
@@ -124,7 +133,7 @@ public class NetherTweaksMod
     	NTMCapabilities.init();
     	NTMEntities.init();
 
-        ItemHandler.init();    	
+        ItemHandler.init();
         BlockHandler.init();
         BucketNFluidHandler.init(event.getSide());
         
@@ -150,6 +159,9 @@ public class NetherTweaksMod
 		
 		if(event.getSide() == Side.CLIENT)
 			RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
+		
+		NTMRegistryManager.DYN_ORE_REGISTRY.loadJson(this.configDirectory);
+		NTMRegistryManager.registerDynOreDefaultRecipeHandler(new NTMDefaultRecipes.DynOreDefaults());
     }
     
     @Mod.EventHandler
@@ -168,6 +180,7 @@ public class NetherTweaksMod
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		JsonRecipeHandler.loadJasonVorhees(configDirectory);
+    	NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(this.configDirectory);
     }
     
     @SubscribeEvent

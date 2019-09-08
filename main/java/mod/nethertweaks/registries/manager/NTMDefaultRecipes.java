@@ -6,6 +6,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -68,6 +69,13 @@ public class NTMDefaultRecipes
 
 		@Override
 		public void registerSieveRecipeDefaults() {
+		}
+    }
+    
+    public static class DynOreDefaults implements IDynOreDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(DynOreRegistry registry) {
+			compat.registerDynOreChunks(registry);
 		}
     }
 

@@ -8,6 +8,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -26,6 +27,7 @@ public final class NTMRegistryManager {
     public static final List<IHammerDefaultRegistryProvider> HAMMER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<ICompostDefaultRegistryProvider> COMPOST_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<ICrucibleStoneDefaultRegistryProvider> CRUCIBLE_STONE_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+    public static final List<IDynOreDefaultRegistryProvider> DYN_ORE_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<IFluidBlockDefaultRegistryProvider> FLUID_BLOCK_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<IFluidOnTopDefaultRegistryProvider> FLUID_ON_TOP_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
     public static final List<IFluidTransformDefaultRegistryProvider> FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
@@ -44,6 +46,7 @@ public final class NTMRegistryManager {
     public static final HammerRegistry HAMMER_REGISTRY = new HammerRegistry();
     public static final HeatRegistry HEAT_REGISTRY = new HeatRegistry();
     public static final OreRegistry ORE_REGISTRY = new OreRegistry();
+    public static final DynOreRegistry DYN_ORE_REGISTRY = new DynOreRegistry();
     public static final BarrelLiquidBlacklistRegistry BARREL_LIQUID_BLACKLIST_REGISTRY = new BarrelLiquidBlacklistRegistry();
     public static final FluidOnTopRegistry FLUID_ON_TOP_REGISTRY = new FluidOnTopRegistry();
     public static final FluidTransformRegistry FLUID_TRANSFORM_REGISTRY = new FluidTransformRegistry();
@@ -70,6 +73,10 @@ public final class NTMRegistryManager {
 
     public static void registerCrucibleStoneDefaultRecipeHandler(ICrucibleStoneDefaultRegistryProvider provider) {
         CRUCIBLE_STONE_DEFAULT_REGISTRY_PROVIDERS.add(provider);
+    }
+    
+    public static void registerDynOreDefaultRecipeHandler(IDynOreDefaultRegistryProvider provider) {
+    	DYN_ORE_DEFAULT_REGISTRY_PROVIDERS.add(provider);
     }
 
     public static void registerFluidBlockDefaultRecipeHandler(IFluidBlockDefaultRegistryProvider provider) {

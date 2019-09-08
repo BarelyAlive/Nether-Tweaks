@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.recipes.defaults.IRecipeDefaults;
 import mod.nethertweaks.recipes.defaults.NTM;
 import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -98,6 +100,10 @@ public class CompatDefaultRecipes
     public void registerOreChunks(OreRegistry registry) {
         MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
                 .forEach(mod -> mod.registerOreChunks(registry));
+    }
+    
+    public void registerDynOreChunks(DynOreRegistry registry) {
+    	OreHandler.registerDynOreChunks(registry);
     }
 
     public void registerFluidTransform(FluidTransformRegistry registry) {

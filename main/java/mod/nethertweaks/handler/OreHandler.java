@@ -12,7 +12,12 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.client.renderers.ChunkColorer;
 import mod.nethertweaks.items.ItemChunk;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.sfhcore.proxy.IVariantProvider;
+import mod.sfhcore.util.ItemInfo;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -143,6 +148,31 @@ public class OreHandler {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 		{
 			FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1), entry.getValue().getResult(), 1.0f);
+		}
+	}
+
+	public static void registerDynOreChunks(DynOreRegistry registry) {
+		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		{
+	        try {
+	        	ItemStack result = entry.getValue().getResult();
+	        	if(result == null)
+	        	{
+	        		continue;
+	        	}
+	        	IBakedModel res = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(result);
+	        	for(int i = 0; i < res.getParticleTexture().getFrameCount(); i++)
+	        	{
+	        		if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
+	        		{
+	    		        entry.getValue().setColor((res.getParticleTexture().getFrameTextureData(0)[i][140] & 0xFFFFFFFF) | 0x00000000);
+	        		}
+	        	}
+	        	mod_chunks.put(entry.getKey(), entry.getValue());
+			} catch (Exception e) {
+	        	e.printStackTrace();
+			}
+			registry.register(entry.getKey(), new ItemInfo(entry.getValue()), new ItemInfo(entry.getValue().getResult()), 1, entry.getValue().getColor());
 		}
 	}
 

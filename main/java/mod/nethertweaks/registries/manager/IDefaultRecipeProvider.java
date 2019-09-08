@@ -4,6 +4,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -19,6 +20,7 @@ public interface IDefaultRecipeProvider<T> {
     public void  registerRecipeDefaults(T registry);
 }
 
+interface IDynOreDefaultRegistryProvider extends IDefaultRecipeProvider<DynOreRegistry>{};
 interface IFluidBlockDefaultRegistryProvider extends IDefaultRecipeProvider<FluidBlockTransformerRegistry>{};
 interface IFluidItemFluidDefaultRegistryProvider extends IDefaultRecipeProvider<FluidItemFluidRegistry>{};
 interface IFluidOnTopDefaultRegistryProvider extends IDefaultRecipeProvider<FluidOnTopRegistry>{};

@@ -24,6 +24,7 @@ public class ItemChunk extends Item {
 
 	private Item results;
 	private String ore_name = "";
+	private int color = 0;
 	
 	public ItemChunk() {
 		super();
@@ -54,6 +55,15 @@ public class ItemChunk extends Item {
 	public ItemStack getResult()
 	{
 		return FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+	}
+	
+	public void setColor(int color) {
+		this.color = color;
+	}
+	
+	public int getColor()
+	{
+		return color;
 	}
 	
 	@Override
@@ -101,5 +111,4 @@ public class ItemChunk extends Item {
 	public String getUnlocalizedName(ItemStack stack) {
 		return "tile." + stack.getDisplayName().toLowerCase().replace(' ', '_');
 	}
-	
 }

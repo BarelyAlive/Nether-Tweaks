@@ -1,6 +1,11 @@
 package mod.nethertweaks.client.renderers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import mod.nethertweaks.items.ItemChunk;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -18,25 +23,7 @@ public class ChunkColorer implements IItemColor {
         ItemChunk chunk = (ItemChunk) stack.getItem();
         if (tintIndex == 0)
         { 
-	        ItemStack b = chunk.getResult();
-	        if (b.isEmpty())
-	        {
-	        	return pixel;
-	        }
-	        try {
-	        	IBakedModel res = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(b);
-	        	for(int i = 0; i < res.getParticleTexture().getFrameCount(); i++)
-	        	{
-	        		if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
-	        		{
-	    		        return ((res.getParticleTexture().getFrameTextureData(0)[i][140] & 0xFFFFFFFF) | 0x00000000);
-	        		}
-	        	}
-	        	return pixel;
-			} catch (Exception e) {
-	        	e.printStackTrace();
-	        	return pixel;
-			}
+	        return chunk.getColor();
         }
         return pixel;
 	}

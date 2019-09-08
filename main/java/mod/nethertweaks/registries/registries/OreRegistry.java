@@ -145,7 +145,7 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
             register(ore);
         }
     }
-
+    
     public void doRecipes() {
         for (ItemOre ore : itemOreRegistry) {
             ResourceLocation group = new ResourceLocation(NetherTweaksMod.MODID, "ntmores");
@@ -160,7 +160,7 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
                 UniDict.getConfig().recipesToIgnore.add(recipeLocation);
             }
 
-            ItemStack smeltingResult;            
+            ItemStack smeltingResult;
             
             if (ore.isRegisterIngot()) {
                 smeltingResult = new ItemStack(ore, 1, 3);
