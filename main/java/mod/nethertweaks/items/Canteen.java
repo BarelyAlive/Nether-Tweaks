@@ -9,7 +9,6 @@ import mod.sfhcore.items.CustomItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumActionResult;
@@ -30,21 +29,21 @@ public class Canteen extends CustomItem
 		setMaxStackSize(1);
 		setMaxDamage(3);
 	}
-	
+
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(final EntityPlayer player, final World worldIn, final BlockPos pos, final EnumHand hand,
+			final EnumFacing facing, final float hitX, final float hitY, final float hitZ) {
 		ItemStack held = player.getHeldItem(hand);
 		int dmg = held.getItemDamage();
-		
+
 		if(dmg < 3)
 		{
 			IFluidHandler handler = FluidUtil.getFluidHandler(worldIn, pos, facing);
-			
+
 			if(handler != null)
 			{
 				FluidStack f = handler.drain(250 * (3 - dmg ), true);
-				
+
 				if(f != null)
 				{
 					int fill = f.amount / 250;
@@ -54,42 +53,42 @@ public class Canteen extends CustomItem
 		}
 		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
-	
+
 	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
+	public ItemStack onItemUseFinish(final ItemStack stack, final World worldIn, final EntityLivingBase entityLiving)
 	{
 		EntityPlayer player = entityLiving instanceof EntityPlayer ? (EntityPlayer)entityLiving : null;
-        if (stack.getItemDamage() > 0) {
-			this.onDrinkItem(player, stack);
+		if (stack.getItemDamage() > 0) {
+			onDrinkItem(player, stack);
 			stack.damageItem(1, entityLiving);
 		}
 		return stack;
 	}
-	
-	public void onDrinkItem(EntityPlayer player, ItemStack stack) {
-        if (!player.world.isRemote && player != null) {
-            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
-            Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(stack);
-            stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
-            stats.attemptToPoison(drink.getPoisonChance());
-            player.addStat(StatList.getObjectUseStats(this));
-        }
-    }
-	
+
+	public void onDrinkItem(final EntityPlayer player, final ItemStack stack) {
+		if (!player.world.isRemote && player != null) {
+			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+			Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(stack);
+			stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
+			stats.attemptToPoison(drink.getPoisonChance());
+			player.addStat(StatList.getObjectUseStats(this));
+		}
+	}
+
 	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
+	public boolean showDurabilityBar(final ItemStack stack) {
 		return true;
 	}
-	
-	@Override
-	public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 32;
-    }
 
-    @Override
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.DRINK;
-    }
+	@Override
+	public int getMaxItemUseDuration(final ItemStack stack)
+	{
+		return 32;
+	}
+
+	@Override
+	public EnumAction getItemUseAction(final ItemStack stack)
+	{
+		return EnumAction.DRINK;
+	}
 }

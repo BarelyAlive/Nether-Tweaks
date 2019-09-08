@@ -27,6 +27,10 @@ public class Config
 	public static int durabilityGIron 	 = 640;
 	public static int durabilityGDiamond = 5120;
 
+	public static float exhaustionMultiplierDefault = 1f;
+	public static float exhaustionMultiplierDesert = 2f;
+	public static float exhaustionMultiplierHell = 3f;
+
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
 
@@ -133,6 +137,10 @@ public class Config
 		durabilityGStone				= config.getInt("Durability for Stone Grabber", "Tweak", 160, 1, Integer.MAX_VALUE, "");
 		durabilityGIron					= config.getInt("Durability for Iron Grabber", "Tweak", 640, 1, Integer.MAX_VALUE, "");
 		durabilityGDiamond				= config.getInt("Durability for Diamond Grabber", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+
+		exhaustionMultiplierDefault		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 1f).getDouble();
+		exhaustionMultiplierDesert		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 2f).getDouble();
+		exhaustionMultiplierHell		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 3f).getDouble();
 
 		nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
 		endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();

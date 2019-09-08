@@ -100,7 +100,7 @@ public class ItemHandler implements INames
 	//Food & DRINKS
 	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
 	public static final Item CANTEEN	 	  	 = new Canteen();
-	
+
 	//ItemBlocks
 	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
 	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));

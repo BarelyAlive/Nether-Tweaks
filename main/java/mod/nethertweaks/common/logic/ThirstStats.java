@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
+import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageThirstStats;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.material.Material;
@@ -65,7 +66,7 @@ public class ThirstStats {
 
 		int ms = player.isRiding() ? 10 : movementSpeed;
 		float exhaustMultiplier = player.world.isDaytime() ? 1.0f : 0.9f;
-		exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? 2.0f : player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? 3.0f : 1.0f;
+		exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? Config.exhaustionMultiplierDesert : player.dimension == -1 ? Config.exhaustionMultiplierHell : Config.exhaustionMultiplierDefault;
 
 		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
 			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);

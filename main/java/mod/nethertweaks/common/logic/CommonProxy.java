@@ -10,7 +10,7 @@ public class CommonProxy {
 	public HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
 	public void preInit() {
-		
+
 	}
 
 	public void init() {}

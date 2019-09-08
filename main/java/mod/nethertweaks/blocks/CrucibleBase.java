@@ -54,11 +54,9 @@ public abstract class CrucibleBase extends Block
 
 		if (te != null) {
 			if(!player.getHeldItem(hand).isEmpty())
-			{
 				if(TankUtil.drainWaterIntoBottle(te, player, (FluidTank) te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)))
 					return true;
-			}
-			
+
 			IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
 			return te.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ, fluidHandler);
 		} else
