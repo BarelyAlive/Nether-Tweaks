@@ -350,7 +350,7 @@ public class WorldEvents
 	public void onSavePlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
 		if (!event.getEntityPlayer().world.isRemote) {
 			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
-			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".thirstmod");
+			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
 			try {
 				String write = gsonInstance.toJson(stats);
 				saveFile.createNewFile();
