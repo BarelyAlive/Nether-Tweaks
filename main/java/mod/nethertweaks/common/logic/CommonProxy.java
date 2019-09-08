@@ -18,7 +18,7 @@ public class CommonProxy {
 	public ThirstStats getStatsByUUID(final UUID uuid) {
 		ThirstStats stats = loadedPlayers.get(uuid);
 		if (stats == null) {
-			System.out.println("[Thirst Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
+			System.out.println("[Nether Tweaks Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
 			return null;
 		}
 		return stats;
