@@ -65,7 +65,7 @@ public class ThirstStats {
 		}
 
 		int ms = player.isRiding() ? 10 : movementSpeed;
-		float exhaustMultiplier = player.world.isDaytime() ? 1.0f : 0.9f;
+		float exhaustMultiplier = player.world.isDaytime() || player.dimension == -1 ? 1.0f : 0.9f;
 		exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? Config.exhaustionMultiplierDesert : player.dimension == -1 ? Config.exhaustionMultiplierHell : Config.exhaustionMultiplierDefault;
 
 		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
@@ -115,10 +115,10 @@ public class ThirstStats {
 			lastPoisoned = poisoned;
 		}
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_J))
-			thirstLevel = Math.max(thirstLevel - 1, 0);
-		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
-			thirstLevel = Math.min(thirstLevel + 1, 20);
+//		if (Keyboard.isKeyDown(Keyboard.KEY_J))
+//			thirstLevel = Math.max(thirstLevel - 1, 0);
+//		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
+//			thirstLevel = Math.min(thirstLevel + 1, 20);
 	}
 
 	public void addStats(final int heal, final float sat) {
