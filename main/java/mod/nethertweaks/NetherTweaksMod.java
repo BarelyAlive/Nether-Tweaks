@@ -4,23 +4,24 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.capabilities.NTMCapabilities;
+import mod.nethertweaks.client.logic.ClientProxy;
 import mod.nethertweaks.client.renderers.RenderAshBonePile;
 import mod.nethertweaks.client.renderers.RenderBarrel;
 import mod.nethertweaks.client.renderers.RenderCrucible;
-import mod.nethertweaks.client.renderers.RenderProjectileStone;
 import mod.nethertweaks.client.renderers.RenderSieve;
+import mod.nethertweaks.common.logic.CommonProxy;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
-import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.BucketNFluidHandler;
-import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -43,15 +44,15 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -66,13 +67,31 @@ public class NetherTweaksMod
 	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";
 
 	@Instance(value=MODID)
-	public static NetherTweaksMod instance;
+	private static NetherTweaksMod instance;
+
+	public static NetherTweaksMod getInstance() {
+		return instance;
+	}
 
 	static
 	{
 		FluidRegistry.enableUniversalBucket();
 		MessageHandler.init();
 	}
+	
+	@SidedProxy(clientSide="mod.nethertweaks.client.logic.ClientProxy", serverSide="mod.nethertweaks.common.logic.CommonProxy", modId=MODID)
+    private static CommonProxy commonProxy;
+
+    public static CommonProxy getProxy() {
+        return commonProxy;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static ClientProxy getClientProxy() {
+        return (ClientProxy) commonProxy;
+    }
+    
+    public static Gson gsonInstance = new Gson();
 
 	@Mod.EventBusSubscriber
 	public static class OreRegistrationHandler
@@ -143,28 +162,20 @@ public class NetherTweaksMod
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 		MinecraftForge.EVENT_BUS.register(this);
 
-		if(event.getSide().isClient())
-		{
-			OreHandler.disableOre("minecraft:redstone");
-			OreHandler.disableOre("minecraft:coal");
-		}
 		// Disable all copper ores except all ores from thermal foundation
 		/*
     	OreHandler.disableOre("copper");
     	OreHandler.enableOre("thermalfoundation:ore");
 		 */
-
-		//GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-
-		if(event.getSide().isClient())
-			RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
+		
+		getProxy().preInit();
 	}
 
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
 		SmeltingNOreDictHandler.load();
+		getProxy().init();
 	}
 
 	@Mod.EventHandler
@@ -188,4 +199,9 @@ public class NetherTweaksMod
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileAshBonePile.class, new RenderAshBonePile());
 	}
+	
+	@Mod.EventHandler
+    public void onServerStopped(FMLServerStoppedEvent event) {
+        getProxy().loadedPlayers.clear();
+    }
 }

@@ -6,6 +6,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -27,6 +28,7 @@ public class NTMDefaultRecipes
 		NTMRegistryManager.registerHammerDefaultRecipeHandler(new HammerDefaults());
 		NTMRegistryManager.registerCompostDefaultRecipeHandler(new CompostDefaults());
 		NTMRegistryManager.registerCondenserDefaultRecipeHandler(new CondenserDefaults());
+		NTMRegistryManager.registerDrinkDefaultRecipeHandler(new DrinkDefaults());
 		NTMRegistryManager.registerHellmartDefaultRecipeHandler(new HellmartDefaults());
 		NTMRegistryManager.registerHeatDefaultRecipeHandler(new HeatDefaults());
 		NTMRegistryManager.registerOreDefaultRecipeHandler(new OreDefaults());
@@ -50,6 +52,13 @@ public class NTMDefaultRecipes
 		@Override
 		public void registerRecipeDefaults(@Nonnull final CondenserRegistry registry) {
 			compat.registerCondenser(registry);
+		}
+	}
+	
+	private static class DrinkDefaults implements IDrinkDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final DrinkRegistry registry) {
+			compat.registerDrink(registry);
 		}
 	}
 

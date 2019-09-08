@@ -8,6 +8,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -35,6 +36,7 @@ public final class NTMRegistryManager {
 	public static final List<IMilkEntityDefaultRegistryProvider> MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IBarrelLiquidBlacklistDefaultRegistryProvider> BARREL_LIQUID_BLACKLIST_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<ICondenserDefaultRegistryProvider> CONDENSER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+	public static final List<IDrinkDefaultRegistryProvider> DRINK_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IHellmartDefaultRegistryProvider> HELLMART_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 
 	//endregion
@@ -52,6 +54,7 @@ public final class NTMRegistryManager {
 	public static final CrucibleRegistry CRUCIBLE_STONE_REGISTRY = new CrucibleRegistry(CRUCIBLE_STONE_DEFAULT_REGISTRY_PROVIDERS);
 	public static final MilkEntityRegistry MILK_ENTITY_REGISTRY = new MilkEntityRegistry();
 	public static final CondenserRegistry CONDENSER_REGISTRY = new CondenserRegistry();
+	public static final DrinkRegistry DRINK_REGISTRY = new DrinkRegistry();
 	public static final HellmartRegistry HELLMART_REGISTRY = new HellmartRegistry();
 
 	//region >>>> DEFAULT RECIPE REGISTERS
@@ -106,6 +109,10 @@ public final class NTMRegistryManager {
 
 	public static void registerCondenserDefaultRecipeHandler(final ICondenserDefaultRegistryProvider provider) {
 		CONDENSER_DEFAULT_REGISTRY_PROVIDERS.add(provider);
+	}
+	
+	public static void registerDrinkDefaultRecipeHandler(final IDrinkDefaultRegistryProvider provider) {
+		DRINK_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
 
 	public static void registerHellmartDefaultRecipeHandler(final IHellmartDefaultRegistryProvider provider) {

@@ -78,6 +78,7 @@ public class Config
 	public static boolean useMetricSystem  = true;
 	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
+	public static boolean waterSources   = true;
 	public static String[] blacklistSalt = {"distilled_water"};
 	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 
@@ -139,9 +140,8 @@ public class Config
 
 		useMetricSystem					= config.get("Mechanics", "Use metric System?", true, "").getBoolean();
 		enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
-		blacklistSalt					= config.getStringList("Fluids that sould not work for the salt recipe", "Mechanics", blacklistSalt, "Example: minecraft:water");
-
-		//Ore
+		waterSources					= config.get("Mechanics", "Allow water sources?", false, "").getBoolean();
+		blacklistSalt					= config.get("Mechanics", "Fluids that sould not work for the salt recipe", blacklistSalt, "Example: minecraft:water").getStringList();
 
 		///Sieve
 		sieveSimilarRadius 				= config.get("Sieving", "Sieve Similar Radius", 2).getInt();

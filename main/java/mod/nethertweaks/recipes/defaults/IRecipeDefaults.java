@@ -4,6 +4,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -21,6 +22,7 @@ public interface IRecipeDefaults
 
 	default void registerCompost(final CompostRegistry registry) {}
 	default void registerCondenser(final CondenserRegistry registry) {}
+	default void registerDrink(final DrinkRegistry registry) {}
 	default void registerHellmart(final HellmartRegistry registry) {}
 	default void registerSieve(final SieveRegistry registry) {}
 	default void registerHammer(final HammerRegistry registry) {}

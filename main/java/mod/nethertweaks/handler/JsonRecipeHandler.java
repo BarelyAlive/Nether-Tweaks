@@ -11,6 +11,7 @@ public class JsonRecipeHandler
 		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(f, "CompostRegistry.json"));
 		NTMRegistryManager.SIEVE_REGISTRY.loadJson(new File(f, "SieveRegistry.json"));
 		NTMRegistryManager.CONDENSER_REGISTRY.loadJson(new File(f, "CondenserRegistry.json"));
+		NTMRegistryManager.DRINK_REGISTRY.loadJson(new File(f, "DrinkRegistry.json"));
 		NTMRegistryManager.HELLMART_REGISTRY.loadJson(new File(f, "HellmartRegistry.json"));
 		NTMRegistryManager.HAMMER_REGISTRY.loadJson(new File(f, "HammerRegistry.json"));
 		NTMRegistryManager.HEAT_REGISTRY.loadJson(new File(f, "HeatRegistry.json"));

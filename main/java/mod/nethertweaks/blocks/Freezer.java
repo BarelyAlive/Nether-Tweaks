@@ -56,7 +56,7 @@ public class Freezer extends CubeContainerHorizontal
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if(success) return true;
 		}
-		player.openGui(NetherTweaksMod.instance, GuiHandler.ID_FREEZER, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.getInstance(), GuiHandler.ID_FREEZER, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

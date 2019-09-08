@@ -18,6 +18,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -34,6 +35,7 @@ import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.OreDictUtil;
+import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -193,6 +195,13 @@ public class NTM implements IRecipeDefaults
 		registry.register("listAllfishraw", 63);
 		registry.register("listAllfishcooked", 63);
 		registry.register("listAllfishfresh", 63);
+	}
+	
+	@Override
+	public void registerDrink(final DrinkRegistry registry)
+	{
+		registry.register(TankUtil.WATER_BOTTLE, 3, 1.4f, 0.4f);
+		registry.register(new ItemInfo(Items.MILK_BUCKET), 8, 3.4f, 0f);
 	}
 
 	@Override

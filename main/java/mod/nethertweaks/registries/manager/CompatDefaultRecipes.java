@@ -10,6 +10,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -62,6 +63,11 @@ public class CompatDefaultRecipes
 	public void registerCondenser(final CondenserRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerCondenser(registry));
+	}
+	
+	public void registerDrink(final DrinkRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerDrink(registry));
 	}
 
 	public void registerHellmart(final HellmartRegistry registry) {

@@ -1,9 +1,23 @@
 package mod.nethertweaks.world;
 
+import static mod.nethertweaks.NetherTweaksMod.gsonInstance;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.client.gui.GuiThirstBar;
+import mod.nethertweaks.common.logic.ThirstStats;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.network.MessageMovementSpeed;
 import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
+import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.types.Drinkable;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
@@ -27,11 +41,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -40,7 +59,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldEvents
 {
@@ -105,7 +127,7 @@ public class WorldEvents
 		World world = event.getWorld();
 
 		if(world.getWorldType() instanceof WorldTypeHellworld)
-			if(state.getMaterial() == Material.WATER) event.setResult(Result.DENY);
+			if(state.getMaterial() == Material.WATER && !Config.waterSources) event.setResult(Result.DENY);
 	}
 
 	@SubscribeEvent
@@ -244,6 +266,128 @@ public class WorldEvents
 			worldsave.markDirty();
 		}
 	}
+	
+	//ThIRST
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onRenderGameOverlayEvent(RenderGameOverlayEvent event) {
+        GuiThirstBar.onRenderGameOverlayEvent(event);
+    }
+
+    @SubscribeEvent
+    public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if(!event.player.world.isRemote) {
+            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.player.getUniqueID());
+            if(stats != null) {
+                stats.update(event.player);
+            }
+        } else {
+            NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
+        }
+    }
+
+    @SubscribeEvent
+    public void onAttack(AttackEntityEvent attack) {
+        if (!attack.getEntityPlayer().world.isRemote) {
+            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(attack.getEntityPlayer().getUniqueID());
+            stats.addExhaustion(0.5f);
+        }
+        attack.setResult(Result.DEFAULT);
+    }
+
+    @SubscribeEvent
+    public void onHurt(LivingHurtEvent hurt) {
+        if (hurt.getEntity() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) hurt.getEntity();
+            if (!player.world.isRemote) {
+                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+                stats.addExhaustion(0.4f);
+            }
+        }
+        hurt.setResult(Result.DEFAULT);
+    }
+
+    @SubscribeEvent
+    public void onBlockBreak(BlockEvent.BreakEvent event) {
+        EntityPlayer player = event.getPlayer();
+        if(player != null) {
+            if(!player.world.isRemote) {
+                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+                stats.addExhaustion(0.03f);
+            }
+        }
+        event.setResult(Result.DEFAULT);
+    }
+
+    public void playedCloned(net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
+        if(!event.getEntityPlayer().world.isRemote) {
+            if(event.isWasDeath()) {
+                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+                stats.resetStats();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onLoadPlayerData(net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
+        if (!event.getEntityPlayer().world.isRemote) {
+            EntityPlayer player = event.getEntityPlayer();
+            File saveFile = event.getPlayerFile("nethertweaksmod");
+            if(!saveFile.exists()) {
+                NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+            } else {
+                try {
+                    FileReader reader = new FileReader(saveFile);
+                    ThirstStats stats = gsonInstance.fromJson(reader, ThirstStats.class);
+                    if (stats == null) {
+                        NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+                    } else {
+                        NetherTweaksMod.getProxy().registerPlayer(player, stats);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onSavePlayerData(net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
+        if (!event.getEntityPlayer().world.isRemote) {
+            ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+            File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".thirstmod");
+            try {
+                String write = gsonInstance.toJson(stats);
+                saveFile.createNewFile();
+                BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+                writer.write(write);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onFinishUsingItem(LivingEntityUseItemEvent.Finish event) {
+        if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
+            ItemStack eventItem = event.getItem();
+            // have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
+            eventItem.setCount(eventItem.getCount() + 1);
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+            
+            if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
+            	Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
+            	
+                ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+                stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
+                stats.attemptToPoison(drink.getPoisonChance());
+            }
+                
+            eventItem.setCount(eventItem.getCount() - 1);
+        }
+    }
 	//*********************************************************************************************************************
 
 	private void teleportPlayer(final EntityPlayer player) {

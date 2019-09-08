@@ -4,6 +4,7 @@ import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -32,6 +33,7 @@ interface ISieveDefaultRegistryProvider extends IDefaultRecipeProvider<SieveRegi
 	void registerSieveRecipeDefaults();}
 
 interface ICondenserDefaultRegistryProvider extends IDefaultRecipeProvider<CondenserRegistry>{}
+interface IDrinkDefaultRegistryProvider extends IDefaultRecipeProvider<DrinkRegistry>{}
 interface IHellmartDefaultRegistryProvider extends IDefaultRecipeProvider<HellmartRegistry>{}
 interface ICrucibleStoneDefaultRegistryProvider extends IDefaultRecipeProvider<CrucibleRegistry>{}
 interface ICompostDefaultRegistryProvider extends IDefaultRecipeProvider<CompostRegistry>{}

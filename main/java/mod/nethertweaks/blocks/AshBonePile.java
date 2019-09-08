@@ -127,7 +127,7 @@ public class AshBonePile extends CubeContainerHorizontal
 				}
 			}
 		} else
-			player.openGui(NetherTweaksMod.instance, GuiHandler.ID_BONFIRE, world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(NetherTweaksMod.getInstance(), GuiHandler.ID_BONFIRE, world, pos.getX(), pos.getY(), pos.getZ());
 
 		return world.getBlockState(pos).getValue(LIT);
 	}

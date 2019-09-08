@@ -37,14 +37,14 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("dyeLightGray", ItemHandler.ASH);
 		}
 		if(BlocksItems.enableMeanVine) 		  OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
-		if(BlocksItems.enableNetherrackGravel) OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
+		if(BlocksItems.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
 		if(BlocksItems.enableJerky)			  OreDictionary.registerOre("listAllmeatcooked", ItemHandler.COOKED_JERKY);
 		if(BlocksItems.enableSalt)	 		  OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
 		if(BlocksItems.enableSalt)			  OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
-		if(BlocksItems.enableString)		  	  OreDictionary.registerOre("string", ItemHandler.STRING);
+		if(BlocksItems.enableString)		  OreDictionary.registerOre("string", ItemHandler.STRING);
 		if(BlocksItems.enableHellfayah)		  OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
 		if(BlocksItems.enableHellfayahOre) 	  OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));
-		if(BlocksItems.enableHellfayahBlock)   OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
+		if(BlocksItems.enableHellfayahBlock)  OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
 		if(BlocksItems.enableSaltBlock)		  OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
 		if(BlocksItems.enableElderTree)
 		{
