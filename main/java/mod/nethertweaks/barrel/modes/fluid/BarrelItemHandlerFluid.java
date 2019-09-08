@@ -2,6 +2,7 @@ package mod.nethertweaks.barrel.modes.fluid;
 
 import javax.annotation.Nonnull;
 
+import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.modes.mobspawn.BarrelModeMobSpawn;
 import mod.nethertweaks.blocks.tile.TileBarrel;
 import mod.nethertweaks.items.ItemDoll;
@@ -37,6 +38,15 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 
 		if (tank.getFluid() == null)
 			return stack;
+
+        BarrelItemHandler handler = barrel.getItemHandler();
+        if (handler != null)
+        {
+        	if (!handler.getStackInSlot(0).isEmpty())
+        	{
+        		return stack;
+        	}
+        }
 
 		// Fluid to block transformations
 		if (NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.canBlockBeTransformedWithThisFluid(tank.getFluid().getFluid(), stack) && tank.getFluidAmount() == tank.getCapacity()) {
