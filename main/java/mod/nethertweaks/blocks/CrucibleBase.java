@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCrucibleBase;
+import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,6 +17,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -51,6 +53,12 @@ public abstract class CrucibleBase extends Block
 		TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
 
 		if (te != null) {
+			if(!player.getHeldItem(hand).isEmpty())
+			{
+				if(TankUtil.drainWaterIntoBottle(te, player, (FluidTank) te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)))
+					return true;
+			}
+			
 			IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
 			return te.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ, fluidHandler);
 		} else

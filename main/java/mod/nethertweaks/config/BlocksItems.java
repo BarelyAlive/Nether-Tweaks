@@ -69,6 +69,7 @@ public class BlocksItems
 	public static boolean enableDollVillager		= true;
 	public static boolean enableDollPig				= true;
 	public static boolean enableJerky 				= true;
+	public static boolean enableCanteen				= true;
 	public static boolean enableHammerWood 			= true;
 	public static boolean enableHammerStone 		= true;
 	public static boolean enableHammerGold 			= true;
@@ -155,6 +156,7 @@ public class BlocksItems
 		enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
 		enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
 		enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
+		enableCanteen 					= config.get("Items", "Enable Canteen?", true).getBoolean();
 		enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
 		enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
 		enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();

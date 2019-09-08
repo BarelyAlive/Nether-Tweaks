@@ -86,7 +86,7 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 		Ingredient ingredient = Ingredient.fromStacks(itemStack);
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
-			LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
+			LogUtil.error("Drinkable Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
 			return;
 		}
 		Drinkable dryable = new Drinkable(itemStack, thirstReplenish, saturationReplenish, poisonChance);

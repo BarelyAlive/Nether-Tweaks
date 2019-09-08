@@ -4,6 +4,7 @@ import mod.nethertweaks.INames;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Ash;
+import mod.nethertweaks.items.Canteen;
 import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
@@ -96,9 +97,10 @@ public class ItemHandler implements INames
 
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
-	//Food
+	//Food & DRINKS
 	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
-
+	public static final Item CANTEEN	 	  	 = new Canteen();
+	
 	//ItemBlocks
 	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
 	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
@@ -183,8 +185,9 @@ public class ItemHandler implements INames
 		//Tree
 		if(BlocksItems.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
 
-		//Food
+		//Food & Drinks
 		if(BlocksItems.enableJerky)  			Registry.registerItem(COOKED_JERKY);
+		if(BlocksItems.enableCanteen)  			Registry.registerItem(CANTEEN);
 
 		//Doors
 		if(BlocksItems.enableStoneDoor)  		Registry.registerItem(ITEM_STONE_DOOR);

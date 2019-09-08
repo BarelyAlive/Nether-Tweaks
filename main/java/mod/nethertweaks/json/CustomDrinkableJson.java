@@ -23,6 +23,7 @@ public class CustomDrinkableJson implements JsonDeserializer<Drinkable>, JsonSer
 		JsonObject obj = new JsonObject();
 		obj.addProperty("thirstReplenish", src.getThirstReplenish());
 		obj.addProperty("saturationReplenish", src.getSaturationReplenish());
+		obj.addProperty("poisonChance", src.getPoisonChance());
 		obj.add("item", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
 
 		return obj;
@@ -34,9 +35,9 @@ public class CustomDrinkableJson implements JsonDeserializer<Drinkable>, JsonSer
 		JsonHelper helper = new JsonHelper(json);
 		JsonObject obj = json.getAsJsonObject();
 
-		int thirstReplenish =  helper.getInteger("thirstReplenish");
-		float saturationReplenish =  helper.getInteger("saturationReplenish");
-		float poisonChance =  helper.getInteger("poisonChance");
+		int thirstReplenish = helper.getInteger("thirstReplenish");
+		float saturationReplenish = helper.getNullableFloat("saturationReplenish", 0);
+		float poisonChance = helper.getNullableFloat("poisonChance", 0);
 		ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
 
 		return new Drinkable(result.getItemStack(), thirstReplenish, saturationReplenish, poisonChance);

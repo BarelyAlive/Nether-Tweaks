@@ -203,6 +203,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(TankUtil.WATER_BOTTLE, 3, 1.4f, 0.4f);
 		registry.register(new ItemInfo(Items.MILK_BUCKET), 8, 3.4f, 0f);
 		registry.register(new ItemInfo(Items.MUSHROOM_STEW), 7, 1.2f, 0f);
+		registry.register(new ItemInfo(ItemHandler.CANTEEN), 3, 1.4f, 0f);
 	}
 
 	@Override
