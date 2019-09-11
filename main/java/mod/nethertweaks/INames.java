@@ -19,7 +19,6 @@ public interface INames {
 	String CRUCIBLE					= "crucible";
 	String HELLMART 				= "hellmart";
 	String BONFIRE 					= "bonfire";
-	String AIR_CONDITIONER			= "air_conditioner";
 
 	String STONE_SIEVE				= "stone_sieve";
 
@@ -30,7 +29,6 @@ public interface INames {
 	String ACACIA_SIEVE				= "acacia_sieve";
 	String DARK_OAK_SIEVE			= "dark_oak_sieve";
 	String ELDER_SIEVE				= "elder_sieve";
-
 
 	String STONE_BARREL				= "stone_barrel";
 
@@ -47,14 +45,16 @@ public interface INames {
 	String ELDER_DOOR				= "elder_door";
 	String DUST 					= "dust";
 	String STWH 					= "stairway_to_heaven";
+	String NETHERRACK_GRAVEL		= "netherrack_gravel";
+	String MEAN_VINE 				= "mean_vine";
+	
+	//Tree
 	String ELDER_SAPLING 			= "elder_sapling";
 	String ELDER_LEAVES 			= "elder_leaves";
 	String ELDER_PLANKS				= "elder_planks";
 	String ELDER_SLAB				= "elder_slab";
 	String ELDER_SLAB_DOUBLE		= "elder_slab_double";
 	String ELDER_LOG 				= "elder_log";
-	String NETHERRACK_GRAVEL		= "netherrack_gravel";
-	String MEAN_VINE 				= "mean_vine";
 
 	String HELLFAYAH_ORE 			= "hellfayah_ore";
 	String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";

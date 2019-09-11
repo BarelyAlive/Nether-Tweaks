@@ -5,9 +5,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldType;
 
-public class WorldTypeHellworld extends WorldType
+public class Hellworld extends WorldType
 {
-	public WorldTypeHellworld()
+	public Hellworld()
 	{
 		super("hellworld");
 	}
@@ -22,5 +22,10 @@ public class WorldTypeHellworld extends WorldType
 	public int getSpawnFuzz(final WorldServer world, final MinecraftServer server)
 	{
 		return 32;
+	}
+	
+	public static boolean isHellworld(World world)
+	{
+		return world.getWorldType() instanceof Hellworld;
 	}
 }

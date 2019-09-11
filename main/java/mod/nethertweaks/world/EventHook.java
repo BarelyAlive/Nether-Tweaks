@@ -64,7 +64,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldEvents
+public class EventHook
 {
 	public final static String key = "ntm.firstSpawn";
 
@@ -94,25 +94,26 @@ public class WorldEvents
 		{
 			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
 
-			switch (event.getFace()) {
-			case UP:
-				pos = pos.up();
-				break;
-			case NORTH:
-				pos = pos.north();
-				break;
-			case EAST:
-				pos = pos.east();
-				break;
-			case SOUTH:
-				pos = pos.south();
-				break;
-			case WEST:
-				pos = pos.west();
-				break;
-			case DOWN:
-				pos = pos.down();
-				break;
+			switch (event.getFace())
+			{
+				case UP:
+					pos = pos.up();
+					break;
+				case NORTH:
+					pos = pos.north();
+					break;
+				case EAST:
+					pos = pos.east();
+					break;
+				case SOUTH:
+					pos = pos.south();
+					break;
+				case WEST:
+					pos = pos.west();
+					break;
+				case DOWN:
+					pos = pos.down();
+					break;
 			}
 			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
 			world.spawnEntity(salt);
@@ -126,7 +127,7 @@ public class WorldEvents
 		IBlockState state = event.getState();
 		World world = event.getWorld();
 
-		if(world.getWorldType() instanceof WorldTypeHellworld)
+		if(!world.isRemote && Hellworld.isHellworld(world))
 			if(state.getMaterial() == Material.WATER && !Config.waterSources) event.setResult(Result.DENY);
 	}
 
@@ -135,7 +136,7 @@ public class WorldEvents
 		EntityPlayer player = event.player;
 		int range = 32;
 
-		if(player.world.getWorldType() instanceof WorldTypeHellworld) {
+		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
 			if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
@@ -235,7 +236,7 @@ public class WorldEvents
 			WorldSpawnLocation.setBonfireInfo(worldsave.getBonfireInfo());
 		}
 
-		if(event.getWorld().getWorldType() instanceof WorldTypeHellworld)
+		if(event.getWorld().getWorldType() instanceof Hellworld)
 		{
 			DimensionManager.unregisterDimension(1);
 			DimensionType.register("the_end", "_end", 1, WorldProviderEnd.class, true);
@@ -388,7 +389,7 @@ public class WorldEvents
 
 		if(player.dimension == 0)
 		{
-			if(!(player.world.getWorldType() instanceof WorldTypeHellworld)) return;
+			if(!(Hellworld.isHellworld(player.world))) return;
 			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key))
 			{
 				player.setPortal(player.getPosition());

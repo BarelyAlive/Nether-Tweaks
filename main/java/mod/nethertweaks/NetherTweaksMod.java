@@ -30,9 +30,9 @@ import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
-import mod.nethertweaks.world.WorldEvents;
+import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.WorldGeneratorNTM;
-import mod.nethertweaks.world.WorldTypeHellworld;
+import mod.nethertweaks.world.Hellworld;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
@@ -136,7 +136,7 @@ public class NetherTweaksMod
 	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 
 	public static File configDirectory;
-	public WorldType Hellworld = new WorldTypeHellworld();
+	public WorldType Hellworld = new Hellworld();
 
 	@Mod.EventHandler
 	public void PreInit(final FMLPreInitializationEvent event)
@@ -158,7 +158,7 @@ public class NetherTweaksMod
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 
-		MinecraftForge.EVENT_BUS.register(new WorldEvents());
+		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 		MinecraftForge.EVENT_BUS.register(this);
 
@@ -183,7 +183,7 @@ public class NetherTweaksMod
 	{
 		OreHandler.registerFurnaceRecipe();
 		//Mobs
-		if(Config.spawnWaterMobs) WorldEvents.addWaterMobs();
+		if(Config.spawnWaterMobs) EventHook.addWaterMobs();
 
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
