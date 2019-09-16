@@ -16,6 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDesert;
 
 public class ThirstStats {
@@ -44,6 +45,33 @@ public class ThirstStats {
 		lastThirstLevel = -1; // Trigger a refresh when this class is loaded.
 		resetStats();
 	}
+	
+	private float exhaustionMultiplier(final EntityPlayer player)
+	{
+		float exhaustMultiplier = Config.exhaustMultiplierDefault;
+
+		switch (player.dimension) {
+			case 0:
+				Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
+				
+				//if(biome.getDefaultTemperature() >= )
+					
+				if(player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert)
+					exhaustMultiplier *= Config.exhaustMultiplierDesert;
+				
+				if(!player.world.isDaytime())
+					exhaustMultiplier *= Config.exhaustMultiplierNighttime;
+				
+				break;
+			case -1:
+				exhaustMultiplier *= Config.exhaustMultiplierHell;
+				
+				break;
+			default:
+				break;
+		}
+		return exhaustMultiplier;
+	}
 
 	public void update(final EntityPlayer player) {
 		if (exhaustion > 5.0f) {
@@ -65,9 +93,8 @@ public class ThirstStats {
 		}
 
 		int ms = player.isRiding() ? 10 : movementSpeed;
-		float exhaustMultiplier = player.world.isDaytime() || player.dimension == -1 ? 1.0f : 0.9f;
-		exhaustMultiplier *= player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert ? Config.exhaustionMultiplierDesert : player.dimension == -1 ? Config.exhaustionMultiplierHell : Config.exhaustionMultiplierDefault;
-
+		float exhaustMultiplier = exhaustionMultiplier(player);
+		
 		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
 			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
 		else if (player.onGround) {

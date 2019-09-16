@@ -27,9 +27,10 @@ public class Config
 	public static int durabilityGIron 	 = 640;
 	public static int durabilityGDiamond = 5120;
 
-	public static float exhaustionMultiplierDefault = 1f;
-	public static float exhaustionMultiplierDesert = 2f;
-	public static float exhaustionMultiplierHell = 3f;
+	public static float exhaustMultiplierDefault = 1.0f;
+	public static float exhaustMultiplierNighttime = 0.9f;
+	public static float exhaustMultiplierDesert = 2.0f;
+	public static float exhaustMultiplierHell = 3.0f;
 
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
@@ -138,9 +139,10 @@ public class Config
 		durabilityGIron					= config.getInt("Durability for Iron Grabber", "Tweak", 640, 1, Integer.MAX_VALUE, "");
 		durabilityGDiamond				= config.getInt("Durability for Diamond Grabber", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
 
-		exhaustionMultiplierDefault		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 1f).getDouble();
-		exhaustionMultiplierDesert		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 2f).getDouble();
-		exhaustionMultiplierHell		= (float) config.get("Tweak", "Whick blocks should be tangible with the grabber?", 3f).getDouble();
+		exhaustMultiplierDefault		= (float) config.get("Tweak", "General thirst multiplier", 1f).getDouble();
+		exhaustMultiplierNighttime		= (float) config.get("Tweak", "Thirst multiplier at night", 0.9f).getDouble();
+		exhaustMultiplierDesert			= (float) config.get("Tweak", "Thirst mulplier for deserts", 2f).getDouble();
+		exhaustMultiplierHell			= (float) config.get("Tweak", "Thirst multiplier for the nether", 3f).getDouble();
 
 		nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
 		endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
