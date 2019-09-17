@@ -50,26 +50,16 @@ public class ThirstStats {
 	{
 		float exhaustMultiplier = Config.exhaustMultiplierDefault;
 
-		switch (player.dimension) {
-			case 0:
-				Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
+		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
+		
+		float temp = biome.getDefaultTemperature();
+		
+		if(temp > 0.8f)
+			exhaustMultiplier = Math.min(temp / 0.8f, 2.0f);
 				
-				//if(biome.getDefaultTemperature() >= )
-					
-				if(player.world.getBiomeForCoordsBody(player.getPosition()) instanceof BiomeDesert)
-					exhaustMultiplier *= Config.exhaustMultiplierDesert;
+		if(!player.world.isDaytime() && player.dimension == 0)
+			exhaustMultiplier *= Config.exhaustMultiplierNighttime;		
 				
-				if(!player.world.isDaytime())
-					exhaustMultiplier *= Config.exhaustMultiplierNighttime;
-				
-				break;
-			case -1:
-				exhaustMultiplier *= Config.exhaustMultiplierHell;
-				
-				break;
-			default:
-				break;
-		}
 		return exhaustMultiplier;
 	}
 
