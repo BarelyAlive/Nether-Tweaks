@@ -231,9 +231,7 @@ public class NTM implements IRecipeDefaults
 		registry.register("dirt", new ItemInfo(Items.WHEAT_SEEDS), getDropChance(0.7f), MeshType.STRING.getName());
 		registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
 		registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
-
-		registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
-		registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
+		registry.register("dirt", new ItemInfo(Items.BEETROOT_SEEDS), getDropChance(0.5f), MeshType.STRING.getName());
 
 		//SAND
 		registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getName());
@@ -346,11 +344,12 @@ public class NTM implements IRecipeDefaults
 				break;
 			}
 		}
+		
 		// Seeds
-		registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
 		registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
-		registry.register("dirt", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
 		registry.register("dirt", new ItemInfo(ItemHandler.SUGARCANE_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
+		registry.register("sand", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
+		registry.register("sand", new ItemInfo(ItemHandler.CACTUS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
 
 		getLeavesSapling().forEach((leaves, sapling) ->
 		{

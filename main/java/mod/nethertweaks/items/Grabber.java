@@ -3,7 +3,9 @@ package mod.nethertweaks.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.INames;
+import org.lwjgl.input.Keyboard;
+
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
@@ -17,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -41,10 +44,10 @@ public class Grabber extends ItemShears
 	public Grabber(final int durability, final ToolMaterial material)
 	{
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setNameFromMaterial(material);
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));
 	}
 
 	@Override
@@ -145,30 +148,17 @@ public class Grabber extends ItemShears
 	@Override
 	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
-				+ "Can be enchanted with fortune for more output when used for example on sheep");
-	}
-
-	private void setNameFromMaterial(final ToolMaterial material)
-	{
-		switch (material) {
-		case WOOD:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_WOOD);
-			break;
-		case GOLD:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_GOLD);
-			break;
-		case STONE:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_STONE);
-			break;
-		case IRON:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_IRON);
-			break;
-		case DIAMOND:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_DIAMOND);
-			break;
-		default:
-			break;
+		if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
+			tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
+					+ "Also serves as shears.");
 		}
+		else
+			tooltip.add("Hold [J] for more info!");
+		
+	}
+	
+	private String getName(final ToolMaterial m)
+	{
+		return "grabber_" + m.name();
 	}
 }

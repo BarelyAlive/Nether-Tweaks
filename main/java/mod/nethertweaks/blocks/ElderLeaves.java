@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -45,7 +45,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 		setTickRandomly(true);
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_LEAVES);
+		this.setRegistryName(NetherTweaksMod.MODID, Constants.ELDER_LEAVES);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setSoundType(SoundType.PLANT);

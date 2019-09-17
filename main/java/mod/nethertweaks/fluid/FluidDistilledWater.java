@@ -1,6 +1,6 @@
 package mod.nethertweaks.fluid;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.sfhcore.fluid.Fluid;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ public class FluidDistilledWater extends Fluid{
 
 	public FluidDistilledWater()
 	{
-		super(INames.DISTILLEDWATER, STILL, FLOW);
+		super(Constants.DISTILLEDWATER, STILL, FLOW);
 
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());

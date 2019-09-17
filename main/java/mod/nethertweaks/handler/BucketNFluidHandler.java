@@ -1,6 +1,6 @@
 package mod.nethertweaks.handler;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.DistilledWater;
 import mod.nethertweaks.blocks.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
@@ -12,7 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class BucketNFluidHandler implements INames
+public class BucketNFluidHandler
 {
 	//Fluids
 	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
@@ -46,8 +46,8 @@ public class BucketNFluidHandler implements INames
 	public static void registerBuckets()
 	{
 		if(BlocksItems.enableWoodBucket)
-			BucketHandler.addBucket("wood", "Wood", 505, 16, MODID, 0x80874633, TAB);
+			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TAB);
 		if(BlocksItems.enableStoneBucket)
-			BucketHandler.addBucket("stone", "Stone", -1, 16, MODID, 0x80778899, TAB);
+			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TAB);
 	}
 }

@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.handler.GuiHandler;
@@ -28,7 +28,7 @@ public class Freezer extends CubeContainerHorizontal
 
 	public Freezer()
 	{
-		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.FREEZER));
+		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, Constants.FREEZER));
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);

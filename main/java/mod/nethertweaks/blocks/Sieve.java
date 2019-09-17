@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
@@ -208,13 +208,13 @@ public class Sieve extends BlockContainer {
 
 		public static MeshType getMeshTypeByID(final String type) {
 			switch (type) {
-			case INames.MESH_STRING:
+			case Constants.MESH_STRING:
 				return STRING;
-			case INames.MESH_FLINT:
+			case Constants.MESH_FLINT:
 				return FLINT;
-			case INames.MESH_IRON:
+			case Constants.MESH_IRON:
 				return IRON;
-			case INames.MESH_DIAMOND:
+			case Constants.MESH_DIAMOND:
 				return DIAMOND;
 			case "idk":
 				return NO_RENDER;

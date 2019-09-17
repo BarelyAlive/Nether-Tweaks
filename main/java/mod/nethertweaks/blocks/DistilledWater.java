@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import net.minecraft.block.material.Material;
@@ -15,7 +15,7 @@ public class DistilledWater extends BlockFluidClassic
 	public DistilledWater()
 	{
 		super(BucketNFluidHandler.FLUIDDISTILLEDWATER, Material.WATER);
-		setRegistryName(NetherTweaksMod.MODID, INames.DISTILLEDWATER);
+		setRegistryName(NetherTweaksMod.MODID, Constants.DISTILLEDWATER);
 		setLightLevel(0);
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
 import mod.nethertweaks.handler.GuiHandler;
@@ -44,7 +44,7 @@ public class AshBonePile extends CubeContainerHorizontal
 	public static final PropertyBool LIT = PropertyBool.create("lit");
 
 	public AshBonePile() {
-		super(Material.SAND, new ResourceLocation(NetherTweaksMod.MODID, INames.ASH_BONE_PILE));
+		super(Material.SAND, new ResourceLocation(NetherTweaksMod.MODID, Constants.ASH_BONE_PILE));
 		setTickRandomly(true);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 		setHardness(0.8F);

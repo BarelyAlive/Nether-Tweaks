@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemChunk;
 import net.minecraft.item.Item;
@@ -90,7 +90,7 @@ public class OreHandler {
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
-				chunks.setRegistryName(INames.MODID, INames.CHUNK + "_" + mod_domain);
+				chunks.setRegistryName(Constants.MODID, Constants.CHUNK + "_" + mod_domain);
 				chunks.setCreativeTab(NetherTweaksMod.TABNTM);
 				chunks.setResult(mod_domain, entry.getKey());
 				mod_chunks.put(mod_domain, chunks);
@@ -111,7 +111,7 @@ public class OreHandler {
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(final ModelRegistryEvent event) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
-			ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(INames.MODID + ":chunk"));
+			ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(Constants.MODID + ":chunk"));
 	}
 
 	public static void registerFurnaceRecipe()

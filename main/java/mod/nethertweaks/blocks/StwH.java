@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.world.Hellworld;
@@ -33,7 +33,7 @@ public class StwH extends Block{
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);
 		setHardness(16.0F);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.STWH));
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, Constants.STWH));
 		setTickRandomly(true);
 	}
 

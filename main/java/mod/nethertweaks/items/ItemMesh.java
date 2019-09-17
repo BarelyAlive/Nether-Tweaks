@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.item.Item;
@@ -21,13 +21,13 @@ public class ItemMesh extends Item{
 	{
 		switch(NameHelper.getName(stack))
 		{
-		case INames.MESH_STRING:
+		case Constants.MESH_STRING:
 			return 15;
-		case INames.MESH_FLINT:
+		case Constants.MESH_FLINT:
 			return 7;
-		case INames.MESH_IRON:
+		case Constants.MESH_IRON:
 			return 14;
-		case INames.MESH_DIAMOND:
+		case Constants.MESH_DIAMOND:
 			return 10;
 		default:
 			return 0;

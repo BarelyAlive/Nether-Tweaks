@@ -1,6 +1,6 @@
 package mod.nethertweaks.handler;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.BlockSlabCommon;
@@ -34,7 +34,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 
-public class BlockHandler implements INames
+public class BlockHandler
 {
 	//Tile Entity
 	public static final Block ASH_BONE_PILE		   = new AshBonePile();
@@ -46,37 +46,37 @@ public class BlockHandler implements INames
 	public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
 
 	//Sieves
-	public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, INames.STONE_SIEVE);
+	public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, Constants.STONE_SIEVE);
 
-	public static final Block OAK_SIEVE			   = new Sieve(Material.WOOD, INames.OAK_SIEVE);
-	public static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD, INames.BIRCH_SIEVE);
-	public static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD, INames.SPRUCE_SIEVE);
-	public static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD, INames.JUNGLE_SIEVE);
-	public static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD, INames.ACACIA_SIEVE);
-	public static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD, INames.DARK_OAK_SIEVE);
-	public static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD, INames.ELDER_SIEVE);
+	public static final Block OAK_SIEVE			   = new Sieve(Material.WOOD, Constants.OAK_SIEVE);
+	public static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD, Constants.BIRCH_SIEVE);
+	public static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD, Constants.SPRUCE_SIEVE);
+	public static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD, Constants.JUNGLE_SIEVE);
+	public static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD, Constants.ACACIA_SIEVE);
+	public static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD, Constants.DARK_OAK_SIEVE);
+	public static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD, Constants.ELDER_SIEVE);
 
 	//Barrels
-	public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, INames.STONE_BARREL);
+	public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, Constants.STONE_BARREL);
 
-	public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD, INames.OAK_BARREL);
-	public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, INames.BIRCH_BARREL);
-	public static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD, INames.SPRUCE_BARREL);
-	public static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD, INames.JUNGLE_BARREL);
-	public static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD, INames.ACACIA_BARREL);
-	public static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD, INames.DARK_OAK_BARREL);
-	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, INames.ELDER_BARREL);
+	public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD, Constants.OAK_BARREL);
+	public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, Constants.BIRCH_BARREL);
+	public static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD, Constants.SPRUCE_BARREL);
+	public static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD, Constants.JUNGLE_BARREL);
+	public static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD, Constants.ACACIA_BARREL);
+	public static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD, Constants.DARK_OAK_BARREL);
+	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, Constants.ELDER_BARREL);
 
 	//Blocks
-	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, TAB, new ResourceLocation(MODID, INames.DUST));
+	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.DUST));
 	public static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(MODID, INames.STONE_DOOR), 30.0F, 2.0F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(MODID, INames.ELDER_DOOR), 15.0F, 2.0F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.HELLFAYAH_ORE));
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.BLOCK_OF_HELLFAYAH));
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, TAB, new ResourceLocation(MODID, INames.BLOCK_OF_SALT));	
+	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR), 30.0F, 2.0F);
+	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
+	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
+	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));	
 	
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
@@ -84,8 +84,8 @@ public class BlockHandler implements INames
 	public static final Block ELDER_PLANKS 		   = new ElderPlanks();
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
-	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(INames.ELDER_SLAB, Material.WOOD).setCreativeTab(TAB).setResistance(10.0F).setHardness(2.0F);
-	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(INames.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TAB).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
 
 	public static void init()
 	{

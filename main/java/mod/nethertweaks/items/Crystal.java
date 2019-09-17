@@ -2,17 +2,17 @@ package mod.nethertweaks.items;
 
 import java.util.List;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class Crystal extends Item implements INames{
-
+public class Crystal extends Item
+{
 	public Crystal(final String name) {
-		setCreativeTab(TAB);
-		setRegistryName(MODID, name);
+		setCreativeTab(Constants.TAB);
+		setRegistryName(Constants.MODID, name);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class Crystal extends Item implements INames{
 		String name = stack.getItem().getRegistryName().getResourcePath();
 
 		switch (name) {
-		case CRYSTAL_OF_LIGHT:
+		case Constants.CRYSTAL_OF_LIGHT:
 			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
 			break;
 		default:

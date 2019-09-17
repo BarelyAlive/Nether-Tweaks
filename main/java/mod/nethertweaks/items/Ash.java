@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -25,7 +25,7 @@ public class Ash extends Item
 {
 	public Ash() {
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ASH));
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, Constants.ASH));
 	}
 
 	@Override

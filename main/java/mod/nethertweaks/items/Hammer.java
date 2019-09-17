@@ -16,11 +16,11 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
-public class HammerBase extends ItemTool implements IHammer  {
+public class Hammer extends ItemTool implements IHammer  {
 
 	private int miningLevel;
 
-	public HammerBase(final int maxUses, final ToolMaterial material)
+	public Hammer(final int maxUses, final ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
 		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));

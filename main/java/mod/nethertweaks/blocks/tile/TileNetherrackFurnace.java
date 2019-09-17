@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 public class TileNetherrackFurnace extends TileInventory
 {
 	public TileNetherrackFurnace() {
-		super(2, INames.TE_NETHERRACKFURNACE);
+		super(2, Constants.TE_NETHERRACKFURNACE);
 		setMaxworkTime(Config.burnTimeFurnace);
 	}
 

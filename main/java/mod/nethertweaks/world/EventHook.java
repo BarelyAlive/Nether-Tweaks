@@ -392,7 +392,7 @@ public class EventHook
 
 		if(player.dimension == 0)
 		{
-			if(!(Hellworld.isHellworld(player.world))) return;
+			if(!Hellworld.isHellworld(player.world)) return;
 			if(!player.getEntityData().hasKey(KEY) || !player.getEntityData().getBoolean(KEY))
 			{
 				player.setPortal(player.getPosition());

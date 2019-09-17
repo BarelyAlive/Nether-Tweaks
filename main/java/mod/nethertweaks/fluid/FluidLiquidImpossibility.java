@@ -1,6 +1,6 @@
 package mod.nethertweaks.fluid;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.fluid.Fluid;
 import net.minecraft.init.SoundEvents;
@@ -15,7 +15,7 @@ public class FluidLiquidImpossibility extends Fluid{
 
 	public FluidLiquidImpossibility()
 	{
-		super(INames.LIQUIDIMPOSSIBILITY, STILL, FLOW);
+		super(Constants.LIQUIDIMPOSSIBILITY, STILL, FLOW);
 
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);

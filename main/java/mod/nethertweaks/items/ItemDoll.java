@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import mod.sfhcore.helper.NameHelper;
@@ -26,7 +26,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-public class ItemDoll extends Item implements INames
+public class ItemDoll extends Item
 {
 	public ItemDoll(final String type)
 	{
@@ -49,82 +49,82 @@ public class ItemDoll extends Item implements INames
 		String name = NameHelper.getName(stack);
 
 		switch (name) {
-		case DOLL_BAT:
+		case Constants.DOLL_BAT:
 			EntityBat bat = new EntityBat(world);
 			bat.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(bat);
-		case DOLL_CHICKEN:
+		case Constants.DOLL_CHICKEN:
 			EntityChicken chick = new EntityChicken(world);
 			chick.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(chick);
-		case DOLL_COW:
+		case Constants.DOLL_COW:
 			EntityCow cow = new EntityCow(world);
 			cow.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(cow);
-		case DOLL_DONKEY:
+		case Constants.DOLL_DONKEY:
 			EntityDonkey donk = new EntityDonkey(world);
 			donk.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(donk);
-		case DOLL_HORSE:
+		case Constants.DOLL_HORSE:
 			EntityHorse horst = new EntityHorse(world);
 			horst.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(horst);
-		case DOLL_RED_MOOSHROOM:
+		case Constants.DOLL_RED_MOOSHROOM:
 			EntityMooshroom moo = new EntityMooshroom(world);
 			moo.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(moo);
-		case DOLL_MULE:
+		case Constants.DOLL_MULE:
 			EntityMule mule = new EntityMule(world);
 			mule.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(mule);
-		case DOLL_OCELOT:
+		case Constants.DOLL_OCELOT:
 			EntityOcelot revolver_ocelot = new EntityOcelot(world);
 			revolver_ocelot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(revolver_ocelot);
-		case DOLL_PARROT:
+		case Constants.DOLL_PARROT:
 			EntityParrot parrot = new EntityParrot(world);
 			parrot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(parrot);
-		case DOLL_RABBIT:
+		case Constants.DOLL_RABBIT:
 			EntityRabbit rabbit = new EntityRabbit(world);
 			rabbit.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(rabbit);
-		case DOLL_SHEEP:
+		case Constants.DOLL_SHEEP:
 			EntitySheep sheep = new EntitySheep(world);
 			sheep.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(sheep);
-		case DOLL_LLAMA:
+		case Constants.DOLL_LLAMA:
 			EntityLlama llama = new EntityLlama(world);
 			llama.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(llama);
-		case DOLL_POLAR_BEAR:
+		case Constants.DOLL_POLAR_BEAR:
 			EntityPolarBear pobear = new EntityPolarBear(world);
 			pobear.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(pobear);
-		case DOLL_WOLF:
+		case Constants.DOLL_WOLF:
 			EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(wolf);
-		case DOLL_VILLAGER:
+		case Constants.DOLL_VILLAGER:
 			EntityVillager derp = new EntityVillager(world);
 			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(derp);
-		case DOLL_PIG:
+		case Constants.DOLL_PIG:
 			EntityPig pig = new EntityPig(world);
 			pig.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 

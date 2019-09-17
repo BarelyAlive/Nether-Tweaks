@@ -2,14 +2,14 @@ package mod.nethertweaks.blocks;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.tile.TileCrucibleStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class CrucibleStone extends CrucibleBase implements INames
+public class CrucibleStone extends CrucibleBase
 {
 	private boolean fired;
 
@@ -18,7 +18,7 @@ public class CrucibleStone extends CrucibleBase implements INames
 	}
 
 	public CrucibleStone(final boolean fired) {
-		super((fired ? "" : "unfired_") + CRUCIBLE, Material.ROCK);
+		super((fired ? "" : "unfired_") + Constants.CRUCIBLE, Material.ROCK);
 		setHardness(2.0f);
 		this.fired = fired;
 

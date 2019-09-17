@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.nethertweaks.handler.GuiHandler;
@@ -38,7 +38,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 
 	public NetherrackFurnace()
 	{
-		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.NETHERRACK_FURNACE));
+		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, Constants.NETHERRACK_FURNACE));
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISBURNING, false));
 		setResistance(17.5F);
 		setHardness(3.5F);

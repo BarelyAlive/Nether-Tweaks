@@ -2,7 +2,7 @@ package mod.nethertweaks.items;
 
 import java.util.List;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemFlintAndSteel;
@@ -13,7 +13,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
 
 	public FlintAndBlaze()
 	{
-		this.setRegistryName(NetherTweaksMod.MODID, INames.FLINT_N_BLAZE);
+		this.setRegistryName(NetherTweaksMod.MODID, Constants.FLINT_N_BLAZE);
 		setMaxStackSize(1);
 		setMaxDamage(256);
 		setCreativeTab(NetherTweaksMod.TABNTM);

@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.common.logic.ThirstStats;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
@@ -25,7 +25,7 @@ public class Canteen extends CustomItem
 {
 	public Canteen ()
 	{
-		super(1, NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, INames.CANTEEN));
+		super(1, NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, Constants.CANTEEN));
 		setMaxStackSize(1);
 		setMaxDamage(3);
 	}

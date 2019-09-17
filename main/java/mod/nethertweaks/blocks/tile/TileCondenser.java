@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -50,7 +50,7 @@ public class TileCondenser extends TileFluidInventory
 	}
 
 	public TileCondenser() {
-		super(3, INames.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
+		super(3, Constants.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
 	}
 

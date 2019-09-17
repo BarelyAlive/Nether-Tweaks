@@ -1,6 +1,6 @@
 package mod.nethertweaks.handler;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Ash;
@@ -9,7 +9,7 @@ import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.Crystal;
 import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.Grabber;
-import mod.nethertweaks.items.HammerBase;
+import mod.nethertweaks.items.Hammer;
 import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
@@ -25,62 +25,60 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemHandler implements INames
+public class ItemHandler
 {
 	//SEEDS
-	public static final Item MUSHROOM_SPORES  	 = new Seed(INames.MUSHROOM_SPORES);
-	public static final Item GRASS_SEEDS	  	 = new Seed(INames.GRASS_SEEDS);
-	public static final Item CACTUS_SEEDS	  	 = new Seed(INames.CACTUS_SEEDS);
-	public static final Item SUGARCANE_SEEDS  	 = new Seed(INames.SUGARCANE_SEEDS);
+	public static final Item MUSHROOM_SPORES  	 = new Seed(Constants.MUSHROOM_SPORES);
+	public static final Item GRASS_SEEDS	  	 = new Seed(Constants.GRASS_SEEDS);
+	public static final Item CACTUS_SEEDS	  	 = new Seed(Constants.CACTUS_SEEDS);
+	public static final Item SUGARCANE_SEEDS  	 = new Seed(Constants.SUGARCANE_SEEDS);
 
 	//CRYSTALS
-	public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(INames.CRYSTAL_OF_LIGHT);
+	public static final Item CRYSTAL_OF_LIGHT 	 = new Crystal(Constants.CRYSTAL_OF_LIGHT);
 
 	//MESHES
-	public static final Item MESH_STRING	  	 = new ItemMesh(INames.MESH_STRING);
-	public static final Item MESH_FLINT		  	 = new ItemMesh(INames.MESH_FLINT);
-	public static final Item MESH_IRON		  	 = new ItemMesh(INames.MESH_IRON);
-	public static final Item MESH_DIAMOND	  	 = new ItemMesh(INames.MESH_DIAMOND);
+	public static final Item MESH_STRING	  	 = new ItemMesh(Constants.MESH_STRING);
+	public static final Item MESH_FLINT		  	 = new ItemMesh(Constants.MESH_FLINT);
+	public static final Item MESH_IRON		  	 = new ItemMesh(Constants.MESH_IRON);
+	public static final Item MESH_DIAMOND	  	 = new ItemMesh(Constants.MESH_DIAMOND);
 
 	//DOLLS
-	public static final Item DOLL_BAT		  	 = new ItemDoll(INames.DOLL_BAT);
-	public static final Item DOLL_CHICKEN	  	 = new ItemDoll(INames.DOLL_CHICKEN);
-	public static final Item DOLL_COW		  	 = new ItemDoll(INames.DOLL_COW);
-	public static final Item DOLL_DONKEY	  	 = new ItemDoll(INames.DOLL_DONKEY);
-	public static final Item DOLL_HORSE		  	 = new ItemDoll(INames.DOLL_HORSE);
-	public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll(INames.DOLL_RED_MOOSHROOM);
-	public static final Item DOLL_MULE		  	 = new ItemDoll(INames.DOLL_MULE);
-	public static final Item DOLL_OCELOT	  	 = new ItemDoll(INames.DOLL_OCELOT);
-	public static final Item DOLL_PARROT	  	 = new ItemDoll(INames.DOLL_PARROT);
-	public static final Item DOLL_RABBIT	  	 = new ItemDoll(INames.DOLL_RABBIT);
-	public static final Item DOLL_SHEEP		  	 = new ItemDoll(INames.DOLL_SHEEP);
-	public static final Item DOLL_LLAMA		  	 = new ItemDoll(INames.DOLL_LLAMA);
-	public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll(INames.DOLL_POLAR_BEAR);
-	public static final Item DOLL_WOLF		  	 = new ItemDoll(INames.DOLL_WOLF);
-	public static final Item DOLL_VILLAGER	  	 = new ItemDoll(INames.DOLL_VILLAGER);
-	public static final Item DOLL_PIG		  	 = new ItemDoll(INames.DOLL_PIG);
+	public static final Item DOLL_BAT		  	 = new ItemDoll(Constants.DOLL_BAT);
+	public static final Item DOLL_CHICKEN	  	 = new ItemDoll(Constants.DOLL_CHICKEN);
+	public static final Item DOLL_COW		  	 = new ItemDoll(Constants.DOLL_COW);
+	public static final Item DOLL_DONKEY	  	 = new ItemDoll(Constants.DOLL_DONKEY);
+	public static final Item DOLL_HORSE		  	 = new ItemDoll(Constants.DOLL_HORSE);
+	public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll(Constants.DOLL_RED_MOOSHROOM);
+	public static final Item DOLL_MULE		  	 = new ItemDoll(Constants.DOLL_MULE);
+	public static final Item DOLL_OCELOT	  	 = new ItemDoll(Constants.DOLL_OCELOT);
+	public static final Item DOLL_PARROT	  	 = new ItemDoll(Constants.DOLL_PARROT);
+	public static final Item DOLL_RABBIT	  	 = new ItemDoll(Constants.DOLL_RABBIT);
+	public static final Item DOLL_SHEEP		  	 = new ItemDoll(Constants.DOLL_SHEEP);
+	public static final Item DOLL_LLAMA		  	 = new ItemDoll(Constants.DOLL_LLAMA);
+	public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll(Constants.DOLL_POLAR_BEAR);
+	public static final Item DOLL_WOLF		  	 = new ItemDoll(Constants.DOLL_WOLF);
+	public static final Item DOLL_VILLAGER	  	 = new ItemDoll(Constants.DOLL_VILLAGER);
+	public static final Item DOLL_PIG		  	 = new ItemDoll(Constants.DOLL_PIG);
 
 	//PEBBLES
-	public static final Item PEBBLE_STONE	  	 = new ItemPebble(INames.PEBBLE_STONE);
-	public static final Item PEBBLE_GRANITE	  	 = new ItemPebble(INames.PEBBLE_GRANITE);
-	public static final Item PEBBLE_ANDESITE  	 = new ItemPebble(INames.PEBBLE_DIORITE);
-	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(INames.PEBBLE_ANDESITE);
+	public static final Item PEBBLE_STONE	  	 = new ItemPebble(Constants.PEBBLE_STONE);
+	public static final Item PEBBLE_GRANITE	  	 = new ItemPebble(Constants.PEBBLE_GRANITE);
+	public static final Item PEBBLE_ANDESITE  	 = new ItemPebble(Constants.PEBBLE_DIORITE);
+	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, TAB, new ResourceLocation(MODID, INames.WOOD_CHIPPINGS));
-
-	//Weapons
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
 
 	//Tools
 	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -89,22 +87,22 @@ public class ItemHandler implements INames
 	public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
 	public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
 
-	public static final Item HAMMER_WOOD	  	 = new HammerBase(Config.durabilityHWood, ToolMaterial.WOOD);
-	public static final Item HAMMER_GOLD 	  	 = new HammerBase(Config.durabilityHGold, ToolMaterial.GOLD);
-	public static final Item HAMMER_STONE	  	 = new HammerBase(Config.durabilityHStone, ToolMaterial.STONE);
-	public static final Item HAMMER_IRON 	  	 = new HammerBase(Config.durabilityHIron, ToolMaterial.IRON);
-	public static final Item HAMMER_DIAMOND	  	 = new HammerBase(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+	public static final Item HAMMER_WOOD	  	 = new Hammer(Config.durabilityHWood, ToolMaterial.WOOD);
+	public static final Item HAMMER_GOLD 	  	 = new Hammer(Config.durabilityHGold, ToolMaterial.GOLD);
+	public static final Item HAMMER_STONE	  	 = new Hammer(Config.durabilityHStone, ToolMaterial.STONE);
+	public static final Item HAMMER_IRON 	  	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
+	public static final Item HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(MODID, INames.COOKED_JERKY).setCreativeTab(TAB);
+	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TAB);
 	public static final Item CANTEEN	 	  	 = new Canteen();
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(TAB, new ResourceLocation(MODID, ELDER_DOOR));
-	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(INames.MODID, "item_" + INames.ELDER_SLAB);
+	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
+	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
+	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, "item_" + Constants.ELDER_SLAB);
 
 	public static void init()
 	{
@@ -126,8 +124,6 @@ public class ItemHandler implements INames
 		if(BlocksItems.enablePowderOfLight) 	Registry.registerItem(POWDER_OF_LIGHT);
 		if(BlocksItems.enableAsh) 				Registry.registerItem(ASH);
 		if(BlocksItems.enableWoodChippings)		Registry.registerItem(WOOD_CHIPPINGS);
-
-		//Weapons
 		if(BlocksItems.enableCoiledSword)		Registry.registerItem(COILED_SWORD);
 
 		//Seeds

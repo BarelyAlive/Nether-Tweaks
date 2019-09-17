@@ -135,7 +135,7 @@ public class ThirstStats {
 		
 		//Night multiplier nur da anwenden wo ein Tag/Nacht-Rhytmus vorhanden ist
 		if(!player.world.isDaytime() && player.world.provider.hasSkyLight())
-			exhaustMultiplier *= Config.exhaustMultiplierNighttime;		
+			exhaustMultiplier *= Config.exhaustMultiplierNighttime;
 				
 		return exhaustMultiplier;
 	}

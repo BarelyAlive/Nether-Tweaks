@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.config.BlocksItems;
@@ -29,7 +29,7 @@ public class Condenser extends CubeContainerHorizontal
 
 	public Condenser()
 	{
-		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, INames.CONDENSER));
+		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, Constants.CONDENSER));
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);

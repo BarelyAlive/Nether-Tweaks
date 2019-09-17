@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
@@ -33,7 +33,7 @@ public class TileFreezer extends TileFluidInventory
 	}
 
 	public TileFreezer() {
-		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
+		super(3, Constants.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
 		setMaxworkTime(Config.freezeTimeFreezer);
 	}
 

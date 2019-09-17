@@ -7,7 +7,7 @@ import java.util.Random;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.WorldGenElderTree;
 import mod.sfhcore.proxy.IVariantProvider;
@@ -38,7 +38,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 		setSoundType(SoundType.PLANT);
 		setDefaultState(blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		this.setRegistryName(NetherTweaksMod.MODID, INames.ELDER_SAPLING);
+		this.setRegistryName(NetherTweaksMod.MODID, Constants.ELDER_SAPLING);
 	}
 
 	@Override
