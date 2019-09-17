@@ -27,8 +27,6 @@ public class Config
 
 	public static float exhaustMultiplierDefault = 1.0f;
 	public static float exhaustMultiplierNighttime = 0.9f;
-	public static float exhaustMultiplierDesert = 2.0f;
-	public static float exhaustMultiplierHell = 3.0f;
 
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
@@ -78,6 +76,8 @@ public class Config
 	public static boolean spawnSlimes 	 = true;
 	public static boolean spawnWaterMobs = true;
 
+	//Mechanics
+	public static boolean enableThirst	   = true;
 	public static boolean useMetricSystem  = true;
 	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
@@ -139,11 +139,10 @@ public class Config
 
 		exhaustMultiplierDefault		= (float) config.get("Tweak", "General thirst multiplier", 1f).getDouble();
 		exhaustMultiplierNighttime		= (float) config.get("Tweak", "Thirst multiplier at night", 0.9f).getDouble();
-		exhaustMultiplierDesert			= (float) config.get("Tweak", "Thirst mulplier for deserts", 2f).getDouble();
-		exhaustMultiplierHell			= (float) config.get("Tweak", "Thirst multiplier for the nether", 3f).getDouble();
 
 		enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
 
+		enableThirst					= config.get("Mechanics", "Enable thirst?", true).getBoolean();
 		useMetricSystem					= config.get("Mechanics", "Use metric System?", true, "").getBoolean();
 		enableTeleport					= config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
 		waterSources					= config.get("Mechanics", "Allow water sources?", false, "").getBoolean();

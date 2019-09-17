@@ -46,7 +46,10 @@ public class ThirstStats {
 		resetStats();
 	}
 
-	public void update(final EntityPlayer player) {
+	public void update(final EntityPlayer player)
+	{
+		if(!Config.enableThirst) return;
+		
 		if (exhaustion > 5.0f) {
 			exhaustion -= 5.0f;
 			if (saturation > 0.0f)

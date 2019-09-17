@@ -1,6 +1,7 @@
 package mod.nethertweaks.client.gui;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.config.Config;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -16,7 +17,10 @@ public class GuiThirstBar {
 
 	public static ResourceLocation THIRST_BAR_ICONS = new ResourceLocation("nethertweaksmod:textures/gui/thirst_bar.png");
 
-	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent event) {
+	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent event)
+	{
+		if(!Config.enableThirst) return;
+		
 		if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
 			GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
 			ScaledResolution scaledRes = event.getResolution();

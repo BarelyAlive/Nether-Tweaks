@@ -365,7 +365,10 @@ public class EventHook
 	}
 
 	@SubscribeEvent
-	public void onFinishUsingItem(final LivingEntityUseItemEvent.Finish event) {
+	public void onFinishUsingItem(final LivingEntityUseItemEvent.Finish event)
+	{
+		if (!Config.enableThirst) return;
+		
 		if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
 			ItemStack eventItem = event.getItem();
 			// have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
