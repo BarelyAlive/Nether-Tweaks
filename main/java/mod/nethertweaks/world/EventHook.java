@@ -66,7 +66,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EventHook
 {
-	public final static String key = "ntm.firstSpawn";
+	public final static String KEY = "ntm.firstSpawn";
 
 	//HELLWORLD
 	@SubscribeEvent
@@ -390,10 +390,10 @@ public class EventHook
 		if(player.dimension == 0)
 		{
 			if(!(Hellworld.isHellworld(player.world))) return;
-			if(!player.getEntityData().hasKey(key) || !player.getEntityData().getBoolean(key))
+			if(!player.getEntityData().hasKey(KEY) || !player.getEntityData().getBoolean(KEY))
 			{
 				player.setPortal(player.getPosition());
-				player.getEntityData().setBoolean(key, true);
+				player.getEntityData().setBoolean(KEY, true);
 			}
 			player.changeDimension(-1);
 		}

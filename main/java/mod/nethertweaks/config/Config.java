@@ -9,8 +9,6 @@ import net.minecraftforge.common.config.Configuration;
 public class Config
 {
 	//int
-	public static int endDim  = -1;
-	public static int nethDim = -1;
 	public static int burnTimeFurnace 		 = 1600;
 	public static int burnTimeHellfayah 	 = 12800;
 	public static int burnTimeHellfayahBlock = 128000;
@@ -144,8 +142,6 @@ public class Config
 		exhaustMultiplierDesert			= (float) config.get("Tweak", "Thirst mulplier for deserts", 2f).getDouble();
 		exhaustMultiplierHell			= (float) config.get("Tweak", "Thirst multiplier for the nether", 3f).getDouble();
 
-		nethDim 						= config.get("World", "To which dimension shall the nether portal send you?", -1).getInt();
-		endDim 							= config.get("World", "To which Dimension shall an end portal send you back?", -1).getInt();
 		enableSaltRecipe				= config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
 
 		useMetricSystem					= config.get("Mechanics", "Use metric System?", true, "").getBoolean();

@@ -5,6 +5,7 @@ import java.util.Random;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.world.Hellworld;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -58,8 +59,13 @@ public class StwH extends Block{
 
 		if (world.provider.getDimension() != 1)
 			playerIn.changeDimension(1);
-		else if (world.provider.getDimension() == 1)
-			playerIn.changeDimension(Config.endDim);
+		else if (world.provider.getDimension() == 1) {
+			if (Hellworld.isHellworld(world)) {
+				playerIn.changeDimension(-1);
+			}
+			else
+				playerIn.changeDimension(0);
+		}
 		return true;
 	}
 

@@ -45,23 +45,6 @@ public class ThirstStats {
 		lastThirstLevel = -1; // Trigger a refresh when this class is loaded.
 		resetStats();
 	}
-	
-	private float exhaustionMultiplier(final EntityPlayer player)
-	{
-		float exhaustMultiplier = Config.exhaustMultiplierDefault;
-
-		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
-		
-		float temp = biome.getDefaultTemperature();
-		
-		if(temp > 0.8f)
-			exhaustMultiplier = Math.min(temp / 0.8f, 2.0f);
-				
-		if(!player.world.isDaytime() && player.dimension == 0)
-			exhaustMultiplier *= Config.exhaustMultiplierNighttime;		
-				
-		return exhaustMultiplier;
-	}
 
 	public void update(final EntityPlayer player) {
 		if (exhaustion > 5.0f) {
@@ -136,6 +119,22 @@ public class ThirstStats {
 //			thirstLevel = Math.max(thirstLevel - 1, 0);
 //		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
 //			thirstLevel = Math.min(thirstLevel + 1, 20);
+	}
+	
+	private float exhaustionMultiplier(final EntityPlayer player)
+	{
+		float exhaustMultiplier = Config.exhaustMultiplierDefault;
+		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());		
+		float temp = biome.getDefaultTemperature();
+		
+		if(temp > 0.8f)
+			exhaustMultiplier *= Math.min(temp / 0.8f, 2.0f);
+		
+		//Night multiplier nur da anwenden wo ein Tag/Nacht-Rhytmus vorhanden ist
+		if(!player.world.isDaytime() && player.world.provider.hasSkyLight())
+			exhaustMultiplier *= Config.exhaustMultiplierNighttime;		
+				
+		return exhaustMultiplier;
 	}
 
 	public void addStats(final int heal, final float sat) {
