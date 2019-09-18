@@ -2,6 +2,7 @@ package mod.nethertweaks.items;
 
 import javax.annotation.Nonnull;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.entities.ProjectileStone;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +19,8 @@ public class ItemPebble extends Item
 {
 	public ItemPebble(final String type)
 	{
-		this.setRegistryName(NetherTweaksMod.MODID, type);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		this.setRegistryName(Constants.MODID, type);
+		setCreativeTab(NetherTweaksMod.TAB);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class Canteen extends CustomItem
 {
 	public Canteen ()
 	{
-		super(1, NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, Constants.CANTEEN));
+		super(1, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.CANTEEN));
 		setMaxStackSize(1);
 		setMaxDamage(3);
 	}

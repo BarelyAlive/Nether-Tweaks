@@ -1,6 +1,7 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Ash;
@@ -67,18 +68,18 @@ public class ItemHandler
 	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
 
 	//Tools
 	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -96,12 +97,12 @@ public class ItemHandler
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TAB);
+	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(NetherTweaksMod.TAB);
 	public static final Item CANTEEN	 	  	 = new Canteen();
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
+	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
+	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
 	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, "item_" + Constants.ELDER_SLAB);
 
 	public static void init()

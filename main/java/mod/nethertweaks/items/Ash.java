@@ -24,8 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Ash extends Item
 {
 	public Ash() {
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, Constants.ASH));
+		setCreativeTab(NetherTweaksMod.TAB);
+		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
 	}
 
 	@Override

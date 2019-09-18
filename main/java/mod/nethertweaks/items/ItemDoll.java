@@ -30,8 +30,8 @@ public class ItemDoll extends Item
 {
 	public ItemDoll(final String type)
 	{
-		setRegistryName(NetherTweaksMod.MODID, type);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setRegistryName(Constants.MODID, type);
+		setCreativeTab(NetherTweaksMod.TAB);
 	}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {

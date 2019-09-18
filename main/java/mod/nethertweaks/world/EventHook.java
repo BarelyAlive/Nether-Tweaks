@@ -73,7 +73,7 @@ public class EventHook
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
 	{
 		boolean activated = false;
-		BlockPos clicked = event.getPos();
+		BlockPos pos = event.getPos();
 		ItemStack heldItem = event.getItemStack();
 		World world = event.getEntity().getEntityWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
@@ -85,14 +85,14 @@ public class EventHook
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
 
-		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
+		if (world.getBlockState(pos).getBlock().onBlockActivated(world, pos, world.getBlockState(pos), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
 			event.setCanceled(true);
 		}
 		if (!activated)
 		{
-			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
+			pos.add(0.5D, 0.5D, 0.5D);
 
 			switch (event.getFace())
 			{
@@ -128,7 +128,8 @@ public class EventHook
 		World world = event.getWorld();
 
 		if(!world.isRemote && Hellworld.isHellworld(world))
-			if(state.getMaterial() == Material.WATER && !Config.waterSources) event.setResult(Result.DENY);
+			if(state.getMaterial() == Material.WATER && !Config.waterSources)
+				event.setResult(Result.DENY);
 	}
 
 	@SubscribeEvent
@@ -138,7 +139,7 @@ public class EventHook
 
 		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
-			if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
+			if (!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
 				BlockPos posplayer = player.getPosition();
 				int yDifferenz = 0;
@@ -152,7 +153,7 @@ public class EventHook
 			}
 			else
 			{
-				PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
+				PlayerPosition pos = WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
 			}

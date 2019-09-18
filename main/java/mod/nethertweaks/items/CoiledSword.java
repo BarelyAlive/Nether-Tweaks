@@ -9,8 +9,8 @@ public class CoiledSword extends Item{
 
 	public CoiledSword() {
 		super();
-		setRegistryName(NetherTweaksMod.MODID, Constants.COILED_SWORD);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setRegistryName(Constants.MODID, Constants.COILED_SWORD);
+		setCreativeTab(NetherTweaksMod.TAB);
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}

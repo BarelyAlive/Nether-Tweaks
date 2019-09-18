@@ -44,11 +44,11 @@ public class AshBonePile extends CubeContainerHorizontal
 	public static final PropertyBool LIT = PropertyBool.create("lit");
 
 	public AshBonePile() {
-		super(Material.SAND, new ResourceLocation(NetherTweaksMod.MODID, Constants.ASH_BONE_PILE));
+		super(Material.SAND, new ResourceLocation(Constants.MODID, Constants.ASH_BONE_PILE));
 		setTickRandomly(true);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 		setHardness(0.8F);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(NetherTweaksMod.TAB);
 		setSoundType(SoundType.SAND);
 	}
 

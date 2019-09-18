@@ -28,11 +28,11 @@ public class Freezer extends CubeContainerHorizontal
 
 	public Freezer()
 	{
-		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, Constants.FREEZER));
+		super(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.FREEZER));
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(NetherTweaksMod.TAB);
 	}
 
 	@Override

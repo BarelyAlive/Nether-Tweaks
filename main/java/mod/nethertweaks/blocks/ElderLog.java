@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
-		super(Material.WOOD, new ResourceLocation(NetherTweaksMod.MODID, Constants.ELDER_LOG));
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		super(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_LOG));
+		setCreativeTab(NetherTweaksMod.TAB);
 		setHardness(2);
 		setResistance(10);
 		setSoundType(SoundType.WOOD);

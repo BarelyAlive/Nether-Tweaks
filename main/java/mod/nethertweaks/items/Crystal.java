@@ -3,6 +3,7 @@ package mod.nethertweaks.items;
 import java.util.List;
 
 import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 public class Crystal extends Item
 {
 	public Crystal(final String name) {
-		setCreativeTab(Constants.TAB);
+		setCreativeTab(NetherTweaksMod.TAB);
 		setRegistryName(Constants.MODID, name);
 	}
 

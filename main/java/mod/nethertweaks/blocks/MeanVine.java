@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 public class MeanVine extends BlockVine{
 
 	public MeanVine(){
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(NetherTweaksMod.MODID, Constants.MEAN_VINE);
+		setCreativeTab(NetherTweaksMod.TAB);
+		setRegistryName(Constants.MODID, Constants.MEAN_VINE);
 	}
 
 	@Override

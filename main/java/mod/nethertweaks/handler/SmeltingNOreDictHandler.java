@@ -20,12 +20,13 @@ public class SmeltingNOreDictHandler {
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte
-		if(BlocksItems.enableJerky) 								 	GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
-		if(BlocksItems.enableElderTree) 								GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(BlocksItems.enableCrystalLight)						 	GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
-		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah) GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
-		if(BlocksItems.enableCrucible)							 	GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
-		if(BlocksItems.enableWoodChippings)							GameRegistry.addSmelting(ItemHandler.WOOD_CHIPPINGS, new ItemStack(ItemHandler.ASH), 0.0F);
+		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah)
+											GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
+		if(BlocksItems.enableJerky) 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
+		if(BlocksItems.enableElderTree) 	GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		if(BlocksItems.enableCrystalLight)	GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
+		if(BlocksItems.enableCrucible)		GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
+		if(BlocksItems.enableWoodChippings)	GameRegistry.addSmelting(ItemHandler.WOOD_CHIPPINGS, new ItemStack(ItemHandler.ASH), 0.0F);
 	}
 
 	//Ore-Dictionary
@@ -54,9 +55,11 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("treeSapling", BlockHandler.ELDER_SAPLING);
 			OreDictionary.registerOre("treeLeaves", BlockHandler.ELDER_LEAVES);
 		}
-		if(BlocksItems.enableMushroomSpores)   OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.MUSHROOM_SPORES));
+		
+		if(BlocksItems.enableMushroomSpores)  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.MUSHROOM_SPORES));
 		if(BlocksItems.enableGrassSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.GRASS_SEEDS));
 		if(BlocksItems.enableCactusSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.CACTUS_SEEDS));
+		if(BlocksItems.enableSugarcaneSeeds)  OreDictionary.registerOre("listAllseed", new ItemStack(ItemHandler.SUGARCANE_SEEDS));
 
 		//Vanilla/Forge Buckets
 		if(BlocksItems.enableLiquidImpossibility)

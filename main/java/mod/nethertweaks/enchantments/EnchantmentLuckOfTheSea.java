@@ -1,6 +1,6 @@
 package mod.nethertweaks.enchantments;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemMesh;
 import mod.sfhcore.registries.Registry;
@@ -16,7 +16,7 @@ public class EnchantmentLuckOfTheSea extends Enchantment
 	public EnchantmentLuckOfTheSea() {
 		super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
 		setName("sieve_luck_of_the_sea");
-		this.setRegistryName(NetherTweaksMod.MODID, "sieve_luck_of_the_sea");
+		setRegistryName(Constants.MODID, "sieve_luck_of_the_sea");
 
 		if(Config.enableSieveLuckOfTheSea)
 			Registry.registerEnchantment(this);

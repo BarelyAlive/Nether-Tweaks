@@ -29,11 +29,11 @@ public class Condenser extends CubeContainerHorizontal
 
 	public Condenser()
 	{
-		super(Material.ROCK, new ResourceLocation(NetherTweaksMod.MODID, Constants.CONDENSER));
+		super(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.CONDENSER));
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(NetherTweaksMod.TAB);
 	}
 
 	@Override
