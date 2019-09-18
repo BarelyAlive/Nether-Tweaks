@@ -9,11 +9,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.client.gui.GuiThirstBar;
-import mod.nethertweaks.common.logic.ThirstStats;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.modules.thirst.GuiThirstBar;
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.nethertweaks.network.MessageMovementSpeed;
 import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
@@ -96,24 +96,24 @@ public class EventHook
 
 			switch (event.getFace())
 			{
-				case UP:
-					pos = pos.up();
-					break;
-				case NORTH:
-					pos = pos.north();
-					break;
-				case EAST:
-					pos = pos.east();
-					break;
-				case SOUTH:
-					pos = pos.south();
-					break;
-				case WEST:
-					pos = pos.west();
-					break;
-				case DOWN:
-					pos = pos.down();
-					break;
+			case UP:
+				pos = pos.up();
+				break;
+			case NORTH:
+				pos = pos.north();
+				break;
+			case EAST:
+				pos = pos.east();
+				break;
+			case SOUTH:
+				pos = pos.south();
+				break;
+			case WEST:
+				pos = pos.west();
+				break;
+			case DOWN:
+				pos = pos.down();
+				break;
 			}
 			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
 			world.spawnEntity(salt);
@@ -368,7 +368,7 @@ public class EventHook
 	public void onFinishUsingItem(final LivingEntityUseItemEvent.Finish event)
 	{
 		if (!Config.enableThirst) return;
-		
+
 		if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
 			ItemStack eventItem = event.getItem();
 			// have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.

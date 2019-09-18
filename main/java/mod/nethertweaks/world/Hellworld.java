@@ -23,8 +23,8 @@ public class Hellworld extends WorldType
 	{
 		return 32;
 	}
-	
-	public static boolean isHellworld(World world)
+
+	public static boolean isHellworld(final World world)
 	{
 		return world.getWorldType() instanceof Hellworld;
 	}

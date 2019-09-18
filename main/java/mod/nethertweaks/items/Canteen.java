@@ -2,7 +2,7 @@ package mod.nethertweaks.items;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.common.logic.ThirstStats;
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Drinkable;
 import mod.sfhcore.items.CustomItem;

@@ -24,7 +24,7 @@ public class WorldProviderHell extends WorldProvider {
 	public WorldSleepResult canSleepAt(final EntityPlayer player, final BlockPos pos) {
 		return WorldSleepResult.DENY;
 	}
-	
+
 	@Override
 	public boolean hasSkyLight() {
 		return false;

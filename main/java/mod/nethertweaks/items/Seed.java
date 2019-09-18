@@ -31,24 +31,24 @@ public class Seed extends Item
 
 		if (!world.isRemote)
 			switch (name) {
-				case Constants.MUSHROOM_SPORES:
-					if (block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS))
-						world.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
-					break;
-				case Constants.GRASS_SEEDS:
-					if (block.equals(Blocks.DIRT))
-						world.setBlockState(pos, Blocks.GRASS.getDefaultState());
-					break;
-				case Constants.CACTUS_SEEDS:
-					if (Blocks.CACTUS.canPlaceBlockAt(world, pos.up()))
-						world.setBlockState(pos.up(), Blocks.CACTUS.getDefaultState());
-					break;
-				case Constants.SUGARCANE_SEEDS:
-					if (Blocks.REEDS.canPlaceBlockAt(world, pos.up()))
-						world.setBlockState(pos.up(), Blocks.REEDS.getDefaultState());
-					break;
-				default:
-					break;
+			case Constants.MUSHROOM_SPORES:
+				if (block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS))
+					world.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
+				break;
+			case Constants.GRASS_SEEDS:
+				if (block.equals(Blocks.DIRT))
+					world.setBlockState(pos, Blocks.GRASS.getDefaultState());
+				break;
+			case Constants.CACTUS_SEEDS:
+				if (Blocks.CACTUS.canPlaceBlockAt(world, pos.up()))
+					world.setBlockState(pos.up(), Blocks.CACTUS.getDefaultState());
+				break;
+			case Constants.SUGARCANE_SEEDS:
+				if (Blocks.REEDS.canPlaceBlockAt(world, pos.up()))
+					world.setBlockState(pos.up(), Blocks.REEDS.getDefaultState());
+				break;
+			default:
+				break;
 			}
 		return EnumActionResult.SUCCESS;
 	}

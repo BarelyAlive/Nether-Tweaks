@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
@@ -19,7 +18,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -148,15 +146,14 @@ public class Grabber extends ItemShears
 	@Override
 	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_J))
 			tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
 					+ "Also serves as shears.");
-		}
 		else
 			tooltip.add("Hold [J] for more info!");
-		
+
 	}
-	
+
 	private String getName(final ToolMaterial m)
 	{
 		return "grabber_" + m.name();

@@ -1,8 +1,9 @@
-package mod.nethertweaks.common.logic;
+package mod.nethertweaks.proxy;
 
 import java.util.HashMap;
 import java.util.UUID;
 
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class CommonProxy {

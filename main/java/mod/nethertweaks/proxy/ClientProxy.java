@@ -1,12 +1,11 @@
-package mod.nethertweaks.client.logic;
+package mod.nethertweaks.proxy;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.client.renderers.RenderProjectileStone;
-import mod.nethertweaks.common.logic.CommonProxy;
-import mod.nethertweaks.common.logic.ThirstStats;
 import mod.nethertweaks.entities.ProjectileStone;
 import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 

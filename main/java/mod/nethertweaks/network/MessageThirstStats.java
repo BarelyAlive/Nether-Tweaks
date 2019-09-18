@@ -2,7 +2,7 @@ package mod.nethertweaks.network;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.common.logic.ThirstStats;
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

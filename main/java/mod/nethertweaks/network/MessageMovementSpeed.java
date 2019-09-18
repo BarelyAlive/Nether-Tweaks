@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.common.logic.ThirstStats;
+import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

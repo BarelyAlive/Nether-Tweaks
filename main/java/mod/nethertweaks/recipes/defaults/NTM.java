@@ -344,7 +344,7 @@ public class NTM implements IRecipeDefaults
 				break;
 			}
 		}
-		
+
 		// Seeds
 		registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
 		registry.register("dirt", new ItemInfo(ItemHandler.SUGARCANE_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());

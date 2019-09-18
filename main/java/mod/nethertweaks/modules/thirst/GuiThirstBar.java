@@ -1,4 +1,4 @@
-package mod.nethertweaks.client.gui;
+package mod.nethertweaks.modules.thirst;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
@@ -20,7 +20,7 @@ public class GuiThirstBar {
 	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent event)
 	{
 		if(!Config.enableThirst) return;
-		
+
 		if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
 			GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
 			ScaledResolution scaledRes = event.getResolution();

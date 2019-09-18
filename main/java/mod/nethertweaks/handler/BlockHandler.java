@@ -76,8 +76,8 @@ public class BlockHandler
 	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
 	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
 	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));	
-	
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));
+
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
 	public static final Block ELDER_LEAVES 		   = new ElderLeaves();

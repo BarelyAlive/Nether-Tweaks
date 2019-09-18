@@ -47,7 +47,7 @@ public class Constants {
 	public static final String STWH 					= "stairway_to_heaven";
 	public static final String NETHERRACK_GRAVEL		= "netherrack_gravel";
 	public static final String MEAN_VINE 				= "mean_vine";
-	
+
 	//Tree
 	public static final String ELDER_SAPLING 			= "elder_sapling";
 	public static final String ELDER_LEAVES 			= "elder_leaves";

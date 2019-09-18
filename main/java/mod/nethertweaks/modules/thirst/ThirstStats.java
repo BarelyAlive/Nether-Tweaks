@@ -1,9 +1,7 @@
-package mod.nethertweaks.common.logic;
+package mod.nethertweaks.modules.thirst;
 
 import java.lang.reflect.Field;
 import java.util.Random;
-
-import org.lwjgl.input.Keyboard;
 
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageThirstStats;
@@ -17,7 +15,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDesert;
 
 public class ThirstStats {
 
@@ -49,7 +46,7 @@ public class ThirstStats {
 	public void update(final EntityPlayer player)
 	{
 		if(!Config.enableThirst) return;
-		
+
 		if (exhaustion > 5.0f) {
 			exhaustion -= 5.0f;
 			if (saturation > 0.0f)
@@ -70,7 +67,7 @@ public class ThirstStats {
 
 		int ms = player.isRiding() ? 10 : movementSpeed;
 		float exhaustMultiplier = exhaustionMultiplier(player);
-		
+
 		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
 			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
 		else if (player.onGround) {
@@ -118,25 +115,25 @@ public class ThirstStats {
 			lastPoisoned = poisoned;
 		}
 
-//		if (Keyboard.isKeyDown(Keyboard.KEY_J))
-//			thirstLevel = Math.max(thirstLevel - 1, 0);
-//		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
-//			thirstLevel = Math.min(thirstLevel + 1, 20);
+		//		if (Keyboard.isKeyDown(Keyboard.KEY_J))
+		//			thirstLevel = Math.max(thirstLevel - 1, 0);
+		//		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
+		//			thirstLevel = Math.min(thirstLevel + 1, 20);
 	}
-	
+
 	private float exhaustionMultiplier(final EntityPlayer player)
 	{
 		float exhaustMultiplier = Config.exhaustMultiplierDefault;
-		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());		
+		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
 		float temp = biome.getDefaultTemperature();
-		
+
 		if(temp > 0.8f)
 			exhaustMultiplier *= Math.min(temp / 0.8f, 2.0f);
-		
+
 		//Night multiplier nur da anwenden wo ein Tag/Nacht-Rhytmus vorhanden ist
 		if(!player.world.isDaytime() && player.world.provider.hasSkyLight())
 			exhaustMultiplier *= Config.exhaustMultiplierNighttime;
-				
+
 		return exhaustMultiplier;
 	}
 
