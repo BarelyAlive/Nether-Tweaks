@@ -27,12 +27,12 @@ public class StwH extends Block{
 
 	public StwH() {
 		super(Material.ROCK);
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);
 		setHardness(16.0F);
-		setRegistryName(new ResourceLocation(Constants.MODID, Constants.STWH));
+		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, Constants.STWH));
 		setTickRandomly(true);
 	}
 

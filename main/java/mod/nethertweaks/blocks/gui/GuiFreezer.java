@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.blocks.tile.TileFreezer;
 import mod.nethertweaks.config.Config;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiFreezer extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guifreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guifreezer.png");
 	private TileFreezer entity;
 
 	public GuiFreezer(final InventoryPlayer inventoryPlayer, final TileFreezer tileEntity) {

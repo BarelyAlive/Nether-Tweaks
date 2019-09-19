@@ -26,7 +26,7 @@ public abstract class CrucibleBase extends Block
 	public CrucibleBase(final String name, final Material material) {
 		super(material);
 		setRegistryName(name);
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 
 	@Override

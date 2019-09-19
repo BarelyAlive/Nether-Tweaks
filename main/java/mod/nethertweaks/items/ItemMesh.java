@@ -11,9 +11,9 @@ public class ItemMesh extends Item{
 
 	public ItemMesh(final String type) {
 		super();
-		this.setRegistryName(new ResourceLocation(Constants.MODID, type));
+		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, type));
 		setMaxStackSize(1);
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 
 	@Override

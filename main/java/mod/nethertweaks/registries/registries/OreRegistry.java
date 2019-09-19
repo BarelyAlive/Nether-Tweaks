@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IOreRegistry;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemOre;
@@ -147,8 +147,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
 	public void doRecipes() {
 		for (ItemOre ore : itemOreRegistry) {
-			ResourceLocation group = new ResourceLocation(Constants.MODID, "ntmores");
-			ResourceLocation baseName = new ResourceLocation(Constants.MODID, "ore_compression_");
+			ResourceLocation group = new ResourceLocation(NetherTweaksMod.MODID, "ntmores");
+			ResourceLocation baseName = new ResourceLocation(NetherTweaksMod.MODID, "ore_compression_");
 			ResourceLocation recipeLocation = new ResourceLocation(baseName.getResourceDomain(), baseName.getResourcePath() + ore.getOre().getName());
 
 			GameRegistry.addShapedRecipe(recipeLocation, group,

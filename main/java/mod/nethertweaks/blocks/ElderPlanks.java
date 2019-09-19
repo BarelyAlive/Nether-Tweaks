@@ -13,7 +13,7 @@ public class ElderPlanks extends Cube
 {
 	public ElderPlanks()
 	{
-		super(Material.WOOD, 10.0F, 2.0F, NetherTweaksMod.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_PLANKS));
+		super(Material.WOOD, 10.0F, 2.0F, NetherTweaksMod.TABNTM, new ResourceLocation(NetherTweaksMod.MODID, Constants.ELDER_PLANKS));
 	}
 
 	@Override

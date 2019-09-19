@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BucketNFluidHandler;
 import net.minecraft.block.material.Material;
@@ -26,7 +27,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 	public LiquidImpossibility()
 	{
 		super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
-		setRegistryName(Constants.MODID, Constants.LIQUIDIMPOSSIBILITY);
+		setRegistryName(NetherTweaksMod.MODID, Constants.LIQUIDIMPOSSIBILITY);
 		setLightLevel(Config.luminosityLI);
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);

@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +16,7 @@ public class Seed extends Item
 {
 	public Seed(final String name)
 	{
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(Constants.TAB);
 		setRegistryName(Constants.MODID, name);
 	}
 

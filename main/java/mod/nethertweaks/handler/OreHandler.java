@@ -91,7 +91,7 @@ public class OreHandler {
 			{
 				chunks = new ItemChunk();
 				chunks.setRegistryName(Constants.MODID, Constants.CHUNK + "_" + mod_domain);
-				chunks.setCreativeTab(NetherTweaksMod.TAB);
+				chunks.setCreativeTab(NetherTweaksMod.TABNTM);
 				chunks.setResult(mod_domain, entry.getKey());
 				mod_chunks.put(mod_domain, chunks);
 			}

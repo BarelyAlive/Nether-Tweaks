@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-import mod.nethertweaks.Constants;
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.config.Config;
@@ -51,7 +51,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class NTM implements IRecipeDefaults
 {
-	private final String MODID = Constants.MODID;
+	private final String MODID = NetherTweaksMod.MODID;
 
 	@Override
 	public String getMODID() {

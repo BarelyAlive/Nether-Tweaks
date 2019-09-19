@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IHammer;
 import mod.nethertweaks.handler.HammerHandler;
@@ -24,9 +23,9 @@ public class Hammer extends ItemTool implements IHammer  {
 	public Hammer(final int maxUses, final ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
-		this.setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
+		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));
 		setMaxDamage(maxUses);
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		miningLevel = material.getHarvestLevel();
 	}
 

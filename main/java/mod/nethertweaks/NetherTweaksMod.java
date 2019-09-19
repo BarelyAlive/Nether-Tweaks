@@ -6,19 +6,44 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import mod.nethertweaks.blocks.tile.TileAshBonePile;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCrucibleStone;
+import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.capabilities.NTMCapabilities;
+import mod.nethertweaks.client.renderers.RenderAshBonePile;
+import mod.nethertweaks.client.renderers.RenderBarrel;
+import mod.nethertweaks.client.renderers.RenderCrucible;
+import mod.nethertweaks.client.renderers.RenderSieve;
+import mod.nethertweaks.compatibility.Compatibility;
+import mod.nethertweaks.config.Config;
+import mod.nethertweaks.entities.NTMEntities;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.HammerHandler;
+import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.MessageHandler;
 import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
+import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
+import mod.nethertweaks.registries.registries.BarrelModeRegistry;
+import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
+import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.sfhcore.modules.ISFHCoreModule;
+import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -28,20 +53,20 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES)
+@Mod(modid=NetherTweaksMod.MODID, name=NetherTweaksMod.MODNAME, version=NetherTweaksMod.VERSION, dependencies=NetherTweaksMod.DEPENDENCIES)
 public class NetherTweaksMod
 {
-	public WorldType Hellworld = new Hellworld();
-	public static Gson gsonInstance = new Gson();
-	public static File configDirectory;
-	public static final CreativeTabs TAB = new CreativeTabNTM();
-	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
+	public static final String MODID = "nethertweaksmod";
+	public static final String MODNAME = "Nether Tweaks Mod";
+	public static final String VERSION = "2.1.0";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";
 
-	@Instance(value=Constants.MODID)
+	@Instance(value=MODID)
 	private static NetherTweaksMod instance;
 
 	public static NetherTweaksMod getInstance() {
@@ -54,7 +79,7 @@ public class NetherTweaksMod
 		MessageHandler.init();
 	}
 
-	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.COMMON_PROXY, modId=Constants.MODID)
+	@SidedProxy(clientSide="mod.nethertweaks.client.logic.ClientProxy", serverSide="mod.nethertweaks.common.logic.CommonProxy", modId=MODID)
 	private static CommonProxy commonProxy;
 
 	public static CommonProxy getProxy() {
@@ -65,6 +90,8 @@ public class NetherTweaksMod
 	public static ClientProxy getClientProxy() {
 		return (ClientProxy) commonProxy;
 	}
+
+	public static Gson gsonInstance = new Gson();
 
 	@Mod.EventBusSubscriber
 	public static class OreRegistrationHandler
@@ -103,33 +130,74 @@ public class NetherTweaksMod
 		}
 	}
 
+	// List of loaded modules
+	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
+	//Creative Tabs
+	public static final CreativeTabs TABNTM = new CreativeTabNTM();
+
+	public static File configDirectory;
+	public WorldType Hellworld = new Hellworld();
+
 	@Mod.EventHandler
 	public void PreInit(final FMLPreInitializationEvent event)
 	{
-		configDirectory = new File(event.getModConfigurationDirectory(), Constants.MODID);
+		configDirectory = new File(event.getModConfigurationDirectory(), MODID);
 
-		if(event.getSide().isClient())
-			getClientProxy().preInit();
-		else
-			getProxy().preInit();
+		LogUtil.setup(MODID, configDirectory);
+
+		Config.init();
+
+		Compatibility.init();
+
+		NTMCapabilities.init();
+		NTMEntities.init();
+
+		ItemHandler.init();
+		BlockHandler.init();
+		BucketNFluidHandler.init(event.getSide());
+
+		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
+
+		MinecraftForge.EVENT_BUS.register(new EventHook());
+		MinecraftForge.EVENT_BUS.register(new HammerHandler());
+		MinecraftForge.EVENT_BUS.register(this);
+
+		// Disable all copper ores except all ores from thermal foundation
+		/*
+    	OreHandler.disableOre("copper");
+    	OreHandler.enableOre("thermalfoundation:ore");
+		 */
+
+		getProxy().preInit();
 	}
 
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
-		if(event.getSide().isClient())
-			getClientProxy().init();
-		else
-			getProxy().init();
+		SmeltingNOreDictHandler.load();
+		getProxy().init();
 	}
 
 	@Mod.EventHandler
 	public void PostInit(final FMLPostInitializationEvent event)
 	{
-		if(event.getSide().isClient())
-			getClientProxy().postInit();
-		else
-			getProxy().postInit();
+		OreHandler.registerFurnaceRecipe();
+		//Mobs
+		if(Config.spawnWaterMobs) EventHook.addWaterMobs();
+
+		BarrelModeRegistry.registerDefaults();
+		NTMDefaultRecipes.registerDefaults();
+		JsonRecipeHandler.loadJasonVorhees(configDirectory);
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void registerModels(final ModelRegistryEvent event)
+	{
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileAshBonePile.class, new RenderAshBonePile());
 	}
 
 	@Mod.EventHandler

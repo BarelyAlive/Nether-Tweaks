@@ -14,7 +14,7 @@ public class ItemChunk extends Item {
 
 	public ItemChunk() {
 		super();
-		setCreativeTab(NetherTweaksMod.TAB);
+		setCreativeTab(NetherTweaksMod.TABNTM);
 		setHasSubtypes(true);
 	}
 
