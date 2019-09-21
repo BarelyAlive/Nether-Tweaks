@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
 import mod.sfhcore.blocks.tiles.TileInventory;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiNetherrackFurnace extends GuiContainer
 {
 	private int xSize, ySize;
-	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(NetherTweaksMod.MODID, "textures/gui/guinetherrackfurnace.png");
+	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(Constants.MODID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 
 	public GuiNetherrackFurnace(final InventoryPlayer inventory, final TileNetherrackFurnace te) {

@@ -25,7 +25,7 @@ public class Ash extends Item
 {
 	public Ash() {
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, Constants.ASH));
+		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
 	}
 
 	@Override

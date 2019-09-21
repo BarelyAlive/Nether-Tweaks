@@ -43,7 +43,7 @@ public class Sieve extends BlockContainer {
 			setHardness(2.0f);
 		} else
 			setHardness(2.0f);
-		this.setRegistryName(NetherTweaksMod.MODID, name);
+		this.setRegistryName(Constants.MODID, name);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setDefaultState(blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 	}

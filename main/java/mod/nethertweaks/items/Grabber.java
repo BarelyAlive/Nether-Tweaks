@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
@@ -45,7 +46,7 @@ public class Grabber extends ItemShears
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, getName(material)));
+		setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
 	}
 
 	@Override

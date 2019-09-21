@@ -73,7 +73,7 @@ public class EventHook
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
 	{
 		boolean activated = false;
-		BlockPos clicked = event.getPos();
+		BlockPos pos = event.getPos();
 		ItemStack heldItem = event.getItemStack();
 		World world = event.getEntity().getEntityWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
@@ -85,14 +85,14 @@ public class EventHook
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
 
-		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
+		if (world.getBlockState(pos).getBlock().onBlockActivated(world, pos, world.getBlockState(pos), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
 			event.setCanceled(true);
 		}
 		if (!activated)
 		{
-			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
+			pos.add(0.5D, 0.5D, 0.5D);
 
 			switch (event.getFace())
 			{

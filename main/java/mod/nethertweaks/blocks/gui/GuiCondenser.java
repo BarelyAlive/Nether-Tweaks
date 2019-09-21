@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.config.Config;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiCondenser extends GuiContainer
 {
 	private int xSize, ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(NetherTweaksMod.MODID + ":textures/gui/guicondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 
 	public GuiCondenser(final InventoryPlayer inventoryPlayer, final TileCondenser tileEntity) {
