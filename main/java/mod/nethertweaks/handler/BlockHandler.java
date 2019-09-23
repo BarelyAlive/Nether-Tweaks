@@ -29,7 +29,6 @@ import mod.nethertweaks.config.BlocksItems;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
 import mod.sfhcore.blocks.CustomDoor;
-import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
@@ -93,6 +92,15 @@ public class BlockHandler
 	@SubscribeEvent
     public void registerBlocks(RegistryEvent.Register<Block> event)
 	{
+		//FluidBlocks
+		if (BlocksItems.enableLiquidImpossibility)
+		{
+			event.getRegistry().register(BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY);
+		}
+		if(BlocksItems.enableDistilledWater)
+		{
+			event.getRegistry().register(BucketNFluidHandler.BLOCKDISTILLEDWATER);
+		}
 		if(BlocksItems.enableBarrelStone)		
 			event.getRegistry().register(STONE_BARREL);
 		if(BlocksItems.enableBarrelWood) {

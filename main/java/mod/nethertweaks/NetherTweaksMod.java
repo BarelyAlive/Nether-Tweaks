@@ -131,7 +131,7 @@ public class NetherTweaksMod
 
 		Compatibility.init();
 
-		ItemHandler.addItemBurnTime();
+		ItemHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
 

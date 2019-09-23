@@ -10,16 +10,11 @@ import java.io.IOException;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.blocks.tile.TileAshBonePile;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.blocks.tile.TileCondenser;
-import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.blocks.tile.TileHellmart;
-import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.enchantments.EnchantmentEfficiency;
+import mod.nethertweaks.enchantments.EnchantmentFortune;
+import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
@@ -34,12 +29,11 @@ import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
-import mod.sfhcore.registries.Registry;
 import mod.sfhcore.vars.PlayerPosition;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -49,7 +43,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -62,7 +55,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -79,9 +71,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class EventHook
 {
@@ -460,6 +452,14 @@ public class EventHook
 		if(BlocksItems.enableStoneDoor) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_DOOR), 0, new ModelResourceLocation(Constants.STONE_DOOR, "inventory"));
 		if(BlocksItems.enableElderDoor)			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_DOOR), 0, new ModelResourceLocation(Constants.ELDER_DOOR, "inventory"));
     }
+    
+    @SubscribeEvent
+	public static void registerEnchantments(final IForgeRegistry<Enchantment> registry)
+	{
+		registry.register(new EnchantmentEfficiency());
+		registry.register(new EnchantmentLuckOfTheSea());
+		registry.register(new EnchantmentFortune());
+	}
 	
 	//*********************************************************************************************************************
 

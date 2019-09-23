@@ -7,10 +7,15 @@ import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.fluid.FluidDistilledWater;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
 import mod.sfhcore.handler.BucketHandler;
-import mod.sfhcore.registries.RegisterFluid;
+import mod.sfhcore.helper.NameHelper;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BucketNFluidHandler
 {
@@ -23,31 +28,37 @@ public class BucketNFluidHandler
 
 	public static void init(final Side side)
 	{
-		registerFluids(side);
-		registerBuckets();
-	}
-
-	public static void registerFluids(final Side side)
-	{
 		if (BlocksItems.enableLiquidImpossibility)
 		{
-			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+			register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 			if(side.isClient())
-				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+				initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 		}
 		if(BlocksItems.enableDistilledWater)
 		{
-			RegisterFluid.register(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
+			register(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 			if(side.isClient())
-				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
+				initModel((mod.sfhcore.fluid.Fluid) FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 		}
 	}
-
-	public static void registerBuckets()
+	
+	public static void register(final net.minecraftforge.fluids.Fluid f, final Block b)
 	{
-		if(BlocksItems.enableWoodBucket)
-			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TAB);
-		if(BlocksItems.enableStoneBucket)
-			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TAB);
+		f.setUnlocalizedName(f.getName());
+		FluidRegistry.addBucketForFluid(f);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void initModel(final Fluid f, final Block b)
+	{
+		mod.sfhcore.helper.FluidStateMapper mapper = new mod.sfhcore.helper.FluidStateMapper(NameHelper.getModID(b), f);
+
+		Item item = Item.getItemFromBlock(b);
+		if (item != null) {
+			ModelBakery.registerItemVariants(item);
+			ModelLoader.setCustomMeshDefinition(item, mapper);
+		}
+
+		ModelLoader.setCustomStateMapper(b, mapper);
 	}
 }

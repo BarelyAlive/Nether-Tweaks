@@ -15,13 +15,13 @@ import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
+import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.handler.CustomFuelHandler;
 import mod.sfhcore.items.CustomItem;
-import mod.sfhcore.registries.Registry;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
@@ -107,6 +107,11 @@ public class ItemHandler
 	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
 	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
 
+	public static void init() {
+		registerBuckets();
+		addItemBurnTime();
+	}
+	
 	@SubscribeEvent
     public void registerItems(RegistryEvent.Register<Item> event)
     {
@@ -237,8 +242,16 @@ public class ItemHandler
 		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(new ItemBlock(BlockHandler.STONE_DOOR).setRegistryName(Constants.MODID, Constants.STONE_DOOR));
 		if(BlocksItems.enableElderDoor)			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_DOOR).setRegistryName(Constants.MODID, Constants.ELDER_DOOR));
     }
+	
+	private static void registerBuckets()
+	{
+		if(BlocksItems.enableWoodBucket)
+			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TAB);
+		if(BlocksItems.enableStoneBucket)
+			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TAB);
+	}
 
-	public static void addItemBurnTime()
+	private static void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
