@@ -20,10 +20,13 @@ import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.registries.Registry;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemHandler
 {
@@ -102,95 +105,140 @@ public class ItemHandler
 	//ItemBlocks
 	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
 	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
-	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, "item_" + Constants.ELDER_SLAB);
+	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
 
-	public static void init()
-	{
-		registerItems();
-		addItemBurnTime();
-	}
-
-	private static void registerItems()
-	{
-		//Crafting Components
-		if(BlocksItems.enableStoneBar)	  		Registry.registerItem(STONE_BAR);
-		if(BlocksItems.enablePortalCore)  		Registry.registerItem(PORTAL_CORE);
-		if(BlocksItems.enableEndBox)		  	Registry.registerItem(END_BOX);
-		if(BlocksItems.enableSalt)		  		Registry.registerItem(SALT);
-		if(BlocksItems.enableHellfayah)  		Registry.registerItem(HELLFAYAH);
-		if(BlocksItems.enableEnderInfusedFrame)	Registry.registerItem(ENDER_INFUSED_FRAME);
-		if(BlocksItems.enableString)		  	Registry.registerItem(STRING);
-		if(BlocksItems.enablePorcelainClay) 	Registry.registerItem(PORCELAIN_CLAY);
-		if(BlocksItems.enablePowderOfLight) 	Registry.registerItem(POWDER_OF_LIGHT);
-		if(BlocksItems.enableAsh) 				Registry.registerItem(ASH);
-		if(BlocksItems.enableWoodChippings)		Registry.registerItem(WOOD_CHIPPINGS);
-		if(BlocksItems.enableCoiledSword)		Registry.registerItem(COILED_SWORD);
+	@SubscribeEvent
+    public void registerItems(RegistryEvent.Register<Item> event)
+    {
+    	//Crafting Components
+		if(BlocksItems.enableStoneBar)	  		event.getRegistry().register(STONE_BAR);
+		if(BlocksItems.enablePortalCore)  		event.getRegistry().register(PORTAL_CORE);
+		if(BlocksItems.enableEndBox)		  	event.getRegistry().register(END_BOX);
+		if(BlocksItems.enableSalt)		  		event.getRegistry().register(SALT);
+		if(BlocksItems.enableHellfayah)  		event.getRegistry().register(HELLFAYAH);
+		if(BlocksItems.enableEnderInfusedFrame)	event.getRegistry().register(ENDER_INFUSED_FRAME);
+		if(BlocksItems.enableString)		  	event.getRegistry().register(STRING);
+		if(BlocksItems.enablePorcelainClay) 	event.getRegistry().register(PORCELAIN_CLAY);
+		if(BlocksItems.enablePowderOfLight) 	event.getRegistry().register(POWDER_OF_LIGHT);
+		if(BlocksItems.enableAsh) 				event.getRegistry().register(ASH);
+		if(BlocksItems.enableWoodChippings)		event.getRegistry().register(WOOD_CHIPPINGS);
+		if(BlocksItems.enableCoiledSword)		event.getRegistry().register(COILED_SWORD);
 
 		//Seeds
-		if(BlocksItems.enableMushroomSpores)	Registry.registerItem(MUSHROOM_SPORES);
-		if(BlocksItems.enableGrassSeeds)		Registry.registerItem(GRASS_SEEDS);
-		if(BlocksItems.enableCactusSeeds)		Registry.registerItem(CACTUS_SEEDS);
-		if(BlocksItems.enableSugarcaneSeeds)	Registry.registerItem(SUGARCANE_SEEDS);
+		if(BlocksItems.enableMushroomSpores)	event.getRegistry().register(MUSHROOM_SPORES);
+		if(BlocksItems.enableGrassSeeds)		event.getRegistry().register(GRASS_SEEDS);
+		if(BlocksItems.enableCactusSeeds)		event.getRegistry().register(CACTUS_SEEDS);
+		if(BlocksItems.enableSugarcaneSeeds)	event.getRegistry().register(SUGARCANE_SEEDS);
 
 		//Crystals
-		if(BlocksItems.enableCrystalLight)		Registry.registerItem(CRYSTAL_OF_LIGHT);
+		if(BlocksItems.enableCrystalLight)		event.getRegistry().register(CRYSTAL_OF_LIGHT);
 
 		//Pebbles
-		if(BlocksItems.enablePebbleStone)		Registry.registerItem(PEBBLE_STONE);
-		if(BlocksItems.enablePebbleGranite)		Registry.registerItem(PEBBLE_GRANITE);
-		if(BlocksItems.enablePebbleDiorite)		Registry.registerItem(PEBBLE_DIORITE);
-		if(BlocksItems.enablePebbleAndesite)	Registry.registerItem(PEBBLE_ANDESITE);
+		if(BlocksItems.enablePebbleStone)		event.getRegistry().register(PEBBLE_STONE);
+		if(BlocksItems.enablePebbleGranite)		event.getRegistry().register(PEBBLE_GRANITE);
+		if(BlocksItems.enablePebbleDiorite)		event.getRegistry().register(PEBBLE_DIORITE);
+		if(BlocksItems.enablePebbleAndesite)	event.getRegistry().register(PEBBLE_ANDESITE);
 
 		//Meshes
-		if(BlocksItems.enableStringMeshes)		Registry.registerItem(MESH_STRING);
-		if(BlocksItems.enableFlintMeshes) 		Registry.registerItem(MESH_FLINT);
-		if(BlocksItems.enableIronMeshes)  		Registry.registerItem(MESH_IRON);
-		if(BlocksItems.enableDiamondMeshes)		Registry.registerItem(MESH_DIAMOND);
+		if(BlocksItems.enableStringMeshes)		event.getRegistry().register(MESH_STRING);
+		if(BlocksItems.enableFlintMeshes) 		event.getRegistry().register(MESH_FLINT);
+		if(BlocksItems.enableIronMeshes)  		event.getRegistry().register(MESH_IRON);
+		if(BlocksItems.enableDiamondMeshes)		event.getRegistry().register(MESH_DIAMOND);
 
 		//Dolls
-		if(BlocksItems.enableDollBat)  			Registry.registerItem(DOLL_BAT);
-		if(BlocksItems.enableDollChicken)  		Registry.registerItem(DOLL_CHICKEN);
-		if(BlocksItems.enableDollCow)  			Registry.registerItem(DOLL_COW);
-		if(BlocksItems.enableDollDonkey)  		Registry.registerItem(DOLL_DONKEY);
-		if(BlocksItems.enableDollHorse)  		Registry.registerItem(DOLL_HORSE);
-		if(BlocksItems.enableDollLlama)  		Registry.registerItem(DOLL_LLAMA);
-		if(BlocksItems.enableDollMule)  		Registry.registerItem(DOLL_MULE);
-		if(BlocksItems.enableDollOcelot)  		Registry.registerItem(DOLL_OCELOT);
-		if(BlocksItems.enableDollParrot)  		Registry.registerItem(DOLL_PARROT);
-		if(BlocksItems.enableDollPig)  			Registry.registerItem(DOLL_PIG);
-		if(BlocksItems.enableDollPolarBear)  	Registry.registerItem(DOLL_POLAR_BEAR);
-		if(BlocksItems.enableDollRabbit)  		Registry.registerItem(DOLL_RABBIT);
-		if(BlocksItems.enableDollRedMooshroom)	Registry.registerItem(DOLL_RED_MOOSHROOM);
-		if(BlocksItems.enableDollSheep)  		Registry.registerItem(DOLL_SHEEP);
-		if(BlocksItems.enableDollVillager)		Registry.registerItem(DOLL_VILLAGER);
-		if(BlocksItems.enableDollWolf)  		Registry.registerItem(DOLL_WOLF);
+		if(BlocksItems.enableDollBat)  			event.getRegistry().register(DOLL_BAT);
+		if(BlocksItems.enableDollChicken)  		event.getRegistry().register(DOLL_CHICKEN);
+		if(BlocksItems.enableDollCow)  			event.getRegistry().register(DOLL_COW);
+		if(BlocksItems.enableDollDonkey)  		event.getRegistry().register(DOLL_DONKEY);
+		if(BlocksItems.enableDollHorse)  		event.getRegistry().register(DOLL_HORSE);
+		if(BlocksItems.enableDollLlama)  		event.getRegistry().register(DOLL_LLAMA);
+		if(BlocksItems.enableDollMule)  		event.getRegistry().register(DOLL_MULE);
+		if(BlocksItems.enableDollOcelot)  		event.getRegistry().register(DOLL_OCELOT);
+		if(BlocksItems.enableDollParrot)  		event.getRegistry().register(DOLL_PARROT);
+		if(BlocksItems.enableDollPig)  			event.getRegistry().register(DOLL_PIG);
+		if(BlocksItems.enableDollPolarBear)  	event.getRegistry().register(DOLL_POLAR_BEAR);
+		if(BlocksItems.enableDollRabbit)  		event.getRegistry().register(DOLL_RABBIT);
+		if(BlocksItems.enableDollRedMooshroom)	event.getRegistry().register(DOLL_RED_MOOSHROOM);
+		if(BlocksItems.enableDollSheep)  		event.getRegistry().register(DOLL_SHEEP);
+		if(BlocksItems.enableDollVillager)		event.getRegistry().register(DOLL_VILLAGER);
+		if(BlocksItems.enableDollWolf)  		event.getRegistry().register(DOLL_WOLF);
 
 		//Werkzeuge
-		if(BlocksItems.enableGrabberWood)		Registry.registerItem(GRABBER_WOOD);
-		if(BlocksItems.enableGrabberGold)		Registry.registerItem(GRABBER_GOLD);
-		if(BlocksItems.enableGrabberStone)		Registry.registerItem(GRABBER_STONE);
-		if(BlocksItems.enableGrabberIron)		Registry.registerItem(GRABBER_IRON);
-		if(BlocksItems.enableGrabberDiamond)	Registry.registerItem(GRABBER_DIAMOND);
-		if(BlocksItems.enableFlintNBlaze)  		Registry.registerItem(FLINT_N_BLAZE);
-		if(BlocksItems.enableHammerWood)  		Registry.registerItem(HAMMER_WOOD);
-		if(BlocksItems.enableHammerGold)  		Registry.registerItem(HAMMER_GOLD);
-		if(BlocksItems.enableHammerStone)  		Registry.registerItem(HAMMER_STONE);
-		if(BlocksItems.enableHammerIron)  		Registry.registerItem(HAMMER_IRON);
-		if(BlocksItems.enableHammerDiamond)  	Registry.registerItem(HAMMER_DIAMOND);
+		if(BlocksItems.enableGrabberWood)		event.getRegistry().register(GRABBER_WOOD);
+		if(BlocksItems.enableGrabberGold)		event.getRegistry().register(GRABBER_GOLD);
+		if(BlocksItems.enableGrabberStone)		event.getRegistry().register(GRABBER_STONE);
+		if(BlocksItems.enableGrabberIron)		event.getRegistry().register(GRABBER_IRON);
+		if(BlocksItems.enableGrabberDiamond)	event.getRegistry().register(GRABBER_DIAMOND);
+		if(BlocksItems.enableFlintNBlaze)  		event.getRegistry().register(FLINT_N_BLAZE);
+		if(BlocksItems.enableHammerWood)  		event.getRegistry().register(HAMMER_WOOD);
+		if(BlocksItems.enableHammerGold)  		event.getRegistry().register(HAMMER_GOLD);
+		if(BlocksItems.enableHammerStone)  		event.getRegistry().register(HAMMER_STONE);
+		if(BlocksItems.enableHammerIron)  		event.getRegistry().register(HAMMER_IRON);
+		if(BlocksItems.enableHammerDiamond)  	event.getRegistry().register(HAMMER_DIAMOND);
 
 		//Tree
-		if(BlocksItems.enableElderTree)			Registry.registerItem(ITEM_ELDER_SLAB);
+		if(BlocksItems.enableElderTree)			event.getRegistry().register(ITEM_ELDER_SLAB);
 
 		//Food & Drinks
-		if(BlocksItems.enableJerky)  			Registry.registerItem(COOKED_JERKY);
-		if(BlocksItems.enableCanteen)  			Registry.registerItem(CANTEEN);
+		if(BlocksItems.enableJerky)  			event.getRegistry().register(COOKED_JERKY);
+		if(BlocksItems.enableCanteen)  			event.getRegistry().register(CANTEEN);
 
 		//Doors
-		if(BlocksItems.enableStoneDoor)  		Registry.registerItem(ITEM_STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			Registry.registerItem(ITEM_ELDER_DOOR);
-	}
+		if(BlocksItems.enableStoneDoor)  		event.getRegistry().register(ITEM_STONE_DOOR);
+		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ITEM_ELDER_DOOR);
+		
+		//Blocks
+		if(BlocksItems.enableBarrelStone)		
+			event.getRegistry().register(new ItemBlock(BlockHandler.STONE_BARREL).setRegistryName(Constants.MODID, Constants.STONE_BARREL));
+		if(BlocksItems.enableBarrelWood) {
+			event.getRegistry().register(new ItemBlock(BlockHandler.OAK_BARREL).setRegistryName(Constants.MODID, Constants.OAK_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.BIRCH_BARREL).setRegistryName(Constants.MODID, Constants.BIRCH_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.SPRUCE_BARREL).setRegistryName(Constants.MODID, Constants.SPRUCE_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.JUNGLE_BARREL).setRegistryName(Constants.MODID, Constants.JUNGLE_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ACACIA_BARREL).setRegistryName(Constants.MODID, Constants.ACACIA_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.DARK_OAK_BARREL).setRegistryName(Constants.MODID, Constants.DARK_OAK_BARREL));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_BARREL).setRegistryName(Constants.MODID, Constants.ELDER_BARREL));
+		}
+		if(BlocksItems.enableSieve) {
+			event.getRegistry().register(new ItemBlock(BlockHandler.STONE_SIEVE).setRegistryName(Constants.MODID, Constants.STONE_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.OAK_SIEVE).setRegistryName(Constants.MODID, Constants.OAK_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.BIRCH_SIEVE).setRegistryName(Constants.MODID, Constants.BIRCH_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.SPRUCE_SIEVE).setRegistryName(Constants.MODID, Constants.SPRUCE_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.JUNGLE_SIEVE).setRegistryName(Constants.MODID, Constants.JUNGLE_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ACACIA_SIEVE).setRegistryName(Constants.MODID, Constants.ACACIA_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.DARK_OAK_SIEVE).setRegistryName(Constants.MODID, Constants.DARK_OAK_SIEVE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SIEVE).setRegistryName(Constants.MODID, Constants.ELDER_SIEVE));
+		}
+		if(BlocksItems.enableAshBonePile)		event.getRegistry().register(new ItemBlock(BlockHandler.ASH_BONE_PILE).setRegistryName(Constants.MODID, Constants.ASH_BONE_PILE));
+		if(BlocksItems.enableFreezer)			event.getRegistry().register(new ItemBlock(BlockHandler.FREEZER).setRegistryName(Constants.MODID, Constants.FREEZER));
+		if(BlocksItems.enableHellmart)			event.getRegistry().register(new ItemBlock(BlockHandler.HELLMART).setRegistryName(Constants.MODID, Constants.HELLMART));
+		if(BlocksItems.enableCondenser) 		event.getRegistry().register(new ItemBlock(BlockHandler.CONDENSER).setRegistryName(Constants.MODID, Constants.CONDENSER));
+		if(BlocksItems.enableNetherrackFurnace)	event.getRegistry().register(new ItemBlock(BlockHandler.NETHERRACK_FURNACE).setRegistryName(Constants.MODID, Constants.NETHERRACK_FURNACE));
+		if(BlocksItems.enableCrucible) {
+			event.getRegistry().register(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, "unfired_" + Constants.CRUCIBLE));
+			event.getRegistry().register(new ItemBlock(BlockHandler.CRUCIBLE).setRegistryName(Constants.MODID, Constants.CRUCIBLE));
+		}
+	
+		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(new ItemBlock(BlockHandler.HELLFAYAH_ORE).setRegistryName(Constants.MODID, Constants.HELLFAYAH_ORE));
+		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_HELLFAYAH).setRegistryName(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
+		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_SALT).setRegistryName(Constants.MODID, Constants.BLOCK_OF_SALT));
+		if(BlocksItems.enableDust) 				event.getRegistry().register(new ItemBlock(BlockHandler.DUST).setRegistryName(Constants.MODID, Constants.DUST));
+		if(BlocksItems.enableStwH) 				event.getRegistry().register(new ItemBlock(BlockHandler.STWH).setRegistryName(Constants.MODID, Constants.STWH));
+		if(BlocksItems.enableElderTree) {
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SAPLING).setRegistryName(Constants.MODID, Constants.ELDER_SAPLING));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LOG).setRegistryName(Constants.MODID, Constants.ELDER_LOG));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LEAVES).setRegistryName(Constants.MODID, Constants.ELDER_LEAVES));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_PLANKS).setRegistryName(Constants.MODID, Constants.ELDER_PLANKS));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SLAB).setRegistryName(Constants.MODID, Constants.ELDER_SLAB));
+			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB_DOUBLE));
+		}
+		if(BlocksItems.enableNetherrackGravel)	event.getRegistry().register(new ItemBlock(BlockHandler.NETHERRACK_GRAVEL).setRegistryName(Constants.MODID, Constants.NETHERRACK_GRAVEL));
+		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(new ItemBlock(BlockHandler.MEAN_VINE).setRegistryName(Constants.MODID, Constants.MEAN_VINE));
+		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(new ItemBlock(BlockHandler.STONE_DOOR).setRegistryName(Constants.MODID, Constants.STONE_DOOR));
+		if(BlocksItems.enableElderDoor)			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_DOOR).setRegistryName(Constants.MODID, Constants.ELDER_DOOR));
+    }
 
-	private static void addItemBurnTime()
+	public static void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);

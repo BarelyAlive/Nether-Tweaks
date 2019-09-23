@@ -18,15 +18,14 @@ import mod.nethertweaks.handler.JsonRecipeHandler;
 import mod.nethertweaks.handler.MessageHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.handler.SmeltingNOreDictHandler;
-import mod.nethertweaks.proxy.ServerProxy;
+import mod.nethertweaks.proxy.ClientProxy;
+import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.sfhcore.modules.ISFHCoreModule;
-import mod.sfhcore.proxy.ClientProxy;
-import mod.sfhcore.proxy.IProxy;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -36,7 +35,6 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -73,7 +71,7 @@ public class NetherTweaksMod
 		MessageHandler.init();
 	}
 
-	@SidedProxy(clientSide="mod.nethertweaks.client.logic.ClientProxy", serverSide="mod.nethertweaks.common.logic.CommonProxy", modId=MODID)
+	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MODID)
 	private static CommonProxy commonProxy;
 
 	public static CommonProxy getProxy() {
@@ -133,18 +131,18 @@ public class NetherTweaksMod
 
 		Compatibility.init();
 
+		ItemHandler.addItemBurnTime();
 		NTMCapabilities.init();
 		NTMEntities.init();
 
-		ItemHandler.init();
-		BlockHandler.init();
 		BucketNFluidHandler.init(event.getSide());
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 
+		MinecraftForge.EVENT_BUS.register(new BlockHandler());
+		MinecraftForge.EVENT_BUS.register(new ItemHandler());
 		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
-		MinecraftForge.EVENT_BUS.register(this);
 
 		// Disable all copper ores except all ores from thermal foundation
 		/*

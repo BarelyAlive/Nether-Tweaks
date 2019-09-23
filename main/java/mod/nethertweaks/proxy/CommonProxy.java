@@ -10,9 +10,7 @@ public class CommonProxy {
 
 	public HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
-	public void preInit() {
-
-	}
+	public void preInit() {}
 
 	public void init() {}
 
@@ -32,5 +30,5 @@ public class CommonProxy {
 			// server was not closed since the players last login.
 			return;
 		loadedPlayers.put(uuid, stats);
-	}
+	}	
 }

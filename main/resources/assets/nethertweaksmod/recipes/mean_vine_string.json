@@ -11,7 +11,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "x": {
-      "item": "item_mean_vine"
+      "item": "mean_vine"
     }
   }
 }

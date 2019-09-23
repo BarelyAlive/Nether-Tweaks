@@ -8,9 +8,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.blocks.tile.TileAshBonePile;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCondenser;
+import mod.nethertweaks.blocks.tile.TileCrucibleStone;
+import mod.nethertweaks.blocks.tile.TileFreezer;
+import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
+import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.EntityItemLava;
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
@@ -23,9 +34,12 @@ import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
+import mod.sfhcore.registries.Registry;
 import mod.sfhcore.vars.PlayerPosition;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -35,16 +49,20 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -61,6 +79,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -128,7 +147,8 @@ public class EventHook
 		World world = event.getWorld();
 
 		if(!world.isRemote && Hellworld.isHellworld(world))
-			if(state.getMaterial() == Material.WATER && !Config.waterSources) event.setResult(Result.DENY);
+			if(state.getMaterial() == Material.WATER && !Config.waterSources)
+				event.setResult(Result.DENY);
 	}
 
 	@SubscribeEvent
@@ -386,6 +406,61 @@ public class EventHook
 			eventItem.setCount(eventItem.getCount() - 1);
 		}
 	}
+	//*********************************************************************************************************************
+    
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void registerModels(ModelRegistryEvent event) {
+    	if(BlocksItems.enableBarrelStone)		
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_BARREL), 0, new ModelResourceLocation(Constants.STONE_BARREL, "inventory"));
+		if(BlocksItems.enableBarrelWood) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.OAK_BARREL), 0, new ModelResourceLocation(Constants.OAK_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BIRCH_BARREL), 0, new ModelResourceLocation(Constants.BIRCH_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.SPRUCE_BARREL), 0, new ModelResourceLocation(Constants.SPRUCE_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.JUNGLE_BARREL), 0, new ModelResourceLocation(Constants.JUNGLE_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ACACIA_BARREL), 0, new ModelResourceLocation(Constants.ACACIA_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.DARK_OAK_BARREL), 0, new ModelResourceLocation(Constants.DARK_OAK_BARREL, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_BARREL), 0, new ModelResourceLocation(Constants.ELDER_BARREL, "inventory"));
+		}
+		if(BlocksItems.enableSieve) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_SIEVE), 0, new ModelResourceLocation(Constants.STONE_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.OAK_SIEVE), 0, new ModelResourceLocation(Constants.OAK_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BIRCH_SIEVE), 0, new ModelResourceLocation(Constants.BIRCH_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.SPRUCE_SIEVE), 0, new ModelResourceLocation(Constants.SPRUCE_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.JUNGLE_SIEVE), 0, new ModelResourceLocation(Constants.JUNGLE_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ACACIA_SIEVE), 0, new ModelResourceLocation(Constants.ACACIA_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.DARK_OAK_SIEVE), 0, new ModelResourceLocation(Constants.DARK_OAK_SIEVE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_SIEVE), 0, new ModelResourceLocation(Constants.ELDER_SIEVE, "inventory"));
+		}
+		if(BlocksItems.enableAshBonePile)		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ASH_BONE_PILE), 0, new ModelResourceLocation(Constants.ASH_BONE_PILE, "inventory"));
+		if(BlocksItems.enableFreezer)			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.FREEZER), 0, new ModelResourceLocation(Constants.FREEZER, "inventory"));
+		if(BlocksItems.enableHellmart)			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.HELLMART), 0, new ModelResourceLocation(Constants.HELLMART, "inventory"));
+		if(BlocksItems.enableCondenser) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.CONDENSER), 0, new ModelResourceLocation(Constants.CONDENSER, "inventory"));
+		if(BlocksItems.enableNetherrackFurnace)	ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.NETHERRACK_FURNACE), 0, new ModelResourceLocation(Constants.NETHERRACK_FURNACE, "inventory"));
+		if(BlocksItems.enableCrucible) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.UNFIRED_CRUCIBLE), 0, new ModelResourceLocation("unfired_" + Constants.CRUCIBLE, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.CRUCIBLE), 0, new ModelResourceLocation(Constants.CRUCIBLE, "inventory"));
+		}
+		
+		if(BlocksItems.enableHellfayahOre) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.HELLFAYAH_ORE), 0, new ModelResourceLocation(Constants.HELLFAYAH_ORE, "inventory"));
+		if(BlocksItems.enableHellfayahBlock) 	ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BLOCK_OF_HELLFAYAH), 0, new ModelResourceLocation(Constants.BLOCK_OF_HELLFAYAH, "inventory"));
+		if(BlocksItems.enableSaltBlock) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BLOCK_OF_SALT), 0, new ModelResourceLocation(Constants.BLOCK_OF_SALT, "inventory"));
+		if(BlocksItems.enableDust) 				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.DUST), 0, new ModelResourceLocation(Constants.DUST, "inventory"));
+		if(BlocksItems.enableStwH) 				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STWH), 0, new ModelResourceLocation(Constants.STWH, "inventory"));
+		if(BlocksItems.enableElderTree) {
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_SAPLING), 0, new ModelResourceLocation(Constants.ELDER_SAPLING, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_LOG), 0, new ModelResourceLocation(Constants.ELDER_LOG, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_LEAVES), 0, new ModelResourceLocation(Constants.ELDER_LEAVES, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_PLANKS), 0, new ModelResourceLocation(Constants.ELDER_PLANKS, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_SLAB), 0, new ModelResourceLocation(Constants.ELDER_SLAB, "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_SLAB_DOUBLE), 0, new ModelResourceLocation(Constants.ELDER_SLAB_DOUBLE, "inventory"));
+		}
+		if(BlocksItems.enableNetherrackGravel)	ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.NETHERRACK_GRAVEL), 0, new ModelResourceLocation(Constants.NETHERRACK_GRAVEL, "inventory"));
+		if(BlocksItems.enableMeanVine) 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.MEAN_VINE), 0, new ModelResourceLocation(Constants.MEAN_VINE, "inventory"));
+		if(BlocksItems.enableStoneDoor) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_DOOR), 0, new ModelResourceLocation(Constants.STONE_DOOR, "inventory"));
+		if(BlocksItems.enableElderDoor)			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_DOOR), 0, new ModelResourceLocation(Constants.ELDER_DOOR, "inventory"));
+    }
+	
 	//*********************************************************************************************************************
 
 	private void teleportPlayer(final EntityPlayer player) {

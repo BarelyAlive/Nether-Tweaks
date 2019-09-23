@@ -33,6 +33,9 @@ import mod.sfhcore.registries.Registry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockHandler
 {
@@ -87,65 +90,65 @@ public class BlockHandler
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TAB).setResistance(10.0F).setHardness(2.0F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
 
-	public static void init()
+	@SubscribeEvent
+    public void registerBlocks(RegistryEvent.Register<Block> event)
 	{
-		registerBlockTiles();
-		registerBlocks();
-	}
-
-	private static void registerBlockTiles()
-	{
-		//Tile Entity
-		if(BlocksItems.enableBarrelStone)		Registry.registerTileEntity(STONE_BARREL, TileBarrel.class);
+		if(BlocksItems.enableBarrelStone)		
+			event.getRegistry().register(STONE_BARREL);
 		if(BlocksItems.enableBarrelWood) {
-			Registry.registerTileEntity(OAK_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(BIRCH_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(SPRUCE_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(JUNGLE_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(ACACIA_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(DARK_OAK_BARREL, TileBarrel.class);
-			Registry.registerTileEntity(ELDER_BARREL, TileBarrel.class);
+			event.getRegistry().register(OAK_BARREL);
+			event.getRegistry().register(BIRCH_BARREL);
+			event.getRegistry().register(SPRUCE_BARREL);
+			event.getRegistry().register(JUNGLE_BARREL);
+			event.getRegistry().register(ACACIA_BARREL);
+			event.getRegistry().register(DARK_OAK_BARREL);
+			event.getRegistry().register(ELDER_BARREL);
 		}
 		if(BlocksItems.enableSieve) {
-			Registry.registerTileEntity(STONE_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(OAK_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(BIRCH_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(SPRUCE_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(JUNGLE_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(ACACIA_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(DARK_OAK_SIEVE, TileSieve.class);
-			Registry.registerTileEntity(ELDER_SIEVE, TileSieve.class);
+			event.getRegistry().register(STONE_SIEVE);
+			event.getRegistry().register(OAK_SIEVE);
+			event.getRegistry().register(BIRCH_SIEVE);
+			event.getRegistry().register(SPRUCE_SIEVE);
+			event.getRegistry().register(JUNGLE_SIEVE);
+			event.getRegistry().register(ACACIA_SIEVE);
+			event.getRegistry().register(DARK_OAK_SIEVE);
+			event.getRegistry().register(ELDER_SIEVE);
 		}
-		if(BlocksItems.enableAshBonePile)		Registry.registerTileEntity(ASH_BONE_PILE, TileAshBonePile.class);
-		if(BlocksItems.enableFreezer)			Registry.registerTileEntity(FREEZER, TileFreezer.class);
-		if(BlocksItems.enableHellmart)			Registry.registerTileEntity(HELLMART, TileHellmart.class);
-		if(BlocksItems.enableCondenser) 		Registry.registerTileEntity(CONDENSER, TileCondenser.class);
-		if(BlocksItems.enableNetherrackFurnace)	Registry.registerTileEntity(NETHERRACK_FURNACE, TileNetherrackFurnace.class);
+		if(BlocksItems.enableAshBonePile)		event.getRegistry().register(ASH_BONE_PILE);
+		if(BlocksItems.enableFreezer)			event.getRegistry().register(FREEZER);
+		if(BlocksItems.enableHellmart)			event.getRegistry().register(HELLMART);
+		if(BlocksItems.enableCondenser) 		event.getRegistry().register(CONDENSER);
+		if(BlocksItems.enableNetherrackFurnace)	event.getRegistry().register(NETHERRACK_FURNACE);
 		if(BlocksItems.enableCrucible) {
-			Registry.registerTileEntity(UNFIRED_CRUCIBLE, TileCrucibleStone.class);
-			Registry.registerTileEntity(CRUCIBLE, TileCrucibleStone.class);
+			event.getRegistry().register(UNFIRED_CRUCIBLE);
+			event.getRegistry().register(CRUCIBLE);
 		}
-	}
-
-	//Registering all the blocks
-	private static void registerBlocks()
-	{
-		if(BlocksItems.enableHellfayahOre) 		Registry.registerBlock(HELLFAYAH_ORE);
-		if(BlocksItems.enableHellfayahBlock) 	Registry.registerBlock(BLOCK_OF_HELLFAYAH);
-		if(BlocksItems.enableSaltBlock) 		Registry.registerBlock(BLOCK_OF_SALT);
-		if(BlocksItems.enableDust) 				Registry.registerBlock(DUST);
-		if(BlocksItems.enableStwH) 				Registry.registerBlock(STWH);
+		
+		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(HELLFAYAH_ORE);
+		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(BLOCK_OF_HELLFAYAH);
+		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(BLOCK_OF_SALT);
+		if(BlocksItems.enableDust) 				event.getRegistry().register(DUST);
+		if(BlocksItems.enableStwH) 				event.getRegistry().register(STWH);
 		if(BlocksItems.enableElderTree) {
-			Registry.registerBlock(ELDER_SAPLING);
-			Registry.registerBlock(ELDER_LOG);
-			Registry.registerBlock(ELDER_LEAVES);
-			Registry.registerBlock(ELDER_PLANKS);
-			Registry.registerBlock(ELDER_SLAB);
-			Registry.registerBlock(ELDER_SLAB_DOUBLE);
+			event.getRegistry().register(ELDER_SAPLING);
+			event.getRegistry().register(ELDER_LOG);
+			event.getRegistry().register(ELDER_LEAVES);
+			event.getRegistry().register(ELDER_PLANKS);
+			event.getRegistry().register(ELDER_SLAB);
+			event.getRegistry().register(ELDER_SLAB_DOUBLE);
 		}
-		if(BlocksItems.enableNetherrackGravel)	Registry.registerBlock(NETHERRACK_GRAVEL);
-		if(BlocksItems.enableMeanVine) 			Registry.registerBlock(MEAN_VINE);
-		if(BlocksItems.enableStoneDoor) 		Registry.registerBlock(STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			Registry.registerBlock(ELDER_DOOR);
-	}
+		if(BlocksItems.enableNetherrackGravel)	event.getRegistry().register(NETHERRACK_GRAVEL);
+		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(MEAN_VINE);
+		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(STONE_DOOR);
+		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ELDER_DOOR);
+		
+		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileFreezer.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileHellmart.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_BARREL);
+    }
 }

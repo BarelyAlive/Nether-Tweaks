@@ -11,7 +11,7 @@ public class Constants {
 	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";
 	
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
-	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.ServerProxy";
+	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.CommonProxy";
 	
 	public static final CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
