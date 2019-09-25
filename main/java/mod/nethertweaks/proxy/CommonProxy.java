@@ -30,5 +30,5 @@ public class CommonProxy {
 			// server was not closed since the players last login.
 			return;
 		loadedPlayers.put(uuid, stats);
-	}	
+	}
 }

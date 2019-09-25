@@ -90,18 +90,14 @@ public class BlockHandler
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
 
 	@SubscribeEvent
-    public void registerBlocks(RegistryEvent.Register<Block> event)
+	public void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
 		//FluidBlocks
 		if (BlocksItems.enableLiquidImpossibility)
-		{
 			event.getRegistry().register(BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY);
-		}
 		if(BlocksItems.enableDistilledWater)
-		{
 			event.getRegistry().register(BucketNFluidHandler.BLOCKDISTILLEDWATER);
-		}
-		if(BlocksItems.enableBarrelStone)		
+		if(BlocksItems.enableBarrelStone)
 			event.getRegistry().register(STONE_BARREL);
 		if(BlocksItems.enableBarrelWood) {
 			event.getRegistry().register(OAK_BARREL);
@@ -131,7 +127,7 @@ public class BlockHandler
 			event.getRegistry().register(UNFIRED_CRUCIBLE);
 			event.getRegistry().register(CRUCIBLE);
 		}
-		
+
 		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(HELLFAYAH_ORE);
 		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(BLOCK_OF_HELLFAYAH);
 		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(BLOCK_OF_SALT);
@@ -149,7 +145,7 @@ public class BlockHandler
 		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(MEAN_VINE);
 		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(STONE_DOOR);
 		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ELDER_DOOR);
-		
+
 		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_BARREL);
@@ -158,5 +154,5 @@ public class BlockHandler
 		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_BARREL);
-    }
+	}
 }

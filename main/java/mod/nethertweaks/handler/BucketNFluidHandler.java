@@ -1,12 +1,10 @@
 package mod.nethertweaks.handler;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.DistilledWater;
 import mod.nethertweaks.blocks.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.fluid.FluidDistilledWater;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
-import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -32,16 +30,16 @@ public class BucketNFluidHandler
 		{
 			register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 			if(side.isClient())
-				initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+				initModel(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
 		}
 		if(BlocksItems.enableDistilledWater)
 		{
 			register(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 			if(side.isClient())
-				initModel((mod.sfhcore.fluid.Fluid) FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
+				initModel(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 		}
 	}
-	
+
 	public static void register(final net.minecraftforge.fluids.Fluid f, final Block b)
 	{
 		f.setUnlocalizedName(f.getName());

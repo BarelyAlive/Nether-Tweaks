@@ -31,7 +31,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new RenderBarrel());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileAshBonePile.class, new RenderAshBonePile());
-		
+
 		//Ores
 		OreHandler.disableOre("minecraft:redstone");
 		OreHandler.disableOre("minecraft:coal");

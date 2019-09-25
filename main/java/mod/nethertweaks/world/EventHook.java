@@ -399,11 +399,11 @@ public class EventHook
 		}
 	}
 	//*********************************************************************************************************************
-    
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void registerModels(ModelRegistryEvent event) {
-    	if(BlocksItems.enableBarrelStone)		
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void registerModels(final ModelRegistryEvent event) {
+		if(BlocksItems.enableBarrelStone)
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_BARREL), 0, new ModelResourceLocation(Constants.STONE_BARREL, "inventory"));
 		if(BlocksItems.enableBarrelWood) {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.OAK_BARREL), 0, new ModelResourceLocation(Constants.OAK_BARREL, "inventory"));
@@ -433,7 +433,7 @@ public class EventHook
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.UNFIRED_CRUCIBLE), 0, new ModelResourceLocation("unfired_" + Constants.CRUCIBLE, "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.CRUCIBLE), 0, new ModelResourceLocation(Constants.CRUCIBLE, "inventory"));
 		}
-		
+
 		if(BlocksItems.enableHellfayahOre) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.HELLFAYAH_ORE), 0, new ModelResourceLocation(Constants.HELLFAYAH_ORE, "inventory"));
 		if(BlocksItems.enableHellfayahBlock) 	ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BLOCK_OF_HELLFAYAH), 0, new ModelResourceLocation(Constants.BLOCK_OF_HELLFAYAH, "inventory"));
 		if(BlocksItems.enableSaltBlock) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.BLOCK_OF_SALT), 0, new ModelResourceLocation(Constants.BLOCK_OF_SALT, "inventory"));
@@ -451,16 +451,16 @@ public class EventHook
 		if(BlocksItems.enableMeanVine) 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.MEAN_VINE), 0, new ModelResourceLocation(Constants.MEAN_VINE, "inventory"));
 		if(BlocksItems.enableStoneDoor) 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.STONE_DOOR), 0, new ModelResourceLocation(Constants.STONE_DOOR, "inventory"));
 		if(BlocksItems.enableElderDoor)			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockHandler.ELDER_DOOR), 0, new ModelResourceLocation(Constants.ELDER_DOOR, "inventory"));
-    }
-    
-    @SubscribeEvent
+	}
+
+	@SubscribeEvent
 	public static void registerEnchantments(final IForgeRegistry<Enchantment> registry)
 	{
 		registry.register(new EnchantmentEfficiency());
 		registry.register(new EnchantmentLuckOfTheSea());
 		registry.register(new EnchantmentFortune());
 	}
-	
+
 	//*********************************************************************************************************************
 
 	private void teleportPlayer(final EntityPlayer player) {

@@ -111,11 +111,11 @@ public class ItemHandler
 		registerBuckets();
 		addItemBurnTime();
 	}
-	
+
 	@SubscribeEvent
-    public void registerItems(RegistryEvent.Register<Item> event)
-    {
-    	//Crafting Components
+	public void registerItems(final RegistryEvent.Register<Item> event)
+	{
+		//Crafting Components
 		if(BlocksItems.enableStoneBar)	  		event.getRegistry().register(STONE_BAR);
 		if(BlocksItems.enablePortalCore)  		event.getRegistry().register(PORTAL_CORE);
 		if(BlocksItems.enableEndBox)		  	event.getRegistry().register(END_BOX);
@@ -191,9 +191,9 @@ public class ItemHandler
 		//Doors
 		if(BlocksItems.enableStoneDoor)  		event.getRegistry().register(ITEM_STONE_DOOR);
 		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ITEM_ELDER_DOOR);
-		
+
 		//Blocks
-		if(BlocksItems.enableBarrelStone)		
+		if(BlocksItems.enableBarrelStone)
 			event.getRegistry().register(new ItemBlock(BlockHandler.STONE_BARREL).setRegistryName(Constants.MODID, Constants.STONE_BARREL));
 		if(BlocksItems.enableBarrelWood) {
 			event.getRegistry().register(new ItemBlock(BlockHandler.OAK_BARREL).setRegistryName(Constants.MODID, Constants.OAK_BARREL));
@@ -223,7 +223,7 @@ public class ItemHandler
 			event.getRegistry().register(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, "unfired_" + Constants.CRUCIBLE));
 			event.getRegistry().register(new ItemBlock(BlockHandler.CRUCIBLE).setRegistryName(Constants.MODID, Constants.CRUCIBLE));
 		}
-	
+
 		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(new ItemBlock(BlockHandler.HELLFAYAH_ORE).setRegistryName(Constants.MODID, Constants.HELLFAYAH_ORE));
 		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_HELLFAYAH).setRegistryName(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
 		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_SALT).setRegistryName(Constants.MODID, Constants.BLOCK_OF_SALT));
@@ -234,15 +234,11 @@ public class ItemHandler
 			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LOG).setRegistryName(Constants.MODID, Constants.ELDER_LOG));
 			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LEAVES).setRegistryName(Constants.MODID, Constants.ELDER_LEAVES));
 			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_PLANKS).setRegistryName(Constants.MODID, Constants.ELDER_PLANKS));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SLAB).setRegistryName(Constants.MODID, Constants.ELDER_SLAB));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB_DOUBLE));
 		}
 		if(BlocksItems.enableNetherrackGravel)	event.getRegistry().register(new ItemBlock(BlockHandler.NETHERRACK_GRAVEL).setRegistryName(Constants.MODID, Constants.NETHERRACK_GRAVEL));
 		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(new ItemBlock(BlockHandler.MEAN_VINE).setRegistryName(Constants.MODID, Constants.MEAN_VINE));
-		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(new ItemBlock(BlockHandler.STONE_DOOR).setRegistryName(Constants.MODID, Constants.STONE_DOOR));
-		if(BlocksItems.enableElderDoor)			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_DOOR).setRegistryName(Constants.MODID, Constants.ELDER_DOOR));
-    }
-	
+	}
+
 	private static void registerBuckets()
 	{
 		if(BlocksItems.enableWoodBucket)

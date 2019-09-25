@@ -57,7 +57,7 @@ public class NetherTweaksMod
 	public static File configDirectory;
 	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
-	
+
 	@Instance(value=Constants.MODID)
 	private static NetherTweaksMod instance;
 
