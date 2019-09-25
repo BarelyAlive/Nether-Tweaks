@@ -46,6 +46,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		setTickRandomly(true);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setRegistryName(Constants.MODID, Constants.ELDER_LEAVES);
+		setUnlocalizedName(Constants.ELDER_LEAVES);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setSoundType(SoundType.PLANT);

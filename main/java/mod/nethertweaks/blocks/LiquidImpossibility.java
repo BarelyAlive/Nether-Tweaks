@@ -27,6 +27,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 	{
 		super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
 		setRegistryName(Constants.MODID, Constants.LIQUIDIMPOSSIBILITY);
+		setUnlocalizedName(Constants.LIQUIDIMPOSSIBILITY);
 		setLightLevel(Config.luminosityLI);
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);

@@ -75,6 +75,8 @@ public class Constants {
 	public static final String TE_FREEZER				= "ntm.tile.freezer";
 	public static final String TE_SIEVE					= "ntm.tile.sieve";
 	public static final String TE_HELLMART				= "ntm.tile.hellmart";
+	public static final String TE_ASH_BONE_PILE			= "ntm.tile.ash_bone_pile";
+	public static final String TE_CRUCIBLE				= "ntm.tile.crucible";
 
 	//Items
 	public static final String MESH_STRING				= "mesh_string";

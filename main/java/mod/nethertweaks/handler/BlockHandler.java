@@ -147,12 +147,12 @@ public class BlockHandler
 		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ELDER_DOOR);
 
 		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileFreezer.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileHellmart.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_BARREL);
+		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
+		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_ASH_BONE_PILE);
+		GameRegistry.registerTileEntity(TileFreezer.class, Constants.TE_FREEZER);
+		GameRegistry.registerTileEntity(TileHellmart.class, Constants.TE_HELLMART);
+		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_CONDENSER);
+		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACKFURNACE);
+		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
 	}
 }

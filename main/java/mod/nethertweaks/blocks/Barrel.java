@@ -38,6 +38,7 @@ public class Barrel extends Block implements ITileEntityProvider
 		this.tier = tier;
 		setHardness(2.0f);
 		setRegistryName(Constants.MODID, name);
+		setUnlocalizedName(name);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 	}
 

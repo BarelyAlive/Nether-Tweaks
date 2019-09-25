@@ -39,6 +39,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 		setDefaultState(blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		this.setRegistryName(Constants.MODID, Constants.ELDER_SAPLING);
+		setUnlocalizedName(Constants.ELDER_SAPLING);
 	}
 
 	@Override

@@ -25,6 +25,7 @@ public class Hellmart extends BlockContainer
 		setSoundType(SoundType.STONE);
 		setCreativeTab(NetherTweaksMod.TABNTM);
 		setRegistryName(Constants.MODID, Constants.HELLMART);
+		setUnlocalizedName(Constants.HELLMART);
 		setResistance(17.5f);
 		setHardness(2.0F);
 	}
