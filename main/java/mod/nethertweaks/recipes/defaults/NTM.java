@@ -9,7 +9,7 @@ import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.Sieve.MeshType;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.OreHandler;
 import mod.nethertweaks.items.ItemChunk;
@@ -435,12 +435,12 @@ public class NTM implements IRecipeDefaults
 	public void registerFluidOnTop(final FluidOnTopRegistry registry)
 	{
 		registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-		registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-		registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDDISTILLEDWATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+		registry.register(FluidRegistry.LAVA, FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+		registry.register(FluidRegistry.LAVA, FluidHandler.FLUIDDISTILLEDWATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
 
 		registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-		registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-		registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+		registry.register(FluidHandler.FLUIDDISTILLEDWATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+		registry.register(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 	}
 
 	@Override
@@ -471,8 +471,8 @@ public class NTM implements IRecipeDefaults
 	public void registerFluidBlockTransform(final FluidBlockTransformerRegistry registry)
 	{
 		registry.register(FluidRegistry.WATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
-		registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
-		registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
+		registry.register(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
+		registry.register(FluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
 		registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
 		registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
 
@@ -482,24 +482,24 @@ public class NTM implements IRecipeDefaults
 		}
 		else {
 			// No milk, fall back to liquid impossibility
-			registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-			registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+			registry.register(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+			registry.register(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 		}
 
 		// Vanilla Concrete
 		for (int meta = 0; meta < 16; meta++)
 		{
 			registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
-			registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
-			registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+			registry.register(FluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+			registry.register(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
 		}
 	}
 
 	@Override
 	public void registerFluidItemFluid(final FluidItemFluidRegistry registry)
 	{
-		registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
-		registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 100, true);
+		registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
+		registry.register(FluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 100, true);
 	}
 
 	@Override

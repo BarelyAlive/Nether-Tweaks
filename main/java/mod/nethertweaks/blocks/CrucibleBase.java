@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;
@@ -25,8 +25,9 @@ public abstract class CrucibleBase extends Block
 {
 	public CrucibleBase(final String name, final Material material) {
 		super(material);
-		setRegistryName(name);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setRegistryName(Constants.MODID, name);
+		setUnlocalizedName(name);
+		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

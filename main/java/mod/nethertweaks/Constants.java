@@ -12,8 +12,8 @@ public class Constants {
 
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.CommonProxy";
-
-	public static final CreativeTabs TAB = NetherTweaksMod.TABNTM;
+	
+	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 
 	//Fluids
 	public static final String DISTILLEDWATER			= "distilled_water";
@@ -24,6 +24,7 @@ public class Constants {
 	public static final String NETHERRACK_FURNACE 		= "netherrack_furnace";
 	public static final String BARREL					= "barrel";
 	public static final String FREEZER 					= "freezer";
+	public static final String UNFIRED_CRUCIBLE			= "unfired_crucible";
 	public static final String CRUCIBLE					= "crucible";
 	public static final String HELLMART 				= "hellmart";
 	public static final String BONFIRE 					= "bonfire";

@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,9 +10,10 @@ public class ItemMesh extends Item{
 
 	public ItemMesh(final String type) {
 		super();
-		this.setRegistryName(new ResourceLocation(Constants.MODID, type));
+		setRegistryName(new ResourceLocation(Constants.MODID, type));
+		setUnlocalizedName(type);
 		setMaxStackSize(1);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

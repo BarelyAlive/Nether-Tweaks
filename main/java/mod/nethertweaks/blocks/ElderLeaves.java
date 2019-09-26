@@ -10,7 +10,6 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
@@ -44,7 +43,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		super();
 		setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 		setTickRandomly(true);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, Constants.ELDER_LEAVES);
 		setUnlocalizedName(Constants.ELDER_LEAVES);
 		setHardness(0.2F);

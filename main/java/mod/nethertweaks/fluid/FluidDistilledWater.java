@@ -1,10 +1,10 @@
 package mod.nethertweaks.fluid;
 
 import mod.nethertweaks.Constants;
-import mod.sfhcore.fluid.Fluid;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -21,6 +21,9 @@ public class FluidDistilledWater extends Fluid{
 		setDensity(FluidRegistry.WATER.getDensity());
 		setViscosity(FluidRegistry.WATER.getViscosity());
 		setLuminosity(FluidRegistry.WATER.getLuminosity());
+		
+		FluidRegistry.registerFluid(this);
+		FluidRegistry.addBucketForFluid(this);
 	}
 
 	@Override

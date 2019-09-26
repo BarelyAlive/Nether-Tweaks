@@ -1,5 +1,8 @@
 package mod.nethertweaks.handler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
@@ -25,6 +28,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -70,18 +74,18 @@ public class ItemHandler
 	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
 
 	//Tools
 	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -99,155 +103,150 @@ public class ItemHandler
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TAB);
+	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TABNTM);
 	public static final Item CANTEEN	 	  	 = new Canteen();
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TAB, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
+	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
+	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
 	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
 
-	public static void init() {
+	private static List<Item> items = new ArrayList();
+	
+	public static List<Item> getItems() {
+		return items;
+	}
+	
+	public ItemHandler()
+	{
+		addItems();
 		registerBuckets();
 		addItemBurnTime();
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+	
+	private void addItems()
+	{
+		//Items
+		if(BlocksItems.enableStoneBar)	  		items.add(STONE_BAR);
+		if(BlocksItems.enablePortalCore)  		items.add(PORTAL_CORE);
+		if(BlocksItems.enableEndBox)		  	items.add(END_BOX);
+		if(BlocksItems.enableSalt)		  		items.add(SALT);
+		if(BlocksItems.enableHellfayah)  		items.add(HELLFAYAH);
+		if(BlocksItems.enableEnderInfusedFrame)	items.add(ENDER_INFUSED_FRAME);
+		if(BlocksItems.enableString)		  	items.add(STRING);
+		if(BlocksItems.enablePorcelainClay) 	items.add(PORCELAIN_CLAY);
+		if(BlocksItems.enablePowderOfLight) 	items.add(POWDER_OF_LIGHT);
+		if(BlocksItems.enableAsh) 				items.add(ASH);
+		if(BlocksItems.enableWoodChippings)		items.add(WOOD_CHIPPINGS);
+		if(BlocksItems.enableCoiledSword)		items.add(COILED_SWORD);
+		if(BlocksItems.enableMushroomSpores)	items.add(MUSHROOM_SPORES);
+		if(BlocksItems.enableGrassSeeds)		items.add(GRASS_SEEDS);
+		if(BlocksItems.enableCactusSeeds)		items.add(CACTUS_SEEDS);
+		if(BlocksItems.enableSugarcaneSeeds)	items.add(SUGARCANE_SEEDS);
+		if(BlocksItems.enableCrystalLight)		items.add(CRYSTAL_OF_LIGHT);
+		if(BlocksItems.enablePebbleStone)		items.add(PEBBLE_STONE);
+		if(BlocksItems.enablePebbleGranite)		items.add(PEBBLE_GRANITE);
+		if(BlocksItems.enablePebbleDiorite)		items.add(PEBBLE_DIORITE);
+		if(BlocksItems.enablePebbleAndesite)	items.add(PEBBLE_ANDESITE);
+		if(BlocksItems.enableStringMeshes)		items.add(MESH_STRING);
+		if(BlocksItems.enableFlintMeshes) 		items.add(MESH_FLINT);
+		if(BlocksItems.enableIronMeshes)  		items.add(MESH_IRON);
+		if(BlocksItems.enableDiamondMeshes)		items.add(MESH_DIAMOND);
+		if(BlocksItems.enableDollBat)  			items.add(DOLL_BAT);
+		if(BlocksItems.enableDollChicken)  		items.add(DOLL_CHICKEN);
+		if(BlocksItems.enableDollCow)  			items.add(DOLL_COW);
+		if(BlocksItems.enableDollDonkey)  		items.add(DOLL_DONKEY);
+		if(BlocksItems.enableDollHorse)  		items.add(DOLL_HORSE);
+		if(BlocksItems.enableDollLlama)  		items.add(DOLL_LLAMA);
+		if(BlocksItems.enableDollMule)  		items.add(DOLL_MULE);
+		if(BlocksItems.enableDollOcelot)  		items.add(DOLL_OCELOT);
+		if(BlocksItems.enableDollParrot)  		items.add(DOLL_PARROT);
+		if(BlocksItems.enableDollPig)  			items.add(DOLL_PIG);
+		if(BlocksItems.enableDollPolarBear)  	items.add(DOLL_POLAR_BEAR);
+		if(BlocksItems.enableDollRabbit)  		items.add(DOLL_RABBIT);
+		if(BlocksItems.enableDollRedMooshroom)	items.add(DOLL_RED_MOOSHROOM);
+		if(BlocksItems.enableDollSheep)  		items.add(DOLL_SHEEP);
+		if(BlocksItems.enableDollVillager)		items.add(DOLL_VILLAGER);
+		if(BlocksItems.enableDollWolf)  		items.add(DOLL_WOLF);
+		if(BlocksItems.enableGrabberWood)		items.add(GRABBER_WOOD);
+		if(BlocksItems.enableGrabberGold)		items.add(GRABBER_GOLD);
+		if(BlocksItems.enableGrabberStone)		items.add(GRABBER_STONE);
+		if(BlocksItems.enableGrabberIron)		items.add(GRABBER_IRON);
+		if(BlocksItems.enableGrabberDiamond)	items.add(GRABBER_DIAMOND);
+		if(BlocksItems.enableFlintNBlaze)  		items.add(FLINT_N_BLAZE);
+		if(BlocksItems.enableHammerWood)  		items.add(HAMMER_WOOD);
+		if(BlocksItems.enableHammerGold)  		items.add(HAMMER_GOLD);
+		if(BlocksItems.enableHammerStone)  		items.add(HAMMER_STONE);
+		if(BlocksItems.enableHammerIron)  		items.add(HAMMER_IRON);
+		if(BlocksItems.enableHammerDiamond)  	items.add(HAMMER_DIAMOND);
+		if(BlocksItems.enableElderTree)			items.add(ITEM_ELDER_SLAB);
+		if(BlocksItems.enableJerky)  			items.add(COOKED_JERKY);
+		if(BlocksItems.enableCanteen)  			items.add(CANTEEN);
+		if(BlocksItems.enableStoneDoor)  		items.add(ITEM_STONE_DOOR);
+		if(BlocksItems.enableElderDoor)			items.add(ITEM_ELDER_DOOR);
+
+		//Blocks
+		if(BlocksItems.enableBarrel) {
+			items.add(new ItemBlock(BlockHandler.STONE_BARREL).setRegistryName(Constants.MODID, Constants.STONE_BARREL));
+			items.add(new ItemBlock(BlockHandler.OAK_BARREL).setRegistryName(Constants.MODID, Constants.OAK_BARREL));
+			items.add(new ItemBlock(BlockHandler.BIRCH_BARREL).setRegistryName(Constants.MODID, Constants.BIRCH_BARREL));
+			items.add(new ItemBlock(BlockHandler.SPRUCE_BARREL).setRegistryName(Constants.MODID, Constants.SPRUCE_BARREL));
+			items.add(new ItemBlock(BlockHandler.JUNGLE_BARREL).setRegistryName(Constants.MODID, Constants.JUNGLE_BARREL));
+			items.add(new ItemBlock(BlockHandler.ACACIA_BARREL).setRegistryName(Constants.MODID, Constants.ACACIA_BARREL));
+			items.add(new ItemBlock(BlockHandler.DARK_OAK_BARREL).setRegistryName(Constants.MODID, Constants.DARK_OAK_BARREL));
+			items.add(new ItemBlock(BlockHandler.ELDER_BARREL).setRegistryName(Constants.MODID, Constants.ELDER_BARREL));
+		}
+		if(BlocksItems.enableSieve) {
+			items.add(new ItemBlock(BlockHandler.STONE_SIEVE).setRegistryName(Constants.MODID, Constants.STONE_SIEVE));
+			items.add(new ItemBlock(BlockHandler.OAK_SIEVE).setRegistryName(Constants.MODID, Constants.OAK_SIEVE));
+			items.add(new ItemBlock(BlockHandler.BIRCH_SIEVE).setRegistryName(Constants.MODID, Constants.BIRCH_SIEVE));
+			items.add(new ItemBlock(BlockHandler.SPRUCE_SIEVE).setRegistryName(Constants.MODID, Constants.SPRUCE_SIEVE));
+			items.add(new ItemBlock(BlockHandler.JUNGLE_SIEVE).setRegistryName(Constants.MODID, Constants.JUNGLE_SIEVE));
+			items.add(new ItemBlock(BlockHandler.ACACIA_SIEVE).setRegistryName(Constants.MODID, Constants.ACACIA_SIEVE));
+			items.add(new ItemBlock(BlockHandler.DARK_OAK_SIEVE).setRegistryName(Constants.MODID, Constants.DARK_OAK_SIEVE));
+			items.add(new ItemBlock(BlockHandler.ELDER_SIEVE).setRegistryName(Constants.MODID, Constants.ELDER_SIEVE));
+		}
+		if(BlocksItems.enableAshBonePile)		items.add(new ItemBlock(BlockHandler.ASH_BONE_PILE).setRegistryName(Constants.MODID, Constants.ASH_BONE_PILE));
+		if(BlocksItems.enableFreezer)			items.add(new ItemBlock(BlockHandler.FREEZER).setRegistryName(Constants.MODID, Constants.FREEZER));
+		if(BlocksItems.enableHellmart)			items.add(new ItemBlock(BlockHandler.HELLMART).setRegistryName(Constants.MODID, Constants.HELLMART));
+		if(BlocksItems.enableCondenser) 		items.add(new ItemBlock(BlockHandler.CONDENSER).setRegistryName(Constants.MODID, Constants.CONDENSER));
+		if(BlocksItems.enableNetherrackFurnace)	items.add(new ItemBlock(BlockHandler.NETHERRACK_FURNACE).setRegistryName(Constants.MODID, Constants.NETHERRACK_FURNACE));
+		if(BlocksItems.enableCrucible) {
+			items.add(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, "unfired_" + Constants.CRUCIBLE));
+			items.add(new ItemBlock(BlockHandler.CRUCIBLE).setRegistryName(Constants.MODID, Constants.CRUCIBLE));
+		}
+		if(BlocksItems.enableHellfayahOre) 		items.add(new ItemBlock(BlockHandler.HELLFAYAH_ORE).setRegistryName(Constants.MODID, Constants.HELLFAYAH_ORE));
+		if(BlocksItems.enableHellfayahBlock) 	items.add(new ItemBlock(BlockHandler.BLOCK_OF_HELLFAYAH).setRegistryName(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
+		if(BlocksItems.enableSaltBlock) 		items.add(new ItemBlock(BlockHandler.BLOCK_OF_SALT).setRegistryName(Constants.MODID, Constants.BLOCK_OF_SALT));
+		if(BlocksItems.enableDust) 				items.add(new ItemBlock(BlockHandler.DUST).setRegistryName(Constants.MODID, Constants.DUST));
+		if(BlocksItems.enableStwH) 				items.add(new ItemBlock(BlockHandler.STWH).setRegistryName(Constants.MODID, Constants.STWH));
+		if(BlocksItems.enableElderTree) {
+			items.add(new ItemBlock(BlockHandler.ELDER_SAPLING).setRegistryName(Constants.MODID, Constants.ELDER_SAPLING));
+			items.add(new ItemBlock(BlockHandler.ELDER_LOG).setRegistryName(Constants.MODID, Constants.ELDER_LOG));
+			items.add(new ItemBlock(BlockHandler.ELDER_LEAVES).setRegistryName(Constants.MODID, Constants.ELDER_LEAVES));
+			items.add(new ItemBlock(BlockHandler.ELDER_PLANKS).setRegistryName(Constants.MODID, Constants.ELDER_PLANKS));
+		}
+		if(BlocksItems.enableNetherrackGravel)	items.add(new ItemBlock(BlockHandler.NETHERRACK_GRAVEL).setRegistryName(Constants.MODID, Constants.NETHERRACK_GRAVEL));
+		if(BlocksItems.enableMeanVine) 			items.add(new ItemBlock(BlockHandler.MEAN_VINE).setRegistryName(Constants.MODID, Constants.MEAN_VINE));
 	}
 
 	@SubscribeEvent
 	public void registerItems(final RegistryEvent.Register<Item> event)
 	{
-		//Crafting Components
-		if(BlocksItems.enableStoneBar)	  		event.getRegistry().register(STONE_BAR);
-		if(BlocksItems.enablePortalCore)  		event.getRegistry().register(PORTAL_CORE);
-		if(BlocksItems.enableEndBox)		  	event.getRegistry().register(END_BOX);
-		if(BlocksItems.enableSalt)		  		event.getRegistry().register(SALT);
-		if(BlocksItems.enableHellfayah)  		event.getRegistry().register(HELLFAYAH);
-		if(BlocksItems.enableEnderInfusedFrame)	event.getRegistry().register(ENDER_INFUSED_FRAME);
-		if(BlocksItems.enableString)		  	event.getRegistry().register(STRING);
-		if(BlocksItems.enablePorcelainClay) 	event.getRegistry().register(PORCELAIN_CLAY);
-		if(BlocksItems.enablePowderOfLight) 	event.getRegistry().register(POWDER_OF_LIGHT);
-		if(BlocksItems.enableAsh) 				event.getRegistry().register(ASH);
-		if(BlocksItems.enableWoodChippings)		event.getRegistry().register(WOOD_CHIPPINGS);
-		if(BlocksItems.enableCoiledSword)		event.getRegistry().register(COILED_SWORD);
-
-		//Seeds
-		if(BlocksItems.enableMushroomSpores)	event.getRegistry().register(MUSHROOM_SPORES);
-		if(BlocksItems.enableGrassSeeds)		event.getRegistry().register(GRASS_SEEDS);
-		if(BlocksItems.enableCactusSeeds)		event.getRegistry().register(CACTUS_SEEDS);
-		if(BlocksItems.enableSugarcaneSeeds)	event.getRegistry().register(SUGARCANE_SEEDS);
-
-		//Crystals
-		if(BlocksItems.enableCrystalLight)		event.getRegistry().register(CRYSTAL_OF_LIGHT);
-
-		//Pebbles
-		if(BlocksItems.enablePebbleStone)		event.getRegistry().register(PEBBLE_STONE);
-		if(BlocksItems.enablePebbleGranite)		event.getRegistry().register(PEBBLE_GRANITE);
-		if(BlocksItems.enablePebbleDiorite)		event.getRegistry().register(PEBBLE_DIORITE);
-		if(BlocksItems.enablePebbleAndesite)	event.getRegistry().register(PEBBLE_ANDESITE);
-
-		//Meshes
-		if(BlocksItems.enableStringMeshes)		event.getRegistry().register(MESH_STRING);
-		if(BlocksItems.enableFlintMeshes) 		event.getRegistry().register(MESH_FLINT);
-		if(BlocksItems.enableIronMeshes)  		event.getRegistry().register(MESH_IRON);
-		if(BlocksItems.enableDiamondMeshes)		event.getRegistry().register(MESH_DIAMOND);
-
-		//Dolls
-		if(BlocksItems.enableDollBat)  			event.getRegistry().register(DOLL_BAT);
-		if(BlocksItems.enableDollChicken)  		event.getRegistry().register(DOLL_CHICKEN);
-		if(BlocksItems.enableDollCow)  			event.getRegistry().register(DOLL_COW);
-		if(BlocksItems.enableDollDonkey)  		event.getRegistry().register(DOLL_DONKEY);
-		if(BlocksItems.enableDollHorse)  		event.getRegistry().register(DOLL_HORSE);
-		if(BlocksItems.enableDollLlama)  		event.getRegistry().register(DOLL_LLAMA);
-		if(BlocksItems.enableDollMule)  		event.getRegistry().register(DOLL_MULE);
-		if(BlocksItems.enableDollOcelot)  		event.getRegistry().register(DOLL_OCELOT);
-		if(BlocksItems.enableDollParrot)  		event.getRegistry().register(DOLL_PARROT);
-		if(BlocksItems.enableDollPig)  			event.getRegistry().register(DOLL_PIG);
-		if(BlocksItems.enableDollPolarBear)  	event.getRegistry().register(DOLL_POLAR_BEAR);
-		if(BlocksItems.enableDollRabbit)  		event.getRegistry().register(DOLL_RABBIT);
-		if(BlocksItems.enableDollRedMooshroom)	event.getRegistry().register(DOLL_RED_MOOSHROOM);
-		if(BlocksItems.enableDollSheep)  		event.getRegistry().register(DOLL_SHEEP);
-		if(BlocksItems.enableDollVillager)		event.getRegistry().register(DOLL_VILLAGER);
-		if(BlocksItems.enableDollWolf)  		event.getRegistry().register(DOLL_WOLF);
-
-		//Werkzeuge
-		if(BlocksItems.enableGrabberWood)		event.getRegistry().register(GRABBER_WOOD);
-		if(BlocksItems.enableGrabberGold)		event.getRegistry().register(GRABBER_GOLD);
-		if(BlocksItems.enableGrabberStone)		event.getRegistry().register(GRABBER_STONE);
-		if(BlocksItems.enableGrabberIron)		event.getRegistry().register(GRABBER_IRON);
-		if(BlocksItems.enableGrabberDiamond)	event.getRegistry().register(GRABBER_DIAMOND);
-		if(BlocksItems.enableFlintNBlaze)  		event.getRegistry().register(FLINT_N_BLAZE);
-		if(BlocksItems.enableHammerWood)  		event.getRegistry().register(HAMMER_WOOD);
-		if(BlocksItems.enableHammerGold)  		event.getRegistry().register(HAMMER_GOLD);
-		if(BlocksItems.enableHammerStone)  		event.getRegistry().register(HAMMER_STONE);
-		if(BlocksItems.enableHammerIron)  		event.getRegistry().register(HAMMER_IRON);
-		if(BlocksItems.enableHammerDiamond)  	event.getRegistry().register(HAMMER_DIAMOND);
-
-		//Tree
-		if(BlocksItems.enableElderTree)			event.getRegistry().register(ITEM_ELDER_SLAB);
-
-		//Food & Drinks
-		if(BlocksItems.enableJerky)  			event.getRegistry().register(COOKED_JERKY);
-		if(BlocksItems.enableCanteen)  			event.getRegistry().register(CANTEEN);
-
-		//Doors
-		if(BlocksItems.enableStoneDoor)  		event.getRegistry().register(ITEM_STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ITEM_ELDER_DOOR);
-
-		//Blocks
-		if(BlocksItems.enableBarrelStone)
-			event.getRegistry().register(new ItemBlock(BlockHandler.STONE_BARREL).setRegistryName(Constants.MODID, Constants.STONE_BARREL));
-		if(BlocksItems.enableBarrelWood) {
-			event.getRegistry().register(new ItemBlock(BlockHandler.OAK_BARREL).setRegistryName(Constants.MODID, Constants.OAK_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.BIRCH_BARREL).setRegistryName(Constants.MODID, Constants.BIRCH_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.SPRUCE_BARREL).setRegistryName(Constants.MODID, Constants.SPRUCE_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.JUNGLE_BARREL).setRegistryName(Constants.MODID, Constants.JUNGLE_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ACACIA_BARREL).setRegistryName(Constants.MODID, Constants.ACACIA_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.DARK_OAK_BARREL).setRegistryName(Constants.MODID, Constants.DARK_OAK_BARREL));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_BARREL).setRegistryName(Constants.MODID, Constants.ELDER_BARREL));
-		}
-		if(BlocksItems.enableSieve) {
-			event.getRegistry().register(new ItemBlock(BlockHandler.STONE_SIEVE).setRegistryName(Constants.MODID, Constants.STONE_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.OAK_SIEVE).setRegistryName(Constants.MODID, Constants.OAK_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.BIRCH_SIEVE).setRegistryName(Constants.MODID, Constants.BIRCH_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.SPRUCE_SIEVE).setRegistryName(Constants.MODID, Constants.SPRUCE_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.JUNGLE_SIEVE).setRegistryName(Constants.MODID, Constants.JUNGLE_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ACACIA_SIEVE).setRegistryName(Constants.MODID, Constants.ACACIA_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.DARK_OAK_SIEVE).setRegistryName(Constants.MODID, Constants.DARK_OAK_SIEVE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SIEVE).setRegistryName(Constants.MODID, Constants.ELDER_SIEVE));
-		}
-		if(BlocksItems.enableAshBonePile)		event.getRegistry().register(new ItemBlock(BlockHandler.ASH_BONE_PILE).setRegistryName(Constants.MODID, Constants.ASH_BONE_PILE));
-		if(BlocksItems.enableFreezer)			event.getRegistry().register(new ItemBlock(BlockHandler.FREEZER).setRegistryName(Constants.MODID, Constants.FREEZER));
-		if(BlocksItems.enableHellmart)			event.getRegistry().register(new ItemBlock(BlockHandler.HELLMART).setRegistryName(Constants.MODID, Constants.HELLMART));
-		if(BlocksItems.enableCondenser) 		event.getRegistry().register(new ItemBlock(BlockHandler.CONDENSER).setRegistryName(Constants.MODID, Constants.CONDENSER));
-		if(BlocksItems.enableNetherrackFurnace)	event.getRegistry().register(new ItemBlock(BlockHandler.NETHERRACK_FURNACE).setRegistryName(Constants.MODID, Constants.NETHERRACK_FURNACE));
-		if(BlocksItems.enableCrucible) {
-			event.getRegistry().register(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, "unfired_" + Constants.CRUCIBLE));
-			event.getRegistry().register(new ItemBlock(BlockHandler.CRUCIBLE).setRegistryName(Constants.MODID, Constants.CRUCIBLE));
-		}
-
-		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(new ItemBlock(BlockHandler.HELLFAYAH_ORE).setRegistryName(Constants.MODID, Constants.HELLFAYAH_ORE));
-		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_HELLFAYAH).setRegistryName(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
-		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(new ItemBlock(BlockHandler.BLOCK_OF_SALT).setRegistryName(Constants.MODID, Constants.BLOCK_OF_SALT));
-		if(BlocksItems.enableDust) 				event.getRegistry().register(new ItemBlock(BlockHandler.DUST).setRegistryName(Constants.MODID, Constants.DUST));
-		if(BlocksItems.enableStwH) 				event.getRegistry().register(new ItemBlock(BlockHandler.STWH).setRegistryName(Constants.MODID, Constants.STWH));
-		if(BlocksItems.enableElderTree) {
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_SAPLING).setRegistryName(Constants.MODID, Constants.ELDER_SAPLING));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LOG).setRegistryName(Constants.MODID, Constants.ELDER_LOG));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_LEAVES).setRegistryName(Constants.MODID, Constants.ELDER_LEAVES));
-			event.getRegistry().register(new ItemBlock(BlockHandler.ELDER_PLANKS).setRegistryName(Constants.MODID, Constants.ELDER_PLANKS));
-		}
-		if(BlocksItems.enableNetherrackGravel)	event.getRegistry().register(new ItemBlock(BlockHandler.NETHERRACK_GRAVEL).setRegistryName(Constants.MODID, Constants.NETHERRACK_GRAVEL));
-		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(new ItemBlock(BlockHandler.MEAN_VINE).setRegistryName(Constants.MODID, Constants.MEAN_VINE));
+		for(Item item : items)
+			event.getRegistry().register(item);
 	}
 
-	private static void registerBuckets()
+	private void registerBuckets()
 	{
 		if(BlocksItems.enableWoodBucket)
-			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TAB);
+			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TABNTM);
 		if(BlocksItems.enableStoneBucket)
-			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TAB);
+			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TABNTM);
 	}
 
-	private static void addItemBurnTime()
+	private void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);

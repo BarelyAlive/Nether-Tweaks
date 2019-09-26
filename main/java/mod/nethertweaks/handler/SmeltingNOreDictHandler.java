@@ -10,9 +10,10 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class SmeltingNOreDictHandler {
-
-	public static void load() {
+public class SmeltingNOreDictHandler
+{
+	public SmeltingNOreDictHandler()
+	{
 		loadSmelting();
 		oreRegistration();
 	}
@@ -20,12 +21,13 @@ public class SmeltingNOreDictHandler {
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte
-		if(BlocksItems.enableJerky) 								 	GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
-		if(BlocksItems.enableElderTree) 								GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
-		if(BlocksItems.enableCrystalLight)						 	GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
-		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah) GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
-		if(BlocksItems.enableCrucible)							 	GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
-		if(BlocksItems.enableWoodChippings)							GameRegistry.addSmelting(ItemHandler.WOOD_CHIPPINGS, new ItemStack(ItemHandler.ASH), 0.0F);
+		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah) 
+											GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
+		if(BlocksItems.enableJerky) 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
+		if(BlocksItems.enableElderTree) 	GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
+		if(BlocksItems.enableCrystalLight)	GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
+		if(BlocksItems.enableCrucible)		GameRegistry.addSmelting(BlockHandler.UNFIRED_CRUCIBLE, new ItemStack(BlockHandler.CRUCIBLE), 1.0f);
+		if(BlocksItems.enableWoodChippings)	GameRegistry.addSmelting(ItemHandler.WOOD_CHIPPINGS, new ItemStack(ItemHandler.ASH), 0.0F);
 	}
 
 	//Ore-Dictionary
@@ -60,9 +62,9 @@ public class SmeltingNOreDictHandler {
 
 		//Vanilla/Forge Buckets
 		if(BlocksItems.enableLiquidImpossibility)
-			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
+			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
 		if(BlocksItems.enableDistilledWater)
-			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(BucketNFluidHandler.FLUIDDISTILLEDWATER, 1000)));
+			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUIDDISTILLEDWATER, 1000)));
 
 		if(BlocksItems.enableStoneBucket)
 		{
@@ -71,9 +73,9 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
 
 			if(BlocksItems.enableLiquidImpossibility)
-				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
 			if(BlocksItems.enableDistilledWater)
-				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDDISTILLEDWATER, "stone"));
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDDISTILLEDWATER, "stone"));
 		}
 		if(BlocksItems.enableWoodBucket)
 		{
@@ -81,9 +83,9 @@ public class SmeltingNOreDictHandler {
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 
 			if(BlocksItems.enableLiquidImpossibility)
-				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
 			if(BlocksItems.enableDistilledWater)
-				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(BucketNFluidHandler.FLUIDDISTILLEDWATER, "wood"));
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDDISTILLEDWATER, "wood"));
 		}
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);

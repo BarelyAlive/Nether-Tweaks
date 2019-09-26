@@ -32,7 +32,7 @@ public class Freezer extends CubeContainerHorizontal
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

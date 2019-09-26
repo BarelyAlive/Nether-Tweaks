@@ -2,10 +2,11 @@ package mod.nethertweaks.fluid;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
-import mod.sfhcore.fluid.Fluid;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class FluidLiquidImpossibility extends Fluid{
@@ -21,6 +22,9 @@ public class FluidLiquidImpossibility extends Fluid{
 		setDensity(Config.densityLI);
 		setViscosity(Config.viscosityLI);
 		setLuminosity(Config.luminosityLI);
+		
+		FluidRegistry.registerFluid(this);
+		FluidRegistry.addBucketForFluid(this);
 	}
 
 	@Override

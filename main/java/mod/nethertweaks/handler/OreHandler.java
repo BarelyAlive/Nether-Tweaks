@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.items.ItemChunk;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -91,7 +90,7 @@ public class OreHandler {
 			{
 				chunks = new ItemChunk();
 				chunks.setRegistryName(Constants.MODID, Constants.CHUNK + "_" + mod_domain);
-				chunks.setCreativeTab(NetherTweaksMod.TABNTM);
+				chunks.setCreativeTab(Constants.TABNTM);
 				chunks.setResult(mod_domain, entry.getKey());
 				mod_chunks.put(mod_domain, chunks);
 			}

@@ -11,8 +11,9 @@ import net.minecraft.world.World;
 public class Crystal extends Item
 {
 	public Crystal(final String name) {
-		setCreativeTab(Constants.TAB);
+		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, name);
+		setUnlocalizedName(name);
 	}
 
 	@Override

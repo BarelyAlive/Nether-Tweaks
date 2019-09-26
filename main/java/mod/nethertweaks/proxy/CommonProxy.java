@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import mod.nethertweaks.modules.thirst.ThirstStats;
+import mod.sfhcore.util.LogUtil;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class CommonProxy {
 
@@ -17,7 +19,7 @@ public class CommonProxy {
 	public ThirstStats getStatsByUUID(final UUID uuid) {
 		ThirstStats stats = loadedPlayers.get(uuid);
 		if (stats == null) {
-			System.out.println("[Nether Tweaks Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
+			LogUtil.error("[Nether Tweaks Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
 			return null;
 		}
 		return stats;
@@ -30,5 +32,10 @@ public class CommonProxy {
 			// server was not closed since the players last login.
 			return;
 		loadedPlayers.put(uuid, stats);
+	}
+	
+	public static boolean isClient()
+	{
+		return FMLCommonHandler.instance().getSide().isClient();
 	}
 }

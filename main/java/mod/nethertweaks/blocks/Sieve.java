@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.ItemMesh;
@@ -45,7 +44,7 @@ public class Sieve extends BlockContainer {
 			setHardness(2.0f);
 		this.setRegistryName(Constants.MODID, name);
 		setUnlocalizedName(name);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setDefaultState(blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 	}
 

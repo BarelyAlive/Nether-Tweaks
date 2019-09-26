@@ -48,7 +48,7 @@ public class AshBonePile extends CubeContainerHorizontal
 		setTickRandomly(true);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 		setHardness(0.8F);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setSoundType(SoundType.SAND);
 	}
 
@@ -219,12 +219,12 @@ public class AshBonePile extends CubeContainerHorizontal
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World p_149915_1_, final int p_149915_2_) {
+	public TileEntity createNewTileEntity(final World world, final int meta) {
 		return new TileAshBonePile();
 	}
 
 	@Override public boolean isTopSolid(final IBlockState state) { return false; }
-	@Override public boolean isTranslucent(final IBlockState state) {	return true; }
+	@Override public boolean isTranslucent(final IBlockState state) { return true; }
 	@Override @Deprecated public boolean isFullCube(final IBlockState state) { return false; }
 	@Override @Deprecated public boolean isFullBlock(final IBlockState state) { return false; }
 	@Override @Deprecated public boolean isOpaqueCube(final IBlockState state) { return false; }

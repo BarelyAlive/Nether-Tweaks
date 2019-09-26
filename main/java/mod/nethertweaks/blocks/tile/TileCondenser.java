@@ -7,7 +7,7 @@ import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Dryable;
@@ -46,7 +46,7 @@ public class TileCondenser extends TileFluidInventory
 
 	private static Fluid distilled()
 	{
-		return BlocksItems.enableDistilledWater ? BucketNFluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
+		return BlocksItems.enableDistilledWater ? FluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
 	}
 
 	public TileCondenser() {

@@ -1,5 +1,8 @@
 package mod.nethertweaks.handler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.Barrel;
@@ -32,6 +35,7 @@ import mod.sfhcore.blocks.CustomDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -44,8 +48,8 @@ public class BlockHandler
 	public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
 	public static final Block FREEZER 			   = new Freezer();
 	public static final Block HELLMART 			   = new Hellmart();
-	public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
-	public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
+	public static final Block CRUCIBLE		 	   = new CrucibleStone(Constants.CRUCIBLE, true);
+	public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(Constants.UNFIRED_CRUCIBLE, false);
 
 	//Sieves
 	public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, Constants.STONE_SIEVE);
@@ -70,15 +74,15 @@ public class BlockHandler
 	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, Constants.ELDER_BARREL);
 
 	//Blocks
-	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.DUST));
+	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.DUST));
 	public static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
 	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR), 30.0F, 2.0F);
 	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TAB, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));
+	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
+	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));
 
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
@@ -86,65 +90,81 @@ public class BlockHandler
 	public static final Block ELDER_PLANKS 		   = new ElderPlanks();
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
-	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TAB).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TABNTM).setResistance(10.0F).setHardness(2.0F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+
+	private static List<Block> blocks = new ArrayList();
+	
+	public static List<Block> getBlocks() {
+		return blocks;
+	}
+	
+	public BlockHandler()
+	{
+		addBlocks();
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+	
+	private void addBlocks()
+	{
+		//FluidBlocks
+		if (BlocksItems.enableLiquidImpossibility)
+			blocks.add(FluidHandler.BLOCKLIQUIDIMPOSSIBILITY);
+		if(BlocksItems.enableDistilledWater)
+			blocks.add(FluidHandler.BLOCKDISTILLEDWATER);
+		if(BlocksItems.enableBarrel) {
+			blocks.add(STONE_BARREL);
+			blocks.add(OAK_BARREL);
+			blocks.add(BIRCH_BARREL);
+			blocks.add(SPRUCE_BARREL);
+			blocks.add(JUNGLE_BARREL);
+			blocks.add(ACACIA_BARREL);
+			blocks.add(DARK_OAK_BARREL);
+			blocks.add(ELDER_BARREL);
+		}
+		if(BlocksItems.enableSieve) {
+			blocks.add(STONE_SIEVE);
+			blocks.add(OAK_SIEVE);
+			blocks.add(BIRCH_SIEVE);
+			blocks.add(SPRUCE_SIEVE);
+			blocks.add(JUNGLE_SIEVE);
+			blocks.add(ACACIA_SIEVE);
+			blocks.add(DARK_OAK_SIEVE);
+			blocks.add(ELDER_SIEVE);
+		}
+		if(BlocksItems.enableAshBonePile)		blocks.add(ASH_BONE_PILE);
+		if(BlocksItems.enableFreezer)			blocks.add(FREEZER);
+		if(BlocksItems.enableHellmart)			blocks.add(HELLMART);
+		if(BlocksItems.enableCondenser) 		blocks.add(CONDENSER);
+		if(BlocksItems.enableNetherrackFurnace)	blocks.add(NETHERRACK_FURNACE);
+		if(BlocksItems.enableCrucible) {
+			blocks.add(UNFIRED_CRUCIBLE);
+			blocks.add(CRUCIBLE);
+		}
+		if(BlocksItems.enableHellfayahOre) 		blocks.add(HELLFAYAH_ORE);
+		if(BlocksItems.enableHellfayahBlock) 	blocks.add(BLOCK_OF_HELLFAYAH);
+		if(BlocksItems.enableSaltBlock) 		blocks.add(BLOCK_OF_SALT);
+		if(BlocksItems.enableDust) 				blocks.add(DUST);
+		if(BlocksItems.enableStwH) 				blocks.add(STWH);
+		if(BlocksItems.enableElderTree) {
+			blocks.add(ELDER_SAPLING);
+			blocks.add(ELDER_LOG);
+			blocks.add(ELDER_LEAVES);
+			blocks.add(ELDER_PLANKS);
+			blocks.add(ELDER_SLAB);
+			blocks.add(ELDER_SLAB_DOUBLE);
+		}
+		if(BlocksItems.enableNetherrackGravel)	blocks.add(NETHERRACK_GRAVEL);
+		if(BlocksItems.enableMeanVine) 			blocks.add(MEAN_VINE);
+		if(BlocksItems.enableStoneDoor) 		blocks.add(STONE_DOOR);
+		if(BlocksItems.enableElderDoor)			blocks.add(ELDER_DOOR);
+	}
 
 	@SubscribeEvent
 	public void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
-		//FluidBlocks
-		if (BlocksItems.enableLiquidImpossibility)
-			event.getRegistry().register(BucketNFluidHandler.BLOCKLIQUIDIMPOSSIBILITY);
-		if(BlocksItems.enableDistilledWater)
-			event.getRegistry().register(BucketNFluidHandler.BLOCKDISTILLEDWATER);
-		if(BlocksItems.enableBarrelStone)
-			event.getRegistry().register(STONE_BARREL);
-		if(BlocksItems.enableBarrelWood) {
-			event.getRegistry().register(OAK_BARREL);
-			event.getRegistry().register(BIRCH_BARREL);
-			event.getRegistry().register(SPRUCE_BARREL);
-			event.getRegistry().register(JUNGLE_BARREL);
-			event.getRegistry().register(ACACIA_BARREL);
-			event.getRegistry().register(DARK_OAK_BARREL);
-			event.getRegistry().register(ELDER_BARREL);
-		}
-		if(BlocksItems.enableSieve) {
-			event.getRegistry().register(STONE_SIEVE);
-			event.getRegistry().register(OAK_SIEVE);
-			event.getRegistry().register(BIRCH_SIEVE);
-			event.getRegistry().register(SPRUCE_SIEVE);
-			event.getRegistry().register(JUNGLE_SIEVE);
-			event.getRegistry().register(ACACIA_SIEVE);
-			event.getRegistry().register(DARK_OAK_SIEVE);
-			event.getRegistry().register(ELDER_SIEVE);
-		}
-		if(BlocksItems.enableAshBonePile)		event.getRegistry().register(ASH_BONE_PILE);
-		if(BlocksItems.enableFreezer)			event.getRegistry().register(FREEZER);
-		if(BlocksItems.enableHellmart)			event.getRegistry().register(HELLMART);
-		if(BlocksItems.enableCondenser) 		event.getRegistry().register(CONDENSER);
-		if(BlocksItems.enableNetherrackFurnace)	event.getRegistry().register(NETHERRACK_FURNACE);
-		if(BlocksItems.enableCrucible) {
-			event.getRegistry().register(UNFIRED_CRUCIBLE);
-			event.getRegistry().register(CRUCIBLE);
-		}
-
-		if(BlocksItems.enableHellfayahOre) 		event.getRegistry().register(HELLFAYAH_ORE);
-		if(BlocksItems.enableHellfayahBlock) 	event.getRegistry().register(BLOCK_OF_HELLFAYAH);
-		if(BlocksItems.enableSaltBlock) 		event.getRegistry().register(BLOCK_OF_SALT);
-		if(BlocksItems.enableDust) 				event.getRegistry().register(DUST);
-		if(BlocksItems.enableStwH) 				event.getRegistry().register(STWH);
-		if(BlocksItems.enableElderTree) {
-			event.getRegistry().register(ELDER_SAPLING);
-			event.getRegistry().register(ELDER_LOG);
-			event.getRegistry().register(ELDER_LEAVES);
-			event.getRegistry().register(ELDER_PLANKS);
-			event.getRegistry().register(ELDER_SLAB);
-			event.getRegistry().register(ELDER_SLAB_DOUBLE);
-		}
-		if(BlocksItems.enableNetherrackGravel)	event.getRegistry().register(NETHERRACK_GRAVEL);
-		if(BlocksItems.enableMeanVine) 			event.getRegistry().register(MEAN_VINE);
-		if(BlocksItems.enableStoneDoor) 		event.getRegistry().register(STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			event.getRegistry().register(ELDER_DOOR);
+		for (Block block : blocks)
+			event.getRegistry().register(block);
 
 		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_SIEVE);

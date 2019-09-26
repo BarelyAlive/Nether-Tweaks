@@ -1,8 +1,7 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.passive.EntityBat;
@@ -31,11 +30,12 @@ public class ItemDoll extends Item
 	public ItemDoll(final String type)
 	{
 		setRegistryName(Constants.MODID, type);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setUnlocalizedName(type);
+		setCreativeTab(Constants.TABNTM);
 	}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
-		return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
+		return FluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
 	}
 
 	/**

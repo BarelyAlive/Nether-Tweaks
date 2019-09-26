@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 public class MeanVine extends BlockVine{
 
 	public MeanVine(){
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, Constants.MEAN_VINE);
 		setUnlocalizedName(Constants.MEAN_VINE);
 	}

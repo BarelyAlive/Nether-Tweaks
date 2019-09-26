@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks;
 import java.util.Random;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.world.Hellworld;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -27,7 +26,7 @@ public class StwH extends Block{
 
 	public StwH() {
 		super(Material.ROCK);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setLightLevel(1.0F);
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);

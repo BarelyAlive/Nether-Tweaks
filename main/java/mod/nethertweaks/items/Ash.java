@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,8 +23,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Ash extends Item
 {
 	public Ash() {
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
+		setUnlocalizedName(Constants.ASH);
 	}
 
 	@Override

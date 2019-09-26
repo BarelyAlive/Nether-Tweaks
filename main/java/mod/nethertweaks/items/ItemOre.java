@@ -3,7 +3,6 @@ package mod.nethertweaks.items;
 import org.apache.commons.lang3.StringUtils;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.registry.types.Ore;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -53,7 +52,7 @@ public class ItemOre extends Item {
 		registerIngot = ore.getResult() == null;
 		setUnlocalizedName(Constants.MODID + ".ore."+ore.getName());
 		this.setRegistryName("itemOre"+StringUtils.capitalize(ore.getName()));
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setHasSubtypes(true);
 	}
 

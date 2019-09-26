@@ -9,13 +9,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import mod.nethertweaks.NetherTweaksMod;
-import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
@@ -30,9 +30,9 @@ import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
@@ -402,122 +402,14 @@ public class EventHook
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void registerModels(final ModelRegistryEvent event) {
-		if(BlocksItems.enableBarrelStone)
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.STONE_BARREL, BlockHandler.STONE_BARREL.getRegistryName());
-		if(BlocksItems.enableBarrelWood) {
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.OAK_BARREL, BlockHandler.OAK_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.BIRCH_BARREL, BlockHandler.BIRCH_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.SPRUCE_BARREL, BlockHandler.SPRUCE_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.JUNGLE_BARREL, BlockHandler.JUNGLE_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ACACIA_BARREL, BlockHandler.ACACIA_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.DARK_OAK_BARREL, BlockHandler.DARK_OAK_BARREL.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_BARREL, BlockHandler.ELDER_BARREL.getRegistryName());
-		}
-		if(BlocksItems.enableSieve) {
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.STONE_SIEVE, BlockHandler.STONE_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.OAK_SIEVE, BlockHandler.OAK_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.BIRCH_SIEVE, BlockHandler.BIRCH_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.SPRUCE_SIEVE, BlockHandler.SPRUCE_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.JUNGLE_SIEVE, BlockHandler.JUNGLE_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ACACIA_SIEVE, BlockHandler.ACACIA_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.DARK_OAK_SIEVE, BlockHandler.DARK_OAK_SIEVE.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_SIEVE, BlockHandler.ELDER_SIEVE.getRegistryName());
-		}
-		if(BlocksItems.enableAshBonePile)		SFHCore.proxy.tryHandleBlockModel(BlockHandler.ASH_BONE_PILE, BlockHandler.ASH_BONE_PILE.getRegistryName());
-		if(BlocksItems.enableFreezer)			SFHCore.proxy.tryHandleBlockModel(BlockHandler.FREEZER, BlockHandler.FREEZER.getRegistryName());
-		if(BlocksItems.enableHellmart)			SFHCore.proxy.tryHandleBlockModel(BlockHandler.HELLMART, BlockHandler.HELLMART.getRegistryName());
-		if(BlocksItems.enableCondenser) 		SFHCore.proxy.tryHandleBlockModel(BlockHandler.CONDENSER, BlockHandler.CONDENSER.getRegistryName());
-		if(BlocksItems.enableNetherrackFurnace)	SFHCore.proxy.tryHandleBlockModel(BlockHandler.NETHERRACK_FURNACE, BlockHandler.NETHERRACK_FURNACE.getRegistryName());
-		if(BlocksItems.enableCrucible) {
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.UNFIRED_CRUCIBLE, new ModelResourceLocation("unfired_" + BlockHandler.CRUCIBLE.getRegistryName()));
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.CRUCIBLE, BlockHandler.CRUCIBLE.getRegistryName());
-		}
-
-		if(BlocksItems.enableHellfayahOre) 		SFHCore.proxy.tryHandleBlockModel(BlockHandler.HELLFAYAH_ORE, BlockHandler.HELLFAYAH_ORE.getRegistryName());
-		if(BlocksItems.enableHellfayahBlock) 	SFHCore.proxy.tryHandleBlockModel(BlockHandler.BLOCK_OF_HELLFAYAH, BlockHandler.BLOCK_OF_HELLFAYAH.getRegistryName());
-		if(BlocksItems.enableSaltBlock) 		SFHCore.proxy.tryHandleBlockModel(BlockHandler.BLOCK_OF_SALT, BlockHandler.BLOCK_OF_SALT.getRegistryName());
-		if(BlocksItems.enableDust) 				SFHCore.proxy.tryHandleBlockModel(BlockHandler.DUST, BlockHandler.DUST.getRegistryName());
-		if(BlocksItems.enableStwH) 				SFHCore.proxy.tryHandleBlockModel(BlockHandler.STWH, BlockHandler.STWH.getRegistryName());
-		if(BlocksItems.enableElderTree) {
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_SAPLING, BlockHandler.ELDER_SAPLING.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_LOG, BlockHandler.ELDER_LOG.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_LEAVES, BlockHandler.ELDER_LEAVES.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_PLANKS, BlockHandler.ELDER_PLANKS.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB.getRegistryName());
-			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_SLAB_DOUBLE, BlockHandler.ELDER_SLAB_DOUBLE.getRegistryName());
-		}
-		if(BlocksItems.enableNetherrackGravel)	SFHCore.proxy.tryHandleBlockModel(BlockHandler.NETHERRACK_GRAVEL, BlockHandler.NETHERRACK_GRAVEL.getRegistryName());
-		if(BlocksItems.enableMeanVine) 			SFHCore.proxy.tryHandleBlockModel(BlockHandler.MEAN_VINE, BlockHandler.MEAN_VINE.getRegistryName());
-		if(BlocksItems.enableStoneDoor) 		SFHCore.proxy.tryHandleBlockModel(BlockHandler.STONE_DOOR, BlockHandler.STONE_DOOR.getRegistryName());
-		if(BlocksItems.enableElderDoor)			SFHCore.proxy.tryHandleBlockModel(BlockHandler.ELDER_DOOR, BlockHandler.ELDER_DOOR.getRegistryName());
-
+		//Blocks
+		for(Block block : BlockHandler.getBlocks())
+			SFHCore.proxy.tryHandleBlockModel(block, block.getRegistryName());
 		//Items
-		if(BlocksItems.enableStoneBar)	  		SFHCore.proxy.tryHandleItemModel(ItemHandler.STONE_BAR, ItemHandler.STONE_BAR.getRegistryName());
-		if(BlocksItems.enablePortalCore)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.PORTAL_CORE, ItemHandler.PORTAL_CORE.getRegistryName());
-		if(BlocksItems.enableEndBox)		  	SFHCore.proxy.tryHandleItemModel(ItemHandler.END_BOX, ItemHandler.END_BOX.getRegistryName());
-		if(BlocksItems.enableSalt)		  		SFHCore.proxy.tryHandleItemModel(ItemHandler.SALT, ItemHandler.SALT.getRegistryName());
-		if(BlocksItems.enableHellfayah)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.HELLFAYAH, ItemHandler.HELLFAYAH.getRegistryName());
-		if(BlocksItems.enableEnderInfusedFrame)	SFHCore.proxy.tryHandleItemModel(ItemHandler.ENDER_INFUSED_FRAME, ItemHandler.ENDER_INFUSED_FRAME.getRegistryName());
-		if(BlocksItems.enableString)		  	SFHCore.proxy.tryHandleItemModel(ItemHandler.STRING, ItemHandler.STRING.getRegistryName());
-		if(BlocksItems.enablePorcelainClay) 	SFHCore.proxy.tryHandleItemModel(ItemHandler.PORCELAIN_CLAY, ItemHandler.PORCELAIN_CLAY.getRegistryName());
-		if(BlocksItems.enablePowderOfLight) 	SFHCore.proxy.tryHandleItemModel(ItemHandler.POWDER_OF_LIGHT, ItemHandler.POWDER_OF_LIGHT.getRegistryName());
-		if(BlocksItems.enableAsh) 				SFHCore.proxy.tryHandleItemModel(ItemHandler.ASH, ItemHandler.ASH.getRegistryName());
-		if(BlocksItems.enableWoodChippings)		SFHCore.proxy.tryHandleItemModel(ItemHandler.WOOD_CHIPPINGS, ItemHandler.WOOD_CHIPPINGS.getRegistryName());
-		if(BlocksItems.enableCoiledSword)		SFHCore.proxy.tryHandleItemModel(ItemHandler.COILED_SWORD, ItemHandler.COILED_SWORD.getRegistryName());
-
-		if(BlocksItems.enableMushroomSpores)	SFHCore.proxy.tryHandleItemModel(ItemHandler.MUSHROOM_SPORES, ItemHandler.MUSHROOM_SPORES.getRegistryName());
-		if(BlocksItems.enableGrassSeeds)		SFHCore.proxy.tryHandleItemModel(ItemHandler.GRASS_SEEDS, ItemHandler.GRASS_SEEDS.getRegistryName());
-		if(BlocksItems.enableCactusSeeds)		SFHCore.proxy.tryHandleItemModel(ItemHandler.CACTUS_SEEDS, ItemHandler.CACTUS_SEEDS.getRegistryName());
-		if(BlocksItems.enableSugarcaneSeeds)	SFHCore.proxy.tryHandleItemModel(ItemHandler.SUGARCANE_SEEDS, ItemHandler.SUGARCANE_SEEDS.getRegistryName());
-
-		if(BlocksItems.enableCrystalLight)		SFHCore.proxy.tryHandleItemModel(ItemHandler.CRYSTAL_OF_LIGHT, ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName());
-
-		if(BlocksItems.enablePebbleStone)		SFHCore.proxy.tryHandleItemModel(ItemHandler.PEBBLE_STONE, ItemHandler.PEBBLE_STONE.getRegistryName());
-		if(BlocksItems.enablePebbleGranite)		SFHCore.proxy.tryHandleItemModel(ItemHandler.PEBBLE_GRANITE, ItemHandler.PEBBLE_GRANITE.getRegistryName());
-		if(BlocksItems.enablePebbleDiorite)		SFHCore.proxy.tryHandleItemModel(ItemHandler.PEBBLE_DIORITE, ItemHandler.PEBBLE_DIORITE.getRegistryName());
-		if(BlocksItems.enablePebbleAndesite)	SFHCore.proxy.tryHandleItemModel(ItemHandler.PEBBLE_ANDESITE, ItemHandler.PEBBLE_ANDESITE.getRegistryName());
-
-		if(BlocksItems.enableStringMeshes)		SFHCore.proxy.tryHandleItemModel(ItemHandler.MESH_STRING, ItemHandler.MESH_STRING.getRegistryName());
-		if(BlocksItems.enableFlintMeshes) 		SFHCore.proxy.tryHandleItemModel(ItemHandler.MESH_FLINT, ItemHandler.MESH_FLINT.getRegistryName());
-		if(BlocksItems.enableIronMeshes)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.MESH_IRON, ItemHandler.MESH_IRON.getRegistryName());
-		if(BlocksItems.enableDiamondMeshes)		SFHCore.proxy.tryHandleItemModel(ItemHandler.MESH_DIAMOND, ItemHandler.MESH_DIAMOND.getRegistryName());
-
-		if(BlocksItems.enableDollBat)  			SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_BAT, ItemHandler.DOLL_BAT.getRegistryName());
-		if(BlocksItems.enableDollChicken)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_CHICKEN, ItemHandler.DOLL_CHICKEN.getRegistryName());
-		if(BlocksItems.enableDollCow)  			SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_COW, ItemHandler.DOLL_COW.getRegistryName());
-		if(BlocksItems.enableDollDonkey)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_DONKEY, ItemHandler.DOLL_DONKEY.getRegistryName());
-		if(BlocksItems.enableDollHorse)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_HORSE, ItemHandler.DOLL_HORSE.getRegistryName());
-		if(BlocksItems.enableDollLlama)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_LLAMA, ItemHandler.DOLL_LLAMA.getRegistryName());
-		if(BlocksItems.enableDollMule)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_MULE, ItemHandler.DOLL_MULE.getRegistryName());
-		if(BlocksItems.enableDollOcelot)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_OCELOT, ItemHandler.DOLL_OCELOT.getRegistryName());
-		if(BlocksItems.enableDollParrot)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_PARROT, ItemHandler.DOLL_PARROT.getRegistryName());
-		if(BlocksItems.enableDollPig)  			SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_PIG, ItemHandler.DOLL_PIG.getRegistryName());
-		if(BlocksItems.enableDollPolarBear)  	SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_POLAR_BEAR, ItemHandler.DOLL_POLAR_BEAR.getRegistryName());
-		if(BlocksItems.enableDollRabbit)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_RABBIT, ItemHandler.DOLL_RABBIT.getRegistryName());
-		if(BlocksItems.enableDollRedMooshroom)	SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_RED_MOOSHROOM, ItemHandler.DOLL_RED_MOOSHROOM.getRegistryName());
-		if(BlocksItems.enableDollSheep)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_SHEEP, ItemHandler.DOLL_SHEEP.getRegistryName());
-		if(BlocksItems.enableDollVillager)		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_VILLAGER, ItemHandler.DOLL_VILLAGER.getRegistryName());
-		if(BlocksItems.enableDollWolf)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.DOLL_WOLF, ItemHandler.DOLL_WOLF.getRegistryName());
-
-		if(BlocksItems.enableGrabberWood)		SFHCore.proxy.tryHandleItemModel(ItemHandler.GRABBER_WOOD, ItemHandler.GRABBER_WOOD.getRegistryName());
-		if(BlocksItems.enableGrabberGold)		SFHCore.proxy.tryHandleItemModel(ItemHandler.GRABBER_GOLD, ItemHandler.GRABBER_GOLD.getRegistryName());
-		if(BlocksItems.enableGrabberStone)		SFHCore.proxy.tryHandleItemModel(ItemHandler.GRABBER_STONE, ItemHandler.GRABBER_STONE.getRegistryName());
-		if(BlocksItems.enableGrabberIron)		SFHCore.proxy.tryHandleItemModel(ItemHandler.GRABBER_IRON, ItemHandler.GRABBER_IRON.getRegistryName());
-		if(BlocksItems.enableGrabberDiamond)	SFHCore.proxy.tryHandleItemModel(ItemHandler.GRABBER_DIAMOND, ItemHandler.GRABBER_DIAMOND.getRegistryName());
-		if(BlocksItems.enableFlintNBlaze)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.FLINT_N_BLAZE, ItemHandler.FLINT_N_BLAZE.getRegistryName());
-		if(BlocksItems.enableHammerWood)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.HAMMER_WOOD, ItemHandler.HAMMER_WOOD.getRegistryName());
-		if(BlocksItems.enableHammerGold)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.HAMMER_GOLD, ItemHandler.HAMMER_GOLD.getRegistryName());
-		if(BlocksItems.enableHammerStone)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.HAMMER_STONE, ItemHandler.HAMMER_STONE.getRegistryName());
-		if(BlocksItems.enableHammerIron)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.HAMMER_IRON, ItemHandler.HAMMER_IRON.getRegistryName());
-		if(BlocksItems.enableHammerDiamond)  	SFHCore.proxy.tryHandleItemModel(ItemHandler.HAMMER_DIAMOND, ItemHandler.HAMMER_DIAMOND.getRegistryName());
-
-		if(BlocksItems.enableElderTree)			SFHCore.proxy.tryHandleItemModel(ItemHandler.ITEM_ELDER_SLAB, ItemHandler.ITEM_ELDER_SLAB.getRegistryName());
-
-		if(BlocksItems.enableJerky)  			SFHCore.proxy.tryHandleItemModel(ItemHandler.COOKED_JERKY, ItemHandler.COOKED_JERKY.getRegistryName());
-		if(BlocksItems.enableCanteen)  			SFHCore.proxy.tryHandleItemModel(ItemHandler.CANTEEN, ItemHandler.CANTEEN.getRegistryName());
-
-		if(BlocksItems.enableStoneDoor)  		SFHCore.proxy.tryHandleItemModel(ItemHandler.ITEM_STONE_DOOR, ItemHandler.ITEM_STONE_DOOR.getRegistryName());
-		if(BlocksItems.enableElderDoor)			SFHCore.proxy.tryHandleItemModel(ItemHandler.ITEM_ELDER_DOOR, ItemHandler.ITEM_ELDER_DOOR.getRegistryName());
+		for(Item item : ItemHandler.getItems())
+			SFHCore.proxy.tryHandleItemModel(item, item.getRegistryName());
+		
+		new FluidHandler();
 	}
 
 	@SubscribeEvent

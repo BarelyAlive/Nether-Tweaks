@@ -16,8 +16,9 @@ public class Seed extends Item
 {
 	public Seed(final String name)
 	{
-		setCreativeTab(Constants.TAB);
+		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, name);
+		setUnlocalizedName(name);
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.sfhcore.blocks.Cube;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
@@ -13,7 +12,7 @@ public class ElderPlanks extends Cube
 {
 	public ElderPlanks()
 	{
-		super(Material.WOOD, 10.0F, 2.0F, NetherTweaksMod.TABNTM, new ResourceLocation(Constants.MODID, Constants.ELDER_PLANKS));
+		super(Material.WOOD, 10.0F, 2.0F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ELDER_PLANKS));
 	}
 
 	@Override

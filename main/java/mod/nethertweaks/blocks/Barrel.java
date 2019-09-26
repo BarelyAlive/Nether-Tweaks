@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks;
 import javax.annotation.Nonnull;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.barrel.modes.block.BarrelModeBlock;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluid;
@@ -39,7 +38,7 @@ public class Barrel extends Block implements ITileEntityProvider
 		setHardness(2.0f);
 		setRegistryName(Constants.MODID, name);
 		setUnlocalizedName(name);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override
