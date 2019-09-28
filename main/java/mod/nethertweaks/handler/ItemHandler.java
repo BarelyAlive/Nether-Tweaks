@@ -213,7 +213,7 @@ public class ItemHandler
 		if(BlocksItems.enableCondenser) 		items.add(new ItemBlock(BlockHandler.CONDENSER).setRegistryName(Constants.MODID, Constants.CONDENSER));
 		if(BlocksItems.enableNetherrackFurnace)	items.add(new ItemBlock(BlockHandler.NETHERRACK_FURNACE).setRegistryName(Constants.MODID, Constants.NETHERRACK_FURNACE));
 		if(BlocksItems.enableCrucible) {
-			items.add(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, "unfired_" + Constants.CRUCIBLE));
+			items.add(new ItemBlock(BlockHandler.UNFIRED_CRUCIBLE).setRegistryName(Constants.MODID, Constants.UNFIRED_CRUCIBLE));
 			items.add(new ItemBlock(BlockHandler.CRUCIBLE).setRegistryName(Constants.MODID, Constants.CRUCIBLE));
 		}
 		if(BlocksItems.enableHellfayahOre) 		items.add(new ItemBlock(BlockHandler.HELLFAYAH_ORE).setRegistryName(Constants.MODID, Constants.HELLFAYAH_ORE));
