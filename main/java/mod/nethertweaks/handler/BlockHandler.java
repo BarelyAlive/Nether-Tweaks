@@ -109,9 +109,9 @@ public class BlockHandler
 	{
 		//FluidBlocks
 		if (BlocksItems.enableLiquidImpossibility)
-			blocks.add(FluidHandler.BLOCKLIQUIDIMPOSSIBILITY);
+			blocks.add(FluidHandler.BLOCK_LIQUID_IMPOSSIBILITY);
 		if(BlocksItems.enableDistilledWater)
-			blocks.add(FluidHandler.BLOCKDISTILLEDWATER);
+			blocks.add(FluidHandler.BLOCK_DISTILLED_WATER);
 		if(BlocksItems.enableBarrel) {
 			blocks.add(STONE_BARREL);
 			blocks.add(OAK_BARREL);

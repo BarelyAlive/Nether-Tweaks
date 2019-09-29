@@ -16,8 +16,8 @@ public class Constants {
 	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 
 	//Fluids
-	public static final String DISTILLEDWATER			= "distilled_water";
-	public static final String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
+	public static final String DISTILLED_WATER			= "distilled_water";
+	public static final String LIQUID_IMPOSSIBILITY		= "liquid_impossibility";
 
 	//Blocks
 	public static final String CONDENSER 				= "condenser";

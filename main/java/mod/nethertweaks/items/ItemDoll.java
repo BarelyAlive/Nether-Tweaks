@@ -35,7 +35,7 @@ public class ItemDoll extends Item
 	}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
-		return FluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
+		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
 	}
 
 	/**

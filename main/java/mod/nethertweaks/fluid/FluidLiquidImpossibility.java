@@ -16,7 +16,7 @@ public class FluidLiquidImpossibility extends Fluid{
 
 	public FluidLiquidImpossibility()
 	{
-		super(Constants.LIQUIDIMPOSSIBILITY, STILL, FLOW);
+		super(Constants.LIQUID_IMPOSSIBILITY, STILL, FLOW);
 
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);

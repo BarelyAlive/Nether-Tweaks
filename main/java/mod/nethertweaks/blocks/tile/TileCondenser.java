@@ -46,7 +46,7 @@ public class TileCondenser extends TileFluidInventory
 
 	private static Fluid distilled()
 	{
-		return BlocksItems.enableDistilledWater ? FluidHandler.FLUIDDISTILLEDWATER : FluidRegistry.WATER;
+		return BlocksItems.enableDistilledWater ? FluidHandler.FLUID_DISTILLED_WATER : FluidRegistry.WATER;
 	}
 
 	public TileCondenser() {

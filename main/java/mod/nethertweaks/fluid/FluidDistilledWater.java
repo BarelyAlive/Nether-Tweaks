@@ -15,7 +15,7 @@ public class FluidDistilledWater extends Fluid{
 
 	public FluidDistilledWater()
 	{
-		super(Constants.DISTILLEDWATER, STILL, FLOW);
+		super(Constants.DISTILLED_WATER, STILL, FLOW);
 
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());

@@ -25,9 +25,9 @@ public class LiquidImpossibility extends BlockFluidClassic
 {
 	public LiquidImpossibility()
 	{
-		super(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
-		setRegistryName(Constants.MODID, Constants.LIQUIDIMPOSSIBILITY);
-		setUnlocalizedName(Constants.LIQUIDIMPOSSIBILITY);
+		super(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, Material.WATER);
+		setRegistryName(Constants.MODID, Constants.LIQUID_IMPOSSIBILITY);
+		setUnlocalizedName(Constants.LIQUID_IMPOSSIBILITY);
 		setLightLevel(Config.luminosityLI);
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);
@@ -98,7 +98,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 
 	@Override
 	public Fluid getFluid() {
-		return FluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
+		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
 	}
 
 

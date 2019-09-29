@@ -17,11 +17,11 @@ import net.minecraftforge.fluids.Fluid;
 public class FluidHandler
 {
 	//Fluids
-	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
-	public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
+	public static final Fluid FLUID_LIQUID_IMPOSSIBILITY = new FluidLiquidImpossibility();
+	public static final Block BLOCK_LIQUID_IMPOSSIBILITY = new LiquidImpossibility();
 
-	public static final Fluid FLUIDDISTILLEDWATER = new FluidDistilledWater();
-	public static final Block BLOCKDISTILLEDWATER = new DistilledWater();
+	public static final Fluid FLUID_DISTILLED_WATER = new FluidDistilledWater();
+	public static final Block BLOCK_DISTILLED_WATER = new DistilledWater();
 
 	public FluidHandler()
 	{
@@ -31,9 +31,9 @@ public class FluidHandler
 	private void init()
 	{
 		if (BlocksItems.enableLiquidImpossibility)
-			initModel(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+			initModel(FLUID_LIQUID_IMPOSSIBILITY, BLOCK_LIQUID_IMPOSSIBILITY);
 		if(BlocksItems.enableDistilledWater)
-			initModel(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
+			initModel(FLUID_DISTILLED_WATER, BLOCK_DISTILLED_WATER);
 	}
 
 	private void initModel(final Fluid f, final Block b)

@@ -62,9 +62,9 @@ public class SmeltingNOreDictHandler
 
 		//Vanilla/Forge Buckets
 		if(BlocksItems.enableLiquidImpossibility)
-			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000)));
+			OreDictionary.registerOre("listAllLiquidImpossibility",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, 1000)));
 		if(BlocksItems.enableDistilledWater)
-			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUIDDISTILLEDWATER, 1000)));
+			OreDictionary.registerOre("listAllDistilledWater",	FluidUtil.getFilledBucket(new FluidStack(FluidHandler.FLUID_DISTILLED_WATER, 1000)));
 
 		if(BlocksItems.enableStoneBucket)
 		{
@@ -73,9 +73,9 @@ public class SmeltingNOreDictHandler
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
 
 			if(BlocksItems.enableLiquidImpossibility)
-				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "stone"));
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, "stone"));
 			if(BlocksItems.enableDistilledWater)
-				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDDISTILLEDWATER, "stone"));
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUID_DISTILLED_WATER, "stone"));
 		}
 		if(BlocksItems.enableWoodBucket)
 		{
@@ -83,9 +83,9 @@ public class SmeltingNOreDictHandler
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 
 			if(BlocksItems.enableLiquidImpossibility)
-				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDLIQUIDIMPOSSIBILITY, "wood"));
+				OreDictionary.registerOre("listAllLiquidImpossibility", BucketHandler.getBucketFromFluid(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, "wood"));
 			if(BlocksItems.enableDistilledWater)
-				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUIDDISTILLEDWATER, "wood"));
+				OreDictionary.registerOre("listAllDistilledWater", BucketHandler.getBucketFromFluid(FluidHandler.FLUID_DISTILLED_WATER, "wood"));
 		}
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
