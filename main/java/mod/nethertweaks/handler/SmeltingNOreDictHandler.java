@@ -21,7 +21,7 @@ public class SmeltingNOreDictHandler
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte
-		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah) 
+		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah)
 											GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
 		if(BlocksItems.enableJerky) 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
 		if(BlocksItems.enableElderTree) 	GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);

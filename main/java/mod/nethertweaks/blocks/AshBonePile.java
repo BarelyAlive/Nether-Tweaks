@@ -222,16 +222,14 @@ public class AshBonePile extends CubeContainerHorizontal
 			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}
 	}
-	
+
 	private int l = 0;
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand) {
+	public void randomDisplayTick(final IBlockState stateIn, final World world, final BlockPos pos, final Random rand) {
 		l++;
 		if (rand.nextDouble() < 0.1D)
-        {
-            world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-        }
+			world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 		switch(l) {
 		case 1:
 			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);

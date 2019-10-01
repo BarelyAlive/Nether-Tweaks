@@ -21,7 +21,7 @@ public class FluidDistilledWater extends Fluid{
 		setDensity(FluidRegistry.WATER.getDensity());
 		setViscosity(FluidRegistry.WATER.getViscosity());
 		setLuminosity(FluidRegistry.WATER.getLuminosity());
-		
+
 		FluidRegistry.registerFluid(this);
 		FluidRegistry.addBucketForFluid(this);
 	}

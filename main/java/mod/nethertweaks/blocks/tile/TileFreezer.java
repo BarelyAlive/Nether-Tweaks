@@ -183,7 +183,7 @@ public class TileFreezer extends TileFluidInventory
 	public Container createContainer(final InventoryPlayer playerInventory, final EntityPlayer playerIn)
 	{
 		return new ContainerFreezer(playerInventory, this);
-	}	
+	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {

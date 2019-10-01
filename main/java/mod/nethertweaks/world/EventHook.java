@@ -15,7 +15,6 @@ import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
@@ -403,13 +402,11 @@ public class EventHook
 	@SideOnly(Side.CLIENT)
 	public void registerModels(final ModelRegistryEvent event) {
 		//Blocks
-		for(Block block : BlockHandler.getBlocks())
-			SFHCore.proxy.tryHandleBlockModel(block, block.getRegistryName());
+		for(Block block : BlockHandler.BLOCKS)
+			SFHCore.getProxy().tryHandleBlockModel(block, block.getRegistryName());
 		//Items
-		for(Item item : ItemHandler.getItems())
-			SFHCore.proxy.tryHandleItemModel(item, item.getRegistryName());
-		
-		new FluidHandler();
+		for(Item item : ItemHandler.ITEMS)
+			SFHCore.getProxy().tryHandleItemModel(item, item.getRegistryName());
 	}
 
 	@SubscribeEvent

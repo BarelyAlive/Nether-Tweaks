@@ -11,6 +11,7 @@ import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -44,7 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	public WorldType Hellworld = new Hellworld();
+	private WorldType Hellworld = new Hellworld();
 	public static Gson gsonInstance = new Gson();
 	public static File configDirectory;
 	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
@@ -63,15 +64,15 @@ public class NetherTweaksMod
 	}
 
 	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MODID)
-	private static CommonProxy commonProxy;
+	private static CommonProxy proxy;
 
 	public static CommonProxy getProxy() {
-		return commonProxy;
+		return proxy;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static ClientProxy getClientProxy() {
-		return (ClientProxy) commonProxy;
+		return (ClientProxy) proxy;
 	}
 
 	@Mod.EventHandler
@@ -85,8 +86,9 @@ public class NetherTweaksMod
 
 		Compatibility.init();
 
-		new ItemHandler();
 		new BlockHandler();
+		new ItemHandler();
+		FluidHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
 

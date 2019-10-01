@@ -12,7 +12,7 @@ public class Constants {
 
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.CommonProxy";
-	
+
 	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 
 	//Fluids

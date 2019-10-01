@@ -22,7 +22,7 @@ public class FluidLiquidImpossibility extends Fluid{
 		setDensity(Config.densityLI);
 		setViscosity(Config.viscosityLI);
 		setLuminosity(Config.luminosityLI);
-		
+
 		FluidRegistry.registerFluid(this);
 		FluidRegistry.addBucketForFluid(this);
 	}

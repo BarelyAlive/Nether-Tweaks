@@ -33,7 +33,7 @@ public class CommonProxy {
 			return;
 		loadedPlayers.put(uuid, stats);
 	}
-	
+
 	public static boolean isClient()
 	{
 		return FMLCommonHandler.instance().getSide().isClient();
