@@ -21,8 +21,7 @@ public class SmeltingNOreDictHandler
 	private static void loadSmelting()
 	{
 		//Schmelz-Rezepte
-		if(BlocksItems.enableHellfayahOre && BlocksItems.enableHellfayah)
-											GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
+		if(BlocksItems.enableHellfayah)		GameRegistry.addSmelting(BlockHandler.HELLFAYAH_ORE, new ItemStack(ItemHandler.HELLFAYAH), 2.0F);
 		if(BlocksItems.enableJerky) 		GameRegistry.addSmelting(Items.ROTTEN_FLESH, new ItemStack(ItemHandler.COOKED_JERKY), 1.0F);
 		if(BlocksItems.enableElderTree) 	GameRegistry.addSmelting(BlockHandler.ELDER_LOG, new ItemStack(Items.COAL, 1, 1), 0.0F);
 		if(BlocksItems.enableCrystalLight)	GameRegistry.addSmelting(ItemHandler.POWDER_OF_LIGHT, new ItemStack(ItemHandler.CRYSTAL_OF_LIGHT), 2.0F);
@@ -44,9 +43,11 @@ public class SmeltingNOreDictHandler
 		if(BlocksItems.enableSalt)	 		  OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
 		if(BlocksItems.enableSalt)			  OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
 		if(BlocksItems.enableString)		  OreDictionary.registerOre("string", ItemHandler.STRING);
-		if(BlocksItems.enableHellfayah)		  OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
-		if(BlocksItems.enableHellfayahOre) 	  OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));
-		if(BlocksItems.enableHellfayahBlock)  OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
+		if(BlocksItems.enableHellfayah) {
+			OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
+			OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));
+			OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
+		}
 		if(BlocksItems.enableSaltBlock)		  OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
 		if(BlocksItems.enableElderTree)
 		{

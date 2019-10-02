@@ -200,9 +200,9 @@ public class ItemHandler
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
-		if(BlocksItems.enableHellfayah)
+		if(BlocksItems.enableHellfayah) {
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
-		if(BlocksItems.enableHellfayahBlock)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
+		}
 	}
 }

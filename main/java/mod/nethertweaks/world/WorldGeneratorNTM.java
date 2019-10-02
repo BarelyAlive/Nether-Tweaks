@@ -37,7 +37,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	private void oreGenerationNether(final World world, final Random random, final int posX, final int posZ, final int maxX, final int maxZ, final int maxAderLaenge, final int spawnChancen, final int minY, final int maxY)
 	{
 		int differenzMinMaxY = maxY - minY;
-		if (BlocksItems.enableHellfayahOre)
+		if (BlocksItems.enableHellfayah)
 			for (int i = 0; i < spawnChancen; i++) {
 				int positionX = posX + random.nextInt(maxX);
 				int positionY = minY + random.nextInt(differenzMinMaxY);

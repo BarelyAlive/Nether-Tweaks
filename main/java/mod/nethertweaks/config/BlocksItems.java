@@ -5,8 +5,6 @@ import net.minecraftforge.common.config.Configuration;
 public class BlocksItems
 {
 	//BlockEnable
-	public static boolean enableHellfayahOre		= true;
-	public static boolean enableHellfayahBlock		= true;
 	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
 	public static boolean enableAshBonePile			= true;
@@ -89,12 +87,10 @@ public class BlocksItems
 	{
 		//BlockEnable
 		config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
-		enableHellfayahOre 				= config.get("Blocks", "Enable Hellfayah Block?", true).getBoolean();
-		enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
 		enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
 		enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
 		enableAshBonePile				= config.get("Blocks", "Enable Ash Bone Pile?", true).getBoolean();
-		enableBarrel					= config.get("Blocks", "Enable Wooden Barrel?", true).getBoolean();
+		enableBarrel					= config.get("Blocks", "Enable Barrels?", true).getBoolean();
 		enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
 		enableCondenser 				= config.get("Blocks", "Enable Condenser?", true).getBoolean();
 		enableStwH 						= config.get("Blocks", "Enable Stairway to Heaven?", true).getBoolean();

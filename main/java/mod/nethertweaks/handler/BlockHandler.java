@@ -137,8 +137,10 @@ public class BlockHandler
 			BLOCKS.add(UNFIRED_CRUCIBLE);
 			BLOCKS.add(CRUCIBLE);
 		}
-		if(BlocksItems.enableHellfayahOre) 		BLOCKS.add(HELLFAYAH_ORE);
-		if(BlocksItems.enableHellfayahBlock) 	BLOCKS.add(BLOCK_OF_HELLFAYAH);
+		if(BlocksItems.enableHellfayah) {
+			BLOCKS.add(HELLFAYAH_ORE);
+			BLOCKS.add(BLOCK_OF_HELLFAYAH);
+		}
 		if(BlocksItems.enableSaltBlock) 		BLOCKS.add(BLOCK_OF_SALT);
 		if(BlocksItems.enableDust) 				BLOCKS.add(DUST);
 		if(BlocksItems.enableStwH) 				BLOCKS.add(STWH);
