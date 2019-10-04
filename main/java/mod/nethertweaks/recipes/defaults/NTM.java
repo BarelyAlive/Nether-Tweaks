@@ -205,7 +205,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(Items.MUSHROOM_STEW), 7, 1.2f, 0.4f);
 		registry.register(new ItemInfo(Items.RABBIT_STEW), 7, 2.0f, 0f);
 		registry.register(new ItemInfo(Items.BEETROOT_SOUP), 8, 1.2f, 0f);
-		registry.register(new ItemInfo(ItemHandler.CANTEEN), 3, 1.4f, 0f);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public class BlocksItems
 	enableElderTree 		  = true,
 	enableHellfayah 		  = true,
 	enableSalt	 			  = true,
-	
+
 	//BlockEnable
 	enableSaltBlock 		  = true,
 	enableDust 				  = true,
@@ -69,7 +69,6 @@ public class BlocksItems
 	enableDollVillager		  = true,
 	enableDollPig			  = true,
 	enableJerky 			  = true,
-	enableCanteen			  = true,
 	enableHammerWood 		  = true,
 	enableHammerStone 		  = true,
 	enableHammerGold 		  = true,
@@ -109,7 +108,7 @@ public class BlocksItems
 		enableCrucible 					= config.get("Blocks", "Enable Crucible?", true).getBoolean();
 
 		//ItemEnable
-		config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!"); 
+		config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
 		enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
 		enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
 		enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
@@ -152,7 +151,6 @@ public class BlocksItems
 		enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
 		enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
 		enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
-		enableCanteen 					= config.get("Items", "Enable Canteen?", true).getBoolean();
 		enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
 		enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
 		enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();

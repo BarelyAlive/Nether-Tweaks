@@ -7,7 +7,6 @@ import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Ash;
-import mod.nethertweaks.items.Canteen;
 import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.CrystalOfLight;
 import mod.nethertweaks.items.FlintAndBlaze;
@@ -24,8 +23,6 @@ import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
@@ -108,7 +105,6 @@ public class ItemHandler
 
 	//Food & DRINKS
 	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TABNTM);
-	public static final Item CANTEEN	 	  	 = new Canteen();
 
 	//ItemBlocks
 	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
@@ -180,7 +176,6 @@ public class ItemHandler
 		if(BlocksItems.enableHammerIron)  		ITEMS.add(HAMMER_IRON);
 		if(BlocksItems.enableHammerDiamond)  	ITEMS.add(HAMMER_DIAMOND);
 		if(BlocksItems.enableJerky)  			ITEMS.add(COOKED_JERKY);
-		if(BlocksItems.enableCanteen)  			ITEMS.add(CANTEEN);
 		if(BlocksItems.enableMeanVine)			ITEMS.add(STRING);
 		if(BlocksItems.enableStoneDoor)  		ITEMS.add(ITEM_STONE_DOOR);
 		if(BlocksItems.enableElderTree) {

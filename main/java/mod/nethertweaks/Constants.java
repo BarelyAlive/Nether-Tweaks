@@ -131,7 +131,6 @@ public class Constants {
 	public static final String COILED_SWORD				= "coiled_sword";
 
 	public static final String COOKED_JERKY 			= "cooked_jerky";
-	public static final String CANTEEN 					= "canteen";
 
 	public static final String GRABBER_WOOD				= "grabber_wood";
 	public static final String GRABBER_GOLD				= "grabber_gold";

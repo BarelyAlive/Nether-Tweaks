@@ -118,7 +118,7 @@ public class BlockHandler
 			BLOCKS.add(JUNGLE_BARREL);
 			BLOCKS.add(ACACIA_BARREL);
 			BLOCKS.add(DARK_OAK_BARREL);
-			
+
 			if(BlocksItems.enableElderTree)
 				BLOCKS.add(ELDER_BARREL);
 		}
@@ -130,7 +130,7 @@ public class BlockHandler
 			BLOCKS.add(JUNGLE_SIEVE);
 			BLOCKS.add(ACACIA_SIEVE);
 			BLOCKS.add(DARK_OAK_SIEVE);
-			
+
 			if(BlocksItems.enableElderTree)
 				BLOCKS.add(ELDER_SIEVE);
 		}
@@ -170,7 +170,7 @@ public class BlockHandler
 		for (Block block : BLOCKS)
 			event.getRegistry().register(block);
 	}
-	
+
 	private void registerTileEntities()
 	{
 		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
