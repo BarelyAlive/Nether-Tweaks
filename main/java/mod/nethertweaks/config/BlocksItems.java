@@ -4,84 +4,86 @@ import net.minecraftforge.common.config.Configuration;
 
 public class BlocksItems
 {
+	public static boolean
+	//General
+	enableElderTree 		  = true,
+	enableHellfayah 		  = true,
+	enableSalt	 			  = true,
+	
 	//BlockEnable
-	public static boolean enableSaltBlock 			= true;
-	public static boolean enableDust 				= true;
-	public static boolean enableAshBonePile			= true;
-	public static boolean enableBarrel				= true;
-	public static boolean enableBonfire 			= true;
-	public static boolean enableCondenser 			= true;
-	public static boolean enableStwH 				= true;
-	public static boolean enableFreezer 			= true;
-	public static boolean enableHellmart 			= true;
-	public static boolean enableLiquidImpossibility = true;
-	public static boolean enableDistilledWater		= true;
-	public static boolean enableMeanVine 			= true;
-	public static boolean enableElderTree 			= true;
-	public static boolean enableNetherrackFurnace 	= true;
-	public static boolean enableNetherrackGravel 	= true;
-	public static boolean enableSieve 				= true;
-	public static boolean enableCrucible 			= true;
+	enableSaltBlock 		  = true,
+	enableDust 				  = true,
+	enableAshBonePile		  = true,
+	enableBarrel			  = true,
+	enableBonfire 			  = true,
+	enableCondenser 		  = true,
+	enableStwH 				  = true,
+	enableFreezer 			  = true,
+	enableHellmart 			  = true,
+	enableLiquidImpossibility = true,
+	enableDistilledWater	  = true,
+	enableMeanVine 			  = true,
+	enableNetherrackFurnace   = true,
+	enableNetherrackGravel 	  = true,
+	enableSieve 			  = true,
+	enableCrucible 			  = true,
 
 	//ItemEnable
-	public static boolean enableStoneBar 			= true;
-	public static boolean enablePortalCore 			= true;
-	public static boolean enableEndBox	 			= true;
-	public static boolean enableSalt	 			= true;
-	public static boolean enableHellfayah 			= true;
-	public static boolean enableEnderInfusedFrame	= true;
-	public static boolean enableString	 			= true;
-	public static boolean enablePorcelainClay		= true;
-	public static boolean enablePowderOfLight		= true;
-	public static boolean enableMushroomSpores		= true;
-	public static boolean enableGrassSeeds			= true;
-	public static boolean enableCactusSeeds			= true;
-	public static boolean enableSugarcaneSeeds		= true;
-	public static boolean enableCrystalLight 		= true;
-	public static boolean enableAsh			 		= true;
-	public static boolean enableWoodChippings 		= true;
-	public static boolean enableCoiledSword 		= true;
-	public static boolean enablePebbleStone			= true;
-	public static boolean enablePebbleGranite		= true;
-	public static boolean enablePebbleDiorite		= true;
-	public static boolean enablePebbleAndesite		= true;
-	public static boolean enableStringMeshes		= true;
-	public static boolean enableFlintMeshes			= true;
-	public static boolean enableIronMeshes			= true;
-	public static boolean enableDiamondMeshes		= true;
-	public static boolean enableDollBat				= true;
-	public static boolean enableDollChicken			= true;
-	public static boolean enableDollCow				= true;
-	public static boolean enableDollDonkey			= true;
-	public static boolean enableDollHorse			= true;
-	public static boolean enableDollRedMooshroom	= true;
-	public static boolean enableDollMule			= true;
-	public static boolean enableDollOcelot			= true;
-	public static boolean enableDollParrot			= true;
-	public static boolean enableDollRabbit			= true;
-	public static boolean enableDollSheep			= true;
-	public static boolean enableDollLlama			= true;
-	public static boolean enableDollPolarBear		= true;
-	public static boolean enableDollWolf			= true;
-	public static boolean enableDollVillager		= true;
-	public static boolean enableDollPig				= true;
-	public static boolean enableJerky 				= true;
-	public static boolean enableCanteen				= true;
-	public static boolean enableHammerWood 			= true;
-	public static boolean enableHammerStone 		= true;
-	public static boolean enableHammerGold 			= true;
-	public static boolean enableHammerIron 			= true;
-	public static boolean enableHammerDiamond 		= true;
-	public static boolean enableGrabberWood			= true;
-	public static boolean enableGrabberStone 		= true;
-	public static boolean enableGrabberGold			= true;
-	public static boolean enableGrabberIron			= true;
-	public static boolean enableGrabberDiamond 		= true;
-	public static boolean enableFlintNBlaze 		= true;
-	public static boolean enableStoneDoor 			= true;
-	public static boolean enableElderDoor 			= true;
-	public static boolean enableWoodBucket 			= true;
-	public static boolean enableStoneBucket 		= true;
+	enableStoneBar 			  = true,
+	enablePortalCore 		  = true,
+	enableEndBox	 		  = true,
+	enableEnderInfusedFrame	  = true,
+	enableString	 		  = true,
+	enablePorcelainClay		  = true,
+	enablePowderOfLight		  = true,
+	enableMushroomSpores	  = true,
+	enableGrassSeeds		  = true,
+	enableCactusSeeds		  = true,
+	enableSugarcaneSeeds	  = true,
+	enableCrystalLight 		  = true,
+	enableAsh			 	  = true,
+	enableWoodChippings 	  = true,
+	enableCoiledSword 		  = true,
+	enablePebbleStone		  = true,
+	enablePebbleGranite		  = true,
+	enablePebbleDiorite		  = true,
+	enablePebbleAndesite	  = true,
+	enableStringMeshes		  = true,
+	enableFlintMeshes		  = true,
+	enableIronMeshes		  = true,
+	enableDiamondMeshes		  = true,
+	enableDollBat			  = true,
+	enableDollChicken		  = true,
+	enableDollCow			  = true,
+	enableDollDonkey		  = true,
+	enableDollHorse			  = true,
+	enableDollRedMooshroom	  = true,
+	enableDollMule			  = true,
+	enableDollOcelot		  = true,
+	enableDollParrot		  = true,
+	enableDollRabbit		  = true,
+	enableDollSheep			  = true,
+	enableDollLlama			  = true,
+	enableDollPolarBear		  = true,
+	enableDollWolf			  = true,
+	enableDollVillager		  = true,
+	enableDollPig			  = true,
+	enableJerky 			  = true,
+	enableCanteen			  = true,
+	enableHammerWood 		  = true,
+	enableHammerStone 		  = true,
+	enableHammerGold 		  = true,
+	enableHammerIron 		  = true,
+	enableHammerDiamond 	  = true,
+	enableGrabberWood		  = true,
+	enableGrabberStone 		  = true,
+	enableGrabberGold		  = true,
+	enableGrabberIron		  = true,
+	enableGrabberDiamond 	  = true,
+	enableFlintNBlaze 		  = true,
+	enableStoneDoor 		  = true,
+	enableWoodBucket 		  = true,
+	enableStoneBucket 		  = true;
 
 	protected static void load(final Configuration config)
 	{
@@ -107,7 +109,7 @@ public class BlocksItems
 		enableCrucible 					= config.get("Blocks", "Enable Crucible?", true).getBoolean();
 
 		//ItemEnable
-		config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
+		config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!"); 
 		enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
 		enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
 		enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
@@ -163,7 +165,6 @@ public class BlocksItems
 		enableGrabberDiamond 			= config.get("Items", "Enable Diamond Grabber?", true).getBoolean();
 		enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
 		enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
-		enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
 		enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
 		enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
 	}

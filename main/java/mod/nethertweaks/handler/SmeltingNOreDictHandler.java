@@ -40,9 +40,11 @@ public class SmeltingNOreDictHandler
 		if(BlocksItems.enableMeanVine) 		  OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
 		if(BlocksItems.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
 		if(BlocksItems.enableJerky)			  OreDictionary.registerOre("listAllmeatcooked", ItemHandler.COOKED_JERKY);
-		if(BlocksItems.enableSalt)	 		  OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
-		if(BlocksItems.enableSalt)			  OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
 		if(BlocksItems.enableString)		  OreDictionary.registerOre("string", ItemHandler.STRING);
+		if(BlocksItems.enableSalt) {
+			OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
+			OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
+		}
 		if(BlocksItems.enableHellfayah) {
 			OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
 			OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));

@@ -24,6 +24,8 @@ import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
@@ -177,11 +179,14 @@ public class ItemHandler
 		if(BlocksItems.enableHammerStone)  		ITEMS.add(HAMMER_STONE);
 		if(BlocksItems.enableHammerIron)  		ITEMS.add(HAMMER_IRON);
 		if(BlocksItems.enableHammerDiamond)  	ITEMS.add(HAMMER_DIAMOND);
-		if(BlocksItems.enableElderTree)			ITEMS.add(ITEM_ELDER_SLAB);
 		if(BlocksItems.enableJerky)  			ITEMS.add(COOKED_JERKY);
 		if(BlocksItems.enableCanteen)  			ITEMS.add(CANTEEN);
+		if(BlocksItems.enableMeanVine)			ITEMS.add(STRING);
 		if(BlocksItems.enableStoneDoor)  		ITEMS.add(ITEM_STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			ITEMS.add(ITEM_ELDER_DOOR);
+		if(BlocksItems.enableElderTree) {
+			ITEMS.add(ITEM_ELDER_SLAB);
+			ITEMS.add(ITEM_ELDER_DOOR);
+		}
 
 		//Blocks
 		for(Block block : BlockHandler.BLOCKS)

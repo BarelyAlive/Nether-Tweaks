@@ -28,7 +28,6 @@ import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -45,10 +44,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	private WorldType Hellworld = new Hellworld();
 	public static Gson gsonInstance = new Gson();
 	public static File configDirectory;
-	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
+	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
 
 	@Instance(value=Constants.MODID)
 	private static NetherTweaksMod instance;
@@ -88,9 +86,11 @@ public class NetherTweaksMod
 
 		new BlockHandler();
 		new ItemHandler();
+
 		FluidHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
+		new Hellworld();  //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 
@@ -119,7 +119,7 @@ public class NetherTweaksMod
 	{
 		OreHandler.registerFurnaceRecipe();
 		//Mobs
-		if(Config.spawnWaterMobs) EventHook.addWaterMobs();
+		EventHook.addWaterMobs();
 
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();

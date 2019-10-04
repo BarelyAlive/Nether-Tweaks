@@ -98,16 +98,18 @@ public class BlockHandler
 	public BlockHandler()
 	{
 		addBlocks();
+		registerTileEntities();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void addBlocks()
 	{
-		//FluidBlocks
+		//Fluid Blocks
 		if (BlocksItems.enableLiquidImpossibility)
 			BLOCKS.add(FluidHandler.BLOCK_LIQUID_IMPOSSIBILITY);
 		if(BlocksItems.enableDistilledWater)
 			BLOCKS.add(FluidHandler.BLOCK_DISTILLED_WATER);
+		//Regular Blocks
 		if(BlocksItems.enableBarrel) {
 			BLOCKS.add(STONE_BARREL);
 			BLOCKS.add(OAK_BARREL);
@@ -116,7 +118,9 @@ public class BlockHandler
 			BLOCKS.add(JUNGLE_BARREL);
 			BLOCKS.add(ACACIA_BARREL);
 			BLOCKS.add(DARK_OAK_BARREL);
-			BLOCKS.add(ELDER_BARREL);
+			
+			if(BlocksItems.enableElderTree)
+				BLOCKS.add(ELDER_BARREL);
 		}
 		if(BlocksItems.enableSieve) {
 			BLOCKS.add(STONE_SIEVE);
@@ -126,7 +130,9 @@ public class BlockHandler
 			BLOCKS.add(JUNGLE_SIEVE);
 			BLOCKS.add(ACACIA_SIEVE);
 			BLOCKS.add(DARK_OAK_SIEVE);
-			BLOCKS.add(ELDER_SIEVE);
+			
+			if(BlocksItems.enableElderTree)
+				BLOCKS.add(ELDER_SIEVE);
 		}
 		if(BlocksItems.enableAshBonePile)		BLOCKS.add(ASH_BONE_PILE);
 		if(BlocksItems.enableFreezer)			BLOCKS.add(FREEZER);
@@ -151,11 +157,11 @@ public class BlockHandler
 			BLOCKS.add(ELDER_PLANKS);
 			BLOCKS.add(ELDER_SLAB);
 			BLOCKS.add(ELDER_SLAB_DOUBLE);
+			BLOCKS.add(ELDER_DOOR);
 		}
 		if(BlocksItems.enableNetherrackGravel)	BLOCKS.add(NETHERRACK_GRAVEL);
 		if(BlocksItems.enableMeanVine) 			BLOCKS.add(MEAN_VINE);
 		if(BlocksItems.enableStoneDoor) 		BLOCKS.add(STONE_DOOR);
-		if(BlocksItems.enableElderDoor)			BLOCKS.add(ELDER_DOOR);
 	}
 
 	@SubscribeEvent
@@ -163,14 +169,17 @@ public class BlockHandler
 	{
 		for (Block block : BLOCKS)
 			event.getRegistry().register(block);
-
+	}
+	
+	private void registerTileEntities()
+	{
 		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
 		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
 		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_ASH_BONE_PILE);
 		GameRegistry.registerTileEntity(TileFreezer.class, Constants.TE_FREEZER);
 		GameRegistry.registerTileEntity(TileHellmart.class, Constants.TE_HELLMART);
 		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_CONDENSER);
-		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACKFURNACE);
+		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACK_FURNACE);
 		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
 	}
 }

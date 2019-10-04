@@ -13,7 +13,7 @@ public class Compatibility
 				Loader.isModLoaded("minimoos") ||
 				Loader.isModLoaded("fluidcows") &&
 				Config.enableMooFluid)
-			NetherTweaksMod.loadedModules.add(new MooFluidsEtc());
+			NetherTweaksMod.LOADED_MODULES.add(new MooFluidsEtc());
 		/*
 		if(Loader.isModLoaded("appliedenergistics2"))
             NetherTweaksMod.loadedModules.add(new AppliedEnergistics2());
