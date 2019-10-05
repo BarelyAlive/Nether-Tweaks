@@ -26,111 +26,111 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelModeMobSpawn implements IBarrelMode {
 
-    private float progress = 0;
+	private float progress = 0;
 
-    private ItemStack dollStack;
+	private ItemStack dollStack;
 
-    public void setDollStack(ItemStack dollStack) {
+	public void setDollStack(final ItemStack dollStack) {
 		this.dollStack = dollStack;
 	}
 
 	@Override
-    public void writeToNBT(NBTTagCompound tag) {
-        tag.setFloat("progress", progress);
+	public void writeToNBT(final NBTTagCompound tag) {
+		tag.setFloat("progress", progress);
 
-        NBTTagCompound dollTag = dollStack.writeToNBT(new NBTTagCompound());
-        tag.setTag("doll", dollTag);
+		NBTTagCompound dollTag = dollStack.writeToNBT(new NBTTagCompound());
+		tag.setTag("doll", dollTag);
 
-    }
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        progress = tag.getFloat("progress");
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		progress = tag.getFloat("progress");
 
-        dollStack = new ItemStack((NBTTagCompound) tag.getTag("doll"));
-    }
+		dollStack = new ItemStack((NBTTagCompound) tag.getTag("doll"));
+	}
 
-    @Override
-    public boolean isTriggerItemStack(ItemStack stack) {
-        return false;
-    }
+	@Override
+	public boolean isTriggerItemStack(final ItemStack stack) {
+		return false;
+	}
 
-    @Override
-    public boolean isTriggerFluidStack(FluidStack stack) {
-        return false;
-    }
+	@Override
+	public boolean isTriggerFluidStack(final FluidStack stack) {
+		return false;
+	}
 
-    @Override
-    public String getName() {
-        return "mobspawn";
-    }
+	@Override
+	public String getName() {
+		return "mobspawn";
+	}
 
-    @Override
-    public void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-    }
+	@Override
+	public void onBlockActivated(final World world, final TileBarrel barrel, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
-        if (dollStack == null || dollStack.isEmpty())
-            return null;
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTextureForRender(final TileBarrel barrel) {
+		if (dollStack == null || dollStack.isEmpty())
+			return null;
 
-        ItemDoll doll = (ItemDoll) dollStack.getItem();
+		ItemDoll doll = (ItemDoll) dollStack.getItem();
 
-        return Util.getTextureFromFluid(doll.getSpawnFluid(dollStack));
-    }
+		return Util.getTextureFromFluid(doll.getSpawnFluid(dollStack));
+	}
 
-    @Override
-    public Color getColorForRender() {
-        return Util.whiteColor;
-    }
+	@Override
+	public Color getColorForRender() {
+		return Util.whiteColor;
+	}
 
-    @Override
-    public float getFilledLevelForRender(TileBarrel barrel) {
-        return 0.9375F;
-    }
+	@Override
+	public float getFilledLevelForRender(final TileBarrel barrel) {
+		return 0.9375F;
+	}
 
-    @Override
-    public void update(TileBarrel barrel) {
-        if (progress < 1) {
-            progress += 1.0 / 600;
-            NetworkHandler.sendNBTUpdate(barrel);
-        }
+	@Override
+	public void update(final TileBarrel barrel) {
+		if (progress < 1) {
+			progress += 1.0 / 600;
+			NetworkHandler.sendNBTUpdate(barrel);
+		}
 
-        if (progress >= 1) {
-            ItemDoll doll = (ItemDoll) dollStack.getItem();
-            boolean result = doll.spawnMob(dollStack, barrel.getWorld(), barrel.getPos());
-            if (result) {
-                barrel.setMode("null");
-                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
-            }
-        }
+		if (progress >= 1) {
+			ItemDoll doll = (ItemDoll) dollStack.getItem();
+			boolean result = doll.spawnMob(dollStack, barrel.getWorld(), barrel.getPos());
+			if (result) {
+				barrel.setMode("null");
+				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+			}
+		}
 
-    }
+	}
 
-    @Override
-    public void addItem(ItemStack stack, TileBarrel barrel) {
-    }
+	@Override
+	public void addItem(final ItemStack stack, final TileBarrel barrel) {
+	}
 
-    @Override
-    public ItemStackHandler getHandler(TileBarrel barrel) {
-        return null;
-    }
+	@Override
+	public ItemStackHandler getHandler(final TileBarrel barrel) {
+		return null;
+	}
 
-    @Override
-    public FluidTank getFluidHandler(TileBarrel barrel) {
-        return null;
-    }
+	@Override
+	public FluidTank getFluidHandler(final TileBarrel barrel) {
+		return null;
+	}
 
-    @Override
-    public boolean canFillWithFluid(TileBarrel barrel) {
-        return false;
-    }
+	@Override
+	public boolean canFillWithFluid(final TileBarrel barrel) {
+		return false;
+	}
 
-    @Override
-    public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
-        currenttip.add("Spawning: " + Math.round(100 * progress) + "%");
-        return currenttip;
-    }
+	@Override
+	public List<String> getWailaTooltip(final TileBarrel barrel, final List<String> currenttip) {
+		currenttip.add("Spawning: " + Math.round(100 * progress) + "%");
+		return currenttip;
+	}
 
 }

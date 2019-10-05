@@ -1,9 +1,8 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -24,38 +23,37 @@ import net.minecraftforge.fluids.Fluid;
 
 public class LiquidImpossibility extends BlockFluidClassic
 {
-    public LiquidImpossibility()
-    {
-        super(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, Material.WATER);
-        setRegistryName(NetherTweaksMod.MODID, INames.LIQUIDIMPOSSIBILITY);
-        setLightLevel(Config.luminosityLI);
-        setTemperature(Config.temperatureLI);
-        setDensity(Config.densityLI);
-        setBlockUnbreakable();
-    }
-    
-    @Override
-    public boolean canSpawnInBlock() {
-    	return true;
-    }
-    
-    @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type)
-    {
-    	if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(this.getDefaultState()))
-    	{
-    		return true;
-    	}
+	public LiquidImpossibility()
+	{
+		super(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, Material.WATER);
+		setRegistryName(Constants.MODID, Constants.LIQUID_IMPOSSIBILITY);
+		setUnlocalizedName(Constants.LIQUID_IMPOSSIBILITY);
+		setLightLevel(Config.luminosityLI);
+		setTemperature(Config.temperatureLI);
+		setDensity(Config.densityLI);
+		setBlockUnbreakable();
+	}
+
+	@Override
+	public boolean canSpawnInBlock() {
+		return true;
+	}
+
+	@Override
+	public boolean canCreatureSpawn(final IBlockState state, final IBlockAccess world, final BlockPos pos, final SpawnPlacementType type)
+	{
+		if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(getDefaultState()))
+			return true;
 		return false;
-    }
-    
-    @Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
-    {	
-		if (world.isRemote) return;		
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(final World world, final BlockPos pos, final IBlockState state, final Entity entity)
+	{
+		if (world.isRemote) return;
 		if (entity.isDead) return;
-		
-		if (Config.spawnSkeletons) {
+
+		if (Config.spawnSkeletons)
 			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null)
 			{
 				EntitySkeleton skeleton = new EntitySkeleton(world);
@@ -72,9 +70,8 @@ public class LiquidImpossibility extends BlockFluidClassic
 				world.spawnEntity(skeleton);
 				entity.setDead();
 			}
-		}
-			
-		if (Config.spawnSlimes) {
+
+		if (Config.spawnSlimes)
 			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null)
 			{
 
@@ -90,20 +87,19 @@ public class LiquidImpossibility extends BlockFluidClassic
 
 				world.spawnEntity(slime);
 				entity.setDead();
-			} 
-		}
-    }
-    
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return getBlockState().getBaseState().withProperty(LEVEL, meta);
-    }
-    
-    @Override
-    public Fluid getFluid() {
-    return BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY;
-    }
-    
-    
+			}
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(final int meta)
+	{
+		return getBlockState().getBaseState().withProperty(LEVEL, meta);
+	}
+
+	@Override
+	public Fluid getFluid() {
+		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
+	}
+
+
 }

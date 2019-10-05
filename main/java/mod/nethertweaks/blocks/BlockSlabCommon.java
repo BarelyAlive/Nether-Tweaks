@@ -24,24 +24,23 @@ import net.minecraft.world.World;
 public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvider{
 
 	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
-	
-	public BlockSlabCommon(String name, Material material) {
+
+	public BlockSlabCommon(final String name, final Material material) {
 		super(material);
 		this.setRegistryName(name);
-		this.setUnlocalizedName(name);
-		
-		IBlockState iblockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
-		
-		if(!this.isDouble()) {
+		setUnlocalizedName(name);
+
+		IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+
+		if(!isDouble())
 			iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-		}
-		
-		this.setDefaultState(iblockstate);
-		this.useNeighborBrightness = !this.isDouble();
+
+		setDefaultState(iblockstate);
+		useNeighborBrightness = !isDouble();
 	}
 
 	@Override
-	public String getUnlocalizedName(int meta) {
+	public String getUnlocalizedName(final int meta) {
 		return super.getUnlocalizedName();
 	}
 
@@ -51,55 +50,52 @@ public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvi
 	}
 
 	@Override
-	public Comparable<?> getTypeForItem(ItemStack stack) {
+	public Comparable<?> getTypeForItem(final ItemStack stack) {
 		return Variant.DEFAULT;
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+	public Item getItemDropped(final IBlockState state, final Random rand, final int fortune) {
 		return Item.getItemFromBlock(BlockHandler.ELDER_SLAB);
 	}
-	
-	
+
+
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+	public ItemStack getItem(final World worldIn, final BlockPos pos, final IBlockState state) {
 		return new ItemStack(BlockHandler.ELDER_SLAB);
 	}
-	
+
 	@Override
 	public final IBlockState getStateFromMeta(final int meta) {
-		IBlockState blockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
-		
-		if(!this.isDouble()) {
-			blockstate = blockstate.withProperty(HALF, ((meta&8)!=0)?EnumBlockHalf.TOP:EnumBlockHalf.BOTTOM);
-		}
-		
+		IBlockState blockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+
+		if(!isDouble())
+			blockstate = blockstate.withProperty(HALF, (meta&8)!=0?EnumBlockHalf.TOP:EnumBlockHalf.BOTTOM);
+
 		return blockstate;
 	}
-	
+
 	@Override
 	public final int getMetaFromState(final IBlockState state) {
 		int meta = 0;
-		
-		if(!this.isDouble()&& state.getValue(HALF)==EnumBlockHalf.TOP) {
+
+		if(!isDouble()&& state.getValue(HALF)==EnumBlockHalf.TOP)
 			meta |= 8;
-		}
-		
+
 		return meta;
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
-		if(!this.isDouble()){
+		if(!isDouble())
 			return new BlockStateContainer(this, new IProperty[] {VARIANT, HALF});
-		}
 		return new BlockStateContainer(this, new IProperty[] {VARIANT});
 	}
-	
+
 	public static class Double extends BlockSlabCommon
 	{
 
-		public Double(String name, Material material) {
+		public Double(final String name, final Material material) {
 			super(name, material);
 		}
 
@@ -113,7 +109,7 @@ public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvi
 	public static class Half extends BlockSlabCommon
 	{
 
-		public Half(String name, Material material) {
+		public Half(final String name, final Material material) {
 			super(name, material);
 		}
 
@@ -123,8 +119,8 @@ public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvi
 		}
 
 	}
-	
-	public static enum Variant implements IStringSerializable
+
+	public enum Variant implements IStringSerializable
 	{
 		DEFAULT;
 
@@ -132,19 +128,19 @@ public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvi
 		public String getName() {
 			return "default";
 		}
-	
-}
-	
+
+	}
+
 	@Override
 	public List<Pair<Integer, String>> getVariants()
 	{
-		List<Pair<Integer, String>> ret = new ArrayList<Pair<Integer, String>>();
-        if (!this.isDouble()) {
-			ret.add(new ImmutablePair<Integer, String>(0, "half=bottom,variant=default"));
-			ret.add(new ImmutablePair<Integer, String>(1, "half=top,variant=default"));
+		List<Pair<Integer, String>> ret = new ArrayList<>();
+		if (!isDouble()) {
+			ret.add(new ImmutablePair<>(0, "half=bottom,variant=default"));
+			ret.add(new ImmutablePair<>(1, "half=top,variant=default"));
 		}
-        else
-        	ret.add(new ImmutablePair<Integer, String>(0, "variant=default"));
+		else
+			ret.add(new ImmutablePair<>(0, "variant=default"));
 		return ret;
 	}
 }

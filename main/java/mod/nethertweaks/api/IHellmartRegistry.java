@@ -10,19 +10,19 @@ import net.minecraft.util.ResourceLocation;
 
 public interface IHellmartRegistry extends IRegistryMap<Ingredient, HellmartData>
 {
-    public void register(ItemStack product, ItemStack currency, int price);
-    public void register(ItemInfo product, ItemInfo currency, int price);
-    public void register(ResourceLocation location, ResourceLocation currency, int price);
+	void register(ItemStack product, ItemStack currency, int price);
+	void register(ItemInfo product, ItemInfo currency, int price);
+	void register(ResourceLocation location, ResourceLocation currency, int price);
 
-    /**
-     * Registers a oredict for sifting with a dynamic color based on the itemColor
-     */
-    public void register(String name, String currency, int price);
+	/**
+	 * Registers a oredict for sifting with a dynamic color based on the itemColor
+	 */
+	void register(String name, String currency, int price);
 
-    public HellmartData getItem(ItemStack stack);
-    public HellmartData getItem(StackInfo info);
+	HellmartData getItem(ItemStack stack);
+	HellmartData getItem(StackInfo info);
 
-    public boolean containsItem(Item item, int meta);
-    public boolean containsItem(ItemStack stack);
-    public boolean containsItem(StackInfo info);
+	boolean containsItem(Item item, int meta);
+	boolean containsItem(ItemStack stack);
+	boolean containsItem(StackInfo info);
 }

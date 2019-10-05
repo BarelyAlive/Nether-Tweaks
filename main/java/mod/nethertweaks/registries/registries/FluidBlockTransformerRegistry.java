@@ -30,135 +30,122 @@ import net.minecraftforge.fluids.Fluid;
 
 public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTransformer> implements IFluidBlockTransformerRegistry {
 
-    public FluidBlockTransformerRegistry() {
-        super(
-                new GsonBuilder()
-                        .setPrettyPrinting()
-                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(StackInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
-                        .registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
-                        .registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
-                        .registerTypeAdapter(EntityInfo.class, new CustomEntityInfoJson())
-                        .registerTypeAdapter(FluidBlockTransformer.class, new CustomFluidBlockTransformerJson())
-                        .create(),
-                NTMRegistryManager.FLUID_BLOCK_DEFAULT_REGISTRY_PROVIDERS
-        );
-    }
+	public FluidBlockTransformerRegistry() {
+		super(
+				new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(StackInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+				.registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
+				.registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
+				.registerTypeAdapter(EntityInfo.class, new CustomEntityInfoJson())
+				.registerTypeAdapter(FluidBlockTransformer.class, new CustomFluidBlockTransformerJson())
+				.create(),
+				NTMRegistryManager.FLUID_BLOCK_DEFAULT_REGISTRY_PROVIDERS
+				);
+	}
 
-    public void register(Fluid fluid, StackInfo inputBlock, StackInfo outputBlock) {
-        register(fluid, inputBlock, outputBlock, null);
-    }
+	public void register(final Fluid fluid, final StackInfo inputBlock, final StackInfo outputBlock) {
+		register(fluid, inputBlock, outputBlock, null);
+	}
 
-    @Override
-	public void register(Fluid fluid, @Nonnull StackInfo inputBlock, @Nonnull StackInfo outputBlock, String entityName) {
-        if (fluid == null){
-            LogUtil.error("Fluid is null, this may not happen!");
-            for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
-                LogUtil.warn(stackTraceElement);
-            }
+	@Override
+	public void register(final Fluid fluid, @Nonnull final StackInfo inputBlock, @Nonnull final StackInfo outputBlock, final String entityName) {
+		if (fluid == null){
+			LogUtil.error("Fluid is null, this may not happen!");
+			for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace())
+				LogUtil.warn(stackTraceElement);
 
-            return;
-        }
-
-
-        register(fluid.getName(), Ingredient.fromStacks(inputBlock.getItemStack()), outputBlock, entityName, entityName == null ? 0 : 4, entityName == null ? 0 : 4);
-    }
-
-    public void register(Fluid fluid, String oredict, StackInfo outputBlock) {
-        register(fluid, oredict, outputBlock, null);
-    }
-
-    @Override
-	public void register(@Nonnull Fluid fluid, @Nonnull String oredict, @Nonnull StackInfo outputBlock, String entityName) {
-        register(fluid.getName(), new OreIngredientStoring(oredict), outputBlock, entityName, entityName == null ? 0 : 4, entityName == null ? 0 : 4);
-    }
-
-    /**
-     * Main register function
-     */
-    @Override
-	public void register(@Nonnull String fluid, @Nonnull Ingredient input, @Nonnull StackInfo outputBlock, @Nullable String entityName, int spawnCount, int spawnRange) {
-        if (outputBlock.hasBlock()) {
-            register(new FluidBlockTransformer(fluid, input, new BlockInfo(outputBlock.getBlockState()), entityName, spawnCount, spawnRange));
-        } else {
-            LogUtil.error("Item " + outputBlock.toString() + "  has no block version!");
-        }
-    }
+			return;
+		}
 
 
-    @Override
-	public boolean canBlockBeTransformedWithThisFluid(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
-                return true;
-        }
+		register(fluid.getName(), Ingredient.fromStacks(inputBlock.getItemStack()), outputBlock, entityName, entityName == null ? 0 : 4, entityName == null ? 0 : 4);
+	}
 
-        return false;
-    }
+	public void register(final Fluid fluid, final String oredict, final StackInfo outputBlock) {
+		register(fluid, oredict, outputBlock, null);
+	}
 
-    @Override
+	@Override
+	public void register(@Nonnull final Fluid fluid, @Nonnull final String oredict, @Nonnull final StackInfo outputBlock, final String entityName) {
+		register(fluid.getName(), new OreIngredientStoring(oredict), outputBlock, entityName, entityName == null ? 0 : 4, entityName == null ? 0 : 4);
+	}
+
+	/**
+	 * Main register function
+	 */
+	@Override
+	public void register(@Nonnull final String fluid, @Nonnull final Ingredient input, @Nonnull final StackInfo outputBlock, @Nullable final String entityName, final int spawnCount, final int spawnRange) {
+		if (outputBlock.hasBlock())
+			register(new FluidBlockTransformer(fluid, input, new BlockInfo(outputBlock.getBlockState()), entityName, spawnCount, spawnRange));
+		else
+			LogUtil.error("Item " + outputBlock.toString() + "  has no block version!");
+	}
+
+
+	@Override
+	public boolean canBlockBeTransformedWithThisFluid(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return true;
+
+		return false;
+	}
+
+	@Override
 	@Nonnull
-    public BlockInfo getBlockForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack)) {
-                return transformer.getOutput();
-            }
-        }
+	public BlockInfo getBlockForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return transformer.getOutput();
 
-        return BlockInfo.EMPTY;
-    }
+		return BlockInfo.EMPTY;
+	}
 
-    @Override
-	public int getSpawnCountForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack)) {
-                return transformer.getSpawnCount();
-            }
-        }
+	@Override
+	public int getSpawnCountForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return transformer.getSpawnCount();
 
-        return 0;
-    }
+		return 0;
+	}
 
-    @Override
-	public int getSpawnRangeForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack)) {
-                return transformer.getSpawnRange();
-            }
-        }
+	@Override
+	public int getSpawnRangeForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return transformer.getSpawnRange();
 
-        return 0;
-    }
+		return 0;
+	}
 
-    @Override
-	public FluidBlockTransformer getTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack)) {
-                return transformer;
-            }
-        }
+	@Override
+	public FluidBlockTransformer getTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return transformer;
 
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-	public EntityInfo getSpawnForTransformation(@Nonnull Fluid fluid, @Nonnull ItemStack stack) {
-        for (FluidBlockTransformer transformer : registry) {
-            if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack)) {
-                return transformer.getToSpawn();
-            }
-        }
+	@Override
+	public EntityInfo getSpawnForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
+		for (FluidBlockTransformer transformer : registry)
+			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
+				return transformer.getToSpawn();
 
-        return null;
-    }
+		return null;
+	}
 
-    @Override
-    protected void registerEntriesFromJSON(FileReader fr) {
-        List<FluidBlockTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidBlockTransformer>>() {
-        }.getType());
-        registry.addAll(gsonInput);
-    }
+	@Override
+	protected void registerEntriesFromJSON(final FileReader fr) {
+		List<FluidBlockTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidBlockTransformer>>() {
+		}.getType());
+		registry.addAll(gsonInput);
+	}
 
 	@Override
 	public List<?> getRecipeList() {

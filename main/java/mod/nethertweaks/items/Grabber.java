@@ -3,8 +3,9 @@ package mod.nethertweaks.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import org.lwjgl.input.Keyboard;
+
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
@@ -27,91 +28,86 @@ import net.minecraftforge.common.IShearable;
 
 public class Grabber extends ItemShears
 {
-	private static List<String> tangibleList = new ArrayList<String>();
-	
-	private void setTangible(String[] blocks)
+	private static List<String> tangibleList = new ArrayList<>();
+
+	private void setTangible(final String[] blocks)
 	{
 		for(String entry : blocks) tangibleList.add(entry);
 	}
-	
+
 	public static List<String> getTangible() {
 		return tangibleList;
 	}
-	
-	public Grabber(int durability, ToolMaterial material)
+
+	public Grabber(final int durability, final ToolMaterial material)
 	{
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setNameFromMaterial(material);
+		setCreativeTab(Constants.TABNTM);
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
+		setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
+		setUnlocalizedName(getName(material));
 	}
-	
+
 	@Override
-	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity,
-			EnumHand hand) {
+	public boolean itemInteractionForEntity(final ItemStack itemstack, final EntityPlayer player, final EntityLivingBase entity,
+			final EnumHand hand) {
 		final World world = player.getEntityWorld();
 		final BlockPos playerPos = player.getPosition();
-		
-		if (world.isRemote) return false;
-        if (!(entity instanceof IShearable)) return false;
-        
-        IShearable target = (IShearable)entity;
-        BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
-        if (target.isShearable(itemstack, world, pos))
-        {
-            List<ItemStack> drops = target.onSheared(itemstack, world, pos,
-                    EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 
-            for(ItemStack stack : drops)
-            {
-            	if (!player.inventory.addItemStackToInventory(stack.copy()))
-            	{
+		if (world.isRemote) return false;
+		if (!(entity instanceof IShearable)) return false;
+
+		IShearable target = (IShearable)entity;
+		BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
+		if (target.isShearable(itemstack, world, pos))
+		{
+			List<ItemStack> drops = target.onSheared(itemstack, world, pos,
+					EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
+
+			for(ItemStack stack : drops)
+				if (!player.inventory.addItemStackToInventory(stack.copy()))
+				{
 					EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
 					world.spawnEntity(item);
 				}
-            }
-            if (!player.capabilities.isCreativeMode)
-            	itemstack.damageItem(1, entity);
-        }
-        return true;
+			if (!player.capabilities.isCreativeMode)
+				itemstack.damageItem(1, entity);
+		}
+		return true;
 	}
-	
+
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, final BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(final EntityPlayer player, final World world, final BlockPos pos, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
 	{
 		//Grab vines except the highest one
 		final BlockInfo info = new BlockInfo(world.getBlockState(pos));
 		final Block block = info.getBlock();
 		final BlockPos playerPos = player.getPosition();
-		
+
 		if(block instanceof BlockVine)
 		{
 			BlockPos posi = pos;
 			int count = 0;
-			
-			while (world.getBlockState(posi).getBlock() instanceof BlockVine) {
-				if (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+
+			while (world.getBlockState(posi).getBlock() instanceof BlockVine)
+				if (world.getBlockState(posi).getBlock() instanceof BlockVine)
 					posi = posi.add(0, -1, 0);
-				}
-			}
-			
+
 			posi = posi.add(0, 1, 0);
-			
-			while (world.getBlockState(posi).getBlock() instanceof BlockVine) {
+
+			while (world.getBlockState(posi).getBlock() instanceof BlockVine)
 				if (world.getBlockState(posi).getBlock() instanceof BlockVine) {
 					posi = posi.add(0, 1, 0);
 					count++;
 				}
-				
-			}
-			
+
 			posi = posi.add(0, -2, 0);
 			count--;
-			
+
 			for(int i = 0; i < count; i++)
 			{
 				if (!world.isRemote) {
@@ -127,7 +123,7 @@ public class Grabber extends ItemShears
 			}
 			return EnumActionResult.SUCCESS;
 		}
-		
+
 		//Pick up blocks like melons from the list
 		for (String name : tangibleList) {
 			final ResourceLocation loc = new ResourceLocation(name);
@@ -147,34 +143,20 @@ public class Grabber extends ItemShears
 		}
 		return EnumActionResult.FAIL;
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flagIn)
+	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
-				+ "Can be enchanted with fortune for more output when used for example on sheep");
+		if (Keyboard.isKeyDown(Keyboard.KEY_J))
+			tooltip.add("This tool allows you to directly transfer Blocks like Melons and Cacti to your inventory. "
+					+ "Also serves as shears.");
+		else
+			tooltip.add("Hold [J] for more info!");
+
 	}
-	
-	private void setNameFromMaterial(ToolMaterial material)
+
+	private String getName(final ToolMaterial m)
 	{
-		switch (material) {
-		case WOOD:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_WOOD);
-			break;
-		case GOLD:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_GOLD);
-			break;
-		case STONE:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_STONE);
-			break;
-		case IRON:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_IRON);
-			break;
-		case DIAMOND:
-			setRegistryName(NetherTweaksMod.MODID, INames.GRABBER_DIAMOND);
-			break;
-		default:
-			break;
-		}
+		return "grabber_" + m.name();
 	}
 }

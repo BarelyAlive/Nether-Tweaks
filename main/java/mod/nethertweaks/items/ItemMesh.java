@@ -1,54 +1,54 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class ItemMesh extends Item{
-		
-	public ItemMesh(String type) {
-		super();
-		this.setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, type));
-		this.setMaxStackSize(1);
-		this.setCreativeTab(NetherTweaksMod.TABNTM);
-	}
-	
-	@Override
-	public int getItemEnchantability(ItemStack stack)
-	{
-	    switch(NameHelper.getName(stack))
-	    {
-	        case INames.MESH_STRING:
-	            return 15;
-	        case INames.MESH_FLINT:
-	            return 7;
-	        case INames.MESH_IRON:
-	            return 14;
-	        case INames.MESH_DIAMOND:
-	            return 10;
-	        default:
-	            return 0;
-	    }
-	}
-	
-	@Override
-    public String getUnlocalizedName(ItemStack stack) {
-    	return "item." + getRegistryName().getResourcePath();
 
-    }
-	
-	@Override
-	public boolean isEnchantable(ItemStack stack)
-	{
-	    return true;
+	public ItemMesh(final String type) {
+		super();
+		setRegistryName(new ResourceLocation(Constants.MODID, type));
+		setUnlocalizedName(type);
+		setMaxStackSize(1);
+		setCreativeTab(Constants.TABNTM);
 	}
-	
+
 	@Override
-    public boolean isBookEnchantable(ItemStack stack, ItemStack book)
-    {
-        return stack.getCount() == 1;
-    }
+	public int getItemEnchantability(final ItemStack stack)
+	{
+		switch(NameHelper.getName(stack))
+		{
+		case Constants.MESH_STRING:
+			return 15;
+		case Constants.MESH_FLINT:
+			return 7;
+		case Constants.MESH_IRON:
+			return 14;
+		case Constants.MESH_DIAMOND:
+			return 10;
+		default:
+			return 0;
+		}
+	}
+
+	@Override
+	public String getUnlocalizedName(final ItemStack stack) {
+		return "item." + getRegistryName().getResourcePath();
+
+	}
+
+	@Override
+	public boolean isEnchantable(final ItemStack stack)
+	{
+		return true;
+	}
+
+	@Override
+	public boolean isBookEnchantable(final ItemStack stack, final ItemStack book)
+	{
+		return stack.getCount() == 1;
+	}
 }

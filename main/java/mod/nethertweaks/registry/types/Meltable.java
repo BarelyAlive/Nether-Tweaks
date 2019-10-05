@@ -6,60 +6,60 @@ public class Meltable {
 
 	public static final Meltable EMPTY = new Meltable("", 0);
 
-    private String fluid;
+	private String fluid;
 
-    private int amount;
+	private int amount;
 
-    private BlockInfo textureOverride;
+	private BlockInfo textureOverride;
 
-    public Meltable(String fluid, int amount, BlockInfo textureOverride) {
-        this.fluid = fluid;
-        this.amount = amount;
-        this.textureOverride = textureOverride;
-    }
-    
-    public Meltable(String fluid, int amount) {
-        this.fluid = fluid;
-        this.amount = amount;
-        this.textureOverride = BlockInfo.EMPTY;
-    }
-    
-    public String getFluid()
-    {
-    	return this.fluid;
-    }
+	public Meltable(final String fluid, final int amount, final BlockInfo textureOverride) {
+		this.fluid = fluid;
+		this.amount = amount;
+		this.textureOverride = textureOverride;
+	}
 
-    public int getAmount() {
+	public Meltable(final String fluid, final int amount) {
+		this.fluid = fluid;
+		this.amount = amount;
+		textureOverride = BlockInfo.EMPTY;
+	}
+
+	public String getFluid()
+	{
+		return fluid;
+	}
+
+	public int getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(final int amount) {
 		this.amount = amount;
 	}
 
 	public BlockInfo getTextureOverride() {
-		return (textureOverride == null ? BlockInfo.EMPTY : this.textureOverride);
+		return textureOverride == null ? BlockInfo.EMPTY : textureOverride;
 	}
-	
-    public Meltable setTextureOverride(BlockInfo textureOverride) {
-        this.textureOverride = textureOverride;
-        return this;
-    }
-    
-    public Meltable copy() {
-        return new Meltable(this.fluid, this.amount, this.textureOverride);
-    }
-    @Override
+
+	public Meltable setTextureOverride(final BlockInfo textureOverride) {
+		this.textureOverride = textureOverride;
+		return this;
+	}
+
+	public Meltable copy() {
+		return new Meltable(fluid, amount, textureOverride);
+	}
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + amount;
-		result = prime * result + ((fluid == null) ? 0 : fluid.hashCode());
+		result = prime * result + (fluid == null ? 0 : fluid.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)

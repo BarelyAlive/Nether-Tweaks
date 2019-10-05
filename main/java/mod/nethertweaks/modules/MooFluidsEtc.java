@@ -10,33 +10,32 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
 public class MooFluidsEtc implements ISFHCoreModule {
-	
-    private static final Set<Fluid> fluidSet = new HashSet<>();
-    private static boolean loaded = false;
 
-    public MooFluidsEtc(){
-        loaded = true;
-    }
-    
-    public static boolean isLoaded()
-    {
-    	return loaded;
-    }
+	private static final Set<Fluid> fluidSet = new HashSet<>();
+	private static boolean loaded = false;
 
-    @Override
-    public String getMODID() {
-        return "minimoofluidcow";
-    }
+	public MooFluidsEtc(){
+		loaded = true;
+	}
 
-    @Override
-    public void postInitServer(FMLPostInitializationEvent event){
-        for(String s : Config.fluidList){
-            if(FluidRegistry.isFluidRegistered(s))
-                fluidSet.add(FluidRegistry.getFluid(s));
-        }
-    }
+	public static boolean isLoaded()
+	{
+		return loaded;
+	}
 
-    public static boolean fluidIsAllowed(Fluid fluid){
-        return fluidSet.contains(fluid) != Config.fluidListIsBlackList;
-    }
+	@Override
+	public String getMODID() {
+		return "minimoofluidcow";
+	}
+
+	@Override
+	public void postInitServer(final FMLPostInitializationEvent event){
+		for(String s : Config.fluidList)
+			if(FluidRegistry.isFluidRegistered(s))
+				fluidSet.add(FluidRegistry.getFluid(s));
+	}
+
+	public static boolean fluidIsAllowed(final Fluid fluid){
+		return fluidSet.contains(fluid) != Config.fluidListIsBlackList;
+	}
 }

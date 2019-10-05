@@ -15,13 +15,13 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
-    protected final Gson gson;
-    private final List<? extends IDefaultRecipeProvider> defaultRecipeProviders;
-    protected boolean hasAlreadyBeenLoaded = false;
-    protected RegType registry;
-    protected Type typeOfSource;
+	protected final Gson gson;
+	private final List<? extends IDefaultRecipeProvider> defaultRecipeProviders;
+	protected boolean hasAlreadyBeenLoaded = false;
+	protected RegType registry;
+	protected Type typeOfSource;
 
-    @Override
+	@Override
 	public RegType getRegistry() {
 		return registry;
 	}
@@ -30,53 +30,51 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 		return typeOfSource;
 	}
 
-	public BaseRegistry(Gson gson, RegType registry, Type typeOfSource, @Nonnull List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
-        this.gson = gson;
-        this.registry = registry;
-        this.typeOfSource = typeOfSource;
-        this.defaultRecipeProviders = defaultRecipeProviders;
-    }
+	public BaseRegistry(final Gson gson, final RegType registry, final Type typeOfSource, @Nonnull final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
+		this.gson = gson;
+		this.registry = registry;
+		this.typeOfSource = typeOfSource;
+		this.defaultRecipeProviders = defaultRecipeProviders;
+	}
 
-    public void saveJson(File file) {
-        try(FileWriter fw = new FileWriter(file)) {
-            // TODO remove null again
-            if (typeOfSource != null) {
-                gson.toJson(registry, typeOfSource, fw);
-            } else {
-                gson.toJson(registry, fw);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	public void saveJson(final File file) {
+		try(FileWriter fw = new FileWriter(file)) {
+			// TODO remove null again
+			if (typeOfSource != null)
+				gson.toJson(registry, typeOfSource, fw);
+			else
+				gson.toJson(registry, fw);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-    public void loadJson(File file) {
-        if (hasAlreadyBeenLoaded) clearRegistry();
+	public void loadJson(final File file) {
+		if (hasAlreadyBeenLoaded) clearRegistry();
 
-        if (file.exists() && Config.enableJSONLoading) {
-            try(FileReader fr = new FileReader(file)) {
-                registerEntriesFromJSON(fr);
+		if (file.exists() && Config.enableJSONLoading)
+			try(FileReader fr = new FileReader(file)) {
+				registerEntriesFromJSON(fr);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            registerDefaults();
-            if (Config.enableJSONLoading) {
-                saveJson(file);
-            }
-        }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		else {
+			registerDefaults();
+			if (Config.enableJSONLoading)
+				saveJson(file);
+		}
 
-        hasAlreadyBeenLoaded = true;
-    }
+		hasAlreadyBeenLoaded = true;
+	}
 
-    protected abstract void registerEntriesFromJSON(FileReader fr);
+	protected abstract void registerEntriesFromJSON(FileReader fr);
 
-    public void registerDefaults() {
-        defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
-    }
+	public void registerDefaults() {
+		defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
+	}
 
-    public abstract List<?> getRecipeList();
-    @Override
+	public abstract List<?> getRecipeList();
+	@Override
 	public abstract void clearRegistry();
 }

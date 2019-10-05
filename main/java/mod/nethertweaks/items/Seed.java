@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,45 +12,45 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class Seed extends Item implements INames
+public class Seed extends Item
 {
-	public Seed(String name)
+	public Seed(final String name)
 	{
-		setCreativeTab(TAB);
-		setRegistryName(MODID, name);
+		setCreativeTab(Constants.TABNTM);
+		setRegistryName(Constants.MODID, name);
+		setUnlocalizedName(name);
 	}
 
 	/**
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(final EntityPlayer player, final World world, final BlockPos pos, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
 	{
 		Block block = world.getBlockState(pos).getBlock();
 		String name = NameHelper.getName(player.getHeldItem(hand));
-		
-		if (!world.isRemote) {
+
+		if (!world.isRemote)
 			switch (name) {
-			case MUSHROOM_SPORES:
+			case Constants.MUSHROOM_SPORES:
 				if (block.equals(Blocks.DIRT) || block.equals(Blocks.GRASS))
 					world.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
 				break;
-			case GRASS_SEEDS:
+			case Constants.GRASS_SEEDS:
 				if (block.equals(Blocks.DIRT))
 					world.setBlockState(pos, Blocks.GRASS.getDefaultState());
 				break;
-			case CACTUS_SEEDS:
+			case Constants.CACTUS_SEEDS:
 				if (Blocks.CACTUS.canPlaceBlockAt(world, pos.up()))
 					world.setBlockState(pos.up(), Blocks.CACTUS.getDefaultState());
 				break;
-			case SUGARCANE_SEEDS:
+			case Constants.SUGARCANE_SEEDS:
 				if (Blocks.REEDS.canPlaceBlockAt(world, pos.up()))
 					world.setBlockState(pos.up(), Blocks.REEDS.getDefaultState());
 				break;
 			default:
 				break;
 			}
-		}
 		return EnumActionResult.SUCCESS;
 	}
 }

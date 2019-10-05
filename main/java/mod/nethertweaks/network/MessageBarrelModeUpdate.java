@@ -16,16 +16,16 @@ public class MessageBarrelModeUpdate implements IMessage {
 
 	private String modeName;
 	private int x, y, z;
-	public MessageBarrelModeUpdate(String modeName, BlockPos pos)
+	public MessageBarrelModeUpdate(final String modeName, final BlockPos pos)
 	{
-		this.x = pos.getX();
-		this.y = pos.getY();
-		this.z = pos.getZ();
+		x = pos.getX();
+		y = pos.getY();
+		z = pos.getZ();
 		this.modeName = modeName;
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf)
+	public void toBytes(final ByteBuf buf)
 	{
 		buf.writeInt(x);
 		buf.writeInt(y);
@@ -34,29 +34,25 @@ public class MessageBarrelModeUpdate implements IMessage {
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf)
+	public void fromBytes(final ByteBuf buf)
 	{
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
-		this.modeName = ByteBufUtils.readUTF8String(buf);
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
+		modeName = ByteBufUtils.readUTF8String(buf);
 	}
 
-	public static class MessageBarrelModeUpdateHandler implements IMessageHandler<MessageBarrelModeUpdate, IMessage> 
+	public static class MessageBarrelModeUpdateHandler implements IMessageHandler<MessageBarrelModeUpdate, IMessage>
 	{
 		@Override
-		public IMessage onMessage(final MessageBarrelModeUpdate msg, MessageContext ctx)
+		public IMessage onMessage(final MessageBarrelModeUpdate msg, final MessageContext ctx)
 		{
-			Minecraft.getMinecraft().addScheduledTask(new Runnable() {
-				@Override
-				public void run()
+			Minecraft.getMinecraft().addScheduledTask(() -> {
+				TileEntity entity =  Minecraft.getMinecraft().player.world.getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+				if (entity instanceof TileBarrel)
 				{
-					TileEntity entity =  Minecraft.getMinecraft().player.world.getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
-					if (entity instanceof TileBarrel)
-					{
-						TileBarrel te = (TileBarrel) entity;
-						te.setMode(msg.modeName);						
-					}
+					TileBarrel te = (TileBarrel) entity;
+					te.setMode(msg.modeName);
 				}
 			});
 			return null;

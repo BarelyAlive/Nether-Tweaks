@@ -12,33 +12,33 @@ import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluidTransform;
 import mod.nethertweaks.barrel.modes.mobspawn.BarrelModeMobSpawn;
 
 public class BarrelModeRegistry {
-	
+
 	public enum TriggerType
 	{
 		ITEM, FLUID, TICK, NONE
 	}
-	
-	private static EnumMap<TriggerType, ArrayList<IBarrelMode>> barrelModes = new EnumMap<TriggerType, ArrayList<IBarrelMode>>(TriggerType.class);
-	
-	private static HashMap<String, IBarrelMode> barrelModeNames = new HashMap<String, IBarrelMode>();
-	
-	public static void registerBarrelMode(IBarrelMode mode, TriggerType type)
+
+	private static EnumMap<TriggerType, ArrayList<IBarrelMode>> barrelModes = new EnumMap<>(TriggerType.class);
+
+	private static HashMap<String, IBarrelMode> barrelModeNames = new HashMap<>();
+
+	public static void registerBarrelMode(final IBarrelMode mode, final TriggerType type)
 	{
 		ArrayList<IBarrelMode> list = barrelModes.get(type);
 		if (list == null)
-			list = new ArrayList<IBarrelMode>();
-		
+			list = new ArrayList<>();
+
 		list.add(mode);
 		barrelModes.put(type, list);
-		
+
 		barrelModeNames.put(mode.getName(), mode);
 	}
-	
-	public static ArrayList<IBarrelMode> getModes(TriggerType type)
+
+	public static ArrayList<IBarrelMode> getModes(final TriggerType type)
 	{
 		return barrelModes.get(type);
 	}
-	
+
 	public static void registerDefaults()
 	{
 		registerBarrelMode(new BarrelModeCompost(), TriggerType.ITEM);
@@ -47,8 +47,8 @@ public class BarrelModeRegistry {
 		registerBarrelMode(new BarrelModeFluidTransform(), TriggerType.NONE);
 		registerBarrelMode(new BarrelModeMobSpawn(), TriggerType.NONE);
 	}
-	
-	public static IBarrelMode getModeByName(String name)
+
+	public static IBarrelMode getModeByName(final String name)
 	{
 		return barrelModeNames.get(name);
 	}

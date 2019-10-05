@@ -1,6 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,30 +16,30 @@ public class ItemChunk extends Item {
 	
 	public ItemChunk() {
 		super();
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setCreativeTab(Constants.TABNTM);
 		setHasSubtypes(true);
 	}
-	
-	public void setResult(String ore_name, Item stack)
+
+	public void setResult(final String ore_name, final Item stack)
 	{
-			results = stack;
-			this.ore_name = ore_name;
+		results = stack;
+		this.ore_name = ore_name;
 	}
-	
+
 	public ItemStack getContainedBlock()
 	{
 		if (results == null)
 			return ItemStack.EMPTY;
-		return new ItemStack(this.results);
+		return new ItemStack(results);
 	}
-	
+
 	public String getOreName()
 	{
 		if (ore_name != "" && results == null)
 			return "";
 		return ore_name;
 	}
-	
+
 	public ItemStack getResult()
 	{
 		ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
@@ -64,24 +64,18 @@ public class ItemChunk extends Item {
 	{
 		return this.display_name;
 	}
-	
+
 	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
+	public String getItemStackDisplayName(final ItemStack stack) {
 		if (stack.isEmpty())
-		{
 			return "";
-		}
 		else if (!(stack.getItem() instanceof ItemChunk))
-		{
-			return I18n.translateToLocal(this.getUnlocalizedNameInefficiently(stack) + ".name").trim();
-		}
+			return I18n.translateToLocal(getUnlocalizedNameInefficiently(stack) + ".name").trim();
 		else
-		{
 			return ((ItemChunk) stack.getItem()).getLocalizedName(stack);
-		}
 	}
 
-	public String getLocalizedName(ItemStack stack)
+	public String getLocalizedName(final ItemStack stack)
 	{
 		if (this.display_name == "")
 		{
@@ -107,14 +101,14 @@ public class ItemChunk extends Item {
 			return this.display_name;
 		}
 	}
-	
+
 	public String getLocalizedName()
 	{
 		return Config.dustBaseOreDictName;
 	}
-	
+
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getUnlocalizedName(final ItemStack stack) {
 		return "tile." + stack.getDisplayName().toLowerCase().replace(' ', '_');
 	}
 }

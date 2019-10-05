@@ -2,7 +2,7 @@ package mod.nethertweaks.items;
 
 import org.apache.commons.lang3.StringUtils;
 
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.registry.types.Ore;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,10 +16,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemOre extends Item {
 
-	private boolean registerIngot;	
+	private boolean registerIngot;
 	private boolean registerDust;
 	private Ore ore;
-	
+
 	public boolean isRegisterIngot() {
 		return registerIngot;
 	}
@@ -29,11 +29,11 @@ public class ItemOre extends Item {
 		return registerDust;
 	}
 
-	public void setRegisterIngot(boolean registerIngot) {
+	public void setRegisterIngot(final boolean registerIngot) {
 		this.registerIngot = registerIngot;
 	}
 
-	public void setRegisterDust(boolean registerDust) {
+	public void setRegisterDust(final boolean registerDust) {
 		this.registerDust = registerDust;
 	}
 
@@ -41,24 +41,24 @@ public class ItemOre extends Item {
 		return ore;
 	}
 
-	public void setOre(Ore ore) {
+	public void setOre(final Ore ore) {
 		this.ore = ore;
 	}
 
-	public ItemOre(Ore ore) {
+	public ItemOre(final Ore ore) {
 		super();
 
 		this.ore = ore;
 		registerIngot = ore.getResult() == null;
-		this.setUnlocalizedName(NetherTweaksMod.MODID + ".ore."+ore.getName());
+		setUnlocalizedName(Constants.MODID + ".ore."+ore.getName());
 		this.setRegistryName("itemOre"+StringUtils.capitalize(ore.getName()));
-		this.setCreativeTab(NetherTweaksMod.TABNTM);
-		this.setHasSubtypes(true);
+		setCreativeTab(Constants.TABNTM);
+		setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+	public void getSubItems(final CreativeTabs tab, final NonNullList<ItemStack> items) {
 		items.add(new ItemStack(this, 1, 0)); //Piece
 		items.add(new ItemStack(this, 1, 1)); //Chunk
 		items.add(new ItemStack(this, 1, 2)); //Dust
@@ -68,7 +68,7 @@ public class ItemOre extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void initModel()	{
-		
+
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation("nethertweaksmod:itemOre", "type=piece"));
 		ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation("nethertweaksmod:itemOre", "type=hunk"));
 		ModelLoader.setCustomModelResourceLocation(this, 2, new ModelResourceLocation("nethertweaksmod:itemOre", "type=dust"));
@@ -77,7 +77,7 @@ public class ItemOre extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
+	public String getItemStackDisplayName(final ItemStack stack) {
 		String name = ore.getName();
 		String pre = "";
 		switch (stack.getItemDamage()) {

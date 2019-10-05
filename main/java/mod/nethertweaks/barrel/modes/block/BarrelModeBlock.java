@@ -28,117 +28,113 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelModeBlock implements IBarrelMode {
 
-    private final BarrelItemHandlerBlock handler = new BarrelItemHandlerBlock(null);
-    private ItemInfo block;
+	private final BarrelItemHandlerBlock handler = new BarrelItemHandlerBlock(null);
+	private ItemInfo block;
 
-    public ItemInfo getBlock() {
+	public ItemInfo getBlock() {
 		return block;
 	}
 
-	public void setBlock(ItemInfo block) {
+	public void setBlock(final ItemInfo block) {
 		this.block = block;
 	}
 
 	@Override
-    public void writeToNBT(NBTTagCompound tag) {
-        if (block != null) {
-            tag.setString("block", block.toString());
-        }
-        if (!handler.getStackInSlot(0).isEmpty()) {
-            handler.getStackInSlot(0).writeToNBT(tag);
-        }
-    }
+	public void writeToNBT(final NBTTagCompound tag) {
+		if (block != null)
+			tag.setString("block", block.toString());
+		if (!handler.getStackInSlot(0).isEmpty())
+			handler.getStackInSlot(0).writeToNBT(tag);
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        if (tag.hasKey("block")) {
-            block = new ItemInfo(tag.getString("block"));
-        }
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		if (tag.hasKey("block"))
+			block = new ItemInfo(tag.getString("block"));
 
-        handler.setStackInSlot(0, new ItemStack(tag));
-    }
+		handler.setStackInSlot(0, new ItemStack(tag));
+	}
 
-    @Override
-    public boolean isTriggerItemStack(ItemStack stack) {
-        return false;
-    }
+	@Override
+	public boolean isTriggerItemStack(final ItemStack stack) {
+		return false;
+	}
 
-    @Override
-    public boolean isTriggerFluidStack(FluidStack stack) {
-        return false;
-    }
+	@Override
+	public boolean isTriggerFluidStack(final FluidStack stack) {
+		return false;
+	}
 
-    @Override
-    public String getName() {
-        return "block";
-    }
+	@Override
+	public String getName() {
+		return "block";
+	}
 
-    @Override
-    public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
-        if (!handler.getStackInSlot(0).isEmpty())
-            currenttip.add(handler.getStackInSlot(0).getDisplayName());
-        return currenttip;
-    }
+	@Override
+	public List<String> getWailaTooltip(final TileBarrel barrel, final List<String> currenttip) {
+		if (!handler.getStackInSlot(0).isEmpty())
+			currenttip.add(handler.getStackInSlot(0).getDisplayName());
+		return currenttip;
+	}
 
-    @Override
-    public void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!handler.getStackInSlot(0).isEmpty()) {
-            Util.dropItemInWorld(barrel, player, handler.getStackInSlot(0), 0.02);
-            handler.setBarrel(barrel);
-            handler.setStackInSlot(0, ItemStack.EMPTY);
-            barrel.setMode("null");
-            NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
-            barrel.markDirty();
-        }
-    }
+	@Override
+	public void onBlockActivated(final World world, final TileBarrel barrel, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
+		if (!handler.getStackInSlot(0).isEmpty()) {
+			Util.dropItemInWorld(barrel, player, handler.getStackInSlot(0), 0.02);
+			handler.setBarrel(barrel);
+			handler.setStackInSlot(0, ItemStack.EMPTY);
+			barrel.setMode("null");
+			NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+			barrel.markDirty();
+		}
+	}
 
-    @SuppressWarnings("deprecation")
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
-        handler.setBarrel(barrel);
-        ItemStack stack = handler.getStackInSlot(0);
-        if (stack.isEmpty())
-            return Util.getTextureFromBlockState(Blocks.AIR.getDefaultState());
-        return Util.getTextureFromBlockState(Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getItemDamage()));
-    }
+	@SuppressWarnings("deprecation")
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTextureForRender(final TileBarrel barrel) {
+		handler.setBarrel(barrel);
+		ItemStack stack = handler.getStackInSlot(0);
+		if (stack.isEmpty())
+			return Util.getTextureFromBlockState(Blocks.AIR.getDefaultState());
+		return Util.getTextureFromBlockState(Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getItemDamage()));
+	}
 
-    @Override
-    public Color getColorForRender() {
-        return Util.whiteColor;
-    }
+	@Override
+	public Color getColorForRender() {
+		return Util.whiteColor;
+	}
 
-    @Override
-    public float getFilledLevelForRender(TileBarrel barrel) {
-        return 0.9375F;
-    }
+	@Override
+	public float getFilledLevelForRender(final TileBarrel barrel) {
+		return 0.9375F;
+	}
 
-    @Override
-    public void update(TileBarrel barrel) {
-    }
+	@Override
+	public void update(final TileBarrel barrel) {
+	}
 
-    @Override
-    public void addItem(ItemStack stack, TileBarrel barrel) {
-        handler.setBarrel(barrel);
-        if (handler.getStackInSlot(0).isEmpty()) {
-            handler.insertItem(0, stack, false);
-        }
-    }
+	@Override
+	public void addItem(final ItemStack stack, final TileBarrel barrel) {
+		handler.setBarrel(barrel);
+		if (handler.getStackInSlot(0).isEmpty())
+			handler.insertItem(0, stack, false);
+	}
 
-    @Override
-    public ItemStackHandler getHandler(TileBarrel barrel) {
-        handler.setBarrel(barrel);
-        return handler;
-    }
+	@Override
+	public ItemStackHandler getHandler(final TileBarrel barrel) {
+		handler.setBarrel(barrel);
+		return handler;
+	}
 
-    @Override
-    public FluidTank getFluidHandler(TileBarrel barrel) {
-        return null;
-    }
+	@Override
+	public FluidTank getFluidHandler(final TileBarrel barrel) {
+		return null;
+	}
 
-    @Override
-    public boolean canFillWithFluid(TileBarrel barrel) {
-        return false;
-    }
+	@Override
+	public boolean canFillWithFluid(final TileBarrel barrel) {
+		return false;
+	}
 
 }

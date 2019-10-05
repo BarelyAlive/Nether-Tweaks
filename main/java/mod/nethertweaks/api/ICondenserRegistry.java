@@ -12,22 +12,22 @@ import net.minecraft.util.ResourceLocation;
 
 public interface ICondenserRegistry extends IRegistryMap<Ingredient, Dryable>
 {
-    public void register(ItemStack itemStack, int value);
-    public void register(@Nullable Item item, int meta, int value);
-    public void register(BlockInfo block, int value);
-    public void register(StackInfo item, int value);
-    public void register(ResourceLocation location, int meta, int value);
+	void register(ItemStack itemStack, int value);
+	void register(@Nullable Item item, int meta, int value);
+	void register(BlockInfo block, int value);
+	void register(StackInfo item, int value);
+	void register(ResourceLocation location, int meta, int value);
 
-    /**
-     * Registers a oredict for sifting with a dynamic color based on the itemColor
-     */
-    public void register(String name, int value);
+	/**
+	 * Registers a oredict for sifting with a dynamic color based on the itemColor
+	 */
+	void register(String name, int value);
 
-    public Dryable getItem(Item item, int meta);
-    public Dryable getItem(ItemStack stack);
-    public Dryable getItem(StackInfo info);
+	Dryable getItem(Item item, int meta);
+	Dryable getItem(ItemStack stack);
+	Dryable getItem(StackInfo info);
 
-    public boolean containsItem(Item item, int meta);
-    public boolean containsItem(ItemStack stack);
-    public boolean containsItem(StackInfo info);
+	boolean containsItem(Item item, int meta);
+	boolean containsItem(ItemStack stack);
+	boolean containsItem(StackInfo info);
 }

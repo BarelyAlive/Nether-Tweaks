@@ -10,27 +10,27 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 
 public class CapabilityHeatManager implements Capability.IStorage<ICapabilityHeat>, Callable<ICapabilityHeat>
 {
-    public static final CapabilityHeatManager INSTANCE = new CapabilityHeatManager();
-    @CapabilityInject(ICapabilityHeat.class)
-    public static Capability<ICapabilityHeat> HEAT_CAPABILITY;
+	public static final CapabilityHeatManager INSTANCE = new CapabilityHeatManager();
+	@CapabilityInject(ICapabilityHeat.class)
+	public static Capability<ICapabilityHeat> HEAT_CAPABILITY;
 
 
-    private CapabilityHeatManager() {
+	private CapabilityHeatManager() {
 
-    }
+	}
 
-    @Override
-    public NBTBase writeNBT(Capability<ICapabilityHeat> capability, ICapabilityHeat instance, EnumFacing side) {
-        return new NBTTagInt(instance.getHeatRate());
-    }
+	@Override
+	public NBTBase writeNBT(final Capability<ICapabilityHeat> capability, final ICapabilityHeat instance, final EnumFacing side) {
+		return new NBTTagInt(instance.getHeatRate());
+	}
 
-    @Override
-    public void readNBT(Capability<ICapabilityHeat> capability, ICapabilityHeat instance, EnumFacing side, NBTBase nbt) {
-        instance.setHeatRate(((NBTTagInt) nbt).getInt());
-    }
+	@Override
+	public void readNBT(final Capability<ICapabilityHeat> capability, final ICapabilityHeat instance, final EnumFacing side, final NBTBase nbt) {
+		instance.setHeatRate(((NBTTagInt) nbt).getInt());
+	}
 
-    @Override
-    public ICapabilityHeat call() {
-        return new CapabilityHeat();
-    }
+	@Override
+	public ICapabilityHeat call() {
+		return new CapabilityHeat();
+	}
 }

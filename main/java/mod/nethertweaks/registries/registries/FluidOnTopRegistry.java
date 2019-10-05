@@ -19,59 +19,57 @@ import mod.sfhcore.util.ItemInfo;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implements IFluidOnTopRegistry {
-    public FluidOnTopRegistry() {
-        super(
-                new GsonBuilder()
-                        .setPrettyPrinting()
-                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
-                        .create(),
-                NTMRegistryManager.FLUID_ON_TOP_DEFAULT_REGISTRY_PROVIDERS
-        );
-    }
+	public FluidOnTopRegistry() {
+		super(
+				new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+				.create(),
+				NTMRegistryManager.FLUID_ON_TOP_DEFAULT_REGISTRY_PROVIDERS
+				);
+	}
 
-    @Override
-	public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull BlockInfo result) {
-        registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), result));
-    }
+	@Override
+	public void register(@Nonnull final Fluid fluidInBarrel, @Nonnull final Fluid fluidOnTop, @Nonnull final BlockInfo result) {
+		registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), result));
+	}
 
-    @Override
-	public void register(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop, @Nonnull ItemInfo result) {
-        if (result.hasBlock())
-            registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), new BlockInfo(result.getItemStack())));
-    }
+	@Override
+	public void register(@Nonnull final Fluid fluidInBarrel, @Nonnull final Fluid fluidOnTop, @Nonnull final ItemInfo result) {
+		if (result.hasBlock())
+			registry.add(new FluidFluidBlock(fluidInBarrel.getName(), fluidOnTop.getName(), new BlockInfo(result.getItemStack())));
+	}
 
-    @Override
-	public boolean isValidRecipe(Fluid fluidInBarrel, Fluid fluidOnTop) {
-        if (fluidInBarrel == null || fluidOnTop == null)
-            return false;
-        for (FluidFluidBlock fBlock : registry) {
-            if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
-                    fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
-                return true;
-        }
+	@Override
+	public boolean isValidRecipe(final Fluid fluidInBarrel, final Fluid fluidOnTop) {
+		if (fluidInBarrel == null || fluidOnTop == null)
+			return false;
+		for (FluidFluidBlock fBlock : registry)
+			if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
+					fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
+				return true;
 
-        return false;
-    }
+		return false;
+	}
 
-    @Override
+	@Override
 	@Nonnull
-    public BlockInfo getTransformedBlock(@Nonnull Fluid fluidInBarrel, @Nonnull Fluid fluidOnTop) {
-        for (FluidFluidBlock fBlock : registry) {
-            if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
-                    fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
-                return fBlock.getResult();
-        }
+	public BlockInfo getTransformedBlock(@Nonnull final Fluid fluidInBarrel, @Nonnull final Fluid fluidOnTop) {
+		for (FluidFluidBlock fBlock : registry)
+			if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
+					fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
+				return fBlock.getResult();
 
-        return BlockInfo.EMPTY;
-    }
+		return BlockInfo.EMPTY;
+	}
 
-    @Override
-    protected void registerEntriesFromJSON(FileReader fr) {
-        List<FluidFluidBlock> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidFluidBlock>>() {
-        }.getType());
-        registry.addAll(gsonInput);
-    }
+	@Override
+	protected void registerEntriesFromJSON(final FileReader fr) {
+		List<FluidFluidBlock> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidFluidBlock>>() {
+		}.getType());
+		registry.addAll(gsonInput);
+	}
 
 	@Override
 	public List<?> getRecipeList() {

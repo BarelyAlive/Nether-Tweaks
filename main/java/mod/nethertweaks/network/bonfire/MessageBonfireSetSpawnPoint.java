@@ -12,50 +12,48 @@ public class MessageBonfireSetSpawnPoint implements IMessage
 {
 	private BlockPos pos = new BlockPos(0, 0, 0);
 	private BlockPos spawnPos = new BlockPos(0, 0, 0);
-	
+
 	public MessageBonfireSetSpawnPoint() {
 	}
-	
-	public MessageBonfireSetSpawnPoint(BlockPos pos, BlockPos spawnPos) {
+
+	public MessageBonfireSetSpawnPoint(final BlockPos pos, final BlockPos spawnPos) {
 		this.pos = pos;
 	}
-	
+
 	@Override
-	public void toBytes(ByteBuf buf)
+	public void toBytes(final ByteBuf buf)
 	{
-		buf.writeInt(this.pos.getX());
-		buf.writeInt(this.pos.getY());
-		buf.writeInt(this.pos.getZ());
-		buf.writeInt(this.spawnPos.getX());
-		buf.writeInt(this.spawnPos.getY());
-		buf.writeInt(this.spawnPos.getZ());
+		buf.writeInt(pos.getX());
+		buf.writeInt(pos.getY());
+		buf.writeInt(pos.getZ());
+		buf.writeInt(spawnPos.getX());
+		buf.writeInt(spawnPos.getY());
+		buf.writeInt(spawnPos.getZ());
 	}
-	
+
 	@Override
-	public void fromBytes(ByteBuf buf)
+	public void fromBytes(final ByteBuf buf)
 	{
-		this.pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-		this.spawnPos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+		pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+		spawnPos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
 	}
-	
+
 	public static class MessageBonfireSetSpawnPointHandler implements IMessageHandler<MessageBonfireSetSpawnPoint, IMessage>
 	{
 
 		@Override
-		public IMessage onMessage(MessageBonfireSetSpawnPoint msg, MessageContext ctx) {
+		public IMessage onMessage(final MessageBonfireSetSpawnPoint msg, final MessageContext ctx) {
 			BonfireInfo info = WorldSpawnLocation.bonfire_info.get(msg.pos);
-			
+
 			if(info == null)
-			{
 				return null;
-			}
-			
+
 			info.setSpawnPos(msg.spawnPos);
-			
+
 			WorldSpawnLocation.bonfire_info.put(msg.pos, info);
 			return null;
 		}
-		
+
 	}
-	
+
 }

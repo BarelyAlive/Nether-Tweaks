@@ -19,34 +19,32 @@ public class CustomMeltableJson implements JsonDeserializer<Meltable>, JsonSeria
 	public static final CustomMeltableJson INSTANCE = new CustomMeltableJson();
 
 	@Override
-	public JsonElement serialize(Meltable src, Type typeOfSrc, JsonSerializationContext context) {
-        JsonObject obj = new JsonObject();
+	public JsonElement serialize(final Meltable src, final Type typeOfSrc, final JsonSerializationContext context) {
+		JsonObject obj = new JsonObject();
 
-        obj.addProperty("fluid", src.getFluid());
-        obj.addProperty("amount", src.getAmount());
+		obj.addProperty("fluid", src.getFluid());
+		obj.addProperty("amount", src.getAmount());
 
-        if (src.getTextureOverride() != BlockInfo.EMPTY) {
-            obj.add("color", context.serialize(src.getTextureOverride(), BlockInfo.class));
-        }
+		if (src.getTextureOverride() != BlockInfo.EMPTY)
+			obj.add("color", context.serialize(src.getTextureOverride(), BlockInfo.class));
 
-        return obj;
+		return obj;
 	}
 
 	@Override
-	public Meltable deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+	public Meltable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
 			throws JsonParseException {
 		JsonHelper helper = new JsonHelper(json);
-	    JsonObject obj = json.getAsJsonObject();
+		JsonObject obj = json.getAsJsonObject();
 
-	    String fluid = helper.getString("fluid");
-	    int amount = helper.getInteger("amount");
+		String fluid = helper.getString("fluid");
+		int amount = helper.getInteger("amount");
 
-	    BlockInfo textureOverride = BlockInfo.EMPTY;
-	    if (obj.has("textureOverride")) {
-	    	textureOverride = context.deserialize(json.getAsJsonObject().get("textureOverride"), BlockInfo.class);
-	    }
+		BlockInfo textureOverride = BlockInfo.EMPTY;
+		if (obj.has("textureOverride"))
+			textureOverride = context.deserialize(json.getAsJsonObject().get("textureOverride"), BlockInfo.class);
 
-	    return new Meltable(fluid, amount, textureOverride);
+		return new Meltable(fluid, amount, textureOverride);
 	}
 
 }

@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -13,21 +12,21 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class MeanVine extends BlockVine{
-	
+
 	public MeanVine(){
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(NetherTweaksMod.MODID, INames.MEAN_VINE);
+		setCreativeTab(Constants.TABNTM);
+		setRegistryName(Constants.MODID, Constants.MEAN_VINE);
+		setUnlocalizedName(Constants.MEAN_VINE);
 	}
 
 	@Override
-	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+	public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
 		return false;
 	}
-	
-    @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-    	if(!(entityIn instanceof EntityItem)){
-            entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
-        	}
-    }
+
+	@Override
+	public void onEntityCollidedWithBlock(final World worldIn, final BlockPos pos, final IBlockState state, final Entity entityIn) {
+		if(!(entityIn instanceof EntityItem))
+			entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+	}
 }

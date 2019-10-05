@@ -12,18 +12,18 @@ import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 public abstract class BaseRegistryMap<K, V> extends BaseRegistry<Map<K, V>> implements IRegistryMap<K, V> {
 
-    public BaseRegistryMap(Gson gson, Type typeOfSource, List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
-        super(gson, new HashMap<>(), typeOfSource, defaultRecipeProviders);
-    }
+	public BaseRegistryMap(final Gson gson, final Type typeOfSource, final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
+		super(gson, new HashMap<>(), typeOfSource, defaultRecipeProviders);
+	}
 
-    @Override
-	public void register(K key, V value) {
-        registry.put(key, value);
-    }
+	@Override
+	public void register(final K key, final V value) {
+		registry.put(key, value);
+	}
 
-    @Override
-    public void clearRegistry() {
-        registry.clear();
-    }
+	@Override
+	public void clearRegistry() {
+		registry.clear();
+	}
 
 }

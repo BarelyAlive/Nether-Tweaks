@@ -33,47 +33,47 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> implements ICondenserRegistry
 {
 	protected final Map<Ingredient, Dryable> dryRegistry = new HashMap<>();
-	
+
 	public CondenserRegistry() {
-        super(
-                new GsonBuilder()
-                        .setPrettyPrinting()
-                        .registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
-                        .registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
-                        .registerTypeAdapter(Dryable.class, new CustomDryableJson())
-                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
-                        .enableComplexMapKeySerialization()
-                        .create(),
-                new TypeToken<Map<Ingredient, Dryable>>() {
-                }.getType(),
-                NTMRegistryManager.CONDENSER_DEFAULT_REGISTRY_PROVIDERS
-        );
+		super(
+				new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(Ingredient.class, new CustomIngredientJson())
+				.registerTypeAdapter(OreIngredientStoring.class, new CustomIngredientJson())
+				.registerTypeAdapter(Dryable.class, new CustomDryableJson())
+				.registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+				.enableComplexMapKeySerialization()
+				.create(),
+				new TypeToken<Map<Ingredient, Dryable>>() {
+				}.getType(),
+				NTMRegistryManager.CONDENSER_DEFAULT_REGISTRY_PROVIDERS
+				);
 	}
 
 	@Override
-    public void registerEntriesFromJSON(FileReader fr)
+	public void registerEntriesFromJSON(final FileReader fr)
 	{
 		Map<String, Dryable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Dryable>>() {
-        }.getType());
+		}.getType());
 
-        for (Map.Entry<String, Dryable> entry : gsonInput.entrySet()) {
-            Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
+		for (Map.Entry<String, Dryable> entry : gsonInput.entrySet()) {
+			Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
 
-            if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
-                LogUtil.error("Dryable JSON Entry for " + entry.getKey() + " already exists, skipping.");
-            else
-                register(ingr, entry.getValue());
-        }
+			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
+				LogUtil.error("Dryable JSON Entry for " + entry.getKey() + " already exists, skipping.");
+			else
+				register(ingr, entry.getValue());
+		}
 	}
-	
+
 	@Override
-    public Map<Ingredient, Dryable> getRegistry() {
-        //noinspection unchecked
-        Map<Ingredient, Dryable> map = (HashMap) ((HashMap) registry).clone();
-        map.putAll(dryRegistry);
-        return map;
-    }
+	public Map<Ingredient, Dryable> getRegistry() {
+		//noinspection unchecked
+		Map<Ingredient, Dryable> map = (HashMap) ((HashMap) registry).clone();
+		map.putAll(dryRegistry);
+		return map;
+	}
 
 	@Override
 	public List<?> getRecipeList() {
@@ -82,87 +82,85 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 	}
 
 	@Override
-	public void register(@Nonnull ItemStack itemStack, int value) {
+	public void register(@Nonnull final ItemStack itemStack, final int value) {
 		if (itemStack.isEmpty())
-            return;
+			return;
 
-        Ingredient ingredient = Ingredient.fromStacks(itemStack);
-        
-        if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
-            LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
-            return;
-        }
-        Dryable dryable = new Dryable(itemStack, value);
-        register(ingredient, dryable);
+		Ingredient ingredient = Ingredient.fromStacks(itemStack);
+
+		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
+			LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
+			return;
+		}
+		Dryable dryable = new Dryable(itemStack, value);
+		register(ingredient, dryable);
 	}
-	
+
 	@Override
-	public void register(@Nonnull BlockInfo info, int value) {
+	public void register(@Nonnull final BlockInfo info, final int value) {
 		register(info.getItemStack(), value);
 	}
 
 	@Override
-	public void register(@Nonnull Item item, int meta, int value) {
+	public void register(@Nonnull final Item item, final int meta, final int value) {
 		register(new ItemStack(item, 1, meta), value);
 	}
 
 	@Override
-	public void register(@Nonnull StackInfo item, int value) {
+	public void register(@Nonnull final StackInfo item, final int value) {
 		register(item.getItemStack(), value);
 	}
 
 	@Override
-	public void register(@Nonnull ResourceLocation location, int meta, int value) {
+	public void register(@Nonnull final ResourceLocation location, final int meta, final int value) {
 		register(ForgeRegistries.ITEMS.getValue(location), meta, value);
 	}
 
 	@Override
-	public void register(@Nonnull String name, int value) {
-        Ingredient ingredient = new OreIngredientStoring(name);
+	public void register(@Nonnull final String name, final int value) {
+		Ingredient ingredient = new OreIngredientStoring(name);
 
-        if (dryRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
-            LogUtil.error("Dry Ore Entry for " + name + " already exists, skipping.");
-        else
-        {
-        	for(ItemStack stack : ingredient.getMatchingStacks())
-        	{
-                Dryable dryable = new Dryable(stack, value);
-        		register(ingredient, dryable);
-        	}
-        }  
+		if (dryRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
+			LogUtil.error("Dry Ore Entry for " + name + " already exists, skipping.");
+		else
+			for(ItemStack stack : ingredient.getMatchingStacks())
+			{
+				Dryable dryable = new Dryable(stack, value);
+				register(ingredient, dryable);
+			}
 	}
 
 	@Override
-	public Dryable getItem(@Nonnull Item item, int meta) {
+	public Dryable getItem(@Nonnull final Item item, final int meta) {
 		return getItem(new ItemStack(item, meta));
 	}
 
 	@Override
-	public Dryable getItem(ItemStack stack) {
+	public Dryable getItem(final ItemStack stack) {
 		Ingredient ingredient = registry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
-        if (ingredient != null) return registry.get(ingredient);
-        ingredient = dryRegistry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
-        if (ingredient != null) return dryRegistry.get(ingredient);
-        else return Dryable.getEMPTY();
+		if (ingredient != null) return registry.get(ingredient);
+		ingredient = dryRegistry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
+		if (ingredient != null) return dryRegistry.get(ingredient);
+		else return Dryable.getEMPTY();
 	}
 
 	@Override
-	public Dryable getItem(@Nonnull StackInfo info) {
+	public Dryable getItem(@Nonnull final StackInfo info) {
 		return getItem(info.getItemStack());
 	}
 
 	@Override
-	public boolean containsItem(@Nonnull Item item, int meta) {
+	public boolean containsItem(@Nonnull final Item item, final int meta) {
 		return containsItem(new ItemStack(item, 1, meta));
 	}
 
 	@Override
-	public boolean containsItem(@Nonnull ItemStack stack) {
+	public boolean containsItem(@Nonnull final ItemStack stack) {
 		return registry.keySet().stream().anyMatch(entry -> entry.test(stack)) || dryRegistry.keySet().stream().anyMatch(entry -> entry.test(stack));
 	}
 
 	@Override
-	public boolean containsItem(@Nonnull StackInfo info) {
+	public boolean containsItem(@Nonnull final StackInfo info) {
 		return containsItem(info.getItemStack());
 	}
 }

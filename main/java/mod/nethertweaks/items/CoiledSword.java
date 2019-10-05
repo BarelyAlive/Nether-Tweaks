@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 
@@ -9,14 +8,15 @@ public class CoiledSword extends Item{
 
 	public CoiledSword() {
 		super();
-		setRegistryName(NetherTweaksMod.MODID, INames.COILED_SWORD);
-		setCreativeTab(NetherTweaksMod.TABNTM);
+		setRegistryName(Constants.MODID, Constants.COILED_SWORD);
+		setUnlocalizedName(Constants.COILED_SWORD);
+		setCreativeTab(Constants.TABNTM);
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}
-	
+
 	@Override
-	public boolean onEntityItemUpdate(EntityItem entityItem) {
+	public boolean onEntityItemUpdate(final EntityItem entityItem) {
 		entityItem.setEntityInvulnerable(true);
 		entityItem.extinguish();
 		return super.onEntityItemUpdate(entityItem);

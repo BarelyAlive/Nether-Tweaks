@@ -24,90 +24,85 @@ import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 
 public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTransformer>> implements IFluidTransformRegistry {
-    public FluidTransformRegistry() {
-        super(new GsonBuilder()
-                        .setPrettyPrinting()
-                        .registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
-                        .registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
-                        .create(),
-                new com.google.gson.reflect.TypeToken<Map<String, List<FluidTransformer>>>() {}.getType(),
-                NTMRegistryManager.FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS);
-    }
+	public FluidTransformRegistry() {
+		super(new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(ItemInfo.class, new CustomItemInfoJson())
+				.registerTypeAdapter(BlockInfo.class, new CustomBlockInfoJson())
+				.create(),
+				new com.google.gson.reflect.TypeToken<Map<String, List<FluidTransformer>>>() {}.getType(),
+				NTMRegistryManager.FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS);
+	}
 
-    @Override
-	public void register(@Nonnull String inputFluid, @Nonnull String outputFluid, int duration, @Nonnull BlockInfo[] transformingBlocks, @Nonnull BlockInfo[] blocksToSpawn) {
-        register(new FluidTransformer(inputFluid, outputFluid, duration, transformingBlocks, blocksToSpawn));
-    }
+	@Override
+	public void register(@Nonnull final String inputFluid, @Nonnull final String outputFluid, final int duration, @Nonnull final BlockInfo[] transformingBlocks, @Nonnull final BlockInfo[] blocksToSpawn) {
+		register(new FluidTransformer(inputFluid, outputFluid, duration, transformingBlocks, blocksToSpawn));
+	}
 
-    @Override
-	public void register(@Nonnull FluidTransformer transformer) {
-        List<FluidTransformer> list = registry.get(transformer.getInputFluid());
+	@Override
+	public void register(@Nonnull final FluidTransformer transformer) {
+		List<FluidTransformer> list = registry.get(transformer.getInputFluid());
 
-        if (list == null) {
-            list = new ArrayList<>();
-        }
+		if (list == null)
+			list = new ArrayList<>();
 
-        list.add(transformer);
-        registry.put(transformer.getInputFluid(), list);
-    }
+		list.add(transformer);
+		registry.put(transformer.getInputFluid(), list);
+	}
 
-    @Override
-	public boolean containsKey(@Nonnull String inputFluid) {
-        return registry.containsKey(inputFluid);
-    }
+	@Override
+	public boolean containsKey(@Nonnull final String inputFluid) {
+		return registry.containsKey(inputFluid);
+	}
 
-    @Override
-	public FluidTransformer getFluidTransformer(@Nonnull String inputFluid, @Nonnull String outputFluid) {
-        if (registry.containsKey(inputFluid)) {
-            for (FluidTransformer transformer : registry.get(inputFluid)) {
-                if (transformer.getInputFluid().equals(inputFluid) && transformer.getOutputFluid().equals(outputFluid))
-                    return transformer;
-            }
-        }
-        return null;
-    }
+	@Override
+	public FluidTransformer getFluidTransformer(@Nonnull final String inputFluid, @Nonnull final String outputFluid) {
+		if (registry.containsKey(inputFluid))
+			for (FluidTransformer transformer : registry.get(inputFluid))
+				if (transformer.getInputFluid().equals(inputFluid) && transformer.getOutputFluid().equals(outputFluid))
+					return transformer;
+		return null;
+	}
 
-    @Override
+	@Override
 	@Nonnull
-    public List<FluidTransformer> getFluidTransformers(@Nonnull String inputFluid) {
-        return registry.get(inputFluid);
-    }
+	public List<FluidTransformer> getFluidTransformers(@Nonnull final String inputFluid) {
+		return registry.get(inputFluid);
+	}
 
-    @Override
-    protected void registerEntriesFromJSON(FileReader fr) {
-        List<FluidTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidTransformer>>() {
-        }.getType());
+	@Override
+	protected void registerEntriesFromJSON(final FileReader fr) {
+		List<FluidTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidTransformer>>() {
+		}.getType());
 
-        for (FluidTransformer transformer : gsonInput) {
-            register(transformer);
-        }
-    }
+		for (FluidTransformer transformer : gsonInput)
+			register(transformer);
+	}
 
-    /**
-     * Overridden as I don't want the registry to get saved directly,
-     * rather a List that equals the contents of the registry
-     */
-    @Override
-    public void saveJson(File file) {
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(file);
+	/**
+	 * Overridden as I don't want the registry to get saved directly,
+	 * rather a List that equals the contents of the registry
+	 */
+	@Override
+	public void saveJson(final File file) {
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(file);
 
-            gson.toJson(getFluidTransformers(), fw);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            IOUtils.closeQuietly(fw);
-        }
-    }
+			gson.toJson(getFluidTransformers(), fw);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(fw);
+		}
+	}
 
-    public List<FluidTransformer> getFluidTransformers() {
-        List<FluidTransformer> fluidTransformers = new ArrayList<>();
-        for (List<FluidTransformer> transformers : registry.values()) {
-            fluidTransformers.addAll(transformers);
-        }
-        return fluidTransformers;
-    }
+	public List<FluidTransformer> getFluidTransformers() {
+		List<FluidTransformer> fluidTransformers = new ArrayList<>();
+		for (List<FluidTransformer> transformers : registry.values())
+			fluidTransformers.addAll(transformers);
+		return fluidTransformers;
+	}
 
 	@Override
 	public List<?> getRecipeList() {

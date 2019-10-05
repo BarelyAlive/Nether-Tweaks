@@ -5,21 +5,21 @@ import java.util.Arrays;
 import mod.sfhcore.util.BlockInfo;
 
 public class FluidTransformer {
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(blocksToSpawn);
 		result = prime * result + duration;
-		result = prime * result + ((inputFluid == null) ? 0 : inputFluid.hashCode());
-		result = prime * result + ((outputFluid == null) ? 0 : outputFluid.hashCode());
+		result = prime * result + (inputFluid == null ? 0 : inputFluid.hashCode());
+		result = prime * result + (outputFluid == null ? 0 : outputFluid.hashCode());
 		result = prime * result + Arrays.hashCode(transformingBlocks);
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -51,7 +51,7 @@ public class FluidTransformer {
 	private BlockInfo[] transformingBlocks;
 	private BlockInfo[] blocksToSpawn;
 	private int duration;
-	
+
 	public String getInputFluid() {
 		return inputFluid;
 	}
@@ -72,7 +72,7 @@ public class FluidTransformer {
 		return duration;
 	}
 
-	public FluidTransformer(String inputFluid, String outputFluid, int duration, BlockInfo[] transformingBlocks, BlockInfo[] blocksToSpawn) {
+	public FluidTransformer(final String inputFluid, final String outputFluid, final int duration, final BlockInfo[] transformingBlocks, final BlockInfo[] blocksToSpawn) {
 		this.inputFluid = inputFluid;
 		this.outputFluid = outputFluid;
 		this.transformingBlocks = transformingBlocks;

@@ -12,6 +12,7 @@ import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registries.registries.DynOreRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -27,16 +28,16 @@ import net.minecraftforge.fml.common.Loader;
 
 public class CompatDefaultRecipes
 {
-    private static final List<IRecipeDefaults> MODS = new ArrayList<>();
+	private static final List<IRecipeDefaults> MODS = new ArrayList<>();
 
-    public CompatDefaultRecipes()
-    {
-        MODS.add(new NTM());
-    }
-    
-    static {
-        // TODO use config options to dynamically add mod support
-        /*
+	public CompatDefaultRecipes()
+	{
+		MODS.add(new NTM());
+	}
+
+	static {
+		// TODO use config options to dynamically add mod support
+		/*
         MODS.add(new IntegratedDynamics());
         MODS.add(new Mekanism());
         MODS.add(new BigReactors());
@@ -49,85 +50,89 @@ public class CompatDefaultRecipes
         MODS.add(new ExtraBees());
         MODS.add(new MagicBees());
         MODS.add(new BinniesBotany());
-        */
-        for(ISFHCoreModule module : NetherTweaksMod.loadedModules){
-            if(module instanceof IRecipeDefaults)
-                MODS.add((IRecipeDefaults) module);
-        }
-        
-    }
+		 */
+		for(ISFHCoreModule module : NetherTweaksMod.loadedModules)
+			if(module instanceof IRecipeDefaults)
+				MODS.add((IRecipeDefaults) module);
 
-    public void registerCompost(CompostRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerCompost(registry));
-    }
+	}
 
-    public void registerCondenser(CondenserRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerCondenser(registry));
-    }
+	public void registerCompost(final CompostRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerCompost(registry));
+	}
 
-    public void registerHellmart(HellmartRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerHellmart(registry));
-    }
+	public void registerCondenser(final CondenserRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerCondenser(registry));
+	}
 
-    public void registerSieve(SieveRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerSieve(registry));
-    }
+	public void registerDrink(final DrinkRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerDrink(registry));
+	}
 
-    public void registerHammer(HammerRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerHammer(registry));
-    }
+	public void registerHellmart(final HellmartRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerHellmart(registry));
+	}
 
-    public void registerHeat(HeatRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerHeat(registry));
-    }
+	public void registerSieve(final SieveRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerSieve(registry));
+	}
 
-    public void registerBarrel(BarrelLiquidBlacklistRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerBarrelLiquidBlacklist(registry));
-    }
+	public void registerHammer(final HammerRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerHammer(registry));
+	}
 
-    public void registerFluidOnTop(FluidOnTopRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerFluidOnTop(registry));
-    }
+	public void registerHeat(final HeatRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerHeat(registry));
+	}
 
-    public void registerOreChunks(OreRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerOreChunks(registry));
-    }
-    
+	public void registerBarrel(final BarrelLiquidBlacklistRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerBarrelLiquidBlacklist(registry));
+	}
+
+	public void registerFluidOnTop(final FluidOnTopRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerFluidOnTop(registry));
+	}
+
+	public void registerOreChunks(final OreRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerOreChunks(registry));
+	}
+	
     public void registerDynOreChunks(DynOreRegistry registry) {
     	OreHandler.registerDynOreChunks(registry);
     }
 
-    public void registerFluidTransform(FluidTransformRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerFluidTransform(registry));
-    }
+	public void registerFluidTransform(final FluidTransformRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerFluidTransform(registry));
+	}
 
-    public void registerFluidBlockTransform(FluidBlockTransformerRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerFluidBlockTransform(registry));
-    }
+	public void registerFluidBlockTransform(final FluidBlockTransformerRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerFluidBlockTransform(registry));
+	}
 
-    public void registerFluidItemFluid(FluidItemFluidRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerFluidItemFluid(registry));
-    }
+	public void registerFluidItemFluid(final FluidItemFluidRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerFluidItemFluid(registry));
+	}
 
-    public void registerCrucibleStone(CrucibleRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerCrucibleStone(registry));
-    }
+	public void registerCrucibleStone(final CrucibleRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerCrucibleStone(registry));
+	}
 
-    public void registerMilk(MilkEntityRegistry registry) {
-        MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-                .forEach(mod -> mod.registerMilk(registry));
-    }
+	public void registerMilk(final MilkEntityRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerMilk(registry));
+	}
 }

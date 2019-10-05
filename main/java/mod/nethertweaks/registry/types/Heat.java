@@ -4,9 +4,9 @@ import mod.sfhcore.util.BlockInfo;
 import net.minecraft.item.ItemStack;
 
 public class Heat
-{	
+{
 	//Heat Helper
-	
+
 	@Override
 	public String toString() {
 		return "Heat [item=" + item + ", value=" + value + "]";
@@ -16,13 +16,13 @@ public class Heat
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((item == null) ? 0 : item.hashCode());
+		result = prime * result + (item == null ? 0 : item.hashCode());
 		result = prime * result + value;
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -42,30 +42,30 @@ public class Heat
 
 	private BlockInfo item;
 	private int value;
-	
+
 	public static Heat getEMPTY() {
 		return EMPTY;
 	}
 
-	public static void setEMPTY(Heat eMPTY) {
+	public static void setEMPTY(final Heat eMPTY) {
 		EMPTY = eMPTY;
 	}
 
 	static Heat EMPTY = new Heat(new BlockInfo(ItemStack.EMPTY), 0);
-	
-	public Heat(BlockInfo stack, int value)
+
+	public Heat(final BlockInfo stack, final int value)
 	{
-		this.item = stack;
+		item = stack;
 		this.value = value;
 	}
-	
+
 	public BlockInfo getItem()
 	{
-		return this.item;
+		return item;
 	}
-	
+
 	public int getValue()
 	{
-		return this.value;
+		return value;
 	}
 }

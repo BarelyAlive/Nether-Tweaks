@@ -18,50 +18,50 @@ public class MessageHellmartClosed implements IMessage{
 
 	public MessageHellmartClosed() {}
 
-	public MessageHellmartClosed(int x, int y, int z) {
+	public MessageHellmartClosed(final int x, final int y, final int z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
+	public void fromBytes(final ByteBuf buf) {
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.x);
-		buf.writeInt(this.y);
-		buf.writeInt(this.z);
+	public void toBytes(final ByteBuf buf) {
+		buf.writeInt(x);
+		buf.writeInt(y);
+		buf.writeInt(z);
 	}
-	
+
 
 	public static class MessageHellmartClosedHandler implements IMessageHandler<MessageHellmartClosed, IMessage>
-    {
+	{
 		@Override
-		public IMessage onMessage(MessageHellmartClosed message, MessageContext ctx) {
+		public IMessage onMessage(final MessageHellmartClosed message, final MessageContext ctx) {
 			EntityPlayerMP player = ctx.getServerHandler().player;
 			player.getServerWorld().addScheduledTask(() -> {
 				TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-				if((tile_entity instanceof TileHellmart)) {
+				if(tile_entity instanceof TileHellmart) {
 					TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
-	
+
 					if(!tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
 							.isEmpty()) {
 						player.entityDropItem(tileEntityMarket
 								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0), 1.0F);
 						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-								.setCount(0);
+						.setCount(0);
 					}
 				}
-	
+
 				final IBlockState state = player.world.getBlockState(new BlockPos(message.x, message.y, message.z));
 				player.world.notifyBlockUpdate(new BlockPos(message.x, message.y, message.z), state, state, 3);
 			});
 			return null;
 		}
-    }
+	}
 }

@@ -11,45 +11,50 @@ import net.minecraft.world.gen.IChunkGenerator;
 public class WorldProviderHell extends WorldProvider {
 
 	@Override
-	public boolean canBlockFreeze(BlockPos pos, boolean byWater) {
+	public boolean canBlockFreeze(final BlockPos pos, final boolean byWater) {
 		return false;
 	}
-	
+
 	@Override
-	public boolean canSnowAt(BlockPos pos, boolean checkLight) {
+	public boolean canSnowAt(final BlockPos pos, final boolean checkLight) {
 		return false;
 	}
-	
+
 	@Override
-	public WorldSleepResult canSleepAt(EntityPlayer player, BlockPos pos) {
+	public WorldSleepResult canSleepAt(final EntityPlayer player, final BlockPos pos) {
 		return WorldSleepResult.DENY;
 	}
-	
+
 	@Override
-	public boolean canDoLightning(Chunk chunk) {
+	public boolean hasSkyLight() {
 		return false;
 	}
-	
+
 	@Override
-	public boolean canDoRainSnowIce(Chunk chunk) {
+	public boolean canDoLightning(final Chunk chunk) {
 		return false;
 	}
-	
+
+	@Override
+	public boolean canDoRainSnowIce(final Chunk chunk) {
+		return false;
+	}
+
 	@Override
 	public boolean canRespawnHere() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean doesWaterVaporize() {
 		return true;
 	}
-	
+
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkGeneratorOverworld(this.world, this.getSeed(), false, null);
+		return new ChunkGeneratorOverworld(world, getSeed(), false, null);
 	}
-	
+
 	@Override
 	public DimensionType getDimensionType() {
 		return DimensionType.OVERWORLD;

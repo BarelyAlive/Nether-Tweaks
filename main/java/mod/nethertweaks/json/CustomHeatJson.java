@@ -16,26 +16,26 @@ import mod.sfhcore.util.BlockInfo;
 
 public class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<Heat>
 {
-    @Override
-    public JsonElement serialize(Heat src, Type typeOfSrc, JsonSerializationContext context)
-    {
-        JsonObject obj = new JsonObject();
-        obj.add("heatBlock", context.serialize(src.getItem(), BlockInfo.class));
-        obj.addProperty("value", src.getValue());
-        
-        return obj;
-    }
+	@Override
+	public JsonElement serialize(final Heat src, final Type typeOfSrc, final JsonSerializationContext context)
+	{
+		JsonObject obj = new JsonObject();
+		obj.add("heatBlock", context.serialize(src.getItem(), BlockInfo.class));
+		obj.addProperty("value", src.getValue());
 
-    @Override
-    public Heat deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
-        JsonHelper helper = new JsonHelper(json);
-        JsonObject obj = json.getAsJsonObject();
+		return obj;
+	}
 
-        int value =  helper.getInteger("value");
+	@Override
+	public Heat deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
+	{
+		JsonHelper helper = new JsonHelper(json);
+		JsonObject obj = json.getAsJsonObject();
 
-        BlockInfo result = context.deserialize(obj.get("heatBlock"), BlockInfo.class);
+		int value =  helper.getInteger("value");
 
-        return new Heat(result, value);
-    }
+		BlockInfo result = context.deserialize(obj.get("heatBlock"), BlockInfo.class);
+
+		return new Heat(result, value);
+	}
 }

@@ -12,7 +12,7 @@ public class WorldProviderEnd extends net.minecraft.world.WorldProviderEnd {
 
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkGeneratorEnd(this.world, false, this.getSeed(), null);
+		return new ChunkGeneratorEnd(world, false, getSeed(), null);
 	}
 
 	@Override

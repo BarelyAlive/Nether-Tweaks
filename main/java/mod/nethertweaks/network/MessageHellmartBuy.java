@@ -22,7 +22,7 @@ public class MessageHellmartBuy implements IMessage{
 
 	public MessageHellmartBuy() {}
 
-	public MessageHellmartBuy(int itemNum, int x, int y, int z, boolean shouldClear) {
+	public MessageHellmartBuy(final int itemNum, final int x, final int y, final int z, final boolean shouldClear) {
 		this.itemNum = itemNum;
 		this.x = x;
 		this.y = y;
@@ -31,48 +31,46 @@ public class MessageHellmartBuy implements IMessage{
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf) {
-		this.itemNum = buf.readInt();
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
-		this.shouldClear = buf.readBoolean();
+	public void fromBytes(final ByteBuf buf) {
+		itemNum = buf.readInt();
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
+		shouldClear = buf.readBoolean();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.itemNum);
-		buf.writeInt(this.x);
-		buf.writeInt(this.y);
-		buf.writeInt(this.z);
-		buf.writeBoolean(this.shouldClear);
+	public void toBytes(final ByteBuf buf) {
+		buf.writeInt(itemNum);
+		buf.writeInt(x);
+		buf.writeInt(y);
+		buf.writeInt(z);
+		buf.writeBoolean(shouldClear);
 	}
 
 	public static class MessageHellmartBuyHandler implements IMessageHandler<MessageHellmartBuy, IMessage>
-    {
+	{
 		@Override
-		public IMessage onMessage(MessageHellmartBuy message, MessageContext ctx) {
+		public IMessage onMessage(final MessageHellmartBuy message, final MessageContext ctx) {
 			final EntityPlayerMP player = ctx.getServerHandler().player;
 			System.out.println(player);
 			player.getServerWorld().addScheduledTask(() -> {
 				final TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-				if((tile_entity instanceof TileHellmart)) {
+				if(tile_entity instanceof TileHellmart) {
 					final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
-					
+
 					HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 					final HellmartData data = dataz[message.itemNum];
-					
+
 					final int price = data.getPrice();
-										
-					if(message.shouldClear) {
+
+					if(message.shouldClear)
 						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-								.setCount(0);
-					}
-					else {
+						.setCount(0);
+					else
 						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
-								.shrink(price);
-					}
-	
+						.shrink(price);
+
 					final EntityItem var14 =
 							new EntityItem(player.world, player.posX, player.posY + 1.0D, player.posZ, data.getItem().copy());
 					player.world.spawnEntity(var14);
@@ -80,5 +78,5 @@ public class MessageHellmartBuy implements IMessage{
 			});
 			return null;
 		}
-    }
+	}
 }

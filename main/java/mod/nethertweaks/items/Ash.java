@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,122 +23,105 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Ash extends Item
 {
 	public Ash() {
-		setCreativeTab(NetherTweaksMod.TABNTM);
-		setRegistryName(new ResourceLocation(NetherTweaksMod.MODID, INames.ASH));
+		setCreativeTab(Constants.TABNTM);
+		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
+		setUnlocalizedName(Constants.ASH);
 	}
-	
+
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        ItemStack itemstack = player.getHeldItem(hand);
+	public EnumActionResult onItemUse(final EntityPlayer player, final World worldIn, final BlockPos pos, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
+	{
+		ItemStack itemstack = player.getHeldItem(hand);
 
-        if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack))
-        {
-            return EnumActionResult.FAIL;
-        }
-        else
-        {
-            if (applyBonemeal(itemstack, worldIn, pos, player, hand))
-            {
-                if (!worldIn.isRemote)
-                {
-                    worldIn.playEvent(2005, pos, 0);
-                }
+		if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack))
+			return EnumActionResult.FAIL;
+		else if (applyBonemeal(itemstack, worldIn, pos, player, hand))
+		{
+			if (!worldIn.isRemote)
+				worldIn.playEvent(2005, pos, 0);
 
-                return EnumActionResult.SUCCESS;
-            }
-        }
-        return EnumActionResult.PASS;
-    }
+			return EnumActionResult.SUCCESS;
+		}
+		return EnumActionResult.PASS;
+	}
 
-    public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target)
-    {
-        if (worldIn instanceof net.minecraft.world.WorldServer)
-            return applyBonemeal(stack, worldIn, target, net.minecraftforge.common.util.FakePlayerFactory.getMinecraft((net.minecraft.world.WorldServer)worldIn), null);
-        return false;
-    }
+	public static boolean applyBonemeal(final ItemStack stack, final World worldIn, final BlockPos target)
+	{
+		if (worldIn instanceof net.minecraft.world.WorldServer)
+			return applyBonemeal(stack, worldIn, target, net.minecraftforge.common.util.FakePlayerFactory.getMinecraft((net.minecraft.world.WorldServer)worldIn), null);
+		return false;
+	}
 
-    public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player, @javax.annotation.Nullable EnumHand hand)
-    {
-        IBlockState iblockstate = worldIn.getBlockState(target);
+	public static boolean applyBonemeal(final ItemStack stack, final World worldIn, final BlockPos target, final EntityPlayer player, @javax.annotation.Nullable final EnumHand hand)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(target);
 
-        int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate, stack, hand);
-        if (hook != 0) return hook > 0;
+		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate, stack, hand);
+		if (hook != 0) return hook > 0;
 
-        if (iblockstate.getBlock() instanceof IGrowable)
-        {
-            IGrowable igrowable = (IGrowable)iblockstate.getBlock();
+		if (iblockstate.getBlock() instanceof IGrowable)
+		{
+			IGrowable igrowable = (IGrowable)iblockstate.getBlock();
 
-            if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
-            {
-                if (!worldIn.isRemote)
-                {
-                    if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
-                    {
-                        igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
-                    }
+			if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
+			{
+				if (!worldIn.isRemote)
+				{
+					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
+						igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
 
-                    stack.shrink(1);
-                }
+					stack.shrink(1);
+				}
 
-                return true;
-            }
-        }
+				return true;
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    @SideOnly(Side.CLIENT)
-    public static void spawnBonemealParticles(World worldIn, BlockPos pos, int amount)
-    {
-        if (amount == 0)
-        {
-            amount = 15;
-        }
+	@SideOnly(Side.CLIENT)
+	public static void spawnBonemealParticles(final World worldIn, final BlockPos pos, int amount)
+	{
+		if (amount == 0)
+			amount = 15;
 
-        IBlockState iblockstate = worldIn.getBlockState(pos);
+		IBlockState iblockstate = worldIn.getBlockState(pos);
 
-        if (iblockstate.getMaterial() != Material.AIR)
-        {
-            for (int i = 0; i < amount; ++i)
-            {
-                double d0 = itemRand.nextGaussian() * 0.02D;
-                double d1 = itemRand.nextGaussian() * 0.02D;
-                double d2 = itemRand.nextGaussian() * 0.02D;
-                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + itemRand.nextFloat() * iblockstate.getBoundingBox(worldIn, pos).maxY, pos.getZ() + itemRand.nextFloat(), d0, d1, d2);
-            }
-        }
-        else
-        {
-            for (int i1 = 0; i1 < amount; ++i1)
-            {
-                double d0 = itemRand.nextGaussian() * 0.02D;
-                double d1 = itemRand.nextGaussian() * 0.02D;
-                double d2 = itemRand.nextGaussian() * 0.02D;
-                worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + (double)itemRand.nextFloat() * 1.0f, pos.getZ() + itemRand.nextFloat(), d0, d1, d2, new int[0]);
-            }
-        }
-    }
-    
-    @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand)
-    {
-        if (target instanceof EntitySheep)
-        {
-            EntitySheep entitysheep = (EntitySheep)target;
-            EnumDyeColor enumdyecolor = EnumDyeColor.SILVER;
+		if (iblockstate.getMaterial() != Material.AIR)
+			for (int i = 0; i < amount; ++i)
+			{
+				double d0 = itemRand.nextGaussian() * 0.02D;
+				double d1 = itemRand.nextGaussian() * 0.02D;
+				double d2 = itemRand.nextGaussian() * 0.02D;
+				worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + itemRand.nextFloat() * iblockstate.getBoundingBox(worldIn, pos).maxY, pos.getZ() + itemRand.nextFloat(), d0, d1, d2);
+			}
+		else
+			for (int i1 = 0; i1 < amount; ++i1)
+			{
+				double d0 = itemRand.nextGaussian() * 0.02D;
+				double d1 = itemRand.nextGaussian() * 0.02D;
+				double d2 = itemRand.nextGaussian() * 0.02D;
+				worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + (double)itemRand.nextFloat() * 1.0f, pos.getZ() + itemRand.nextFloat(), d0, d1, d2, new int[0]);
+			}
+	}
 
-            if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)
-            {
-                entitysheep.setFleeceColor(enumdyecolor);
-                stack.shrink(1);
-            }
+	@Override
+	public boolean itemInteractionForEntity(final ItemStack stack, final EntityPlayer playerIn, final EntityLivingBase target, final EnumHand hand)
+	{
+		if (target instanceof EntitySheep)
+		{
+			EntitySheep entitysheep = (EntitySheep)target;
+			EnumDyeColor enumdyecolor = EnumDyeColor.SILVER;
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+			if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)
+			{
+				entitysheep.setFleeceColor(enumdyecolor);
+				stack.shrink(1);
+			}
+
+			return true;
+		} else
+			return false;
+	}
 }

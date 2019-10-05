@@ -10,8 +10,7 @@ public class BlocksItems
 	public static boolean enableSaltBlock 			= true;
 	public static boolean enableDust 				= true;
 	public static boolean enableAshBonePile			= true;
-	public static boolean enableBarrelWood			= true;
-	public static boolean enableBarrelStone			= true;
+	public static boolean enableBarrel				= true;
 	public static boolean enableBonfire 			= true;
 	public static boolean enableCondenser 			= true;
 	public static boolean enableStwH 				= true;
@@ -25,7 +24,7 @@ public class BlocksItems
 	public static boolean enableNetherrackGravel 	= true;
 	public static boolean enableSieve 				= true;
 	public static boolean enableCrucible 			= true;
-		
+
 	//ItemEnable
 	public static boolean enableStoneBar 			= true;
 	public static boolean enablePortalCore 			= true;
@@ -69,6 +68,7 @@ public class BlocksItems
 	public static boolean enableDollVillager		= true;
 	public static boolean enableDollPig				= true;
 	public static boolean enableJerky 				= true;
+	public static boolean enableCanteen				= true;
 	public static boolean enableHammerWood 			= true;
 	public static boolean enableHammerStone 		= true;
 	public static boolean enableHammerGold 			= true;
@@ -84,91 +84,91 @@ public class BlocksItems
 	public static boolean enableElderDoor 			= true;
 	public static boolean enableWoodBucket 			= true;
 	public static boolean enableStoneBucket 		= true;
-	
-	protected static void load(Configuration config)
+
+	protected static void load(final Configuration config)
 	{
 		//BlockEnable
-    	config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
-    	enableHellfayahOre 				= config.get("Blocks", "Enable Hellfayah Block?", true).getBoolean();
-    	enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
-    	enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
-    	enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
-    	enableAshBonePile				= config.get("Blocks", "Enable Ash Bone Pile?", true).getBoolean();
-    	enableBarrelWood				= config.get("Blocks", "Enable Wooden Barrel?", true).getBoolean();
-    	enableBarrelStone				= config.get("Blocks", "Enable Stone Barrel?", true).getBoolean();
-    	enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
-    	enableCondenser 				= config.get("Blocks", "Enable Condenser?", true).getBoolean();
-    	enableStwH 						= config.get("Blocks", "Enable Stairway to Heaven?", true).getBoolean();
-    	enableFreezer 					= config.get("Blocks", "Enable Freezer?", true).getBoolean();
-    	enableHellmart 					= config.get("Blocks", "Enable Hellmart?", true).getBoolean();
-    	enableDistilledWater	 		= config.get("Blocks", "Enable Distilled Water?", true, 
-    			"If you deactivate this fluid, the Condenser will produce vanilla water.").getBoolean();
-    	enableLiquidImpossibility 		= config.get("Blocks", "Enable Liquid Impossibility?", true).getBoolean();
-    	enableMeanVine 					= config.get("Blocks", "Enable Mean Vines?", true).getBoolean();
-    	enableElderTree 				= config.get("Blocks", "Enable Elder Tree?", true).getBoolean();
-    	enableNetherrackFurnace 		= config.get("Blocks", "Enable Elderrack Furnace?", true).getBoolean();
-    	enableNetherrackGravel			= config.get("Blocks", "Enable Netherrack Gravel?", true).getBoolean();
-    	enableSieve 					= config.get("Blocks", "Enable Sieve?", true).getBoolean();
-    	enableCrucible 					= config.get("Blocks", "Enable Crucible?", true).getBoolean();
-    	
-    	//ItemEnable
-    	config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
-    	enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
-    	enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
-    	enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
-    	enableSalt 						= config.get("Items", "Enable Salt?", true).getBoolean();
-    	enableHellfayah 				= config.get("Items", "Enable Hellfayah?", true).getBoolean();
-    	enableEnderInfusedFrame			= config.get("Items", "Enable Ender Infused Frame?", true).getBoolean();
-    	enableString 					= config.get("Items", "Enable String?", true).getBoolean();
-    	enablePorcelainClay				= config.get("Items", "Enable Porcelain Clay?", true).getBoolean();
-    	enablePowderOfLight				= config.get("Items", "Enable Powder of Light?", true).getBoolean();
-    	enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
-    	enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
-    	enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
-    	enableSugarcaneSeeds			= config.get("Items", "Enable Sugarcane Seeds?", true).getBoolean();
-    	enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
-    	enableAsh						= config.get("Items", "Enable Ash?", true).getBoolean();
-    	enableWoodChippings				= config.get("Items", "Enable Wood Chippings?", true).getBoolean();
-    	enableCoiledSword				= config.get("Items", "Enable Coiled Sword?", true).getBoolean();
-    	enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
-    	enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
-    	enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
-    	enablePebbleAndesite			= config.get("Items", "Enable Andesite Pebbles?", true).getBoolean();
-    	enableStringMeshes 				= config.get("Items", "Enable String Meshes?", true).getBoolean();
-    	enableFlintMeshes 				= config.get("Items", "Enable Flint Meshes?", true).getBoolean();
-    	enableIronMeshes 				= config.get("Items", "Enable Iron Meshes?", true).getBoolean();
-    	enableDiamondMeshes				= config.get("Items", "Enable Diamond Meshes?", true).getBoolean();
-    	enableDollBat 					= config.get("Items", "Enable Bat Doll?", true).getBoolean();
-    	enableDollChicken 				= config.get("Items", "Enable Chicken Doll?", true).getBoolean();
-    	enableDollCow 					= config.get("Items", "Enable Cow Doll?", true).getBoolean();
-    	enableDollDonkey 				= config.get("Items", "Enable Donkey Doll?", true).getBoolean();
-    	enableDollHorse 				= config.get("Items", "Enable Horse Doll?", true).getBoolean();
-    	enableDollLlama 				= config.get("Items", "Enable Llama Doll?", true).getBoolean();
-    	enableDollMule 					= config.get("Items", "Enable Mule Doll?", true).getBoolean();
-    	enableDollOcelot 				= config.get("Items", "Enable Ocelot Doll?", true).getBoolean();
-    	enableDollParrot 				= config.get("Items", "Enable Parrot Doll?", true).getBoolean();
-    	enableDollPig 					= config.get("Items", "Enable Pig Doll?", true).getBoolean();
-    	enableDollPolarBear 			= config.get("Items", "Enable Polar Bear Doll?", true).getBoolean();
-    	enableDollRabbit 				= config.get("Items", "Enable Rabbit Doll?", true).getBoolean();
-    	enableDollRedMooshroom			= config.get("Items", "Enable Red Mooshroom Doll?", true).getBoolean();
-    	enableDollSheep 				= config.get("Items", "Enable Sheep Doll?", true).getBoolean();
-    	enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
-    	enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
-    	enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
-    	enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
-    	enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
-    	enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
-    	enableHammerIron 				= config.get("Items", "Enable Iron Hammer?", true).getBoolean();
-    	enableHammerDiamond 			= config.get("Items", "Enable Diamond Hammer?", true).getBoolean();
-    	enableGrabberWood 				= config.get("Items", "Enable Wood Grabber?", true).getBoolean();
-    	enableGrabberStone 				= config.get("Items", "Enable Stone Grabber?", true).getBoolean();
-    	enableGrabberGold 				= config.get("Items", "Enable Gold Grabber?", true).getBoolean();
-    	enableGrabberIron 				= config.get("Items", "Enable Iron Grabber?", true).getBoolean();
-    	enableGrabberDiamond 			= config.get("Items", "Enable Diamond Grabber?", true).getBoolean();
-    	enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
-    	enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
-    	enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
-    	enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
-    	enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
+		config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");
+		enableHellfayahOre 				= config.get("Blocks", "Enable Hellfayah Block?", true).getBoolean();
+		enableHellfayahBlock			= config.get("Blocks", "Enable Hellfayah Ore?", true).getBoolean();
+		enableSaltBlock 				= config.get("Blocks", "Enable Block of Salt?", true).getBoolean();
+		enableDust 						= config.get("Blocks", "Enable Dust?", true).getBoolean();
+		enableAshBonePile				= config.get("Blocks", "Enable Ash Bone Pile?", true).getBoolean();
+		enableBarrel					= config.get("Blocks", "Enable Wooden Barrel?", true).getBoolean();
+		enableBonfire 					= config.get("Blocks", "Enable Bonfire?", true).getBoolean();
+		enableCondenser 				= config.get("Blocks", "Enable Condenser?", true).getBoolean();
+		enableStwH 						= config.get("Blocks", "Enable Stairway to Heaven?", true).getBoolean();
+		enableFreezer 					= config.get("Blocks", "Enable Freezer?", true).getBoolean();
+		enableHellmart 					= config.get("Blocks", "Enable Hellmart?", true).getBoolean();
+		enableDistilledWater	 		= config.get("Blocks", "Enable Distilled Water?", true,
+				"If you deactivate this fluid, Condensers will produce vanilla water.").getBoolean();
+		enableLiquidImpossibility 		= config.get("Blocks", "Enable Liquid Impossibility?", true).getBoolean();
+		enableMeanVine 					= config.get("Blocks", "Enable Mean Vines?", true).getBoolean();
+		enableElderTree 				= config.get("Blocks", "Enable Elder Tree?", true).getBoolean();
+		enableNetherrackFurnace 		= config.get("Blocks", "Enable Elderrack Furnace?", true).getBoolean();
+		enableNetherrackGravel			= config.get("Blocks", "Enable Netherrack Gravel?", true).getBoolean();
+		enableSieve 					= config.get("Blocks", "Enable Sieve?", true).getBoolean();
+		enableCrucible 					= config.get("Blocks", "Enable Crucible?", true).getBoolean();
+
+		//ItemEnable
+		config.addCustomCategoryComment("Items", "Disabling one of these may break mechanics in NTM!");
+		enableStoneBar	 				= config.get("Items", "Enable Stone Bar?", true).getBoolean();
+		enablePortalCore 				= config.get("Items", "Enable Portal Core?", true).getBoolean();
+		enableEndBox 					= config.get("Items", "Enable End Box?", true).getBoolean();
+		enableSalt 						= config.get("Items", "Enable Salt?", true).getBoolean();
+		enableHellfayah 				= config.get("Items", "Enable Hellfayah?", true).getBoolean();
+		enableEnderInfusedFrame			= config.get("Items", "Enable Ender Infused Frame?", true).getBoolean();
+		enableString 					= config.get("Items", "Enable String?", true).getBoolean();
+		enablePorcelainClay				= config.get("Items", "Enable Porcelain Clay?", true).getBoolean();
+		enablePowderOfLight				= config.get("Items", "Enable Powder of Light?", true).getBoolean();
+		enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
+		enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
+		enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
+		enableSugarcaneSeeds			= config.get("Items", "Enable Sugarcane Seeds?", true).getBoolean();
+		enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
+		enableAsh						= config.get("Items", "Enable Ash?", true).getBoolean();
+		enableWoodChippings				= config.get("Items", "Enable Wood Chippings?", true).getBoolean();
+		enableCoiledSword				= config.get("Items", "Enable Coiled Sword?", true).getBoolean();
+		enablePebbleStone 				= config.get("Items", "Enable Stone Pebbles?", true).getBoolean();
+		enablePebbleGranite 			= config.get("Items", "Enable Granite Pebbles?", true).getBoolean();
+		enablePebbleDiorite 			= config.get("Items", "Enable Diorite Pebbles?", true).getBoolean();
+		enablePebbleAndesite			= config.get("Items", "Enable Andesite Pebbles?", true).getBoolean();
+		enableStringMeshes 				= config.get("Items", "Enable String Meshes?", true).getBoolean();
+		enableFlintMeshes 				= config.get("Items", "Enable Flint Meshes?", true).getBoolean();
+		enableIronMeshes 				= config.get("Items", "Enable Iron Meshes?", true).getBoolean();
+		enableDiamondMeshes				= config.get("Items", "Enable Diamond Meshes?", true).getBoolean();
+		enableDollBat 					= config.get("Items", "Enable Bat Doll?", true).getBoolean();
+		enableDollChicken 				= config.get("Items", "Enable Chicken Doll?", true).getBoolean();
+		enableDollCow 					= config.get("Items", "Enable Cow Doll?", true).getBoolean();
+		enableDollDonkey 				= config.get("Items", "Enable Donkey Doll?", true).getBoolean();
+		enableDollHorse 				= config.get("Items", "Enable Horse Doll?", true).getBoolean();
+		enableDollLlama 				= config.get("Items", "Enable Llama Doll?", true).getBoolean();
+		enableDollMule 					= config.get("Items", "Enable Mule Doll?", true).getBoolean();
+		enableDollOcelot 				= config.get("Items", "Enable Ocelot Doll?", true).getBoolean();
+		enableDollParrot 				= config.get("Items", "Enable Parrot Doll?", true).getBoolean();
+		enableDollPig 					= config.get("Items", "Enable Pig Doll?", true).getBoolean();
+		enableDollPolarBear 			= config.get("Items", "Enable Polar Bear Doll?", true).getBoolean();
+		enableDollRabbit 				= config.get("Items", "Enable Rabbit Doll?", true).getBoolean();
+		enableDollRedMooshroom			= config.get("Items", "Enable Red Mooshroom Doll?", true).getBoolean();
+		enableDollSheep 				= config.get("Items", "Enable Sheep Doll?", true).getBoolean();
+		enableDollVillager				= config.get("Items", "Enable Villager Doll?", true).getBoolean();
+		enableDollWolf 					= config.get("Items", "Enable Wolf Doll?", true).getBoolean();
+		enableJerky 					= config.get("Items", "Enable Cooked Jerky?", true).getBoolean();
+		enableCanteen 					= config.get("Items", "Enable Canteen?", true).getBoolean();
+		enableHammerWood 				= config.get("Items", "Enable Wood Hammer?", true).getBoolean();
+		enableHammerStone 				= config.get("Items", "Enable Stone Hammer?", true).getBoolean();
+		enableHammerGold 				= config.get("Items", "Enable Gold Hammer?", true).getBoolean();
+		enableHammerIron 				= config.get("Items", "Enable Iron Hammer?", true).getBoolean();
+		enableHammerDiamond 			= config.get("Items", "Enable Diamond Hammer?", true).getBoolean();
+		enableGrabberWood 				= config.get("Items", "Enable Wood Grabber?", true).getBoolean();
+		enableGrabberStone 				= config.get("Items", "Enable Stone Grabber?", true).getBoolean();
+		enableGrabberGold 				= config.get("Items", "Enable Gold Grabber?", true).getBoolean();
+		enableGrabberIron 				= config.get("Items", "Enable Iron Grabber?", true).getBoolean();
+		enableGrabberDiamond 			= config.get("Items", "Enable Diamond Grabber?", true).getBoolean();
+		enableFlintNBlaze 				= config.get("Items", "Enable Flint & Blaze?", true).getBoolean();
+		enableStoneDoor 				= config.get("Items", "Enable Stone Door?", true).getBoolean();
+		enableElderDoor 				= config.get("Items", "Enable Elder Door?", true).getBoolean();
+		enableWoodBucket				= config.get("Items", "Enable Wood Bucket?", true).getBoolean();
+		enableStoneBucket				= config.get("Items", "Enable Stone Bucket?", true).getBoolean();
 	}
 }

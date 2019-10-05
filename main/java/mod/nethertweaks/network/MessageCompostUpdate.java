@@ -21,135 +21,133 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MessageCompostUpdate implements IMessage {
-    public static final Charset CHARSET = Charset.forName("UTF-8");
+	public static final Charset CHARSET = Charset.forName("UTF-8");
 
 
-    private float fillAmount;
-    private float compValue;
-    private int x;
-    private int y;
-    private int z;
-    private ItemStack stack;
-    private Color color;
-    private float progress;
-    private boolean isFirst;
+	private float fillAmount;
+	private float compValue;
+	private int x;
+	private int y;
+	private int z;
+	private ItemStack stack;
+	private Color color;
+	private float progress;
+	private boolean isFirst;
 
-    public MessageCompostUpdate() {
-    }
+	public MessageCompostUpdate() {
+	}
 
-    public MessageCompostUpdate(float fillAmount, Color color, ItemStack stack, float progress, float compValue, BlockPos pos, boolean isFirst) {
-        this.compValue = compValue;
-        this.x = pos.getX();
-        this.y = pos.getY();
-        this.z = pos.getZ();
-        this.color = color;
-        this.fillAmount = fillAmount;
-        this.stack = stack;
-        this.progress = progress;
-        this.isFirst = isFirst;
-    }
+	public MessageCompostUpdate(final float fillAmount, final Color color, final ItemStack stack, final float progress, final float compValue, final BlockPos pos, final boolean isFirst) {
+		this.compValue = compValue;
+		x = pos.getX();
+		y = pos.getY();
+		z = pos.getZ();
+		this.color = color;
+		this.fillAmount = fillAmount;
+		this.stack = stack;
+		this.progress = progress;
+		this.isFirst = isFirst;
+	}
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeInt(x);
-        buf.writeInt(y);
-        buf.writeInt(z);
-        buf.writeFloat(fillAmount);
-        buf.writeFloat(progress);
-        buf.writeFloat(color.r);
-        buf.writeFloat(color.g);
-        buf.writeFloat(color.b);
-        buf.writeFloat(color.a);
-        buf.writeFloat(compValue);
-        buf.writeBoolean(isFirst);
-        String itemName = stack.getItem().getRegistryName().toString();
-        buf.writeInt(itemName.length());
-        buf.writeCharSequence(stack.getItem().getRegistryName().toString(), CHARSET);
-        buf.writeInt(stack.getMetadata());
+	@Override
+	public void toBytes(final ByteBuf buf) {
+		buf.writeInt(x);
+		buf.writeInt(y);
+		buf.writeInt(z);
+		buf.writeFloat(fillAmount);
+		buf.writeFloat(progress);
+		buf.writeFloat(color.r);
+		buf.writeFloat(color.g);
+		buf.writeFloat(color.b);
+		buf.writeFloat(color.a);
+		buf.writeFloat(compValue);
+		buf.writeBoolean(isFirst);
+		String itemName = stack.getItem().getRegistryName().toString();
+		buf.writeInt(itemName.length());
+		buf.writeCharSequence(stack.getItem().getRegistryName().toString(), CHARSET);
+		buf.writeInt(stack.getMetadata());
 
-    }
+	}
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        this.x = buf.readInt();
-        this.y = buf.readInt();
-        this.z = buf.readInt();
-        this.fillAmount = buf.readFloat();
-        this.progress = buf.readFloat();
-        this.color = new Color(buf.readFloat(),buf.readFloat(),buf.readFloat(),buf.readFloat());
-        this.compValue = buf.readFloat();
-        this.isFirst = buf.readBoolean();
-        int length = buf.readInt();
-        String name = buf.readCharSequence(length, Charset.defaultCharset()).toString();
-        int meta = buf.readInt();
+	@Override
+	public void fromBytes(final ByteBuf buf) {
+		x = buf.readInt();
+		y = buf.readInt();
+		z = buf.readInt();
+		fillAmount = buf.readFloat();
+		progress = buf.readFloat();
+		color = new Color(buf.readFloat(),buf.readFloat(),buf.readFloat(),buf.readFloat());
+		compValue = buf.readFloat();
+		isFirst = buf.readBoolean();
+		int length = buf.readInt();
+		String name = buf.readCharSequence(length, Charset.defaultCharset()).toString();
+		int meta = buf.readInt();
 
-        Item item = Item.getByNameOrId(name);
-        if (item != null) {
-            this.stack = new ItemStack(item, 1, meta);
-        } else {
-            this.stack = ItemStack.EMPTY;
-        }
-    }
+		Item item = Item.getByNameOrId(name);
+		if (item != null)
+			stack = new ItemStack(item, 1, meta);
+		else
+			stack = ItemStack.EMPTY;
+	}
 
-    @Override
-    public String toString() {
-        return "MessageCompostUpdate{" +
-                "fillAmount=" + fillAmount +
-                ", compValue=" + compValue +
-                ", x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                ", stack=" + stack +
-                ", color=" + color +
-                ", progress=" + progress +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "MessageCompostUpdate{" +
+				"fillAmount=" + fillAmount +
+				", compValue=" + compValue +
+				", x=" + x +
+				", y=" + y +
+				", z=" + z +
+				", stack=" + stack +
+				", color=" + color +
+				", progress=" + progress +
+				'}';
+	}
 
-    public static class MessageCompostAmountUpdateHandler implements IMessageHandler<MessageCompostUpdate, IMessage> {
-        @Override
-        @SideOnly(Side.CLIENT)
-        public IMessage onMessage(final MessageCompostUpdate msg, MessageContext ctx) {
-            Minecraft.getMinecraft().addScheduledTask(new Runnable() {
-                @Override
-                @SideOnly(Side.CLIENT)
-                public void run() {
-                    TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+	public static class MessageCompostAmountUpdateHandler implements IMessageHandler<MessageCompostUpdate, IMessage> {
+		@Override
+		@SideOnly(Side.CLIENT)
+		public IMessage onMessage(final MessageCompostUpdate msg, final MessageContext ctx) {
+			Minecraft.getMinecraft().addScheduledTask(new Runnable() {
+				@Override
+				@SideOnly(Side.CLIENT)
+				public void run() {
+					TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
 
-                    if (entity instanceof TileBarrel) {
-                        TileBarrel te = (TileBarrel) entity;
-                        if(te.getMode() == null || !(te.getMode() instanceof BarrelModeCompost))
-                            te.setMode("compost");
-                        BarrelModeCompost mode = (BarrelModeCompost) te.getMode();
-                        mode.setFillAmount(msg.fillAmount);
+					if (entity instanceof TileBarrel) {
+						TileBarrel te = (TileBarrel) entity;
+						if(te.getMode() == null || !(te.getMode() instanceof BarrelModeCompost))
+							te.setMode("compost");
+						BarrelModeCompost mode = (BarrelModeCompost) te.getMode();
+						mode.setFillAmount(msg.fillAmount);
 
-                        if (msg.stack.isEmpty() && msg.compValue == 0.0f && mode.getOriginalColor() != null){
-                            // Progress is being made
-                            mode.setColor(Color.average(mode.getOriginalColor(), whiteColor, msg.progress));
-                        } else {
-                            // A new item is getting added or the Color has been desynced.
-                            Color compColor = msg.color;
-                            // Dynamic color on invalid_color
-                            if (compColor.equals(Color.INVALID_COLOR) && !msg.stack.isEmpty()) {
-                                compColor = ColorGetter.getColor(msg.stack);
-                            }
+						if (msg.stack.isEmpty() && msg.compValue == 0.0f && mode.getOriginalColor() != null)
+							// Progress is being made
+							mode.setColor(Color.average(mode.getOriginalColor(), whiteColor, msg.progress));
+						else {
+							// A new item is getting added or the Color has been desynced.
+							Color compColor = msg.color;
+							// Dynamic color on invalid_color
+							if (compColor.equals(Color.INVALID_COLOR) && !msg.stack.isEmpty())
+								compColor = ColorGetter.getColor(msg.stack);
 
-                            if (msg.fillAmount == 0 || msg.isFirst) {
-                                mode.setColor(compColor);
-                                mode.setOriginalColor(compColor);
-                            } else {
-                                Color col = Color.average(mode.getColorForRender(), compColor, msg.compValue);
-                                mode.setColor(col);
-                                mode.setOriginalColor(col);
-                            }
+							if (msg.fillAmount == 0 || msg.isFirst) {
+								mode.setColor(compColor);
+								mode.setOriginalColor(compColor);
+							} else {
+								Color col = Color.average(mode.getColorForRender(), compColor, msg.compValue);
+								mode.setColor(col);
+								mode.setOriginalColor(col);
+							}
 
-                        }
+						}
 
-                        mode.setProgress(msg.progress);
-                    }
-                }
-            });
-            return null;
-        }
-    }
+						mode.setProgress(msg.progress);
+					}
+				}
+			});
+			return null;
+		}
+	}
 
 }

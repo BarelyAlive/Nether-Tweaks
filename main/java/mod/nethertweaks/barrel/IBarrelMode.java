@@ -22,39 +22,39 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public interface IBarrelMode {
 
-    void writeToNBT(NBTTagCompound tag);
+	void writeToNBT(NBTTagCompound tag);
 
-    void readFromNBT(NBTTagCompound tag);
+	void readFromNBT(NBTTagCompound tag);
 
-    boolean isTriggerItemStack(ItemStack stack);
+	boolean isTriggerItemStack(ItemStack stack);
 
-    boolean isTriggerFluidStack(FluidStack stack);
+	boolean isTriggerFluidStack(FluidStack stack);
 
-    String getName();
+	String getName();
 
-    void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ);
+	void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ);
 
-    @SideOnly(Side.CLIENT)
-    TextureAtlasSprite getTextureForRender(TileBarrel barrel);
+	@SideOnly(Side.CLIENT)
+	TextureAtlasSprite getTextureForRender(TileBarrel barrel);
 
-    Color getColorForRender();
+	Color getColorForRender();
 
-    default SpriteColor getSpriteColor(TileBarrel barrel) {
-        return new SpriteColor(getTextureForRender(barrel), getColorForRender());
-    }
+	default SpriteColor getSpriteColor(final TileBarrel barrel) {
+		return new SpriteColor(getTextureForRender(barrel), getColorForRender());
+	}
 
-    float getFilledLevelForRender(TileBarrel barrel);
+	float getFilledLevelForRender(TileBarrel barrel);
 
-    void update(TileBarrel barrel);
+	void update(TileBarrel barrel);
 
-    void addItem(ItemStack stack, TileBarrel barrel);
+	void addItem(ItemStack stack, TileBarrel barrel);
 
-    ItemStackHandler getHandler(TileBarrel barrel);
+	ItemStackHandler getHandler(TileBarrel barrel);
 
-    FluidTank getFluidHandler(TileBarrel barrel);
+	FluidTank getFluidHandler(TileBarrel barrel);
 
-    boolean canFillWithFluid(TileBarrel barrel);
+	boolean canFillWithFluid(TileBarrel barrel);
 
-    List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip);
+	List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip);
 
 }

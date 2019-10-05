@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class ChunkColorer implements IItemColor {
 
 	@Override
-	public int colorMultiplier(ItemStack stack, int tintIndex) {
+	public int colorMultiplier(final ItemStack stack, final int tintIndex) {
 		int pixel = 0xFFFFFFFF;
         if (!(stack.getItem() instanceof ItemChunk))
         {

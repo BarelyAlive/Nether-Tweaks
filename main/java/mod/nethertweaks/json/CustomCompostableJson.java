@@ -17,33 +17,31 @@ import mod.sfhcore.util.BlockInfo;
 
 public class CustomCompostableJson implements JsonDeserializer<Compostable>, JsonSerializer<Compostable>
 {
-    @Override
-    public JsonElement serialize(Compostable src, Type typeOfSrc, JsonSerializationContext context)
-    {
-        JsonObject obj = new JsonObject();
-        obj.addProperty("value", src.getValue());
-        obj.add("compostBlock", context.serialize(src.getCompostBlock(), BlockInfo.class));
-        if (src.getColor() != Color.INVALID_COLOR) {
-            obj.add("color", context.serialize(src.getColor(), Color.class));
-        }
+	@Override
+	public JsonElement serialize(final Compostable src, final Type typeOfSrc, final JsonSerializationContext context)
+	{
+		JsonObject obj = new JsonObject();
+		obj.addProperty("value", src.getValue());
+		obj.add("compostBlock", context.serialize(src.getCompostBlock(), BlockInfo.class));
+		if (src.getColor() != Color.INVALID_COLOR)
+			obj.add("color", context.serialize(src.getColor(), Color.class));
 
-        return obj;
-    }
+		return obj;
+	}
 
-    @Override
-    public Compostable deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
-    {
-        JsonHelper helper = new JsonHelper(json);
-        JsonObject obj = json.getAsJsonObject();
+	@Override
+	public Compostable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
+	{
+		JsonHelper helper = new JsonHelper(json);
+		JsonObject obj = json.getAsJsonObject();
 
-        float value = (float) helper.getDouble("value");
-        Color color = Color.INVALID_COLOR;
-        if (obj.has("color")) {
-            color = context.deserialize(obj.get("color"), Color.class);
-        }
+		float value = (float) helper.getDouble("value");
+		Color color = Color.INVALID_COLOR;
+		if (obj.has("color"))
+			color = context.deserialize(obj.get("color"), Color.class);
 
-        BlockInfo result = context.deserialize(obj.get("compostBlock"), BlockInfo.class);
+		BlockInfo result = context.deserialize(obj.get("compostBlock"), BlockInfo.class);
 
-        return new Compostable(value, color, result);
-    }
+		return new Compostable(value, color, result);
+	}
 }

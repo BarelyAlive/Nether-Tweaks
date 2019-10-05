@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.INames;
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
@@ -26,60 +26,58 @@ public class TileFreezer extends TileFluidInventory
 	private float temp = 20f;
 	private int timer = 0;
 	private int maxTimer = Config.cooldownFreezer;
-	
+
 	private ItemStack ice()
 	{
 		return ice.copy();
 	}
 
 	public TileFreezer() {
-		super(3, INames.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
-		this.setMaxworkTime(Config.freezeTimeFreezer);
+		super(3, Constants.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
+		setMaxworkTime(Config.freezeTimeFreezer);
 	}
 
-    @Override
+	@Override
 	public void update()
-    {
-    	if(world.isRemote) return;
+	{
+		if(world.isRemote) return;
 
-    	checkInputOutput();
-    	fillFromItem();
+		checkInputOutput();
+		fillFromItem();
 		NetworkHandler.sendNBTUpdate(this);
-		
+
 		if(!world.isBlockPowered(pos))
 		{
 			if(timer > 0) timer--;
-			if(this.getWorld().provider.doesWaterVaporize())
-			{
+			if(getWorld().provider.doesWaterVaporize())
 				if(getTemp() < 100f) setTemp(getTemp() + 0.025f);
-			}
 		}
 		else
 		{
 			if(timer < maxTimer) timer++;
 			setTemp(20f - 50f * ((float)timer / (float)maxTimer));
 		}
-		
+
 		if(getTemp() < 0)
 			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - getTemp() / -90f )));
 		else
 			setMaxworkTime(Config.freezeTimeFreezer);
-		
-		if(canFreeze())	work();
-		else this.setWorkTime(0);
 
-		if(getWorkTime() >= this.getMaxworkTime())
+		if(canFreeze())	work();
+		else setWorkTime(0);
+
+		if(getWorkTime() >= getMaxworkTime())
 		{
-			this.setWorkTime(0);
+			setWorkTime(0);
 			freezeItem();
 		}
 	}
 
-    private void checkInputOutput()
+	private void checkInputOutput()
 	{
-    	if(Config.autoExtractItems)
-    		extractFromInventory(pos.up(), EnumFacing.DOWN);
-    	if(Config.autoOutputItems) {
+		if(Config.autoExtractItems)
+			extractFromInventory(pos.up(), EnumFacing.DOWN);
+		if(Config.autoOutputItems) {
 			insertToInventory(pos.north(), EnumFacing.SOUTH);
 			insertToInventory(pos.south(), EnumFacing.NORTH);
 			insertToInventory(pos.west(), EnumFacing.EAST);
@@ -88,77 +86,75 @@ public class TileFreezer extends TileFluidInventory
 	}
 
 	private boolean canFreeze()
-    {
+	{
 		if(getTemp() > 0) return false;
-        if(this.getTank().getFluidAmount() < 1000) return false;
-        if(this.getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
-        return true;
-    }
+		if(getTank().getFluidAmount() < 1000) return false;
+		if(getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
+		return true;
+	}
 
-    private void freezeItem()
-    {
-    	this.getTank().drain(1000, true);
+	private void freezeItem()
+	{
+		getTank().drain(1000, true);
 
-        if(this.getStackInSlot(0).isEmpty())
-            this.setInventorySlotContents(0, new ItemStack(ice().getItem()));
+		if(getStackInSlot(0).isEmpty())
+			setInventorySlotContents(0, new ItemStack(ice().getItem()));
 
-        else if(this.getStackInSlot(0).getCount() >= 1)
-        	this.getStackInSlot(0).grow(1);
+		else if(getStackInSlot(0).getCount() >= 1)
+			getStackInSlot(0).grow(1);
 
-        fillFromItem();
-    }
+		fillFromItem();
+	}
 
 	private void fillFromItem()
 	{
-		ItemStack input  = this.getStackInSlot(2);
-		ItemStack output = this.getStackInSlot(1);
+		ItemStack input  = getStackInSlot(2);
+		ItemStack output = getStackInSlot(1);
 
 		if(input.isEmpty()) return;
 		if(output.getCount() == output.getMaxStackSize()) return;
 
 		ItemStack copy = input.copy();
-		
+
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
 
 		if(handler != null)
 		{
-    		FluidStack f = FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false);
-    		if (f == null) return;
-    		
-    		//Z.b. der leere bucket bei nem Wassereimer
-    		ItemStack containerItem = handler.getContainer();
+			FluidStack f = FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false);
+			if (f == null) return;
 
-    		if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
+			//Z.b. der leere bucket bei nem Wassereimer
+			ItemStack containerItem = handler.getContainer();
 
-			FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, true);
+			if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
+
+			FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, true);
 
 			//Das veränderte Fluid Item
 			ItemStack container = handler.getContainer();
 			container.setCount(output.getCount()+1);
-			
-			this.setInventorySlotContents(1, container);
-			this.getStackInSlot(2).shrink(1);
+
+			setInventorySlotContents(1, container);
+			getStackInSlot(2).shrink(1);
 		}
 
-		if(ItemStack.areItemStacksEqual(this.getStackInSlot(2), TankUtil.WATER_BOTTLE))
-		{
+		if(ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
 			if(emptyRoom() >= 250)
 			{
-       			this.getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+				getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
 
-       			ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
-       			
-   				setInventorySlotContents(1, bottles);
-   				this.decrStackSize(2, 1);
+				ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
+
+				setInventorySlotContents(1, bottles);
+				decrStackSize(2, 1);
 			}
-		}
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack)
+	public boolean isItemValidForSlot(final int index, final ItemStack stack)
 	{
 		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
-		if(this.getStackInSlot(index).getCount() == this.getStackInSlot(index).getMaxStackSize()) return false;
+		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
 		case 0: return false;
@@ -166,48 +162,48 @@ public class TileFreezer extends TileFluidInventory
 		case 2:
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(handler ==  null) return false;
-			if(FluidUtil.tryFluidTransfer(this.getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
+			if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
 		}
 
 		return true;
 	}
 
 	@Override
-	public boolean isItemValidForSlotToExtract(int index, ItemStack itemStack) {
+	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack) {
 		return index != 2;
 	}
 
 	@Override
 	public String getGuiID()
-    {
-        return "nethertweaksmod:gui_freezer";
-    }
+	{
+		return "nethertweaksmod:gui_freezer";
+	}
 
-    @Override
-	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
-    {
-        return new ContainerFreezer(playerInventory, this);
-    }
-    
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-    	compound.setFloat("temperature", getTemp());
-    	compound.setInteger("timer", timer);
-    	return super.writeToNBT(compound);
-    }
-    
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-    	super.readFromNBT(compound);
-    	setTemp(compound.getFloat("temperature"));
-    	timer = compound.getInteger("timer");
-    }
+	@Override
+	public Container createContainer(final InventoryPlayer playerInventory, final EntityPlayer playerIn)
+	{
+		return new ContainerFreezer(playerInventory, this);
+	}	
+
+	@Override
+	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
+		compound.setFloat("temperature", getTemp());
+		compound.setInteger("timer", timer);
+		return super.writeToNBT(compound);
+	}
+
+	@Override
+	public void readFromNBT(final NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		setTemp(compound.getFloat("temperature"));
+		timer = compound.getInteger("timer");
+	}
 
 	public float getTemp() {
 		return temp;
 	}
 
-	public void setTemp(float temp) {
+	public void setTemp(final float temp) {
 		this.temp = temp;
 	}
 }

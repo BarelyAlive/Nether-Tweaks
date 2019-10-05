@@ -27,29 +27,29 @@ public class GuiHandler implements IGuiHandler
 	public static final int ID_FREEZER   = 2;
 	public static final int ID_HELLMART  = 3;
 	public static final int ID_BONFIRE 	 = 4;
-	
+
 	@Override
-	public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	public Container getServerGuiElement(final int ID, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
 		switch (ID)
 		{
-			case ID_FURNACE:
-				return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
-			case ID_CONDENSER:
-				return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
-			case ID_FREEZER:
-				return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
-			case ID_HELLMART:
-				return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
-			case ID_BONFIRE:
-				return new ContainerBonfire();
-			default:
-				return null;
+		case ID_FURNACE:
+			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+		case ID_CONDENSER:
+			return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
+		case ID_FREEZER:
+			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
+		case ID_HELLMART:
+			return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
+		case ID_BONFIRE:
+			return new ContainerBonfire();
+		default:
+			return null;
 		}
 	}
-		
+
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	public Object getClientGuiElement(final int ID, final EntityPlayer player, final World world, final int x, final int y, final int z)
 	{
 		switch (ID)
 		{

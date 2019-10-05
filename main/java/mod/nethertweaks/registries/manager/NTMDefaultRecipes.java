@@ -7,6 +7,7 @@ import mod.nethertweaks.registries.registries.CompostRegistry;
 import mod.nethertweaks.registries.registries.CondenserRegistry;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registries.registries.DynOreRegistry;
+import mod.nethertweaks.registries.registries.DrinkRegistry;
 import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
@@ -20,52 +21,60 @@ import mod.nethertweaks.registries.registries.SieveRegistry;
 
 public class NTMDefaultRecipes
 {
-    private static final CompatDefaultRecipes compat = new CompatDefaultRecipes();
+	private static final CompatDefaultRecipes compat = new CompatDefaultRecipes();
 
-    public static void registerDefaults()
-    {
-        NTMRegistryManager.registerSieveDefaultRecipeHandler(new SieveDefaults());
-        NTMRegistryManager.registerHammerDefaultRecipeHandler(new HammerDefaults());
-        NTMRegistryManager.registerCompostDefaultRecipeHandler(new CompostDefaults());
-        NTMRegistryManager.registerCondenserDefaultRecipeHandler(new CondenserDefaults());
-        NTMRegistryManager.registerHellmartDefaultRecipeHandler(new HellmartDefaults());
-        NTMRegistryManager.registerHeatDefaultRecipeHandler(new HeatDefaults());
-        NTMRegistryManager.registerOreDefaultRecipeHandler(new OreDefaults());
-        NTMRegistryManager.registerBarrelLiquidBlacklistDefaultHandler(new BarrelLiquidBlacklistDefaults());
-        NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(new FluidOnTopDefaults());
-        NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(new FluidTransformDefaults());
-        NTMRegistryManager.registerFluidBlockDefaultRecipeHandler(new FluidBlockTransformDefaults());
-        NTMRegistryManager.registerFluidItemFluidDefaultHandler(new FluidItemFluidDefaults());
-        NTMRegistryManager.registerCrucibleStoneDefaultRecipeHandler(new CrucibleStoneDefaults());
-        NTMRegistryManager.registerMilkEntityDefaultRecipeHandler(new MilkEntityDefaults());
-    }
+	public static void registerDefaults()
+	{
+		NTMRegistryManager.registerSieveDefaultRecipeHandler(new SieveDefaults());
+		NTMRegistryManager.registerHammerDefaultRecipeHandler(new HammerDefaults());
+		NTMRegistryManager.registerCompostDefaultRecipeHandler(new CompostDefaults());
+		NTMRegistryManager.registerCondenserDefaultRecipeHandler(new CondenserDefaults());
+		NTMRegistryManager.registerDrinkDefaultRecipeHandler(new DrinkDefaults());
+		NTMRegistryManager.registerHellmartDefaultRecipeHandler(new HellmartDefaults());
+		NTMRegistryManager.registerHeatDefaultRecipeHandler(new HeatDefaults());
+		NTMRegistryManager.registerOreDefaultRecipeHandler(new OreDefaults());
+		NTMRegistryManager.registerBarrelLiquidBlacklistDefaultHandler(new BarrelLiquidBlacklistDefaults());
+		NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(new FluidOnTopDefaults());
+		NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(new FluidTransformDefaults());
+		NTMRegistryManager.registerFluidBlockDefaultRecipeHandler(new FluidBlockTransformDefaults());
+		NTMRegistryManager.registerFluidItemFluidDefaultHandler(new FluidItemFluidDefaults());
+		NTMRegistryManager.registerCrucibleStoneDefaultRecipeHandler(new CrucibleStoneDefaults());
+		NTMRegistryManager.registerMilkEntityDefaultRecipeHandler(new MilkEntityDefaults());
+	}
 
-    private static class CompostDefaults implements ICompostDefaultRegistryProvider {
-        @Override
-        public void registerRecipeDefaults(@Nonnull CompostRegistry registry) {
-            compat.registerCompost(registry);
-        }
-    }
-    
-    private static class CondenserDefaults implements ICondenserDefaultRegistryProvider {
-        @Override
-		public void registerRecipeDefaults(@Nonnull CondenserRegistry registry) {
-            compat.registerCondenser(registry);
-        }
-    }
-    
-    private static class HellmartDefaults implements IHellmartDefaultRegistryProvider {
-        @Override
-		public void registerRecipeDefaults(@Nonnull HellmartRegistry registry) {
-            compat.registerHellmart(registry);
-        }
-    }
+	private static class CompostDefaults implements ICompostDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final CompostRegistry registry) {
+			compat.registerCompost(registry);
+		}
+	}
 
-    private static class SieveDefaults implements ISieveDefaultRegistryProvider {
-        @Override
-        public void registerRecipeDefaults(@Nonnull SieveRegistry registry) {
-            compat.registerSieve(registry);
-        }
+	private static class CondenserDefaults implements ICondenserDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final CondenserRegistry registry) {
+			compat.registerCondenser(registry);
+		}
+	}
+
+	private static class DrinkDefaults implements IDrinkDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final DrinkRegistry registry) {
+			compat.registerDrink(registry);
+		}
+	}
+
+	private static class HellmartDefaults implements IHellmartDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final HellmartRegistry registry) {
+			compat.registerHellmart(registry);
+		}
+	}
+
+	private static class SieveDefaults implements ISieveDefaultRegistryProvider {
+		@Override
+		public void registerRecipeDefaults(@Nonnull final SieveRegistry registry) {
+			compat.registerSieve(registry);
+		}
 
 		@Override
 		public void registerSieveRecipeDefaults() {

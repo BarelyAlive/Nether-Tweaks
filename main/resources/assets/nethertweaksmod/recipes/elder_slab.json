@@ -5,11 +5,11 @@
   ],
   "key": {
     "X": {
-      "item": "item_elder_planks"
+      "item": "elder_planks"
     }
   },
   "result": {
-    "item": "item_elder_slab",
+    "item": "elder_slab",
     "data": 0,
     "count": 6
   }

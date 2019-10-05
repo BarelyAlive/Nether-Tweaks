@@ -2,8 +2,7 @@ package mod.nethertweaks.items;
 
 import java.util.List;
 
-import mod.nethertweaks.INames;
-import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.Constants;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
@@ -11,17 +10,18 @@ import net.minecraft.world.World;
 
 public class FlintAndBlaze extends ItemFlintAndSteel{
 
-    public FlintAndBlaze()
-    {
-    	this.setRegistryName(NetherTweaksMod.MODID, INames.FLINT_N_BLAZE);
-        this.setMaxStackSize(1);
-        this.setMaxDamage(256);
-        this.setCreativeTab(NetherTweaksMod.TABNTM);
-    }
+	public FlintAndBlaze()
+	{
+		setRegistryName(Constants.MODID, Constants.FLINT_N_BLAZE);
+		setUnlocalizedName(Constants.FLINT_N_BLAZE);
+		setMaxStackSize(1);
+		setMaxDamage(256);
+		setCreativeTab(Constants.TABNTM);
+	}
 
-    @Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-    {
+	@Override
+	public void addInformation(final ItemStack stack, final World worldIn, final List<String> tooltip, final ITooltipFlag flagIn)
+	{
 		tooltip.add("Totally LIT!");
 	}
 }

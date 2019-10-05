@@ -37,92 +37,86 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelModeFluid implements IBarrelMode {
 
-    private final BarrelItemHandlerFluid handler;
-    public int workTime;
-    public int maxWorkTime = 1200;
-    public Color impossFluidColor = new Color(25, 75, 75, 255);
-    
+	private final BarrelItemHandlerFluid handler;
+	public int workTime;
+	public int maxWorkTime = 1200;
+	public Color impossFluidColor = new Color(25, 75, 75, 255);
 
-    public BarrelModeFluid() {
-        handler = new BarrelItemHandlerFluid(null);
-        workTime = 0;
-    }
 
-    @Override
-    public void writeToNBT(NBTTagCompound tag) {
-    	tag.setInteger("maxWorkTime", this.maxWorkTime);
-    	tag.setInteger("workTime", this.workTime);
-    }
+	public BarrelModeFluid() {
+		handler = new BarrelItemHandlerFluid(null);
+		workTime = 0;
+	}
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-    	this.maxWorkTime = tag.getInteger("maxWorkTime");
-    	this.workTime = tag.getInteger("workTime");
-    }
+	@Override
+	public void writeToNBT(final NBTTagCompound tag) {
+		tag.setInteger("maxWorkTime", maxWorkTime);
+		tag.setInteger("workTime", workTime);
+	}
 
-    @Override
-    public boolean isTriggerItemStack(ItemStack stack) {
-        return false;
-    }
+	@Override
+	public void readFromNBT(final NBTTagCompound tag) {
+		maxWorkTime = tag.getInteger("maxWorkTime");
+		workTime = tag.getInteger("workTime");
+	}
 
-    @Override
-    public boolean isTriggerFluidStack(FluidStack stack) {
-        return stack != null;
-    }
+	@Override
+	public boolean isTriggerItemStack(final ItemStack stack) {
+		return false;
+	}
 
-    @Override
-    public String getName() {
-        return "fluid";
-    }
+	@Override
+	public boolean isTriggerFluidStack(final FluidStack stack) {
+		return stack != null;
+	}
 
-    @Override
-    public List<String> getWailaTooltip(TileBarrel barrel, List<String> currenttip) {
-        if (barrel.getTank().getFluid() != null) {
-            currenttip.add(barrel.getTank().getFluid().getLocalizedName());
-            if (this.workTime > 0)
-            {
-            	currenttip.add("Transformation: " + (((float)(((double)this.maxWorkTime) / ((double)this.workTime))) * 100.0F) + " %");
-            }
-            else
-            {
-                currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
-            }
-        } else {
-            currenttip.add("Empty");
-        }
+	@Override
+	public String getName() {
+		return "fluid";
+	}
 
-        return currenttip;
-    }
+	@Override
+	public List<String> getWailaTooltip(final TileBarrel barrel, final List<String> currenttip) {
+		if (barrel.getTank().getFluid() != null) {
+			currenttip.add(barrel.getTank().getFluid().getLocalizedName());
+			if (workTime > 0)
+				currenttip.add("Transformation: " + (float)((double)maxWorkTime / (double)workTime) * 100.0F + " %");
+			else
+				currenttip.add("Amount: " + barrel.getTank().getFluidAmount() + "mb");
+		} else
+			currenttip.add("Empty");
 
-    @Override
-    public void onBlockActivated(World world, TileBarrel barrel, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        ItemStack stack = player.getHeldItem(hand);
+		return currenttip;
+	}
 
-        if (!stack.isEmpty()) {
-            ItemStack remainder = getHandler(barrel).insertItem(0, stack, false);
+	@Override
+	public void onBlockActivated(final World world, final TileBarrel barrel, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 
-            int size = remainder.isEmpty() ? 0 : remainder.getCount();
+		if (!stack.isEmpty()) {
+			ItemStack remainder = getHandler(barrel).insertItem(0, stack, false);
 
-            if (stack.getItem().hasContainerItem(stack)) {
-                ItemStack container = stack.getItem().getContainerItem(stack);
+			int size = remainder.isEmpty() ? 0 : remainder.getCount();
 
-                // Should always be 1 but LET'S JUST MAKE SURE
-                container.setCount(stack.getCount() - size);
+			if (stack.getItem().hasContainerItem(stack)) {
+				ItemStack container = stack.getItem().getContainerItem(stack);
 
-                if (!player.inventory.addItemStackToInventory(container)) {
-                    player.getEntityWorld().spawnEntity(new EntityItem(player.getEntityWorld(), player.posX, player.posY, player.posZ, container));
-                }
-            }
+				// Should always be 1 but LET'S JUST MAKE SURE
+				container.setCount(stack.getCount() - size);
 
-            player.setHeldItem(hand, remainder);
-        }
+				if (!player.inventory.addItemStackToInventory(container))
+					player.getEntityWorld().spawnEntity(new EntityItem(player.getEntityWorld(), player.posX, player.posY, player.posZ, container));
+			}
 
-    }
+			player.setHeldItem(hand, remainder);
+		}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureForRender(TileBarrel barrel) {
-    	/*
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTextureForRender(final TileBarrel barrel) {
+		/*
     	if (workTime > 0)
     	{
 	    	if (((float)(((double)this.maxWorkTime) / ((double)this.maxWorkTime))) < 0.5F)
@@ -138,140 +132,133 @@ public class BarrelModeFluid implements IBarrelMode {
 	            }
 	    	}
     	}
-    	*/
-    	return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
-    }
+		 */
+		return Util.getTextureFromFluidStack(barrel.getTank().getFluid());
+	}
 
-    @Override
-    public Color getColorForRender() {
-    	if (this.workTime == 0)
-    		return Util.whiteColor;
-    	else
-    	{
-            return Color.average(Util.whiteColor, Util.greenColor,  //new Color(0.09f, 0.29f, 0.29f, 1f),
-                    2 * Math.abs((float)(((double)this.workTime) / ((double)this.maxWorkTime))));
-    	}
+	@Override
+	public Color getColorForRender() {
+		if (workTime == 0)
+			return Util.whiteColor;
+		else
+			return Color.average(Util.whiteColor, Util.greenColor,  //new Color(0.09f, 0.29f, 0.29f, 1f),
+					2 * Math.abs((float)((double)workTime / (double)maxWorkTime)));
 
-    }
+	}
 
-    @Override
-    public float getFilledLevelForRender(TileBarrel barrel) {
-        double amount = barrel.getTank().getFluidAmount();
-        return (float) ((amount / Fluid.BUCKET_VOLUME) * 0.9375F);
-    }
+	@Override
+	public float getFilledLevelForRender(final TileBarrel barrel) {
+		double amount = barrel.getTank().getFluidAmount();
+		return (float) (amount / Fluid.BUCKET_VOLUME * 0.9375F);
+	}
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void update(TileBarrel barrel) {
-        // Fluids on top.
-        if (barrel.getTank().getFluid() != null) {
-            FluidTank tank = barrel.getTank();
-            if (tank.getFluid() == null || tank.getFluid().amount != tank.getCapacity())
-                return;
+	@SuppressWarnings("deprecation")
+	@Override
+	public void update(final TileBarrel barrel) {
+		// Fluids on top.
+		if (barrel.getTank().getFluid() != null) {
+			FluidTank tank = barrel.getTank();
+			if (tank.getFluid() == null || tank.getFluid().amount != tank.getCapacity())
+				return;
 
-            Fluid fluidInBarrel = tank.getFluid().getFluid();
+			Fluid fluidInBarrel = tank.getFluid().getFluid();
 
-            BlockPos barrelPos = barrel.getPos();
-            BlockPos pos = new BlockPos(barrelPos.getX(), barrelPos.getY() + 1, barrelPos.getZ());
-            Block onTop = barrel.getWorld().getBlockState(pos).getBlock();
+			BlockPos barrelPos = barrel.getPos();
+			BlockPos pos = new BlockPos(barrelPos.getX(), barrelPos.getY() + 1, barrelPos.getZ());
+			Block onTop = barrel.getWorld().getBlockState(pos).getBlock();
 
-            Fluid fluidOnTop = null;
-            if (onTop instanceof BlockLiquid) {
-                fluidOnTop = onTop.getMaterial(barrel.getWorld().getBlockState(pos)) == Material.WATER
-                        ? FluidRegistry.WATER : FluidRegistry.LAVA;
-            }
+			Fluid fluidOnTop = null;
+			if (onTop instanceof BlockLiquid)
+				fluidOnTop = onTop.getMaterial(barrel.getWorld().getBlockState(pos)) == Material.WATER
+				? FluidRegistry.WATER : FluidRegistry.LAVA;
 
-            if (!onTop.equals(Blocks.AIR) && onTop instanceof IFluidBlock) {
-                fluidOnTop = ((IFluidBlock) onTop).getFluid();
-            }
+			if (!onTop.equals(Blocks.AIR) && onTop instanceof IFluidBlock)
+				fluidOnTop = ((IFluidBlock) onTop).getFluid();
 
-            if (NTMRegistryManager.FLUID_ON_TOP_REGISTRY.isValidRecipe(fluidInBarrel, fluidOnTop)) {
-                BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, fluidOnTop);
-                tank.drain(tank.getCapacity(), true);
-                barrel.setMode("block");
-                NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
+			if (NTMRegistryManager.FLUID_ON_TOP_REGISTRY.isValidRecipe(fluidInBarrel, fluidOnTop)) {
+				BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, fluidOnTop);
+				tank.drain(tank.getCapacity(), true);
+				barrel.setMode("block");
+				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
 
-                barrel.getMode().addItem(info.getItemStack(), barrel);
+				barrel.getMode().addItem(info.getItemStack(), barrel);
 
-                return;
-            }
+				return;
+			}
 
-            // Fluid transforming time!
-            if (NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.containsKey(barrel.getTank().getFluid().getFluid().getName())) {
-                List<FluidTransformer> transformers = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY
-                        .getFluidTransformers(barrel.getTank().getFluid().getFluid().getName());
+			// Fluid transforming time!
+			if (NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.containsKey(barrel.getTank().getFluid().getFluid().getName())) {
+				List<FluidTransformer> transformers = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY
+						.getFluidTransformers(barrel.getTank().getFluid().getFluid().getName());
 
-                boolean found = false;
-                for (int radius = 0; radius <= 2; radius++) {
-                    for (FluidTransformer transformer : transformers) {
-                        if (!NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.isBlacklisted(barrel.getTier(), transformer.getOutputFluid())
-                                && (Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
-                                barrel.getPos().add(0, -1, 0), barrel.getWorld(), radius)
-                                || Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
-                                barrel.getPos(), barrel.getWorld(), radius))) {
-                            // Time to start the process.
-                            FluidStack fstack = tank.getFluid();
-                            tank.setFluid(null);
+				boolean found = false;
+				for (int radius = 0; radius <= 2; radius++) {
+					for (FluidTransformer transformer : transformers)
+						if (!NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.isBlacklisted(barrel.getTier(), transformer.getOutputFluid())
+								&& (Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
+										barrel.getPos().add(0, -1, 0), barrel.getWorld(), radius)
+										|| Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
+												barrel.getPos(), barrel.getWorld(), radius))) {
+							// Time to start the process.
+							FluidStack fstack = tank.getFluid();
+							tank.setFluid(null);
 
-                            barrel.setMode("fluidTransform");
-                            BarrelModeFluidTransform mode = (BarrelModeFluidTransform) barrel.getMode();
+							barrel.setMode("fluidTransform");
+							BarrelModeFluidTransform mode = (BarrelModeFluidTransform) barrel.getMode();
 
-                            mode.setTransformer(transformer);
-                            mode.setInputStack(fstack);
-                            mode.setOutputStack(FluidRegistry.getFluidStack(transformer.getOutputFluid(), 1000));
+							mode.setTransformer(transformer);
+							mode.setInputStack(fstack);
+							mode.setOutputStack(FluidRegistry.getFluidStack(transformer.getOutputFluid(), 1000));
 
-                            NetworkHandler.sendNBTUpdate(barrel);
-                            found = true;
-                        }
-                    }
-                    if (found) break;
-                }
-            }
-            if(barrel.getItemHandler().getStackInSlot(0) != null && barrel.getTank().getFluid() != null)
-            {
-	            String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
-	            if(transformFluidItem != null)
-	            {
-	            	this.workTime++;
-	            	if(this.maxWorkTime < this.workTime)
-	            	{
-	            		barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
-	                	tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
-	            	}
-	            	NetworkHandler.sendNBTUpdate(barrel);
-	            }
-            }
-        }
-    }
+							NetworkHandler.sendNBTUpdate(barrel);
+							found = true;
+						}
+					if (found) break;
+				}
+			}
+			if(barrel.getItemHandler().getStackInSlot(0) != null && barrel.getTank().getFluid() != null)
+			{
+				String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+				if(transformFluidItem != null)
+				{
+					workTime++;
+					if(maxWorkTime < workTime)
+					{
+						barrel.getMode().getFluidHandler(barrel).drain(Integer.MAX_VALUE, true);
+						tank.fill(FluidRegistry.getFluidStack(transformFluidItem, tank.getCapacity()), true);
+					}
+					NetworkHandler.sendNBTUpdate(barrel);
+				}
+			}
+		}
+	}
 
-    @Override
-    public void addItem(ItemStack stack, TileBarrel barrel) {
-    	if (this.workTime != 0)
-    		return;
-    	FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
-    	handler.setBarrel(barrel);
-    	if(handler.getStackInSlot(0).isEmpty())
-    	{
-    		handler.insertItem(0, stack, false);
-    	}
-    }
+	@Override
+	public void addItem(final ItemStack stack, final TileBarrel barrel) {
+		if (workTime != 0)
+			return;
+		FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
+		handler.setBarrel(barrel);
+		if(handler.getStackInSlot(0).isEmpty())
+			handler.insertItem(0, stack, false);
+	}
 
-    @Override
-    public ItemStackHandler getHandler(TileBarrel barrel) {
-        handler.setBarrel(barrel);
-        return handler;
-    }
+	@Override
+	public ItemStackHandler getHandler(final TileBarrel barrel) {
+		handler.setBarrel(barrel);
+		return handler;
+	}
 
-    @Override
-    public FluidTank getFluidHandler(TileBarrel barrel) {
-        BarrelFluidHandler handler = barrel.getTank();
-        handler.setBarrel(barrel);
-        return handler;
-    }
+	@Override
+	public FluidTank getFluidHandler(final TileBarrel barrel) {
+		BarrelFluidHandler handler = barrel.getTank();
+		handler.setBarrel(barrel);
+		return handler;
+	}
 
-    @Override
-    public boolean canFillWithFluid(TileBarrel barrel) {
-        return true;
-    }
+	@Override
+	public boolean canFillWithFluid(final TileBarrel barrel) {
+		return true;
+	}
 
 }

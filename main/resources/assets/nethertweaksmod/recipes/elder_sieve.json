@@ -10,14 +10,14 @@
       "item": "minecraft:stick"
     },
     "x": {
-      "item": "item_elder_planks"
+      "item": "elder_planks"
     },
     "y": {
-      "item": "item_elder_slab",
+      "item": "elder_slab",
       "data": 0
     }
   },
   "result": {
-    "item": "item_elder_sieve"
+    "item": "elder_sieve"
   }
 }

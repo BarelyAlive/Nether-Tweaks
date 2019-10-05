@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "nethertweaksmod:item_elder_barrel"
+    "item": "nethertweaksmod:elder_barrel"
   },
   "pattern": [
     "x x",
@@ -10,10 +10,10 @@
   "type": "forge:ore_shaped",
   "key": {
     "x": {
-      "item": "nethertweaksmod:item_elder_planks"
+      "item": "nethertweaksmod:elder_planks"
     },
     "y": {
-      "item": "nethertweaksmod:item_elder_slab",
+      "item": "nethertweaksmod:elder_slab",
       "data": 0
     }
   }

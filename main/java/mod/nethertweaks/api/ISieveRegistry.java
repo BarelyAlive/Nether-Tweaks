@@ -14,36 +14,36 @@ import net.minecraft.util.ResourceLocation;
 
 public interface ISieveRegistry extends IRegistryMappedList<Ingredient, Siftable> {
 
-    void register(ItemStack itemStack, StackInfo drop, float chance, String  meshLevel);
-    void register(Item item, int meta, StackInfo drop, float chance, String  meshLevel);
-    void register(StackInfo item, StackInfo drop, float chance, String  meshLevel);
-    void register(Block block, int meta, StackInfo drop, float chance, String  meshLevel);
-    void register(IBlockState state, StackInfo drop, float chance, String  meshLevel);
-    void register(ResourceLocation location, int meta, StackInfo drop, float chance, String  meshLevel);
-    void register(String name, StackInfo drop, float chance, String  meshLevel);
-    void register(Ingredient ingredient, Siftable drop);
+	void register(ItemStack itemStack, StackInfo drop, float chance, String  meshLevel);
+	void register(Item item, int meta, StackInfo drop, float chance, String  meshLevel);
+	void register(StackInfo item, StackInfo drop, float chance, String  meshLevel);
+	void register(Block block, int meta, StackInfo drop, float chance, String  meshLevel);
+	void register(IBlockState state, StackInfo drop, float chance, String  meshLevel);
+	void register(ResourceLocation location, int meta, StackInfo drop, float chance, String  meshLevel);
+	void register(String name, StackInfo drop, float chance, String  meshLevel);
+	void register(Ingredient ingredient, Siftable drop);
 
-    /**
-     * Gets *all* possible drops from the sieve. It is up to the dropper to
-     * check whether or not the drops should be dropped!
-     *
-     * @param stack The block to get the sieve drops for
-     * @return ArrayList of [Siftable]
-     * that could *potentially* be dropped.
-     */
-    List<Siftable> getDrops(StackInfo stack);
+	/**
+	 * Gets *all* possible drops from the sieve. It is up to the dropper to
+	 * check whether or not the drops should be dropped!
+	 *
+	 * @param stack The block to get the sieve drops for
+	 * @return ArrayList of [Siftable]
+	 * that could *potentially* be dropped.
+	 */
+	List<Siftable> getDrops(StackInfo stack);
 
-    /**
-     * Gets *all* possible drops from the sieve. It is up to the dropper to
-     * check whether or not the drops should be dropped!
-     *
-     * @param stack The ItemStack to get the sieve drops for
-     * @return ArrayList of [Siftable]
-     * that could *potentially* be dropped.
-     */
-    List<Siftable> getDrops(ItemStack stack);
-    List<Siftable> getDrops(Ingredient ingredient);
+	/**
+	 * Gets *all* possible drops from the sieve. It is up to the dropper to
+	 * check whether or not the drops should be dropped!
+	 *
+	 * @param stack The ItemStack to get the sieve drops for
+	 * @return ArrayList of [Siftable]
+	 * that could *potentially* be dropped.
+	 */
+	List<Siftable> getDrops(ItemStack stack);
+	List<Siftable> getDrops(Ingredient ingredient);
 
-    List<ItemStack> getRewardDrops(Random random, IBlockState block, String meshLevel, int fortuneLevel);
-    boolean canBeSifted(ItemStack stack);
+	List<ItemStack> getRewardDrops(Random random, IBlockState block, String meshLevel, int fortuneLevel);
+	boolean canBeSifted(ItemStack stack);
 }
