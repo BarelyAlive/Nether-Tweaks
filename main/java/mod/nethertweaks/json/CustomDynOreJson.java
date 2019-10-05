@@ -26,8 +26,8 @@ public class CustomDynOreJson implements JsonDeserializer<DynOre>, JsonSerialize
     {
         JsonObject obj = new JsonObject();
         
+        obj.addProperty("id", src.getID());
         obj.addProperty("name", src.getName());
-        obj.add("chunk", context.serialize(src.getChunk(), ItemInfo.class));
         obj.add("ingot", context.serialize(src.getResult(), ItemInfo.class));
         obj.addProperty("color", src.getColor());
         obj.addProperty("rarity", src.getRarity());
@@ -39,15 +39,15 @@ public class CustomDynOreJson implements JsonDeserializer<DynOre>, JsonSerialize
 			throws JsonParseException {
 		JsonHelper helper = new JsonHelper(json);
 		
+		String id = helper.getString("id");
 		String name = helper.getString("name");
 		
-        ItemInfo chunk = json.getAsJsonObject().has("chunk") ? context.deserialize(json.getAsJsonObject().get("chunk"), ItemInfo.class) : null;
         ItemInfo ingot = json.getAsJsonObject().has("ingot") ? context.deserialize(json.getAsJsonObject().get("ingot"), ItemInfo.class) : null;
 		
 		int color = helper.getInteger("color");
 		int rarity = helper.getInteger("rarity");
 		
 
-        return new DynOre(name, chunk, ingot, color, rarity);
+        return new DynOre(id, name, ingot, color, rarity);
 	}
 }

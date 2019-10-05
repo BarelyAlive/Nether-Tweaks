@@ -53,7 +53,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 
 	@Override
 	protected void registerEntriesFromJSON(FileReader fr) {
-        List<DynOre> gsonInput = gson.fromJson(fr, new TypeToken<List<Ore>>() {
+        List<DynOre> gsonInput = gson.fromJson(fr, new TypeToken<List<DynOre>>() {
         }.getType());
         for (DynOre ore : gsonInput) {
             register(ore);
@@ -68,38 +68,42 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 	@Override
 	public ItemChunk getOreItem(String name) {
 		// TODO Auto-generated method stub
+		/*
         for (DynOre itemOre : itemOreRegistry) {
             if (itemOre.getName().equals(name)) {
                 return ((ItemChunk)itemOre.getChunk().getItem());
             }
         }
+        */
 
 		return null;
 	}
 
 	@Override
 	public boolean isRegistered(String name) {
+		/*
 		if (this.getOreItem(name) != null)
 		{
 			return true;
 		}
+		*/
 		return false;
 	}
 
-	public DynOre register(String name, ItemInfo chunk, ItemInfo ingot) {
+	public DynOre register(String id, String name, ItemInfo ingot) {
 		// TODO Auto-generated method stub
-		return this.register(name, chunk, ingot, 1);
+		return this.register(id, name, ingot, 1);
 	}
 	
-	public DynOre register(String name, ItemInfo chunk, ItemInfo ingot, int rarity) {
+	public DynOre register(String id, String name, ItemInfo ingot, int rarity) {
 		// TODO Auto-generated method stub
-		return this.register(name, chunk, ingot, rarity, 0x80000000);
+		return this.register(id, name, ingot, rarity, 0x80000000);
 	}
 	
 	@Override
-	public DynOre register(String name, ItemInfo chunk, ItemInfo ingot, int rarity, int color) {
+	public DynOre register(String id, String name, ItemInfo ingot, int rarity, int color) {
 		// TODO Auto-generated method stub
-		DynOre ore = new DynOre(name, chunk, ingot, rarity, color);
+		DynOre ore = new DynOre(id, name, ingot, rarity, color);
 		register(ore);
 		return ore;
 	}
@@ -118,9 +122,9 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 	@Override
 	public void saveJson(File file) {
 		file = new File(file, "DynamicOreRegistry.json");
+		registerDefaults();
 		if (!file.exists())
 		{
-			registerDefaults();
         	if (Config.enableJSONLoading) {
 		    	try(FileWriter fw = new FileWriter(file)) {
 		        	// TODO remove null again
@@ -144,7 +148,6 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
         if (file.exists() && Config.enableJSONLoading) {
             try(FileReader fr = new FileReader(file)) {
                 registerEntriesFromJSON(fr);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

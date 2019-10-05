@@ -5,36 +5,36 @@ import net.minecraft.item.ItemStack;
 
 public class DynOre {
 	
+	private String id;
 	private String name;
-	private ItemInfo chunk;
 	private ItemInfo result;
 	private int rarity;
 	private int color;
 	
-	public DynOre (String name, ItemInfo chunk, ItemInfo result)
+	public DynOre (String id, String name, ItemInfo result)
 	{
-		this(name, chunk, result, 1);
+		this(id, name, result, 1);
 	}
 	
-	public DynOre (String name, ItemInfo chunk, ItemInfo result, int rarity)
+	public DynOre (String id, String name, ItemInfo result, int rarity)
 	{
-		this(name, chunk, result, rarity, 0x8000000);
+		this(id, name, result, rarity, 0x8000000);
 	}
 	
-	public DynOre (String name, ItemInfo chunk, ItemInfo result, int rarity, int color) {
+	public DynOre (String id, String name, ItemInfo result, int rarity, int color) {
+		this.id = id;
 		this.name = name;
-		this.chunk = chunk;
 		this.result = result;
 		this.rarity = rarity;
 		this.color = color;
 	}
 	
-	public String getName() {
-		return this.name;
+	public String getID() {
+		return this.id;
 	}
 	
-	public ItemInfo getChunk() {
-		return this.chunk;
+	public String getName() {
+		return this.name;
 	}
 	
 	public ItemInfo getResult() {
@@ -48,7 +48,7 @@ public class DynOre {
 	
 	public int getColor()
 	{
-		return this.color;
+		return ((this.color & 0x00FFFFFF) | 0x7F000000);
 	}
 
 }

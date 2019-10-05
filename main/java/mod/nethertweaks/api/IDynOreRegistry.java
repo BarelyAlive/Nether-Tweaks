@@ -36,7 +36,7 @@ public interface IDynOreRegistry extends IRegistryList<DynOre>
      * 
      * @return Ore, containing the base Ore object.
      */
-	DynOre register(@Nonnull String name, @Nonnull ItemInfo chunk, @Nonnull ItemInfo ingot, int rarity, int color);
+	DynOre register(@Nonnull String id, @Nonnull String name, @Nonnull ItemInfo ingot, int rarity, int color);
 
 	@Nullable ItemChunk getOreItem(String name);
     boolean isRegistered(String name);

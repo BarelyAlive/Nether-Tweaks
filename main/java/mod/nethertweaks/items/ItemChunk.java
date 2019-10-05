@@ -11,6 +11,7 @@ public class ItemChunk extends Item {
 
 	private Item results;
 	private String ore_name = "";
+	private String display_name = "";
 	private int color = 0;
 	
 	public ItemChunk() {
@@ -41,7 +42,8 @@ public class ItemChunk extends Item {
 	
 	public ItemStack getResult()
 	{
-		return FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+		ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+		return (result.isEmpty() ? new ItemStack(results) : result);
 	}
 	
 	public void setColor(int color) {
@@ -51,6 +53,16 @@ public class ItemChunk extends Item {
 	public int getColor()
 	{
 		return color;
+	}
+	
+	public void setDisplayName(String name)
+	{
+		this.display_name = name;
+	}
+	
+	private String getDisplayName()
+	{
+		return this.display_name;
 	}
 	
 	@Override
@@ -71,22 +83,29 @@ public class ItemChunk extends Item {
 
 	public String getLocalizedName(ItemStack stack)
 	{
-		String name = this.getResult().getDisplayName();
-		String[] name_split = name.split(" ");
-		if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
+		if (this.display_name == "")
 		{
-			name = "";
-			for(int i = 0; i < (name_split.length - 1); i++)
+			String name = this.getResult().getDisplayName();
+			String[] name_split = name.split(" ");
+			if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
 			{
-				name += name_split[i];
+				name = "";
+				for(int i = 0; i < (name_split.length - 1); i++)
+				{
+					name += name_split[i];
+					name += " ";
+				}
+			}
+			else
+			{
 				name += " ";
 			}
+			return name + this.getLocalizedName();
 		}
 		else
 		{
-			name += " ";
+			return this.display_name;
 		}
-		return name + this.getLocalizedName();
 	}
 	
 	public String getLocalizedName()
