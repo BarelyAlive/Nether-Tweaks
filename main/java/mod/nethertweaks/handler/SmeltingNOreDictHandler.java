@@ -44,13 +44,15 @@ public class SmeltingNOreDictHandler
 		if(BlocksItems.enableSalt) {
 			OreDictionary.registerOre("itemSalt", ItemHandler.SALT);
 			OreDictionary.registerOre("dustSalt", ItemHandler.SALT);
+
+			if(BlocksItems.enableSaltBlock)
+				OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
 		}
 		if(BlocksItems.enableHellfayah) {
 			OreDictionary.registerOre("hellfayah", ItemHandler.HELLFAYAH);
 			OreDictionary.registerOre("oreHellfayah", new ItemStack(BlockHandler.HELLFAYAH_ORE, 1, 0));
 			OreDictionary.registerOre("blockHellfayah", new ItemStack(BlockHandler.BLOCK_OF_HELLFAYAH, 1, 1));
 		}
-		if(BlocksItems.enableSaltBlock)		  OreDictionary.registerOre("blockSalt", new ItemStack(BlockHandler.BLOCK_OF_SALT, 1, 2));
 		if(BlocksItems.enableElderTree)
 		{
 			OreDictionary.registerOre("plankWood", BlockHandler.ELDER_PLANKS);
@@ -93,11 +95,5 @@ public class SmeltingNOreDictHandler
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);
-
-		if(BlocksItems.enableFlintNBlaze)
-		{
-			OreDictionary.registerOre("lighter", Items.FLINT_AND_STEEL);
-			OreDictionary.registerOre("lighter", ItemHandler.FLINT_N_BLAZE);
-		}
 	}
 }

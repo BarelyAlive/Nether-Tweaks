@@ -167,7 +167,7 @@ public class BlockHandler
 	@SubscribeEvent
 	public void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
-		for (Block block : BLOCKS)
+		for(Block block : BLOCKS)
 			event.getRegistry().register(block);
 	}
 

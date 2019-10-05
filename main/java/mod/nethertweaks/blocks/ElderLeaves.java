@@ -1,17 +1,12 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
