@@ -24,9 +24,7 @@ public class Hammer extends ItemTool implements IHammer  {
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
 		setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
-		setUnlocalizedName(getName(material));
 		setMaxDamage(maxUses);
-		setCreativeTab(Constants.TABNTM);
 		miningLevel = material.getHarvestLevel();
 	}
 

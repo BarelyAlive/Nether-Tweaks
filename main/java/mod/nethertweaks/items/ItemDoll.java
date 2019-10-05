@@ -30,8 +30,6 @@ public class ItemDoll extends Item
 	public ItemDoll(final String type)
 	{
 		setRegistryName(Constants.MODID, type);
-		setUnlocalizedName(type);
-		setCreativeTab(Constants.TABNTM);
 	}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {

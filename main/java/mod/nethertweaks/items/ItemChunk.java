@@ -14,7 +14,6 @@ public class ItemChunk extends Item {
 
 	public ItemChunk() {
 		super();
-		setCreativeTab(Constants.TABNTM);
 		setHasSubtypes(true);
 	}
 

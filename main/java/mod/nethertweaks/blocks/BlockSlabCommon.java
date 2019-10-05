@@ -22,7 +22,6 @@ public abstract class BlockSlabCommon extends BlockSlab
 	public BlockSlabCommon(final String name, final Material material) {
 		super(material);
 		this.setRegistryName(name);
-		setUnlocalizedName(name);
 
 		IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 

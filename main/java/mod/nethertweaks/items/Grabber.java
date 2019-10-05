@@ -41,12 +41,10 @@ public class Grabber extends ItemShears
 
 	public Grabber(final int durability, final ToolMaterial material)
 	{
-		setCreativeTab(Constants.TABNTM);
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
 		setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
-		setUnlocalizedName(getName(material));
 	}
 
 	@Override

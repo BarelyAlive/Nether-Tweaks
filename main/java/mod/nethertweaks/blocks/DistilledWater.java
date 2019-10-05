@@ -15,7 +15,6 @@ public class DistilledWater extends BlockFluidClassic
 	{
 		super(FluidHandler.FLUID_DISTILLED_WATER, Material.WATER);
 		setRegistryName(Constants.MODID, Constants.DISTILLED_WATER);
-		setUnlocalizedName(Constants.DISTILLED_WATER);
 		setLightLevel(0);
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());

@@ -26,8 +26,6 @@ public abstract class CrucibleBase extends Block
 	public CrucibleBase(final String name, final Material material) {
 		super(material);
 		setRegistryName(Constants.MODID, name);
-		setUnlocalizedName(name);
-		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

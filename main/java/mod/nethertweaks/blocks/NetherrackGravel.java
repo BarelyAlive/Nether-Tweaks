@@ -10,8 +10,6 @@ public class NetherrackGravel extends BlockGravel
 	{
 		setSoundType(SoundType.GROUND);
 		setRegistryName(Constants.MODID, Constants.NETHERRACK_GRAVEL);
-		setUnlocalizedName(Constants.NETHERRACK_GRAVEL);
-		setCreativeTab(Constants.TABNTM);
 		setResistance(2.0f);
 		setHardness(0.4f);
 	}

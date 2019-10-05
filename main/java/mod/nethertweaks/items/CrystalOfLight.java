@@ -11,9 +11,7 @@ import net.minecraft.world.World;
 public class CrystalOfLight extends Item
 {
 	public CrystalOfLight(final String name) {
-		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, name);
-		setUnlocalizedName(name);
 	}
 
 	@Override

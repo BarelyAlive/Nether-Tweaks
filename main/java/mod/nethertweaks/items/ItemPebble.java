@@ -19,8 +19,6 @@ public class ItemPebble extends Item
 	public ItemPebble(final String type)
 	{
 		setRegistryName(Constants.MODID, type);
-		setUnlocalizedName(type);
-		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

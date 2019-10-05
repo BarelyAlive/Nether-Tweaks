@@ -33,7 +33,6 @@ public class Condenser extends CubeContainerHorizontal
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
-		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

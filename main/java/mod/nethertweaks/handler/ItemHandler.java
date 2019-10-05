@@ -19,6 +19,7 @@ import mod.nethertweaks.items.Seed;
 import mod.sfhcore.blocks.CustomDoor;
 import mod.sfhcore.blocks.itemblocks.ItemDoor;
 import mod.sfhcore.handler.CustomFuelHandler;
+import mod.sfhcore.items.CustomFood;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.Block;
@@ -80,18 +81,18 @@ public class ItemHandler
 	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
+	public static final Item PORTAL_CORE	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
+	public static final Item END_BOX 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.END_BOX));
+	public static final Item SALT	 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.SALT));
+	public static final Item HELLFAYAH 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
+	public static final Item STRING 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.STRING));
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
 
 	//Tools
 	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -109,11 +110,11 @@ public class ItemHandler
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true).setRegistryName(Constants.MODID, Constants.COOKED_JERKY).setCreativeTab(Constants.TABNTM);
+	public static final Item COOKED_JERKY 	  	 = new CustomFood(6, 1.2F, true, new ResourceLocation(Constants.MODID, Constants.COOKED_JERKY), Constants.TABNTM);
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
+	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
+	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
 	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
 
 	public static final List<Item> ITEMS = new ArrayList();
@@ -198,7 +199,12 @@ public class ItemHandler
 	public void registerItems(final RegistryEvent.Register<Item> event)
 	{
 		for(Item item : ITEMS)
+		{
+			item.setUnlocalizedName(item.getRegistryName().getResourcePath());
+			item.setCreativeTab(Constants.TABNTM);
+			
 			event.getRegistry().register(item);
+		}
 	}
 
 	@SubscribeEvent
