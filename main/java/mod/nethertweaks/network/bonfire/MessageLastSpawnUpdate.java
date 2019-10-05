@@ -1,16 +1,12 @@
 package mod.nethertweaks.network.bonfire;
 
-import java.nio.charset.Charset;
-import java.util.List;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

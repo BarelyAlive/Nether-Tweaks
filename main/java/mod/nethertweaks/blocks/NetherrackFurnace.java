@@ -5,7 +5,7 @@ import java.util.Random;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileNetherrackFurnace;
-import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.NetworkHandler;
@@ -59,7 +59,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 			return false;
 		}
 		
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandler.ID_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     

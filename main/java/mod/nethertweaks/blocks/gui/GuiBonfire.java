@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.blocks.container.ContainerBonfire;
 import mod.nethertweaks.network.MessageTeleportPlayer;
-import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
+import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;

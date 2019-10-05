@@ -4,14 +4,29 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import mod.nethertweaks.blocks.tile.*;
+import mod.nethertweaks.blocks.tile.TileAshBonePile;
+import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.blocks.tile.TileCrucibleStone;
+import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.capabilities.NTMCapabilities;
-import mod.nethertweaks.client.renderers.*;
+import mod.nethertweaks.client.renderers.RenderAshBonePile;
+import mod.nethertweaks.client.renderers.RenderBarrel;
+import mod.nethertweaks.client.renderers.RenderCrucible;
+import mod.nethertweaks.client.renderers.RenderProjectileStone;
+import mod.nethertweaks.client.renderers.RenderSieve;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.entities.ProjectileStone;
-import mod.nethertweaks.handler.*;
+import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.BucketNFluidHandler;
+import mod.nethertweaks.handler.GuiHandler;
+import mod.nethertweaks.handler.HammerHandler;
+import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.handler.JsonRecipeHandler;
+import mod.nethertweaks.handler.MessageHandler;
+import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.handler.SmeltingNOreDictHandler;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.BarrelModeRegistry;
@@ -47,8 +62,8 @@ public class NetherTweaksMod
 {
 	public static final String MODID = "nethertweaksmod";
 	public static final String MODNAME = "Nether Tweaks Mod";
-	public static final String VERSION = "2.0.2";
-	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.2];";
+	public static final String VERSION = "2.1.0";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";
 	
     @Instance(value=MODID)
     public static NetherTweaksMod instance;
@@ -65,6 +80,8 @@ public class NetherTweaksMod
     	@SubscribeEvent(priority = EventPriority.LOWEST)
     	public static void registerOres (RegistryEvent.Register<Item> event)
     	{
+    		NTMRegistryManager.DYN_ORE_REGISTRY.loadJson(NetherTweaksMod.configDirectory);
+    		NTMRegistryManager.registerDynOreDefaultRecipeHandler(new NTMDefaultRecipes.DynOreDefaults());
     		String[] ore_names = OreDictionary.getOreNames();
     		for (String ore_name : ore_names)
     		{
@@ -143,7 +160,7 @@ public class NetherTweaksMod
     	MinecraftForge.EVENT_BUS.register(new HammerHandler());
     	MinecraftForge.EVENT_BUS.register(this);
     	
-        if(event.getSide() == Side.CLIENT)
+        if(event.getSide().isClient())
         {
         	OreHandler.disableOre("minecraft:redstone");
     		OreHandler.disableOre("minecraft:coal");
@@ -155,13 +172,11 @@ public class NetherTweaksMod
     	*/
     	
         //GUI
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerNTM());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		
-		if(event.getSide() == Side.CLIENT)
+		if(event.getSide().isClient())
 			RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
 		
-		NTMRegistryManager.DYN_ORE_REGISTRY.loadJson(this.configDirectory);
-		NTMRegistryManager.registerDynOreDefaultRecipeHandler(new NTMDefaultRecipes.DynOreDefaults());
     }
     
     @Mod.EventHandler

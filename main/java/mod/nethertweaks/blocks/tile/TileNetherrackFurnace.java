@@ -31,12 +31,8 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
     public void update()
 	{
-		if (!canSmelt())
-        {
-        	this.setWorkTime(0);
-        }
-		else
-			work();
+		if (canSmelt()) work();
+		else this.setWorkTime(0);		
 		
 		checkInputOutput();
 		NetherrackFurnace.setState(isWorking(), this.world, this.pos);
@@ -73,7 +69,7 @@ public class TileNetherrackFurnace extends TileInventory
     private boolean canSmelt()
     {
         if(calcMaxWorktime() == 0) return false;
-    	if(this.getStackInSlot(0).isEmpty()) return false;      
+    	if(this.getStackInSlot(0).isEmpty()) return false;
         ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.getStackInSlot(0));
         if(itemstack.isEmpty()) return false;
         ItemStack itemstack1 = this.getStackInSlot(1);
@@ -90,9 +86,7 @@ public class TileNetherrackFurnace extends TileInventory
         BlockPos posBelow = pos.add(0, -1, 0);
         IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
-        if (stateBelow == Blocks.AIR.getDefaultState()) {
-            return 0;
-        }
+        if (stateBelow == Blocks.AIR.getDefaultState()) return 0;
 
         // Try to match metadata
         int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
@@ -101,8 +95,7 @@ public class TileNetherrackFurnace extends TileInventory
         if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
             heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
 
-        if (heat != 0)
-            return heat;
+        if (heat != 0) return heat;
 
         TileEntity tile = getWorld().getTileEntity(posBelow);
 
@@ -116,18 +109,16 @@ public class TileNetherrackFurnace extends TileInventory
 	private int calcMaxWorktime()
 	{
 		int heat = getHeatRate();
-		int workTime = Config.burnTimeFurnace;
+		int workTime = 0;
 		if (heat != 0) {
-			workTime *= 3;
-			workTime /= heat;
-			this.setMaxworkTime(workTime);
-			return workTime;
+			workTime = Config.burnTimeFurnace * 3 / heat;
 		}
 		else
 		{
 			this.setWorkTime(0);
-			return 0;
 		}
+		this.setMaxworkTime(workTime);
+		return workTime;
 	}
 
     /**

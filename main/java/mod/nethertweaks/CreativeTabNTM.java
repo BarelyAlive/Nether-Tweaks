@@ -2,6 +2,7 @@ package mod.nethertweaks;
 
 import javax.annotation.Nonnull;
 
+import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,6 @@ public class CreativeTabNTM extends CreativeTabs
     @SideOnly(Side.CLIENT)
 	@Nonnull
 	public ItemStack getTabIconItem() {
-		return new ItemStack(ItemHandler.HELLFAYAH);
+		return new ItemStack(BlockHandler.CONDENSER);
 	}
 }

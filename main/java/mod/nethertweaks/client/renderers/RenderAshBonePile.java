@@ -1,12 +1,9 @@
 package mod.nethertweaks.client.renderers;
 
-import com.mojang.realmsclient.dto.WorldDownload;
-
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

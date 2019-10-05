@@ -1,18 +1,9 @@
 package mod.nethertweaks.items;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Nonnull;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
-import com.google.common.collect.Lists;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.entities.ProjectileStone;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;

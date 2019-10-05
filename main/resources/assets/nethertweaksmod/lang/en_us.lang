@@ -1,6 +1,9 @@
+fluid.distilled_water=Distilled Water
 fluid.liquid_impossibility=Liquid Impossibility
 
+tile.distilled_water.name=Distilled Water
 tile.liquid_impossibility.name=Liquid Impossibility
+
 tile.condenser.name=Condenser
 tile.netherrack_furnace.name=Netherrack Furnace
 tile.stairway_to_heaven.name=Stairway to Heaven
@@ -14,14 +17,30 @@ tile.elder_sapling.name=Elder Sapling
 tile.elder_slab.name=Elder Slab
 tile.elder_slab_double.name=Elder Double Slab
 tile.netherrack_gravel.name=Netherrack Gravel
-tile.barrel0.name=Barrel
-tile.barrel1.name=Barrel
 tile.crucible.name=Crucible
 tile.unfired_crucible.name=Unfired Crucible
 tile.mean_vine.name=Mean Vine
-tile.sieve.name=Sieve
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Ash Bone Pile
+
+tile.stone_barrel.name=Barrel
+
+tile.oak_barrel.name=Barrel
+tile.birch_barrel.name=Barrel
+tile.spruce_barrel.name=Barrel
+tile.jungle_barrel.name=Barrel
+tile.acacia_barrel.name=Barrel
+tile.dark_oak_barrel.name=Barrel
+tile.elder_barrel.name=Barrel
+
+tile.stone_sieve.name=Sieve
+tile.oak_sieve.name=Sieve
+tile.birch_sieve.name=Sieve
+tile.spruce_sieve.name=Sieve
+tile.jungle_sieve.name=Sieve
+tile.acacia_sieve.name=Sieve
+tile.dark_oak_sieve.name=Sieve
+tile.elder_sieve.name=Sieve
 
 item.stone_door.name=Stone Door
 item.elder_door.name=Elder Door

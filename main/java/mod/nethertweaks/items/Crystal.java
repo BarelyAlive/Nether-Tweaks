@@ -3,18 +3,9 @@ package mod.nethertweaks.items;
 import java.util.List;
 
 import mod.nethertweaks.INames;
-import mod.sfhcore.helper.NameHelper;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class Crystal extends Item implements INames{

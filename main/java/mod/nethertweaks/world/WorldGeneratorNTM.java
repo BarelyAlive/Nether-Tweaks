@@ -3,9 +3,7 @@ package mod.nethertweaks.world;
 import java.util.Random;
 
 import mod.nethertweaks.config.BlocksItems;
-import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.BlockHandler;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

@@ -2,18 +2,16 @@ package mod.nethertweaks.items;
 
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.Item;
 
-public class CoiledSword extends ItemSword{
+public class CoiledSword extends Item{
 
 	public CoiledSword() {
-		super(ToolMaterial.IRON);
+		super();
 		setRegistryName(NetherTweaksMod.MODID, INames.COILED_SWORD);
 		setCreativeTab(NetherTweaksMod.TABNTM);
-		setMaxDamage(131);
+		setMaxDamage(1);
 		setMaxStackSize(1);
 	}
 	

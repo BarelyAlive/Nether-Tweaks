@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "nethertweaksmod:item_oak_barrel"
+  },
+  "pattern": [
+    "x x",
+    "x x",
+    "xyx"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:planks",
+      "data": 0
+    },
+    "y": {
+      "item": "minecraft:wooden_slab",
+      "data": 0
+    }
+  }
+}

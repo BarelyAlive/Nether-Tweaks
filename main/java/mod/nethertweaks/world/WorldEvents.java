@@ -7,8 +7,8 @@ import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
-import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.helper.PlayerInventory;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,25 +24,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.item.ItemEvent;
-import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -64,6 +59,12 @@ public class WorldEvents
 		
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
+		
+		for(String fluidName : Config.blacklistSalt)
+		{
+			if(f.getFluid().getName().equals(fluidName)) return;
+		}
+		
 		if (world.getBlockState(clicked).getBlock().onBlockActivated(world, clicked, world.getBlockState(clicked), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 		{
 			activated = true;
@@ -72,30 +73,44 @@ public class WorldEvents
 		if (!activated)
 		{
 			BlockPos pos =  new BlockPos(clicked.getX()+0.5D, clicked.getY()+0.5D, clicked.getZ()+0.5D);
+			
 			switch (event.getFace()) {
-			case UP:
-				pos = pos.up();
-				break;
-			case NORTH:
-				pos = pos.north();
-				break;
-			case EAST:
-				pos = pos.east();
-				break;
-			case SOUTH:
-				pos = pos.south();
-				break;
-			case WEST:
-				pos = pos.west();
-				break;
-			case DOWN:
-				pos = pos.down();
-				break;
+				case UP:
+					pos = pos.up();
+					break;
+				case NORTH:
+					pos = pos.north();
+					break;
+				case EAST:
+					pos = pos.east();
+					break;
+				case SOUTH:
+					pos = pos.south();
+					break;
+				case WEST:
+					pos = pos.west();
+					break;
+				case DOWN:
+					pos = pos.down();
+					break;
 			}
-			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 2));
+			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
 			world.spawnEntity(salt);
 		}
     }
+	
+	@SubscribeEvent
+	public void noSource(CreateFluidSourceEvent event)
+	{
+		BlockPos pos = event.getPos();
+		IBlockState state = event.getState();
+		World world = event.getWorld();
+		
+		if(world.getWorldType() instanceof WorldTypeHellworld)
+		{
+			if(state.getMaterial() == Material.WATER) event.setResult(Result.DENY);
+		}
+	}
 
     @SubscribeEvent
     public void respawn(PlayerEvent.PlayerRespawnEvent event) {

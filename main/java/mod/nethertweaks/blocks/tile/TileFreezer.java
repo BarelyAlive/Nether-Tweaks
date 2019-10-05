@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,6 +23,9 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileFreezer extends TileFluidInventory
 {
 	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	private float temp = 20f;
+	private int timer = 0;
+	private int maxTimer = Config.cooldownFreezer;
 	
 	private ItemStack ice()
 	{
@@ -40,13 +44,29 @@ public class TileFreezer extends TileFluidInventory
 
     	checkInputOutput();
     	fillFromItem();
-
 		NetworkHandler.sendNBTUpdate(this);
-
-		if(!canFreeze())
-			this.setWorkTime(0);
+		
+		if(!world.isBlockPowered(pos))
+		{
+			if(timer > 0) timer--;
+			if(this.getWorld().provider.doesWaterVaporize())
+			{
+				if(getTemp() < 100f) setTemp(getTemp() + 0.025f);
+			}
+		}
 		else
-			work();
+		{
+			if(timer < maxTimer) timer++;
+			setTemp(20f - 50f * ((float)timer / (float)maxTimer));
+		}
+		
+		if(getTemp() < 0)
+			setMaxworkTime((int) (Config.freezeTimeFreezer * (1 - getTemp() / -90f )));
+		else
+			setMaxworkTime(Config.freezeTimeFreezer);
+		
+		if(canFreeze())	work();
+		else this.setWorkTime(0);
 
 		if(getWorkTime() >= this.getMaxworkTime())
 		{
@@ -69,7 +89,7 @@ public class TileFreezer extends TileFluidInventory
 
 	private boolean canFreeze()
     {
-		if(!world.isBlockPowered(pos)) return false;
+		if(getTemp() > 0) return false;
         if(this.getTank().getFluidAmount() < 1000) return false;
         if(this.getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
         return true;
@@ -168,4 +188,26 @@ public class TileFreezer extends TileFluidInventory
     {
         return new ContainerFreezer(playerInventory, this);
     }
+    
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+    	compound.setFloat("temperature", getTemp());
+    	compound.setInteger("timer", timer);
+    	return super.writeToNBT(compound);
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+    	super.readFromNBT(compound);
+    	setTemp(compound.getFloat("temperature"));
+    	timer = compound.getInteger("timer");
+    }
+
+	public float getTemp() {
+		return temp;
+	}
+
+	public void setTemp(float temp) {
+		this.temp = temp;
+	}
 }

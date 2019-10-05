@@ -147,11 +147,11 @@ public class NTM implements IRecipeDefaults
 		//fish
 		registry.register(new ItemInfo(Items.FISH), 63);
 		//cooked fish
-		registry.register(new ItemInfo(Items.COOKED_FISH), 63);
+		registry.register(new ItemInfo(Items.COOKED_FISH), 50);
 		//salmon
 		registry.register(new ItemInfo(Items.FISH, 1), 63);
 		//cooked salmon
-		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 63);		
+		registry.register(new ItemInfo(Items.COOKED_FISH, 1), 50);		
 		//clownfish
 		registry.register(new ItemInfo(Items.FISH, 2), 63);
 		//blowfish
@@ -161,18 +161,18 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.MELON_BLOCK), 350);	
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 42);
 		registry.register(new ItemInfo(Items.PORKCHOP), 63);
-		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 63);	
+		registry.register(new ItemInfo(Items.COOKED_PORKCHOP), 50);	
 		registry.register(new ItemInfo(Items.POTATO), 42);	
-		registry.register(new ItemInfo(Items.BAKED_POTATO), 42);
+		registry.register(new ItemInfo(Items.BAKED_POTATO), 33);
 		registry.register(new ItemInfo(Items.BEEF), 63);	
-		registry.register(new ItemInfo(Items.COOKED_BEEF), 63);	
+		registry.register(new ItemInfo(Items.COOKED_BEEF), 50);	
 		registry.register(new ItemInfo(Items.CHICKEN), 63);	
-		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 63);
+		registry.register(new ItemInfo(Items.COOKED_CHICKEN), 50);
 		registry.register(new ItemInfo(Items.RABBIT_STEW), 100);
 		registry.register(new ItemInfo(Items.RABBIT), 63);
-		registry.register(new ItemInfo(Items.COOKED_RABBIT), 63);
+		registry.register(new ItemInfo(Items.COOKED_RABBIT), 50);
 		registry.register(new ItemInfo(Items.MUTTON), 63);
-		registry.register(new ItemInfo(Items.COOKED_MUTTON), 63);
+		registry.register(new ItemInfo(Items.COOKED_MUTTON), 50);
 		registry.register(new ItemInfo(Items.MAGMA_CREAM), 68);
 		registry.register(new ItemInfo(Items.SLIME_BALL), 45);
 		registry.register(new BlockInfo(Blocks.SLIME_BLOCK), 405);
@@ -180,13 +180,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.CACTUS), 300);
 		registry.register(new BlockInfo(Blocks.BROWN_MUSHROOM), 63);
 		registry.register(new BlockInfo(Blocks.RED_MUSHROOM), 63);
-		
-		//Back to water 1:1
-        registry.register(new ItemInfo(Items.SNOWBALL), 250);
-		registry.register(new BlockInfo(Blocks.PACKED_ICE), 9000);
-        registry.register(new BlockInfo(Blocks.ICE), 1000);
-        registry.register(new BlockInfo(Blocks.SNOW), 1000);
-        registry.register(new BlockInfo(Blocks.SNOW_LAYER), 125); //Blame Mojang for their unfair recipe
         
 		registry.register("treeSapling", 100);
 		registry.register("treeLeaves", 100);
@@ -205,7 +198,7 @@ public class NTM implements IRecipeDefaults
     @Override
     public void registerSieve(SieveRegistry registry)
     {
-        //Stone Pebble
+        //DIRT
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getName());
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(1f), MeshType.STRING.getName());
         registry.register("dirt", new ItemInfo(ItemHandler.PEBBLE_STONE), getDropChance(0.5f), MeshType.STRING.getName());
@@ -226,12 +219,17 @@ public class NTM implements IRecipeDefaults
         registry.register("dirt", new ItemInfo(Items.MELON_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
         registry.register("dirt", new ItemInfo(Items.PUMPKIN_SEEDS), getDropChance(0.35f), MeshType.STRING.getName());
 
-        //Seeds
         registry.register("dirt", new ItemInfo(ItemHandler.MUSHROOM_SPORES), getDropChance(0.05f), MeshType.STRING.getName());
         registry.register("dirt", new ItemInfo(ItemHandler.GRASS_SEEDS), getDropChance(0.05f), MeshType.STRING.getName());
 
+        //SAND
         registry.register("sand", new ItemInfo(Items.DYE, 3), getDropChance(0.03f), MeshType.STRING.getName());
         registry.register("sand", new ItemInfo(Items.PRISMARINE_SHARD), getDropChance(0.02f), MeshType.DIAMOND.getName());
+        
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.02f), MeshType.STRING.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.04f), MeshType.FLINT.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.06f), MeshType.IRON.getName());
+        registry.register("sand", new ItemInfo(ItemHandler.SALT), getDropChance(0.10f), MeshType.DIAMOND.getName());
 
         // There needs to be a way to get flint without a flint mesh
         registry.register("gravel", new ItemInfo(Items.FLINT), getDropChance(0.25f), MeshType.STRING.getName());
@@ -245,7 +243,6 @@ public class NTM implements IRecipeDefaults
         registry.register("gravel", new ItemInfo(Items.DIAMOND), getDropChance(0.016f), MeshType.DIAMOND.getName());
         registry.register("gravel", new ItemInfo(Items.EMERALD), getDropChance(0.016f), MeshType.DIAMOND.getName());
 
-
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.FLINT.getName());
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.33f), MeshType.FLINT.getName());
 
@@ -255,6 +252,7 @@ public class NTM implements IRecipeDefaults
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(1f), MeshType.DIAMOND.getName());
         registry.register(new ItemStack(Blocks.SOUL_SAND), new ItemInfo(Items.QUARTZ), getDropChance(0.8f), MeshType.DIAMOND.getName());
 
+        //DUST
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.DYE, 15), getDropChance(0.2f), MeshType.STRING.getName());
         registry.register(new ItemStack(BlockHandler.DUST), new ItemInfo(Items.GUNPOWDER), getDropChance(0.07f), MeshType.STRING.getName());
 
@@ -422,7 +420,7 @@ public class NTM implements IRecipeDefaults
     public void registerBarrelLiquidBlacklist(BarrelLiquidBlacklistRegistry registry) {
         for(Fluid fluid : FluidRegistry.getRegisteredFluids().values()){
             if(fluid.getTemperature() >= Config.woodBarrelMaxTemp)
-                registry.register(((Barrel)BlockHandler.BARREL_WOOD).getTier(), fluid);
+                registry.register(((Barrel)BlockHandler.OAK_BARREL).getTier(), fluid);
         }
     }
 
@@ -430,8 +428,11 @@ public class NTM implements IRecipeDefaults
     public void registerFluidOnTop(FluidOnTopRegistry registry)
     {
         registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
         registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+        registry.register(FluidRegistry.LAVA, BucketNFluidHandler.FLUIDDISTILLEDWATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+        
+        registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+        registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
         registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
     }
 
@@ -464,6 +465,7 @@ public class NTM implements IRecipeDefaults
     {
         registry.register(FluidRegistry.WATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
         registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
+        registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(BlockHandler.DUST), new ItemInfo(Blocks.CLAY));
         registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
         registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
 
@@ -481,6 +483,7 @@ public class NTM implements IRecipeDefaults
         for (int meta = 0; meta < 16; meta++)
         {
             registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+            registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
             registry.register(BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
         }
     }
@@ -489,6 +492,7 @@ public class NTM implements IRecipeDefaults
     public void registerFluidItemFluid(FluidItemFluidRegistry registry)
     {
     	registry.register(FluidRegistry.WATER, new ItemInfo(ItemHandler.CRYSTAL_OF_LIGHT), BucketNFluidHandler.FLUIDLIQUIDIMPOSSIBILITY, 1000, false);
+    	registry.register(BucketNFluidHandler.FLUIDDISTILLEDWATER, new ItemInfo(ItemHandler.SALT), FluidRegistry.WATER, 100, true);
     }
 
     @Override
@@ -502,6 +506,13 @@ public class NTM implements IRecipeDefaults
         // 1:1 Back to lava
         registry.register("netherrack", FluidRegistry.LAVA, 1000);
         registry.register("obsidian", FluidRegistry.LAVA, 1000);
+        
+        //Back to water 1:1
+        //registry.register(new ItemInfo(Items.SNOWBALL), FluidRegistry.WATER, 250);
+		registry.register(new BlockInfo(Blocks.PACKED_ICE), FluidRegistry.WATER, 9000);
+        registry.register(new BlockInfo(Blocks.ICE), FluidRegistry.WATER, 1000);
+        registry.register(new BlockInfo(Blocks.SNOW), FluidRegistry.WATER, 1000);
+        registry.register(new BlockInfo(Blocks.SNOW_LAYER), FluidRegistry.WATER, 125); //Blame Mojang for their unfair recipe
     }
 
     @Override

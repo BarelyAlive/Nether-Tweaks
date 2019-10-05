@@ -1,6 +1,9 @@
+fluid.distilled_water=Destilliertes Wasser
 fluid.liquid_impossibility=Flüssige Unmöglichkeit
 
+tile.distilled_water.name=Destilliertes Wasser
 tile.liquid_impossibility.name=Flüssige Unmöglichkeit
+
 tile.condenser.name=Kondensierer
 tile.netherrack_furnace.name=Nethergesteinofen
 tile.stairway_to_heaven.name=Stairway to Heaven
@@ -14,14 +17,31 @@ tile.elder_sapling.name=Uraltsetzling
 tile.elder_slab.name=Uraltstufe
 tile.elder_slab_double.name=Uraltdoppelstufe
 tile.netherrack_gravel.name=Nethergesteinkies
-tile.barrel0.name=Holzfass
-tile.barrel1.name=Steinfass
 tile.crucible.name=Schmelze
 tile.unfired_crucible.name=Ungebrannte Schmelze
 tile.mean_vine.name=Fiese Ranken
-tile.sieve.name=Sieb
 tile.hellmart.name=Hellmart
 tile.ash_bone_pile.name=Knochen-Asche-Haufen
+
+tile.stone_barrel.name=Fass
+
+tile.oak_barrel.name=Fass
+tile.birch_barrel.name=Fass
+tile.spruce_barrel.name=Fass
+tile.jungle_barrel.name=Fass
+tile.acacia_barrel.name=Fass
+tile.dark_oak_barrel.name=Fass
+tile.elder_barrel.name=Fass
+
+tile.stone_sieve.name=Sieb
+
+tile.oak_sieve.name=Sieb
+tile.birch_sieve.name=Sieb
+tile.spruce_sieve.name=Sieb
+tile.jungle_sieve.name=Sieb
+tile.acacia_sieve.name=Sieb
+tile.dark_oak_sieve.name=Sieb
+tile.elder_sieve.name=Sieb
 
 item.stone_door.name=Steintür
 item.elder_door.name=Uralttür

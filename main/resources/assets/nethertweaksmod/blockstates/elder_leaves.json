@@ -1,8 +1,18 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "nethertweaksmod:elder_leaves"
+    },
     "variants": {
         "check_decay=false,decayable=false": { "model": "nethertweaksmod:elder_leaves" },
         "check_decay=false,decayable=true": { "model": "nethertweaksmod:elder_leaves" },
         "check_decay=true,decayable=false": { "model": "nethertweaksmod:elder_leaves" },
-        "check_decay=true,decayable=true": { "model": "nethertweaksmod:elder_leaves" }
+        "check_decay=true,decayable=true": { "model": "nethertweaksmod:elder_leaves" },
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
     }
 }

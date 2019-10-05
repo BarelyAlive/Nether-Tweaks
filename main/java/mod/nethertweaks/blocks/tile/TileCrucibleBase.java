@@ -187,7 +187,6 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
         return true;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {

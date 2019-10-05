@@ -1,16 +1,7 @@
 package mod.nethertweaks.blocks.tile;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import mod.sfhcore.blocks.tiles.TileBase;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileAshBonePile extends TileBase  {
 	boolean is_lit;

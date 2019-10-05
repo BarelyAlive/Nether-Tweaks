@@ -1,8 +1,18 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "nethertweaksmod:condenser"
+    },
     "variants": {
         "facing=north": { "model": "nethertweaksmod:condenser" },
         "facing=south": { "model": "nethertweaksmod:condenser", "y": 180 },
         "facing=west":  { "model": "nethertweaksmod:condenser", "y": 270 },
-        "facing=east":  { "model": "nethertweaksmod:condenser", "y": 90 }
+        "facing=east":  { "model": "nethertweaksmod:condenser", "y": 90 },
+        "normal": [
+            {}
+        ],
+        "inventory": [
+            {}
+        ]
     }
 }

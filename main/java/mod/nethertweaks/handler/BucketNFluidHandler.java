@@ -1,9 +1,11 @@
 package mod.nethertweaks.handler;
 
 import mod.nethertweaks.INames;
+import mod.nethertweaks.blocks.DistilledWater;
 import mod.nethertweaks.blocks.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.fluid.FluidDistilledWater;
 import mod.nethertweaks.fluid.FluidLiquidImpossibility;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.registries.RegisterFluid;
@@ -16,6 +18,9 @@ public class BucketNFluidHandler implements INames
 	//Fluids
 	public static final Fluid FLUIDLIQUIDIMPOSSIBILITY = new FluidLiquidImpossibility();
 	public static final Block BLOCKLIQUIDIMPOSSIBILITY = new LiquidImpossibility();
+	
+	public static final Fluid FLUIDDISTILLEDWATER = new FluidDistilledWater();
+	public static final Block BLOCKDISTILLEDWATER = new DistilledWater();
 
 	public static void init(Side side)
 	{
@@ -28,8 +33,14 @@ public class BucketNFluidHandler implements INames
 		if (BlocksItems.enableLiquidImpossibility)
 		{
 			RegisterFluid.register(FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
-			if(side == Side.CLIENT)
+			if(side.isClient())
 				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDLIQUIDIMPOSSIBILITY, BLOCKLIQUIDIMPOSSIBILITY);
+		}
+		if(BlocksItems.enableDistilledWater)
+		{
+			RegisterFluid.register(FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
+			if(side.isClient())
+				RegisterFluid.initModel((mod.sfhcore.fluid.Fluid) FLUIDDISTILLEDWATER, BLOCKDISTILLEDWATER);
 		}
 	}
 

@@ -3,7 +3,9 @@ package mod.nethertweaks.blocks;
 import mod.nethertweaks.INames;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
-import mod.nethertweaks.handler.GuiHandlerNTM;
+import mod.nethertweaks.config.BlocksItems;
+import mod.nethertweaks.config.Config;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
@@ -48,16 +50,19 @@ public class Condenser extends CubeContainerHorizontal
     	
     	boolean success;
     	
-		success = TankUtil.drainWaterIntoBottle(te, player, te.getTank());
-    	if(success) return true;
+		if (!BlocksItems.enableDistilledWater) {
+			success = TankUtil.drainWaterIntoBottle(te, player, te.getTank());
+			if (success)
+				return true;
+		}
 		
-    	IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+		IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
     	
     	if (item != null) {
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());
 			if(success) return true;
 		}
-		player.openGui(NetherTweaksMod.instance, GuiHandlerNTM.ID_CONDENSER, world, pos.getX(), pos.getY(), pos.getZ());
+		player.openGui(NetherTweaksMod.instance, GuiHandler.ID_CONDENSER, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
     }
     

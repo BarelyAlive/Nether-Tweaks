@@ -8,6 +8,7 @@ public interface INames {
 	public CreativeTabs TAB = NetherTweaksMod.TABNTM;
 
 	//Fluids
+	public String DISTILLEDWATER			= "distilled_water";
 	public String LIQUIDIMPOSSIBILITY		= "liquid_impossibility";
 	
 	//Blocks
@@ -17,8 +18,29 @@ public interface INames {
 	public String FREEZER 					= "freezer";
 	public String CRUCIBLE					= "crucible";
 	public String HELLMART 					= "hellmart";
-	public String SIEVE 					= "sieve";
 	public String BONFIRE 					= "bonfire";
+	public String AIR_CONDITIONER			= "air_conditioner";
+	
+	public String STONE_SIEVE				= "stone_sieve";
+	
+	public String OAK_SIEVE					= "oak_sieve";
+	public String BIRCH_SIEVE				= "birch_sieve";
+	public String SPRUCE_SIEVE				= "spruce_sieve";
+	public String JUNGLE_SIEVE 				= "jungle_sieve";
+	public String ACACIA_SIEVE				= "acacia_sieve";
+	public String DARK_OAK_SIEVE			= "dark_oak_sieve";
+	public String ELDER_SIEVE				= "elder_sieve";
+	
+
+	public String STONE_BARREL				= "stone_barrel";
+	
+	public String OAK_BARREL				= "oak_barrel";
+	public String BIRCH_BARREL				= "birch_barrel";
+	public String SPRUCE_BARREL				= "spruce_barrel";
+	public String JUNGLE_BARREL				= "jungle_barrel";
+	public String ACACIA_BARREL				= "acacia_barrel";
+	public String DARK_OAK_BARREL			= "dark_oak_barrel";
+	public String ELDER_BARREL				= "elder_barrel";
 	
 	public String ASH_BONE_PILE				= "ash_bone_pile";
 	public String STONE_DOOR				= "stone_door";
@@ -94,6 +116,7 @@ public interface INames {
 	public String POWDER_OF_LIGHT			= "powder_of_light";
 	public String ASH						= "ash";
 	public String WOOD_CHIPPINGS			= "wood_chippings";
+	
 	public String COILED_SWORD				= "coiled_sword";
 	
 	public String COOKED_JERKY 				= "cooked_jerky";
