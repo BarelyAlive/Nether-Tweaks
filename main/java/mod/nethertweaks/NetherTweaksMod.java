@@ -98,12 +98,6 @@ public class NetherTweaksMod
 		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 
-		// Disable all copper ores except all ores from thermal foundation
-		/*
-    	OreHandler.disableOre("copper");
-    	OreHandler.enableOre("thermalfoundation:ore");
-		 */
-
 		getProxy().preInit();
 	}
 
