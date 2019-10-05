@@ -28,15 +28,15 @@ import net.minecraftforge.common.IShearable;
 
 public class Grabber extends ItemShears
 {
-	private static List<String> tangibleList = new ArrayList<>();
+	private static final List<String> BLOCKS = new ArrayList<>();
 
 	private void setTangible(final String[] blocks)
 	{
-		for(String entry : blocks) tangibleList.add(entry);
+		for(String entry : blocks) BLOCKS.add(entry);
 	}
 
 	public static List<String> getTangible() {
-		return tangibleList;
+		return BLOCKS;
 	}
 
 	public Grabber(final int durability, final ToolMaterial material)
@@ -125,7 +125,7 @@ public class Grabber extends ItemShears
 		}
 
 		//Pick up blocks like melons from the list
-		for (String name : tangibleList) {
+		for (String name : BLOCKS) {
 			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!world.isRemote) {

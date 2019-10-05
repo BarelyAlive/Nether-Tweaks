@@ -11,7 +11,6 @@ import mod.nethertweaks.blocks.Condenser;
 import mod.nethertweaks.blocks.CrucibleStone;
 import mod.nethertweaks.blocks.ElderLeaves;
 import mod.nethertweaks.blocks.ElderLog;
-import mod.nethertweaks.blocks.ElderPlanks;
 import mod.nethertweaks.blocks.ElderSapling;
 import mod.nethertweaks.blocks.Freezer;
 import mod.nethertweaks.blocks.Hellmart;
@@ -31,6 +30,7 @@ import mod.nethertweaks.blocks.tile.TileSieve;
 import mod.nethertweaks.config.BlocksItems;
 import mod.sfhcore.blocks.Cube;
 import mod.sfhcore.blocks.CubeFalling;
+import mod.sfhcore.blocks.CubeFireResistant;
 import mod.sfhcore.blocks.CustomDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -87,7 +87,7 @@ public class BlockHandler
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
 	public static final Block ELDER_LEAVES 		   = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   = new ElderPlanks();
+	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F, Constants.TABNTM, new ResourceLocation(Constants.MODID, Constants.ELDER_PLANKS));
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TABNTM).setResistance(10.0F).setHardness(2.0F);

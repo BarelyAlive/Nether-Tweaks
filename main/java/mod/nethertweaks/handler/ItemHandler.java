@@ -203,9 +203,9 @@ public class ItemHandler
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void registerModels(final ModelRegistryEvent event) {
-		//Items
-		for(Item item : ItemHandler.ITEMS)
+	public void registerModels(final ModelRegistryEvent event)
+	{
+		for(Item item : ITEMS)
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 
