@@ -16,7 +16,7 @@ public class CrucibleStone extends CrucibleBase
 		return fired;
 	}
 
-	public CrucibleStone(String name, final boolean fired) {
+	public CrucibleStone(final String name, final boolean fired) {
 		super(name, Material.ROCK);
 		setHardness(2.0f);
 		this.fired = fired;

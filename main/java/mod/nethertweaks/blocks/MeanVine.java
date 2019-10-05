@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class MeanVine extends BlockVine{
-
+public class MeanVine extends BlockVine
+{
 	public MeanVine(){
 		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, Constants.MEAN_VINE);

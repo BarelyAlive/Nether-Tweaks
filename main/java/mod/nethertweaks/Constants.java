@@ -12,7 +12,7 @@ public class Constants {
 
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.CommonProxy";
-	
+
 	public static final CreativeTabs TABNTM = new CreativeTabNTM();
 
 	//Fluids
@@ -27,7 +27,6 @@ public class Constants {
 	public static final String UNFIRED_CRUCIBLE			= "unfired_crucible";
 	public static final String CRUCIBLE					= "crucible";
 	public static final String HELLMART 				= "hellmart";
-	public static final String BONFIRE 					= "bonfire";
 
 	public static final String STONE_SIEVE				= "stone_sieve";
 
@@ -56,6 +55,7 @@ public class Constants {
 	public static final String STWH 					= "stairway_to_heaven";
 	public static final String NETHERRACK_GRAVEL		= "netherrack_gravel";
 	public static final String MEAN_VINE 				= "mean_vine";
+	public static final String TRIPWIRE 				= "tripwire";
 
 	//Tree
 	public static final String ELDER_SAPLING 			= "elder_sapling";
@@ -70,7 +70,7 @@ public class Constants {
 	public static final String BLOCK_OF_SALT 			= "block_of_salt";
 
 	//Tile ENtities
-	public static final String TE_NETHERRACKFURNACE		= "ntm.tile.netherrack_furnace";
+	public static final String TE_NETHERRACK_FURNACE	= "ntm.tile.netherrack_furnace";
 	public static final String TE_CONDENSER 			= "ntm.tile.condenser";
 	public static final String TE_BARREL 				= "ntm.tile.barrel";
 	public static final String TE_FREEZER				= "ntm.tile.freezer";
@@ -131,7 +131,6 @@ public class Constants {
 	public static final String COILED_SWORD				= "coiled_sword";
 
 	public static final String COOKED_JERKY 			= "cooked_jerky";
-	public static final String CANTEEN 					= "canteen";
 
 	public static final String GRABBER_WOOD				= "grabber_wood";
 	public static final String GRABBER_GOLD				= "grabber_gold";

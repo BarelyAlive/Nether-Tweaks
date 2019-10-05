@@ -11,6 +11,16 @@ public class Hellworld extends WorldType
 	{
 		super("hellworld");
 	}
+	
+	@Override
+	public boolean isVersioned() {
+		return true;
+	}
+	
+	@Override
+	public int getVersion() {
+		return 2;
+	}
 
 	@Override
 	public int getMinimumSpawnHeight(final World world)

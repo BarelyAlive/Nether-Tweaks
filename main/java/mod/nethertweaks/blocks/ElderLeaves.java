@@ -1,17 +1,12 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.handler.BlockHandler;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -31,8 +26,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ElderLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable, IVariantProvider {
-
+public class ElderLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable
+{
 	public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
 	public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 	protected boolean leavesFancy;
@@ -256,17 +251,6 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		if(cd) return 1;
 
 		return 0;
-	}
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-	{
-		List<Pair<Integer, String>> ret = new ArrayList<>();
-		ret.add(new ImmutablePair<>(0, "check_decay=false,decayable=false"));
-		ret.add(new ImmutablePair<>(0, "check_decay=false,decayable=true"));
-		ret.add(new ImmutablePair<>(1, "check_decay=true,decayable=false"));
-		ret.add(new ImmutablePair<>(1, "check_decay=true,decayable=true"));
-		return ret;
 	}
 
 	@Override

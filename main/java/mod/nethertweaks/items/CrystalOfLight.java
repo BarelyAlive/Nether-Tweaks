@@ -8,9 +8,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class Crystal extends Item
+public class CrystalOfLight extends Item
 {
-	public Crystal(final String name) {
+	public CrystalOfLight(final String name) {
 		setCreativeTab(Constants.TABNTM);
 		setRegistryName(Constants.MODID, name);
 		setUnlocalizedName(name);

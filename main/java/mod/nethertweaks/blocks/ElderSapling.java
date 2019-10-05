@@ -1,15 +1,9 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.world.WorldGenElderTree;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -27,7 +21,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
 
-public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IVariantProvider
+public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 {
 	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 	protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
@@ -137,15 +131,5 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable, IV
 	@Override
 	public EnumPlantType getPlantType(final IBlockAccess world, final BlockPos pos) {
 		return EnumPlantType.Nether;
-	}
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-	{
-		List<Pair<Integer, String>> ret = new ArrayList<>();
-		ret.add(new ImmutablePair<>(0, "stage=0"));
-		ret.add(new ImmutablePair<>(0, "stage=1"));
-		ret.add(new ImmutablePair<>(0, "stage=2"));
-		return ret;
 	}
 }

@@ -14,8 +14,6 @@ import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
@@ -23,14 +21,12 @@ import mod.nethertweaks.network.MessageMovementSpeed;
 import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Drinkable;
-import mod.sfhcore.SFHCore;
 import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -49,7 +45,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -400,19 +395,6 @@ public class EventHook
 	//*********************************************************************************************************************
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void registerModels(final ModelRegistryEvent event) {
-		//Blocks
-		for(Block block : BlockHandler.getBlocks())
-			SFHCore.proxy.tryHandleBlockModel(block, block.getRegistryName());
-		//Items
-		for(Item item : ItemHandler.getItems())
-			SFHCore.proxy.tryHandleItemModel(item, item.getRegistryName());
-		
-		new FluidHandler();
-	}
-
-	@SubscribeEvent
 	public static void registerEnchantments(final IForgeRegistry<Enchantment> registry)
 	{
 		registry.register(new EnchantmentEfficiency());
@@ -438,6 +420,7 @@ public class EventHook
 
 	public static void addWaterMobs()
 	{
-		EntityRegistry.addSpawn(EntitySquid.class, 25, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
+		if(Config.spawnWaterMobs)
+			EntityRegistry.addSpawn(EntitySquid.class, 25, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
 	}
 }

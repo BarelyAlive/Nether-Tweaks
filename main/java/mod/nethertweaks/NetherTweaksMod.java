@@ -11,6 +11,7 @@ import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.handler.FluidHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -29,7 +30,6 @@ import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -46,10 +46,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	public WorldType Hellworld = new Hellworld();
 	public static Gson gsonInstance = new Gson();
 	public static File configDirectory;
-	public static final List<ISFHCoreModule> loadedModules = new ArrayList<>();
+	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
 
 	@Instance(value=Constants.MODID)
 	private static NetherTweaksMod instance;
@@ -65,15 +64,15 @@ public class NetherTweaksMod
 	}
 
 	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MODID)
-	private static CommonProxy commonProxy;
+	private static CommonProxy proxy;
 
 	public static CommonProxy getProxy() {
-		return commonProxy;
+		return proxy;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static ClientProxy getClientProxy() {
-		return (ClientProxy) commonProxy;
+		return (ClientProxy) proxy;
 	}
 
 	@Mod.EventHandler
@@ -87,10 +86,13 @@ public class NetherTweaksMod
 
 		Compatibility.init();
 
-		new ItemHandler();
 		new BlockHandler();
+		new ItemHandler();
+
+		FluidHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
+		new Hellworld();  //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 
@@ -113,7 +115,7 @@ public class NetherTweaksMod
 	{
 		OreHandler.registerFurnaceRecipe();
 		//Mobs
-		if(Config.spawnWaterMobs) EventHook.addWaterMobs();
+		EventHook.addWaterMobs();
 
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();

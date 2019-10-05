@@ -1,14 +1,8 @@
 package mod.nethertweaks.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.apache.commons.lang3.tuple.Pair;
-
 import mod.nethertweaks.handler.BlockHandler;
-import mod.sfhcore.proxy.IVariantProvider;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -21,8 +15,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvider{
-
+public abstract class BlockSlabCommon extends BlockSlab
+{
 	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
 
 	public BlockSlabCommon(final String name, final Material material) {
@@ -129,18 +123,5 @@ public abstract class BlockSlabCommon extends BlockSlab implements IVariantProvi
 			return "default";
 		}
 
-	}
-
-	@Override
-	public List<Pair<Integer, String>> getVariants()
-	{
-		List<Pair<Integer, String>> ret = new ArrayList<>();
-		if (!isDouble()) {
-			ret.add(new ImmutablePair<>(0, "half=bottom,variant=default"));
-			ret.add(new ImmutablePair<>(1, "half=top,variant=default"));
-		}
-		else
-			ret.add(new ImmutablePair<>(0, "variant=default"));
-		return ret;
 	}
 }
