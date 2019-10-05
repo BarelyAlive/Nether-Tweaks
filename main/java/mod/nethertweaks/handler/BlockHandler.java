@@ -167,13 +167,13 @@ public class BlockHandler
 	@SubscribeEvent
 	public void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
-		for(Block block : BLOCKS)
+		BLOCKS.forEach((block) ->
 		{
 			block.setUnlocalizedName(block.getRegistryName().getResourcePath());
 			block.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(block);
-		}
+		});
 	}
 
 	private void registerTileEntities()

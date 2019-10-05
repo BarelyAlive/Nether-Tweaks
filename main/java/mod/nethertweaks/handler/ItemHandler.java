@@ -190,21 +190,23 @@ public class ItemHandler
 		}
 
 		//Blocks
-		for(Block block : BlockHandler.BLOCKS)
+		BlockHandler.BLOCKS.forEach((block) ->
+		{
 			if(!(block instanceof BlockSlab) && !(block instanceof CustomDoor))
 				ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		});
 	}
 
 	@SubscribeEvent
 	public void registerItems(final RegistryEvent.Register<Item> event)
 	{
-		for(Item item : ITEMS)
+		ITEMS.forEach((item) ->
 		{
 			item.setUnlocalizedName(item.getRegistryName().getResourcePath());
 			item.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(item);
-		}
+		});
 	}
 
 	@SubscribeEvent
