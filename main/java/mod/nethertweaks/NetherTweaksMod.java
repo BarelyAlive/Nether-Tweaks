@@ -90,7 +90,7 @@ public class NetherTweaksMod
 		FluidHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
-		new Hellworld();  //makes it register itself
+		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 

@@ -31,13 +31,15 @@ public class Config
 	public static boolean autoOutputItems  = true;
 	public static boolean autoExtractItems = true;
 
+	//Condenser & Freezer
+	public static int fluidOutputAmount  = 200;
+	
 	//Freezer
 	public static int freezeTimeFreezer  = 6000;
 	public static int capacityFreezer  	 = 16000;
 	public static int cooldownFreezer  	 = 18000;
 
 	//Condenser
-	public static int fluidOutputAmount  = 200;
 	public static int dryTimeCondenser   = 2400;
 	public static int capacityCondenser  = 8000;
 	public static int cooldownCondenser	 = 200000;
@@ -116,13 +118,14 @@ public class Config
 		autoExtractItems				= config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
 		autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
 
+		fluidOutputAmount 				= config.getInt("Condenser & Freezer max. fluid auto transfer rate in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
+		
 		capacityFreezer					= config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
 		freezeTimeFreezer 				= config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
 		cooldownFreezer 				= config.getInt("Freezer cooldown time in ticks", "Tweak", 18000, 1, Integer.MAX_VALUE, "");
 
 		dryTimeCondenser 				= config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
 		capacityCondenser 				= config.getInt("Condenser fluid capacity in mb", "Tweak", 8000, 1, Integer.MAX_VALUE, "");
-		fluidOutputAmount 				= config.getInt("Condenser max. fluid auto output in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
 		cooldownCondenser 				= config.getInt("Condenser heat up time in ticks", "Tweak", 200000, 1, Integer.MAX_VALUE, "");
 
 		durabilityHWood					= config.getInt("Durability for Wood Hammer", "Tweak", 64, 1, Integer.MAX_VALUE, "");

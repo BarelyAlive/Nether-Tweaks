@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonProxy {
 
-	public HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
+	public final HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
 	public void preInit()
 	{
