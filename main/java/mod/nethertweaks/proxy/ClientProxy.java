@@ -38,7 +38,6 @@ public class ClientProxy extends CommonProxy {
 
 		//Graphics
 		RenderingRegistry.registerEntityRenderingHandler(ProjectileStone.class, new RenderProjectileStone.Factory());
-		NetworkRegistry.INSTANCE.registerGuiHandler(NetherTweaksMod.getInstance(), new GuiHandler());
 	}
 
 	@Override

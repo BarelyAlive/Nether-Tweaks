@@ -50,7 +50,7 @@ public class TileCondenser extends TileFluidInventory
 	}
 
 	public TileCondenser() {
-		super(3, Constants.TE_CONDENSER, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
+		super(3, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
 	}
 

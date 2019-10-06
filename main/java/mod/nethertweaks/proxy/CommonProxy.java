@@ -3,16 +3,22 @@ package mod.nethertweaks.proxy;
 import java.util.HashMap;
 import java.util.UUID;
 
+import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonProxy {
 
 	public HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
-	public void preInit() {}
+	public void preInit()
+	{
+		NetworkRegistry.INSTANCE.registerGuiHandler(NetherTweaksMod.getInstance(), new GuiHandler());
+	}
 
 	public void init() {}
 

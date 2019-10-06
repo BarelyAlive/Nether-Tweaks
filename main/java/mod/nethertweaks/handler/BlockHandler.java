@@ -178,13 +178,13 @@ public class BlockHandler
 
 	private void registerTileEntities()
 	{
-		GameRegistry.registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
-		GameRegistry.registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
-		GameRegistry.registerTileEntity(TileAshBonePile.class, Constants.TE_ASH_BONE_PILE);
-		GameRegistry.registerTileEntity(TileFreezer.class, Constants.TE_FREEZER);
-		GameRegistry.registerTileEntity(TileHellmart.class, Constants.TE_HELLMART);
-		GameRegistry.registerTileEntity(TileCondenser.class, Constants.TE_CONDENSER);
-		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACK_FURNACE);
-		GameRegistry.registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
+		GameRegistry.registerTileEntity(TileBarrel.class, new ResourceLocation(Constants.MODID, Constants.TE_BARREL));
+		GameRegistry.registerTileEntity(TileSieve.class, new ResourceLocation(Constants.MODID, Constants.TE_SIEVE));
+		GameRegistry.registerTileEntity(TileAshBonePile.class, new ResourceLocation(Constants.MODID, Constants.TE_ASH_BONE_PILE));
+		GameRegistry.registerTileEntity(TileFreezer.class, new ResourceLocation(Constants.MODID, Constants.TE_FREEZER));
+		GameRegistry.registerTileEntity(TileHellmart.class, new ResourceLocation(Constants.MODID, Constants.TE_HELLMART));
+		GameRegistry.registerTileEntity(TileCondenser.class, new ResourceLocation(Constants.MODID, Constants.TE_CONDENSER));
+		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, new ResourceLocation(Constants.MODID, Constants.TE_NETHERRACK_FURNACE));
+		GameRegistry.registerTileEntity(TileCrucibleStone.class, new ResourceLocation(Constants.MODID, Constants.TE_CRUCIBLE));
 	}
 }

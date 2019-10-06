@@ -22,7 +22,6 @@ public class Constants {
 	//Blocks
 	public static final String CONDENSER 				= "condenser";
 	public static final String NETHERRACK_FURNACE 		= "netherrack_furnace";
-	public static final String BARREL					= "barrel";
 	public static final String FREEZER 					= "freezer";
 	public static final String UNFIRED_CRUCIBLE			= "unfired_crucible";
 	public static final String CRUCIBLE					= "crucible";
