@@ -37,7 +37,7 @@ public class TileFreezer extends TileFluidInventory
 	}
 
 	public TileFreezer() {
-		super(3, Constants.TE_FREEZER, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
+		super(3, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
 		setMaxworkTime(Config.freezeTimeFreezer);
 	}
 

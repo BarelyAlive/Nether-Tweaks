@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 public class TileNetherrackFurnace extends TileInventory
 {
 	public TileNetherrackFurnace() {
-		super(2, Constants.TE_NETHERRACK_FURNACE);
+		super(2);
 		setMaxworkTime(Config.burnTimeFurnace);
 	}
 
