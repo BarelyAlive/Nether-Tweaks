@@ -33,6 +33,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -190,7 +191,9 @@ public class ItemHandler
 		//Blocks
 		BlockHandler.BLOCKS.forEach((block) ->
 		{
-			if(!(block instanceof BlockSlab) && !(block instanceof CustomDoor))
+			if(!(block instanceof BlockSlab)
+					&& !(block instanceof CustomDoor)
+					&& !(block instanceof BlockFluidClassic))
 				ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 		});
 	}

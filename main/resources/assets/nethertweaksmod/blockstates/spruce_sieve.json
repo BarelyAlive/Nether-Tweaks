@@ -6,7 +6,7 @@
   "variants": {
     "mesh": {
       "none": {},
-      "no_render": {"model": "minecraft:planks_spruce"},
+      "no_render": {"model": "minecraft:spruce_planks"},
       "string": {
         "submodel": {
           "mesh": {
