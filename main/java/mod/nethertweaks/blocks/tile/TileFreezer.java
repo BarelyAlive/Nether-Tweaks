@@ -4,7 +4,6 @@ import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.NetworkHandler;
