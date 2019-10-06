@@ -11,9 +11,7 @@ public class ItemMesh extends Item{
 	public ItemMesh(final String type) {
 		super();
 		setRegistryName(new ResourceLocation(Constants.MODID, type));
-		setUnlocalizedName(type);
 		setMaxStackSize(1);
-		setCreativeTab(Constants.TABNTM);
 	}
 
 	@Override

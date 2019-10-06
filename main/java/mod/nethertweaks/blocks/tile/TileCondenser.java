@@ -125,26 +125,29 @@ public class TileCondenser extends TileFluidInventory
 		}
 
 		if (fillTick == 20) {
-			TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
-			if(barrel != null)
-				if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
-					float amount = 0;
-					if (barrel.getMode() != null)
-						amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
-					if (amount <= 1f && getCompostMeter() >= 100f)
-					{
-						if(barrel.getMode() == null) barrel.setMode("compost");
-
-						((BarrelModeCompost) barrel.getMode()).setCompostState(Blocks.DIRT.getDefaultState());
-
-						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
-						((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
-						setCompostMeter(getCompostMeter() - 100f);
-						NetworkHandler.sendNBTUpdate(barrel);
-						barrel.markDirty();
-						getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
+			if (world.getTileEntity(pos.up()) instanceof TileBarrel)
+			{
+				TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
+				if(barrel != null)
+					if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
+						float amount = 0;
+						if (barrel.getMode() != null)
+							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
+						if (amount <= 1f && getCompostMeter() >= 100f)
+						{
+							if(barrel.getMode() == null) barrel.setMode("compost");
+	
+							((BarrelModeCompost) barrel.getMode()).setCompostState(Blocks.DIRT.getDefaultState());
+	
+							NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
+							((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
+							setCompostMeter(getCompostMeter() - 100f);
+							NetworkHandler.sendNBTUpdate(barrel);
+							barrel.markDirty();
+							getWorld().setBlockState(pos.up(), world.getBlockState(pos.up()));
+						}
 					}
-				}
+			}
 		}
 	}
 

@@ -1,14 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XYZ"
+    "XXX",
+    "XYZ",
+    "XXX"
   ],
   "key": {
     "X": {
       "item": "minecraft:redstone"
     },
     "Y": {
-      "item": "minecraft:iron_block"
+      "item": "minecraft:iron_ingot"
     },
     "Z": {
       "type": "forge:ore_dict",

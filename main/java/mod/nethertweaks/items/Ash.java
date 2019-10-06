@@ -23,9 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Ash extends Item
 {
 	public Ash() {
-		setCreativeTab(Constants.TABNTM);
 		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
-		setUnlocalizedName(Constants.ASH);
 	}
 
 	@Override

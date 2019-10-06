@@ -1,6 +1,5 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +15,6 @@ public class ItemChunk extends Item {
 	
 	public ItemChunk() {
 		super();
-		setCreativeTab(Constants.TABNTM);
 		setHasSubtypes(true);
 	}
 

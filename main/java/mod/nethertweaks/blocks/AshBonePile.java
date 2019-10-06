@@ -53,7 +53,6 @@ public class AshBonePile extends CubeContainerHorizontal
 		setTickRandomly(true);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 		setHardness(0.8F);
-		setCreativeTab(Constants.TABNTM);
 		setSoundType(SoundType.SAND);
 	}
 

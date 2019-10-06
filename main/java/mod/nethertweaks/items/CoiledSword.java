@@ -9,8 +9,6 @@ public class CoiledSword extends Item{
 	public CoiledSword() {
 		super();
 		setRegistryName(Constants.MODID, Constants.COILED_SWORD);
-		setUnlocalizedName(Constants.COILED_SWORD);
-		setCreativeTab(Constants.TABNTM);
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}

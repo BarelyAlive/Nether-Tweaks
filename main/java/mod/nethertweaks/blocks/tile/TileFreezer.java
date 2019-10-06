@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks.tile;
 
 import mod.nethertweaks.Constants;
+import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
@@ -15,13 +16,16 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class TileFreezer extends TileFluidInventory
 {
+	private int fillTick = 0;
 	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	private float temp = 20f;
 	private int timer = 0;
@@ -41,6 +45,8 @@ public class TileFreezer extends TileFluidInventory
 	public void update()
 	{
 		if(world.isRemote) return;
+		
+		fillTick++;
 
 		checkInputOutput();
 		fillFromItem();
@@ -71,6 +77,7 @@ public class TileFreezer extends TileFluidInventory
 			setWorkTime(0);
 			freezeItem();
 		}
+		if(fillTick >= 20) fillTick = 0;
 	}
 
 	private void checkInputOutput()
@@ -82,6 +89,19 @@ public class TileFreezer extends TileFluidInventory
 			insertToInventory(pos.south(), EnumFacing.NORTH);
 			insertToInventory(pos.west(), EnumFacing.EAST);
 			insertToInventory(pos.east(), EnumFacing.WEST);
+		}
+		
+		if (fillTick == 20) {
+			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
+			if (Config.fluidOutputAmount > 0) {
+				BlockPos up = getPos().up();
+
+				//Check FluidHandler
+				IFluidHandler hup = FluidUtil.getFluidHandler(world, up, EnumFacing.DOWN);
+				
+				if (hup != null && world.getBlockState(up).getBlock() instanceof Barrel)
+					FluidUtil.tryFluidTransfer(getTank(), hup, water, true);
+			}
 		}
 	}
 
@@ -184,19 +204,21 @@ public class TileFreezer extends TileFluidInventory
 	{
 		return new ContainerFreezer(playerInventory, this);
 	}
-
+	
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound compound) {
-		compound.setFloat("temperature", getTemp());
-		compound.setInteger("timer", timer);
-		return super.writeToNBT(compound);
+	public void readFromNBT(final NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		fillTick = nbt.getInteger("fillTick");
+		setTemp(nbt.getFloat("temperature"));
+		timer = nbt.getInteger("timer");
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		setTemp(compound.getFloat("temperature"));
-		timer = compound.getInteger("timer");
+	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+		nbt.setInteger("fillTick", fillTick);
+		nbt.setFloat("temperature", getTemp());
+		nbt.setInteger("timer", timer);
+		return super.writeToNBT(nbt);
 	}
 
 	public float getTemp() {
