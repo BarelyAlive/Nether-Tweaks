@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.AshBonePile;
@@ -169,7 +170,7 @@ public class BlockHandler
 	{
 		BLOCKS.forEach((block) ->
 		{
-			block.setUnlocalizedName(block.getRegistryName().getResourcePath());
+			block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
 			block.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(block);

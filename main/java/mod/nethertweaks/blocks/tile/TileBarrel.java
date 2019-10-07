@@ -3,6 +3,7 @@ package mod.nethertweaks.blocks.tile;
 import static mod.nethertweaks.registries.manager.NTMRegistryManager.MILK_ENTITY_REGISTRY;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -99,11 +100,11 @@ public class TileBarrel extends TileBase implements ITickable {
 			if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
 			if (!result)
-				if (fluidHandler.getTankProperties().length != 0)
+				if (Objects.requireNonNull(fluidHandler).getTankProperties().length != 0)
 					if (fluidHandler.getTankProperties()[0].getContents() != null)
 						if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
 							if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
-								if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
+								if (Objects.requireNonNull(ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName()).equals(stack.getItem().getRegistryName()))
 									getItemHandler().insertItem(0, stack, true);
 
 			if (result) {
@@ -132,8 +133,7 @@ public class TileBarrel extends TileBase implements ITickable {
 					&& bucketStack.getFluid() == tankStack.getFluid()
 					&& tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
 				tank.drain(Fluid.BUCKET_VOLUME, true);
-				if (fluidHandler != null)
-					result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
+				result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
 				if (result && !player.isCreative())
 					stack.shrink(1);

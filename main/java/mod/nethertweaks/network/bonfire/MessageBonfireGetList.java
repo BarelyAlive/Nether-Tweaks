@@ -84,11 +84,10 @@ public class MessageBonfireGetList implements IMessage
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());
-			for(int i = 0; i < player_list.size(); i++)
-			{
-				buf.writeLong(player_list.get(i).getMostSignificantBits());
-				buf.writeLong(player_list.get(i).getLeastSignificantBits());
-			}
+            for (UUID uuid : player_list) {
+                buf.writeLong(uuid.getMostSignificantBits());
+                buf.writeLong(uuid.getLeastSignificantBits());
+            }
 		}
 
 	}

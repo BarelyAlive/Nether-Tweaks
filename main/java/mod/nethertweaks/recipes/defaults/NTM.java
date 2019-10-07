@@ -55,8 +55,7 @@ public class NTM implements IRecipeDefaults
 
     @Override
 	public String getMODID() {
-        String MODID = Constants.MODID;
-        return MODID;
+		return Constants.MODID;
 	}
 
 	@Override

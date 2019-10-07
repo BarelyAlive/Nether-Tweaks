@@ -4,6 +4,7 @@ import static mod.sfhcore.util.Util.whiteColor;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
@@ -63,7 +64,7 @@ public class MessageCompostUpdate implements IMessage {
 		buf.writeFloat(color.a);
 		buf.writeFloat(compValue);
 		buf.writeBoolean(isFirst);
-		String itemName = stack.getItem().getRegistryName().toString();
+		String itemName = Objects.requireNonNull(stack.getItem().getRegistryName()).toString();
 		buf.writeInt(itemName.length());
 		buf.writeCharSequence(stack.getItem().getRegistryName().toString(), CHARSET);
 		buf.writeInt(stack.getMetadata());

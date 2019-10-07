@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
@@ -118,7 +119,7 @@ public class AshBonePile extends CubeContainerHorizontal
 				if (!player.capabilities.isCreativeMode)
 					player.setHeldItem(hand, ItemStack.EMPTY);
 				world.setBlockState(pos, state.withProperty(LIT, true), 3);
-				te.isLit(true);
+				Objects.requireNonNull(te).isLit(true);
 				if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
 				{
 					BlockPos resultPos = testPosition(world, pos);
@@ -212,7 +213,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
 					{
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
-						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+						Objects.requireNonNull(player).sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
 						NetworkHandler.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}

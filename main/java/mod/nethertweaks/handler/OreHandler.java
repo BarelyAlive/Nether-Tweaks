@@ -1,10 +1,6 @@
 package mod.nethertweaks.handler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.items.ItemChunk;
@@ -34,25 +30,21 @@ public class OreHandler {
 
 	public static void add(final Item stack, final int rarity)
 	{
-		String reg_domain = stack.getRegistryName().getResourceDomain();
+		String reg_domain = Objects.requireNonNull(stack.getRegistryName()).getResourceDomain();
 		String reg_path = stack.getRegistryName().getResourcePath();
 		String reg = reg_domain + ":" + reg_path;
 		String unlocalized_name = stack.getUnlocalizedName();
 		String display_name = new ItemStack(stack).getDisplayName().toLowerCase();
-		for (int i = 0; i < disabled_chunks.size(); i++)
-		{
-			String dis_name = disabled_chunks.get(i);
-			if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
-				if(enable_chunks.size() != 0)
-					for (int j = 0; j < enable_chunks.size(); j++)
-					{
-						String en_name = enable_chunks.get(j);
-						if (!reg.contains(en_name) && !unlocalized_name.contains(en_name) && !display_name.contains(en_name))
-							return;
-					}
-				else
-					return;
-		}
+        for (String dis_name : disabled_chunks) {
+            if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
+                if (enable_chunks.size() != 0)
+                    for (String en_name : enable_chunks) {
+                        if (!reg.contains(en_name) && !unlocalized_name.contains(en_name) && !display_name.contains(en_name))
+                            return;
+                    }
+                else
+                    return;
+        }
 
 		if (!ore_list.containsKey(stack))
 			ore_list.put(stack, rarity);

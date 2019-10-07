@@ -44,12 +44,11 @@ public class Compostable
 
 	public Compostable copy()
 	{
-		Compostable cp = new Compostable(value, color, compostBlock);
-		return cp;
+        return new Compostable(value, color, compostBlock);
 	}
 
-	private float value = 0;
-	private Color color = null;
+	private float value;
+	private Color color;
 	private BlockInfo compostBlock;
 
 	public float getValue() {

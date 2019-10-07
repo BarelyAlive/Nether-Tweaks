@@ -270,7 +270,7 @@ public class TileCondenser extends TileFluidInventory
 		TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
 
 		if(world.provider.doesWaterVaporize()) return 1;
 

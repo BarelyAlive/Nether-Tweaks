@@ -1,6 +1,7 @@
 package mod.nethertweaks.network;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
@@ -57,11 +58,11 @@ public class MessageTeleportPlayer implements IMessage {
 
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
-				binfo = new BonfireInfo(player.getUniqueID(), player.world.provider.getDimension());
+				binfo = new BonfireInfo(Objects.requireNonNull(player).getUniqueID(), player.world.provider.getDimension());
 			else
 				binfo = WorldSpawnLocation.bonfire_info.get(message.bonfire_pos);
 
-			player.setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			Objects.requireNonNull(player).setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 
 			LookAt(message.bonfire_pos.getX() + 0.5, message.bonfire_pos.getY(), message.bonfire_pos.getZ() + 0.5, player);
 

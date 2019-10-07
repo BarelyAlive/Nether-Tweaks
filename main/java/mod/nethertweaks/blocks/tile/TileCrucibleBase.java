@@ -157,7 +157,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		if (stack.isEmpty())
 			return false;
 
-		Boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
+		boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
 
 		if (result) {
 			if (!player.isCreative())

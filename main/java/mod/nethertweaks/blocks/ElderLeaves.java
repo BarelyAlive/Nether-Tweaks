@@ -1,6 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -57,7 +58,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 			return;
 		}
 
-		if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
+		if (state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
 		{
 			int i = 4;
 			int j = 5;
@@ -121,7 +122,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 			int l2 = surroundings[16912];
 
 			if (l2 >= 0)
-				world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
+				world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.FALSE), 4);
 			else
 				destroy(world, pos);
 		}
@@ -208,7 +209,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		}
 
 		if (rand.nextInt(chance) == 0)
-			ret.add(new ItemStack(getItemDropped(state, rand, fortune), 1, damageDropped(state)));
+			ret.add(new ItemStack(Objects.requireNonNull(getItemDropped(state, rand, fortune)), 1, damageDropped(state)));
 
 		chance = 200;
 		if (fortune > 0)
@@ -227,7 +228,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public boolean shouldSideBeRendered(final IBlockState blockState, final IBlockAccess blockAccess, final BlockPos pos, final EnumFacing side)
 	{
-		return !leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : true;//super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return leavesFancy || blockAccess.getBlockState(pos.offset(side)).getBlock() != this;//super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 	@Override
@@ -237,7 +238,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
-		return getDefaultState().withProperty(CHECK_DECAY, meta == 0 ? false : true);
+		return getDefaultState().withProperty(CHECK_DECAY, meta != 0);
 	}
 
 	@Override
@@ -246,9 +247,8 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		boolean cd = state.getValue(CHECK_DECAY);
 
 		if(!cd) return 0;
-		if(cd) return 1;
+		return 1;
 
-		return 0;
 	}
 
 	@Override

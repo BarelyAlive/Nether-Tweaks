@@ -40,7 +40,6 @@ public class Freezer extends CubeContainerHorizontal
 		if(!world.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) world.getTileEntity(pos);
 		if(te == null) return false;
-		if(!(te instanceof TileFreezer)) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 

@@ -15,13 +15,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.Objects;
+
 public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile> {
 
 	@Override
 	public void render(final TileAshBonePile te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha) {
 		if (te != null)
 		{
-			boolean is_lit = false;
+			boolean is_lit;
 			if (WorldSpawnLocation.bonfire_info.containsKey(new BlockPos(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ())))
 				is_lit = true;
 			else
@@ -58,7 +60,7 @@ public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile
 			}
 		}
 
-		super.render(te, x, y, z, partialTicks, destroyStage, alpha);
+		super.render(Objects.requireNonNull(te), x, y, z, partialTicks, destroyStage, alpha);
 	}
 
 }

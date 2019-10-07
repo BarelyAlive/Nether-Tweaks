@@ -11,14 +11,13 @@ public class FluidBlockTransformer
 	private String fluidName;
 	private Ingredient input;
 	private BlockInfo output;
-	private EntityInfo toSpawn = EntityInfo.EMPTY;
-	private int spawnCount = 4;
-	private int spawnRange = 4;
+	private EntityInfo toSpawn;
+	private int spawnCount;
+	private int spawnRange;
 
 	public FluidBlockTransformer copy()
 	{
-		FluidBlockTransformer cp = new FluidBlockTransformer(fluidName, input, output, toSpawn.getName(), spawnCount, spawnRange);
-		return cp;
+        return new FluidBlockTransformer(fluidName, input, output, toSpawn.getName(), spawnCount, spawnRange);
 	}
 
 	public String getFluidName() {

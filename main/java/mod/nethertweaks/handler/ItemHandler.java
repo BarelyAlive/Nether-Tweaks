@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.BlocksItems;
@@ -194,7 +195,7 @@ public class ItemHandler
 			if(!(block instanceof BlockSlab)
 					&& !(block instanceof CustomDoor)
 					&& !(block instanceof BlockFluidClassic))
-				ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+				ITEMS.add(new ItemBlock(block).setRegistryName(Objects.requireNonNull(block.getRegistryName())));
 		});
 	}
 
@@ -203,7 +204,7 @@ public class ItemHandler
 	{
 		ITEMS.forEach((item) ->
 		{
-			item.setUnlocalizedName(item.getRegistryName().getResourcePath());
+			item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
 			item.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(item);
@@ -215,7 +216,7 @@ public class ItemHandler
 	public void registerModels(final ModelRegistryEvent event)
 	{
 		for(Item item : ITEMS)
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
 
 	private void addItemBurnTime()

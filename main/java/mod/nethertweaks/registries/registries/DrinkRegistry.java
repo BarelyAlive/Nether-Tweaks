@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -105,7 +106,7 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, final int meta, final int thirstReplenish, final float saturationReplenish, final float poisonChance) {
-		register(ForgeRegistries.ITEMS.getValue(location), meta, thirstReplenish, saturationReplenish,  poisonChance);
+		register(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location)), meta, thirstReplenish, saturationReplenish,  poisonChance);
 	}
 
 	@Override

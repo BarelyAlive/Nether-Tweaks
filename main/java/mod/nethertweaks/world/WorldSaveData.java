@@ -52,7 +52,7 @@ public class WorldSaveData extends WorldSavedData {
 		boolean is_public;
 		String name;
 		float yaw, ang;
-		List<UUID> player_list = null;
+		List<UUID> player_list;
 		NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
 		NBTTagList bonfireNbtList = nbt.getTagList("NTM.Bonfires", 10);
 

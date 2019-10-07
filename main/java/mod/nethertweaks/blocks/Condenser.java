@@ -41,7 +41,6 @@ public class Condenser extends CubeContainerHorizontal
 		if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(te == null) return false;
-		if(!(te instanceof TileCondenser)) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 

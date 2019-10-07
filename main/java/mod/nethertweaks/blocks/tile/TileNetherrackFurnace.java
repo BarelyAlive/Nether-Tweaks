@@ -20,6 +20,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.Objects;
+
 public class TileNetherrackFurnace extends TileInventory
 {
 	public TileNetherrackFurnace() {
@@ -99,7 +101,7 @@ public class TileNetherrackFurnace extends TileInventory
 		TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
 
 		return 0;
 	}

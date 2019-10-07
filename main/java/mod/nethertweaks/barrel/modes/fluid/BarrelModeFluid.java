@@ -1,6 +1,7 @@
 package mod.nethertweaks.barrel.modes.fluid;
 
 import java.util.List;
+import java.util.Objects;
 
 import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
@@ -176,7 +177,7 @@ public class BarrelModeFluid implements IBarrelMode {
 				fluidOnTop = ((IFluidBlock) onTop).getFluid();
 
 			if (NTMRegistryManager.FLUID_ON_TOP_REGISTRY.isValidRecipe(fluidInBarrel, fluidOnTop)) {
-				BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, fluidOnTop);
+				BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, Objects.requireNonNull(fluidOnTop));
 				tank.drain(tank.getCapacity(), true);
 				barrel.setMode("block");
 				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
@@ -187,7 +188,7 @@ public class BarrelModeFluid implements IBarrelMode {
 			}
 
 			// Fluid transforming time!
-			if (NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.containsKey(barrel.getTank().getFluid().getFluid().getName())) {
+			if (NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.containsKey(Objects.requireNonNull(barrel.getTank().getFluid()).getFluid().getName())) {
 				List<FluidTransformer> transformers = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY
 						.getFluidTransformers(barrel.getTank().getFluid().getFluid().getName());
 
@@ -216,7 +217,8 @@ public class BarrelModeFluid implements IBarrelMode {
 					if (found) break;
 				}
 			}
-			if(barrel.getItemHandler().getStackInSlot(0) != null && barrel.getTank().getFluid() != null)
+			barrel.getItemHandler().getStackInSlot(0);
+			if(barrel.getTank().getFluid() != null)
 			{
 				String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
 				if(transformFluidItem != null)
