@@ -23,10 +23,10 @@ class OreInfo
 
 public class OreHandler {
 
-	private static Map<Item, Integer> ore_list = new HashMap<>();
-	public static Map<String, ItemChunk> mod_chunks = new HashMap<>();
-	private static List<String> disabled_chunks = new ArrayList<>();
-	private static List<String> enable_chunks = new ArrayList<>();
+	private static final Map<Item, Integer> ore_list = new HashMap<>();
+	public static final Map<String, ItemChunk> mod_chunks = new HashMap<>();
+	private static final List<String> disabled_chunks = new ArrayList<>();
+	private static final List<String> enable_chunks = new ArrayList<>();
 
 	public static void add(final Item stack, final int rarity)
 	{

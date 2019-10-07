@@ -25,10 +25,10 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileFreezer extends TileFluidInventory
 {
 	private int fillTick = 0;
-	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	private final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	private float temp = 20f;
 	private int timer = 0;
-	private int maxTimer = Config.cooldownFreezer;
+	private final int maxTimer = Config.cooldownFreezer;
 
 	private ItemStack ice()
 	{

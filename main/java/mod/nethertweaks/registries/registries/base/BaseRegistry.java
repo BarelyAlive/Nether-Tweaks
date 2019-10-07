@@ -18,8 +18,8 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 	protected final Gson gson;
 	private final List<? extends IDefaultRecipeProvider> defaultRecipeProviders;
 	protected boolean hasAlreadyBeenLoaded = false;
-	protected RegType registry;
-	protected Type typeOfSource;
+	protected final RegType registry;
+	protected final Type typeOfSource;
 
 	@Override
 	public RegType getRegistry() {

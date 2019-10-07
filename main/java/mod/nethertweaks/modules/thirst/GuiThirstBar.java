@@ -15,7 +15,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 public class GuiThirstBar {
 
-	public static ResourceLocation THIRST_BAR_ICONS = new ResourceLocation("nethertweaksmod:textures/gui/thirst_bar.png");
+	public static final ResourceLocation THIRST_BAR_ICONS = new ResourceLocation("nethertweaksmod:textures/gui/thirst_bar.png");
 
 	public static void onRenderGameOverlayEvent(final RenderGameOverlayEvent event)
 	{

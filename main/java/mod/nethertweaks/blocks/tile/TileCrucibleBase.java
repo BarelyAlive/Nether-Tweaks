@@ -35,14 +35,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public abstract class TileCrucibleBase extends TileBase implements ITickable {
 	public static final int MAX_ITEMS = 4;
 
-	protected FluidTankBase tank;
+	protected final FluidTankBase tank;
 	protected int solidAmount;
 
 	private ItemInfo currentItem = ItemInfo.EMPTY;
 	protected int ticksSinceLast = 0;
 
-	protected CrucibleItemHandler itemHandler;
-	protected CrucibleRegistry crucibleRegistry;
+	protected final CrucibleItemHandler itemHandler;
+	protected final CrucibleRegistry crucibleRegistry;
 
 	public FluidTankBase getTank() {
 		return tank;

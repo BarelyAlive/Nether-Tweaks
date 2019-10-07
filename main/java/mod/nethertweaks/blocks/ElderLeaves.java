@@ -83,40 +83,48 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 							IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
 							Block block = iblockstate.getBlock();
 
+							final int i3 = (i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16;
 							if (!block.canSustainLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
 							{
 								if (block.isLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
-									surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
+									surroundings[i3] = -2;
 								else
-									surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -1;
+									surroundings[i3] = -1;
 							} else
-								surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = 0;
+								surroundings[i3] = 0;
 						}
 
 				for (int i3 = 1; i3 <= 4; ++i3)
 					for (int j3 = -4; j3 <= 4; ++j3)
 						for (int k3 = -4; k3 <= 4; ++k3)
-							for (int l3 = -4; l3 <= 4; ++l3)
-								if (surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16] == i3 - 1)
+							for (int l3 = -4; l3 <= 4; ++l3) {
+								final int i2 = (j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16;
+								if (surroundings[i2] == i3 - 1)
 								{
-									if (surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
-										surroundings[(j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+									final int i4 = (j3 + 16 - 1) * 1024 + (k3 + 16) * 32 + l3 + 16;
+									if (surroundings[i4] == -2)
+										surroundings[i4] = i3;
 
-									if (surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] == -2)
-										surroundings[(j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16] = i3;
+									final int i5 = (j3 + 16 + 1) * 1024 + (k3 + 16) * 32 + l3 + 16;
+									if (surroundings[i5] == -2)
+										surroundings[i5] = i3;
 
-									if (surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] == -2)
-										surroundings[(j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16] = i3;
+									final int i6 = (j3 + 16) * 1024 + (k3 + 16 - 1) * 32 + l3 + 16;
+									if (surroundings[i6] == -2)
+										surroundings[i6] = i3;
 
-									if (surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] == -2)
-										surroundings[(j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16] = i3;
+									final int i7 = (j3 + 16) * 1024 + (k3 + 16 + 1) * 32 + l3 + 16;
+									if (surroundings[i7] == -2)
+										surroundings[i7] = i3;
 
-									if (surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] == -2)
-										surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 - 1] = i3;
+									if (surroundings[i2 - 1] == -2)
+										surroundings[i2 - 1] = i3;
 
-									if (surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] == -2)
-										surroundings[(j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1] = i3;
+									final int i8 = (j3 + 16) * 1024 + (k3 + 16) * 32 + l3 + 16 + 1;
+									if (surroundings[i8] == -2)
+										surroundings[i8] = i3;
 								}
+							}
 			}
 
 			int l2 = surroundings[16912];
@@ -191,7 +199,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public void beginLeavesDecay(final IBlockState state, final World world, final BlockPos pos)
 	{
-		if (!(Boolean)state.getValue(CHECK_DECAY))
+		if (!state.getValue(CHECK_DECAY))
 			world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 1);
 	}
 
@@ -233,7 +241,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
+		return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE);
 	}
 
 	@Override

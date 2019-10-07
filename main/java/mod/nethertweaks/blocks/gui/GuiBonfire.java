@@ -27,11 +27,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiBonfire extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guibonfire.png");
 
-	private Map<BlockPos, BonfireInfo> bonfires;
+	private final Map<BlockPos, BonfireInfo> bonfires;
 
-	private World world;
-	private EntityPlayer player;
-	private BlockPos pos;
+	private final World world;
+	private final EntityPlayer player;
+	private final BlockPos pos;
 	private int page;
 	private boolean toggle;
 	private GuiTextField text;

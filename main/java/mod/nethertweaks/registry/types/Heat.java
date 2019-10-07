@@ -38,8 +38,8 @@ public class Heat
         return value == other.value;
     }
 
-	private BlockInfo item;
-	private int value;
+	private final BlockInfo item;
+	private final int value;
 
 	public static Heat getEMPTY() {
 		return EMPTY;

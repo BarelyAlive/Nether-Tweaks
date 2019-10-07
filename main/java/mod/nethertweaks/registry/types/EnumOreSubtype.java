@@ -7,7 +7,7 @@ public enum EnumOreSubtype
 	DUST(2),
 	INGOT(3);
 
-    private EnumOreSubtype(final int meta)
+    EnumOreSubtype(final int meta)
 	{
     }
 }

@@ -37,8 +37,8 @@ public class Dryable
         return value == other.value;
     }
 
-	private ItemStack item;
-	private int value;
+	private final ItemStack item;
+	private final int value;
 
 	public static Dryable getEMPTY() {
 		return EMPTY;

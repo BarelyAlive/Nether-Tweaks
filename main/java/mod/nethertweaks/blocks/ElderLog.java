@@ -37,10 +37,7 @@ public class ElderLog extends CubeFacingXYZ{
 	}
 
 	@Override
-	public boolean canSustainLeaves(final IBlockState state, final net.minecraft.world.IBlockAccess world, final BlockPos pos)
-	{
-		return state.getBlock() == BlockHandler.ELDER_LEAVES;
-	}
+	public boolean canSustainLeaves(final IBlockState state, final net.minecraft.world.IBlockAccess world, final BlockPos pos){ return true; }
 	@Override public boolean isWood(final net.minecraft.world.IBlockAccess world, final BlockPos pos){ return true; }
 	@Override public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {	return false; }
 }

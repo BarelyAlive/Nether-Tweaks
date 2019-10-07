@@ -18,9 +18,9 @@ public class BarrelModeRegistry {
 		ITEM, FLUID, TICK, NONE
 	}
 
-	private static EnumMap<TriggerType, ArrayList<IBarrelMode>> barrelModes = new EnumMap<>(TriggerType.class);
+	private static final EnumMap<TriggerType, ArrayList<IBarrelMode>> barrelModes = new EnumMap<>(TriggerType.class);
 
-	private static HashMap<String, IBarrelMode> barrelModeNames = new HashMap<>();
+	private static final HashMap<String, IBarrelMode> barrelModeNames = new HashMap<>();
 
 	public static void registerBarrelMode(final IBarrelMode mode, final TriggerType type)
 	{

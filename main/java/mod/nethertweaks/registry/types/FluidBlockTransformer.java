@@ -8,9 +8,9 @@ import net.minecraft.item.crafting.Ingredient;
 
 public class FluidBlockTransformer
 {
-	private String fluidName;
-	private Ingredient input;
-	private BlockInfo output;
+	private final String fluidName;
+	private final Ingredient input;
+	private final BlockInfo output;
 	private EntityInfo toSpawn;
 	private int spawnCount;
 	private int spawnRange;

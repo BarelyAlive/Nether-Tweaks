@@ -6,7 +6,7 @@ public class Meltable {
 
 	public static final Meltable EMPTY = new Meltable("", 0);
 
-	private String fluid;
+	private final String fluid;
 
 	private int amount;
 

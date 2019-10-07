@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WorldGeneratorNTM implements IWorldGenerator{
 
-	private WorldGenerator tree = new WorldGenElderTree(true);
-	private WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
+	private final WorldGenerator tree = new WorldGenElderTree(true);
+	private final WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 
 	public WorldGeneratorNTM() {
 	}
@@ -31,17 +31,17 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	}
 
 	private void generateNether(final World world, final Random random, final int posX, final int posZ) {
-		oreGenerationNether(world, random, posX, posZ, 16, 16, 10, 6 + random.nextInt(4), 1, 127);
+		oreGenerationNether(world, random, posX, posZ, 6 + random.nextInt(4));
 	}
 
-	private void oreGenerationNether(final World world, final Random random, final int posX, final int posZ, final int maxX, final int maxZ, final int maxAderLaenge, final int spawnChancen, final int minY, final int maxY)
+	private void oreGenerationNether(final World world, final Random random, final int posX, final int posZ, final int spawnChancen)
 	{
-		int differenzMinMaxY = maxY - minY;
+		int differenzMinMaxY = 127 - 1;
 		if (BlocksItems.enableHellfayah)
 			for (int i = 0; i < spawnChancen; i++) {
-				int positionX = posX + random.nextInt(maxX);
-				int positionY = minY + random.nextInt(differenzMinMaxY);
-				int positionZ = posZ + random.nextInt(maxZ);
+				int positionX = posX + random.nextInt(16);
+				int positionY = 1 + random.nextInt(differenzMinMaxY);
+				int positionZ = posZ + random.nextInt(16);
 				nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
 			}
 		if (BlocksItems.enableElderTree)

@@ -44,11 +44,11 @@ public class FluidTransformer {
         return Arrays.equals(transformingBlocks, other.transformingBlocks);
     }
 
-	private String inputFluid;
-	private String outputFluid;
-	private BlockInfo[] transformingBlocks;
-	private BlockInfo[] blocksToSpawn;
-	private int duration;
+	private final String inputFluid;
+	private final String outputFluid;
+	private final BlockInfo[] transformingBlocks;
+	private final BlockInfo[] blocksToSpawn;
+	private final int duration;
 
 	public String getInputFluid() {
 		return inputFluid;

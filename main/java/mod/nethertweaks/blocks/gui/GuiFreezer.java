@@ -22,7 +22,8 @@ import java.util.Objects;
 @SideOnly(Side.CLIENT)
 public class GuiFreezer extends GuiContainer
 {
-	private int xSize, ySize;
+	private final int xSize;
+    private final int ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guifreezer.png");
 	private TileFreezer entity;
 

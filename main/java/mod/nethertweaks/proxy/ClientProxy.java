@@ -17,7 +17,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
-	public ThirstStats clientStats = new ThirstStats();
+	public final ThirstStats clientStats = new ThirstStats();
 
 	@Override
 	public void preInit() {

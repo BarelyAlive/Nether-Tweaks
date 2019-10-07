@@ -47,8 +47,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public class TileBarrel extends TileBase implements ITickable {
 
 	private IBarrelMode mode;
-	private BarrelItemHandler itemHandler;
-	private BarrelFluidHandler tank;
+	private final BarrelItemHandler itemHandler;
+	private final BarrelFluidHandler tank;
 	private int tier;
 	private long entityWalkCooldown; //The time after which the barrel will attempt to milk an Entity. Based on the world clock
 

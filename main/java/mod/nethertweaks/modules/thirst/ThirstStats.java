@@ -33,8 +33,8 @@ public class ThirstStats {
 	public transient float lastSaturation;
 	public transient boolean lastPoisoned;
 
-	public transient Random random = new Random();
-	public transient DamageSource thirstDmgSource = new DamageThirst();
+	public final transient Random random = new Random();
+	public final transient DamageSource thirstDmgSource = new DamageThirst();
 
 	public transient Field foodTimer;
 
