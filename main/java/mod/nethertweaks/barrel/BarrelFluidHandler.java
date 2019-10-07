@@ -22,7 +22,7 @@ public class BarrelFluidHandler extends FluidTank {
 		this.barrel = barrel;
 	}
 
-	private BarrelFluidHandler(final int capacity) {
+	public BarrelFluidHandler(final int capacity) {
 		super(capacity);
 	}
 

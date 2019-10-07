@@ -1,7 +1,6 @@
 package mod.nethertweaks.items;
 
 import java.util.List;
-import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import net.minecraft.client.util.ITooltipFlag;
@@ -23,10 +22,14 @@ public class CrystalOfLight extends Item
 	@Override
 	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		String name = Objects.requireNonNull(stack.getItem().getRegistryName()).getResourcePath();
+		String name = stack.getItem().getRegistryName().getResourcePath();
 
-        if (Constants.CRYSTAL_OF_LIGHT.equals(name)) {
-            tooltip.add("This crystal enchants water, making it resistant to temperature changes");
-        }
+		switch (name) {
+		case Constants.CRYSTAL_OF_LIGHT:
+			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
+			break;
+		default:
+			break;
+		}
 	}
 }

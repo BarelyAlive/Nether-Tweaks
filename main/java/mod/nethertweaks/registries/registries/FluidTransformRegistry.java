@@ -97,7 +97,7 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 		}
 	}
 
-	private List<FluidTransformer> getFluidTransformers() {
+	public List<FluidTransformer> getFluidTransformers() {
 		List<FluidTransformer> fluidTransformers = new ArrayList<>();
 		for (List<FluidTransformer> transformers : registry.values())
 			fluidTransformers.addAll(transformers);

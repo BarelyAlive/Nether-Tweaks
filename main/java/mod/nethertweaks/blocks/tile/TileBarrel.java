@@ -3,7 +3,6 @@ package mod.nethertweaks.blocks.tile;
 import static mod.nethertweaks.registries.manager.NTMRegistryManager.MILK_ENTITY_REGISTRY;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -47,8 +46,8 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public class TileBarrel extends TileBase implements ITickable {
 
 	private IBarrelMode mode;
-	private final BarrelItemHandler itemHandler;
-	private final BarrelFluidHandler tank;
+	private BarrelItemHandler itemHandler;
+	private BarrelFluidHandler tank;
 	private int tier;
 	private long entityWalkCooldown; //The time after which the barrel will attempt to milk an Entity. Based on the world clock
 
@@ -89,7 +88,7 @@ public class TileBarrel extends TileBase implements ITickable {
 			if (TankUtil.drainWaterFromBottle(this, player, tank))
 				return true;
 
-			if (TankUtil.drainWaterIntoBottle(this, player, tank))
+			if (tank != null && TankUtil.drainWaterIntoBottle(this, player, tank))
 				return true;
 
 
@@ -100,11 +99,11 @@ public class TileBarrel extends TileBase implements ITickable {
 			if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
 			if (!result)
-				if (Objects.requireNonNull(fluidHandler).getTankProperties().length != 0)
+				if (fluidHandler.getTankProperties().length != 0)
 					if (fluidHandler.getTankProperties()[0].getContents() != null)
 						if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
 							if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
-								if (Objects.equals(ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName(), stack.getItem().getRegistryName()))
+								if (ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName().equals(stack.getItem().getRegistryName()))
 									getItemHandler().insertItem(0, stack, true);
 
 			if (result) {
@@ -133,7 +132,8 @@ public class TileBarrel extends TileBase implements ITickable {
 					&& bucketStack.getFluid() == tankStack.getFluid()
 					&& tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
 				tank.drain(Fluid.BUCKET_VOLUME, true);
-				result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
+				if (fluidHandler != null)
+					result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
 				if (result && !player.isCreative())
 					stack.shrink(1);

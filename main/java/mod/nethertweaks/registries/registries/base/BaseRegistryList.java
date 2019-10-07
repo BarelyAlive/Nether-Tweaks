@@ -9,7 +9,7 @@ import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 public abstract class BaseRegistryList<V> extends BaseRegistry<List<V>> {
 
-	protected BaseRegistryList(final Gson gson, final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
+	public BaseRegistryList(final Gson gson, final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
 		super(gson, new ArrayList<>(), null,  defaultRecipeProviders);
 	}
 
@@ -18,7 +18,7 @@ public abstract class BaseRegistryList<V> extends BaseRegistry<List<V>> {
 		registry.clear();
 	}
 
-	protected void register(final V value) {
+	public void register(final V value) {
 		registry.add(value);
 	}
 }

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-class CreativeTabNTM extends CreativeTabs
+public class CreativeTabNTM extends CreativeTabs
 {
 	public CreativeTabNTM() {
 		super("tab_nether_tweaks_mod");

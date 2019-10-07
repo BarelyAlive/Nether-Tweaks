@@ -17,7 +17,7 @@ public class TileHellmart extends TileEntity {
 	}
 
 	private int stockNum = 0;
-	private final ItemStackHandler itemstackhandler = new ItemStackHandler();
+	private ItemStackHandler itemstackhandler = new ItemStackHandler();
 
 	@Override
 	public boolean hasCapability(final Capability<?> capability, final EnumFacing facing) {

@@ -1,6 +1,10 @@
 package mod.nethertweaks.handler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.items.ItemChunk;
@@ -23,22 +27,26 @@ class OreInfo
 
 public class OreHandler {
 
-	private static final Map<Item, Integer> ore_list = new HashMap<>();
-	public static final Map<String, ItemChunk> mod_chunks = new HashMap<>();
-	private static final List<String> disabled_chunks = new ArrayList<>();
-	private static final List<String> enable_chunks = new ArrayList<>();
+	private static Map<Item, Integer> ore_list = new HashMap<>();
+	public static Map<String, ItemChunk> mod_chunks = new HashMap<>();
+	private static List<String> disabled_chunks = new ArrayList<>();
+	private static List<String> enable_chunks = new ArrayList<>();
 
 	public static void add(final Item stack, final int rarity)
 	{
-		String reg_domain = Objects.requireNonNull(stack.getRegistryName()).getResourceDomain();
+		String reg_domain = stack.getRegistryName().getResourceDomain();
 		String reg_path = stack.getRegistryName().getResourcePath();
 		String reg = reg_domain + ":" + reg_path;
 		String unlocalized_name = stack.getUnlocalizedName();
 		String display_name = new ItemStack(stack).getDisplayName().toLowerCase();
-		for (String dis_name : disabled_chunks) {
+		for (int i = 0; i < disabled_chunks.size(); i++)
+		{
+			String dis_name = disabled_chunks.get(i);
 			if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
-				if (enable_chunks.size() != 0)
-					for (String en_name : enable_chunks) {
+				if(enable_chunks.size() != 0)
+					for (int j = 0; j < enable_chunks.size(); j++)
+					{
+						String en_name = enable_chunks.get(j);
 						if (!reg.contains(en_name) && !unlocalized_name.contains(en_name) && !display_name.contains(en_name))
 							return;
 					}
@@ -64,7 +72,8 @@ public class OreHandler {
 
 	public static void remove(final Item stack)
 	{
-		ore_list.remove(stack);
+		if (ore_list.containsKey(stack))
+			ore_list.remove(stack);
 	}
 
 	public static void register(final IForgeRegistry<Item> registry) {
@@ -85,6 +94,7 @@ public class OreHandler {
 				chunks.setResult(mod_domain, entry.getKey());
 				mod_chunks.put(mod_domain, chunks);
 			}
+			chunks = null;
 		}
 
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())

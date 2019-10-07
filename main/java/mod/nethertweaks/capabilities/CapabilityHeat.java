@@ -19,10 +19,12 @@ public class CapabilityHeat implements ICapabilityHeat
 		if (getClass() != obj.getClass())
 			return false;
 		CapabilityHeat other = (CapabilityHeat) obj;
-        return heatRate == other.heatRate;
-    }
+		if (heatRate != other.heatRate)
+			return false;
+		return true;
+	}
 
-	private int heatRate;
+	int heatRate;
 
 	@Override
 	public int getHeatRate() {

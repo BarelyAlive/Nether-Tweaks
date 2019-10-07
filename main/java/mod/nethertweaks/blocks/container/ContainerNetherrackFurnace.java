@@ -9,11 +9,14 @@ import net.minecraft.inventory.SlotFurnaceOutput;
 
 public class ContainerNetherrackFurnace extends ContainerBase {
 
-    public ContainerNetherrackFurnace(final InventoryPlayer inventoryPlayer, final TileNetherrackFurnace te) {
-		super(te);
+	private TileNetherrackFurnace tileEntity;
 
-        addSlotToContainer(new Slot(te, 0, 56, 17));
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, te, 1, 56, 53));
+	public ContainerNetherrackFurnace(final InventoryPlayer inventoryPlayer, final TileNetherrackFurnace te) {
+		super(te);
+		tileEntity = te;
+
+		addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 56, 53));
 
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; j < 9; j++)

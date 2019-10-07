@@ -2,7 +2,6 @@ package mod.nethertweaks.json;
 
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -37,7 +36,7 @@ public class CustomHellmartDataJson implements JsonDeserializer<HellmartData>, J
 			LogUtil.error("This may result in crashing or other undefined behavior");
 		}
 
-		return new HellmartData(Objects.requireNonNull(itemItem).getItemStack(), Objects.requireNonNull(currencyItem).getItemStack(), price);
+		return new HellmartData(itemItem.getItemStack(), currencyItem.getItemStack(), price);
 	}
 
 	@Override

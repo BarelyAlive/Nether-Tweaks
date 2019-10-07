@@ -25,8 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-import java.util.Objects;
-
 public class ItemDoll extends Item
 {
 	public ItemDoll(final String type)
@@ -136,6 +134,6 @@ public class ItemDoll extends Item
 
 	@Override
 	public String getUnlocalizedName(final ItemStack stack) {
-		return "item." + Objects.requireNonNull(getRegistryName()).getResourcePath();
+		return "item." + getRegistryName().getResourcePath();
 	}
 }

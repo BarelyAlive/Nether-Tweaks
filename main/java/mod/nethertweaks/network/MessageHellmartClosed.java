@@ -11,8 +11,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-import java.util.Objects;
-
 public class MessageHellmartClosed implements IMessage{
 	private int x;
 	private int y;
@@ -51,11 +49,11 @@ public class MessageHellmartClosed implements IMessage{
 				if(tile_entity instanceof TileHellmart) {
 					TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
 
-					if(!Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0)
+					if(!tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
 							.isEmpty()) {
-						player.entityDropItem(Objects.requireNonNull(tileEntityMarket
-                                .getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0), 1.0F);
-						Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0)
+						player.entityDropItem(tileEntityMarket
+								.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0), 1.0F);
+						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
 						.setCount(0);
 					}
 				}

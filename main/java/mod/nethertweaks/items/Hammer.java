@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class Hammer extends ItemTool implements IHammer  {
 
-	private final int miningLevel;
+	private int miningLevel;
 
 	public Hammer(final int maxUses, final ToolMaterial material)
 	{

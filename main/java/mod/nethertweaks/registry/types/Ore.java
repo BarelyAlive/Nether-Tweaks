@@ -8,17 +8,17 @@ import mod.sfhcore.util.ItemInfo;
 public class Ore {
 
 
-	private final String name;
-	private final Color color;
-	private final ItemInfo result;
-	private final ItemInfo dustResult;
+	private String name;
+	private Color color;
+	private ItemInfo result;
+	private ItemInfo dustResult;
 
 	public ItemInfo getDustResult() {
 		return dustResult;
 	}
 
-	private final String oredictName;
-	private final Map<String, String> translations;
+	private String oredictName;
+	private Map<String, String> translations;
 
 	public Map<String, String> getTranslations() {
 		return translations;

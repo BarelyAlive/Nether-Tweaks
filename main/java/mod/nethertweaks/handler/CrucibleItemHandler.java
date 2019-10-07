@@ -11,8 +11,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class CrucibleItemHandler extends ItemStackHandler {
 
-	private final TileCrucibleBase te;
-	private final CrucibleRegistry crucibleRegistry;
+	protected final TileCrucibleBase te;
+	protected final CrucibleRegistry crucibleRegistry;
 
 	public CrucibleItemHandler(final TileCrucibleBase te, final CrucibleRegistry crucibleRegistry) {
 		super(1);

@@ -9,12 +9,15 @@ import net.minecraft.inventory.SlotFurnaceOutput;
 
 public class ContainerFreezer extends ContainerBase {
 
-    public ContainerFreezer(final InventoryPlayer inventoryPlayer, final TileFreezer te) {
-		super(te);
+	private TileFreezer tileEntity;
 
-        addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, te, 0, 26, 48));
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, te, 1, 80, 12));
-		addSlotToContainer(new Slot(te, 2, 80, 48));
+	public ContainerFreezer(final InventoryPlayer inventoryPlayer, final TileFreezer te) {
+		super(te);
+		tileEntity = te;
+
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 0, 26, 48));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 80, 12));
+		addSlotToContainer(new Slot(tileEntity, 2, 80, 48));
 
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; j < 9; j++)

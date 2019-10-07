@@ -7,7 +7,10 @@ public enum EnumOreSubtype
 	DUST(2),
 	INGOT(3);
 
-    EnumOreSubtype(final int meta)
+	private int meta;
+
+	private EnumOreSubtype(final int meta)
 	{
-    }
+		this.meta = meta;
+	}
 }

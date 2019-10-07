@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -29,10 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ElderLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable
 {
-	private static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
-	private static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
-	private boolean leavesFancy;
-	private int[] surroundings;
+	public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
+	public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
+	protected boolean leavesFancy;
+	int[] surroundings;
 
 	public ElderLeaves()
 	{
@@ -58,7 +57,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 			return;
 		}
 
-		if (state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
+		if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
 		{
 			int i = 4;
 			int j = 5;
@@ -122,7 +121,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 			int l2 = surroundings[16912];
 
 			if (l2 >= 0)
-				world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.FALSE), 4);
+				world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
 			else
 				destroy(world, pos);
 		}
@@ -191,14 +190,14 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public void beginLeavesDecay(final IBlockState state, final World world, final BlockPos pos)
 	{
-		if (!state.getValue(CHECK_DECAY))
+		if (!(Boolean)state.getValue(CHECK_DECAY))
 			world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 1);
 	}
 
 	@Override
-	public List<ItemStack> getDrops(final IBlockAccess world, final BlockPos pos, final IBlockState state, final int fortune)
+	public java.util.List<ItemStack> getDrops(final IBlockAccess world, final BlockPos pos, final IBlockState state, final int fortune)
 	{
-		List<ItemStack> ret = new java.util.ArrayList<>();
+		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
 		Random rand = world instanceof World ? ((World)world).rand : new Random();
 		int chance = getSaplingDropChance(state);
 
@@ -209,14 +208,13 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		}
 
 		if (rand.nextInt(chance) == 0)
-			ret.add(new ItemStack(Objects.requireNonNull(getItemDropped(state, rand, fortune)), 1, damageDropped(state)));
+			ret.add(new ItemStack(getItemDropped(state, rand, fortune), 1, damageDropped(state)));
 
 		chance = 200;
 		if (fortune > 0)
 		{
 			chance -= 10 << fortune;
-			if (chance < 40) {
-			}
+			if (chance < 40) chance = 40;
 		}
 
 		captureDrops(true);
@@ -229,17 +227,17 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public boolean shouldSideBeRendered(final IBlockState blockState, final IBlockAccess blockAccess, final BlockPos pos, final EnumFacing side)
 	{
-		return leavesFancy || blockAccess.getBlockState(pos.offset(side)).getBlock() != this;//super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return !leavesFancy && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : true;//super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE);
+		return new BlockStateContainer(this, new IProperty[] { CHECK_DECAY, DECAYABLE });
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
-		return getDefaultState().withProperty(CHECK_DECAY, meta != 0);
+		return getDefaultState().withProperty(CHECK_DECAY, meta == 0 ? false : true);
 	}
 
 	@Override
@@ -248,13 +246,14 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		boolean cd = state.getValue(CHECK_DECAY);
 
 		if(!cd) return 0;
-		return 1;
+		if(cd) return 1;
 
+		return 0;
 	}
 
 	@Override
 	public List<ItemStack> onSheared(final ItemStack item, final IBlockAccess world, final BlockPos pos, final int fortune) {
-		List<ItemStack> ret = new java.util.ArrayList<>();
+		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
 		ret.add(new ItemStack(BlockHandler.ELDER_LEAVES));
 
 		return ret;

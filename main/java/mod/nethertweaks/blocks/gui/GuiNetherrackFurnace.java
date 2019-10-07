@@ -15,8 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiNetherrackFurnace extends GuiContainer
 {
-	private final int xSize;
-    private final int ySize;
+	private int xSize, ySize;
 	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(Constants.MODID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 

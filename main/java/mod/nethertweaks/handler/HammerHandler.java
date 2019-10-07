@@ -1,7 +1,6 @@
 package mod.nethertweaks.handler;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.Nullable;
 
@@ -31,7 +30,7 @@ public class HammerHandler
 		if (event.getWorld().isRemote || event.getHarvester() == null || event.isSilkTouching())
 			return;
 
-		ItemStack held;
+		ItemStack held = ItemStack.EMPTY;
 
 		if(!hammer.isEmpty())
 			held =  hammer;
@@ -43,7 +42,7 @@ public class HammerHandler
 
 		List<ItemStack> rewards = NTMRegistryManager.HAMMER_REGISTRY.getRewardDrops(event.getWorld().rand, event.getState(), ((IHammer) held.getItem()).getMiningLevel(held), event.getFortuneLevel());
 
-		if (rewards.size() > 0)
+		if (rewards != null && rewards.size() > 0)
 		{
 			event.getDrops().clear();
 			event.setDropChance(1.0F);
@@ -53,9 +52,9 @@ public class HammerHandler
 		hammer =  ItemStack.EMPTY;
 	}
 
-	private static boolean isHammer(@Nullable final ItemStack stack)
+	public static boolean isHammer(@Nullable final ItemStack stack)
 	{
-		if (Objects.requireNonNull(stack).isEmpty())
+		if (stack.isEmpty())
 			return false;
 
 		if (stack.getItem() instanceof IHammer)

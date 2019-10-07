@@ -10,8 +10,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FluidDistilledWater extends Fluid{
 
-	private static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/distilled_water_still");
-	private static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/distilled_water_flow");
+	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/distilled_water_still");
+	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/distilled_water_flow");
 
 	public FluidDistilledWater()
 	{

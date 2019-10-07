@@ -41,14 +41,16 @@ public class FluidTransformer {
 				return false;
 		} else if (!outputFluid.equals(other.outputFluid))
 			return false;
-        return Arrays.equals(transformingBlocks, other.transformingBlocks);
-    }
+		if (!Arrays.equals(transformingBlocks, other.transformingBlocks))
+			return false;
+		return true;
+	}
 
-	private final String inputFluid;
-	private final String outputFluid;
-	private final BlockInfo[] transformingBlocks;
-	private final BlockInfo[] blocksToSpawn;
-	private final int duration;
+	private String inputFluid;
+	private String outputFluid;
+	private BlockInfo[] transformingBlocks;
+	private BlockInfo[] blocksToSpawn;
+	private int duration;
 
 	public String getInputFluid() {
 		return inputFluid;

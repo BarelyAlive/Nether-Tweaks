@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
@@ -72,7 +71,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class EventHook
 {
-	private final static String KEY = "ntm.firstSpawn";
+	public final static String KEY = "ntm.firstSpawn";
 
 	//HELLWORLD
 	@SubscribeEvent
@@ -86,7 +85,7 @@ public class EventHook
 		FluidStack f = FluidUtil.getFluidContained(heldItem);
 
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
-				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !Objects.requireNonNull(f).getFluid().doesVaporize(f)) return;
+				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
@@ -100,7 +99,7 @@ public class EventHook
 		{
 			pos.add(0.5D, 0.5D, 0.5D);
 
-			switch (Objects.requireNonNull(event.getFace()))
+			switch (event.getFace())
 			{
 			case UP:
 				pos = pos.up();

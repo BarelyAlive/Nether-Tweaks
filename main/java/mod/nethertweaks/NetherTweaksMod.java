@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	public static final Gson gsonInstance = new Gson();
+	public static Gson gsonInstance = new Gson();
 	public static File configDirectory;
 	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
 

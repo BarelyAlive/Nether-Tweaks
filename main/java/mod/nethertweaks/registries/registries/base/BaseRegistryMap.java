@@ -12,7 +12,7 @@ import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 
 public abstract class BaseRegistryMap<K, V> extends BaseRegistry<Map<K, V>> implements IRegistryMap<K, V> {
 
-	protected BaseRegistryMap(final Gson gson, final Type typeOfSource, final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
+	public BaseRegistryMap(final Gson gson, final Type typeOfSource, final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
 		super(gson, new HashMap<>(), typeOfSource, defaultRecipeProviders);
 	}
 

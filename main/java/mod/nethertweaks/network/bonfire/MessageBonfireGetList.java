@@ -1,7 +1,6 @@
 package mod.nethertweaks.network.bonfire;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +17,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageBonfireGetList implements IMessage
 {
-	private Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<>();
-	private Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
+	public Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<>();
+	public Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
 
 	public MessageBonfireGetList() {
 	}
@@ -83,13 +82,14 @@ public class MessageBonfireGetList implements IMessage
 				buf.writeInt(0);
 			}
 			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
+			buf.writeCharSequence(info.getName(), Charset.forName("UTF-8"));
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());
-			for (UUID uuid : player_list) {
-				buf.writeLong(uuid.getMostSignificantBits());
-				buf.writeLong(uuid.getLeastSignificantBits());
+			for(int i = 0; i < player_list.size(); i++)
+			{
+				buf.writeLong(player_list.get(i).getMostSignificantBits());
+				buf.writeLong(player_list.get(i).getLeastSignificantBits());
 			}
 		}
 

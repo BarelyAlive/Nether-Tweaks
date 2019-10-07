@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.Objects;
-
 public class TileCrucibleStone extends TileCrucibleBase {
 
 	public TileCrucibleStone() {
@@ -95,7 +93,7 @@ public class TileCrucibleStone extends TileCrucibleBase {
 		TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
+			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
 
 		return 0;
 	}

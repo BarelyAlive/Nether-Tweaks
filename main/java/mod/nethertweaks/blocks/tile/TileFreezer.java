@@ -1,5 +1,6 @@
 package mod.nethertweaks.blocks.tile;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
@@ -25,10 +26,10 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileFreezer extends TileFluidInventory
 {
 	private int fillTick = 0;
-	private final ItemStack ice = new ItemStack(Blocks.ICE, 1);
+	private ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	private float temp = 20f;
 	private int timer = 0;
-	private final int maxTimer = Config.cooldownFreezer;
+	private int maxTimer = Config.cooldownFreezer;
 
 	private ItemStack ice()
 	{
@@ -108,7 +109,8 @@ public class TileFreezer extends TileFluidInventory
 	{
 		if(getTemp() > 0) return false;
 		if(getTank().getFluidAmount() < 1000) return false;
-		return getStackInSlot(0).getCount() != ice().getMaxStackSize();
+		if(getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
+		return true;
 	}
 
 	private void freezeItem()
@@ -175,10 +177,9 @@ public class TileFreezer extends TileFluidInventory
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
-		case 0:
-			case 1:
-				return false;
-			case 2:
+		case 0: return false;
+		case 1: return false;
+		case 2:
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
@@ -224,7 +225,7 @@ public class TileFreezer extends TileFluidInventory
 		return temp;
 	}
 
-	private void setTemp(final float temp) {
+	public void setTemp(final float temp) {
 		this.temp = temp;
 	}
 }

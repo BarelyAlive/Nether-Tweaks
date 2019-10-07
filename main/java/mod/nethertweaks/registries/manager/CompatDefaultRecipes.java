@@ -24,7 +24,7 @@ import mod.nethertweaks.registries.registries.SieveRegistry;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 
-class CompatDefaultRecipes
+public class CompatDefaultRecipes
 {
 	private static final List<IRecipeDefaults> MODS = new ArrayList<>();
 

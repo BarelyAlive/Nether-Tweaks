@@ -1,7 +1,6 @@
 package mod.nethertweaks.network.bonfire;
 
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,13 +78,14 @@ public class MessageBonfireUpdate implements IMessage {
 				buf.writeInt(0);
 			}
 			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
+			buf.writeCharSequence(info.getName(), Charset.forName("UTF-8"));
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());
-			for (UUID uuid : player_list) {
-				buf.writeLong(uuid.getMostSignificantBits());
-				buf.writeLong(uuid.getLeastSignificantBits());
+			for(int i = 0; i < player_list.size(); i++)
+			{
+				buf.writeLong(player_list.get(i).getMostSignificantBits());
+				buf.writeLong(player_list.get(i).getLeastSignificantBits());
 			}
 		}
 
@@ -102,7 +102,7 @@ public class MessageBonfireUpdate implements IMessage {
 				WorldSpawnLocation.bonfire_info.remove(msg.pos);
 
 			if (ctx.side == Side.SERVER)
-				NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(msg.status, msg.pos, WorldSpawnLocation.bonfire_info.getOrDefault(msg.pos, null)));
+				NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(msg.status, msg.pos, WorldSpawnLocation.bonfire_info.containsKey(msg.pos) ? WorldSpawnLocation.bonfire_info.get(msg.pos) : null));
 			return null;
 		}
 	}

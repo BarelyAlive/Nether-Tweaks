@@ -4,9 +4,9 @@ import mod.sfhcore.util.BlockInfo;
 
 public class FluidFluidBlock {
 
-	private final String fluidInBarrel;
-	private final String fluidOnTop;
-	private final BlockInfo result;
+	private String fluidInBarrel;
+	private String fluidOnTop;
+	private BlockInfo result;
 
 	public String getFluidInBarrel() {
 		return fluidInBarrel;
@@ -57,7 +57,10 @@ public class FluidFluidBlock {
 		} else if (!fluidOnTop.equals(other.fluidOnTop))
 			return false;
 		if (result == null) {
-            return other.result == null;
-		} else return result.equals(other.result);
-    }
+			if (other.result != null)
+				return false;
+		} else if (!result.equals(other.result))
+			return false;
+		return true;
+	}
 }

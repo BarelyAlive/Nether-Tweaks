@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -31,7 +30,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implements IDrinkRegistry
 {
-	private final Map<Ingredient, Drinkable> drinkRegistry = new HashMap<>();
+	protected final Map<Ingredient, Drinkable> drinkRegistry = new HashMap<>();
 
 	public DrinkRegistry() {
 		super(
@@ -106,7 +105,7 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, final int meta, final int thirstReplenish, final float saturationReplenish, final float poisonChance) {
-		register(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location)), meta, thirstReplenish, saturationReplenish,  poisonChance);
+		register(ForgeRegistries.ITEMS.getValue(location), meta, thirstReplenish, saturationReplenish,  poisonChance);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 
-class BarrelItemHandlerFluid extends ItemStackHandler {
+public class BarrelItemHandlerFluid extends ItemStackHandler {
 
 	private TileBarrel barrel;
 

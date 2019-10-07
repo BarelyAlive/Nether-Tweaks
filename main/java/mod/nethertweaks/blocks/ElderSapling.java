@@ -23,13 +23,13 @@ import net.minecraftforge.common.IPlantable;
 
 public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 {
-	private static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
-	private static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+	public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
+	protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
 	public ElderSapling()
 	{
 		setSoundType(SoundType.PLANT);
-		setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
+		setDefaultState(blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		this.setRegistryName(Constants.MODID, Constants.ELDER_SAPLING);
 	}
 
@@ -49,15 +49,15 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 		}
 	}
 
-	private void grow(final World world, final BlockPos pos, final IBlockState state, final Random rand)
+	public void grow(final World world, final BlockPos pos, final IBlockState state, final Random rand)
 	{
-		if (state.getValue(STAGE) == 0)
+		if (state.getValue(STAGE).intValue() == 0)
 			world.setBlockState(pos, state.cycleProperty(STAGE), 4);
 		else
 			generateTree(world, pos, state, rand);
 	}
 
-	private void generateTree(final World world, final BlockPos pos, final IBlockState state, final Random rand)
+	public void generateTree(final World world, final BlockPos pos, final IBlockState state, final Random rand)
 	{
 		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, pos)) return;
 		WorldGenerator worldgenerator = new WorldGenElderTree(true);
@@ -69,10 +69,24 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 		IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
-		world.setBlockState(pos, iblockstate2, 4);
+		if (flag)
+		{
+			world.setBlockState(pos.add(i, 0, j), iblockstate2, 4);
+			world.setBlockState(pos.add(i + 1, 0, j), iblockstate2, 4);
+			world.setBlockState(pos.add(i, 0, j + 1), iblockstate2, 4);
+			world.setBlockState(pos.add(i + 1, 0, j + 1), iblockstate2, 4);
+		} else
+			world.setBlockState(pos, iblockstate2, 4);
 
 		if (!worldgenerator.generate(world, rand, pos.add(i, 0, j)))
-			world.setBlockState(pos, state, 4);
+			if (flag)
+			{
+				world.setBlockState(pos.add(i, 0, j), state, 4);
+				world.setBlockState(pos.add(i + 1, 0, j), state, 4);
+				world.setBlockState(pos.add(i, 0, j + 1), state, 4);
+				world.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
+			} else
+				world.setBlockState(pos, state, 4);
 	}
 
 	@Override
@@ -92,19 +106,19 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
-		return getDefaultState().withProperty(STAGE, (meta & 8) >> 3);
+		return getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
 	}
 
 	@Override
 	public int getMetaFromState(final IBlockState state) {
 		int i = 0;
-		i = i | state.getValue(STAGE) << 3;
+		i = i | state.getValue(STAGE).intValue() << 3;
 		return i;
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, STAGE);
+		return new BlockStateContainer(this, new IProperty[] {STAGE});
 	}
 
 	@Override

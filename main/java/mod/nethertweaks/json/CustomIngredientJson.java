@@ -1,7 +1,6 @@
 package mod.nethertweaks.json;
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -41,7 +40,7 @@ public class CustomIngredientJson implements JsonDeserializer<Ingredient>, JsonS
 		else {
 			ItemStack[] stacks = src.getMatchingStacks();
 			if (stacks.length != 0)
-				return new JsonPrimitive(Objects.requireNonNull(stacks[0].getItem().getRegistryName()).toString() + ":" + stacks[0].getItemDamage());
+				return new JsonPrimitive(stacks[0].getItem().getRegistryName().toString() + ":" + stacks[0].getItemDamage());
 		}
 
 		return new JsonPrimitive("minecraft:air:0");

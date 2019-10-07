@@ -1,7 +1,6 @@
 package mod.nethertweaks.json;
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -24,7 +23,7 @@ public class CustomHammerRewardJson implements JsonDeserializer<HammerReward>, J
 	{
 		JsonObject obj = new JsonObject();
 
-		obj.addProperty("item", Objects.requireNonNull(src.getItemStack().getItem().getRegistryName()).toString() + ":" + src.getItemStack().getItemDamage());
+		obj.addProperty("item", src.getItemStack().getItem().getRegistryName().toString() + ":" + src.getItemStack().getItemDamage());
 		obj.addProperty("amount", src.getItemStack().getCount());
 		obj.addProperty("miningLevel", src.getMiningLevel());
 		obj.addProperty("chance", src.getChance());

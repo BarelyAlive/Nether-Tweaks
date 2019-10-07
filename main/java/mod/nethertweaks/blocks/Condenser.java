@@ -25,7 +25,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class Condenser extends CubeContainerHorizontal
 {
-	private static final PropertyDirection FACING = BlockHorizontal.FACING;
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public Condenser()
 	{
@@ -42,6 +42,7 @@ public class Condenser extends CubeContainerHorizontal
 		if(!world.isBlockLoaded(pos)) return false;
 		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(te == null) return false;
+		if(!(te instanceof TileCondenser)) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
@@ -66,7 +67,7 @@ public class Condenser extends CubeContainerHorizontal
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, FACING);
+		return new BlockStateContainer(this, new IProperty[] {FACING});
 	}
 
 	@Override

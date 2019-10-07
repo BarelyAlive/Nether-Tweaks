@@ -31,7 +31,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class BarrelModeFluidTransform implements IBarrelMode {
 
-	private final BarrelItemHandlerFluid handler = new BarrelItemHandlerFluid(null);
+	private BarrelItemHandlerFluid handler = new BarrelItemHandlerFluid(null);
 	private FluidStack inputStack, outputStack;
 	private ItemStack inputItemStack;
 	private float progress = 0;

@@ -35,7 +35,7 @@ public class MessageMovementSpeed implements IMessage {
 		buf.writeInt(ms);
 	}
 
-	private void handleServerSide() {
+	public void handleServerSide() {
 		NetherTweaksMod.getProxy().getStatsByUUID(uuid).movementSpeed = ms;
 	}
 

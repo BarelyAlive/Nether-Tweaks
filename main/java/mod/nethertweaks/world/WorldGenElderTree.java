@@ -31,7 +31,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 		this(notify, 4, DEFAULT_TRUNK, DEFAULT_LEAF, true);
 	}
 
-	private WorldGenElderTree(final boolean notify, final int minTreeHeight, final IBlockState metaWood, final IBlockState metaLeaves, final boolean vinesGrow)
+	public WorldGenElderTree(final boolean notify, final int minTreeHeight, final IBlockState metaWood, final IBlockState metaLeaves, final boolean vinesGrow)
 	{
 		super(false);
 		this.minTreeHeight = minTreeHeight;
@@ -186,7 +186,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 
 	private void addVine(final World world, final BlockPos pos, final PropertyBool prop)
 	{
-		setBlockAndNotifyAdequately(world, pos, BlockHandler.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.TRUE));
+		setBlockAndNotifyAdequately(world, pos, BlockHandler.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
 	}
 
 	private void addHangingVine(final World world, BlockPos pos, final PropertyBool prop)

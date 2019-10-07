@@ -27,7 +27,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-@SuppressWarnings("ALL")
 public class Barrel extends Block implements ITileEntityProvider
 {
 	private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
@@ -59,7 +58,6 @@ public class Barrel extends Block implements ITileEntityProvider
 		super.breakBlock(worldIn, pos, state);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public int getLightValue(@Nonnull final IBlockState state, final IBlockAccess world, @Nonnull final BlockPos pos) {
 		TileEntity te = world.getTileEntity(pos);

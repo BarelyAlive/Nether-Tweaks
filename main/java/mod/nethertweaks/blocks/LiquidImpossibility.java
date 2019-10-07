@@ -41,8 +41,10 @@ public class LiquidImpossibility extends BlockFluidClassic
 	@Override
 	public boolean canCreatureSpawn(final IBlockState state, final IBlockAccess world, final BlockPos pos, final SpawnPlacementType type)
 	{
-        return type.equals(SpawnPlacementType.IN_WATER) && state.equals(getDefaultState());
-    }
+		if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(getDefaultState()))
+			return true;
+		return false;
+	}
 
 	@Override
 	public void onEntityCollidedWithBlock(final World world, final BlockPos pos, final IBlockState state, final Entity entity)

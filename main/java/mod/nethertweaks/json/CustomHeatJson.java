@@ -14,7 +14,7 @@ import mod.nethertweaks.registry.types.Heat;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.BlockInfo;
 
-class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<Heat>
+public class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<Heat>
 {
 	@Override
 	public JsonElement serialize(final Heat src, final Type typeOfSrc, final JsonSerializationContext context)

@@ -4,9 +4,9 @@ import mod.sfhcore.util.BlockInfo;
 
 public class Meltable {
 
-	private static final Meltable EMPTY = new Meltable("", 0);
+	public static final Meltable EMPTY = new Meltable("", 0);
 
-	private final String fluid;
+	private String fluid;
 
 	private int amount;
 
@@ -70,9 +70,12 @@ public class Meltable {
 		if (amount != other.amount)
 			return false;
 		if (fluid == null) {
-            return other.fluid == null;
-		} else return fluid.equals(other.fluid);
-    }
+			if (other.fluid != null)
+				return false;
+		} else if (!fluid.equals(other.fluid))
+			return false;
+		return true;
+	}
 
 	public static Meltable getEMPTY() {
 		return EMPTY;

@@ -51,12 +51,12 @@ public class Config
 	public static int sieveEfficiencyMaxLevel 	  = 5;
 	public static int normalDropPercent 		  = 100;
 	public static boolean setFireToMacroUsers 	  = true;
-	private static boolean hellworldFeatures 	  = true;
+	public static boolean hellworldFeatures 	  = true;
 	public static boolean hasteIncreaseSpeed 	  = true;
-	private static boolean enableSieveEfficiency   = true;
-	private static boolean enableSieveFortune 	  = true;
-	private static boolean enableSieveLuckOfTheSea = true;
-	private static boolean sievesAutoOutput 		  = false;
+	public static boolean enableSieveEfficiency   = true;
+	public static boolean enableSieveFortune 	  = true;
+	public static boolean enableSieveLuckOfTheSea = true;
+	public static boolean sievesAutoOutput 		  = false;
 	public static boolean fakePlayersCanSieve 	  = false;
 	public static boolean flattenSieveRecipes 	  = false;
 
@@ -81,7 +81,7 @@ public class Config
 	//Mechanics
 	public static boolean enableThirst	   = true;
 	public static boolean useMetricSystem  = true;
-	private static boolean enableTeleport   = true;
+	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
 	public static boolean waterSources   = true;
 	public static String[] blacklistSalt = {"distilled_water"};
@@ -103,7 +103,7 @@ public class Config
 	public static String dustBaseOreDictName  = "Dust";
 	public static String pieceBaseOreDictName = "Piece";
 	public static String ingotBaseOreDictName = "Ingot";
-	private static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
+	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 
 	public static void init()
 	{

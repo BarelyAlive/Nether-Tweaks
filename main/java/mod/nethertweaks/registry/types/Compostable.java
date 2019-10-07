@@ -39,16 +39,19 @@ public class Compostable
 				return false;
 		} else if (!compostBlock.equals(other.compostBlock))
 			return false;
-        return Float.floatToIntBits(value) == Float.floatToIntBits(other.value);
-    }
+		if (Float.floatToIntBits(value) != Float.floatToIntBits(other.value))
+			return false;
+		return true;
+	}
 
 	public Compostable copy()
 	{
-		return new Compostable(value, color, compostBlock);
+		Compostable cp = new Compostable(value, color, compostBlock);
+		return cp;
 	}
 
-	private float value;
-	private Color color;
+	private float value = 0;
+	private Color color = null;
 	private BlockInfo compostBlock;
 
 	public float getValue() {
@@ -83,7 +86,7 @@ public class Compostable
 		EMPTY = eMPTY;
 	}
 
-	private static Compostable EMPTY = new Compostable(0f, new Color(0), BlockInfo.EMPTY);
+	static Compostable EMPTY = new Compostable(0f, new Color(0), BlockInfo.EMPTY);
 
 	public Compostable(final float value, final Color color, final BlockInfo compostBlock)
 	{

@@ -91,7 +91,7 @@ public class StwH extends Block{
 				d5 = rand.nextFloat() * 2.0F * j;
 			}
 
-			world.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			world.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5, new int[0]);
 		}
 		super.randomDisplayTick(state, world, pos, rand);
 	}

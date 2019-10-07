@@ -6,7 +6,7 @@ import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
-class BarrelItemHandlerBlock extends ItemStackHandler
+public class BarrelItemHandlerBlock extends ItemStackHandler
 {
 	private TileBarrel barrel;
 
@@ -57,6 +57,10 @@ class BarrelItemHandlerBlock extends ItemStackHandler
 
 	private void checkEmpty()
 	{
-		getStackInSlot(0);
+		if (getStackInSlot(0) == null && barrel != null)
+		{
+			barrel.setMode("null");
+			NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
+		}
 	}
 }
