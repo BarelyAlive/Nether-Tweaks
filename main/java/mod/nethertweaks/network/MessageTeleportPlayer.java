@@ -1,6 +1,5 @@
 package mod.nethertweaks.network;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
