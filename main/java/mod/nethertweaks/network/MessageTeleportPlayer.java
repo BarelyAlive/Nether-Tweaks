@@ -1,6 +1,7 @@
 package mod.nethertweaks.network;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
@@ -36,7 +37,7 @@ public class MessageTeleportPlayer implements IMessage {
 		uuid_size = buf.readInt();
 		byte[] temp_char_arr = new byte[uuid_size];
 		buf.readBytes(temp_char_arr);
-		uuid = new String(temp_char_arr, Charset.forName("ASCII"));
+		uuid = new String(temp_char_arr, StandardCharsets.US_ASCII);
 	}
 
 	@Override
@@ -44,8 +45,8 @@ public class MessageTeleportPlayer implements IMessage {
 		buf.writeInt(bonfire_pos.getX());
 		buf.writeInt(bonfire_pos.getY());
 		buf.writeInt(bonfire_pos.getZ());
-		buf.writeInt(uuid.getBytes(Charset.forName("ASCII")).length);
-		buf.writeBytes(uuid.getBytes(Charset.forName("ASCII")));
+		buf.writeInt(uuid.getBytes(StandardCharsets.US_ASCII).length);
+		buf.writeBytes(uuid.getBytes(StandardCharsets.US_ASCII));
 	}
 
 	public static class MessageTeleportPlayerHandler implements IMessageHandler<MessageTeleportPlayer, IMessage>

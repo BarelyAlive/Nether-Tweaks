@@ -39,10 +39,8 @@ public class Compostable
 				return false;
 		} else if (!compostBlock.equals(other.compostBlock))
 			return false;
-		if (Float.floatToIntBits(value) != Float.floatToIntBits(other.value))
-			return false;
-		return true;
-	}
+        return Float.floatToIntBits(value) == Float.floatToIntBits(other.value);
+    }
 
 	public Compostable copy()
 	{

@@ -70,12 +70,9 @@ public class Meltable {
 		if (amount != other.amount)
 			return false;
 		if (fluid == null) {
-			if (other.fluid != null)
-				return false;
-		} else if (!fluid.equals(other.fluid))
-			return false;
-		return true;
-	}
+            return other.fluid == null;
+		} else return fluid.equals(other.fluid);
+    }
 
 	public static Meltable getEMPTY() {
 		return EMPTY;

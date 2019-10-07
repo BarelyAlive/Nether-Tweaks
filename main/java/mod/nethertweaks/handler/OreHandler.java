@@ -72,8 +72,7 @@ public class OreHandler {
 
 	public static void remove(final Item stack)
 	{
-		if (ore_list.containsKey(stack))
-			ore_list.remove(stack);
+        ore_list.remove(stack);
 	}
 
 	public static void register(final IForgeRegistry<Item> registry) {

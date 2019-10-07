@@ -1,6 +1,7 @@
 package mod.nethertweaks.network.bonfire;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 
@@ -78,7 +79,7 @@ public class MessageBonfireUpdate implements IMessage {
 				buf.writeInt(0);
 			}
 			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), Charset.forName("UTF-8"));
+			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());

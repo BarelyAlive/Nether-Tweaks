@@ -118,7 +118,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {STAGE});
+		return new BlockStateContainer(this, STAGE);
 	}
 
 	@Override

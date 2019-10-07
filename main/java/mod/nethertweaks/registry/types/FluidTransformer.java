@@ -41,10 +41,8 @@ public class FluidTransformer {
 				return false;
 		} else if (!outputFluid.equals(other.outputFluid))
 			return false;
-		if (!Arrays.equals(transformingBlocks, other.transformingBlocks))
-			return false;
-		return true;
-	}
+        return Arrays.equals(transformingBlocks, other.transformingBlocks);
+    }
 
 	private String inputFluid;
 	private String outputFluid;

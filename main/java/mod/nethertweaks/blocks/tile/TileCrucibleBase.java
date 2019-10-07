@@ -131,7 +131,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
 		}
 
-		return solidProportion > fluidProportion ? solidProportion : fluidProportion;
+		return Math.max(solidProportion, fluidProportion);
 	}
 
 	@SideOnly(Side.CLIENT)

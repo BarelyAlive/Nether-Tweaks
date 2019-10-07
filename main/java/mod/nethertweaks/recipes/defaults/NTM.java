@@ -2,6 +2,7 @@ package mod.nethertweaks.recipes.defaults;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 import mod.nethertweaks.Constants;
@@ -51,11 +52,11 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class NTM implements IRecipeDefaults
 {
-	private final String MODID = Constants.MODID;
 
-	@Override
+    @Override
 	public String getMODID() {
-		return MODID;
+        String MODID = Constants.MODID;
+        return MODID;
 	}
 
 	@Override
@@ -282,7 +283,7 @@ public class NTM implements IRecipeDefaults
 
 			if (Block.getBlockFromItem(sapling) instanceof IPlantable)
 			{
-				boolean hc = NameHelper.getModID(sapling) == "harvestcraft";
+				boolean hc = Objects.equals(NameHelper.getModID(sapling), "harvestcraft");
 
 				if(hc && Config.enableHarvestcraft)
 					registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getName());

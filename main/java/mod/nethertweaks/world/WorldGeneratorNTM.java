@@ -25,9 +25,9 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 	@Override
 	public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkGenerator chunkGenerator,
 			final IChunkProvider chunkProvider) {
-		switch(world.provider.getDimension()){
-		case -1: generateNether(world, random, chunkX * 16, chunkZ * 16);
-		}
+        if (world.provider.getDimension() == -1) {
+            generateNether(world, random, chunkX * 16, chunkZ * 16);
+        }
 	}
 
 	private void generateNether(final World world, final Random random, final int posX, final int posZ) {

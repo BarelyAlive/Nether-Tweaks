@@ -1,10 +1,8 @@
 package mod.nethertweaks.network.bonfire;
 
 import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.world.BonfireInfo;
@@ -34,7 +32,7 @@ public class MessageBonfireGetList implements IMessage
 		// Write to Bytes
 		UUID[] uuid_array = lastSpawnLocas.keySet().toArray(new UUID[0]);
 
-		System.out.println(uuid_array);
+		System.out.println(Arrays.toString(uuid_array));
 
 		buf.writeInt(uuid_array.length);
 		for(UUID uuid : uuid_array)
@@ -82,7 +80,7 @@ public class MessageBonfireGetList implements IMessage
 				buf.writeInt(0);
 			}
 			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), Charset.forName("UTF-8"));
+			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());

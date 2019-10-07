@@ -90,7 +90,7 @@ public class AshBonePile extends CubeContainerHorizontal
 		BlockPos resultPos = testPosition(world, pos);
 
 		if(resultPos != null && !world.isRemote)
-			if (world.getBlockState(pos).getValue(LIT) == true)
+			if (world.getBlockState(pos).getValue(LIT))
 				if (WorldSpawnLocation.bonfire_info.containsKey(pos))
 				{
 					BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
@@ -112,7 +112,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 		TileAshBonePile te = (TileAshBonePile) world.getTileEntity(pos);
 
-		if (world.getBlockState(pos).getValue(LIT) == false)
+		if (!world.getBlockState(pos).getValue(LIT))
 		{
 			if(player.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
 			{
@@ -146,7 +146,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
-		return getDefaultState().withProperty(LIT, meta == 0 ? false : true);
+		return getDefaultState().withProperty(LIT, meta != 0);
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class AshBonePile extends CubeContainerHorizontal
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {FACING, LIT});
+		return new BlockStateContainer(this, FACING, LIT);
 	}
 	@Override
 	public void onBlockHarvested(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player)
@@ -229,18 +229,16 @@ public class AshBonePile extends CubeContainerHorizontal
 		l++;
 		if (rand.nextDouble() < 0.1D)
 			world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-		switch(l) {
-		case 1:
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, rand.nextDouble()%0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, rand.nextDouble()%0.04D, rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX()+0.5D, pos.getY(), pos.getZ()+0.5D, -(rand.nextDouble()%0.04D), rand.nextDouble()%0.08D, -(rand.nextDouble()%0.04D));
+		if (l == 1) {
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
 			l = 0;
-        	break;
 		}
 		super.randomDisplayTick(stateIn, world, pos, rand);
 	}

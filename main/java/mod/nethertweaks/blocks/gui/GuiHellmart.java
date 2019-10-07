@@ -130,7 +130,7 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 
 		int price = data.getPrice();
-		fontRenderer.drawString("x" + Integer.toString(price), 116, 20, 0);
+		fontRenderer.drawString("x" + price, 116, 20, 0);
 
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_LIGHTING);

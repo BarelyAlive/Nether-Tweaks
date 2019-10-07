@@ -88,7 +88,7 @@ public class TileBarrel extends TileBase implements ITickable {
 			if (TankUtil.drainWaterFromBottle(this, player, tank))
 				return true;
 
-			if (tank != null && TankUtil.drainWaterIntoBottle(this, player, tank))
+			if (TankUtil.drainWaterIntoBottle(this, player, tank))
 				return true;
 
 

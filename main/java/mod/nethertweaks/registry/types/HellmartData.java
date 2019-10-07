@@ -38,10 +38,8 @@ public class HellmartData
 				return false;
 		} else if (!item.equals(other.item))
 			return false;
-		if (price != other.price)
-			return false;
-		return true;
-	}
+        return price == other.price;
+    }
 
 	private final ItemStack item;
 	private final ItemStack currency;

@@ -57,10 +57,7 @@ public class FluidFluidBlock {
 		} else if (!fluidOnTop.equals(other.fluidOnTop))
 			return false;
 		if (result == null) {
-			if (other.result != null)
-				return false;
-		} else if (!result.equals(other.result))
-			return false;
-		return true;
-	}
+            return other.result == null;
+		} else return result.equals(other.result);
+    }
 }

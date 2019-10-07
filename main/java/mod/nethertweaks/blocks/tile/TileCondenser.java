@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -34,6 +33,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+
+import java.util.Objects;
 
 public class TileCondenser extends TileFluidInventory
 {
@@ -108,10 +109,8 @@ public class TileCondenser extends TileFluidInventory
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
-		if(emptyRoom() < result.getValue()) return false;
-
-		return true;
-	}
+        return emptyRoom() >= result.getValue();
+    }
 
 	private void checkInputOutput()
 	{
@@ -129,7 +128,7 @@ public class TileCondenser extends TileFluidInventory
 			{
 				TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
 				if(barrel != null)
-					if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
+					if (barrel.getMode() == null || Objects.equals(barrel.getMode().getName(), "compost")) {
 						float amount = 0;
 						if (barrel.getMode() != null)
 							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
@@ -164,10 +163,8 @@ public class TileCondenser extends TileFluidInventory
 			return 250f;
 		case 3:
 			return 600f;
-		case 4:
-			return 999f;
 
-		default:
+			default:
 			return 999f;
 		}
 	}

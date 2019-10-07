@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -145,7 +144,7 @@ public class TileNetherrackFurnace extends TileInventory
 			if(slot.getCount() == slot.getMaxStackSize()) return false;
 
 			result = FurnaceRecipes.instance().getSmeltingResult(stack);
-			if(result != ItemStack.EMPTY) return true;
+            return result != ItemStack.EMPTY;
 		}
 		return false;
 	}
@@ -153,9 +152,8 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack) {
 		if (index == 0) return false;
-		if (index == 1) return true;
-		return false;
-	}
+        return index == 1;
+    }
 
 	@Override
 	public String getGuiID()

@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
@@ -109,9 +108,8 @@ public class TileFreezer extends TileFluidInventory
 	{
 		if(getTemp() > 0) return false;
 		if(getTank().getFluidAmount() < 1000) return false;
-		if(getStackInSlot(0).getCount() == ice().getMaxStackSize()) return false;
-		return true;
-	}
+        return getStackInSlot(0).getCount() != ice().getMaxStackSize();
+    }
 
 	private void freezeItem()
 	{
@@ -177,9 +175,10 @@ public class TileFreezer extends TileFluidInventory
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
-		case 0: return false;
-		case 1: return false;
-		case 2:
+		case 0:
+			case 1:
+				return false;
+			case 2:
 			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
 			if(handler ==  null) return false;
 			if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false) == null) return false;

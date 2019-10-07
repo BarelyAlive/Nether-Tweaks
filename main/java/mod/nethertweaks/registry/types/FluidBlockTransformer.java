@@ -93,12 +93,9 @@ public class FluidBlockTransformer
 		if (spawnRange != other.spawnRange)
 			return false;
 		if (toSpawn == null) {
-			if (other.toSpawn != null)
-				return false;
-		} else if (!toSpawn.equals(other.toSpawn))
-			return false;
-		return true;
-	}
+            return other.toSpawn == null;
+		} else return toSpawn.equals(other.toSpawn);
+    }
 
 	public FluidBlockTransformer(final String fluidName, final Ingredient input, final BlockInfo output, @Nullable final String entityName, final int spawnCount, final int spawnRange)
 	{
