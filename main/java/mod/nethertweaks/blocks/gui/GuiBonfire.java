@@ -1,10 +1,7 @@
 package mod.nethertweaks.blocks.gui;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -30,11 +27,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiBonfire extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guibonfire.png");
 
-	private Map<BlockPos, BonfireInfo> bonfires;
+	private final Map<BlockPos, BonfireInfo> bonfires;
 
-	private World world;
-	private EntityPlayer player;
-	private BlockPos pos;
+	private final World world;
+	private final EntityPlayer player;
+	private final BlockPos pos;
 	private int page;
 	private boolean toggle;
 	private GuiTextField text;
@@ -99,8 +96,8 @@ public class GuiBonfire extends GuiContainer {
 		text = new GuiTextField(8, fontRenderer, posX - 30, posY - 40, 128, 14);
 		text.setMaxStringLength(26);
 		String name = WorldSpawnLocation.bonfire_info.get(pos).getName();
-		text.setText(name == "" ? "" : name);
-		if (name == "")
+		text.setText(name);
+		if (Objects.equals(name, ""))
 			text.setFocused(true);
 		else
 			text.setFocused(false);
@@ -139,7 +136,7 @@ public class GuiBonfire extends GuiContainer {
 				page = 0;
 		}
 		if(button.id == 7)
-			if(toggle == true)
+			if(toggle)
 			{
 				toggle = false;
 				page++;

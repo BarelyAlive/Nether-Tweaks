@@ -35,13 +35,11 @@ public class Heat
 				return false;
 		} else if (!item.equals(other.item))
 			return false;
-		if (value != other.value)
-			return false;
-		return true;
-	}
+        return value == other.value;
+    }
 
-	private BlockInfo item;
-	private int value;
+	private final BlockInfo item;
+	private final int value;
 
 	public static Heat getEMPTY() {
 		return EMPTY;
@@ -51,7 +49,7 @@ public class Heat
 		EMPTY = eMPTY;
 	}
 
-	static Heat EMPTY = new Heat(new BlockInfo(ItemStack.EMPTY), 0);
+	private static Heat EMPTY = new Heat(new BlockInfo(ItemStack.EMPTY), 0);
 
 	public Heat(final BlockInfo stack, final int value)
 	{

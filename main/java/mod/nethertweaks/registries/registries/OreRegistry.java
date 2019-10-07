@@ -87,10 +87,9 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 	 * @param ingot  Final result for the process. If null, an ingot is generated.
 	 *              Otherwise, the hunk will be smelted into this.
 	 * @param dust  If null, a dust is generated.
-	 * @return Ore, containing the base Ore object.
 	 */
-	public Ore register(final String name, final Color color, final ItemInfo ingot, final ItemInfo dust) {
-		return register(name, color, ingot, dust, null, null);
+	public void register(final String name, final Color color, final ItemInfo ingot, final ItemInfo dust) {
+		register(name, color, ingot, dust, null, null);
 	}
 
 	/**
@@ -123,7 +122,7 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 	 * @param dust  If null, a dust is generated.
 	 * @return Ore, containing the base Ore object.
 	 */
-	public Ore register(final String name, final Color color, final ItemInfo ingot, final ItemInfo dust, final Map<String, String> translations, final String oredictName) {
+    private Ore register(final String name, final Color color, final ItemInfo ingot, final ItemInfo dust, final Map<String, String> translations, final String oredictName) {
 		Ore ore = new Ore(name, color, ingot, dust, translations, oredictName);
 		register(ore);
 

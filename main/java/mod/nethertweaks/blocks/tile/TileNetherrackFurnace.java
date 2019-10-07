@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -20,6 +19,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.Objects;
 
 public class TileNetherrackFurnace extends TileInventory
 {
@@ -100,7 +101,7 @@ public class TileNetherrackFurnace extends TileInventory
 		TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
 
 		return 0;
 	}
@@ -120,7 +121,7 @@ public class TileNetherrackFurnace extends TileInventory
 	/**
 	 * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
 	 */
-	public void smeltItem()
+	private void smeltItem()
 	{
 		ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
 
@@ -145,7 +146,7 @@ public class TileNetherrackFurnace extends TileInventory
 			if(slot.getCount() == slot.getMaxStackSize()) return false;
 
 			result = FurnaceRecipes.instance().getSmeltingResult(stack);
-			if(result != ItemStack.EMPTY) return true;
+            return result != ItemStack.EMPTY;
 		}
 		return false;
 	}
@@ -153,9 +154,8 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack) {
 		if (index == 0) return false;
-		if (index == 1) return true;
-		return false;
-	}
+        return index == 1;
+    }
 
 	@Override
 	public String getGuiID()

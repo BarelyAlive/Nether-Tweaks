@@ -8,17 +8,16 @@ import net.minecraft.item.crafting.Ingredient;
 
 public class FluidBlockTransformer
 {
-	private String fluidName;
-	private Ingredient input;
-	private BlockInfo output;
-	private EntityInfo toSpawn = EntityInfo.EMPTY;
-	private int spawnCount = 4;
-	private int spawnRange = 4;
+	private final String fluidName;
+	private final Ingredient input;
+	private final BlockInfo output;
+	private EntityInfo toSpawn;
+	private int spawnCount;
+	private int spawnRange;
 
 	public FluidBlockTransformer copy()
 	{
-		FluidBlockTransformer cp = new FluidBlockTransformer(fluidName, input, output, toSpawn.getName(), spawnCount, spawnRange);
-		return cp;
+		return new FluidBlockTransformer(fluidName, input, output, toSpawn.getName(), spawnCount, spawnRange);
 	}
 
 	public String getFluidName() {
@@ -93,12 +92,9 @@ public class FluidBlockTransformer
 		if (spawnRange != other.spawnRange)
 			return false;
 		if (toSpawn == null) {
-			if (other.toSpawn != null)
-				return false;
-		} else if (!toSpawn.equals(other.toSpawn))
-			return false;
-		return true;
-	}
+            return other.toSpawn == null;
+		} else return toSpawn.equals(other.toSpawn);
+    }
 
 	public FluidBlockTransformer(final String fluidName, final Ingredient input, final BlockInfo output, @Nullable final String entityName, final int spawnCount, final int spawnRange)
 	{

@@ -38,10 +38,10 @@ public class Milkable
 		return "Milkable [entityOnTop=" + entityOnTop + ", result=" + result + ", amount=" + amount + ", coolDown="
 				+ coolDown + "]";
 	}
-	String entityOnTop;
-	String result;
-	int amount;
-	int coolDown;
+	private String entityOnTop;
+	private String result;
+	private int amount;
+	private int coolDown;
 
 	@Override
 	public int hashCode() {
@@ -72,10 +72,7 @@ public class Milkable
 		} else if (!entityOnTop.equals(other.entityOnTop))
 			return false;
 		if (result == null) {
-			if (other.result != null)
-				return false;
-		} else if (!result.equals(other.result))
-			return false;
-		return true;
-	}
+            return other.result == null;
+		} else return result.equals(other.result);
+    }
 }

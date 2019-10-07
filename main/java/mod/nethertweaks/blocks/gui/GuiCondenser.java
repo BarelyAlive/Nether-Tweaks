@@ -17,10 +17,13 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Objects;
+
 @SideOnly(Side.CLIENT)
 public class GuiCondenser extends GuiContainer
 {
-	private int xSize, ySize;
+	private final int xSize;
+    private final int ySize;
 	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 
@@ -59,7 +62,7 @@ public class GuiCondenser extends GuiContainer
 		//Temperature in Celsius/Fahrenheit
 		String celsius = " °C";
 		String fahrenheit = " °F";
-		String text = "";
+		String text;
 
 		double temp = Math.round(10.0 * entity.getTemp()) / 10.0;
 
@@ -123,8 +126,8 @@ public class GuiCondenser extends GuiContainer
 
 			FluidStack fluid = entity.getTank().getFluid();
 
-			TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
-			ResourceLocation res = entity.getTank().getFluid().getFluid().getStill(entity.getTank().getFluid());
+			TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Objects.requireNonNull(fluid).getFluid().getStill().toString());
+			ResourceLocation res = Objects.requireNonNull(entity.getTank().getFluid()).getFluid().getStill(entity.getTank().getFluid());
 			res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
 			Minecraft.getMinecraft().getTextureManager().bindTexture(res);
 
@@ -136,8 +139,6 @@ public class GuiCondenser extends GuiContainer
 			GL11.glPopMatrix();
 		}
 
-		x = x_old;
-		y = y_old;
 	}
 
 	private void getTE()

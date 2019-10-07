@@ -15,7 +15,7 @@ public class WorldSpawnLocation {
 	//The initial Location when entering a world
 	private static PlayerPosition initialPosition;
 
-	public static PlayerPosition getInitialPosition() {
+	private static PlayerPosition getInitialPosition() {
 		return initialPosition;
 	}
 
@@ -51,8 +51,6 @@ public class WorldSpawnLocation {
 	{
 		UUID playerID = EntityPlayer.getUUID(player.getGameProfile());
 
-		if(playerID == null) playerID = EntityPlayer.getOfflineUUID(player.getName());
-
 		if(lastSpawnLocations.containsKey(playerID))
 			lastSpawnLocations.replace(playerID, new PlayerPosition(player.getPosition()));
 		else
@@ -64,8 +62,6 @@ public class WorldSpawnLocation {
 	public static PlayerPosition resetSpawnLocation(@Nonnull final EntityPlayer player)
 	{
 		UUID playerID = EntityPlayer.getUUID(player.getGameProfile());
-
-		if(playerID == null) playerID = EntityPlayer.getOfflineUUID(player.getName());
 
 		if(lastSpawnLocations.containsKey(playerID))
 		{

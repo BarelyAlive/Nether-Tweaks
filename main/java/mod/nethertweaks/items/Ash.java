@@ -50,7 +50,7 @@ public class Ash extends Item
 		return false;
 	}
 
-	public static boolean applyBonemeal(final ItemStack stack, final World worldIn, final BlockPos target, final EntityPlayer player, @javax.annotation.Nullable final EnumHand hand)
+	private static boolean applyBonemeal(final ItemStack stack, final World worldIn, final BlockPos target, final EntityPlayer player, @javax.annotation.Nullable final EnumHand hand)
 	{
 		IBlockState iblockstate = worldIn.getBlockState(target);
 
@@ -100,7 +100,7 @@ public class Ash extends Item
 				double d0 = itemRand.nextGaussian() * 0.02D;
 				double d1 = itemRand.nextGaussian() * 0.02D;
 				double d2 = itemRand.nextGaussian() * 0.02D;
-				worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + (double)itemRand.nextFloat() * 1.0f, pos.getZ() + itemRand.nextFloat(), d0, d1, d2, new int[0]);
+				worldIn.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + itemRand.nextFloat(), pos.getY() + (double)itemRand.nextFloat() * 1.0f, pos.getZ() + itemRand.nextFloat(), d0, d1, d2);
 			}
 	}
 

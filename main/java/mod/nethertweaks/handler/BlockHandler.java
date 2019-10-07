@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.AshBonePile;
@@ -45,41 +46,41 @@ public class BlockHandler
 	//Tile Entity
 	public static final Block ASH_BONE_PILE		   = new AshBonePile();
 	public static final Block CONDENSER 		   = new Condenser();
-	public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
-	public static final Block FREEZER 			   = new Freezer();
-	public static final Block HELLMART 			   = new Hellmart();
+	private static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
+	private static final Block FREEZER 			   = new Freezer();
+	private static final Block HELLMART 			   = new Hellmart();
 	public static final Block CRUCIBLE		 	   = new CrucibleStone(Constants.CRUCIBLE, true);
 	public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(Constants.UNFIRED_CRUCIBLE, false);
 
 	//Sieves
-	public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, Constants.STONE_SIEVE);
+	private static final Block STONE_SIEVE		   = new Sieve(Material.ROCK, Constants.STONE_SIEVE);
 
-	public static final Block OAK_SIEVE			   = new Sieve(Material.WOOD, Constants.OAK_SIEVE);
-	public static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD, Constants.BIRCH_SIEVE);
-	public static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD, Constants.SPRUCE_SIEVE);
-	public static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD, Constants.JUNGLE_SIEVE);
-	public static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD, Constants.ACACIA_SIEVE);
-	public static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD, Constants.DARK_OAK_SIEVE);
-	public static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD, Constants.ELDER_SIEVE);
+	private static final Block OAK_SIEVE			   = new Sieve(Material.WOOD, Constants.OAK_SIEVE);
+	private static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD, Constants.BIRCH_SIEVE);
+	private static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD, Constants.SPRUCE_SIEVE);
+	private static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD, Constants.JUNGLE_SIEVE);
+	private static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD, Constants.ACACIA_SIEVE);
+	private static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD, Constants.DARK_OAK_SIEVE);
+	private static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD, Constants.ELDER_SIEVE);
 
 	//Barrels
-	public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, Constants.STONE_BARREL);
+	private static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK, Constants.STONE_BARREL);
 
 	public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD, Constants.OAK_BARREL);
-	public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, Constants.BIRCH_BARREL);
-	public static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD, Constants.SPRUCE_BARREL);
-	public static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD, Constants.JUNGLE_BARREL);
-	public static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD, Constants.ACACIA_BARREL);
-	public static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD, Constants.DARK_OAK_BARREL);
-	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, Constants.ELDER_BARREL);
+	private static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD, Constants.BIRCH_BARREL);
+	private static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD, Constants.SPRUCE_BARREL);
+	private static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD, Constants.JUNGLE_BARREL);
+	private static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD, Constants.ACACIA_BARREL);
+	private static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD, Constants.DARK_OAK_BARREL);
+	private static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, Constants.ELDER_BARREL);
 
 	//Blocks
 	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, new ResourceLocation(Constants.MODID, Constants.DUST));
-	public static final Block STWH 				   = new StwH();
+	private static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR), 30.0F, 2.0F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
+	private static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR), 30.0F, 2.0F);
+	private static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
 	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
 	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
 	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));
@@ -93,6 +94,7 @@ public class BlockHandler
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TABNTM).setResistance(10.0F).setHardness(2.0F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
 
+	@SuppressWarnings("unchecked")
 	public static final List<Block> BLOCKS = new ArrayList();
 
 	public BlockHandler()
@@ -169,7 +171,7 @@ public class BlockHandler
 	{
 		BLOCKS.forEach((block) ->
 		{
-			block.setUnlocalizedName(block.getRegistryName().getResourcePath());
+			block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
 			block.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(block);

@@ -43,6 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SuppressWarnings("ALL")
 public class AshBonePile extends CubeContainerHorizontal
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -253,6 +254,7 @@ public class AshBonePile extends CubeContainerHorizontal
 	@Override public boolean isTopSolid(final IBlockState state) { return false; }
 	@Override public boolean isTranslucent(final IBlockState state) { return true; }
 	@Override @Deprecated public boolean isFullCube(final IBlockState state) { return false; }
+	@SuppressWarnings("deprecation")
 	@Override @Deprecated public boolean isFullBlock(final IBlockState state) { return false; }
 	@Override @Deprecated public boolean isOpaqueCube(final IBlockState state) { return false; }
 

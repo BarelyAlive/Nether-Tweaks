@@ -21,17 +21,17 @@ public class BonfireInfo {
 		this("", owner, dim);
 	}
 
-	public BonfireInfo(final String name, final UUID owner, final int dim)
+	private BonfireInfo(final String name, final UUID owner, final int dim)
 	{
 		this(name, true, owner, dim);
 	}
 
-	public BonfireInfo(final String name, final boolean seeable, final UUID owner, final int dim)
+	private BonfireInfo(final String name, final boolean seeable, final UUID owner, final int dim)
 	{
 		this(name, seeable, owner, null, dim);
 	}
 
-	public BonfireInfo(final String name, final boolean seeable, final UUID owner, final List<UUID> lastSpawnPlayer, final int dim)
+	private BonfireInfo(final String name, final boolean seeable, final UUID owner, final List<UUID> lastSpawnPlayer, final int dim)
 	{
 		this(name, seeable, owner, lastSpawnPlayer, null, dim);
 	}
@@ -89,7 +89,7 @@ public class BonfireInfo {
 		return seeable;
 	}
 
-	public void setLastPlayerSpawn(final List<UUID> lastSpawnPlayer)
+	private void setLastPlayerSpawn(final List<UUID> lastSpawnPlayer)
 	{
 		this.lastSpawnPlayer = lastSpawnPlayer;
 	}
@@ -115,7 +115,7 @@ public class BonfireInfo {
 		this.removePlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
 
-	public void removePlayer(final UUID player)
+	private void removePlayer(final UUID player)
 	{
 		int index = lastSpawnPlayer.indexOf(player);
 		if (index == -1) return;
@@ -127,7 +127,7 @@ public class BonfireInfo {
 		return this.hasPlayer(EntityPlayer.getUUID(player.getGameProfile()));
 	}
 
-	public boolean hasPlayer(final UUID player)
+	private boolean hasPlayer(final UUID player)
 	{
 		return lastSpawnPlayer.indexOf(player) != -1;
 	}

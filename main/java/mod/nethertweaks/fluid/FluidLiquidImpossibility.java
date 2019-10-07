@@ -11,8 +11,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FluidLiquidImpossibility extends Fluid{
 
-	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
-	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
+	private static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
+	private static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
 
 	public FluidLiquidImpossibility()
 	{

@@ -38,7 +38,7 @@ public class MessageThirstStats implements IMessage {
 		buf.writeBoolean(poisoned);
 	}
 
-	public void handleClientSide() {
+	private void handleClientSide() {
 		ThirstStats stats = NetherTweaksMod.getClientProxy().clientStats;
 		stats.thirstLevel = thirstLevel;
 		stats.saturation = saturation;

@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.text.translation.I18n;
 
+import java.util.Objects;
+
 public class ItemChunk extends Item {
 
 	private Item results;
@@ -31,7 +33,7 @@ public class ItemChunk extends Item {
 
 	public String getOreName()
 	{
-		if (ore_name != "" && results == null)
+		if (!Objects.equals(ore_name, "") && results == null)
 			return "";
 		return ore_name;
 	}
@@ -51,24 +53,24 @@ public class ItemChunk extends Item {
 			return ((ItemChunk) stack.getItem()).getLocalizedName(stack);
 	}
 
-	public String getLocalizedName(final ItemStack stack)
+	private String getLocalizedName(final ItemStack stack)
 	{
-		String name = getResult().getDisplayName();
-		String[] name_split = name.split(" ");
+		StringBuilder name = new StringBuilder(getResult().getDisplayName());
+		String[] name_split = name.toString().split(" ");
 		if (name_split[name_split.length - 1].toLowerCase().equals("ingot"))
 		{
-			name = "";
+			name = new StringBuilder();
 			for(int i = 0; i < name_split.length - 1; i++)
 			{
-				name += name_split[i];
-				name += " ";
+				name.append(name_split[i]);
+				name.append(" ");
 			}
 		} else
-			name += " ";
+			name.append(" ");
 		return name + this.getLocalizedName();
 	}
 
-	public String getLocalizedName()
+	private String getLocalizedName()
 	{
 		return Config.dustBaseOreDictName;
 	}

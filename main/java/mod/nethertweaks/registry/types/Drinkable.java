@@ -41,7 +41,7 @@ public class Drinkable
 		EMPTY = eMPTY;
 	}
 
-	static Drinkable EMPTY = new Drinkable(ItemStack.EMPTY, 0, 0, 0);
+	private static Drinkable EMPTY = new Drinkable(ItemStack.EMPTY, 0, 0, 0);
 
 	public Drinkable(final ItemStack stack, final int thirstReplenish, final float saturationReplenish, final float poisonChance)
 	{
@@ -55,7 +55,7 @@ public class Drinkable
 		return poisonChance;
 	}
 
-	public void setPoisonChance(final float poisonChance) {
+	private void setPoisonChance(final float poisonChance) {
 		this.poisonChance = poisonChance;
 	}
 }

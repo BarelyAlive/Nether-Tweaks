@@ -4,13 +4,13 @@ import net.minecraft.item.ItemStack;
 
 public class HammerReward {
 
-	private ItemStack stack;
+	private final ItemStack stack;
 
-	private int miningLevel;
+	private final int miningLevel;
 
-	private float chance;
+	private final float chance;
 
-	private double fortuneChance;
+	private final double fortuneChance;
 
 	public HammerReward(final ItemStack stack, final int miningLevel, final float chance, final double fortuneChance2)
 	{

@@ -154,7 +154,7 @@ public class TileSieve extends TileBase {
 			int efficiency = EnchantmentHelper.getEnchantmentLevel(EnchantmentEfficiency.EFFICIENCY, meshStack);
 			efficiency += EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, meshStack);
 			if(Config.hasteIncreaseSpeed && player != null && player.isPotionActive(MobEffects.HASTE))
-				efficiency *= 1.0F + (player.getActivePotionEffect(MobEffects.HASTE).getAmplifier() + 1) * 0.2F;
+				efficiency *= 1.0F + (java.util.Objects.requireNonNull(player.getActivePotionEffect(MobEffects.HASTE)).getAmplifier() + 1) * 0.2F;
 
 			int fortune = EnchantmentHelper.getEnchantmentLevel(EnchantmentFortune.FORTUNE, meshStack);
 			fortune += EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, meshStack);
@@ -172,9 +172,6 @@ public class TileSieve extends TileBase {
 
 			if (progress >= 100) {
 				List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
-
-				if (drops == null)
-					drops = new ArrayList<>();
 
 				// Fancy math to make the average fish dropped ~ luckOfTheSea / 2 fish, which is what it was before
 

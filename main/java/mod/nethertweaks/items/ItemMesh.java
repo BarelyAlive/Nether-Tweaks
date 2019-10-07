@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Objects;
+
 public class ItemMesh extends Item{
 
 	public ItemMesh(final String type) {
@@ -34,7 +36,7 @@ public class ItemMesh extends Item{
 
 	@Override
 	public String getUnlocalizedName(final ItemStack stack) {
-		return "item." + getRegistryName().getResourcePath();
+		return "item." + Objects.requireNonNull(getRegistryName()).getResourcePath();
 
 	}
 

@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks.tile;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -34,6 +33,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+
+import java.util.Objects;
 
 public class TileCondenser extends TileFluidInventory
 {
@@ -108,9 +109,7 @@ public class TileCondenser extends TileFluidInventory
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
 		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
-		if(emptyRoom() < result.getValue()) return false;
-
-		return true;
+		return emptyRoom() >= result.getValue();
 	}
 
 	private void checkInputOutput()
@@ -129,7 +128,7 @@ public class TileCondenser extends TileFluidInventory
 			{
 				TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
 				if(barrel != null)
-					if (barrel.getMode() == null || barrel.getMode().getName() == "compost") {
+					if (barrel.getMode() == null || Objects.equals(barrel.getMode().getName(), "compost")) {
 						float amount = 0;
 						if (barrel.getMode() != null)
 							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
@@ -164,10 +163,8 @@ public class TileCondenser extends TileFluidInventory
 			return 250f;
 		case 3:
 			return 600f;
-		case 4:
-			return 999f;
 
-		default:
+			default:
 			return 999f;
 		}
 	}
@@ -273,7 +270,7 @@ public class TileCondenser extends TileFluidInventory
 		TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate();
+			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
 
 		if(world.provider.doesWaterVaporize()) return 1;
 
@@ -343,17 +340,17 @@ public class TileCondenser extends TileFluidInventory
 		return temp;
 	}
 
-	public void setTemp(float temp) {
+	private void setTemp(float temp) {
 		temp *= 100;
 		int itemp = (int)temp;
 		this.temp = (float)itemp / 100;
 	}
 
-	public int getMaxTimer() {
+	private int getMaxTimer() {
 		return maxTimer;
 	}
 
-	public void setMaxTimer(final int maxTimer) {
+	private void setMaxTimer(final int maxTimer) {
 		this.maxTimer = maxTimer;
 	}
 
@@ -361,7 +358,7 @@ public class TileCondenser extends TileFluidInventory
 		return compostMeter;
 	}
 
-	public void setCompostMeter(final float compostMeter) {
+	private void setCompostMeter(final float compostMeter) {
 		this.compostMeter = compostMeter;
 	}
 

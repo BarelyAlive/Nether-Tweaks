@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -32,7 +33,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> implements ICondenserRegistry
 {
-	protected final Map<Ingredient, Dryable> dryRegistry = new HashMap<>();
+	private final Map<Ingredient, Dryable> dryRegistry = new HashMap<>();
 
 	public CondenserRegistry() {
 		super(
@@ -113,7 +114,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, final int meta, final int value) {
-		register(ForgeRegistries.ITEMS.getValue(location), meta, value);
+		register(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location)), meta, value);
 	}
 
 	@Override

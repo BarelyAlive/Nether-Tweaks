@@ -17,17 +17,17 @@ import net.minecraft.world.storage.WorldSavedData;
 public class WorldSaveData extends WorldSavedData {
 
 	//Strings
-	public final static String key = "ntm.world_save_data";
+	private final static String key = "ntm.world_save_data";
 
 	//Bonfire
-	public Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<>();
-	public Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
+    private Map<UUID, PlayerPosition> lastSpawnLocas = new HashMap<>();
+	private Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
 
-	public WorldSaveData(final String key) {
+	private WorldSaveData(final String key) {
 		super(key);
 	}
 
-	public WorldSaveData() {
+	private WorldSaveData() {
 		super(key);
 	}
 
@@ -52,7 +52,7 @@ public class WorldSaveData extends WorldSavedData {
 		boolean is_public;
 		String name;
 		float yaw, ang;
-		List<UUID> player_list = null;
+		List<UUID> player_list;
 		NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
 		NBTTagList bonfireNbtList = nbt.getTagList("NTM.Bonfires", 10);
 

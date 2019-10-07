@@ -2,6 +2,7 @@ package mod.nethertweaks.handler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.BlocksItems;
@@ -50,10 +51,10 @@ public class ItemHandler
 	public static final Item CRYSTAL_OF_LIGHT 	 = new CrystalOfLight(Constants.CRYSTAL_OF_LIGHT);
 
 	//MESHES
-	public static final Item MESH_STRING	  	 = new ItemMesh(Constants.MESH_STRING);
-	public static final Item MESH_FLINT		  	 = new ItemMesh(Constants.MESH_FLINT);
-	public static final Item MESH_IRON		  	 = new ItemMesh(Constants.MESH_IRON);
-	public static final Item MESH_DIAMOND	  	 = new ItemMesh(Constants.MESH_DIAMOND);
+	private static final Item MESH_STRING	  	 = new ItemMesh(Constants.MESH_STRING);
+	private static final Item MESH_FLINT		  	 = new ItemMesh(Constants.MESH_FLINT);
+	private static final Item MESH_IRON		  	 = new ItemMesh(Constants.MESH_IRON);
+	private static final Item MESH_DIAMOND	  	 = new ItemMesh(Constants.MESH_DIAMOND);
 
 	//DOLLS
 	public static final Item DOLL_BAT		  	 = new ItemDoll(Constants.DOLL_BAT);
@@ -80,43 +81,44 @@ public class ItemHandler
 	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.END_BOX));
+	private static final Item STONE_BAR 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.STONE_BAR));
+	private static final Item PORTAL_CORE	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORTAL_CORE));
+	private static final Item END_BOX 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.END_BOX));
 	public static final Item SALT	 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.SALT));
 	public static final Item HELLFAYAH 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
+	private static final Item ENDER_INFUSED_FRAME = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.ENDER_INFUSED_FRAME));
 	public static final Item STRING 		  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
+	private static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.PORCELAIN_CLAY));
 	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.POWDER_OF_LIGHT));
 	public static final Item ASH			  	 = new Ash();
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
 	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, new ResourceLocation(Constants.MODID, Constants.WOOD_CHIPPINGS));
 
 	//Tools
-	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
-	public static final Item GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
-	public static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
-	public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
-	public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
+	private static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
+	private static final Item GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
+	private static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
+	private static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
+	private static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
 
-	public static final Item HAMMER_WOOD	  	 = new Hammer(Config.durabilityHWood, ToolMaterial.WOOD);
-	public static final Item HAMMER_GOLD 	  	 = new Hammer(Config.durabilityHGold, ToolMaterial.GOLD);
-	public static final Item HAMMER_STONE	  	 = new Hammer(Config.durabilityHStone, ToolMaterial.STONE);
-	public static final Item HAMMER_IRON 	  	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
-	public static final Item HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+	private static final Item HAMMER_WOOD	  	 = new Hammer(Config.durabilityHWood, ToolMaterial.WOOD);
+	private static final Item HAMMER_GOLD 	  	 = new Hammer(Config.durabilityHGold, ToolMaterial.GOLD);
+	private static final Item HAMMER_STONE	  	 = new Hammer(Config.durabilityHStone, ToolMaterial.STONE);
+	private static final Item HAMMER_IRON 	  	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
+	private static final Item HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
-	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+	private static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
 	public static final Item COOKED_JERKY 	  	 = new CustomFood(6, 1.2F, true, new ResourceLocation(Constants.MODID, Constants.COOKED_JERKY), Constants.TABNTM);
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
-	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
+	private static final Item ITEM_STONE_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.STONE_DOOR));
+	private static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR));
+	private static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MODID, Constants.ELDER_SLAB);
 
-	public static final List<Item> ITEMS = new ArrayList();
+	@SuppressWarnings("unchecked")
+	private static final List<Item> ITEMS = new ArrayList();
 
 	public ItemHandler()
 	{
@@ -194,7 +196,7 @@ public class ItemHandler
 			if(!(block instanceof BlockSlab)
 					&& !(block instanceof CustomDoor)
 					&& !(block instanceof BlockFluidClassic))
-				ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+				ITEMS.add(new ItemBlock(block).setRegistryName(Objects.requireNonNull(block.getRegistryName())));
 		});
 	}
 
@@ -203,7 +205,7 @@ public class ItemHandler
 	{
 		ITEMS.forEach((item) ->
 		{
-			item.setUnlocalizedName(item.getRegistryName().getResourcePath());
+			item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
 			item.setCreativeTab(Constants.TABNTM);
 			
 			event.getRegistry().register(item);
@@ -215,7 +217,7 @@ public class ItemHandler
 	public void registerModels(final ModelRegistryEvent event)
 	{
 		for(Item item : ITEMS)
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
 
 	private void addItemBurnTime()

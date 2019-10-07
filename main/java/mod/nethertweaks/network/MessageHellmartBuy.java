@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import java.util.Objects;
+
 public class MessageHellmartBuy implements IMessage{
 	private int itemNum;
 	private int x;
@@ -65,10 +67,10 @@ public class MessageHellmartBuy implements IMessage{
 					final int price = data.getPrice();
 
 					if(message.shouldClear)
-						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+						Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0)
 						.setCount(0);
 					else
-						tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).getStackInSlot(0)
+						Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0)
 						.shrink(price);
 
 					final EntityItem var14 =

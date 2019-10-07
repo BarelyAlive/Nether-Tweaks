@@ -8,7 +8,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
 import net.minecraft.world.gen.IChunkGenerator;
 
-public class WorldProviderHell extends WorldProvider {
+class WorldProviderHell extends WorldProvider {
 
 	@Override
 	public boolean canBlockFreeze(final BlockPos pos, final boolean byWater) {

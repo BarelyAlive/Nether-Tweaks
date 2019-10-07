@@ -34,13 +34,11 @@ public class Dryable
 				return false;
 		} else if (!item.equals(other.item))
 			return false;
-		if (value != other.value)
-			return false;
-		return true;
-	}
+        return value == other.value;
+    }
 
-	private ItemStack item;
-	private int value;
+	private final ItemStack item;
+	private final int value;
 
 	public static Dryable getEMPTY() {
 		return EMPTY;
@@ -50,7 +48,7 @@ public class Dryable
 		EMPTY = eMPTY;
 	}
 
-	static Dryable EMPTY = new Dryable(ItemStack.EMPTY, 0);
+	private static Dryable EMPTY = new Dryable(ItemStack.EMPTY, 0);
 
 	public Dryable(final ItemStack stack, final int value)
 	{

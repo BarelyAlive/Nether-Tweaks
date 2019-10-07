@@ -4,7 +4,7 @@ import mod.sfhcore.blocks.tiles.TileBase;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileAshBonePile extends TileBase  {
-	boolean is_lit;
+	private boolean is_lit;
 
 	public TileAshBonePile() {
 		is_lit = false;

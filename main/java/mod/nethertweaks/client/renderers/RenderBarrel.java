@@ -23,7 +23,7 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
 	@Override
 	public void renderTileEntityFast(final TileBarrel te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float partial, final BufferBuilder buffer)
 	{
-		if (te == null || te.getMode() == null || buffer == null) return;
+		if (te == null || te.getMode() == null) return;
 
 		// Fill Level
 		float fill = te.getMode().getFilledLevelForRender(te);

@@ -38,10 +38,8 @@ public class HellmartData
 				return false;
 		} else if (!item.equals(other.item))
 			return false;
-		if (price != other.price)
-			return false;
-		return true;
-	}
+        return price == other.price;
+    }
 
 	private final ItemStack item;
 	private final ItemStack currency;
@@ -55,7 +53,7 @@ public class HellmartData
 		EMPTY = eMPTY;
 	}
 
-	static HellmartData EMPTY = new HellmartData(ItemStack.EMPTY, ItemStack.EMPTY, 0);
+	private static HellmartData EMPTY = new HellmartData(ItemStack.EMPTY, ItemStack.EMPTY, 0);
 
 	public HellmartData(final ItemStack item, final ItemStack currency, final int price) {
 		this.item = item;

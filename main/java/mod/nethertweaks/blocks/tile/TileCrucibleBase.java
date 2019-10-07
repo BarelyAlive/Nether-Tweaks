@@ -32,17 +32,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+@SuppressWarnings("unchecked")
 public abstract class TileCrucibleBase extends TileBase implements ITickable {
 	public static final int MAX_ITEMS = 4;
 
-	protected FluidTankBase tank;
-	protected int solidAmount;
+	final FluidTankBase tank;
+	int solidAmount;
 
 	private ItemInfo currentItem = ItemInfo.EMPTY;
-	protected int ticksSinceLast = 0;
+	int ticksSinceLast = 0;
 
-	protected CrucibleItemHandler itemHandler;
-	protected CrucibleRegistry crucibleRegistry;
+	final CrucibleItemHandler itemHandler;
+	final CrucibleRegistry crucibleRegistry;
 
 	public FluidTankBase getTank() {
 		return tank;
@@ -52,7 +53,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		return solidAmount;
 	}
 
-	public ItemInfo getCurrentItem() {
+	ItemInfo getCurrentItem() {
 		return currentItem;
 	}
 
@@ -64,7 +65,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		return crucibleRegistry;
 	}
 
-	public TileCrucibleBase(final CrucibleRegistry crucibleRegistry) {
+	TileCrucibleBase(final CrucibleRegistry crucibleRegistry) {
 		tank = new FluidTankBase(4 * Fluid.BUCKET_VOLUME, this);
 		tank.setCanFill(false);
 
@@ -131,7 +132,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
 		}
 
-		return solidProportion > fluidProportion ? solidProportion : fluidProportion;
+		return Math.max(solidProportion, fluidProportion);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -157,7 +158,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		if (stack.isEmpty())
 			return false;
 
-		Boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
+		boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
 
 		if (result) {
 			if (!player.isCreative())
@@ -184,6 +185,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(@Nonnull final Capability<T> capability, final EnumFacing facing) {
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)

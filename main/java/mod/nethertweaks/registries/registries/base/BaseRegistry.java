@@ -17,9 +17,9 @@ import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
 public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 	protected final Gson gson;
 	private final List<? extends IDefaultRecipeProvider> defaultRecipeProviders;
-	protected boolean hasAlreadyBeenLoaded = false;
-	protected RegType registry;
-	protected Type typeOfSource;
+	private boolean hasAlreadyBeenLoaded = false;
+	protected final RegType registry;
+	private final Type typeOfSource;
 
 	@Override
 	public RegType getRegistry() {
@@ -30,14 +30,14 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 		return typeOfSource;
 	}
 
-	public BaseRegistry(final Gson gson, final RegType registry, final Type typeOfSource, @Nonnull final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
+	BaseRegistry(final Gson gson, final RegType registry, final Type typeOfSource, @Nonnull final List<? extends IDefaultRecipeProvider> defaultRecipeProviders) {
 		this.gson = gson;
 		this.registry = registry;
 		this.typeOfSource = typeOfSource;
 		this.defaultRecipeProviders = defaultRecipeProviders;
 	}
 
-	public void saveJson(final File file) {
+	protected void saveJson(final File file) {
 		try(FileWriter fw = new FileWriter(file)) {
 			// TODO remove null again
 			if (typeOfSource != null)
@@ -70,8 +70,9 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 
 	protected abstract void registerEntriesFromJSON(FileReader fr);
 
-	public void registerDefaults() {
-		defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
+	private void registerDefaults() {
+        //noinspection unchecked
+        defaultRecipeProviders.forEach(recipeProvider -> recipeProvider.registerRecipeDefaults(this));
 	}
 
 	public abstract List<?> getRecipeList();

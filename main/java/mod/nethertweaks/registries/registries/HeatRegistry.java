@@ -3,6 +3,7 @@ package mod.nethertweaks.registries.registries;
 import java.io.FileReader;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -63,9 +64,9 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
 		return this.getHeatAmount(info.toString());
 	}
 
-	public int getHeatAmount(final String name) {
+	private int getHeatAmount(final String name) {
 		String ingredient = registry.keySet().stream().filter(entry -> entry.equals(name)).findFirst().orElse(null);
-		if (ingredient != null && ingredient != "") return registry.get(ingredient);
+		if (ingredient != null && !Objects.equals(ingredient, "")) return registry.get(ingredient);
 		return 0;
 	}
 

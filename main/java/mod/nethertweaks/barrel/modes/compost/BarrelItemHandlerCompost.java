@@ -7,9 +7,9 @@ import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class BarrelItemHandlerCompost extends ItemStackHandler {
+class BarrelItemHandlerCompost extends ItemStackHandler {
 
-	TileBarrel barrel;
+	private TileBarrel barrel;
 
 	public void setBarrel(final TileBarrel barrel) {
 		this.barrel = barrel;

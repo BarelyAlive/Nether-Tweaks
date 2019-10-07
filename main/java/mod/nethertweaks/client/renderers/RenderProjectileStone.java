@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderProjectileStone extends Render<ProjectileStone> {
-	public RenderProjectileStone(final RenderManager renderManager) {
+	private RenderProjectileStone(final RenderManager renderManager) {
 		super(renderManager);
 	}
 

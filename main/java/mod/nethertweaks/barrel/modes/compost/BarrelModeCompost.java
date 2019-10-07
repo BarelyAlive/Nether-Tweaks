@@ -125,7 +125,7 @@ public class BarrelModeCompost implements IBarrelMode {
 
 	}
 
-	public void removeItem(final TileBarrel barrel) {
+	private void removeItem(final TileBarrel barrel) {
 		progress = 0;
 		fillAmount = 0;
 		color = new Color("EEA96D");
@@ -139,8 +139,7 @@ public class BarrelModeCompost implements IBarrelMode {
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
-	public void addItem(final ItemStack stack, final TileBarrel barrel) {
+    public void addItem(final ItemStack stack, final TileBarrel barrel) {
 		if (fillAmount < 1)
 			if (stack != null && !stack.isEmpty()) {
 				ItemInfo info = new ItemInfo(stack);

@@ -1,6 +1,8 @@
 package mod.nethertweaks.network;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
@@ -19,9 +21,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageTeleportPlayer implements IMessage {
 
-	int uuid_size;
-	BlockPos bonfire_pos;
-	String uuid;
+	private int uuid_size;
+	private BlockPos bonfire_pos;
+	private String uuid;
 
 	public MessageTeleportPlayer() {}
 
@@ -36,7 +38,7 @@ public class MessageTeleportPlayer implements IMessage {
 		uuid_size = buf.readInt();
 		byte[] temp_char_arr = new byte[uuid_size];
 		buf.readBytes(temp_char_arr);
-		uuid = new String(temp_char_arr, Charset.forName("ASCII"));
+		uuid = new String(temp_char_arr, StandardCharsets.US_ASCII);
 	}
 
 	@Override
@@ -44,8 +46,8 @@ public class MessageTeleportPlayer implements IMessage {
 		buf.writeInt(bonfire_pos.getX());
 		buf.writeInt(bonfire_pos.getY());
 		buf.writeInt(bonfire_pos.getZ());
-		buf.writeInt(uuid.getBytes(Charset.forName("ASCII")).length);
-		buf.writeBytes(uuid.getBytes(Charset.forName("ASCII")));
+		buf.writeInt(uuid.getBytes(StandardCharsets.US_ASCII).length);
+		buf.writeBytes(uuid.getBytes(StandardCharsets.US_ASCII));
 	}
 
 	public static class MessageTeleportPlayerHandler implements IMessageHandler<MessageTeleportPlayer, IMessage>
@@ -57,11 +59,11 @@ public class MessageTeleportPlayer implements IMessage {
 
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
-				binfo = new BonfireInfo(player.getUniqueID(), player.world.provider.getDimension());
+				binfo = new BonfireInfo(Objects.requireNonNull(player).getUniqueID(), player.world.provider.getDimension());
 			else
 				binfo = WorldSpawnLocation.bonfire_info.get(message.bonfire_pos);
 
-			player.setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			Objects.requireNonNull(player).setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 
 			LookAt(message.bonfire_pos.getX() + 0.5, message.bonfire_pos.getY(), message.bonfire_pos.getZ() + 0.5, player);
 
@@ -86,7 +88,7 @@ public class MessageTeleportPlayer implements IMessage {
 			return null;
 		}
 
-		public static void LookAt(final double px, final double py, final double pz , final EntityPlayer player)
+		static void LookAt(final double px, final double py, final double pz, final EntityPlayer player)
 		{
 			double dirx = player.getPosition().getX() - px;
 			double diry = player.getPosition().getY() - py;

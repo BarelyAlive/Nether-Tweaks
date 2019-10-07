@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class MessageFluidLevelUpdate implements IMessage {
+class MessageFluidLevelUpdate implements IMessage {
 
 	private int fillAmount;
 	private int x, y, z;
@@ -43,7 +43,7 @@ public class MessageFluidLevelUpdate implements IMessage {
 		fillAmount = buf.readInt();
 	}
 
-	public static class MessageFluidLevelUpdateHandler implements IMessageHandler<MessageFluidLevelUpdate, IMessage> {
+	private static class MessageFluidLevelUpdateHandler implements IMessageHandler<MessageFluidLevelUpdate, IMessage> {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(final MessageFluidLevelUpdate msg, final MessageContext ctx) {

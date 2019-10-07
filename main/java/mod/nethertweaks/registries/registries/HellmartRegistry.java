@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
@@ -32,7 +33,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> implements IHellmartRegistry
 {
-	protected final Map<Ingredient, HellmartData> buyRegistry = new HashMap<>();
+	private final Map<Ingredient, HellmartData> buyRegistry = new HashMap<>();
 
 	public HellmartRegistry() {
 		super(
@@ -104,7 +105,7 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, @Nonnull final ResourceLocation currency, final int price) {
-		register(new ItemStack(ForgeRegistries.ITEMS.getValue(location)), new ItemStack(ForgeRegistries.ITEMS.getValue(currency)), price);
+		register(new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location))), new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(currency))), price);
 	}
 
 	@Override

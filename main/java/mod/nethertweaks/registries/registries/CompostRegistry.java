@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> implements ICompostRegistry
 {
-	protected final Map<Ingredient, Compostable> oreRegistry = new HashMap<>();
+	private final Map<Ingredient, Compostable> oreRegistry = new HashMap<>();
 
 	public CompostRegistry() {
 		super(

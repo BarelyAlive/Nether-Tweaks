@@ -1,11 +1,7 @@
 package mod.nethertweaks.registries.registries;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import javax.annotation.Nonnull;
 
@@ -84,7 +80,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, final int meta, @Nonnull final StackInfo drop, final float chance, final String meshLevel) {
-		register(new ItemStack(ForgeRegistries.ITEMS.getValue(location), 1, meta), drop, chance, meshLevel);
+		register(new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location)), 1, meta), drop, chance, meshLevel);
 	}
 
 	@Override
@@ -97,8 +93,6 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 
 	@Override
 	public void register(@Nonnull final Ingredient ingredient, @Nonnull final Siftable drop) {
-		if (ingredient == null)
-			return;
 
 		Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(entry, ingredient)).findAny().orElse(null);
 		if (search != null)
@@ -152,8 +146,6 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	@Override
 	@Nonnull
 	public List<ItemStack> getRewardDrops(@Nonnull final Random random, @Nonnull final IBlockState block, final String meshLevel, final int fortuneLevel) {
-		if (block == null)
-			return null;
 
 		List<ItemStack> drops = new ArrayList<>();
 
@@ -190,11 +182,11 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 		}
 	}
 
-	public static boolean canSieve(final String dropLevel, final Sieve.MeshType meshType){
+	private static boolean canSieve(final String dropLevel, final Sieve.MeshType meshType){
 		return canSieve(MeshType.getMeshTypeByID(dropLevel).getID(), meshType.getID());
 	}
 
-	public static boolean canSieve(final int dropLevel, final int meshLevel){
+	private static boolean canSieve(final int dropLevel, final int meshLevel){
 		return Config.flattenSieveRecipes ? meshLevel >= dropLevel : meshLevel == dropLevel;
 	}
 

@@ -18,25 +18,25 @@ import net.minecraft.world.biome.Biome;
 
 public class ThirstStats {
 
-	public static final int POISON_DURATION = 60 * 20;
+	private static final int POISON_DURATION = 60 * 20;
 
 	public int thirstLevel;
 	public float saturation;
 	public float exhaustion;
-	public int thirstTimer;
+	private int thirstTimer;
 	public boolean poisoned;
-	public int poisonTimer;
+	private int poisonTimer;
 
 	public int movementSpeed;
 
-	public transient int lastThirstLevel;
-	public transient float lastSaturation;
-	public transient boolean lastPoisoned;
+	private transient int lastThirstLevel;
+	private transient float lastSaturation;
+	private transient boolean lastPoisoned;
 
-	public transient Random random = new Random();
-	public transient DamageSource thirstDmgSource = new DamageThirst();
+	private final transient Random random = new Random();
+	private final transient DamageSource thirstDmgSource = new DamageThirst();
 
-	public transient Field foodTimer;
+	private transient Field foodTimer;
 
 	public ThirstStats() {
 		lastThirstLevel = -1; // Trigger a refresh when this class is loaded.
@@ -170,8 +170,8 @@ public class ThirstStats {
 		poisonTimer = 0;
 	}
 
-	public static class DamageThirst extends DamageSource {
-		public DamageThirst() {
+	static class DamageThirst extends DamageSource {
+		DamageThirst() {
 			super("thirst");
 			setDamageBypassesArmor();
 			setDamageIsAbsolute();

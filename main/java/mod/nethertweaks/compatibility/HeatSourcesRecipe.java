@@ -42,7 +42,7 @@ import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class HeatSourcesRecipe implements IRecipeWrapper {
+class HeatSourcesRecipe implements IRecipeWrapper {
 	private final List<ItemStack> inputs;
 	private final BlockInfo blockInfo;
 	private final String heatAmountString;
@@ -175,7 +175,7 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderBlock(final BlockRendererDispatcher blockrendererdispatcher, final BufferBuilder buffer, final BlockRenderLayer renderLayer, final IBlockState blockState, final BlockPos pos, final IBlockAccess access) {
+    private void renderBlock(final BlockRendererDispatcher blockrendererdispatcher, final BufferBuilder buffer, final BlockRenderLayer renderLayer, final IBlockState blockState, final BlockPos pos, final IBlockAccess access) {
 
 		if (!blockState.getBlock().canRenderInLayer(blockState, renderLayer))
 			return;
