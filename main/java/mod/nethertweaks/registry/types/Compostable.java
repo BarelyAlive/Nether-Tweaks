@@ -83,7 +83,7 @@ public class Compostable
 		EMPTY = eMPTY;
 	}
 
-	static Compostable EMPTY = new Compostable(0f, new Color(0), BlockInfo.EMPTY);
+	private static Compostable EMPTY = new Compostable(0f, new Color(0), BlockInfo.EMPTY);
 
 	public Compostable(final float value, final Color color, final BlockInfo compostBlock)
 	{

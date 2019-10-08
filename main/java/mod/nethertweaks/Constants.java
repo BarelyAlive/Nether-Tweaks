@@ -4,8 +4,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class Constants {
 
-	public static final String MODID = "nethertweaksmod";
-	public static final String MODNAME = "Nether Tweaks Mod";
+	public static final String MOD_ID = "nethertweaksmod";
+	public static final String MOD_NAME = "Nether Tweaks Mod";
 	public static final String VERSION = "2.1.0";
 	public static final String MC_VERSION = "[1.12.2]";
 	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";

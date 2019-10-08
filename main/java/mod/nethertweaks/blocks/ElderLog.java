@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.blocks.CubeFacingXYZ;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
-		super(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_LOG));
+		super(Material.WOOD, new ResourceLocation(Constants.MOD_ID, Constants.ELDER_LOG));
 		setHardness(2);
 		setResistance(10);
 		setSoundType(SoundType.WOOD);

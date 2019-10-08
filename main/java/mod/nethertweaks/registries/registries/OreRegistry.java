@@ -147,8 +147,8 @@ public class OreRegistry extends BaseRegistryList<Ore> implements IOreRegistry {
 
 	public void doRecipes() {
 		for (ItemOre ore : itemOreRegistry) {
-			ResourceLocation group = new ResourceLocation(Constants.MODID, "ntmores");
-			ResourceLocation baseName = new ResourceLocation(Constants.MODID, "ore_compression_");
+			ResourceLocation group = new ResourceLocation(Constants.MOD_ID, "ntmores");
+			ResourceLocation baseName = new ResourceLocation(Constants.MOD_ID, "ore_compression_");
 			ResourceLocation recipeLocation = new ResourceLocation(baseName.getResourceDomain(), baseName.getResourcePath() + ore.getOre().getName());
 
 			GameRegistry.addShapedRecipe(recipeLocation, group,

@@ -29,7 +29,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 	{
 		setSoundType(SoundType.PLANT);
 		setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
-		this.setRegistryName(Constants.MODID, Constants.ELDER_SAPLING);
+		this.setRegistryName(Constants.MOD_ID, Constants.ELDER_SAPLING);
 	}
 
 	@Override

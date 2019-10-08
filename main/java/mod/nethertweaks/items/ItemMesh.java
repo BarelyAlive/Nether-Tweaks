@@ -12,7 +12,7 @@ public class ItemMesh extends Item{
 
 	public ItemMesh(final String type) {
 		super();
-		setRegistryName(new ResourceLocation(Constants.MODID, type));
+		setRegistryName(new ResourceLocation(Constants.MOD_ID, type));
 		setMaxStackSize(1);
 	}
 

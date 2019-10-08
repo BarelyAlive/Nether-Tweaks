@@ -16,7 +16,7 @@ public class Seed extends Item
 {
 	public Seed(final String name)
 	{
-		setRegistryName(Constants.MODID, name);
+		setRegistryName(Constants.MOD_ID, name);
 	}
 
 	/**

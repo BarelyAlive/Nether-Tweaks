@@ -12,7 +12,7 @@ public class FlintAndBlaze extends ItemFlintAndSteel{
 
 	public FlintAndBlaze()
 	{
-		setRegistryName(Constants.MODID, Constants.FLINT_N_BLAZE);
+		setRegistryName(Constants.MOD_ID, Constants.FLINT_N_BLAZE);
 		setMaxStackSize(1);
 		setMaxDamage(256);
 	}

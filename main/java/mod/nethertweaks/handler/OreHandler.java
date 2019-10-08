@@ -80,7 +80,7 @@ public class OreHandler {
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
-				chunks.setRegistryName(Constants.MODID, Constants.CHUNK + "_" + mod_domain);
+				chunks.setRegistryName(Constants.MOD_ID, Constants.CHUNK + "_" + mod_domain);
 				chunks.setCreativeTab(Constants.TABNTM);
 				chunks.setResult(mod_domain, entry.getKey());
 				mod_chunks.put(mod_domain, chunks);
@@ -101,7 +101,7 @@ public class OreHandler {
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(final ModelRegistryEvent event) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
-			ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(Constants.MODID + ":chunk"));
+			ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(Constants.MOD_ID + ":chunk"));
 	}
 
 	public static void registerFurnaceRecipe()

@@ -24,7 +24,7 @@ public class GuiCondenser extends GuiContainer
 {
 	private final int xSize;
     private final int ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guicondenser.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD_ID + ":textures/gui/guicondenser.png");
 	private TileCondenser entity;
 
 	public GuiCondenser(final InventoryPlayer inventoryPlayer, final TileCondenser tileEntity) {

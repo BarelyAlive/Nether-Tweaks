@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class MeanVine extends BlockVine
 {
 	public MeanVine(){
-		setRegistryName(Constants.MODID, Constants.MEAN_VINE);
+		setRegistryName(Constants.MOD_ID, Constants.MEAN_VINE);
 	}
 
 	@Override

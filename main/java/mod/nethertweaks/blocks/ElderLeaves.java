@@ -12,7 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +38,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		super();
 		setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 		setTickRandomly(true);
-		setRegistryName(Constants.MODID, Constants.ELDER_LEAVES);
+		setRegistryName(Constants.MOD_ID, Constants.ELDER_LEAVES);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setSoundType(SoundType.PLANT);

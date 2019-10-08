@@ -36,7 +36,7 @@ public class Barrel extends Block implements ITileEntityProvider
 		super(material);
 		this.tier = tier;
 		setHardness(2.0f);
-		setRegistryName(Constants.MODID, name);
+		setRegistryName(Constants.MOD_ID, name);
 	}
 
 	@Override

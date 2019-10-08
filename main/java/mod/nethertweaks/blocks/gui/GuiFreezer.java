@@ -24,7 +24,7 @@ public class GuiFreezer extends GuiContainer
 {
 	private final int xSize;
     private final int ySize;
-	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MODID + ":textures/gui/guifreezer.png");
+	private final ResourceLocation backgroundimage = new ResourceLocation(Constants.MOD_ID + ":textures/gui/guifreezer.png");
 	private TileFreezer entity;
 
 	public GuiFreezer(final InventoryPlayer inventoryPlayer, final TileFreezer tileEntity) {

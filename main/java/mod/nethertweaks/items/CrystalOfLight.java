@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class CrystalOfLight extends Item
 {
 	public CrystalOfLight(final String name) {
-		setRegistryName(Constants.MODID, name);
+		setRegistryName(Constants.MOD_ID, name);
 	}
 
 	@Override

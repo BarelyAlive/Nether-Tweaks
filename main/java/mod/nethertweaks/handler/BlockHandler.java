@@ -75,20 +75,20 @@ public class BlockHandler
 	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD, Constants.ELDER_BARREL);
 
 	//Blocks
-	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, new ResourceLocation(Constants.MODID, Constants.DUST));
+	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F, new ResourceLocation(Constants.MOD_ID, Constants.DUST));
 	public static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.STONE_DOOR), 30.0F, 2.0F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_DOOR), 15.0F, 2.0F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.HELLFAYAH_ORE));
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_HELLFAYAH));
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MODID, Constants.BLOCK_OF_SALT));
+	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, new ResourceLocation(Constants.MOD_ID, Constants.STONE_DOOR), 30.0F, 2.0F);
+	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, new ResourceLocation(Constants.MOD_ID, Constants.ELDER_DOOR), 15.0F, 2.0F);
+	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MOD_ID, Constants.HELLFAYAH_ORE));
+	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MOD_ID, Constants.BLOCK_OF_HELLFAYAH));
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F, new ResourceLocation(Constants.MOD_ID, Constants.BLOCK_OF_SALT));
 
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
 	public static final Block ELDER_LEAVES 		   = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F, new ResourceLocation(Constants.MODID, Constants.ELDER_PLANKS));
+	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F, new ResourceLocation(Constants.MOD_ID, Constants.ELDER_PLANKS));
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setCreativeTab(Constants.TABNTM).setResistance(10.0F).setHardness(2.0F);
@@ -179,13 +179,13 @@ public class BlockHandler
 
 	private void registerTileEntities()
 	{
-		GameRegistry.registerTileEntity(TileBarrel.class, new ResourceLocation(Constants.MODID, Constants.TE_BARREL));
-		GameRegistry.registerTileEntity(TileSieve.class, new ResourceLocation(Constants.MODID, Constants.TE_SIEVE));
-		GameRegistry.registerTileEntity(TileAshBonePile.class, new ResourceLocation(Constants.MODID, Constants.TE_ASH_BONE_PILE));
-		GameRegistry.registerTileEntity(TileFreezer.class, new ResourceLocation(Constants.MODID, Constants.TE_FREEZER));
-		GameRegistry.registerTileEntity(TileHellmart.class, new ResourceLocation(Constants.MODID, Constants.TE_HELLMART));
-		GameRegistry.registerTileEntity(TileCondenser.class, new ResourceLocation(Constants.MODID, Constants.TE_CONDENSER));
-		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, new ResourceLocation(Constants.MODID, Constants.TE_NETHERRACK_FURNACE));
-		GameRegistry.registerTileEntity(TileCrucibleStone.class, new ResourceLocation(Constants.MODID, Constants.TE_CRUCIBLE));
+		GameRegistry.registerTileEntity(TileBarrel.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_BARREL));
+		GameRegistry.registerTileEntity(TileSieve.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_SIEVE));
+		GameRegistry.registerTileEntity(TileAshBonePile.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_ASH_BONE_PILE));
+		GameRegistry.registerTileEntity(TileFreezer.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_FREEZER));
+		GameRegistry.registerTileEntity(TileHellmart.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_HELLMART));
+		GameRegistry.registerTileEntity(TileCondenser.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_CONDENSER));
+		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_NETHERRACK_FURNACE));
+		GameRegistry.registerTileEntity(TileCrucibleStone.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_CRUCIBLE));
 	}
 }

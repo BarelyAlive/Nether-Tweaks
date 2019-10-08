@@ -30,7 +30,7 @@ public class StwH extends Block{
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);
 		setHardness(16.0F);
-		setRegistryName(new ResourceLocation(Constants.MODID, Constants.STWH));
+		setRegistryName(new ResourceLocation(Constants.MOD_ID, Constants.STWH));
 		setTickRandomly(true);
 	}
 

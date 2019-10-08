@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Ash extends Item
 {
 	public Ash() {
-		setRegistryName(new ResourceLocation(Constants.MODID, Constants.ASH));
+		setRegistryName(new ResourceLocation(Constants.MOD_ID, Constants.ASH));
 	}
 
 	@Override

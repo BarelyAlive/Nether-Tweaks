@@ -31,7 +31,7 @@ public class ItemDoll extends Item
 {
 	public ItemDoll(final String type)
 	{
-		setRegistryName(Constants.MODID, type);
+		setRegistryName(Constants.MOD_ID, type);
 	}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {

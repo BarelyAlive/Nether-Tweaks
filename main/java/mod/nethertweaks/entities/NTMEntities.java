@@ -9,7 +9,7 @@ public class NTMEntities
 {
 	public static void init()
 	{
-		EntityRegistry.registerModEntity(new ResourceLocation(Constants.MODID, "Thrown Stone"), ProjectileStone.class, "Thrown Stone", 0, NetherTweaksMod.getInstance(), 64, 10, true);
-		EntityRegistry.registerModEntity(new ResourceLocation(Constants.MODID, "entityLava"), EntityItemLava.class, "entityLava", 1, NetherTweaksMod.getInstance(), 64, 10, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Constants.MOD_ID, "Thrown Stone"), ProjectileStone.class, "Thrown Stone", 0, NetherTweaksMod.getInstance(), 64, 10, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Constants.MOD_ID, "entityLava"), EntityItemLava.class, "entityLava", 1, NetherTweaksMod.getInstance(), 64, 10, true);
 	}
 }

@@ -17,7 +17,7 @@ public class GuiNetherrackFurnace extends GuiContainer
 {
 	private final int xSize;
     private final int ySize;
-	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(Constants.MODID, "textures/gui/guinetherrackfurnace.png");
+	private static final ResourceLocation GUI_FURNACE = new ResourceLocation(Constants.MOD_ID, "textures/gui/guinetherrackfurnace.png");
 	private TileNetherrackFurnace entity;
 
 	public GuiNetherrackFurnace(final InventoryPlayer inventory, final TileNetherrackFurnace te) {

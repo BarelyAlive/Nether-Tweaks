@@ -23,7 +23,7 @@ public class Hellmart extends BlockContainer
 	{
 		super(Material.ROCK);
 		setSoundType(SoundType.STONE);
-		setRegistryName(Constants.MODID, Constants.HELLMART);
+		setRegistryName(Constants.MOD_ID, Constants.HELLMART);
 		setResistance(17.5f);
 		setHardness(2.0F);
 	}

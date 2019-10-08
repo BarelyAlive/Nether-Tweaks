@@ -15,7 +15,7 @@ public class EnchantmentEfficiency extends Enchantment
 	public EnchantmentEfficiency() {
 		super(Rarity.COMMON, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
 		setName("sieve_efficiency");
-		this.setRegistryName(Constants.MODID, "sieve_efficiency");
+		this.setRegistryName(Constants.MOD_ID, "sieve_efficiency");
 	}
 
 	@Override

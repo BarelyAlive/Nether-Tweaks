@@ -20,7 +20,7 @@ public class ItemPebble extends Item
 {
 	public ItemPebble(final String type)
 	{
-		setRegistryName(Constants.MODID, type);
+		setRegistryName(Constants.MOD_ID, type);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class Sieve extends BlockContainer {
 			setHardness(2.0f);
 		} else
 			setHardness(2.0f);
-		this.setRegistryName(Constants.MODID, name);
+		this.setRegistryName(Constants.MOD_ID, name);
 		setDefaultState(blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 	}
 
