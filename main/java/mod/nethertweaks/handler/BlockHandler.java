@@ -93,9 +93,11 @@ public class BlockHandler
 	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F);
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
-	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Constants.ELDER_SLAB, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
-	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Constants.ELDER_SLAB_DOUBLE, Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
 
+	//END_OF_INITIALIZATION
+	
 	public static final List<Block> BLOCKS = new ArrayList();
 
 	public BlockHandler()
@@ -166,21 +168,14 @@ public class BlockHandler
 		if(BlocksItems.enableMeanVine) 			addBlock(MEAN_VINE, Constants.MEAN_VINE);
 		if(BlocksItems.enableStoneDoor) 		addBlock(STONE_DOOR, Constants.STONE_DOOR);
 	}
-	
+		
 	private void addBlock(Block block, String name)
-	{
-		addBlock(block, name, new ItemBlock(block));
-	}
-	
-	private void addBlock(Block block, String name, ItemBlock item)
 	{		
 		block.setRegistryName(Constants.MOD_ID, name);
 		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
 		block.setCreativeTab(Constants.TABNTM);
 		
-		BLOCKS.add(block);
-		
-		ItemHandler.ITEMS.add(item.setRegistryName(Objects.requireNonNull(block.getRegistryName())));
+		BLOCKS.add(block);	
 	}
 
 	@SubscribeEvent

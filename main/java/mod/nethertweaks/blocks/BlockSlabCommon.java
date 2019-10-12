@@ -87,8 +87,8 @@ public abstract class BlockSlabCommon extends BlockSlab
 	public static class Double extends BlockSlabCommon
 	{
 
-		public Double(final String name, final Material material) {
-			super(name, material);
+		public Double(final Material material) {
+			super(material);
 		}
 
 		@Override
@@ -101,8 +101,8 @@ public abstract class BlockSlabCommon extends BlockSlab
 	public static class Half extends BlockSlabCommon
 	{
 
-		public Half(final String name, final Material material) {
-			super(name, material);
+		public Half(final Material material) {
+			super(material);
 		}
 
 		@Override

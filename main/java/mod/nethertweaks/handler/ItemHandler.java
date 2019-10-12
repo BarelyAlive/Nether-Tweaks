@@ -10,7 +10,6 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.items.Ash;
 import mod.nethertweaks.items.CoiledSword;
 import mod.nethertweaks.items.CrystalOfLight;
-import mod.nethertweaks.items.FlintAndBlaze;
 import mod.nethertweaks.items.Grabber;
 import mod.nethertweaks.items.Hammer;
 import mod.nethertweaks.items.ItemDoll;
@@ -27,6 +26,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
@@ -42,80 +42,82 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemHandler
 {
 	//SEEDS
-	public static final Item MUSHROOM_SPORES  	 = new Seed();
-	public static final Item GRASS_SEEDS	  	 = new Seed();
-	public static final Item CACTUS_SEEDS	  	 = new Seed();
-	public static final Item SUGARCANE_SEEDS  	 = new Seed();
+	public static final Seed MUSHROOM_SPORES  	 	 = new Seed();
+	public static final Seed GRASS_SEEDS	  	 	 = new Seed();
+	public static final Seed CACTUS_SEEDS	  	 	 = new Seed();
+	public static final Seed SUGARCANE_SEEDS  	 	 = new Seed();
 
 	//CRYSTALS
-	public static final Item CRYSTAL_OF_LIGHT 	 = new CrystalOfLight();
+	public static final Item CRYSTAL_OF_LIGHT 	 	= new CrystalOfLight();
 
 	//MESHES
-	public static final Item MESH_STRING	  	 = new ItemMesh();
-	public static final Item MESH_FLINT		  	 = new ItemMesh();
-	public static final Item MESH_IRON		  	 = new ItemMesh();
-	public static final Item MESH_DIAMOND	  	 = new ItemMesh();
+	public static final ItemMesh MESH_STRING	  	 = new ItemMesh();
+	public static final ItemMesh MESH_FLINT		  	 = new ItemMesh();
+	public static final ItemMesh MESH_IRON		  	 = new ItemMesh();
+	public static final ItemMesh MESH_DIAMOND	  	 = new ItemMesh();
 
 	//DOLLS
-	public static final Item DOLL_BAT		  	 = new ItemDoll();
-	public static final Item DOLL_CHICKEN	  	 = new ItemDoll();
-	public static final Item DOLL_COW		  	 = new ItemDoll();
-	public static final Item DOLL_DONKEY	  	 = new ItemDoll();
-	public static final Item DOLL_HORSE		  	 = new ItemDoll();
-	public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll();
-	public static final Item DOLL_MULE		  	 = new ItemDoll();
-	public static final Item DOLL_OCELOT	  	 = new ItemDoll();
-	public static final Item DOLL_PARROT	  	 = new ItemDoll();
-	public static final Item DOLL_RABBIT	  	 = new ItemDoll();
-	public static final Item DOLL_SHEEP		  	 = new ItemDoll();
-	public static final Item DOLL_LLAMA		  	 = new ItemDoll();
-	public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll();
-	public static final Item DOLL_WOLF		  	 = new ItemDoll();
-	public static final Item DOLL_VILLAGER	  	 = new ItemDoll();
-	public static final Item DOLL_PIG		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_BAT		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_CHICKEN	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_COW		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_DONKEY	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_HORSE		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_RED_MOOSHROOM	 = new ItemDoll();
+	public static final ItemDoll DOLL_MULE		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_OCELOT	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_PARROT	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_RABBIT	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_SHEEP		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_LLAMA		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_POLAR_BEAR  	 = new ItemDoll();
+	public static final ItemDoll DOLL_WOLF		  	 = new ItemDoll();
+	public static final ItemDoll DOLL_VILLAGER	  	 = new ItemDoll();
+	public static final ItemDoll DOLL_PIG		  	 = new ItemDoll();
 
 	//PEBBLES
-	public static final Item PEBBLE_STONE	  	 = new ItemPebble();
-	public static final Item PEBBLE_GRANITE	  	 = new ItemPebble();
-	public static final Item PEBBLE_ANDESITE  	 = new ItemPebble();
-	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble();
+	public static final ItemPebble PEBBLE_STONE	  	 = new ItemPebble();
+	public static final ItemPebble PEBBLE_GRANITE	 = new ItemPebble();
+	public static final ItemPebble PEBBLE_ANDESITE   = new ItemPebble();
+	public static final ItemPebble PEBBLE_DIORITE	 = new ItemPebble();
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem();
-	public static final Item PORTAL_CORE	  	 = new CustomItem();
-	public static final Item END_BOX 		  	 = new CustomItem();
-	public static final Item SALT	 		  	 = new CustomItem();
-	public static final Item HELLFAYAH 		  	 = new CustomItem();
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem();
-	public static final Item STRING 		  	 = new CustomItem();
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem();
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem();
-	public static final Item ASH			  	 = new Ash();
-	public static final Item COILED_SWORD	  	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem();
+	public static final Item STONE_BAR 		  	 	 = new Item();
+	public static final Item PORTAL_CORE	  	 	 = new Item();
+	public static final Item END_BOX 		  	 	 = new Item();
+	public static final Item SALT	 		  	 	 = new Item();
+	public static final Item HELLFAYAH 		  	 	 = new Item();
+	public static final Item ENDER_INFUSED_FRAME 	 = new Item();
+	public static final Item STRING 		  	 	 = new Item();
+	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
+	public static final Item POWDER_OF_LIGHT  	 	 = new Item();
+	public static final Item ASH			  	 	 = new Ash();
+	public static final Item COILED_SWORD	  	 	 = new CoiledSword();
+	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 
 	//Tools
-	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
-	public static final Item GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
-	public static final Item GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
-	public static final Item GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
-	public static final Item GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
+	public static final Grabber GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
+	public static final Grabber GRABBER_GOLD 	  	 = new Grabber(Config.durabilityGGold, ToolMaterial.GOLD);
+	public static final Grabber GRABBER_STONE 	  	 = new Grabber(Config.durabilityGStone, ToolMaterial.STONE);
+	public static final Grabber GRABBER_IRON 	  	 = new Grabber(Config.durabilityGIron, ToolMaterial.IRON);
+	public static final Grabber GRABBER_DIAMOND  	 = new Grabber(Config.durabilityGDiamond, ToolMaterial.DIAMOND);
 
-	public static final Item HAMMER_WOOD	  	 = new Hammer(Config.durabilityHWood, ToolMaterial.WOOD);
-	public static final Item HAMMER_GOLD 	  	 = new Hammer(Config.durabilityHGold, ToolMaterial.GOLD);
-	public static final Item HAMMER_STONE	  	 = new Hammer(Config.durabilityHStone, ToolMaterial.STONE);
-	public static final Item HAMMER_IRON 	  	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
-	public static final Item HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
+	public static final Hammer HAMMER_WOOD	  	 	 = new Hammer(Config.durabilityHWood, ToolMaterial.WOOD);
+	public static final Hammer HAMMER_GOLD 	  	 	 = new Hammer(Config.durabilityHGold, ToolMaterial.GOLD);
+	public static final Hammer HAMMER_STONE	  	 	 = new Hammer(Config.durabilityHStone, ToolMaterial.STONE);
+	public static final Hammer HAMMER_IRON 	  	 	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
+	public static final Hammer HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
-	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
+	public static final Item FLINT_N_BLAZE	 		 = new ItemFlintAndSteel().setMaxDamage(256);
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true);
+	public static final ItemFood COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true);
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor();
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor();
-	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE);
+	public static final ItemDoor ITEM_STONE_DOOR 	 = new ItemDoor();
+	public static final ItemDoor ITEM_ELDER_DOOR 	 = new ItemDoor();
+	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE);
+	
+	//END_OF_INITIALIZATION
 
 	public static final List<Item> ITEMS = new ArrayList();
 

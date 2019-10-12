@@ -15,10 +15,7 @@ public class CommonProxy {
 
 	public final HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
-	public void preInit()
-	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(NetherTweaksMod.getInstance(), new GuiHandler());
-	}
+	public void preInit() {}
 
 	public void init() {}
 

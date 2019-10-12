@@ -12,6 +12,7 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -37,6 +38,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -104,7 +106,9 @@ public class NetherTweaksMod
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		new SmeltingNOreDictHandler();
+		
 		getProxy().init();
 	}
 
