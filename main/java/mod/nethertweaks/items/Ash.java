@@ -22,9 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Ash extends Item
 {
-	public Ash() {
-		setRegistryName(new ResourceLocation(Constants.MOD_ID, Constants.ASH));
-	}
+	public Ash() {}
 
 	@Override
 	public EnumActionResult onItemUse(final EntityPlayer player, final World worldIn, final BlockPos pos, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
