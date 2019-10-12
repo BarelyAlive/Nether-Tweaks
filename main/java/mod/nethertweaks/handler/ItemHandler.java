@@ -137,7 +137,7 @@ public class ItemHandler
 		if(BlocksItems.enableSalt)		  		addItem(SALT, Constants.SALT);
 		if(BlocksItems.enableHellfayah)  		addItem(HELLFAYAH, Constants.HELLFAYAH);
 		if(BlocksItems.enableEnderInfusedFrame)	addItem(ENDER_INFUSED_FRAME, Constants.ENDER_INFUSED_FRAME);
-		if(BlocksItems.enableString)		  	addItem(STRING, Constants.STRING);
+		if(BlocksItems.enableMeanVine)			addItem(STRING, Constants.STRING);
 		if(BlocksItems.enablePorcelainClay) 	addItem(PORCELAIN_CLAY, Constants.PORCELAIN_CLAY);
 		if(BlocksItems.enablePowderOfLight) 	addItem(POWDER_OF_LIGHT, Constants.POWDER_OF_LIGHT);
 		if(BlocksItems.enableAsh) 				addItem(ASH, Constants.ASH);
@@ -184,7 +184,6 @@ public class ItemHandler
 		if(BlocksItems.enableHammerIron)  		addItem(HAMMER_IRON, Constants.HAMMER_IRON);
 		if(BlocksItems.enableHammerDiamond)  	addItem(HAMMER_DIAMOND, Constants.HAMMER_DIAMOND);
 		if(BlocksItems.enableJerky)  			addItem(COOKED_JERKY, Constants.COOKED_JERKY);
-		if(BlocksItems.enableMeanVine)			addItem(STRING, Constants.STRING);
 		if(BlocksItems.enableStoneDoor)  		addItem(ITEM_STONE_DOOR, Constants.STONE_DOOR);
 		if(BlocksItems.enableElderTree) {
 			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
