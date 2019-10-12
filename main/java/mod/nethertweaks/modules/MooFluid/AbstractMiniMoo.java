@@ -1,4 +1,4 @@
-package mod.nethertweaks.modules.MooFluid;
+package mod.nethertweaks.modules.moofluid;
 
 import com.ricardothecoder.minimoos.common.configurations.Configs;
 import com.ricardothecoder.minimoos.library.entities.EntityFluidMoo;

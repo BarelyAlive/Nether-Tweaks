@@ -48,52 +48,52 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BlockHandler
 {
 	//Tile Entity
-	public static final Block ASH_BONE_PILE		   = new AshBonePile();
-	public static final Block CONDENSER 		   = new Condenser();
-	public static final Block NETHERRACK_FURNACE   = new NetherrackFurnace();
-	public static final Block FREEZER 			   = new Freezer();
-	public static final Block HELLMART 			   = new Hellmart();
-	public static final Block CRUCIBLE		 	   = new CrucibleStone(true);
-	public static final Block UNFIRED_CRUCIBLE	   = new CrucibleStone(false);
+	public static final AshBonePile ASH_BONE_PILE  			 = new AshBonePile();
+	public static final Condenser CONDENSER 	  			 = new Condenser();
+	public static final NetherrackFurnace NETHERRACK_FURNACE = new NetherrackFurnace();
+	public static final Freezer FREEZER 			   		 = new Freezer();
+	public static final Hellmart HELLMART 			   		 = new Hellmart();
+	public static final CrucibleStone CRUCIBLE		 	   	 = new CrucibleStone(true);
+	public static final CrucibleStone UNFIRED_CRUCIBLE	   	 = new CrucibleStone(false);
 
 	//Sieves
-	public static final Block STONE_SIEVE		   = new Sieve(Material.ROCK);
+	public static final Sieve STONE_SIEVE		   			 = new Sieve(Material.ROCK);
 
-	public static final Block OAK_SIEVE			   = new Sieve(Material.WOOD);
-	public static final Block BIRCH_SIEVE		   = new Sieve(Material.WOOD);
-	public static final Block SPRUCE_SIEVE		   = new Sieve(Material.WOOD);
-	public static final Block JUNGLE_SIEVE		   = new Sieve(Material.WOOD);
-	public static final Block ACACIA_SIEVE		   = new Sieve(Material.WOOD);
-	public static final Block DARK_OAK_SIEVE	   = new Sieve(Material.WOOD);
-	public static final Block ELDER_SIEVE		   = new Sieve(Material.WOOD);
+	public static final Sieve OAK_SIEVE			   			 = new Sieve(Material.WOOD);
+	public static final Sieve BIRCH_SIEVE					 = new Sieve(Material.WOOD);
+	public static final Sieve SPRUCE_SIEVE		   			 = new Sieve(Material.WOOD);
+	public static final Sieve JUNGLE_SIEVE		   			 = new Sieve(Material.WOOD);
+	public static final Sieve ACACIA_SIEVE		   			 = new Sieve(Material.WOOD);
+	public static final Sieve DARK_OAK_SIEVE	   			 = new Sieve(Material.WOOD);
+	public static final Sieve ELDER_SIEVE		   			 = new Sieve(Material.WOOD);
 
 	//Barrels
-	public static final Block STONE_BARREL 		   = new Barrel(1, Material.ROCK);
+	public static final Barrel STONE_BARREL 	   			 = new Barrel(1, Material.ROCK);
 
-	public static final Block OAK_BARREL		   = new Barrel(0, Material.WOOD);
-	public static final Block BIRCH_BARREL		   = new Barrel(0, Material.WOOD);
-	public static final Block SPRUCE_BARREL		   = new Barrel(0, Material.WOOD);
-	public static final Block JUNGLE_BARREL		   = new Barrel(0, Material.WOOD);
-	public static final Block ACACIA_BARREL		   = new Barrel(0, Material.WOOD);
-	public static final Block DARK_OAK_BARREL	   = new Barrel(0, Material.WOOD);
-	public static final Block ELDER_BARREL		   = new Barrel(0, Material.WOOD);
+	public static final Barrel OAK_BARREL		   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel BIRCH_BARREL		   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel SPRUCE_BARREL	   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel JUNGLE_BARREL	   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel ACACIA_BARREL	   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel DARK_OAK_BARREL	   			 = new Barrel(0, Material.WOOD);
+	public static final Barrel ELDER_BARREL		   			 = new Barrel(0, Material.WOOD);
 
 	//Blocks
-	public static final Block DUST 				   = new CubeFalling(Material.SAND, 2.0F, 0.4F);
-	public static final Block STWH 				   = new StwH();
-	public static final Block MEAN_VINE			   = new MeanVine();
-	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, 10F, 1.5F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, 10F, 1.5F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 2.0F, 0.4F);
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 10F, 5F);
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block DUST 				   			 = new CubeFalling(Material.SAND, 2.0F, 0.4F);
+	public static final StwH STWH 				   			 = new StwH();
+	public static final MeanVine MEAN_VINE			  		 = new MeanVine();
+	public static final NetherrackGravel NETHERRACK_GRAVEL	 = new NetherrackGravel();
+	public static final Block STONE_DOOR 		   			 = new CustomDoor(Material.ROCK, 10F, 1.5F);
+	public static final Block ELDER_DOOR 		   			 = new CustomDoor(Material.WOOD, 10F, 1.5F);
+	public static final Block HELLFAYAH_ORE		   			 = new Cube(Material.ROCK, 2.0F, 0.4F);
+	public static final Block BLOCK_OF_HELLFAYAH   			 = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block BLOCK_OF_SALT		   			 = new Cube(Material.ROCK, 10F, 5F);
 
 	//Tree
-	public static final Block ELDER_LOG 		   = new ElderLog();
-	public static final Block ELDER_LEAVES 		   = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
-	public static final Block ELDER_SAPLING 	   = new ElderSapling();
+	public static final ElderLog ELDER_LOG 		   			 = new ElderLog();
+	public static final ElderLeaves ELDER_LEAVES 		   	 = new ElderLeaves();
+	public static final Block ELDER_PLANKS 		   			 = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
+	public static final ElderSapling ELDER_SAPLING 	   		 = new ElderSapling();
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);

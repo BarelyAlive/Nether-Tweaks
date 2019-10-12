@@ -1,4 +1,4 @@
-package mod.nethertweaks.modules.MooFluid;
+package mod.nethertweaks.modules.moofluid;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.Loader;
