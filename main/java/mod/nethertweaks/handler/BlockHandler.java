@@ -37,6 +37,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -189,13 +190,18 @@ public class BlockHandler
 
 	private void registerTileEntities()
 	{
-		GameRegistry.registerTileEntity(TileBarrel.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_BARREL));
-		GameRegistry.registerTileEntity(TileSieve.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_SIEVE));
-		GameRegistry.registerTileEntity(TileAshBonePile.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_ASH_BONE_PILE));
-		GameRegistry.registerTileEntity(TileFreezer.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_FREEZER));
-		GameRegistry.registerTileEntity(TileHellmart.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_HELLMART));
-		GameRegistry.registerTileEntity(TileCondenser.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_CONDENSER));
-		GameRegistry.registerTileEntity(TileNetherrackFurnace.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_NETHERRACK_FURNACE));
-		GameRegistry.registerTileEntity(TileCrucibleStone.class, new ResourceLocation(Constants.MOD_ID, Constants.TE_CRUCIBLE));
+		registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
+		registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
+		registerTileEntity(TileAshBonePile.class, Constants.TE_ASH_BONE_PILE);
+		registerTileEntity(TileFreezer.class, Constants.TE_FREEZER);
+		registerTileEntity(TileHellmart.class, Constants.TE_HELLMART);
+		registerTileEntity(TileCondenser.class, Constants.TE_CONDENSER);
+		registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACK_FURNACE);
+		registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
+	}
+	
+	private void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, String name)
+	{
+		GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(Constants.MOD_ID, name));
 	}
 }
