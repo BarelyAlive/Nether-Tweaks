@@ -33,7 +33,6 @@ public class BlocksItems
 	enablePortalCore 		  = true,
 	enableEndBox	 		  = true,
 	enableEnderInfusedFrame	  = true,
-	enableString	 		  = true,
 	enablePorcelainClay		  = true,
 	enablePowderOfLight		  = true,
 	enableMushroomSpores	  = true,
@@ -115,7 +114,6 @@ public class BlocksItems
 		enableSalt 						= config.get("Items", "Enable Salt?", true).getBoolean();
 		enableHellfayah 				= config.get("Items", "Enable Hellfayah?", true).getBoolean();
 		enableEnderInfusedFrame			= config.get("Items", "Enable Ender Infused Frame?", true).getBoolean();
-		enableString 					= config.get("Items", "Enable String?", true).getBoolean();
 		enablePorcelainClay				= config.get("Items", "Enable Porcelain Clay?", true).getBoolean();
 		enablePowderOfLight				= config.get("Items", "Enable Powder of Light?", true).getBoolean();
 		enableMushroomSpores			= config.get("Items", "Enable Mushroom Spores?", true).getBoolean();
