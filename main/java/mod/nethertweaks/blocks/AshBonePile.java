@@ -89,7 +89,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 		BlockPos resultPos = testPosition(world, pos);
 
-		if(resultPos != null && !world.isRemote)
+		if(resultPos != null)
 			if (world.getBlockState(pos).getValue(LIT) == true)
 				if (WorldSpawnLocation.bonfire_info.containsKey(pos))
 				{
@@ -97,7 +97,8 @@ public class AshBonePile extends CubeContainerHorizontal
 					if(info != null)
 					{
 						info.setSpawnPos(resultPos);
-						NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
+						if (world.isRemote)
+							NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
 					}
 				}
 	}
@@ -127,7 +128,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
 					WorldSpawnLocation.bonfire_info.put(pos, info);
-					NetworkHandler.INSTANCE.sendToServer(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
+					NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
 				}
 			}
 		} else
@@ -203,7 +204,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 	private void onBlockDestroy(final World world, final BlockPos pos)
 	{
-		if (WorldSpawnLocation.bonfire_info.containsKey(pos) && !world.isRemote)
+		if (WorldSpawnLocation.bonfire_info.containsKey(pos))
 		{
 			BonfireInfo binfo = WorldSpawnLocation.bonfire_info.get(pos);
 
@@ -213,12 +214,17 @@ public class AshBonePile extends CubeContainerHorizontal
 					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
 					{
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
-						player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
+						if (!world.isRemote)
+							player.sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
-						NetworkHandler.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
+						if (world.isRemote)
+							NetworkHandler.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
 			WorldSpawnLocation.bonfire_info.remove(pos);
-			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
+			if (world.isRemote)
+			{
+				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
+			}
 		}
 	}
 

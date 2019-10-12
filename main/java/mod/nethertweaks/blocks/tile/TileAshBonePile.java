@@ -18,7 +18,8 @@ public class TileAshBonePile extends TileBase  {
 	public void isLit(final boolean is_lit)
 	{
 		this.is_lit = is_lit;
-		markDirtyClient();
+		if (!this.world.isRemote)
+			markDirtyClient();
 	}
 
 	@Override

@@ -113,11 +113,12 @@ public class GuiBonfire extends GuiContainer {
 	@Override
 	protected void actionPerformed(final GuiButton button) throws IOException {
 		super.actionPerformed(button);
-		if(!world.isRemote) return;
+		//if(world.isRemote) return;
 		if(button.id == 0)
 		{
 			WorldSpawnLocation.bonfire_info.get(pos).isPublic(!WorldSpawnLocation.bonfire_info.get(pos).isPublic());
-			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
+			if(world.isRemote)
+				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
 		}
 		if (button.id > 0 && button.id < 6)
 		{
@@ -133,7 +134,8 @@ public class GuiBonfire extends GuiContainer {
 			final BlockPos destination = bonfires.keySet().toArray(new BlockPos[0])[id];
 
 			int result = 0;
-			NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));
+			if(world.isRemote)
+				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));
 		}
 		if (button.id == 6)
 		{
@@ -162,7 +164,8 @@ public class GuiBonfire extends GuiContainer {
 		if (text.isFocused())
 		{
 			WorldSpawnLocation.bonfire_info.get(pos).setName(text.getText());
-			NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
+			if(world.isRemote)
+				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
 		}
 
 		if (!(keyCode == Keyboard.KEY_E && text.isFocused()))

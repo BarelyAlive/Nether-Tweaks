@@ -9,6 +9,7 @@ import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -38,11 +39,10 @@ public class MessageBonfireUpdate implements IMessage {
 			info = new BonfireInfo(new UUID(buf.readLong(), buf.readLong()), buf.readInt());
 
 			info.setSpawnPos(new BlockPos(buf.readInt(), buf.readInt(), buf.readInt()));
-			int length = buf.readInt();
-			info.setName(buf.readCharSequence(length, Charset.defaultCharset()).toString());
+			info.setName(ByteBufUtils.readUTF8String(buf));
 			info.isPublic(buf.readBoolean());
 
-			length = buf.readInt();
+			int length = buf.readInt();
 			for(int j = 0; j < length; j++)
 				info.addPlayer(new UUID(buf.readLong(), buf.readLong()));
 		}
@@ -77,8 +77,7 @@ public class MessageBonfireUpdate implements IMessage {
 				buf.writeInt(0);
 				buf.writeInt(0);
 			}
-			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), Charset.forName("UTF-8"));
+			ByteBufUtils.writeUTF8String(buf, info.getName());
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());

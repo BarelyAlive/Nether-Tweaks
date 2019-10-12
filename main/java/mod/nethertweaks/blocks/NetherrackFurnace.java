@@ -94,7 +94,8 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 		{
 			furnace.validate();
 			world.setTileEntity(pos, furnace);
-			NetworkHandler.sendToAllAround(new MessageCheckLight(pos), furnace);
+			if(!world.isRemote)
+				NetworkHandler.sendToAllAround(new MessageCheckLight(pos), furnace);
 		}
 	}
 

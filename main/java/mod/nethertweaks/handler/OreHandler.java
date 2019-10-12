@@ -11,7 +11,6 @@ import mod.nethertweaks.items.ItemChunk;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registries.registries.DynOreRegistry;
 import mod.nethertweaks.registry.types.DynOre;
-import mod.sfhcore.proxy.IVariantProvider;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;

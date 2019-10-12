@@ -16,6 +16,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageTeleportPlayer implements IMessage {
 
@@ -81,7 +82,14 @@ public class MessageTeleportPlayer implements IMessage {
 
 			player.closeScreen();
 
-			NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			if (ctx.side == Side.CLIENT)
+			{
+				NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			}
+			else
+			{
+				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			}
 
 			return null;
 		}
