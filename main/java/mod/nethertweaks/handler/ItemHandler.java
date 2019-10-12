@@ -189,15 +189,6 @@ public class ItemHandler
 			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
 			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 		}
-		
-		//Blocks
-		BlockHandler.BLOCKS.forEach((block) ->
-		{
-			if(!(block instanceof BlockSlab)
-					&& !(block instanceof CustomDoor)
-					&& !(block instanceof BlockFluidClassic))
-				ITEMS.add(new ItemBlock(block).setRegistryName(Objects.requireNonNull(block.getRegistryName())));
-		});
 	}
 	
 	private void addItem(Item item, String name)
