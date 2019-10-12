@@ -78,12 +78,7 @@ public class MessageBonfireUpdate implements IMessage {
 				buf.writeInt(0);
 				buf.writeInt(0);
 			}
-<<<<<<< HEAD
 			ByteBufUtils.writeUTF8String(buf, info.getName());
-=======
-			buf.writeInt(info.getName().length());
-			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
->>>>>>> dev_Angayoco
 			buf.writeBoolean(info.isPublic());
 			List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());

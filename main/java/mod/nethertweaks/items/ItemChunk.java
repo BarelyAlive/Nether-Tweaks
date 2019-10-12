@@ -79,40 +79,25 @@ public class ItemChunk extends Item {
 	{
 		if (this.display_name == "")
 		{
-<<<<<<< HEAD
 			String name = this.getResult().getDisplayName();
 			String[] name_split = name.split(" ");
 			if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
 			{
-				name = "";
-				for(int i = 0; i < (name_split.length - 1); i++)
+	            StringBuilder nameBuilder = new StringBuilder();
+	            for(int i = 0; i < name_split.length - 1; i++)
 				{
-					name += name_split[i];
-					name += " ";
+					nameBuilder.append(name_split[i]);
+					nameBuilder.append(" ");
 				}
-			}
-			else
-			{
+	            name = nameBuilder.toString();
+	        } else
 				name += " ";
-			}
 			return name + this.getLocalizedName();
 		}
 		else
 		{
 			return this.display_name;
 		}
-=======
-            StringBuilder nameBuilder = new StringBuilder();
-            for(int i = 0; i < name_split.length - 1; i++)
-			{
-				nameBuilder.append(name_split[i]);
-				nameBuilder.append(" ");
-			}
-            name = nameBuilder.toString();
-        } else
-			name += " ";
-		return name + this.getLocalizedName();
->>>>>>> dev_Angayoco
 	}
 
 	public String getLocalizedName()
