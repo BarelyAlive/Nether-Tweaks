@@ -85,7 +85,7 @@ public class ItemHandler
 	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
 	public static final Item POWDER_OF_LIGHT  	 	 = new Item();
 	public static final Item ASH			  	 	 = new Ash();
-	public static final Item COILED_SWORD	  	 	 = new CoiledSword();
+	public static final CoiledSword COILED_SWORD 	 = new CoiledSword();
 	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 
 	//Tools
