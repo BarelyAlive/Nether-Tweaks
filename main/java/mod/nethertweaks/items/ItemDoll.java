@@ -1,5 +1,7 @@
 package mod.nethertweaks.items;
 
+import java.util.Objects;
+
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.handler.FluidHandler;
 import mod.sfhcore.helper.NameHelper;
@@ -24,8 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-
-import java.util.Objects;
 
 public class ItemDoll extends Item
 {

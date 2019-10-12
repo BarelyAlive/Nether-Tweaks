@@ -1,7 +1,11 @@
 package mod.nethertweaks.blocks.gui;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;

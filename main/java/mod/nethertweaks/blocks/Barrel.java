@@ -2,7 +2,6 @@ package mod.nethertweaks.blocks;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.barrel.modes.block.BarrelModeBlock;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.barrel.modes.fluid.BarrelModeFluid;

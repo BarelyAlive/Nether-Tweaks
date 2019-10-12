@@ -6,7 +6,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.handler.BlockHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;

@@ -18,7 +18,8 @@ public class CrucibleStone extends CrucibleBase
 
 	public CrucibleStone(final boolean fired) {
 		super(Material.ROCK);
-		setHardness(2.0f);
+		setResistance(10F);
+		setHardness(2.0F);
 		this.fired = fired;
 
 	}

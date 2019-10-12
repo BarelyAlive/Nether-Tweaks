@@ -1,5 +1,7 @@
 package mod.nethertweaks.blocks.gui;
 
+import java.util.Objects;
+
 import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.Constants;
@@ -16,8 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class GuiCondenser extends GuiContainer

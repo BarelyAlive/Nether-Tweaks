@@ -1,5 +1,7 @@
 package mod.nethertweaks.network;
 
+import java.util.Objects;
+
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
@@ -12,8 +14,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.items.CapabilityItemHandler;
-
-import java.util.Objects;
 
 public class MessageHellmartBuy implements IMessage{
 	private int itemNum;

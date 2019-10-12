@@ -1,12 +1,10 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import mod.sfhcore.blocks.CubeFacingXYZ;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,8 +13,8 @@ public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
 		super(Material.WOOD);
-		setHardness(2);
-		setResistance(10);
+		setResistance(10F);
+		setHardness(2F);
 		setSoundType(SoundType.WOOD);
 	}
 

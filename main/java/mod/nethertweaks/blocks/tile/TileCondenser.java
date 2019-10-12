@@ -1,5 +1,7 @@
 package mod.nethertweaks.blocks.tile;
 
+import java.util.Objects;
+
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -33,8 +35,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-
-import java.util.Objects;
 
 public class TileCondenser extends TileFluidInventory
 {

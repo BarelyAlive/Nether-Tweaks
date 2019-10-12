@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileCondenser;
 import mod.nethertweaks.config.BlocksItems;
@@ -16,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
@@ -30,8 +28,8 @@ public class Condenser extends CubeContainerHorizontal
 	{
 		super(Material.ROCK);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setResistance(17.5f);
-		setHardness(3.5f);
+		setResistance(2F);
+		setHardness(3.5F);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package mod.nethertweaks.client.renderers;
 
+import java.util.Objects;
+
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
 import mod.nethertweaks.handler.BlockHandler;
@@ -14,8 +16,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Objects;
 
 public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile> {
 

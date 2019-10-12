@@ -37,7 +37,10 @@ public class SmeltingNOreDictHandler
 			OreDictionary.registerOre("dye", ItemHandler.ASH);
 			OreDictionary.registerOre("dyeLightGray", ItemHandler.ASH);
 		}
-		if(BlocksItems.enableMeanVine) 		  OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
+		if(BlocksItems.enableMeanVine) {
+			OreDictionary.registerOre("vine", BlockHandler.MEAN_VINE);
+			OreDictionary.registerOre("string", ItemHandler.STRING);
+		}
 		if(BlocksItems.enableNetherrackGravel)OreDictionary.registerOre("gravel", BlockHandler.NETHERRACK_GRAVEL);
 		if(BlocksItems.enableJerky)			  OreDictionary.registerOre("listAllmeatcooked", ItemHandler.COOKED_JERKY);
 		if(BlocksItems.enableSalt) {

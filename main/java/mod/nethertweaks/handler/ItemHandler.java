@@ -16,25 +16,19 @@ import mod.nethertweaks.items.ItemDoll;
 import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.Seed;
-import mod.sfhcore.blocks.CustomDoor;
-import mod.sfhcore.items.ItemDoor;
 import mod.sfhcore.handler.CustomFuelHandler;
-import mod.sfhcore.items.CustomItem;
+import mod.sfhcore.items.ItemDoor;
 import mod.sfhcore.util.ItemInfo;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -189,15 +183,6 @@ public class ItemHandler
 			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
 			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 		}
-		
-		//Blocks
-		BlockHandler.BLOCKS.forEach((block) ->
-		{
-			if(!(block instanceof BlockSlab)
-					&& !(block instanceof CustomDoor)
-					&& !(block instanceof BlockFluidClassic))
-				ITEMS.add(new ItemBlock(block).setRegistryName(Objects.requireNonNull(block.getRegistryName())));
-		});
 	}
 	
 	private void addItem(Item item, String name)

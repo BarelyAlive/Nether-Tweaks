@@ -1,5 +1,7 @@
 package mod.nethertweaks.handler;
 
+import java.util.Objects;
+
 import mod.nethertweaks.blocks.container.ContainerBonfire;
 import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.blocks.container.ContainerFreezer;
@@ -19,8 +21,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-
-import java.util.Objects;
 
 public class GuiHandler implements IGuiHandler
 {

@@ -1,5 +1,7 @@
 package mod.nethertweaks.blocks.tile;
 
+import java.util.Objects;
+
 import mod.nethertweaks.blocks.NetherrackFurnace;
 import mod.nethertweaks.blocks.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -19,8 +21,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Objects;
 
 public class TileNetherrackFurnace extends TileInventory
 {

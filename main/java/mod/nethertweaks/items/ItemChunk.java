@@ -1,12 +1,12 @@
 package mod.nethertweaks.items;
 
+import java.util.Objects;
+
 import mod.nethertweaks.config.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.text.translation.I18n;
-
-import java.util.Objects;
 
 public class ItemChunk extends Item {
 

@@ -1,5 +1,7 @@
 package mod.nethertweaks.handler;
 
+import static mod.nethertweaks.handler.ItemHandler.ITEMS;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +37,6 @@ import mod.sfhcore.blocks.CubeFireResistant;
 import mod.sfhcore.blocks.CustomDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -82,20 +83,20 @@ public class BlockHandler
 	public static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, 30.0F, 2.0F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, 15.0F, 2.0F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F);
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F);
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F);
+	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, 10F, 1.5F);
+	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, 10F, 1.5F);
+	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 2.0F, 0.4F);
+	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 10F, 5F);
 
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
 	public static final Block ELDER_LEAVES 		   = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F);
+	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
-	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
-	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
+	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
 
 	//END_OF_INITIALIZATION
 	
@@ -104,6 +105,7 @@ public class BlockHandler
 	public BlockHandler()
 	{
 		register();
+		addItemBlocks();
 		registerTileEntities();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -168,6 +170,59 @@ public class BlockHandler
 		if(BlocksItems.enableNetherrackGravel)	addBlock(NETHERRACK_GRAVEL, Constants.NETHERRACK_GRAVEL);
 		if(BlocksItems.enableMeanVine) 			addBlock(MEAN_VINE, Constants.MEAN_VINE);
 		if(BlocksItems.enableStoneDoor) 		addBlock(STONE_DOOR, Constants.STONE_DOOR);
+	}
+	
+	private void addItemBlocks()
+	{		
+		//Regular Blocks
+		if(BlocksItems.enableBarrel) {
+			ITEMS.add(new ItemBlock(STONE_BARREL).setRegistryName(Constants.STONE_BARREL));
+			ITEMS.add(new ItemBlock(OAK_BARREL).setRegistryName(Constants.OAK_BARREL));
+			ITEMS.add(new ItemBlock(BIRCH_BARREL).setRegistryName(Constants.BIRCH_BARREL));
+			ITEMS.add(new ItemBlock(SPRUCE_BARREL).setRegistryName(Constants.SPRUCE_BARREL));
+			ITEMS.add(new ItemBlock(JUNGLE_BARREL).setRegistryName(Constants.JUNGLE_BARREL));
+			ITEMS.add(new ItemBlock(ACACIA_BARREL).setRegistryName(Constants.ACACIA_BARREL));
+			ITEMS.add(new ItemBlock(DARK_OAK_BARREL).setRegistryName(Constants.DARK_OAK_BARREL));
+
+			if(BlocksItems.enableElderTree)
+				ITEMS.add(new ItemBlock(ELDER_BARREL).setRegistryName(Constants.ELDER_BARREL));
+		}
+		if(BlocksItems.enableSieve) {
+			ITEMS.add(new ItemBlock(STONE_SIEVE).setRegistryName(Constants.STONE_SIEVE));
+			ITEMS.add(new ItemBlock(OAK_SIEVE).setRegistryName(Constants.OAK_SIEVE));
+			ITEMS.add(new ItemBlock(BIRCH_SIEVE).setRegistryName(Constants.BIRCH_SIEVE));
+			ITEMS.add(new ItemBlock(SPRUCE_SIEVE).setRegistryName(Constants.SPRUCE_SIEVE));
+			ITEMS.add(new ItemBlock(JUNGLE_SIEVE).setRegistryName(Constants.JUNGLE_SIEVE));
+			ITEMS.add(new ItemBlock(ACACIA_SIEVE).setRegistryName(Constants.ACACIA_SIEVE));
+			ITEMS.add(new ItemBlock(DARK_OAK_SIEVE).setRegistryName(Constants.DARK_OAK_SIEVE));
+
+			if(BlocksItems.enableElderTree)
+				ITEMS.add(new ItemBlock(ELDER_SIEVE).setRegistryName(Constants.ELDER_SIEVE));
+		}
+		if(BlocksItems.enableAshBonePile)		ITEMS.add(new ItemBlock(ASH_BONE_PILE).setRegistryName(Constants.ASH_BONE_PILE));
+		if(BlocksItems.enableFreezer)			ITEMS.add(new ItemBlock(FREEZER).setRegistryName(Constants.FREEZER));
+		if(BlocksItems.enableHellmart)			ITEMS.add(new ItemBlock(HELLMART).setRegistryName(Constants.HELLMART));
+		if(BlocksItems.enableCondenser) 		ITEMS.add(new ItemBlock(CONDENSER).setRegistryName(Constants.CONDENSER));
+		if(BlocksItems.enableNetherrackFurnace)	ITEMS.add(new ItemBlock(NETHERRACK_FURNACE).setRegistryName(Constants.NETHERRACK_FURNACE));
+		if(BlocksItems.enableCrucible) {
+			ITEMS.add(new ItemBlock(UNFIRED_CRUCIBLE).setRegistryName(Constants.UNFIRED_CRUCIBLE));
+			ITEMS.add(new ItemBlock(CRUCIBLE).setRegistryName(Constants.CRUCIBLE));
+		}
+		if(BlocksItems.enableHellfayah) {
+			ITEMS.add(new ItemBlock(HELLFAYAH_ORE).setRegistryName(Constants.HELLFAYAH_ORE));
+			ITEMS.add(new ItemBlock(BLOCK_OF_HELLFAYAH).setRegistryName(Constants.BLOCK_OF_HELLFAYAH));
+		}
+		if(BlocksItems.enableSaltBlock) 		ITEMS.add(new ItemBlock(BLOCK_OF_SALT).setRegistryName(Constants.BLOCK_OF_SALT));
+		if(BlocksItems.enableDust) 				ITEMS.add(new ItemBlock(DUST).setRegistryName(Constants.DUST));
+		if(BlocksItems.enableStwH) 				ITEMS.add(new ItemBlock(STWH).setRegistryName(Constants.STWH));
+		if(BlocksItems.enableElderTree) {
+			ITEMS.add(new ItemBlock(ELDER_SAPLING).setRegistryName(Constants.ELDER_SAPLING));
+			ITEMS.add(new ItemBlock(ELDER_LOG).setRegistryName(Constants.ELDER_LOG));
+			ITEMS.add(new ItemBlock(ELDER_LEAVES).setRegistryName(Constants.ELDER_LEAVES));
+			ITEMS.add(new ItemBlock(ELDER_PLANKS).setRegistryName(Constants.ELDER_PLANKS));
+		}
+		if(BlocksItems.enableNetherrackGravel)	ITEMS.add(new ItemBlock(NETHERRACK_GRAVEL).setRegistryName(Constants.NETHERRACK_GRAVEL));
+		if(BlocksItems.enableMeanVine) 			ITEMS.add(new ItemBlock(MEAN_VINE).setRegistryName(Constants.MEAN_VINE));
 	}
 		
 	private void addBlock(Block block, String name)

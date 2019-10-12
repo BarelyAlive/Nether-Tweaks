@@ -1,5 +1,7 @@
 package mod.nethertweaks.blocks.gui;
 
+import java.util.Objects;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -20,8 +22,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
-
-import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class GuiHellmart extends GuiContainer {
