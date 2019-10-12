@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.Block;
@@ -45,7 +44,6 @@ public class Grabber extends ItemShears
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
-		setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
 	}
 
 	@Override
@@ -152,10 +150,5 @@ public class Grabber extends ItemShears
 		else
 			tooltip.add("Hold [J] for more info!");
 
-	}
-
-	private String getName(final ToolMaterial m)
-	{
-		return "grabber_" + m.name();
 	}
 }

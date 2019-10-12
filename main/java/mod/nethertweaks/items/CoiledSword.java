@@ -1,6 +1,5 @@
 package mod.nethertweaks.items;
 
-import mod.nethertweaks.Constants;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 
