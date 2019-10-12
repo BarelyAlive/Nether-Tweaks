@@ -1,4 +1,4 @@
-package mod.nethertweaks.modules.MooFluid;
+package mod.nethertweaks.modules.moofluid;
 
 import ftblag.fluidcows.entity.EntityFluidCow;
 import ftblag.fluidcows.gson.FCConfig;

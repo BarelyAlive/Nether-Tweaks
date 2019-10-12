@@ -1,4 +1,4 @@
-package mod.nethertweaks.modules.MooFluid;
+package mod.nethertweaks.modules.moofluid;
 
 import net.minecraftforge.fluids.Fluid;
 
