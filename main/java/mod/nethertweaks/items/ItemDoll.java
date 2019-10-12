@@ -25,12 +25,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
+import java.util.Objects;
+
 public class ItemDoll extends Item
 {
-	public ItemDoll(final String type)
-	{
-		setRegistryName(Constants.MODID, type);
-	}
+	public ItemDoll(){}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
 		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
@@ -134,6 +133,6 @@ public class ItemDoll extends Item
 
 	@Override
 	public String getUnlocalizedName(final ItemStack stack) {
-		return "item." + getRegistryName().getResourcePath();
+		return "item." + Objects.requireNonNull(getRegistryName()).getResourcePath();
 	}
 }

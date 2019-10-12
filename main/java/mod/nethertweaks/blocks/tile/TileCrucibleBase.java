@@ -35,14 +35,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 public abstract class TileCrucibleBase extends TileBase implements ITickable {
 	public static final int MAX_ITEMS = 4;
 
-	protected FluidTankBase tank;
+	protected final FluidTankBase tank;
 	protected int solidAmount;
 
 	private ItemInfo currentItem = ItemInfo.EMPTY;
 	protected int ticksSinceLast = 0;
 
-	protected CrucibleItemHandler itemHandler;
-	protected CrucibleRegistry crucibleRegistry;
+	protected final CrucibleItemHandler itemHandler;
+	protected final CrucibleRegistry crucibleRegistry;
 
 	public FluidTankBase getTank() {
 		return tank;
@@ -131,7 +131,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
 		}
 
-		return solidProportion > fluidProportion ? solidProportion : fluidProportion;
+		return Math.max(solidProportion, fluidProportion);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -157,7 +157,7 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		if (stack.isEmpty())
 			return false;
 
-		Boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
+		boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
 
 		if (result) {
 			if (!player.isCreative())

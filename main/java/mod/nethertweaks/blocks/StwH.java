@@ -30,7 +30,6 @@ public class StwH extends Block{
 		setHarvestLevel("pickaxe", 3);
 		setResistance(75.0F);
 		setHardness(16.0F);
-		setRegistryName(new ResourceLocation(Constants.MODID, Constants.STWH));
 		setTickRandomly(true);
 	}
 
@@ -91,7 +90,7 @@ public class StwH extends Block{
 				d5 = rand.nextFloat() * 2.0F * j;
 			}
 
-			world.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5, new int[0]);
+			world.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
 		}
 		super.randomDisplayTick(state, world, pos, rand);
 	}

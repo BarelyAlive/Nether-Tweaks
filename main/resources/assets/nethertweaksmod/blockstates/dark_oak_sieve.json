@@ -6,7 +6,7 @@
   "variants": {
     "mesh": {
       "none": {},
-      "no_render": {"model": "minecraft:planks_big_oak"},
+      "no_render": {"model": "minecraft:dark_oak_planks"},
       "string": {
         "submodel": {
           "mesh": {

@@ -14,12 +14,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
+import java.util.Objects;
+
 public class ItemPebble extends Item
 {
-	public ItemPebble(final String type)
-	{
-		setRegistryName(Constants.MODID, type);
-	}
+	public ItemPebble(){}
 
 	@Override
 	@Nonnull
@@ -44,7 +43,7 @@ public class ItemPebble extends Item
 
 	@Override
 	public String getUnlocalizedName(final ItemStack stack) {
-		return "item." + getRegistryName().getResourcePath();
+		return "item." + Objects.requireNonNull(getRegistryName()).getResourcePath();
 
 	}
 }

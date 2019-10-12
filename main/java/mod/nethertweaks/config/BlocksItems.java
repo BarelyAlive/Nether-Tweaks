@@ -40,7 +40,7 @@ public class BlocksItems
 	enableGrassSeeds		  = true,
 	enableCactusSeeds		  = true,
 	enableSugarcaneSeeds	  = true,
-	enableCrystalLight 		  = true,
+	enableCrystalOfLight 		  = true,
 	enableAsh			 	  = true,
 	enableWoodChippings 	  = true,
 	enableCoiledSword 		  = true,
@@ -122,7 +122,7 @@ public class BlocksItems
 		enableGrassSeeds				= config.get("Items", "Enable Grass Seeds?", true).getBoolean();
 		enableCactusSeeds				= config.get("Items", "Enable Cactus Seeds?", true).getBoolean();
 		enableSugarcaneSeeds			= config.get("Items", "Enable Sugarcane Seeds?", true).getBoolean();
-		enableCrystalLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
+		enableCrystalOfLight				= config.get("Items", "Enable Crystal of Light?", true).getBoolean();
 		enableAsh						= config.get("Items", "Enable Ash?", true).getBoolean();
 		enableWoodChippings				= config.get("Items", "Enable Wood Chippings?", true).getBoolean();
 		enableCoiledSword				= config.get("Items", "Enable Coiled Sword?", true).getBoolean();

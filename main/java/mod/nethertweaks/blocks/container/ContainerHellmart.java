@@ -41,11 +41,11 @@ public class ContainerHellmart extends Container {
 					if(!mergeItemStack(slotStack, 0, 1, false))
 						return ItemStack.EMPTY;
 				}
-				else if(slotIndex >= 1 && slotIndex < 28) {
+				else if(slotIndex < 28) {
 					if(!mergeItemStack(slotStack, 28, 37, false))
 						return ItemStack.EMPTY;
 				}
-				else if(slotIndex >= 1 && slotIndex < 37 && !mergeItemStack(slotStack, 1, 28, false))
+				else if(slotIndex < 37 && !mergeItemStack(slotStack, 1, 28, false))
 					return ItemStack.EMPTY;
 			}
 			else if(!mergeItemStack(slotStack, 1, 37, false))

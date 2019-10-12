@@ -52,9 +52,9 @@ public class FluidItemFluid
 		this.consume = consume;
 	}
 
-	String inputFluid = null;
-	StackInfo reactant = null;
-	String output = null;
-	int transformTime = 0;
-	boolean consume = true;
+	String inputFluid;
+	StackInfo reactant;
+	String output;
+	int transformTime;
+	boolean consume;
 }

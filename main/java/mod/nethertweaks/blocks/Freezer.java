@@ -8,7 +8,6 @@ import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -28,7 +27,7 @@ public class Freezer extends CubeContainerHorizontal
 
 	public Freezer()
 	{
-		super(Material.ROCK, new ResourceLocation(Constants.MODID, Constants.FREEZER));
+		super(Material.ROCK);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);
@@ -41,7 +40,6 @@ public class Freezer extends CubeContainerHorizontal
 		if(!world.isBlockLoaded(pos)) return false;
 		TileFreezer te = (TileFreezer) world.getTileEntity(pos);
 		if(te == null) return false;
-		if(!(te instanceof TileFreezer)) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
@@ -62,7 +60,7 @@ public class Freezer extends CubeContainerHorizontal
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {FACING});
+		return new BlockStateContainer(this, FACING);
 	}
 
 	@Override

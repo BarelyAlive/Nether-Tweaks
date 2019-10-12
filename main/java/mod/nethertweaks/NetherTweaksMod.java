@@ -12,6 +12,7 @@ import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.handler.BlockHandler;
 import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.handler.GuiHandler;
 import mod.nethertweaks.handler.HammerHandler;
 import mod.nethertweaks.handler.ItemHandler;
 import mod.nethertweaks.handler.JsonRecipeHandler;
@@ -39,18 +40,19 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid=Constants.MODID, name=Constants.MODNAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
+@Mod(modid=Constants.MOD_ID, name=Constants.MOD_NAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	public static Gson gsonInstance = new Gson();
+	public static final Gson gsonInstance = new Gson();
 	public static File configDirectory;
 	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
 
-	@Instance(value=Constants.MODID)
+	@Instance(value=Constants.MOD_ID)
 	private static NetherTweaksMod instance;
 
 	public static NetherTweaksMod getInstance() {
@@ -63,7 +65,7 @@ public class NetherTweaksMod
 		MessageHandler.init();
 	}
 
-	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MODID)
+	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MOD_ID)
 	private static CommonProxy proxy;
 
 	public static CommonProxy getProxy() {
@@ -78,9 +80,9 @@ public class NetherTweaksMod
 	@Mod.EventHandler
 	public void PreInit(final FMLPreInitializationEvent event)
 	{
-		configDirectory = new File(event.getModConfigurationDirectory(), Constants.MODID);
+		configDirectory = new File(event.getModConfigurationDirectory(), Constants.MOD_ID);
 
-		LogUtil.setup(Constants.MODID, configDirectory);
+		LogUtil.setup(Constants.MOD_ID, configDirectory);
 
 		Config.init();
 
@@ -92,7 +94,7 @@ public class NetherTweaksMod
 		FluidHandler.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
-		new Hellworld();  //makes it register itself
+		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 
@@ -106,7 +108,9 @@ public class NetherTweaksMod
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		new SmeltingNOreDictHandler();
+		
 		getProxy().init();
 	}
 

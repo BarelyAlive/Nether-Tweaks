@@ -12,21 +12,21 @@ public class Siftable {
 	}
 
 
-	private ItemInfo drop;
+	private final ItemInfo drop;
 
 	public ItemInfo getDrop()
 	{
 		return drop;
 	}
 
-	private float chance;
+	private final float chance;
 
 	public float getChance()
 	{
 		return chance;
 	}
 
-	private String meshLevel;
+	private final String meshLevel;
 
 	public String getMeshLevel()
 	{

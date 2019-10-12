@@ -21,6 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 
+import java.util.Objects;
+
 @SideOnly(Side.CLIENT)
 public class GuiHellmart extends GuiContainer {
 	private static final ResourceLocation gui = new ResourceLocation("nethertweaksmod:textures/gui/guihellmart.png");
@@ -72,28 +74,26 @@ public class GuiHellmart extends GuiContainer {
 			tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 2) {
-			ItemStack buySlot = tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+			ItemStack buySlot = Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
 					.getStackInSlot(0);
-			if(buySlot != null) {
-				HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
-				final HellmartData data = dataz[itemNum];
-				if(buySlot.getItem() == data.getCurrency().getItem())
-					if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
-						int price = data.getPrice();
-						if(buySlot.getCount() == price)
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
-									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
-									tileEntityMarket.getPos().getZ(), true));
-						else if(buySlot.getCount() > price && buySlot.getCount() > 1)
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
-									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
-									tileEntityMarket.getPos().getZ(), false));
-						if(buySlot.getCount() == 0 && price == 1)
-							NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
-									tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
-									tileEntityMarket.getPos().getZ(), true));
-					}
-			}
+			HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+			final HellmartData data = dataz[itemNum];
+			if(buySlot.getItem() == data.getCurrency().getItem())
+				if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
+					int price = data.getPrice();
+					if(buySlot.getCount() == price)
+						NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+								tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+								tileEntityMarket.getPos().getZ(), true));
+					else if(buySlot.getCount() > price && buySlot.getCount() > 1)
+						NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+								tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+								tileEntityMarket.getPos().getZ(), false));
+					if(buySlot.getCount() == 0 && price == 1)
+						NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
+								tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
+								tileEntityMarket.getPos().getZ(), true));
+				}
 		}
 	}
 
@@ -130,7 +130,7 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 
 		int price = data.getPrice();
-		fontRenderer.drawString("x" + Integer.toString(price), 116, 20, 0);
+		fontRenderer.drawString("x" + price, 116, 20, 0);
 
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_LIGHTING);

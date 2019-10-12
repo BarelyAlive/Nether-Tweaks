@@ -26,7 +26,6 @@ public class LiquidImpossibility extends BlockFluidClassic
 	public LiquidImpossibility()
 	{
 		super(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, Material.WATER);
-		setRegistryName(Constants.MODID, Constants.LIQUID_IMPOSSIBILITY);
 		setLightLevel(Config.luminosityLI);
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);
@@ -41,10 +40,8 @@ public class LiquidImpossibility extends BlockFluidClassic
 	@Override
 	public boolean canCreatureSpawn(final IBlockState state, final IBlockAccess world, final BlockPos pos, final SpawnPlacementType type)
 	{
-		if(type.equals(SpawnPlacementType.IN_WATER) && state.equals(getDefaultState()))
-			return true;
-		return false;
-	}
+        return type.equals(SpawnPlacementType.IN_WATER) && state.equals(getDefaultState());
+    }
 
 	@Override
 	public void onEntityCollidedWithBlock(final World world, final BlockPos pos, final IBlockState state, final Entity entity)

@@ -20,6 +20,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
+import java.util.Objects;
+
 public class GuiHandler implements IGuiHandler
 {
 	public static final int ID_FURNACE 	 = 0;
@@ -40,7 +42,7 @@ public class GuiHandler implements IGuiHandler
 		case ID_FREEZER:
 			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
 		case ID_HELLMART:
-			return new ContainerHellmart(player.inventory, (TileHellmart)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerHellmart(player.inventory, (TileHellmart) Objects.requireNonNull(world.getTileEntity(new BlockPos(x, y, z))));
 		case ID_BONFIRE:
 			return new ContainerBonfire();
 		default:

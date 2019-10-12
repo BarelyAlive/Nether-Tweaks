@@ -8,7 +8,7 @@ public class CoiledSword extends Item{
 
 	public CoiledSword() {
 		super();
-		setRegistryName(Constants.MODID, Constants.COILED_SWORD);
+		setRegistryName(Constants.MOD_ID, Constants.COILED_SWORD);
 		setMaxDamage(1);
 		setMaxStackSize(1);
 	}

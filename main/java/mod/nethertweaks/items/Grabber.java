@@ -1,6 +1,7 @@
 package mod.nethertweaks.items;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
@@ -32,7 +33,7 @@ public class Grabber extends ItemShears
 
 	private void setTangible(final String[] blocks)
 	{
-		for(String entry : blocks) BLOCKS.add(entry);
+        BLOCKS.addAll(Arrays.asList(blocks));
 	}
 
 	public static List<String> getTangible() {
@@ -44,7 +45,7 @@ public class Grabber extends ItemShears
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
-		setRegistryName(new ResourceLocation(Constants.MODID, getName(material)));
+		setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
 	}
 
 	@Override

@@ -17,11 +17,10 @@ import net.minecraft.world.World;
 
 public abstract class BlockSlabCommon extends BlockSlab
 {
-	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.<Variant>create("variant", Variant.class);
+	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 
-	public BlockSlabCommon(final String name, final Material material) {
+	public BlockSlabCommon(final Material material) {
 		super(material);
-		this.setRegistryName(name);
 
 		IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 
@@ -81,15 +80,15 @@ public abstract class BlockSlabCommon extends BlockSlab
 	@Override
 	protected BlockStateContainer createBlockState() {
 		if(!isDouble())
-			return new BlockStateContainer(this, new IProperty[] {VARIANT, HALF});
-		return new BlockStateContainer(this, new IProperty[] {VARIANT});
+			return new BlockStateContainer(this, VARIANT, HALF);
+		return new BlockStateContainer(this, VARIANT);
 	}
 
 	public static class Double extends BlockSlabCommon
 	{
 
-		public Double(final String name, final Material material) {
-			super(name, material);
+		public Double(final Material material) {
+			super(material);
 		}
 
 		@Override
@@ -102,8 +101,8 @@ public abstract class BlockSlabCommon extends BlockSlab
 	public static class Half extends BlockSlabCommon
 	{
 
-		public Half(final String name, final Material material) {
-			super(name, material);
+		public Half(final Material material) {
+			super(material);
 		}
 
 		@Override

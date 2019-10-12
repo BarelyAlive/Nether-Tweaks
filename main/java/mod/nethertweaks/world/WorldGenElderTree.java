@@ -186,7 +186,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 
 	private void addVine(final World world, final BlockPos pos, final PropertyBool prop)
 	{
-		setBlockAndNotifyAdequately(world, pos, BlockHandler.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true)));
+		setBlockAndNotifyAdequately(world, pos, BlockHandler.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.TRUE));
 	}
 
 	private void addHangingVine(final World world, BlockPos pos, final PropertyBool prop)

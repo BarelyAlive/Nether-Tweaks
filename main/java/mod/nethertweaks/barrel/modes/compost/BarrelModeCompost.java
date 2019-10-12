@@ -139,7 +139,6 @@ public class BarrelModeCompost implements IBarrelMode {
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
 	public void addItem(final ItemStack stack, final TileBarrel barrel) {
 		if (fillAmount < 1)
 			if (stack != null && !stack.isEmpty()) {

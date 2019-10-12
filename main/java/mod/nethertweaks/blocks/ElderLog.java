@@ -1,7 +1,6 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.handler.BlockHandler;
 import mod.sfhcore.blocks.CubeFacingXYZ;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
-		super(Material.WOOD, new ResourceLocation(Constants.MODID, Constants.ELDER_LOG));
+		super(Material.WOOD);
 		setHardness(2);
 		setResistance(10);
 		setSoundType(SoundType.WOOD);
@@ -37,10 +36,7 @@ public class ElderLog extends CubeFacingXYZ{
 	}
 
 	@Override
-	public boolean canSustainLeaves(final IBlockState state, final net.minecraft.world.IBlockAccess world, final BlockPos pos)
-	{
-		return state.getBlock() == BlockHandler.ELDER_LEAVES;
-	}
+	public boolean canSustainLeaves(final IBlockState state, final net.minecraft.world.IBlockAccess world, final BlockPos pos){ return true; }
 	@Override public boolean isWood(final net.minecraft.world.IBlockAccess world, final BlockPos pos){ return true; }
 	@Override public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {	return false; }
 }

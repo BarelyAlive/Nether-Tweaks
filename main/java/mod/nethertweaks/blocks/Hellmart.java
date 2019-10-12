@@ -23,7 +23,6 @@ public class Hellmart extends BlockContainer
 	{
 		super(Material.ROCK);
 		setSoundType(SoundType.STONE);
-		setRegistryName(Constants.MODID, Constants.HELLMART);
 		setResistance(17.5f);
 		setHardness(2.0F);
 	}
@@ -48,9 +47,8 @@ public class Hellmart extends BlockContainer
 
 		TileHellmart te = (TileHellmart) world.getTileEntity(pos);
 		if(te == null) return false;
-		if(!(te instanceof TileHellmart)) return false;
 
-		player.openGui(NetherTweaksMod.getInstance(), GuiHandler.ID_HELLMART, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(NetherTweaksMod.getInstance(), GuiHandler.ID_HELLMART, world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 

@@ -34,8 +34,8 @@ public class FluidHandler
 	private static void registerBuckets()
 	{
 		if(BlocksItems.enableWoodBucket)
-			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MODID, 0x80874633, Constants.TABNTM);
+			BucketHandler.addBucket("wood", "Wood", 505, 16, Constants.MOD_ID, 0x80874633, Constants.TABNTM);
 		if(BlocksItems.enableStoneBucket)
-			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MODID, 0x80778899, Constants.TABNTM);
+			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MOD_ID, 0x80778899, Constants.TABNTM);
 	}
 }

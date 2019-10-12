@@ -15,7 +15,7 @@ public class EnchantmentLuckOfTheSea extends Enchantment
 	public EnchantmentLuckOfTheSea() {
 		super(Rarity.RARE, EnumEnchantmentType.DIGGER, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
 		setName("sieve_luck_of_the_sea");
-		setRegistryName(Constants.MODID, "sieve_luck_of_the_sea");
+		setRegistryName(Constants.MOD_ID, "sieve_luck_of_the_sea");
 	}
 
 	@Override

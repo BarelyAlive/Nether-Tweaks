@@ -13,9 +13,7 @@ import net.minecraft.world.World;
 
 public class MeanVine extends BlockVine
 {
-	public MeanVine(){
-		setRegistryName(Constants.MODID, Constants.MEAN_VINE);
-	}
+	public MeanVine(){}
 
 	@Override
 	public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {

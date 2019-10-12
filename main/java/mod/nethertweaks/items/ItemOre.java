@@ -50,7 +50,7 @@ public class ItemOre extends Item {
 
 		this.ore = ore;
 		registerIngot = ore.getResult() == null;
-		setUnlocalizedName(Constants.MODID + ".ore."+ore.getName());
+		setUnlocalizedName(Constants.MOD_ID + ".ore."+ore.getName());
 		this.setRegistryName("itemOre"+StringUtils.capitalize(ore.getName()));
 		setCreativeTab(Constants.TABNTM);
 		setHasSubtypes(true);

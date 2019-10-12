@@ -9,15 +9,12 @@ import net.minecraft.inventory.SlotFurnaceOutput;
 
 public class ContainerCondenser extends ContainerBase {
 
-	private TileCondenser tileEntity;
-
-	public ContainerCondenser(final InventoryPlayer inventoryPlayer, final TileCondenser te) {
+    public ContainerCondenser(final InventoryPlayer inventoryPlayer, final TileCondenser te) {
 		super(te);
-		tileEntity = te;
 
-		addSlotToContainer(new Slot(tileEntity, 0, 26, 48));
-		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, tileEntity, 1, 80, 12));
-		addSlotToContainer(new Slot(tileEntity, 2, 80, 48));
+        addSlotToContainer(new Slot(te, 0, 26, 48));
+		addSlotToContainer(new SlotFurnaceOutput(inventoryPlayer.player, te, 1, 80, 12));
+		addSlotToContainer(new Slot(te, 2, 80, 48));
 
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; j < 9; j++)

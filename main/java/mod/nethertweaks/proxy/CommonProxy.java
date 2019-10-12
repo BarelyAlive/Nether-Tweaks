@@ -13,12 +13,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class CommonProxy {
 
-	public HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
+	public final HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
 
-	public void preInit()
-	{
-		NetworkRegistry.INSTANCE.registerGuiHandler(NetherTweaksMod.getInstance(), new GuiHandler());
-	}
+	public void preInit() {}
 
 	public void init() {}
 

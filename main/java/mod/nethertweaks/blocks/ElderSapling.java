@@ -7,7 +7,6 @@ import mod.nethertweaks.world.WorldGenElderTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -29,8 +28,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 	public ElderSapling()
 	{
 		setSoundType(SoundType.PLANT);
-		setDefaultState(blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
-		this.setRegistryName(Constants.MODID, Constants.ELDER_SAPLING);
+		setDefaultState(blockState.getBaseState().withProperty(STAGE, 0));
 	}
 
 	@Override
@@ -51,7 +49,7 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 	public void grow(final World world, final BlockPos pos, final IBlockState state, final Random rand)
 	{
-		if (state.getValue(STAGE).intValue() == 0)
+		if (state.getValue(STAGE) == 0)
 			world.setBlockState(pos, state.cycleProperty(STAGE), 4);
 		else
 			generateTree(world, pos, state, rand);
@@ -69,24 +67,10 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 		IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
-		if (flag)
-		{
-			world.setBlockState(pos.add(i, 0, j), iblockstate2, 4);
-			world.setBlockState(pos.add(i + 1, 0, j), iblockstate2, 4);
-			world.setBlockState(pos.add(i, 0, j + 1), iblockstate2, 4);
-			world.setBlockState(pos.add(i + 1, 0, j + 1), iblockstate2, 4);
-		} else
-			world.setBlockState(pos, iblockstate2, 4);
+		world.setBlockState(pos, iblockstate2, 4);
 
 		if (!worldgenerator.generate(world, rand, pos.add(i, 0, j)))
-			if (flag)
-			{
-				world.setBlockState(pos.add(i, 0, j), state, 4);
-				world.setBlockState(pos.add(i + 1, 0, j), state, 4);
-				world.setBlockState(pos.add(i, 0, j + 1), state, 4);
-				world.setBlockState(pos.add(i + 1, 0, j + 1), state, 4);
-			} else
-				world.setBlockState(pos, state, 4);
+			world.setBlockState(pos, state, 4);
 	}
 
 	@Override
@@ -106,19 +90,19 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
-		return getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+		return getDefaultState().withProperty(STAGE, (meta & 8) >> 3);
 	}
 
 	@Override
 	public int getMetaFromState(final IBlockState state) {
 		int i = 0;
-		i = i | state.getValue(STAGE).intValue() << 3;
+		i = i | state.getValue(STAGE) << 3;
 		return i;
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {STAGE});
+		return new BlockStateContainer(this, STAGE);
 	}
 
 	@Override

@@ -6,7 +6,7 @@
   "variants": {
     "mesh": {
       "none": {},
-      "no_render": {"model": "minecraft:planks_birch"},
+      "no_render": {"model": "minecraft:birch_planks"},
       "string": {
         "submodel": {
           "mesh": {
