@@ -29,10 +29,7 @@ import java.util.Objects;
 
 public class ItemDoll extends Item
 {
-	public ItemDoll(final String type)
-	{
-		setRegistryName(Constants.MOD_ID, type);
-	}
+	public ItemDoll(){}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
 		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;

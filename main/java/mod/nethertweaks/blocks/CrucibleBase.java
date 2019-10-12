@@ -23,9 +23,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public abstract class CrucibleBase extends Block
 {
-	public CrucibleBase(final String name, final Material material) {
+	public CrucibleBase(final Material material) {
 		super(material);
-		setRegistryName(Constants.MOD_ID, name);
 	}
 
 	@Override

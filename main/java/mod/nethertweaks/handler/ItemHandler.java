@@ -18,9 +18,8 @@ import mod.nethertweaks.items.ItemMesh;
 import mod.nethertweaks.items.ItemPebble;
 import mod.nethertweaks.items.Seed;
 import mod.sfhcore.blocks.CustomDoor;
-import mod.sfhcore.blocks.itemblocks.ItemDoor;
+import mod.sfhcore.items.ItemDoor;
 import mod.sfhcore.handler.CustomFuelHandler;
-import mod.sfhcore.items.CustomFood;
 import mod.sfhcore.items.CustomItem;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.BlockSlab;
@@ -28,6 +27,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -42,57 +42,57 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemHandler
 {
 	//SEEDS
-	public static final Item MUSHROOM_SPORES  	 = new Seed(Constants.MUSHROOM_SPORES);
-	public static final Item GRASS_SEEDS	  	 = new Seed(Constants.GRASS_SEEDS);
-	public static final Item CACTUS_SEEDS	  	 = new Seed(Constants.CACTUS_SEEDS);
-	public static final Item SUGARCANE_SEEDS  	 = new Seed(Constants.SUGARCANE_SEEDS);
+	public static final Item MUSHROOM_SPORES  	 = new Seed();
+	public static final Item GRASS_SEEDS	  	 = new Seed();
+	public static final Item CACTUS_SEEDS	  	 = new Seed();
+	public static final Item SUGARCANE_SEEDS  	 = new Seed();
 
 	//CRYSTALS
-	public static final Item CRYSTAL_OF_LIGHT 	 = new CrystalOfLight(Constants.CRYSTAL_OF_LIGHT);
+	public static final Item CRYSTAL_OF_LIGHT 	 = new CrystalOfLight();
 
 	//MESHES
-	public static final Item MESH_STRING	  	 = new ItemMesh(Constants.MESH_STRING);
-	public static final Item MESH_FLINT		  	 = new ItemMesh(Constants.MESH_FLINT);
-	public static final Item MESH_IRON		  	 = new ItemMesh(Constants.MESH_IRON);
-	public static final Item MESH_DIAMOND	  	 = new ItemMesh(Constants.MESH_DIAMOND);
+	public static final Item MESH_STRING	  	 = new ItemMesh();
+	public static final Item MESH_FLINT		  	 = new ItemMesh();
+	public static final Item MESH_IRON		  	 = new ItemMesh();
+	public static final Item MESH_DIAMOND	  	 = new ItemMesh();
 
 	//DOLLS
-	public static final Item DOLL_BAT		  	 = new ItemDoll(Constants.DOLL_BAT);
-	public static final Item DOLL_CHICKEN	  	 = new ItemDoll(Constants.DOLL_CHICKEN);
-	public static final Item DOLL_COW		  	 = new ItemDoll(Constants.DOLL_COW);
-	public static final Item DOLL_DONKEY	  	 = new ItemDoll(Constants.DOLL_DONKEY);
-	public static final Item DOLL_HORSE		  	 = new ItemDoll(Constants.DOLL_HORSE);
-	public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll(Constants.DOLL_RED_MOOSHROOM);
-	public static final Item DOLL_MULE		  	 = new ItemDoll(Constants.DOLL_MULE);
-	public static final Item DOLL_OCELOT	  	 = new ItemDoll(Constants.DOLL_OCELOT);
-	public static final Item DOLL_PARROT	  	 = new ItemDoll(Constants.DOLL_PARROT);
-	public static final Item DOLL_RABBIT	  	 = new ItemDoll(Constants.DOLL_RABBIT);
-	public static final Item DOLL_SHEEP		  	 = new ItemDoll(Constants.DOLL_SHEEP);
-	public static final Item DOLL_LLAMA		  	 = new ItemDoll(Constants.DOLL_LLAMA);
-	public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll(Constants.DOLL_POLAR_BEAR);
-	public static final Item DOLL_WOLF		  	 = new ItemDoll(Constants.DOLL_WOLF);
-	public static final Item DOLL_VILLAGER	  	 = new ItemDoll(Constants.DOLL_VILLAGER);
-	public static final Item DOLL_PIG		  	 = new ItemDoll(Constants.DOLL_PIG);
+	public static final Item DOLL_BAT		  	 = new ItemDoll();
+	public static final Item DOLL_CHICKEN	  	 = new ItemDoll();
+	public static final Item DOLL_COW		  	 = new ItemDoll();
+	public static final Item DOLL_DONKEY	  	 = new ItemDoll();
+	public static final Item DOLL_HORSE		  	 = new ItemDoll();
+	public static final Item DOLL_RED_MOOSHROOM	 = new ItemDoll();
+	public static final Item DOLL_MULE		  	 = new ItemDoll();
+	public static final Item DOLL_OCELOT	  	 = new ItemDoll();
+	public static final Item DOLL_PARROT	  	 = new ItemDoll();
+	public static final Item DOLL_RABBIT	  	 = new ItemDoll();
+	public static final Item DOLL_SHEEP		  	 = new ItemDoll();
+	public static final Item DOLL_LLAMA		  	 = new ItemDoll();
+	public static final Item DOLL_POLAR_BEAR  	 = new ItemDoll();
+	public static final Item DOLL_WOLF		  	 = new ItemDoll();
+	public static final Item DOLL_VILLAGER	  	 = new ItemDoll();
+	public static final Item DOLL_PIG		  	 = new ItemDoll();
 
 	//PEBBLES
-	public static final Item PEBBLE_STONE	  	 = new ItemPebble(Constants.PEBBLE_STONE);
-	public static final Item PEBBLE_GRANITE	  	 = new ItemPebble(Constants.PEBBLE_GRANITE);
-	public static final Item PEBBLE_ANDESITE  	 = new ItemPebble(Constants.PEBBLE_DIORITE);
-	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble(Constants.PEBBLE_ANDESITE);
+	public static final Item PEBBLE_STONE	  	 = new ItemPebble();
+	public static final Item PEBBLE_GRANITE	  	 = new ItemPebble();
+	public static final Item PEBBLE_ANDESITE  	 = new ItemPebble();
+	public static final Item PEBBLE_DIORITE	  	 = new ItemPebble();
 
 	//Crafting Components
-	public static final Item STONE_BAR 		  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.STONE_BAR));
-	public static final Item PORTAL_CORE	  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.PORTAL_CORE));
-	public static final Item END_BOX 		  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.END_BOX));
-	public static final Item SALT	 		  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.SALT));
-	public static final Item HELLFAYAH 		  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.HELLFAYAH));
-	public static final Item ENDER_INFUSED_FRAME = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.ENDER_INFUSED_FRAME));
-	public static final Item STRING 		  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.STRING));
-	public static final Item PORCELAIN_CLAY	  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.PORCELAIN_CLAY));
-	public static final Item POWDER_OF_LIGHT  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.POWDER_OF_LIGHT));
+	public static final Item STONE_BAR 		  	 = new CustomItem();
+	public static final Item PORTAL_CORE	  	 = new CustomItem();
+	public static final Item END_BOX 		  	 = new CustomItem();
+	public static final Item SALT	 		  	 = new CustomItem();
+	public static final Item HELLFAYAH 		  	 = new CustomItem();
+	public static final Item ENDER_INFUSED_FRAME = new CustomItem();
+	public static final Item STRING 		  	 = new CustomItem();
+	public static final Item PORCELAIN_CLAY	  	 = new CustomItem();
+	public static final Item POWDER_OF_LIGHT  	 = new CustomItem();
 	public static final Item ASH			  	 = new Ash();
 	public static final Item COILED_SWORD	  	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem(64, new ResourceLocation(Constants.MOD_ID, Constants.WOOD_CHIPPINGS));
+	public static final Item WOOD_CHIPPINGS	  	 = new CustomItem();
 
 	//Tools
 	public static final Item GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);
@@ -110,93 +110,93 @@ public class ItemHandler
 	public static final Item FLINT_N_BLAZE 	  	 = new FlintAndBlaze();
 
 	//Food & DRINKS
-	public static final Item COOKED_JERKY 	  	 = new CustomFood(6, 1.2F, true, new ResourceLocation(Constants.MOD_ID, Constants.COOKED_JERKY), Constants.TABNTM);
+	public static final Item COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true);
 
 	//ItemBlocks
-	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MOD_ID, Constants.STONE_DOOR));
-	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor(new ResourceLocation(Constants.MOD_ID, Constants.ELDER_DOOR));
-	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE).setRegistryName(Constants.MOD_ID, Constants.ELDER_SLAB);
+	public static final Item ITEM_STONE_DOOR  	 = new ItemDoor();
+	public static final Item ITEM_ELDER_DOOR  	 = new ItemDoor();
+	public static final Item ITEM_ELDER_SLAB  	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE);
 
 	public static final List<Item> ITEMS = new ArrayList();
 
 	public ItemHandler()
 	{
-		addItems();
+		register();
 		addItemBurnTime();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void addItems()
+	private void register()
 	{
 		//Items
-		if(BlocksItems.enableStoneBar)	  		ITEMS.add(STONE_BAR);
-		if(BlocksItems.enablePortalCore)  		ITEMS.add(PORTAL_CORE);
-		if(BlocksItems.enableEndBox)		  	ITEMS.add(END_BOX);
-		if(BlocksItems.enableSalt)		  		ITEMS.add(SALT);
-		if(BlocksItems.enableHellfayah)  		ITEMS.add(HELLFAYAH);
-		if(BlocksItems.enableEnderInfusedFrame)	ITEMS.add(ENDER_INFUSED_FRAME);
-		if(BlocksItems.enableString)		  	ITEMS.add(STRING);
-		if(BlocksItems.enablePorcelainClay) 	ITEMS.add(PORCELAIN_CLAY);
-		if(BlocksItems.enablePowderOfLight) 	ITEMS.add(POWDER_OF_LIGHT);
-		if(BlocksItems.enableAsh) 				ITEMS.add(ASH);
-		if(BlocksItems.enableWoodChippings)		ITEMS.add(WOOD_CHIPPINGS);
-		if(BlocksItems.enableCoiledSword)		ITEMS.add(COILED_SWORD);
-		if(BlocksItems.enableMushroomSpores)	ITEMS.add(MUSHROOM_SPORES);
-		if(BlocksItems.enableGrassSeeds)		ITEMS.add(GRASS_SEEDS);
-		if(BlocksItems.enableCactusSeeds)		ITEMS.add(CACTUS_SEEDS);
-		if(BlocksItems.enableSugarcaneSeeds)	ITEMS.add(SUGARCANE_SEEDS);
-		if(BlocksItems.enableCrystalLight)		ITEMS.add(CRYSTAL_OF_LIGHT);
-		if(BlocksItems.enablePebbleStone)		ITEMS.add(PEBBLE_STONE);
-		if(BlocksItems.enablePebbleGranite)		ITEMS.add(PEBBLE_GRANITE);
-		if(BlocksItems.enablePebbleDiorite)		ITEMS.add(PEBBLE_DIORITE);
-		if(BlocksItems.enablePebbleAndesite)	ITEMS.add(PEBBLE_ANDESITE);
-		if(BlocksItems.enableStringMeshes)		ITEMS.add(MESH_STRING);
-		if(BlocksItems.enableFlintMeshes) 		ITEMS.add(MESH_FLINT);
-		if(BlocksItems.enableIronMeshes)  		ITEMS.add(MESH_IRON);
-		if(BlocksItems.enableDiamondMeshes)		ITEMS.add(MESH_DIAMOND);
-		if(BlocksItems.enableDollBat)  			ITEMS.add(DOLL_BAT);
-		if(BlocksItems.enableDollChicken)  		ITEMS.add(DOLL_CHICKEN);
-		if(BlocksItems.enableDollCow)  			ITEMS.add(DOLL_COW);
-		if(BlocksItems.enableDollDonkey)  		ITEMS.add(DOLL_DONKEY);
-		if(BlocksItems.enableDollHorse)  		ITEMS.add(DOLL_HORSE);
-		if(BlocksItems.enableDollLlama)  		ITEMS.add(DOLL_LLAMA);
-		if(BlocksItems.enableDollMule)  		ITEMS.add(DOLL_MULE);
-		if(BlocksItems.enableDollOcelot)  		ITEMS.add(DOLL_OCELOT);
-		if(BlocksItems.enableDollParrot)  		ITEMS.add(DOLL_PARROT);
-		if(BlocksItems.enableDollPig)  			ITEMS.add(DOLL_PIG);
-		if(BlocksItems.enableDollPolarBear)  	ITEMS.add(DOLL_POLAR_BEAR);
-		if(BlocksItems.enableDollRabbit)  		ITEMS.add(DOLL_RABBIT);
-		if(BlocksItems.enableDollRedMooshroom)	ITEMS.add(DOLL_RED_MOOSHROOM);
-		if(BlocksItems.enableDollSheep)  		ITEMS.add(DOLL_SHEEP);
-		if(BlocksItems.enableDollVillager)		ITEMS.add(DOLL_VILLAGER);
-		if(BlocksItems.enableDollWolf)  		ITEMS.add(DOLL_WOLF);
-		if(BlocksItems.enableGrabberWood)		ITEMS.add(GRABBER_WOOD);
-		if(BlocksItems.enableGrabberGold)		ITEMS.add(GRABBER_GOLD);
-		if(BlocksItems.enableGrabberStone)		ITEMS.add(GRABBER_STONE);
-		if(BlocksItems.enableGrabberIron)		ITEMS.add(GRABBER_IRON);
-		if(BlocksItems.enableGrabberDiamond)	ITEMS.add(GRABBER_DIAMOND);
-		if(BlocksItems.enableFlintNBlaze)  		ITEMS.add(FLINT_N_BLAZE);
-		if(BlocksItems.enableHammerWood)  		ITEMS.add(HAMMER_WOOD);
-		if(BlocksItems.enableHammerGold)  		ITEMS.add(HAMMER_GOLD);
-		if(BlocksItems.enableHammerStone)  		ITEMS.add(HAMMER_STONE);
-		if(BlocksItems.enableHammerIron)  		ITEMS.add(HAMMER_IRON);
-		if(BlocksItems.enableHammerDiamond)  	ITEMS.add(HAMMER_DIAMOND);
-		if(BlocksItems.enableJerky)  			ITEMS.add(COOKED_JERKY);
-		if(BlocksItems.enableMeanVine)			ITEMS.add(STRING);
-		if(BlocksItems.enableStoneDoor)  		ITEMS.add(ITEM_STONE_DOOR);
+		if(BlocksItems.enableStoneBar)	  		addItem(STONE_BAR, Constants.STONE_BAR);
+		if(BlocksItems.enablePortalCore)  		addItem(PORTAL_CORE, Constants.PORTAL_CORE);
+		if(BlocksItems.enableEndBox)		  	addItem(END_BOX, Constants.END_BOX);
+		if(BlocksItems.enableSalt)		  		addItem(SALT, Constants.SALT);
+		if(BlocksItems.enableHellfayah)  		addItem(HELLFAYAH, Constants.HELLFAYAH);
+		if(BlocksItems.enableEnderInfusedFrame)	addItem(ENDER_INFUSED_FRAME, Constants.ENDER_INFUSED_FRAME);
+		if(BlocksItems.enableString)		  	addItem(STRING, Constants.STRING);
+		if(BlocksItems.enablePorcelainClay) 	addItem(PORCELAIN_CLAY, Constants.PORCELAIN_CLAY);
+		if(BlocksItems.enablePowderOfLight) 	addItem(POWDER_OF_LIGHT, Constants.POWDER_OF_LIGHT);
+		if(BlocksItems.enableAsh) 				addItem(ASH, Constants.ASH);
+		if(BlocksItems.enableWoodChippings)		addItem(WOOD_CHIPPINGS, Constants.WOOD_CHIPPINGS);
+		if(BlocksItems.enableCoiledSword)		addItem(COILED_SWORD, Constants.COILED_SWORD);
+		if(BlocksItems.enableMushroomSpores)	addItem(MUSHROOM_SPORES, Constants.MUSHROOM_SPORES);
+		if(BlocksItems.enableGrassSeeds)		addItem(GRASS_SEEDS, Constants.GRASS_SEEDS);
+		if(BlocksItems.enableCactusSeeds)		addItem(CACTUS_SEEDS, Constants.CACTUS_SEEDS);
+		if(BlocksItems.enableSugarcaneSeeds)	addItem(SUGARCANE_SEEDS, Constants.SUGARCANE_SEEDS);
+		if(BlocksItems.enableCrystalOfLight)	addItem(CRYSTAL_OF_LIGHT, Constants.CRYSTAL_OF_LIGHT);
+		if(BlocksItems.enablePebbleStone)		addItem(PEBBLE_STONE, Constants.PEBBLE_STONE);
+		if(BlocksItems.enablePebbleGranite)		addItem(PEBBLE_GRANITE, Constants.PEBBLE_GRANITE);
+		if(BlocksItems.enablePebbleDiorite)		addItem(PEBBLE_DIORITE, Constants.PEBBLE_DIORITE);
+		if(BlocksItems.enablePebbleAndesite)	addItem(PEBBLE_ANDESITE, Constants.PEBBLE_ANDESITE);
+		if(BlocksItems.enableStringMeshes)		addItem(MESH_STRING, Constants.MESH_STRING);
+		if(BlocksItems.enableFlintMeshes) 		addItem(MESH_FLINT, Constants.MESH_FLINT);
+		if(BlocksItems.enableIronMeshes)  		addItem(MESH_IRON, Constants.MESH_IRON);
+		if(BlocksItems.enableDiamondMeshes)		addItem(MESH_DIAMOND, Constants.MESH_DIAMOND);
+		if(BlocksItems.enableDollBat)  			addItem(DOLL_BAT, Constants.DOLL_BAT);
+		if(BlocksItems.enableDollChicken)  		addItem(DOLL_CHICKEN, Constants.DOLL_CHICKEN);
+		if(BlocksItems.enableDollCow)  			addItem(DOLL_COW, Constants.DOLL_COW);
+		if(BlocksItems.enableDollDonkey)  		addItem(DOLL_DONKEY, Constants.DOLL_DONKEY);
+		if(BlocksItems.enableDollHorse)  		addItem(DOLL_HORSE, Constants.DOLL_HORSE);
+		if(BlocksItems.enableDollLlama)  		addItem(DOLL_LLAMA, Constants.DOLL_LLAMA);
+		if(BlocksItems.enableDollMule)  		addItem(DOLL_MULE, Constants.DOLL_MULE);
+		if(BlocksItems.enableDollOcelot)  		addItem(DOLL_OCELOT, Constants.DOLL_OCELOT);
+		if(BlocksItems.enableDollParrot)  		addItem(DOLL_PARROT, Constants.DOLL_PARROT);
+		if(BlocksItems.enableDollPig)  			addItem(DOLL_PIG, Constants.DOLL_PIG);
+		if(BlocksItems.enableDollPolarBear)  	addItem(DOLL_POLAR_BEAR, Constants.DOLL_POLAR_BEAR);
+		if(BlocksItems.enableDollRabbit)  		addItem(DOLL_RABBIT, Constants.DOLL_RABBIT);
+		if(BlocksItems.enableDollRedMooshroom)	addItem(DOLL_RED_MOOSHROOM, Constants.DOLL_RED_MOOSHROOM);
+		if(BlocksItems.enableDollSheep)  		addItem(DOLL_SHEEP, Constants.DOLL_SHEEP);
+		if(BlocksItems.enableDollVillager)		addItem(DOLL_VILLAGER, Constants.DOLL_VILLAGER);
+		if(BlocksItems.enableDollWolf)  		addItem(DOLL_WOLF, Constants.DOLL_WOLF);
+		if(BlocksItems.enableGrabberWood)		addItem(GRABBER_WOOD, Constants.GRABBER_WOOD);
+		if(BlocksItems.enableGrabberGold)		addItem(GRABBER_GOLD, Constants.GRABBER_GOLD);
+		if(BlocksItems.enableGrabberStone)		addItem(GRABBER_STONE, Constants.GRABBER_STONE);
+		if(BlocksItems.enableGrabberIron)		addItem(GRABBER_IRON, Constants.GRABBER_IRON);
+		if(BlocksItems.enableGrabberDiamond)	addItem(GRABBER_DIAMOND, Constants.GRABBER_DIAMOND);
+		if(BlocksItems.enableFlintNBlaze)  		addItem(FLINT_N_BLAZE, Constants.FLINT_N_BLAZE);
+		if(BlocksItems.enableHammerWood)  		addItem(HAMMER_WOOD, Constants.HAMMER_WOOD);
+		if(BlocksItems.enableHammerGold)  		addItem(HAMMER_GOLD, Constants.HAMMER_GOLD);
+		if(BlocksItems.enableHammerStone)  		addItem(HAMMER_STONE, Constants.HAMMER_STONE);
+		if(BlocksItems.enableHammerIron)  		addItem(HAMMER_IRON, Constants.HAMMER_IRON);
+		if(BlocksItems.enableHammerDiamond)  	addItem(HAMMER_DIAMOND, Constants.HAMMER_DIAMOND);
+		if(BlocksItems.enableJerky)  			addItem(COOKED_JERKY, Constants.COOKED_JERKY);
+		if(BlocksItems.enableMeanVine)			addItem(STRING, Constants.STRING);
+		if(BlocksItems.enableStoneDoor)  		addItem(ITEM_STONE_DOOR, Constants.STONE_DOOR);
 		if(BlocksItems.enableElderTree) {
-			ITEMS.add(ITEM_ELDER_SLAB);
-			ITEMS.add(ITEM_ELDER_DOOR);
+			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
+			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 		}
-
-		//Blocks
-		BlockHandler.BLOCKS.forEach((block) ->
-		{
-			if(!(block instanceof BlockSlab)
-					&& !(block instanceof CustomDoor)
-					&& !(block instanceof BlockFluidClassic))
-				ITEMS.add(new ItemBlock(block).setRegistryName(Objects.requireNonNull(block.getRegistryName())));
-		});
+	}
+	
+	private void addItem(Item item, String name)
+	{
+		item.setRegistryName(Constants.MOD_ID, name);
+		item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
+		item.setCreativeTab(Constants.TABNTM);
+		
+		ITEMS.add(item);
 	}
 
 	@SubscribeEvent
@@ -204,9 +204,6 @@ public class ItemHandler
 	{
 		ITEMS.forEach((item) ->
 		{
-			item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
-			item.setCreativeTab(Constants.TABNTM);
-			
 			event.getRegistry().register(item);
 		});
 	}

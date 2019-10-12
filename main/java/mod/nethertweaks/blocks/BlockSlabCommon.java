@@ -19,9 +19,8 @@ public abstract class BlockSlabCommon extends BlockSlab
 {
 	public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 
-	public BlockSlabCommon(final String name, final Material material) {
+	public BlockSlabCommon(final Material material) {
 		super(material);
-		this.setRegistryName(name);
 
 		IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 

@@ -35,14 +35,13 @@ public class Sieve extends BlockContainer {
 
 	public static final PropertyEnum<MeshType> MESH = PropertyEnum.create("mesh", MeshType.class);
 
-	public Sieve(final Material material, final String name) {
+	public Sieve(final Material material) {
 		super(material);
 		if (material == Material.ROCK) {
 			setResistance(30.0F);
 			setHardness(2.0f);
 		} else
 			setHardness(2.0f);
-		this.setRegistryName(Constants.MOD_ID, name);
 		setDefaultState(blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 	}
 

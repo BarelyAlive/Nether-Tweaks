@@ -28,7 +28,7 @@ public class Condenser extends CubeContainerHorizontal
 
 	public Condenser()
 	{
-		super(Material.ROCK, new ResourceLocation(Constants.MOD_ID, Constants.CONDENSER));
+		super(Material.ROCK);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		setResistance(17.5f);
 		setHardness(3.5f);

@@ -38,7 +38,6 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 		super();
 		setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
 		setTickRandomly(true);
-		setRegistryName(Constants.MOD_ID, Constants.ELDER_LEAVES);
 		setHardness(0.2F);
 		setLightOpacity(1);
 		setSoundType(SoundType.PLANT);

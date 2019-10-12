@@ -11,9 +11,7 @@ import net.minecraft.world.World;
 
 public class CrystalOfLight extends Item
 {
-	public CrystalOfLight(final String name) {
-		setRegistryName(Constants.MOD_ID, name);
-	}
+	public CrystalOfLight() {}
 
 	@Override
 	public boolean hasEffect(final ItemStack stack) {

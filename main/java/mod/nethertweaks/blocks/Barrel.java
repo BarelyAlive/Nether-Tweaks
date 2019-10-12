@@ -32,11 +32,10 @@ public class Barrel extends Block implements ITileEntityProvider
 	private final AxisAlignedBB boundingBox = new AxisAlignedBB(0.0625f, 0, 0.0625f, 0.9375f, 1f, 0.9375f);
 	private final int tier;
 
-	public Barrel(final int tier, final Material material, final String name) {
+	public Barrel(final int tier, final Material material) {
 		super(material);
 		this.tier = tier;
 		setHardness(2.0f);
-		setRegistryName(Constants.MOD_ID, name);
 	}
 
 	@Override

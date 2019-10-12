@@ -14,10 +14,7 @@ import net.minecraft.world.World;
 
 public class Seed extends Item
 {
-	public Seed(final String name)
-	{
-		setRegistryName(Constants.MOD_ID, name);
-	}
+	public Seed(){}
 
 	/**
 	 * Called when a Block is right-clicked with this Item

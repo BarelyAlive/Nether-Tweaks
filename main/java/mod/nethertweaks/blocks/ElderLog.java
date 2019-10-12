@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
-		super(Material.WOOD, new ResourceLocation(Constants.MOD_ID, Constants.ELDER_LOG));
+		super(Material.WOOD);
 		setHardness(2);
 		setResistance(10);
 		setSoundType(SoundType.WOOD);

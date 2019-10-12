@@ -18,10 +18,7 @@ import java.util.Objects;
 
 public class ItemPebble extends Item
 {
-	public ItemPebble(final String type)
-	{
-		setRegistryName(Constants.MOD_ID, type);
-	}
+	public ItemPebble(){}
 
 	@Override
 	@Nonnull

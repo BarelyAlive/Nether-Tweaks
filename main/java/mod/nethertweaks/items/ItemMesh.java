@@ -10,9 +10,8 @@ import java.util.Objects;
 
 public class ItemMesh extends Item{
 
-	public ItemMesh(final String type) {
+	public ItemMesh() {
 		super();
-		setRegistryName(new ResourceLocation(Constants.MOD_ID, type));
 		setMaxStackSize(1);
 	}
 
