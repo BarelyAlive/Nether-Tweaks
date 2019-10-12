@@ -170,7 +170,7 @@ public class BlockHandler
 	}
 		
 	private void addBlock(Block block, String name)
-	{		
+	{
 		block.setRegistryName(Constants.MOD_ID, name);
 		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
 		block.setCreativeTab(Constants.TABNTM);
