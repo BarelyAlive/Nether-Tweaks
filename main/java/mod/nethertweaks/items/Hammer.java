@@ -23,7 +23,7 @@ public class Hammer extends ItemTool implements IHammer  {
 	public Hammer(final int maxUses, final ToolMaterial material)
 	{
 		super(material, Sets.newHashSet(new Block[]{}));
-		setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
+		//setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
 		setMaxDamage(maxUses);
 		miningLevel = material.getHarvestLevel();
 	}

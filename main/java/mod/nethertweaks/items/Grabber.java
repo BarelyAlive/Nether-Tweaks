@@ -45,7 +45,7 @@ public class Grabber extends ItemShears
 		setTangible(Config.grabberBlocks);
 		setMaxDamage(durability);
 		setMaxStackSize(1);
-		setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
+		//setRegistryName(new ResourceLocation(Constants.MOD_ID, getName(material)));
 	}
 
 	@Override
