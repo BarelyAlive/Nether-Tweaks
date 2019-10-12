@@ -10,7 +10,7 @@ import mod.nethertweaks.client.renderers.RenderCrucible;
 import mod.nethertweaks.client.renderers.RenderProjectileStone;
 import mod.nethertweaks.client.renderers.RenderSieve;
 import mod.nethertweaks.entities.ProjectileStone;
-import mod.nethertweaks.handler.OreHandler;
+import mod.nethertweaks.init.OreHandler;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;

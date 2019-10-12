@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileFreezer;
-import mod.nethertweaks.handler.GuiHandler;
+import mod.nethertweaks.init.GuiHandler;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;

@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks.tile;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.handler.CrucibleItemHandler;
+import mod.nethertweaks.init.CrucibleItemHandler;
 import mod.nethertweaks.registries.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.types.Meltable;
 import mod.sfhcore.blocks.tiles.TileBase;

@@ -1,4 +1,4 @@
-package mod.nethertweaks.handler;
+package mod.nethertweaks.init;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.DistilledWater;
@@ -11,7 +11,7 @@ import mod.sfhcore.handler.BucketHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 
-public class FluidHandler
+public class ModFluids
 {
 	//Fluids
 	public static final Fluid FLUID_LIQUID_IMPOSSIBILITY = new FluidLiquidImpossibility();

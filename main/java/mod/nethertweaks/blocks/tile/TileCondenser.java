@@ -7,8 +7,8 @@ import mod.nethertweaks.blocks.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.init.ModBlocks;
+import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.types.Dryable;
@@ -47,7 +47,7 @@ public class TileCondenser extends TileFluidInventory
 
 	private static Fluid distilled()
 	{
-		return BlocksItems.enableDistilledWater ? FluidHandler.FLUID_DISTILLED_WATER : FluidRegistry.WATER;
+		return BlocksItems.enableDistilledWater ? ModFluids.FLUID_DISTILLED_WATER : FluidRegistry.WATER;
 	}
 
 	public TileCondenser() {
@@ -185,13 +185,13 @@ public class TileCondenser extends TileFluidInventory
 				IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
 				IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 
-				if (hnorth != null && world.getBlockState(north) != BlockHandler.CONDENSER.getDefaultState())
+				if (hnorth != null && world.getBlockState(north) != ModBlocks.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(hnorth, getTank(), water, true);
-				if (heast != null && world.getBlockState(east) != BlockHandler.CONDENSER.getDefaultState())
+				if (heast != null && world.getBlockState(east) != ModBlocks.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(heast, getTank(), water, true);
-				if (hsouth != null && world.getBlockState(south) != BlockHandler.CONDENSER.getDefaultState())
+				if (hsouth != null && world.getBlockState(south) != ModBlocks.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(hsouth, getTank(), water, true);
-				if (hwest != null && world.getBlockState(west) != BlockHandler.CONDENSER.getDefaultState())
+				if (hwest != null && world.getBlockState(west) != ModBlocks.CONDENSER.getDefaultState())
 					FluidUtil.tryFluidTransfer(hwest, getTank(), water, true);
 			}
 		}

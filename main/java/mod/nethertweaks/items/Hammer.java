@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Sets;
 
 import mod.nethertweaks.api.IHammer;
-import mod.nethertweaks.handler.HammerHandler;
+import mod.nethertweaks.init.HammerHandler;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

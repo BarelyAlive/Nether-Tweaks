@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -152,7 +152,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public Item getItemDropped(final IBlockState state, final Random rand, final int fortune)
 	{
-		return Item.getItemFromBlock(BlockHandler.ELDER_SAPLING);
+		return Item.getItemFromBlock(ModBlocks.ELDER_SAPLING);
 	}
 
 	@Override
@@ -259,7 +259,7 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 	@Override
 	public List<ItemStack> onSheared(final ItemStack item, final IBlockAccess world, final BlockPos pos, final int fortune) {
 		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
-		ret.add(new ItemStack(BlockHandler.ELDER_LEAVES));
+		ret.add(new ItemStack(ModBlocks.ELDER_LEAVES));
 
 		return ret;
 	}

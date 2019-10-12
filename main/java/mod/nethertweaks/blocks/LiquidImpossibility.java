@@ -1,7 +1,7 @@
 package mod.nethertweaks.blocks;
 
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.init.ModFluids;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -24,7 +24,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 {
 	public LiquidImpossibility()
 	{
-		super(FluidHandler.FLUID_LIQUID_IMPOSSIBILITY, Material.WATER);
+		super(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, Material.WATER);
 		setLightLevel(Config.luminosityLI);
 		setTemperature(Config.temperatureLI);
 		setDensity(Config.densityLI);
@@ -93,7 +93,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 
 	@Override
 	public Fluid getFluid() {
-		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
+		return ModFluids.FLUID_LIQUID_IMPOSSIBILITY;
 	}
 
 

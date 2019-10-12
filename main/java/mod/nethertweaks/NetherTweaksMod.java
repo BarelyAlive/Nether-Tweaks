@@ -10,16 +10,16 @@ import mod.nethertweaks.capabilities.NTMCapabilities;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.entities.NTMEntities;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.FluidHandler;
-import mod.nethertweaks.handler.GuiHandler;
-import mod.nethertweaks.handler.HammerHandler;
-import mod.nethertweaks.handler.ItemHandler;
-import mod.nethertweaks.handler.JsonRecipeHandler;
-import mod.nethertweaks.handler.MessageHandler;
-import mod.nethertweaks.handler.OreHandler;
-import mod.nethertweaks.handler.OreRegistrationHandler;
-import mod.nethertweaks.handler.SmeltingNOreDictHandler;
+import mod.nethertweaks.init.GuiHandler;
+import mod.nethertweaks.init.HammerHandler;
+import mod.nethertweaks.init.JsonRecipeHandler;
+import mod.nethertweaks.init.ModBlocks;
+import mod.nethertweaks.init.ModFluids;
+import mod.nethertweaks.init.ModItems;
+import mod.nethertweaks.init.ModMessages;
+import mod.nethertweaks.init.OreHandler;
+import mod.nethertweaks.init.OreRegistrationHandler;
+import mod.nethertweaks.init.SmeltingNOreDictHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
@@ -39,6 +39,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,10 +58,11 @@ public class NetherTweaksMod
 		return instance;
 	}
 
+	public static SimpleNetworkWrapper network;
+	
 	static
 	{
 		FluidRegistry.enableUniversalBucket();
-		MessageHandler.init();
 	}
 
 	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MOD_ID)
@@ -79,17 +81,19 @@ public class NetherTweaksMod
 	public void PreInit(final FMLPreInitializationEvent event)
 	{
 		configDirectory = new File(event.getModConfigurationDirectory(), Constants.MOD_ID);
+		Config.init();
 
 		LogUtil.setup(Constants.MOD_ID, configDirectory);
 
-		Config.init();
-
 		Compatibility.init();
+		
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(Constants.MOD_ID);
 
-		new BlockHandler();
-		new ItemHandler();
+		ModMessages.registerMessages();
+		new ModBlocks();
+		new ModItems();
 
-		FluidHandler.init();
+		ModFluids.init();
 		NTMCapabilities.init();
 		NTMEntities.init();
 		new Hellworld(); //makes it register itself

@@ -12,8 +12,8 @@ import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
 import mod.nethertweaks.blocks.Barrel;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.init.ModBlocks;
+import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.modules.MooFluidsEtc;
 import mod.nethertweaks.modules.moofluid.AbstractCowFactory;
 import mod.nethertweaks.modules.moofluid.IAbstractCow;
@@ -73,7 +73,7 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public TileBarrel() {
-		this((Barrel) BlockHandler.OAK_BARREL);
+		this((Barrel) ModBlocks.OAK_BARREL);
 	}
 
 	public TileBarrel(final Barrel block) {
@@ -104,7 +104,7 @@ public class TileBarrel extends TileBase implements ITickable {
 					if (fluidHandler.getTankProperties()[0].getContents() != null)
 						if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
 							if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
-								if (Objects.requireNonNull(ItemHandler.CRYSTAL_OF_LIGHT.getRegistryName()).equals(stack.getItem().getRegistryName()))
+								if (Objects.requireNonNull(ModItems.CRYSTAL_OF_LIGHT.getRegistryName()).equals(stack.getItem().getRegistryName()))
 									getItemHandler().insertItem(0, stack, true);
 
 			if (result) {

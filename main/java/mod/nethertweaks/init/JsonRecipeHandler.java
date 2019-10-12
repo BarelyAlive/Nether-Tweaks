@@ -1,4 +1,4 @@
-package mod.nethertweaks.handler;
+package mod.nethertweaks.init;
 
 import java.io.File;
 

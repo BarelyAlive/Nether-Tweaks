@@ -1,4 +1,4 @@
-package mod.nethertweaks.handler;
+package mod.nethertweaks.init;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemHandler
+public class ModItems
 {
 	//SEEDS
 	public static final Seed MUSHROOM_SPORES  	 	 = new Seed();
@@ -109,13 +109,13 @@ public class ItemHandler
 	//ItemBlocks
 	public static final ItemDoor ITEM_STONE_DOOR 	 = new ItemDoor();
 	public static final ItemDoor ITEM_ELDER_DOOR 	 = new ItemDoor();
-	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB, BlockHandler.ELDER_SLAB_DOUBLE);
+	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB_DOUBLE);
 	
 	//END_OF_INITIALIZATION
 
 	public static final List<Item> ITEMS = new ArrayList();
 
-	public ItemHandler()
+	public ModItems()
 	{
 		register();
 		addItemBurnTime();
@@ -217,7 +217,7 @@ public class ItemHandler
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
 		if(BlocksItems.enableHellfayah) {
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
-			CustomFuelHandler.addFuelBurnTime(new ItemInfo(BlockHandler.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
+			CustomFuelHandler.addFuelBurnTime(new ItemInfo(ModBlocks.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
 		}
 	}
 }

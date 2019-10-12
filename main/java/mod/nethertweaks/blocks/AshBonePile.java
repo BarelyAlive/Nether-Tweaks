@@ -7,8 +7,8 @@ import java.util.UUID;
 
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
-import mod.nethertweaks.handler.GuiHandler;
-import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.init.GuiHandler;
+import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
 import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.nethertweaks.network.bonfire.UpdateStatus;
@@ -112,7 +112,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 		if (!world.getBlockState(pos).getValue(LIT))
 		{
-			if(player.getHeldItem(hand).getItem() == ItemHandler.COILED_SWORD)
+			if(player.getHeldItem(hand).getItem() == ModItems.COILED_SWORD)
 			{
 				if (!player.capabilities.isCreativeMode)
 					player.setHeldItem(hand, ItemStack.EMPTY);
@@ -158,9 +158,9 @@ public class AshBonePile extends CubeContainerHorizontal
 			final int fortune)
 	{
 		if(state.getValue(LIT))
-			drops.add(new ItemStack(ItemHandler.COILED_SWORD));
+			drops.add(new ItemStack(ModItems.COILED_SWORD));
 
-		drops.add(new ItemStack(ItemHandler.ASH, 4));
+		drops.add(new ItemStack(ModItems.ASH, 4));
 		drops.add(new ItemStack(Items.BONE, 2));
 	}
 

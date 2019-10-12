@@ -1,6 +1,6 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.init.ModFluids;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -12,7 +12,7 @@ public class DistilledWater extends BlockFluidClassic
 {
 	public DistilledWater()
 	{
-		super(FluidHandler.FLUID_DISTILLED_WATER, Material.WATER);
+		super(ModFluids.FLUID_DISTILLED_WATER, Material.WATER);
 		setLightLevel(0);
 		setTemperature(FluidRegistry.WATER.getTemperature());
 		setDensity(FluidRegistry.WATER.getDensity());
@@ -26,7 +26,7 @@ public class DistilledWater extends BlockFluidClassic
 
 	@Override
 	public Fluid getFluid() {
-		return FluidHandler.FLUID_DISTILLED_WATER;
+		return ModFluids.FLUID_DISTILLED_WATER;
 	}
 
 

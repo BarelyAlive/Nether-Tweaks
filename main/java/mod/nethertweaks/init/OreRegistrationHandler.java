@@ -1,4 +1,4 @@
-package mod.nethertweaks.handler;
+package mod.nethertweaks.init;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ColorHandlerEvent;

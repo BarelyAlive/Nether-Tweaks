@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import mod.nethertweaks.blocks.AshBonePile;
 import mod.nethertweaks.blocks.tile.TileAshBonePile;
-import mod.nethertweaks.handler.BlockHandler;
-import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.init.ModBlocks;
+import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -41,7 +41,7 @@ public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile
 				GlStateManager.pushMatrix();
 				{
 					GlStateManager.translate(0.5, 0.65, 0.5);
-					if (Minecraft.getMinecraft().world.getBlockState(te.getPos()).getBlock() == BlockHandler.ASH_BONE_PILE)
+					if (Minecraft.getMinecraft().world.getBlockState(te.getPos()).getBlock() == ModBlocks.ASH_BONE_PILE)
 						if (Minecraft.getMinecraft().world.getBlockState(te.getPos()).getValue(AshBonePile.FACING) == EnumFacing.NORTH)
 							GlStateManager.rotate(0, 0, 1, 0);
 						else if (Minecraft.getMinecraft().world.getBlockState(te.getPos()).getValue(AshBonePile.FACING) == EnumFacing.EAST)
@@ -52,7 +52,7 @@ public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile
 							GlStateManager.rotate(270, 0, 1, 0);
 					GlStateManager.rotate(-130, 0, 0, 1);
 					GlStateManager.scale(1, 1, 1);
-					renderItem.renderItem(new ItemStack(ItemHandler.COILED_SWORD), ItemCameraTransforms.TransformType.NONE);
+					renderItem.renderItem(new ItemStack(ModItems.COILED_SWORD), ItemCameraTransforms.TransformType.NONE);
 				}
 				GlStateManager.popMatrix();
 				GlStateManager.popMatrix();

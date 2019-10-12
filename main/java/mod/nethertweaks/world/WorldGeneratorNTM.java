@@ -3,7 +3,7 @@ package mod.nethertweaks.world;
 import java.util.Random;
 
 import mod.nethertweaks.config.BlocksItems;
-import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private final WorldGenerator tree = new WorldGenElderTree(true);
-	private final WorldGenMinable nrack = new WorldGenMinable(BlockHandler.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
+	private final WorldGenMinable nrack = new WorldGenMinable(ModBlocks.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 
 	public WorldGeneratorNTM() {
 	}

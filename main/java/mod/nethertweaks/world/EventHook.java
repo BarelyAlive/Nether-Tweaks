@@ -15,7 +15,7 @@ import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
-import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.nethertweaks.network.MessageMovementSpeed;
@@ -121,7 +121,7 @@ public class EventHook
 				pos = pos.down();
 				break;
 			}
-			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemHandler.SALT, 1));
+			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.SALT, 1));
 			world.spawnEntity(salt);
 		}
 	}

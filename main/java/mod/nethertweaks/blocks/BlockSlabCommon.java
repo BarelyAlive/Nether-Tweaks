@@ -2,7 +2,7 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -48,13 +48,13 @@ public abstract class BlockSlabCommon extends BlockSlab
 
 	@Override
 	public Item getItemDropped(final IBlockState state, final Random rand, final int fortune) {
-		return Item.getItemFromBlock(BlockHandler.ELDER_SLAB);
+		return Item.getItemFromBlock(ModBlocks.ELDER_SLAB);
 	}
 
 
 	@Override
 	public ItemStack getItem(final World worldIn, final BlockPos pos, final IBlockState state) {
-		return new ItemStack(BlockHandler.ELDER_SLAB);
+		return new ItemStack(ModBlocks.ELDER_SLAB);
 	}
 
 	@Override

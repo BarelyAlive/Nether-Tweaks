@@ -1,6 +1,6 @@
-package mod.nethertweaks.handler;
+package mod.nethertweaks.init;
 
-import static mod.nethertweaks.handler.ItemHandler.ITEMS;
+import static mod.nethertweaks.init.ModItems.ITEMS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class BlockHandler
+public class ModBlocks
 {
 	//Tile Entity
 	public static final AshBonePile ASH_BONE_PILE  			 = new AshBonePile();
@@ -102,7 +102,7 @@ public class BlockHandler
 	
 	public static final List<Block> BLOCKS = new ArrayList();
 
-	public BlockHandler()
+	public ModBlocks()
 	{
 		register();
 		addItemBlocks();
@@ -114,9 +114,9 @@ public class BlockHandler
 	{
 		//Fluid Blocks
 		if (BlocksItems.enableLiquidImpossibility)
-			addBlock(FluidHandler.BLOCK_LIQUID_IMPOSSIBILITY, Constants.LIQUID_IMPOSSIBILITY);
+			addBlock(ModFluids.BLOCK_LIQUID_IMPOSSIBILITY, Constants.LIQUID_IMPOSSIBILITY);
 		if(BlocksItems.enableDistilledWater)
-			addBlock(FluidHandler.BLOCK_DISTILLED_WATER, Constants.DISTILLED_WATER);
+			addBlock(ModFluids.BLOCK_DISTILLED_WATER, Constants.DISTILLED_WATER);
 		//Regular Blocks
 		if(BlocksItems.enableBarrel) {
 			addBlock(STONE_BARREL, Constants.STONE_BARREL);

@@ -2,7 +2,7 @@ package mod.nethertweaks.entities;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.handler.ItemHandler;
+import mod.nethertweaks.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -67,6 +67,6 @@ public class ProjectileStone extends EntityThrowable {
 		if (tag.hasKey("pebbleStack"))
 			stack = new ItemStack((NBTTagCompound) tag.getTag("pebbleStack"));
 		else
-			stack = new ItemStack(ItemHandler.PEBBLE_STONE);
+			stack = new ItemStack(ModItems.PEBBLE_STONE);
 	}
 }

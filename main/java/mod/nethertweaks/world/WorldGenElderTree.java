@@ -3,7 +3,7 @@ package mod.nethertweaks.world;
 import java.util.Random;
 
 import mod.nethertweaks.blocks.ElderSapling;
-import mod.nethertweaks.handler.BlockHandler;
+import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -15,8 +15,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class WorldGenElderTree extends WorldGenAbstractTree
 {
-	private static final IBlockState DEFAULT_TRUNK = BlockHandler.ELDER_LOG.getDefaultState();
-	private static final IBlockState DEFAULT_LEAF = BlockHandler.ELDER_LEAVES.getDefaultState();
+	private static final IBlockState DEFAULT_TRUNK = ModBlocks.ELDER_LOG.getDefaultState();
+	private static final IBlockState DEFAULT_LEAF = ModBlocks.ELDER_LEAVES.getDefaultState();
 	/** The minimum height of a generated tree. */
 	private final int minTreeHeight;
 	/** True if this tree should grow Vines. */
@@ -84,7 +84,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 			{
 				IBlockState state = world.getBlockState(position.down());
 
-				if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, (ElderSapling)BlockHandler.ELDER_SAPLING) && position.getY() < world.getHeight() - i - 1)
+				if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, (ElderSapling)ModBlocks.ELDER_SAPLING) && position.getY() < world.getHeight() - i - 1)
 				{
 					setDirtAt(world, position.down());
 					int k2 = 3;
@@ -186,7 +186,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 
 	private void addVine(final World world, final BlockPos pos, final PropertyBool prop)
 	{
-		setBlockAndNotifyAdequately(world, pos, BlockHandler.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.TRUE));
+		setBlockAndNotifyAdequately(world, pos, ModBlocks.MEAN_VINE.getDefaultState().withProperty(prop, Boolean.TRUE));
 	}
 
 	private void addHangingVine(final World world, BlockPos pos, final PropertyBool prop)

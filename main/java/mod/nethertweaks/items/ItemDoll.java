@@ -3,7 +3,7 @@ package mod.nethertweaks.items;
 import java.util.Objects;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.handler.FluidHandler;
+import mod.nethertweaks.init.ModFluids;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.passive.EntityBat;
@@ -32,7 +32,7 @@ public class ItemDoll extends Item
 	public ItemDoll(){}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
-		return FluidHandler.FLUID_LIQUID_IMPOSSIBILITY;
+		return ModFluids.FLUID_LIQUID_IMPOSSIBILITY;
 	}
 
 	/**
