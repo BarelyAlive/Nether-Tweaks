@@ -3,8 +3,8 @@ package mod.nethertweaks.barrel.modes.mobspawn;
 import java.util.List;
 
 import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.items.ItemDoll;
+import mod.nethertweaks.block.tile.TileBarrel;
+import mod.nethertweaks.item.ItemDoll;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;

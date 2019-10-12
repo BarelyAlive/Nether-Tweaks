@@ -1,11 +1,11 @@
 package mod.nethertweaks.init;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.blocks.DistilledWater;
-import mod.nethertweaks.blocks.LiquidImpossibility;
+import mod.nethertweaks.block.DistilledWater;
+import mod.nethertweaks.block.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
-import mod.nethertweaks.fluid.FluidDistilledWater;
-import mod.nethertweaks.fluid.FluidLiquidImpossibility;
+import mod.nethertweaks.fluids.FluidDistilledWater;
+import mod.nethertweaks.fluids.FluidLiquidImpossibility;
 import mod.sfhcore.SFHCore;
 import mod.sfhcore.handler.BucketHandler;
 import net.minecraft.block.Block;

@@ -4,11 +4,11 @@ import javax.annotation.Nonnull;
 
 import mod.nethertweaks.barrel.BarrelItemHandler;
 import mod.nethertweaks.barrel.modes.mobspawn.BarrelModeMobSpawn;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.items.ItemDoll;
+import mod.nethertweaks.block.tile.TileBarrel;
+import mod.nethertweaks.item.ItemDoll;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.base.types.FluidBlockTransformer;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;

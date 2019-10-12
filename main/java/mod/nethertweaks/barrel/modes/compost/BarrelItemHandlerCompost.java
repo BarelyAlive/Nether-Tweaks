@@ -2,8 +2,8 @@ package mod.nethertweaks.barrel.modes.compost;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.block.tile.TileBarrel;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 

@@ -8,8 +8,8 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.items.ItemOre;
-import mod.nethertweaks.registry.types.Ore;
+import mod.nethertweaks.item.ItemOre;
+import mod.nethertweaks.registry.registries.base.types.Ore;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 

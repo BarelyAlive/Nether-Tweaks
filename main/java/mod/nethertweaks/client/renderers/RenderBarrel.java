@@ -1,6 +1,6 @@
 package mod.nethertweaks.client.renderers;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.sfhcore.client.renderers.ModelVertex;
 import mod.sfhcore.client.renderers.SpriteColor;
 import net.minecraft.client.renderer.BufferBuilder;

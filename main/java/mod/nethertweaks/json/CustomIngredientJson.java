@@ -11,8 +11,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registries.ingredient.IngredientUtil;
-import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
+import mod.nethertweaks.registry.ingredient.IngredientUtil;
+import mod.nethertweaks.registry.ingredient.OreIngredientStoring;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;

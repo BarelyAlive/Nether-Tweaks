@@ -1,6 +1,6 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.FluidItemFluid;
+import mod.nethertweaks.registry.registries.base.types.FluidItemFluid;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;

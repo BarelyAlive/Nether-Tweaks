@@ -2,8 +2,8 @@ package mod.nethertweaks.client.renderers;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.blocks.CrucibleBase;
-import mod.nethertweaks.blocks.tile.TileCrucibleBase;
+import mod.nethertweaks.block.CrucibleBase;
+import mod.nethertweaks.block.tile.TileCrucibleBase;
 import mod.sfhcore.client.renderers.ModelVertex;
 import mod.sfhcore.client.renderers.SpriteColor;
 import mod.sfhcore.texturing.Color;

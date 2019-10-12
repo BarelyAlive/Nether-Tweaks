@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import mod.nethertweaks.blocks.Sieve;
-import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.block.Sieve;
+import mod.nethertweaks.block.tile.TileSieve;
 import mod.sfhcore.client.renderers.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

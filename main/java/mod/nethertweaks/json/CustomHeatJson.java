@@ -10,7 +10,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registry.types.Heat;
+import mod.nethertweaks.registry.registries.base.types.Heat;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.BlockInfo;
 

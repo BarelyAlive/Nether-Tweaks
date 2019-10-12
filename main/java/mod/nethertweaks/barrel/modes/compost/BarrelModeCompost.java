@@ -3,12 +3,12 @@ package mod.nethertweaks.barrel.modes.compost;
 import java.util.List;
 
 import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.Compostable;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.base.types.Compostable;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;

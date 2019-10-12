@@ -2,7 +2,7 @@ package mod.nethertweaks.barrel;
 
 import java.util.List;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.sfhcore.client.renderers.SpriteColor;
 import mod.sfhcore.texturing.Color;
 import net.minecraft.block.state.IBlockState;

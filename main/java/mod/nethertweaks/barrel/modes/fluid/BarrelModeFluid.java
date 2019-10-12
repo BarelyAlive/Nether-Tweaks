@@ -5,10 +5,10 @@ import java.util.Objects;
 
 import mod.nethertweaks.barrel.BarrelFluidHandler;
 import mod.nethertweaks.barrel.IBarrelMode;
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.base.types.FluidTransformer;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;

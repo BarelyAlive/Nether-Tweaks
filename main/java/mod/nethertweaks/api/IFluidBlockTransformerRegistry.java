@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.nethertweaks.registry.registries.base.types.FluidBlockTransformer;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;
 import mod.sfhcore.util.StackInfo;

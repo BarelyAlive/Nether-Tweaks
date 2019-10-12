@@ -2,7 +2,7 @@ package mod.nethertweaks.world;
 
 import java.util.Random;
 
-import mod.nethertweaks.blocks.ElderSapling;
+import mod.nethertweaks.block.ElderSapling;
 import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;

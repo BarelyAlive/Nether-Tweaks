@@ -2,7 +2,7 @@ package mod.nethertweaks.enchantments;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.items.ItemMesh;
+import mod.nethertweaks.item.ItemMesh;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;

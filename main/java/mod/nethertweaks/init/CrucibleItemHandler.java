@@ -2,9 +2,9 @@ package mod.nethertweaks.init;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.blocks.tile.TileCrucibleBase;
-import mod.nethertweaks.registries.registries.CrucibleRegistry;
-import mod.nethertweaks.registry.types.Meltable;
+import mod.nethertweaks.block.tile.TileCrucibleBase;
+import mod.nethertweaks.registry.registries.CrucibleRegistry;
+import mod.nethertweaks.registry.registries.base.types.Meltable;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;

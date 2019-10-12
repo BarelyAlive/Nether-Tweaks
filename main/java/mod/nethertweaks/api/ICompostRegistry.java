@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.registry.types.Compostable;
+import mod.nethertweaks.registry.registries.base.types.Compostable;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;

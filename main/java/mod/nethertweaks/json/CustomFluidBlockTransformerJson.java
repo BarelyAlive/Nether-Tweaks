@@ -10,7 +10,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registry.types.FluidBlockTransformer;
+import mod.nethertweaks.registry.registries.base.types.FluidBlockTransformer;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.EntityInfo;
 import net.minecraft.item.crafting.Ingredient;

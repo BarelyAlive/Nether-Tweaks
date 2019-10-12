@@ -2,8 +2,8 @@ package mod.nethertweaks.client.renderers;
 
 import java.util.Objects;
 
-import mod.nethertweaks.blocks.AshBonePile;
-import mod.nethertweaks.blocks.tile.TileAshBonePile;
+import mod.nethertweaks.block.AshBonePile;
+import mod.nethertweaks.block.tile.TileAshBonePile;
 import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.world.WorldSpawnLocation;

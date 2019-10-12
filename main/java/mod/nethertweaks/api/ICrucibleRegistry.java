@@ -1,6 +1,6 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.Meltable;
+import mod.nethertweaks.registry.registries.base.types.Meltable;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;

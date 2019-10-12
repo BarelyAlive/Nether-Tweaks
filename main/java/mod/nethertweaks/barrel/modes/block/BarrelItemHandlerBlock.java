@@ -1,6 +1,6 @@
 package mod.nethertweaks.barrel.modes.block;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package mod.nethertweaks.network;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

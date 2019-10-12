@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.registry.types.Drinkable;
+import mod.nethertweaks.registry.registries.base.types.Drinkable;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry.TriggerType;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

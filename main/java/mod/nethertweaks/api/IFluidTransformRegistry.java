@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import java.util.List;
 
-import mod.nethertweaks.registry.types.FluidTransformer;
+import mod.nethertweaks.registry.registries.base.types.FluidTransformer;
 import mod.sfhcore.util.BlockInfo;
 
 public interface IFluidTransformRegistry extends IRegistryMappedList<String, FluidTransformer>

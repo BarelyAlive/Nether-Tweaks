@@ -3,7 +3,7 @@ package mod.nethertweaks.api;
 import java.util.List;
 import java.util.Random;
 
-import mod.nethertweaks.registry.types.Siftable;
+import mod.nethertweaks.registry.registries.base.types.Siftable;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

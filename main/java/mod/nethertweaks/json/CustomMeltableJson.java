@@ -10,7 +10,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registry.types.Meltable;
+import mod.nethertweaks.registry.registries.base.types.Meltable;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.BlockInfo;
 

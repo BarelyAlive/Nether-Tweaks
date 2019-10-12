@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.sfhcore.client.color.ColorGetter;
 import mod.sfhcore.texturing.Color;
 import net.minecraft.client.Minecraft;

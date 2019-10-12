@@ -2,12 +2,12 @@ package mod.nethertweaks.barrel;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.blocks.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileBarrel;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageFluidUpdate;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry.TriggerType;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry.TriggerType;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;

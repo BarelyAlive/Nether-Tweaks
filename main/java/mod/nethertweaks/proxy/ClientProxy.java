@@ -1,9 +1,9 @@
 package mod.nethertweaks.proxy;
 
-import mod.nethertweaks.blocks.tile.TileAshBonePile;
-import mod.nethertweaks.blocks.tile.TileBarrel;
-import mod.nethertweaks.blocks.tile.TileCrucibleStone;
-import mod.nethertweaks.blocks.tile.TileSieve;
+import mod.nethertweaks.block.tile.TileAshBonePile;
+import mod.nethertweaks.block.tile.TileBarrel;
+import mod.nethertweaks.block.tile.TileCrucibleStone;
+import mod.nethertweaks.block.tile.TileSieve;
 import mod.nethertweaks.client.renderers.RenderAshBonePile;
 import mod.nethertweaks.client.renderers.RenderBarrel;
 import mod.nethertweaks.client.renderers.RenderCrucible;

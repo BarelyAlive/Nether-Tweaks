@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.registry.types.Dryable;
+import mod.nethertweaks.registry.registries.base.types.Dryable;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;

@@ -2,7 +2,7 @@ package mod.nethertweaks.api;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.registry.types.FluidFluidBlock;
+import mod.nethertweaks.registry.registries.base.types.FluidFluidBlock;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraftforge.fluids.Fluid;

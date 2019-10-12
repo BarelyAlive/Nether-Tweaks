@@ -1,20 +1,20 @@
 package mod.nethertweaks.recipes.defaults;
 
-import mod.nethertweaks.registries.registries.BarrelLiquidBlacklistRegistry;
-import mod.nethertweaks.registries.registries.CompostRegistry;
-import mod.nethertweaks.registries.registries.CondenserRegistry;
-import mod.nethertweaks.registries.registries.CrucibleRegistry;
-import mod.nethertweaks.registries.registries.DrinkRegistry;
-import mod.nethertweaks.registries.registries.FluidBlockTransformerRegistry;
-import mod.nethertweaks.registries.registries.FluidItemFluidRegistry;
-import mod.nethertweaks.registries.registries.FluidOnTopRegistry;
-import mod.nethertweaks.registries.registries.FluidTransformRegistry;
-import mod.nethertweaks.registries.registries.HammerRegistry;
-import mod.nethertweaks.registries.registries.HeatRegistry;
-import mod.nethertweaks.registries.registries.HellmartRegistry;
-import mod.nethertweaks.registries.registries.MilkEntityRegistry;
-import mod.nethertweaks.registries.registries.OreRegistry;
-import mod.nethertweaks.registries.registries.SieveRegistry;
+import mod.nethertweaks.registry.registries.BarrelLiquidBlacklistRegistry;
+import mod.nethertweaks.registry.registries.CompostRegistry;
+import mod.nethertweaks.registry.registries.CondenserRegistry;
+import mod.nethertweaks.registry.registries.CrucibleRegistry;
+import mod.nethertweaks.registry.registries.DrinkRegistry;
+import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
+import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
+import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidTransformRegistry;
+import mod.nethertweaks.registry.registries.HammerRegistry;
+import mod.nethertweaks.registry.registries.HeatRegistry;
+import mod.nethertweaks.registry.registries.HellmartRegistry;
+import mod.nethertweaks.registry.registries.MilkEntityRegistry;
+import mod.nethertweaks.registry.registries.OreRegistry;
+import mod.nethertweaks.registry.registries.SieveRegistry;
 
 public interface IRecipeDefaults
 {

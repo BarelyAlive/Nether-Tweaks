@@ -1,6 +1,6 @@
 package mod.nethertweaks.client.renderers;
 
-import mod.nethertweaks.items.ItemChunk;
+import mod.nethertweaks.item.ItemChunk;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.color.IItemColor;

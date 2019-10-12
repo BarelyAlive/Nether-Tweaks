@@ -11,7 +11,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import mod.nethertweaks.registry.types.HammerReward;
+import mod.nethertweaks.registry.registries.base.types.HammerReward;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.LogUtil;

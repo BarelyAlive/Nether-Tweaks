@@ -3,9 +3,9 @@ package mod.nethertweaks.network;
 import java.util.Objects;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.blocks.tile.TileHellmart;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.types.HellmartData;
+import mod.nethertweaks.block.tile.TileHellmart;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.base.types.HellmartData;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;

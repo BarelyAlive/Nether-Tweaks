@@ -1,6 +1,6 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.Milkable;
+import mod.nethertweaks.registry.registries.base.types.Milkable;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fluids.Fluid;
 

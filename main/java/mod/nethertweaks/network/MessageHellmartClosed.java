@@ -3,7 +3,7 @@ package mod.nethertweaks.network;
 import java.util.Objects;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.blocks.tile.TileHellmart;
+import mod.nethertweaks.block.tile.TileHellmart;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;

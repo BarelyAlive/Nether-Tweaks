@@ -2,7 +2,7 @@ package mod.nethertweaks.init;
 
 import java.io.File;
 
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
 
 public class JsonRecipeHandler
 {

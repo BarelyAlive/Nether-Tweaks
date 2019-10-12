@@ -3,7 +3,7 @@ package mod.nethertweaks.api;
 import java.util.List;
 import java.util.Random;
 
-import mod.nethertweaks.registry.types.HammerReward;
+import mod.nethertweaks.registry.registries.base.types.HammerReward;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.block.Block;

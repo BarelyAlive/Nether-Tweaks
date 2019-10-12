@@ -1,6 +1,6 @@
 package mod.nethertweaks.api;
 
-import mod.nethertweaks.registry.types.HellmartData;
+import mod.nethertweaks.registry.registries.base.types.HellmartData;
 import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.Item;

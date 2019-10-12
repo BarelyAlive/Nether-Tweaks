@@ -17,13 +17,13 @@ import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.init.ModMessages;
+import mod.nethertweaks.init.ModSmeltingNOreDict;
 import mod.nethertweaks.init.OreHandler;
 import mod.nethertweaks.init.OreRegistrationHandler;
-import mod.nethertweaks.init.SmeltingNOreDictHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
-import mod.nethertweaks.registries.manager.NTMDefaultRecipes;
-import mod.nethertweaks.registries.registries.BarrelModeRegistry;
+import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
@@ -111,7 +111,7 @@ public class NetherTweaksMod
 	public void load(final FMLInitializationEvent event)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-		new SmeltingNOreDictHandler();
+		new ModSmeltingNOreDict();
 		
 		getProxy().init();
 	}
