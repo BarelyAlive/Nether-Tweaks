@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

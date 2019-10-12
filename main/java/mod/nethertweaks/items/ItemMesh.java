@@ -1,12 +1,11 @@
 package mod.nethertweaks.items;
 
+import java.util.Objects;
+
 import mod.nethertweaks.Constants;
 import mod.sfhcore.helper.NameHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.Objects;
 
 public class ItemMesh extends Item{
 

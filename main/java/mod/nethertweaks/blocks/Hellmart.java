@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.blocks.tile.TileHellmart;
 import mod.nethertweaks.handler.GuiHandler;

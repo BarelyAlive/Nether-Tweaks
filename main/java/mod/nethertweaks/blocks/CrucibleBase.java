@@ -2,7 +2,6 @@ package mod.nethertweaks.blocks;
 
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.blocks.tile.TileCrucibleBase;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.Block;

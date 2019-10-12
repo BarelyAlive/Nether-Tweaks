@@ -1,8 +1,9 @@
 package mod.nethertweaks.items;
 
+import java.util.Objects;
+
 import javax.annotation.Nonnull;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.entities.ProjectileStone;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -13,8 +14,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-
-import java.util.Objects;
 
 public class ItemPebble extends Item
 {

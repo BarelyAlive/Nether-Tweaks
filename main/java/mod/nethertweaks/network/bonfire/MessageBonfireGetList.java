@@ -2,7 +2,11 @@ package mod.nethertweaks.network.bonfire;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
 import mod.nethertweaks.world.BonfireInfo;

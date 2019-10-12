@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.handler.FluidHandler;
 import net.minecraft.block.material.Material;

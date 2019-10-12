@@ -1,5 +1,7 @@
 package mod.nethertweaks.blocks.tile;
 
+import java.util.Objects;
+
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.registries.manager.NTMRegistryManager;
 import mod.sfhcore.util.BlockInfo;
@@ -13,8 +15,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.util.Objects;
 
 public class TileCrucibleStone extends TileCrucibleBase {
 

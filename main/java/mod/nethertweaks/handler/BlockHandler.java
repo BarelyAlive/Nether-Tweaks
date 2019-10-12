@@ -1,5 +1,7 @@
 package mod.nethertweaks.handler;
 
+import static mod.nethertweaks.handler.ItemHandler.ITEMS;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +37,6 @@ import mod.sfhcore.blocks.CubeFireResistant;
 import mod.sfhcore.blocks.CustomDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -43,8 +44,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import static mod.nethertweaks.handler.ItemHandler.ITEMS;
 
 public class BlockHandler
 {

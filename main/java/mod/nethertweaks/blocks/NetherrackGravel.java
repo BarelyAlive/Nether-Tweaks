@@ -1,6 +1,5 @@
 package mod.nethertweaks.blocks;
 
-import mod.nethertweaks.Constants;
 import net.minecraft.block.BlockGravel;
 import net.minecraft.block.SoundType;
 

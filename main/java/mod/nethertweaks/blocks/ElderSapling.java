@@ -2,7 +2,6 @@ package mod.nethertweaks.blocks;
 
 import java.util.Random;
 
-import mod.nethertweaks.Constants;
 import mod.nethertweaks.world.WorldGenElderTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
