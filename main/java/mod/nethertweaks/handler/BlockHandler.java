@@ -82,20 +82,20 @@ public class BlockHandler
 	public static final Block STWH 				   = new StwH();
 	public static final Block MEAN_VINE			   = new MeanVine();
 	public static final Block NETHERRACK_GRAVEL	   = new NetherrackGravel();
-	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, 30.0F, 2.0F);
-	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, 15.0F, 2.0F);
-	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 17.5F, 3.5F);
-	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 17.5F, 3.5F);
-	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 17.5F, 3.5F);
+	public static final Block STONE_DOOR 		   = new CustomDoor(Material.ROCK, 10F, 1.5F);
+	public static final Block ELDER_DOOR 		   = new CustomDoor(Material.WOOD, 10F, 1.5F);
+	public static final Block HELLFAYAH_ORE		   = new Cube(Material.ROCK, 2.0F, 0.4F);
+	public static final Block BLOCK_OF_HELLFAYAH   = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block BLOCK_OF_SALT		   = new Cube(Material.ROCK, 10F, 5F);
 
 	//Tree
 	public static final Block ELDER_LOG 		   = new ElderLog();
 	public static final Block ELDER_LEAVES 		   = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10.0F, 2.0F);
+	public static final Block ELDER_PLANKS 		   = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
 	public static final Block ELDER_SAPLING 	   = new ElderSapling();
 
-	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
-	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10.0F).setHardness(2.0F);
+	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
+	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
 
 	//END_OF_INITIALIZATION
 	
