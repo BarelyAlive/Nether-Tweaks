@@ -23,8 +23,8 @@ public class Hellmart extends BlockContainer
 	{
 		super(Material.ROCK);
 		setSoundType(SoundType.STONE);
-		setResistance(17.5f);
-		setHardness(2.0F);
+		setResistance(2F);
+		setHardness(3.5F);
 	}
 
 	@Override

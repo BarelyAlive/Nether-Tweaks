@@ -29,7 +29,7 @@ public class Freezer extends CubeContainerHorizontal
 	{
 		super(Material.ROCK);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-		setResistance(17.5f);
+		setResistance(2f);
 		setHardness(3.5f);
 	}
 

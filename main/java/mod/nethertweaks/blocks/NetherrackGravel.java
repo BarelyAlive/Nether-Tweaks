@@ -9,7 +9,7 @@ public class NetherrackGravel extends BlockGravel
 	public NetherrackGravel()
 	{
 		setSoundType(SoundType.GROUND);
-		setResistance(2.0f);
-		setHardness(0.4f);
+		setResistance(1.0f);
+		setHardness(0.6f);
 	}
 }

@@ -15,8 +15,8 @@ public class ElderLog extends CubeFacingXYZ{
 
 	public ElderLog() {
 		super(Material.WOOD);
-		setHardness(2);
-		setResistance(10);
+		setResistance(10F);
+		setHardness(2F);
 		setSoundType(SoundType.WOOD);
 	}
 
