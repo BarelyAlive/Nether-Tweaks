@@ -13,7 +13,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 
 public interface IRecipeDefaults
@@ -29,7 +28,6 @@ public interface IRecipeDefaults
 	default void registerHeat(final HeatRegistry registry) {}
 	default void registerBarrelLiquidBlacklist(final BarrelLiquidBlacklistRegistry registry) {}
 	default void registerFluidOnTop(final FluidOnTopRegistry registry) {}
-	default void registerOreChunks(final OreRegistry registry) {}
 	default void registerFluidTransform(final FluidTransformRegistry registry) {}
 	default void registerFluidBlockTransform(final FluidBlockTransformerRegistry registry) {}
 	default void registerFluidItemFluid(final FluidItemFluidRegistry registry) {}

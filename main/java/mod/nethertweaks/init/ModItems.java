@@ -27,12 +27,13 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber
 public class ModItems
 {
 	//SEEDS
@@ -84,7 +85,7 @@ public class ModItems
 	public static final Item STRING 		  	 	 = new Item();
 	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
 	public static final Item POWDER_OF_LIGHT  	 	 = new Item();
-	public static final Item ASH			  	 	 = new Ash();
+	public static final Ash ASH			  	 	 	 = new Ash();
 	public static final CoiledSword COILED_SWORD 	 = new CoiledSword();
 	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 
@@ -119,7 +120,6 @@ public class ModItems
 	{
 		register();
 		addItemBurnTime();
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void register()

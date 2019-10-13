@@ -27,7 +27,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 import mod.nethertweaks.registry.registries.base.types.HammerReward;
 import mod.sfhcore.helper.NameHelper;
@@ -439,25 +438,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-	}
-
-	@Override
-	public void registerOreChunks(final OreRegistry registry)
-	{
-		registry.register("gold", new Color("FFFF00"), new ItemInfo(Items.GOLD_INGOT, 0), OreDictUtil.getOreDictEntry("dustGold"));
-		registry.register("iron", new Color("BF8040"), new ItemInfo(Items.IRON_INGOT, 0), OreDictUtil.getOreDictEntry("dustIron"));
-
-		//        for(EnumModdedMetals metal : EnumModdedMetals.values()) {
-		//            if(metal.getRegistryName().equals("aluminum") &&
-		//                    (!OreDictionary.getOres("oreAluminium").isEmpty() ||
-		//                            !OreDictionary.getOres("oreAluminum").isEmpty())) {
-		//                // Blame Humphry Davy
-		//                registry.register("aluminium", metal.getColor(), metal.getIngot(), metal.getDust());
-		//            }
-		//            else if(!OreDictionary.getOres(metal.getOreName()).isEmpty()) {
-		//                registry.register(metal.getRegistryName(), metal.getColor(), metal.getIngot(), metal.getDust());
-		//            }
-		//        }
 	}
 
 	@Override

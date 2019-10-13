@@ -21,7 +21,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
@@ -100,11 +99,6 @@ public class CompatDefaultRecipes
 	public void registerFluidOnTop(final FluidOnTopRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerFluidOnTop(registry));
-	}
-
-	public void registerOreChunks(final OreRegistry registry) {
-		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
-		.forEach(mod -> mod.registerOreChunks(registry));
 	}
 
     public void registerDynOreChunks(final DynOreRegistry registry) {

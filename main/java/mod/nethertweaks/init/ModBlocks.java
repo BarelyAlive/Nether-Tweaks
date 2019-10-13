@@ -40,11 +40,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+@Mod.EventBusSubscriber
 public class ModBlocks
 {
 	//Tile Entity
@@ -107,7 +108,6 @@ public class ModBlocks
 		register();
 		addItemBlocks();
 		registerTileEntities();
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	private void register()

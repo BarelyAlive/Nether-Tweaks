@@ -1,6 +1,5 @@
 package mod.nethertweaks.init;
 
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.network.MessageCompostUpdate;
 import mod.nethertweaks.network.MessageFluidUpdate;

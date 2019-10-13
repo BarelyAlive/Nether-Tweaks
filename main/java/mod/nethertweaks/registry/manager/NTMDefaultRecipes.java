@@ -16,7 +16,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 
 public class NTMDefaultRecipes
@@ -32,7 +31,6 @@ public class NTMDefaultRecipes
 		NTMRegistryManager.registerDrinkDefaultRecipeHandler(new DrinkDefaults());
 		NTMRegistryManager.registerHellmartDefaultRecipeHandler(new HellmartDefaults());
 		NTMRegistryManager.registerHeatDefaultRecipeHandler(new HeatDefaults());
-		NTMRegistryManager.registerOreDefaultRecipeHandler(new OreDefaults());
 		NTMRegistryManager.registerBarrelLiquidBlacklistDefaultHandler(new BarrelLiquidBlacklistDefaults());
 		NTMRegistryManager.registerFluidOnTopDefaultRecipeHandler(new FluidOnTopDefaults());
 		NTMRegistryManager.registerFluidTransformDefaultRecipeHandler(new FluidTransformDefaults());
@@ -113,13 +111,6 @@ public class NTMDefaultRecipes
         @Override
         public void registerRecipeDefaults(@Nonnull final FluidOnTopRegistry registry) {
             compat.registerFluidOnTop(registry);
-        }
-    }
-
-    private static class OreDefaults implements IOreDefaultRegistryProvider {
-        @Override
-        public void registerRecipeDefaults(@Nonnull final OreRegistry registry) {
-            compat.registerOreChunks(registry);
         }
     }
 
