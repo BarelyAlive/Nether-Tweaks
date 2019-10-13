@@ -15,11 +15,13 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 
 public interface IDefaultRecipeProvider<T> {
 	void  registerRecipeDefaults(T registry);
 }
 
+interface IDynOreDefaultRegistryProvider extends IDefaultRecipeProvider<DynOreRegistry>{};
 interface IFluidBlockDefaultRegistryProvider extends IDefaultRecipeProvider<FluidBlockTransformerRegistry>{}
 interface IFluidItemFluidDefaultRegistryProvider extends IDefaultRecipeProvider<FluidItemFluidRegistry>{}
 interface IFluidOnTopDefaultRegistryProvider extends IDefaultRecipeProvider<FluidOnTopRegistry>{}

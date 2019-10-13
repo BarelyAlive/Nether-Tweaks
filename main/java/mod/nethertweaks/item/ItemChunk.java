@@ -12,7 +12,9 @@ public class ItemChunk extends Item {
 
 	private Item results;
 	private String ore_name = "";
-
+	private String display_name = "";
+	private int color = 0;
+	
 	public ItemChunk() {
 		super();
 		setHasSubtypes(true);
@@ -40,7 +42,27 @@ public class ItemChunk extends Item {
 
 	public ItemStack getResult()
 	{
-		return FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+		ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+		return (result.isEmpty() ? new ItemStack(results) : result);
+	}
+	
+	public void setColor(int color) {
+		this.color = color;
+	}
+	
+	public int getColor()
+	{
+		return color;
+	}
+	
+	public void setDisplayName(String name)
+	{
+		this.display_name = name;
+	}
+	
+	private String getDisplayName()
+	{
+		return this.display_name;
 	}
 
 	@Override
@@ -55,20 +77,27 @@ public class ItemChunk extends Item {
 
 	public String getLocalizedName(final ItemStack stack)
 	{
-		String name = getResult().getDisplayName();
-		String[] name_split = name.split(" ");
-		if (name_split[name_split.length - 1].toLowerCase().equals("ingot"))
+		if (this.display_name == "")
 		{
-            StringBuilder nameBuilder = new StringBuilder();
-            for(int i = 0; i < name_split.length - 1; i++)
+			String name = this.getResult().getDisplayName();
+			String[] name_split = name.split(" ");
+			if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
 			{
-				nameBuilder.append(name_split[i]);
-				nameBuilder.append(" ");
-			}
-            name = nameBuilder.toString();
-        } else
-			name += " ";
-		return name + this.getLocalizedName();
+	            StringBuilder nameBuilder = new StringBuilder();
+	            for(int i = 0; i < name_split.length - 1; i++)
+				{
+					nameBuilder.append(name_split[i]);
+					nameBuilder.append(" ");
+				}
+	            name = nameBuilder.toString();
+	        } else
+				name += " ";
+			return name + this.getLocalizedName();
+		}
+		else
+		{
+			return this.display_name;
+		}
 	}
 
 	public String getLocalizedName()
@@ -80,5 +109,4 @@ public class ItemChunk extends Item {
 	public String getUnlocalizedName(final ItemStack stack) {
 		return "tile." + stack.getDisplayName().toLowerCase().replace(' ', '_');
 	}
-
 }

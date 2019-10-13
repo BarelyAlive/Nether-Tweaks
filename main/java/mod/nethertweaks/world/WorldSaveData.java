@@ -148,8 +148,8 @@ public class WorldSaveData extends WorldSavedData {
 			tag.setInteger("NTM.PosZ", entry.getKey().getZ());
 
 			tag.setLong("NTM.ownerLeastSignificantBits", entry.getValue().getOwner().getLeastSignificantBits());
-			tag.setLong("NTM.ownermostSignificantBits", entry.getValue().getOwner().getMostSignificantBits());
-
+			tag.setLong("NTM.ownerMostSignificantBits", entry.getValue().getOwner().getMostSignificantBits());
+			
 			tag.setString("NTM.Name", entry.getValue().getName());
 			tag.setBoolean("NTM.seeable", entry.getValue().isPublic());
 			tag.setInteger("NTM.SpawnPosX", entry.getValue().getSpawnPos().getX());

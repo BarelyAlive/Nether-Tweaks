@@ -24,6 +24,8 @@ import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registry.registries.BarrelModeRegistry;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
@@ -106,7 +108,7 @@ public class NetherTweaksMod
 
 		getProxy().preInit();
 	}
-
+	
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
@@ -126,6 +128,7 @@ public class NetherTweaksMod
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		JsonRecipeHandler.loadJasonVorhees(configDirectory);
+		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(this.configDirectory);
 	}
 
 	@Mod.EventHandler

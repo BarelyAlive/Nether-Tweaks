@@ -12,11 +12,13 @@ import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageTeleportPlayer implements IMessage {
 
@@ -66,7 +68,8 @@ public class MessageTeleportPlayer implements IMessage {
 
 			LookAt(message.bonfire_pos.getX() + 0.5, message.bonfire_pos.getY(), message.bonfire_pos.getZ() + 0.5, player);
 
-			ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			//ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
+			player.attemptTeleport(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5);
 
 			WorldSpawnLocation.lastSpawnLocations.put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 
@@ -82,7 +85,14 @@ public class MessageTeleportPlayer implements IMessage {
 
 			player.closeScreen();
 
-			NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			if (ctx.side == Side.CLIENT)
+			{
+				NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			}
+			else
+			{
+				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+			}
 
 			return null;
 		}

@@ -9,6 +9,12 @@ import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.item.ItemChunk;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.types.DynOre;
+import mod.sfhcore.util.ItemInfo;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -17,6 +23,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
+import scala.reflect.internal.TreeGen.GetVarTraverser;
 
 class OreInfo
 {
@@ -51,6 +58,33 @@ public class OreHandler {
                     return;
         }
 
+		/*
+		List<DynOre> registry = NTMRegistryManager.DYN_ORE_REGISTRY.getRegistry();
+		
+		if (!registry.isEmpty())
+		{
+		
+			boolean founded = false;
+			
+			for(DynOre entry : registry)
+			{
+				if (entry.getResult().getItemStack().getItem().equals(stack))
+				{
+					System.out.println(stack);
+					System.out.println(entry.getResult().getItemStack().getItem());
+					founded = true;
+					break;
+				}
+			}
+			
+			if (!founded)
+			{
+				return;
+			}
+			
+		}
+		*/
+		
 		if (!ore_list.containsKey(stack))
 			ore_list.put(stack, rarity);
 	}
@@ -74,6 +108,8 @@ public class OreHandler {
 
 	public static void register(final IForgeRegistry<Item> registry) {
 		ItemChunk chunks;
+		ArrayList<DynOre> list = (ArrayList<DynOre>) NTMRegistryManager.DYN_ORE_REGISTRY.getRegistry();
+		
 		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
 		{
 			String[] name_array = new ItemStack(entry.getKey()).getDisplayName().split(" ");
@@ -81,13 +117,37 @@ public class OreHandler {
 			name_list.remove(name_list.size() - 1);
 			String mod_domain  = String.join("_", name_list);
 			mod_domain = mod_domain.toLowerCase();
-
+			DynOre found_entry = null;
+			
+			if (!list.isEmpty())
+			{
+				
+				for (DynOre entry_ore : list)
+				{
+					if (entry_ore.getID().equals(mod_domain))
+					{
+						found_entry = entry_ore;
+						break;
+					}
+				}
+				if (found_entry == null)
+				{
+					continue;
+				}
+			}
+			
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
 				chunks.setRegistryName(Constants.MOD_ID, Constants.CHUNK + "_" + mod_domain);
 				chunks.setCreativeTab(Constants.TABNTM);
 				chunks.setResult(mod_domain, entry.getKey());
+				if (found_entry != null)
+				{
+					chunks.setColor(found_entry.getColor());
+					chunks.setResult(mod_domain, found_entry.getResult().getItem());
+					chunks.setDisplayName(found_entry.getName());
+				}
 				mod_chunks.put(mod_domain, chunks);
 			}
 			chunks = null;
@@ -115,4 +175,31 @@ public class OreHandler {
 			FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1), entry.getValue().getResult(), 1.0f);
 	}
 
+	public static void registerDynOreChunks(DynOreRegistry registry) {
+		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		{
+	        try {
+	        	ItemStack result = entry.getValue().getResult();
+	        	if(result.isEmpty())
+	        	{
+	        		continue;
+	        	}
+	        	if (entry.getValue().getColor() == 0)
+	        	{
+		        	IBakedModel res = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(result);
+		        	for(int i = 0; i < res.getParticleTexture().getFrameCount(); i++)
+		        	{
+		        		if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
+		        		{
+		    		        entry.getValue().setColor(res.getParticleTexture().getFrameTextureData(0)[i][140]);
+		        		}
+		        	}
+	        	}
+	        	mod_chunks.put(entry.getKey(), entry.getValue());
+			} catch (Exception e) {
+	        	e.printStackTrace();
+			}
+			registry.register(entry.getKey(), (new ItemStack(entry.getValue())).getDisplayName(), new ItemInfo(entry.getValue().getResult()), 1, entry.getValue().getColor());
+		}
+	}
 }

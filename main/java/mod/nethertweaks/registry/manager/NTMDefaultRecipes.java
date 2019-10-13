@@ -17,6 +17,7 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 
 public class NTMDefaultRecipes
 {
@@ -78,76 +79,83 @@ public class NTMDefaultRecipes
 		@Override
 		public void registerSieveRecipeDefaults() {
 		}
-	}
-
-	private static class HammerDefaults implements IHammerDefaultRegistryProvider {
+    }
+    
+    public static class DynOreDefaults implements IDynOreDefaultRegistryProvider {
 		@Override
-		public void registerRecipeDefaults(@Nonnull final HammerRegistry registry) {
-			compat.registerHammer(registry);
+		public void registerRecipeDefaults(DynOreRegistry registry) {
+			compat.registerDynOreChunks(registry);
 		}
-	}
+    }
 
-	private static class HeatDefaults implements IHeatDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final HeatRegistry registry) {
-			compat.registerHeat(registry);
-		}
-	}
+    private static class HammerDefaults implements IHammerDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull HammerRegistry registry) {
+            compat.registerHammer(registry);
+        }
+    }
 
-	private static class BarrelLiquidBlacklistDefaults implements IBarrelLiquidBlacklistDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final BarrelLiquidBlacklistRegistry registry) {
-			compat.registerBarrel(registry);
-		}
-	}
+    private static class HeatDefaults implements IHeatDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull HeatRegistry registry) {
+            compat.registerHeat(registry);
+        }
+    }
 
-	private static class FluidOnTopDefaults implements IFluidOnTopDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final FluidOnTopRegistry registry) {
-			compat.registerFluidOnTop(registry);
-		}
-	}
+    private static class BarrelLiquidBlacklistDefaults implements IBarrelLiquidBlacklistDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull BarrelLiquidBlacklistRegistry registry) {
+            compat.registerBarrel(registry);
+        }
+    }
 
-	private static class OreDefaults implements IOreDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final OreRegistry registry) {
-			compat.registerOreChunks(registry);
-		}
-	}
+    private static class FluidOnTopDefaults implements IFluidOnTopDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull FluidOnTopRegistry registry) {
+            compat.registerFluidOnTop(registry);
+        }
+    }
 
-	private static class FluidTransformDefaults implements IFluidTransformDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final FluidTransformRegistry registry) {
-			compat.registerFluidTransform(registry);
-		}
-	}
+    private static class OreDefaults implements IOreDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull OreRegistry registry) {
+            compat.registerOreChunks(registry);
+        }
+    }
 
-	private static class FluidBlockTransformDefaults implements IFluidBlockDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final FluidBlockTransformerRegistry registry) {
-			compat.registerFluidBlockTransform(registry);
-		}
-	}
+    private static class FluidTransformDefaults implements IFluidTransformDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull FluidTransformRegistry registry) {
+            compat.registerFluidTransform(registry);
+        }
+    }
 
-	private static class FluidItemFluidDefaults implements IFluidItemFluidDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final FluidItemFluidRegistry registry) {
-			compat.registerFluidItemFluid(registry);
-		}
-	}
+    private static class FluidBlockTransformDefaults implements IFluidBlockDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull FluidBlockTransformerRegistry registry) {
+            compat.registerFluidBlockTransform(registry);
+        }
+    }
 
-	private static class CrucibleStoneDefaults implements ICrucibleStoneDefaultRegistryProvider {
+    private static class FluidItemFluidDefaults implements IFluidItemFluidDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull FluidItemFluidRegistry registry) {
+            compat.registerFluidItemFluid(registry);
+        }
+    }
 
-		@Override
-		public void registerRecipeDefaults(@Nonnull final CrucibleRegistry registry) {
-			compat.registerCrucibleStone(registry);
-		}
-	}
+    private static class CrucibleStoneDefaults implements ICrucibleStoneDefaultRegistryProvider {
 
-	public static class MilkEntityDefaults implements IMilkEntityDefaultRegistryProvider {
-		@Override
-		public void registerRecipeDefaults(@Nonnull final MilkEntityRegistry registry) {
-			compat.registerMilk(registry);
-		}
-	}
+        @Override
+        public void registerRecipeDefaults(@Nonnull CrucibleRegistry registry) {
+            compat.registerCrucibleStone(registry);
+        }
+    }
+
+    public static class MilkEntityDefaults implements IMilkEntityDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull MilkEntityRegistry registry) {
+            compat.registerMilk(registry);
+        }
+    }
 }

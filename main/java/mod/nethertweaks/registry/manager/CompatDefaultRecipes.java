@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.init.OreHandler;
 import mod.nethertweaks.recipes.defaults.IRecipeDefaults;
 import mod.nethertweaks.recipes.defaults.NTM;
 import mod.nethertweaks.registry.registries.BarrelLiquidBlacklistRegistry;
@@ -21,6 +22,7 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 
@@ -104,6 +106,10 @@ public class CompatDefaultRecipes
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerOreChunks(registry));
 	}
+	
+    public void registerDynOreChunks(DynOreRegistry registry) {
+    	OreHandler.registerDynOreChunks(registry);
+    }
 
 	public void registerFluidTransform(final FluidTransformRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
