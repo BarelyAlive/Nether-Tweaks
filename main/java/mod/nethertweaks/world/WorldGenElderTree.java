@@ -2,7 +2,6 @@ package mod.nethertweaks.world;
 
 import java.util.Random;
 
-import mod.nethertweaks.block.ElderSapling;
 import mod.nethertweaks.init.ModBlocks;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
@@ -84,7 +83,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 			{
 				IBlockState state = world.getBlockState(position.down());
 
-				if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, (ElderSapling)ModBlocks.ELDER_SAPLING) && position.getY() < world.getHeight() - i - 1)
+				if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, ModBlocks.ELDER_SAPLING) && position.getY() < world.getHeight() - i - 1)
 				{
 					setDirtAt(world, position.down());
 					int k2 = 3;

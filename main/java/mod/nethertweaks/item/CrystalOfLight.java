@@ -23,8 +23,7 @@ public class CrystalOfLight extends Item
 	{
 		String name = Objects.requireNonNull(stack.getItem().getRegistryName()).getResourcePath();
 
-        if (Constants.CRYSTAL_OF_LIGHT.equals(name)) {
-            tooltip.add("This crystal enchants water, making it resistant to temperature changes");
-        }
+        if (Constants.CRYSTAL_OF_LIGHT.equals(name))
+			tooltip.add("This crystal enchants water, making it resistant to temperature changes");
 	}
 }

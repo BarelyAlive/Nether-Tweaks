@@ -44,7 +44,7 @@ public class TileFreezer extends TileFluidInventory
 	public void update()
 	{
 		if(world.isRemote) return;
-		
+
 		fillTick++;
 
 		checkInputOutput();
@@ -89,7 +89,7 @@ public class TileFreezer extends TileFluidInventory
 			insertToInventory(pos.west(), EnumFacing.EAST);
 			insertToInventory(pos.east(), EnumFacing.WEST);
 		}
-		
+
 		if (fillTick == 20) {
 			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
 			if (Config.fluidOutputAmount > 0) {
@@ -97,7 +97,7 @@ public class TileFreezer extends TileFluidInventory
 
 				//Check FluidHandler
 				IFluidHandler hup = FluidUtil.getFluidHandler(world, up, EnumFacing.DOWN);
-				
+
 				if (hup != null && world.getBlockState(up).getBlock() instanceof Barrel)
 					FluidUtil.tryFluidTransfer(getTank(), hup, water, true);
 			}
@@ -203,7 +203,7 @@ public class TileFreezer extends TileFluidInventory
 	{
 		return new ContainerFreezer(playerInventory, this);
 	}
-	
+
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);

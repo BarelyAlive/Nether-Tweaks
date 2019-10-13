@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageMovementSpeed implements IMessage {
 
@@ -42,7 +43,8 @@ public class MessageMovementSpeed implements IMessage {
 	public static class Handler implements IMessageHandler<MessageMovementSpeed, IMessage> {
 		@Override
 		public IMessage onMessage(final MessageMovementSpeed message, final MessageContext ctx) {
-			message.handleServerSide();
+			if (ctx.side == Side.SERVER)
+				message.handleServerSide();
 			return null;
 		}
 	}

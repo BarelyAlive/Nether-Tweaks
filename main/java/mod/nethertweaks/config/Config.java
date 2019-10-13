@@ -33,7 +33,7 @@ public class Config
 
 	//Condenser & Freezer
 	public static int fluidOutputAmount  = 200;
-	
+
 	//Freezer
 	public static int freezeTimeFreezer  = 6000;
 	public static int capacityFreezer  	 = 16000;
@@ -119,7 +119,7 @@ public class Config
 		autoOutputItems					= config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
 
 		fluidOutputAmount 				= config.getInt("Condenser & Freezer max. fluid auto transfer rate in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
-		
+
 		capacityFreezer					= config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
 		freezeTimeFreezer 				= config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
 		cooldownFreezer 				= config.getInt("Freezer cooldown time in ticks", "Tweak", 18000, 1, Integer.MAX_VALUE, "");

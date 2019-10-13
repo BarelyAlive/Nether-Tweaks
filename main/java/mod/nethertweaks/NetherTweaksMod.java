@@ -23,9 +23,8 @@ import mod.nethertweaks.init.OreRegistrationHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
-import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
-import mod.nethertweaks.registry.registries.DynOreRegistry;
+import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
@@ -61,7 +60,7 @@ public class NetherTweaksMod
 	}
 
 	public static SimpleNetworkWrapper network;
-	
+
 	static
 	{
 		FluidRegistry.enableUniversalBucket();
@@ -88,7 +87,7 @@ public class NetherTweaksMod
 		LogUtil.setup(Constants.MOD_ID, configDirectory);
 
 		Compatibility.init();
-		
+
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Constants.MOD_ID);
 
 		ModMessages.registerMessages();
@@ -108,13 +107,13 @@ public class NetherTweaksMod
 
 		getProxy().preInit();
 	}
-	
+
 	@Mod.EventHandler
 	public void load(final FMLInitializationEvent event)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		new ModSmeltingNOreDict();
-		
+
 		getProxy().init();
 	}
 
@@ -128,7 +127,7 @@ public class NetherTweaksMod
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		JsonRecipeHandler.loadJasonVorhees(configDirectory);
-		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(this.configDirectory);
+		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(configDirectory);
 	}
 
 	@Mod.EventHandler

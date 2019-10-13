@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.common.base.Preconditions;
-
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.block.AshBonePile;
 import mod.nethertweaks.block.Barrel;
@@ -101,7 +99,7 @@ public class ModBlocks
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
 
 	//END_OF_INITIALIZATION
-	
+
 	public static final List<Block> BLOCKS = new ArrayList();
 
 	public ModBlocks()
@@ -173,9 +171,9 @@ public class ModBlocks
 		if(BlocksItems.enableMeanVine) 			addBlock(MEAN_VINE, Constants.MEAN_VINE);
 		if(BlocksItems.enableStoneDoor) 		addBlock(STONE_DOOR, Constants.STONE_DOOR);
 	}
-	
+
 	private void addItemBlocks()
-	{		
+	{
 		addItemBlock(STONE_BARREL);
 		addItemBlock(OAK_BARREL);
 		addItemBlock(BIRCH_BARREL);
@@ -211,17 +209,17 @@ public class ModBlocks
 		addItemBlock(NETHERRACK_GRAVEL);
 		addItemBlock(MEAN_VINE);
 	}
-		
-	private void addBlock(Block block, String name)
+
+	private void addBlock(final Block block, final String name)
 	{
 		block.setRegistryName(Constants.MOD_ID, name);
 		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
 		block.setCreativeTab(Constants.TABNTM);
-		
-		BLOCKS.add(block);	
+
+		BLOCKS.add(block);
 	}
-	
-	private void addItemBlock(Block block)
+
+	private void addItemBlock(final Block block)
 	{
 		if(BLOCKS.contains(block))
 			ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
@@ -231,7 +229,7 @@ public class ModBlocks
 	public void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
 		BLOCKS.forEach((block) ->
-		{			
+		{
 			event.getRegistry().register(block);
 		});
 	}
@@ -247,8 +245,8 @@ public class ModBlocks
 		registerTileEntity(TileNetherrackFurnace.class, Constants.TE_NETHERRACK_FURNACE);
 		registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
 	}
-	
-	private void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, String name)
+
+	private void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name)
 	{
 		GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(Constants.MOD_ID, name));
 	}

@@ -5,6 +5,7 @@ import mod.nethertweaks.registry.registries.CompostRegistry;
 import mod.nethertweaks.registry.registries.CondenserRegistry;
 import mod.nethertweaks.registry.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.registries.DrinkRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
@@ -15,13 +16,12 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
-import mod.nethertweaks.registry.registries.DynOreRegistry;
 
 public interface IDefaultRecipeProvider<T> {
 	void  registerRecipeDefaults(T registry);
 }
 
-interface IDynOreDefaultRegistryProvider extends IDefaultRecipeProvider<DynOreRegistry>{};
+interface IDynOreDefaultRegistryProvider extends IDefaultRecipeProvider<DynOreRegistry>{}
 interface IFluidBlockDefaultRegistryProvider extends IDefaultRecipeProvider<FluidBlockTransformerRegistry>{}
 interface IFluidItemFluidDefaultRegistryProvider extends IDefaultRecipeProvider<FluidItemFluidRegistry>{}
 interface IFluidOnTopDefaultRegistryProvider extends IDefaultRecipeProvider<FluidOnTopRegistry>{}

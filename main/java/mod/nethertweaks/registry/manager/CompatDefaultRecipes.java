@@ -12,6 +12,7 @@ import mod.nethertweaks.registry.registries.CompostRegistry;
 import mod.nethertweaks.registry.registries.CondenserRegistry;
 import mod.nethertweaks.registry.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.registries.DrinkRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
@@ -22,7 +23,6 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
-import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 
@@ -106,8 +106,8 @@ public class CompatDefaultRecipes
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerOreChunks(registry));
 	}
-	
-    public void registerDynOreChunks(DynOreRegistry registry) {
+
+    public void registerDynOreChunks(final DynOreRegistry registry) {
     	OreHandler.registerDynOreChunks(registry);
     }
 

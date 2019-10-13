@@ -110,7 +110,7 @@ public class ModItems
 	public static final ItemDoor ITEM_STONE_DOOR 	 = new ItemDoor();
 	public static final ItemDoor ITEM_ELDER_DOOR 	 = new ItemDoor();
 	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB_DOUBLE);
-	
+
 	//END_OF_INITIALIZATION
 
 	public static final List<Item> ITEMS = new ArrayList();
@@ -184,13 +184,13 @@ public class ModItems
 			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 		}
 	}
-	
-	private void addItem(Item item, String name)
+
+	private void addItem(final Item item, final String name)
 	{
 		item.setRegistryName(Constants.MOD_ID, name);
 		item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
 		item.setCreativeTab(Constants.TABNTM);
-		
+
 		ITEMS.add(item);
 	}
 

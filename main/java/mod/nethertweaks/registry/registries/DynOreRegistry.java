@@ -25,7 +25,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 {
 
     private final List<DynOre> itemOreRegistry = new ArrayList<>();
-    
+
 	public DynOreRegistry()
 	{
 		super(
@@ -40,21 +40,20 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 	}
 
 	@Override
-	protected void registerEntriesFromJSON(FileReader fr) {
+	protected void registerEntriesFromJSON(final FileReader fr) {
         List<DynOre> gsonInput = gson.fromJson(fr, new TypeToken<List<DynOre>>() {
         }.getType());
-        for (DynOre ore : gsonInput) {
-            register(ore);
-        }
+        for (DynOre ore : gsonInput)
+			register(ore);
 	}
 
 	@Override
 	public List<?> getRecipeList() {
-		return this.itemOreRegistry;
+		return itemOreRegistry;
 	}
 
 	@Override
-	public ItemChunk getOreItem(String name) {
+	public ItemChunk getOreItem(final String name) {
 		// TODO Auto-generated method stub
 		/*
         for (DynOre itemOre : itemOreRegistry) {
@@ -68,7 +67,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 	}
 
 	@Override
-	public boolean isRegistered(String name) {
+	public boolean isRegistered(final String name) {
 		/*
 		if (this.getOreItem(name) != null)
 		{
@@ -78,30 +77,31 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 		return false;
 	}
 
-	public DynOre register(String id, String name, ItemInfo ingot) {
+	public DynOre register(final String id, final String name, final ItemInfo ingot) {
 		// TODO Auto-generated method stub
 		return this.register(id, name, ingot, 1);
 	}
-	
-	public DynOre register(String id, String name, ItemInfo ingot, int rarity) {
+
+	public DynOre register(final String id, final String name, final ItemInfo ingot, final int rarity) {
 		// TODO Auto-generated method stub
 		return this.register(id, name, ingot, rarity, 0x80000000);
 	}
-	
+
 	@Override
-	public DynOre register(String id, String name, ItemInfo ingot, int rarity, int color) {
+	public DynOre register(final String id, final String name, final ItemInfo ingot, final int rarity, final int color) {
 		// TODO Auto-generated method stub
 		DynOre ore = new DynOre(id, name, ingot, rarity, color);
 		register(ore);
 		return ore;
 	}
-	
-	public void register(DynOre ore)
+
+	@Override
+	public void register(final DynOre ore)
 	{
-		this.itemOreRegistry.add(ore);
-		this.registry.add(ore);
+		itemOreRegistry.add(ore);
+		registry.add(ore);
 	}
-	
+
 	@Override
     public void registerDefaults() {
         OreHandler.registerDynOreChunks(this);
@@ -112,20 +112,16 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 		file = new File(file, "DynamicOreRegistry.json");
 		registerDefaults();
 		if (!file.exists())
-		{
-        	if (Config.enableJSONLoading) {
-		    	try(FileWriter fw = new FileWriter(file)) {
+			if (Config.enableJSONLoading)
+				try(FileWriter fw = new FileWriter(file)) {
 		        	// TODO remove null again
-		        	if (typeOfSource != null) {
-		            	gson.toJson(registry, typeOfSource, fw);
-		        	} else {
-		            	gson.toJson(registry, fw);
-		        	}
+		        	if (typeOfSource != null)
+						gson.toJson(registry, typeOfSource, fw);
+					else
+						gson.toJson(registry, fw);
 		    	} catch (Exception e) {
 		        	e.printStackTrace();
 		    	}
-        	}
-		}
 	}
 
     @Override
@@ -133,13 +129,12 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 		file = new File(file, "DynamicOreRegistry.json");
         if (hasAlreadyBeenLoaded) clearRegistry();
 
-        if (file.exists() && Config.enableJSONLoading) {
-            try(FileReader fr = new FileReader(file)) {
+        if (file.exists() && Config.enableJSONLoading)
+			try(FileReader fr = new FileReader(file)) {
                 registerEntriesFromJSON(fr);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
 
         hasAlreadyBeenLoaded = true;
 

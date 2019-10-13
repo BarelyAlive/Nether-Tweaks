@@ -71,8 +71,8 @@ public class Milkable
 				return false;
 		} else if (!entityOnTop.equals(other.entityOnTop))
 			return false;
-		if (result == null) {
-            return other.result == null;
-		} else return result.equals(other.result);
+		if (result == null)
+			return other.result == null;
+		else return result.equals(other.result);
     }
 }

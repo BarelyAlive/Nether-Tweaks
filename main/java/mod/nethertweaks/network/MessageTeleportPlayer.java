@@ -12,7 +12,6 @@ import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -86,13 +85,9 @@ public class MessageTeleportPlayer implements IMessage {
 			player.closeScreen();
 
 			if (ctx.side == Side.CLIENT)
-			{
 				NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
-			}
 			else
-			{
 				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
-			}
 
 			return null;
 		}

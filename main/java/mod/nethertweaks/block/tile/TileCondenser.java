@@ -123,7 +123,7 @@ public class TileCondenser extends TileFluidInventory
 			insertToInventory(pos.east(), EnumFacing.WEST);
 		}
 
-		if (fillTick == 20) {
+		if (fillTick == 20)
 			if (world.getTileEntity(pos.up()) instanceof TileBarrel)
 			{
 				TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
@@ -135,9 +135,9 @@ public class TileCondenser extends TileFluidInventory
 						if (amount <= 1f && getCompostMeter() >= 100f)
 						{
 							if(barrel.getMode() == null) barrel.setMode("compost");
-	
+
 							((BarrelModeCompost) barrel.getMode()).setCompostState(Blocks.DIRT.getDefaultState());
-	
+
 							NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("compost", pos.up()), barrel);
 							((BarrelModeCompost) barrel.getMode()).setFillAmount(amount + 0.1f);
 							setCompostMeter(getCompostMeter() - 100f);
@@ -147,7 +147,6 @@ public class TileCondenser extends TileFluidInventory
 						}
 					}
 			}
-		}
 	}
 
 	private float getMaxTemp()

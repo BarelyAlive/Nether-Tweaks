@@ -73,7 +73,7 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public TileBarrel() {
-		this((Barrel) ModBlocks.OAK_BARREL);
+		this(ModBlocks.OAK_BARREL);
 	}
 
 	public TileBarrel(final Barrel block) {

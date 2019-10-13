@@ -15,7 +15,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.api.IOreRegistry;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.item.ItemOre;

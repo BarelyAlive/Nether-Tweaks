@@ -50,12 +50,8 @@ public class GuiBonfire extends GuiContainer {
 
 		bonfires = new HashMap<>();
 		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.bonfire_info.entrySet())
-		{
-			if((entry.getValue().isPublic() || (!entry.getValue().isPublic() && (entry.getValue().getOwner().getLeastSignificantBits() == player.getUUID(player.getGameProfile()).getLeastSignificantBits() && entry.getValue().getOwner().getMostSignificantBits() == player.getUUID(player.getGameProfile()).getMostSignificantBits()))) && !entry.getKey().equals(this.pos))
-			{
-				this.bonfires.put(entry.getKey(), entry.getValue());
-			}
-		}
+			if((entry.getValue().isPublic() || !entry.getValue().isPublic() && entry.getValue().getOwner().getLeastSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getLeastSignificantBits() && entry.getValue().getOwner().getMostSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getMostSignificantBits()) && !entry.getKey().equals(this.pos))
+				bonfires.put(entry.getKey(), entry.getValue());
 	}
 
 	@Override

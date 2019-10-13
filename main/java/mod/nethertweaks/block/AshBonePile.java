@@ -122,7 +122,7 @@ public class AshBonePile extends CubeContainerHorizontal
 				if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
 				{
 					BlockPos resultPos = testPosition(world, pos);
-					BonfireInfo info = new BonfireInfo(player.getUUID(player.getGameProfile()), world.provider.getDimension());
+					BonfireInfo info = new BonfireInfo(EntityPlayer.getUUID(player.getGameProfile()), world.provider.getDimension());
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
 					WorldSpawnLocation.bonfire_info.put(pos, info);
@@ -219,9 +219,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					}
 			WorldSpawnLocation.bonfire_info.remove(pos);
 			if (world.isRemote)
-			{
 				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
-			}
 		}
 	}
 

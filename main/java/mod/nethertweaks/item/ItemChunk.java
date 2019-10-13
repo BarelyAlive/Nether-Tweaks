@@ -14,7 +14,7 @@ public class ItemChunk extends Item {
 	private String ore_name = "";
 	private String display_name = "";
 	private int color = 0;
-	
+
 	public ItemChunk() {
 		super();
 		setHasSubtypes(true);
@@ -43,26 +43,26 @@ public class ItemChunk extends Item {
 	public ItemStack getResult()
 	{
 		ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
-		return (result.isEmpty() ? new ItemStack(results) : result);
+		return result.isEmpty() ? new ItemStack(results) : result;
 	}
-	
-	public void setColor(int color) {
+
+	public void setColor(final int color) {
 		this.color = color;
 	}
-	
+
 	public int getColor()
 	{
 		return color;
 	}
-	
-	public void setDisplayName(String name)
+
+	public void setDisplayName(final String name)
 	{
-		this.display_name = name;
+		display_name = name;
 	}
-	
+
 	private String getDisplayName()
 	{
-		return this.display_name;
+		return display_name;
 	}
 
 	@Override
@@ -77,11 +77,11 @@ public class ItemChunk extends Item {
 
 	public String getLocalizedName(final ItemStack stack)
 	{
-		if (this.display_name == "")
+		if (display_name == "")
 		{
-			String name = this.getResult().getDisplayName();
+			String name = getResult().getDisplayName();
 			String[] name_split = name.split(" ");
-			if (name_split[(name_split.length - 1)].toLowerCase().equals("ingot"))
+			if (name_split[name_split.length - 1].toLowerCase().equals("ingot"))
 			{
 	            StringBuilder nameBuilder = new StringBuilder();
 	            for(int i = 0; i < name_split.length - 1; i++)
@@ -93,11 +93,8 @@ public class ItemChunk extends Item {
 	        } else
 				name += " ";
 			return name + this.getLocalizedName();
-		}
-		else
-		{
-			return this.display_name;
-		}
+		} else
+			return display_name;
 	}
 
 	public String getLocalizedName()

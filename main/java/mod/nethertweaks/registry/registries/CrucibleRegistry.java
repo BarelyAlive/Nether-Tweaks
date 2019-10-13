@@ -165,11 +165,10 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 			// Collect all the potential itemstacks which match this ingredient
 			List<ItemStack> inputs = new ArrayList<>();
 			for(ItemStack match : ingredient.getMatchingStacks()){
-				if(match.isEmpty()) {
+				if(match.isEmpty())
 					continue;
-				} else {
+				else
 					match.getItem();
-				}
 				ItemStack input = match.copy();
 				input.setCount((int) Math.ceil(Fluid.BUCKET_VOLUME / entry.getValue().getAmount()));
 				inputs.add(input);

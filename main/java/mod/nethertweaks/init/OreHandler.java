@@ -9,8 +9,8 @@ import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.item.ItemChunk;
-import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.types.DynOre;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.client.Minecraft;
@@ -23,7 +23,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
-import scala.reflect.internal.TreeGen.GetVarTraverser;
 
 class OreInfo
 {
@@ -47,8 +46,8 @@ public class OreHandler {
 		String reg = reg_domain + ":" + reg_path;
 		String unlocalized_name = stack.getUnlocalizedName();
 		String display_name = new ItemStack(stack).getDisplayName().toLowerCase();
-        for (String dis_name : disabled_chunks) {
-            if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
+        for (String dis_name : disabled_chunks)
+			if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
                 if (enable_chunks.size() != 0)
                     for (String en_name : enable_chunks) {
                         if (!reg.contains(en_name) && !unlocalized_name.contains(en_name) && !display_name.contains(en_name))
@@ -56,16 +55,15 @@ public class OreHandler {
                     }
                 else
                     return;
-        }
 
 		/*
 		List<DynOre> registry = NTMRegistryManager.DYN_ORE_REGISTRY.getRegistry();
-		
+
 		if (!registry.isEmpty())
 		{
-		
+
 			boolean founded = false;
-			
+
 			for(DynOre entry : registry)
 			{
 				if (entry.getResult().getItemStack().getItem().equals(stack))
@@ -76,15 +74,15 @@ public class OreHandler {
 					break;
 				}
 			}
-			
+
 			if (!founded)
 			{
 				return;
 			}
-			
+
 		}
 		*/
-		
+
 		if (!ore_list.containsKey(stack))
 			ore_list.put(stack, rarity);
 	}
@@ -109,7 +107,7 @@ public class OreHandler {
 	public static void register(final IForgeRegistry<Item> registry) {
 		ItemChunk chunks;
 		ArrayList<DynOre> list = (ArrayList<DynOre>) NTMRegistryManager.DYN_ORE_REGISTRY.getRegistry();
-		
+
 		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
 		{
 			String[] name_array = new ItemStack(entry.getKey()).getDisplayName().split(" ");
@@ -118,24 +116,20 @@ public class OreHandler {
 			String mod_domain  = String.join("_", name_list);
 			mod_domain = mod_domain.toLowerCase();
 			DynOre found_entry = null;
-			
+
 			if (!list.isEmpty())
 			{
-				
+
 				for (DynOre entry_ore : list)
-				{
 					if (entry_ore.getID().equals(mod_domain))
 					{
 						found_entry = entry_ore;
 						break;
 					}
-				}
 				if (found_entry == null)
-				{
 					continue;
-				}
 			}
-			
+
 			if(!mod_chunks.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
@@ -175,31 +169,25 @@ public class OreHandler {
 			FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1), entry.getValue().getResult(), 1.0f);
 	}
 
-	public static void registerDynOreChunks(DynOreRegistry registry) {
+	public static void registerDynOreChunks(final DynOreRegistry registry) {
 		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
 		{
 	        try {
 	        	ItemStack result = entry.getValue().getResult();
 	        	if(result.isEmpty())
-	        	{
-	        		continue;
-	        	}
+					continue;
 	        	if (entry.getValue().getColor() == 0)
 	        	{
 		        	IBakedModel res = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(result);
 		        	for(int i = 0; i < res.getParticleTexture().getFrameCount(); i++)
-		        	{
-		        		if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
-		        		{
-		    		        entry.getValue().setColor(res.getParticleTexture().getFrameTextureData(0)[i][140]);
-		        		}
-		        	}
+						if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
+							entry.getValue().setColor(res.getParticleTexture().getFrameTextureData(0)[i][140]);
 	        	}
 	        	mod_chunks.put(entry.getKey(), entry.getValue());
 			} catch (Exception e) {
 	        	e.printStackTrace();
 			}
-			registry.register(entry.getKey(), (new ItemStack(entry.getValue())).getDisplayName(), new ItemInfo(entry.getValue().getResult()), 1, entry.getValue().getColor());
+			registry.register(entry.getKey(), new ItemStack(entry.getValue()).getDisplayName(), new ItemInfo(entry.getValue().getResult()), 1, entry.getValue().getColor());
 		}
 	}
 }

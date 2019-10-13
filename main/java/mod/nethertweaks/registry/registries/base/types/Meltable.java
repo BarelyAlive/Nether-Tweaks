@@ -69,9 +69,9 @@ public class Meltable {
 		Meltable other = (Meltable) obj;
 		if (amount != other.amount)
 			return false;
-		if (fluid == null) {
-            return other.fluid == null;
-		} else return fluid.equals(other.fluid);
+		if (fluid == null)
+			return other.fluid == null;
+		else return fluid.equals(other.fluid);
     }
 
 	public static Meltable getEMPTY() {
