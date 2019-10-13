@@ -15,6 +15,7 @@ import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -95,7 +96,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					{
 						info.setSpawnPos(resultPos);
 						if (world.isRemote)
-							NetherTweaksMod.network.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
+							NetworkHandler.INSTANCE.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
 					}
 				}
 	}
@@ -125,7 +126,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
 					WorldSpawnLocation.bonfire_info.put(pos, info);
-					NetherTweaksMod.network.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
+					NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
 				}
 			}
 		} else
@@ -214,11 +215,11 @@ public class AshBonePile extends CubeContainerHorizontal
 						Objects.requireNonNull(player).sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
 						if (world.isRemote)
-							NetherTweaksMod.network.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
+							NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
 			WorldSpawnLocation.bonfire_info.remove(pos);
 			if (world.isRemote)
-				NetherTweaksMod.network.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
+				NetworkHandler.INSTANCE.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}
 	}
 

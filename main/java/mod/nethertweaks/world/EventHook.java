@@ -26,6 +26,7 @@ import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
 import mod.sfhcore.helper.NotNull;
 import mod.sfhcore.helper.PlayerInventory;
+import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -202,7 +203,7 @@ public class EventHook
 	public void firstSpawn(final PlayerEvent.PlayerLoggedInEvent event)
 	{
 		teleportPlayer(event.player);
-		NetherTweaksMod.network.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
+		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
 	}
 
 	//Enitity Interaction
@@ -289,7 +290,7 @@ public class EventHook
 			if(stats != null)
 				stats.update(event.player);
 		} else
-			NetherTweaksMod.network.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
+			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
 	}
 
 	@SubscribeEvent

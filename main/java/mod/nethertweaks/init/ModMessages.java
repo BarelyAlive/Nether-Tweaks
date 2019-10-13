@@ -15,6 +15,7 @@ import mod.nethertweaks.network.bonfire.MessageBonfireUpdate;
 import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.MessageNBTUpdate;
+import mod.sfhcore.network.NetworkHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,6 +48,6 @@ public class ModMessages {
     }
 
     private static <REQ extends IMessage, REPLY extends IMessage> void registerMessage(final Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, final Class<REQ> requestMessageType, final Side receivingSide) {
-        NetherTweaksMod.network.registerMessage(messageHandler, requestMessageType, messageID++, receivingSide);
+        NetworkHandler.INSTANCE.registerMessage(messageHandler, requestMessageType, messageID++, receivingSide);
     }
 }

@@ -59,8 +59,6 @@ public class NetherTweaksMod
 		return instance;
 	}
 
-	public static SimpleNetworkWrapper network;
-
 	static
 	{
 		FluidRegistry.enableUniversalBucket();
@@ -87,8 +85,6 @@ public class NetherTweaksMod
 		LogUtil.setup(Constants.MOD_ID, configDirectory);
 
 		Compatibility.init();
-
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(Constants.MOD_ID);
 
 		ModMessages.registerMessages();
 		new ModBlocks();
