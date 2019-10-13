@@ -12,7 +12,6 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import mod.nethertweaks.registry.types.DynOre;
-import mod.nethertweaks.registry.types.Ore;
 import mod.sfhcore.json.JsonHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;

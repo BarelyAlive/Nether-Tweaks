@@ -1,35 +1,23 @@
-package mod.nethertweaks.registries.registries;
+package mod.nethertweaks.registry.registries;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import mod.nethertweaks.api.IDynOreRegistry;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.handler.OreHandler;
-import mod.nethertweaks.items.ItemChunk;
-import mod.nethertweaks.items.ItemOre;
-import mod.nethertweaks.json.CustomColorJson;
-import mod.nethertweaks.json.CustomCompostableJson;
+import mod.nethertweaks.init.OreHandler;
+import mod.nethertweaks.item.ItemChunk;
 import mod.nethertweaks.json.CustomIngredientJson;
-import mod.nethertweaks.registries.ingredient.OreIngredientStoring;
-import mod.nethertweaks.registries.manager.IDefaultRecipeProvider;
-import mod.nethertweaks.registries.manager.NTMRegistryManager;
-import mod.nethertweaks.registries.registries.base.BaseRegistryList;
-import mod.nethertweaks.registry.types.Compostable;
+import mod.nethertweaks.registry.manager.NTMRegistryManager;
+import mod.nethertweaks.registry.registries.base.BaseRegistryList;
 import mod.nethertweaks.registry.types.DynOre;
-import mod.nethertweaks.registry.types.Ore;
-import mod.sfhcore.json.CustomBlockInfoJson;
 import mod.sfhcore.json.CustomItemInfoJson;
-import mod.sfhcore.texturing.Color;
-import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.item.crafting.Ingredient;
 

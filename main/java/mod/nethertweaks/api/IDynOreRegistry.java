@@ -9,10 +9,9 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import mod.nethertweaks.items.ItemChunk;
-import mod.nethertweaks.items.ItemOre;
+import mod.nethertweaks.item.ItemChunk;
+import mod.nethertweaks.item.ItemOre;
 import mod.nethertweaks.registry.types.DynOre;
-import mod.nethertweaks.registry.types.Ore;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.ItemInfo;
 
