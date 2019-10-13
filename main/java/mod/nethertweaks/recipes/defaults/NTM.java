@@ -33,7 +33,6 @@ import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.OreDictUtil;
 import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
