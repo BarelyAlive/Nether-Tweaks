@@ -12,7 +12,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class GuiThirstBar {
 
 	public static final ResourceLocation THIRST_BAR_ICONS = new ResourceLocation("nethertweaksmod:textures/gui/thirst_bar.png");

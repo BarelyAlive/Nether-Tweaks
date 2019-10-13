@@ -15,7 +15,6 @@ import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
 import mod.sfhcore.blocks.CubeContainerHorizontal;
-import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -96,7 +95,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					{
 						info.setSpawnPos(resultPos);
 						if (world.isRemote)
-							NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
+							NetherTweaksMod.network.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, info));
 					}
 				}
 	}
@@ -126,7 +125,7 @@ public class AshBonePile extends CubeContainerHorizontal
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
 					WorldSpawnLocation.bonfire_info.put(pos, info);
-					NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
+					NetherTweaksMod.network.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
 				}
 			}
 		} else
@@ -215,11 +214,11 @@ public class AshBonePile extends CubeContainerHorizontal
 						Objects.requireNonNull(player).sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.lastSpawnLocations.remove(entry);
 						if (world.isRemote)
-							NetworkHandler.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
+							NetherTweaksMod.network.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
 			WorldSpawnLocation.bonfire_info.remove(pos);
 			if (world.isRemote)
-				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
+				NetherTweaksMod.network.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}
 	}
 
@@ -227,19 +226,30 @@ public class AshBonePile extends CubeContainerHorizontal
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(final IBlockState stateIn, final World world, final BlockPos pos, final Random rand) {
-		l++;
-		if (rand.nextDouble() < 0.1D)
-			world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
-		if (l == 1) {
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
-			world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, -(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
-			l = 0;
+		if (stateIn.getValue(LIT)) {
+			l++;
+			if (rand.nextDouble() < 0.1D)
+				world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+			if (l == 1) {
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						-(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						-(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, rand.nextDouble() % 0.04D);
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						-(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						rand.nextDouble() % 0.04D, rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
+						-(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
+				l = 0;
+			} 
 		}
 		super.randomDisplayTick(stateIn, world, pos, rand);
 	}

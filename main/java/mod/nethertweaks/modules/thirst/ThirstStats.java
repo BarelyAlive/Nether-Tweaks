@@ -3,9 +3,9 @@ package mod.nethertweaks.modules.thirst;
 import java.lang.reflect.Field;
 import java.util.Random;
 
+import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageThirstStats;
-import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -109,7 +109,7 @@ public class ThirstStats {
 
 		// Only send packet update if the thirst level or saturation has changed.
 		if (lastThirstLevel != thirstLevel || lastSaturation != saturation || lastPoisoned != poisoned) {
-			NetworkHandler.INSTANCE.sendTo(new MessageThirstStats(this), (EntityPlayerMP) player);
+			NetherTweaksMod.network.sendTo(new MessageThirstStats(this), (EntityPlayerMP) player);
 			lastThirstLevel = thirstLevel;
 			lastSaturation = saturation;
 			lastPoisoned = poisoned;
