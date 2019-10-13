@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.common.base.Preconditions;
+
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.block.AshBonePile;
 import mod.nethertweaks.block.Barrel;
@@ -174,55 +176,40 @@ public class ModBlocks
 	
 	private void addItemBlocks()
 	{		
-		//Regular Blocks
-		if(BlocksItems.enableBarrel) {
-			ITEMS.add(new ItemBlock(STONE_BARREL).setRegistryName(Constants.STONE_BARREL));
-			ITEMS.add(new ItemBlock(OAK_BARREL).setRegistryName(Constants.OAK_BARREL));
-			ITEMS.add(new ItemBlock(BIRCH_BARREL).setRegistryName(Constants.BIRCH_BARREL));
-			ITEMS.add(new ItemBlock(SPRUCE_BARREL).setRegistryName(Constants.SPRUCE_BARREL));
-			ITEMS.add(new ItemBlock(JUNGLE_BARREL).setRegistryName(Constants.JUNGLE_BARREL));
-			ITEMS.add(new ItemBlock(ACACIA_BARREL).setRegistryName(Constants.ACACIA_BARREL));
-			ITEMS.add(new ItemBlock(DARK_OAK_BARREL).setRegistryName(Constants.DARK_OAK_BARREL));
-
-			if(BlocksItems.enableElderTree)
-				ITEMS.add(new ItemBlock(ELDER_BARREL).setRegistryName(Constants.ELDER_BARREL));
-		}
-		if(BlocksItems.enableSieve) {
-			ITEMS.add(new ItemBlock(STONE_SIEVE).setRegistryName(Constants.STONE_SIEVE));
-			ITEMS.add(new ItemBlock(OAK_SIEVE).setRegistryName(Constants.OAK_SIEVE));
-			ITEMS.add(new ItemBlock(BIRCH_SIEVE).setRegistryName(Constants.BIRCH_SIEVE));
-			ITEMS.add(new ItemBlock(SPRUCE_SIEVE).setRegistryName(Constants.SPRUCE_SIEVE));
-			ITEMS.add(new ItemBlock(JUNGLE_SIEVE).setRegistryName(Constants.JUNGLE_SIEVE));
-			ITEMS.add(new ItemBlock(ACACIA_SIEVE).setRegistryName(Constants.ACACIA_SIEVE));
-			ITEMS.add(new ItemBlock(DARK_OAK_SIEVE).setRegistryName(Constants.DARK_OAK_SIEVE));
-
-			if(BlocksItems.enableElderTree)
-				ITEMS.add(new ItemBlock(ELDER_SIEVE).setRegistryName(Constants.ELDER_SIEVE));
-		}
-		if(BlocksItems.enableAshBonePile)		ITEMS.add(new ItemBlock(ASH_BONE_PILE).setRegistryName(Constants.ASH_BONE_PILE));
-		if(BlocksItems.enableFreezer)			ITEMS.add(new ItemBlock(FREEZER).setRegistryName(Constants.FREEZER));
-		if(BlocksItems.enableHellmart)			ITEMS.add(new ItemBlock(HELLMART).setRegistryName(Constants.HELLMART));
-		if(BlocksItems.enableCondenser) 		ITEMS.add(new ItemBlock(CONDENSER).setRegistryName(Constants.CONDENSER));
-		if(BlocksItems.enableNetherrackFurnace)	ITEMS.add(new ItemBlock(NETHERRACK_FURNACE).setRegistryName(Constants.NETHERRACK_FURNACE));
-		if(BlocksItems.enableCrucible) {
-			ITEMS.add(new ItemBlock(UNFIRED_CRUCIBLE).setRegistryName(Constants.UNFIRED_CRUCIBLE));
-			ITEMS.add(new ItemBlock(CRUCIBLE).setRegistryName(Constants.CRUCIBLE));
-		}
-		if(BlocksItems.enableHellfayah) {
-			ITEMS.add(new ItemBlock(HELLFAYAH_ORE).setRegistryName(Constants.HELLFAYAH_ORE));
-			ITEMS.add(new ItemBlock(BLOCK_OF_HELLFAYAH).setRegistryName(Constants.BLOCK_OF_HELLFAYAH));
-		}
-		if(BlocksItems.enableSaltBlock) 		ITEMS.add(new ItemBlock(BLOCK_OF_SALT).setRegistryName(Constants.BLOCK_OF_SALT));
-		if(BlocksItems.enableDust) 				ITEMS.add(new ItemBlock(DUST).setRegistryName(Constants.DUST));
-		if(BlocksItems.enableStwH) 				ITEMS.add(new ItemBlock(STWH).setRegistryName(Constants.STWH));
-		if(BlocksItems.enableElderTree) {
-			ITEMS.add(new ItemBlock(ELDER_SAPLING).setRegistryName(Constants.ELDER_SAPLING));
-			ITEMS.add(new ItemBlock(ELDER_LOG).setRegistryName(Constants.ELDER_LOG));
-			ITEMS.add(new ItemBlock(ELDER_LEAVES).setRegistryName(Constants.ELDER_LEAVES));
-			ITEMS.add(new ItemBlock(ELDER_PLANKS).setRegistryName(Constants.ELDER_PLANKS));
-		}
-		if(BlocksItems.enableNetherrackGravel)	ITEMS.add(new ItemBlock(NETHERRACK_GRAVEL).setRegistryName(Constants.NETHERRACK_GRAVEL));
-		if(BlocksItems.enableMeanVine) 			ITEMS.add(new ItemBlock(MEAN_VINE).setRegistryName(Constants.MEAN_VINE));
+		addItemBlock(STONE_BARREL);
+		addItemBlock(OAK_BARREL);
+		addItemBlock(BIRCH_BARREL);
+		addItemBlock(SPRUCE_BARREL);
+		addItemBlock(JUNGLE_BARREL);
+		addItemBlock(ACACIA_BARREL);
+		addItemBlock(DARK_OAK_BARREL);
+		addItemBlock(ELDER_BARREL);
+		addItemBlock(STONE_SIEVE);
+		addItemBlock(OAK_SIEVE);
+		addItemBlock(BIRCH_SIEVE);
+		addItemBlock(SPRUCE_SIEVE);
+		addItemBlock(JUNGLE_SIEVE);
+		addItemBlock(ACACIA_SIEVE);
+		addItemBlock(DARK_OAK_SIEVE);
+		addItemBlock(ELDER_SIEVE);
+		addItemBlock(ASH_BONE_PILE);
+		addItemBlock(FREEZER);
+		addItemBlock(HELLMART);
+		addItemBlock(CONDENSER);
+		addItemBlock(NETHERRACK_FURNACE);
+		addItemBlock(UNFIRED_CRUCIBLE);
+		addItemBlock(CRUCIBLE);
+		addItemBlock(HELLFAYAH_ORE);
+		addItemBlock(BLOCK_OF_HELLFAYAH);
+		addItemBlock(BLOCK_OF_SALT);
+		addItemBlock(DUST);
+		addItemBlock(STWH);
+		addItemBlock(ELDER_SAPLING);
+		addItemBlock(ELDER_LOG);
+		addItemBlock(ELDER_LEAVES);
+		addItemBlock(ELDER_PLANKS);
+		addItemBlock(NETHERRACK_GRAVEL);
+		addItemBlock(MEAN_VINE);
 	}
 		
 	private void addBlock(Block block, String name)
@@ -232,6 +219,12 @@ public class ModBlocks
 		block.setCreativeTab(Constants.TABNTM);
 		
 		BLOCKS.add(block);	
+	}
+	
+	private void addItemBlock(Block block)
+	{
+		if(BLOCKS.contains(block))
+			ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 
 	@SubscribeEvent
