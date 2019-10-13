@@ -1,11 +1,13 @@
-package mod.nethertweaks.entities;
+package mod.nethertweaks.init;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.entities.EntityItemLava;
+import mod.nethertweaks.entities.ProjectileStone;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-public class NTMEntities
+public class ModEntities
 {
 	public static void init()
 	{

@@ -6,14 +6,14 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import mod.nethertweaks.capabilities.NTMCapabilities;
+import mod.nethertweaks.capabilities.ModCapabilities;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
-import mod.nethertweaks.entities.NTMEntities;
 import mod.nethertweaks.init.GuiHandler;
 import mod.nethertweaks.init.HammerHandler;
 import mod.nethertweaks.init.JsonRecipeHandler;
 import mod.nethertweaks.init.ModBlocks;
+import mod.nethertweaks.init.ModEntities;
 import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.init.ModMessages;
@@ -91,8 +91,8 @@ public class NetherTweaksMod
 		new ModItems();
 
 		ModFluids.init();
-		NTMCapabilities.init();
-		NTMEntities.init();
+		ModCapabilities.init();
+		ModEntities.init();
 		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
