@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
+import mod.nethertweaks.Constants;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.enchantments.EnchantmentEfficiency;
@@ -50,6 +51,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -398,11 +400,11 @@ public class EventHook
 	//*********************************************************************************************************************
 
 	@SubscribeEvent
-	public static void registerEnchantments(final IForgeRegistry<Enchantment> registry)
+	public static void registerEnchantments(final RegistryEvent.Register<Enchantment> registry)
 	{
-		registry.register(new EnchantmentEfficiency());
-		registry.register(new EnchantmentLuckOfTheSea());
-		registry.register(new EnchantmentFortune());
+		registry.getRegistry().register(new EnchantmentEfficiency());
+		registry.getRegistry().register(new EnchantmentLuckOfTheSea());
+		registry.getRegistry().register(new EnchantmentFortune());
 	}
 
 	//*********************************************************************************************************************
