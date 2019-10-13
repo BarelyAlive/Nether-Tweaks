@@ -10,11 +10,9 @@ import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
 public class HammerHandler
 {
 	private static ItemStack hammer = ItemStack.EMPTY;

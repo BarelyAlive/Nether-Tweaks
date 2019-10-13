@@ -7,18 +7,16 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod.EventBusSubscriber
 public class OreRegistrationHandler
 {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public static void registerOres (final RegistryEvent.Register<Item> event)
+	public void registerOres (final RegistryEvent.Register<Item> event)
 	{
 		NTMRegistryManager.DYN_ORE_REGISTRY.loadJson(NetherTweaksMod.configDirectory);
 		NTMRegistryManager.registerDynOreDefaultRecipeHandler(new NTMDefaultRecipes.DynOreDefaults());
@@ -47,14 +45,14 @@ public class OreRegistrationHandler
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
 	@SideOnly(Side.CLIENT)
-    public static void registerItemHandlers(final ColorHandlerEvent.Item event)
+    public void registerItemHandlers(final ColorHandlerEvent.Item event)
     {
     	OreHandler.registerItemHandlers(event);
     }
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	@SideOnly(Side.CLIENT)
-	public static void registerOreModels(final ModelRegistryEvent event)
+	public void registerOreModels(final ModelRegistryEvent event)
 	{
 		OreHandler.registerModels(event);
 	}

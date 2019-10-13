@@ -10,6 +10,7 @@ import mod.nethertweaks.capabilities.ModCapabilities;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.init.GuiHandler;
+import mod.nethertweaks.init.HammerHandler;
 import mod.nethertweaks.init.JsonRecipeHandler;
 import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModEntities;
@@ -18,6 +19,7 @@ import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.init.ModMessages;
 import mod.nethertweaks.init.ModSmeltingNOreDict;
 import mod.nethertweaks.init.OreHandler;
+import mod.nethertweaks.init.OreRegistrationHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
@@ -28,6 +30,7 @@ import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
 import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -92,6 +95,10 @@ public class NetherTweaksMod
 		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
+		
+		MinecraftForge.EVENT_BUS.register(new OreRegistrationHandler());
+		MinecraftForge.EVENT_BUS.register(new EventHook());
+		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 
 		getProxy().preInit();
 	}
