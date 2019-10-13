@@ -39,7 +39,7 @@ public class BlocksItems
 	enableGrassSeeds		  = true,
 	enableCactusSeeds		  = true,
 	enableSugarcaneSeeds	  = true,
-	enableCrystalOfLight 		  = true,
+	enableCrystalOfLight 	  = true,
 	enableAsh			 	  = true,
 	enableWoodChippings 	  = true,
 	enableCoiledSword 		  = true,
@@ -83,7 +83,7 @@ public class BlocksItems
 	enableWoodBucket 		  = true,
 	enableStoneBucket 		  = true;
 
-	protected static void load(final Configuration config)
+	static void load(final Configuration config)
 	{
 		//BlockEnable
 		config.addCustomCategoryComment("Blocks", "Disabling one of these may break mechanics in NTM!");

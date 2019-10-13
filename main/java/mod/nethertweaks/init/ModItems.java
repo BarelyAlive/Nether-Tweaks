@@ -106,10 +106,9 @@ public class ModItems
 	//Food & DRINKS
 	public static final ItemFood COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true);
 
-	//ItemBlocks
+	//"Block-Placer"
 	public static final ItemDoor ITEM_STONE_DOOR 	 = new ItemDoor();
 	public static final ItemDoor ITEM_ELDER_DOOR 	 = new ItemDoor();
-	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB_DOUBLE);
 
 	//END_OF_INITIALIZATION
 
@@ -179,10 +178,7 @@ public class ModItems
 		if(BlocksItems.enableHammerDiamond)  	addItem(HAMMER_DIAMOND, Constants.HAMMER_DIAMOND);
 		if(BlocksItems.enableJerky)  			addItem(COOKED_JERKY, Constants.COOKED_JERKY);
 		if(BlocksItems.enableStoneDoor)  		addItem(ITEM_STONE_DOOR, Constants.STONE_DOOR);
-		if(BlocksItems.enableElderTree) {
-			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
-			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
-		}
+		if(BlocksItems.enableElderTree)			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 	}
 
 	private void addItem(final Item item, final String name)
