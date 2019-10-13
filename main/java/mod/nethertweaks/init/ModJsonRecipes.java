@@ -4,10 +4,11 @@ import java.io.File;
 
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 
-public class JsonRecipeHandler
+public class ModJsonRecipes
 {
-	public static void loadJasonVorhees(final File f)
+	public static void init(final File f)
 	{
+		//load
 		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(f, "CompostRegistry.json"));
 		NTMRegistryManager.SIEVE_REGISTRY.loadJson(new File(f, "SieveRegistry.json"));
 		NTMRegistryManager.CONDENSER_REGISTRY.loadJson(new File(f, "CondenserRegistry.json"));
@@ -22,5 +23,8 @@ public class JsonRecipeHandler
 		NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.loadJson(new File(f, "FluidItemFluidRegistry.json"));
 		NTMRegistryManager.CRUCIBLE_STONE_REGISTRY.loadJson(new File(f, "CrucibleRegistryStone.json"));
 		NTMRegistryManager.MILK_ENTITY_REGISTRY.loadJson(new File(f, "MilkEntityRegistry.json"));
+
+		//save
+		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(f);
 	}
 }

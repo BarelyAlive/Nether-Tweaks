@@ -11,11 +11,11 @@ import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.init.GuiHandler;
 import mod.nethertweaks.init.HammerHandler;
-import mod.nethertweaks.init.JsonRecipeHandler;
 import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModEntities;
 import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.init.ModItems;
+import mod.nethertweaks.init.ModJsonRecipes;
 import mod.nethertweaks.init.ModMessages;
 import mod.nethertweaks.init.ModSmeltingNOreDict;
 import mod.nethertweaks.init.OreHandler;
@@ -23,7 +23,6 @@ import mod.nethertweaks.init.OreRegistrationHandler;
 import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.CommonProxy;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
-import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
@@ -121,8 +120,7 @@ public class NetherTweaksMod
 
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
-		JsonRecipeHandler.loadJasonVorhees(configDirectory);
-		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(configDirectory);
+		ModJsonRecipes.init(configDirectory);
 	}
 
 	@Mod.EventHandler
