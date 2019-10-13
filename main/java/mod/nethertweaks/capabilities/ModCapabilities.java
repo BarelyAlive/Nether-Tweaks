@@ -2,7 +2,7 @@ package mod.nethertweaks.capabilities;
 
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
-public class NTMCapabilities
+public class ModCapabilities
 {
 	public static void init()
 	{

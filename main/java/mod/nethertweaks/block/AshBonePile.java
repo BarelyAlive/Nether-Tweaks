@@ -136,10 +136,7 @@ public class AshBonePile extends CubeContainerHorizontal
 
 	@Override
 	public int getMetaFromState(final IBlockState state) {
-		if (state.getValue(LIT))
-			return 1;
-		else
-			return 0;
+		return state.getValue(LIT) ? 1 : 0;
 	}
 
 	@Override
