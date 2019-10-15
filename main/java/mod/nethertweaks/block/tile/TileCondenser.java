@@ -171,8 +171,8 @@ public class TileCondenser extends TileFluidInventory
 	private void fillToNeighborsTank()
 	{
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(distilled(), Config.fluidOutputAmount);
-			if (getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
+			FluidStack water = new FluidStack(distilled(), Config.fluidTransferAmount);
+			if (getTank().getFluidAmount() != 0 && Config.fluidTransferAmount > 0) {
 				BlockPos north = getPos().north();
 				BlockPos east = getPos().east();
 				BlockPos south = getPos().south();

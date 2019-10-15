@@ -91,8 +91,8 @@ public class TileFreezer extends TileFluidInventory
 		}
 
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidOutputAmount);
-			if (Config.fluidOutputAmount > 0) {
+			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidTransferAmount);
+			if (Config.fluidTransferAmount > 0) {
 				BlockPos up = getPos().up();
 
 				//Check FluidHandler
