@@ -14,7 +14,10 @@ import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
+import mod.nethertweaks.init.HammerHandler;
+import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModItems;
+import mod.nethertweaks.init.ModOreRegistration;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.nethertweaks.network.MessageMovementSpeed;
@@ -51,6 +54,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -74,6 +78,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EventHook
 {
 	public final static String KEY = "ntm.firstSpawn";
+	
+	public static void registerEvents()
+	{
+		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
+		MinecraftForge.EVENT_BUS.register(new EventHook());
+		MinecraftForge.EVENT_BUS.register(new HammerHandler());
+		MinecraftForge.EVENT_BUS.register(new ModBlocks());
+		MinecraftForge.EVENT_BUS.register(new ModItems());
+	}
 
 	//HELLWORLD
 	@SubscribeEvent
@@ -397,7 +410,7 @@ public class EventHook
 	//*********************************************************************************************************************
 
 	@SubscribeEvent
-	public static void registerEnchantments(final RegistryEvent.Register<Enchantment> registry)
+	public void registerEnchantments(final RegistryEvent.Register<Enchantment> registry)
 	{
 		registry.getRegistry().register(new EnchantmentEfficiency());
 		registry.getRegistry().register(new EnchantmentLuckOfTheSea());

@@ -84,9 +84,7 @@ public class NetherTweaksMod
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 		
-		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
-		MinecraftForge.EVENT_BUS.register(new EventHook());
-		MinecraftForge.EVENT_BUS.register(new HammerHandler());
+		EventHook.registerEvents();
 
 		proxy.preInit();
 	}
@@ -111,6 +109,8 @@ public class NetherTweaksMod
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		ModJsonRecipes.init(configDirectory);
+		
+		proxy.postInit();
 	}
 
 	@Mod.EventHandler

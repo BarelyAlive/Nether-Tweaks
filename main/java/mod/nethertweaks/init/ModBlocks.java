@@ -111,7 +111,6 @@ public class ModBlocks
 		register();
 		addItemBlocks();
 		registerTileEntities();
-		MinecraftForge.EVENT_BUS.register(new ModBlocks());
 	}
 
 	private static void register()

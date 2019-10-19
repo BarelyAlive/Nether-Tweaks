@@ -116,7 +116,6 @@ public class ModItems
 	public static void preInit()
 	{
 		register();
-		MinecraftForge.EVENT_BUS.register(new ModItems());
 	}
 	
 	public static void init()
