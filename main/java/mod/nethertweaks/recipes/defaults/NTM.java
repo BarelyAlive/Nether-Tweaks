@@ -82,7 +82,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(Items.BAKED_POTATO), 0.08f, dirtState, new Color("FFF1B5"));
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 0.08f, dirtState, new Color("E0FF8A"));
 		registry.register(new BlockInfo(Blocks.WATERLILY.getDefaultState()), 0.10f, dirtState, new Color("269900"));
-		registry.register(new BlockInfo(Blocks.VINE.getDefaultState()), 0.10f, dirtState, new Color("23630E"));
 		registry.register(new BlockInfo(Blocks.TALLGRASS, 1), 0.08f, dirtState, new Color("23630E"));
 		registry.register(new BlockInfo(Blocks.TALLGRASS, 2), 0.08f, dirtState, new Color("23630E"));
 		registry.register(new ItemInfo(Items.EGG), 0.08f, dirtState, new Color("FFFA66"));
@@ -91,6 +90,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(Items.STRING), 0.04f, dirtState, Util.whiteColor);
 
 		//Register any missed organic items
+		registry.register("vine", 0.10f, dirtState, new Color("23630E"));
 		registry.register("listAllfruit", 0.10f, dirtState, new Color("35A82A"));
 		registry.register("listAllveggie", 0.10f, dirtState, new Color("FFF1B5"));
 		registry.register("listAllGrain", 0.08f, dirtState, new Color("E3E162"));
