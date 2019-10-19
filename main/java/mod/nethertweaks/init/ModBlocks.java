@@ -159,7 +159,8 @@ public class ModBlocks
 			addBlock(HELLFAYAH_ORE, Constants.HELLFAYAH_ORE);
 			addBlock(BLOCK_OF_HELLFAYAH, Constants.BLOCK_OF_HELLFAYAH);
 		}
-		if(BlocksItems.enableSaltBlock) 		addBlock(BLOCK_OF_SALT, Constants.BLOCK_OF_SALT);
+		if(BlocksItems.enableSalt && BlocksItems.enableSaltBlock)
+			addBlock(BLOCK_OF_SALT, Constants.BLOCK_OF_SALT);
 		if(BlocksItems.enableDust) 				addBlock(DUST, Constants.DUST);
 		if(BlocksItems.enableStwH) 				addBlock(STWH, Constants.STWH);
 		if(BlocksItems.enableElderTree) {
