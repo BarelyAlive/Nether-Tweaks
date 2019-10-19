@@ -20,7 +20,7 @@ public class ModFluids
 	public static final Fluid FLUID_DISTILLED_WATER = new FluidDistilledWater();
 	public static final Block BLOCK_DISTILLED_WATER = new DistilledWater();
 
-	public static void init()
+	public static void preInit()
 	{
 		if (BlocksItems.enableLiquidImpossibility)
 			SFHCore.proxy.initModel(FLUID_LIQUID_IMPOSSIBILITY, BLOCK_LIQUID_IMPOSSIBILITY);

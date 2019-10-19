@@ -106,15 +106,15 @@ public class ModBlocks
 
 	public static final List<Block> BLOCKS = new ArrayList();
 
-	public ModBlocks()
+	public static void preInit()
 	{
 		register();
 		addItemBlocks();
 		registerTileEntities();
-		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new ModBlocks());
 	}
 
-	private void register()
+	private static void register()
 	{
 		//Fluid Blocks
 		if (BlocksItems.enableLiquidImpossibility)
@@ -177,7 +177,7 @@ public class ModBlocks
 		if(BlocksItems.enableStoneDoor) 		addBlock(STONE_DOOR, Constants.STONE_DOOR);
 	}
 
-	private void addItemBlocks()
+	private static void addItemBlocks()
 	{
 		addItemBlock(STONE_BARREL);
 		addItemBlock(OAK_BARREL);
@@ -217,7 +217,7 @@ public class ModBlocks
 		addItemBlock(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
 	}
 
-	private void addBlock(final Block block, final String name)
+	private static void addBlock(final Block block, final String name)
 	{
 		block.setRegistryName(Constants.MOD_ID, name);
 		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
@@ -226,13 +226,13 @@ public class ModBlocks
 		BLOCKS.add(block);
 	}
 
-	private void addItemBlock(final Block block)
+	private static void addItemBlock(final Block block)
 	{
 		if(BLOCKS.contains(block))
 			ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 	
-	private void addItemBlock(final ItemBlock block, String name)
+	private static void addItemBlock(final ItemBlock block, String name)
 	{
 		if(BLOCKS.contains(block.getBlock()))
 		{
@@ -253,7 +253,7 @@ public class ModBlocks
 		});
 	}
 
-	private void registerTileEntities()
+	private static void registerTileEntities()
 	{
 		registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
 		registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
@@ -265,7 +265,7 @@ public class ModBlocks
 		registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
 	}
 
-	private void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name)
+	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name)
 	{
 		GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(Constants.MOD_ID, name));
 	}

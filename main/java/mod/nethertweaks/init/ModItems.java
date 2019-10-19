@@ -113,14 +113,18 @@ public class ModItems
 
 	public static final List<Item> ITEMS = new ArrayList();
 
-	public ModItems()
+	public static void preInit()
 	{
 		register();
+		MinecraftForge.EVENT_BUS.register(new ModItems());
+	}
+	
+	public static void init()
+	{
 		addItemBurnTime();
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void register()
+	private static void register()
 	{
 		//Items
 		if(BlocksItems.enableStoneBar)	  		addItem(STONE_BAR, Constants.STONE_BAR);
@@ -180,7 +184,7 @@ public class ModItems
 		if(BlocksItems.enableElderTree)			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 	}
 
-	private void addItem(final Item item, final String name)
+	private static void addItem(final Item item, final String name)
 	{
 		item.setRegistryName(Constants.MOD_ID, name);
 		item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
@@ -206,7 +210,7 @@ public class ModItems
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
 
-	private void addItemBurnTime()
+	private static void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);

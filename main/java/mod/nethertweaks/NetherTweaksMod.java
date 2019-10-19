@@ -71,15 +71,15 @@ public class NetherTweaksMod
 
 		LogUtil.setup(Constants.MOD_ID, configDirectory);
 
-		Compatibility.init();
+		Compatibility.preInit();
 
 		ModMessages.registerMessages();
-		new ModBlocks();
-		new ModItems();
+		ModBlocks.preInit();
+		ModItems.preInit();
 
-		ModFluids.init();
-		ModCapabilities.init();
-		ModEntities.init();
+		ModFluids.preInit();
+		ModCapabilities.preInit();
+		ModEntities.preInit();
 		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
@@ -96,6 +96,7 @@ public class NetherTweaksMod
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		new ModSmeltingNOreDict();
+		ModItems.init();
 
 		proxy.init();
 	}
