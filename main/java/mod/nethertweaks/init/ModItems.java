@@ -187,7 +187,7 @@ public class ModItems
 	private static void addItem(final Item item, final String name)
 	{
 		item.setRegistryName(Constants.MOD_ID, name);
-		item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
+		item.setUnlocalizedName(item.getRegistryName().getResourcePath());
 		item.setCreativeTab(Constants.TABNTM);
 
 		ITEMS.add(item);
