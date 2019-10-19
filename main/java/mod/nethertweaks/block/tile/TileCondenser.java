@@ -44,6 +44,7 @@ public class TileCondenser extends TileFluidInventory
 	private int maxTimer = Config.cooldownCondenser;
 	private float compostMeter = 0;
 	private float maxCompost = Config.capacityCondenser;
+	private static int maxHeatAmunt = 0;
 
 	private static Fluid distilled()
 	{
@@ -53,6 +54,7 @@ public class TileCondenser extends TileFluidInventory
 	public TileCondenser() {
 		super(3, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
+		this.maxHeatAmunt = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
 	}
 
 	@Override
@@ -67,21 +69,31 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 
 		NetworkHandler.sendNBTUpdate(this);
-
-		//heatNStuff
-		if(getHeatRate() > 0) {
-			if(timer < getMaxTimer()) timer++;
-			setMaxTimer(Config.cooldownCondenser / getHeatRate());
-		}
-		else {
-			if(timer > 0) timer--;
-			setMaxTimer(Config.cooldownCondenser);
-		}
 		
-		if(getTemp() > getMaxTemp())
-			setTemp(getTemp() - getMaxTemp() > 0f ? 20 -  (getMaxTemp() - 20) * ((float)timer / (float)getMaxTimer()) : getTemp());
-		else
-			setTemp(getMaxTemp() - getTemp() > 0f ? 20 + (getMaxTemp() - 20) * ((float)timer / (float)getMaxTimer()) : getTemp());
+		int rate = getMaxTemp() > 100 ? (int)(Math.floor((float)getMaxTemp() / 100f)) : 0;
+
+		rate -= 10;
+		rate *= -1;
+		
+		if (rate == 0)
+		{
+			rate = 1;
+		}
+		//heatNStuff
+		if(timer < (int)((getMaxTimer() / rate)))
+		{ 
+			timer++;
+		}
+		else if(timer > (int)((getMaxTimer() / rate)))
+		{
+			timer--;
+		}
+		setMaxTimer(Config.cooldownCondenser);
+		
+		if(getTemp() > (getMaxTemp() + 0.01))
+			setTemp(getTemp() - getMaxTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
+		else if (getTemp() < (getMaxTemp() + 0.01))
+			setTemp(getMaxTemp() - getTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
 
 		if(getTemp() > 100f)
 			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
@@ -162,10 +174,15 @@ public class TileCondenser extends TileFluidInventory
 			return 250f;
 		case 3:
 			return 600f;
-
-			default:
-			return 999f;
+			
+		default:
+			return getMaxPossibleTemp();
 		}
+	}
+	
+	private float getMaxPossibleTemp()
+	{
+		return 999f;
 	}
 
 	private void fillToNeighborsTank()

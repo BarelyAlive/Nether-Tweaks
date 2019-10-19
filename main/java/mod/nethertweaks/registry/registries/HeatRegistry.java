@@ -69,6 +69,18 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
 		if (ingredient != null && !Objects.equals(ingredient, "")) return registry.get(ingredient);
 		return 0;
 	}
+	
+	public int getMaxHeatAmount() {
+		int max = 0;
+		for (Map.Entry<String, Integer> entry : this.registry.entrySet())
+		{
+			if (max < entry.getValue())
+			{
+				max = entry.getValue();
+			}
+		}
+		return max;
+	}
 
 	@Override
 	public void register(@Nonnull final String name, final int heatAmount) {
