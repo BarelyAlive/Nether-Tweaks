@@ -2,8 +2,6 @@ package mod.nethertweaks.item;
 
 import java.util.Objects;
 
-import mod.nethertweaks.Constants;
-import mod.nethertweaks.config.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

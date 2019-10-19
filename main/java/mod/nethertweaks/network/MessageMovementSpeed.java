@@ -3,8 +3,8 @@ package mod.nethertweaks.network;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.modules.thirst.ThirstStats;
+import mod.nethertweaks.proxy.ServerProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -37,7 +37,7 @@ public class MessageMovementSpeed implements IMessage {
 	}
 
 	public void handleServerSide() {
-		NetherTweaksMod.getProxy().getStatsByUUID(uuid).movementSpeed = ms;
+		ServerProxy.getStatsByUUID(uuid).movementSpeed = ms;
 	}
 
 	public static class Handler implements IMessageHandler<MessageMovementSpeed, IMessage> {

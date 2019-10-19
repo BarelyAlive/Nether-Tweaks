@@ -23,9 +23,9 @@ public class ModFluids
 	public static void init()
 	{
 		if (BlocksItems.enableLiquidImpossibility)
-			SFHCore.getProxy().initModel(FLUID_LIQUID_IMPOSSIBILITY, BLOCK_LIQUID_IMPOSSIBILITY);
+			SFHCore.proxy.initModel(FLUID_LIQUID_IMPOSSIBILITY, BLOCK_LIQUID_IMPOSSIBILITY);
 		if(BlocksItems.enableDistilledWater)
-			SFHCore.getProxy().initModel(FLUID_DISTILLED_WATER, BLOCK_DISTILLED_WATER);
+			SFHCore.proxy.initModel(FLUID_DISTILLED_WATER, BLOCK_DISTILLED_WATER);
 
 		//Erst wenn die Fluids Models haben
 		registerBuckets();

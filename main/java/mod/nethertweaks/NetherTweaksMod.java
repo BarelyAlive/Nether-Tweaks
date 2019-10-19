@@ -17,11 +17,11 @@ import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.init.ModJsonRecipes;
 import mod.nethertweaks.init.ModMessages;
+import mod.nethertweaks.init.ModOreRegistration;
 import mod.nethertweaks.init.ModSmeltingNOreDict;
 import mod.nethertweaks.init.OreHandler;
-import mod.nethertweaks.init.OreRegistrationHandler;
-import mod.nethertweaks.proxy.ClientProxy;
-import mod.nethertweaks.proxy.CommonProxy;
+import mod.nethertweaks.proxy.IProxy;
+import mod.nethertweaks.proxy.ServerProxy;
 import mod.nethertweaks.registry.manager.NTMDefaultRecipes;
 import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
@@ -40,14 +40,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid=Constants.MOD_ID, name=Constants.MOD_NAME, version=Constants.VERSION, dependencies=Constants.DEPENDENCIES, acceptedMinecraftVersions=Constants.MC_VERSION)
 public class NetherTweaksMod
 {
-	public static final Gson gsonInstance = new Gson();
 	public static File configDirectory;
+	public static final Gson gsonInstance = new Gson();
 	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
 
 	@Instance(value=Constants.MOD_ID)
@@ -63,16 +61,7 @@ public class NetherTweaksMod
 	}
 
 	@SidedProxy(clientSide=Constants.CLIENT_PROXY, serverSide=Constants.SERVER_PROXY, modId=Constants.MOD_ID)
-	private static CommonProxy proxy;
-
-	public static CommonProxy getProxy() {
-		return proxy;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public static ClientProxy getClientProxy() {
-		return (ClientProxy) proxy;
-	}
+	public static IProxy proxy;
 
 	@Mod.EventHandler
 	public void PreInit(final FMLPreInitializationEvent event)
@@ -95,11 +84,11 @@ public class NetherTweaksMod
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 		
-		MinecraftForge.EVENT_BUS.register(new OreRegistrationHandler());
+		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
 		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 
-		getProxy().preInit();
+		proxy.preInit();
 	}
 
 	@Mod.EventHandler
@@ -108,7 +97,7 @@ public class NetherTweaksMod
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		new ModSmeltingNOreDict();
 
-		getProxy().init();
+		proxy.init();
 	}
 
 	@Mod.EventHandler
@@ -125,6 +114,6 @@ public class NetherTweaksMod
 
 	@Mod.EventHandler
 	public void onServerStopped(final FMLServerStoppedEvent event) {
-		getProxy().loadedPlayers.clear();
+		ServerProxy.LOADED_PLAYERS.clear();
 	}
 }

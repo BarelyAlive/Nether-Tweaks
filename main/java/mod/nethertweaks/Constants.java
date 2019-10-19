@@ -1,19 +1,17 @@
 package mod.nethertweaks;
 
-import net.minecraft.creativetab.CreativeTabs;
-
 public class Constants {
 
-	public static final String MOD_ID = "nethertweaksmod";
-	public static final String MOD_NAME = "Nether Tweaks Mod";
-	public static final String VERSION = "2.1.0";
-	public static final String MC_VERSION = "[1.12.2]";
+	public static final String MOD_ID 		= "nethertweaksmod";
+	public static final String MOD_NAME 	= "Nether Tweaks Mod";
+	public static final String VERSION 		= "2.1.0";
+	public static final String MC_VERSION 	= "[1.12.2]";
 	public static final String DEPENDENCIES = "required-after:sfhcore@[2.0.3];";
 
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
-	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.CommonProxy";
+	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.ServerProxy";
 
-	public static final CreativeTabs TABNTM = new CreativeTabNTM();
+	public static final CreativeTabNTM TABNTM = new CreativeTabNTM();
 
 	//Fluids
 	public static final String DISTILLED_WATER			= "distilled_water";

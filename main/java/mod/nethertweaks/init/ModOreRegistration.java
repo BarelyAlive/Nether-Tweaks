@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class OreRegistrationHandler
+public class ModOreRegistration
 {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void registerOres (final RegistryEvent.Register<Item> event)

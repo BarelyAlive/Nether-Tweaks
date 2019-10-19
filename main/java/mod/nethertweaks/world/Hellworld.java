@@ -11,6 +11,9 @@ public class Hellworld extends WorldType
 	{
 		super("hellworld");
 	}
+	
+	@Override
+	public boolean hasInfoNotice() { return true; }
 
 	@Override
 	public boolean isVersioned() {

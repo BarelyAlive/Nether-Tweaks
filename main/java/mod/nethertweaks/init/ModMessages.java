@@ -15,8 +15,6 @@ import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.MessageNBTUpdate;
 import mod.sfhcore.network.NetworkHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class ModMessages

@@ -45,8 +45,6 @@ tile.elder_sieve.name=Sieve
 item.stone_door.name=Stone Door
 item.elder_door.name=Elder Door
 
-generator.hellworld=Hellworld
-
 item.cooked_jerky.name=Cooked Jerky
 item.grabber_wood.name=Grabber
 item.grabber_gold.name=Grabber
@@ -114,3 +112,7 @@ item.doll_villager.name=Villager Doll
 item.doll_pig.name=Pig Doll
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks
+
+generator.hellworld=Hellworld
+
+generator.hellworld.info=In this worldtype you start in the Nether and respawn there.
