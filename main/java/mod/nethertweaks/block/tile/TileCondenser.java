@@ -184,13 +184,13 @@ public class TileCondenser extends TileFluidInventory
 				IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
 				IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 
-				if (hnorth != null && world.getBlockState(north) != ModBlocks.CONDENSER.getDefaultState())
+				if (hnorth != null && world.getBlockState(north).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hnorth, getTank(), water, true);
-				if (heast != null && world.getBlockState(east) != ModBlocks.CONDENSER.getDefaultState())
+				if (heast != null && world.getBlockState(east).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(heast, getTank(), water, true);
-				if (hsouth != null && world.getBlockState(south) != ModBlocks.CONDENSER.getDefaultState())
+				if (hsouth != null && world.getBlockState(south).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hsouth, getTank(), water, true);
-				if (hwest != null && world.getBlockState(west) != ModBlocks.CONDENSER.getDefaultState())
+				if (hwest != null && world.getBlockState(west).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hwest, getTank(), water, true);
 			}
 		}
