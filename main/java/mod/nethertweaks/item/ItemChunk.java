@@ -2,7 +2,6 @@ package mod.nethertweaks.item;
 
 import java.util.Objects;
 
-import mod.nethertweaks.config.Config;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -99,7 +98,7 @@ public class ItemChunk extends Item {
 
 	public String getLocalizedName()
 	{
-		return Config.dustBaseOreDictName;
+		return "Chunk";
 	}
 
 	@Override

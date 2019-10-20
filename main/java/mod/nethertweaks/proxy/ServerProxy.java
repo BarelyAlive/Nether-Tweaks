@@ -6,18 +6,20 @@ import java.util.UUID;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.sfhcore.util.LogUtil;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class CommonProxy {
+public class ServerProxy implements IProxy{
 
-	public final HashMap<UUID, ThirstStats> loadedPlayers = new HashMap<>();
+	public final static HashMap<UUID, ThirstStats> LOADED_PLAYERS = new HashMap<>();
 
 	public void preInit() {}
 
 	public void init() {}
+	
+	@Override
+	public void postInit() {}
 
-	public ThirstStats getStatsByUUID(final UUID uuid) {
-		ThirstStats stats = loadedPlayers.get(uuid);
+	public static ThirstStats getStatsByUUID(final UUID uuid) {
+		ThirstStats stats = LOADED_PLAYERS.get(uuid);
 		if (stats == null) {
 			LogUtil.error("[Nether Tweaks Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
 			return null;
@@ -25,17 +27,12 @@ public class CommonProxy {
 		return stats;
 	}
 
-	public void registerPlayer(final EntityPlayer player, final ThirstStats stats) {
+	public static void registerPlayer(final EntityPlayer player, final ThirstStats stats) {
 		UUID uuid = player.getUniqueID();
-		if (loadedPlayers.containsKey(uuid))
+		if (LOADED_PLAYERS.containsKey(uuid))
 			// Player already loaded from previous login session where the
 			// server was not closed since the players last login.
 			return;
-		loadedPlayers.put(uuid, stats);
-	}
-
-	public static boolean isClient()
-	{
-		return FMLCommonHandler.instance().getSide().isClient();
+		LOADED_PLAYERS.put(uuid, stats);
 	}
 }

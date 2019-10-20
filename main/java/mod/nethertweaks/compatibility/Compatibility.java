@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Loader;
 
 public class Compatibility
 {
-	public static void init()
+	public static void preInit()
 	{
 		if(Loader.isModLoaded("moofluids") ||
 				Loader.isModLoaded("minimoos") ||

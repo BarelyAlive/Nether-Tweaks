@@ -24,8 +24,8 @@ public class WorldSpawnLocation {
 	}
 
 	//This is for the players™ and their individual spawns locations
-	public static  Map<UUID, PlayerPosition> lastSpawnLocations = new HashMap<>();
-	public static Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
+	private static Map<UUID, PlayerPosition> lastSpawnLocations = new HashMap<>();
+	private static Map<BlockPos, BonfireInfo> bonfire_info = new HashMap<>();
 
 	public static void setLastSpawnLocations(final Map<UUID, PlayerPosition> map)
 	{
@@ -39,7 +39,7 @@ public class WorldSpawnLocation {
 
 	public static void setBonfireInfo(final Map<BlockPos, BonfireInfo> map)
 	{
-		bonfire_info = map;
+		setBonfire_info(map);
 	}
 
 	public static Map<BlockPos, BonfireInfo> getBonfireInfo()
@@ -72,6 +72,10 @@ public class WorldSpawnLocation {
 		}
 
 		return new PlayerPosition(player.getPosition());
+	}
+
+	public static void setBonfire_info(Map<BlockPos, BonfireInfo> bonfire_info) {
+		WorldSpawnLocation.bonfire_info = bonfire_info;
 	}
 
 }

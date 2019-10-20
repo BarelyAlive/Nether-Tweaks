@@ -1,6 +1,6 @@
 package mod.nethertweaks.world;
 
-import static mod.nethertweaks.NetherTweaksMod.gsonInstance;
+import static mod.nethertweaks.NetherTweaksMod.GSON_INSTANCE;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,17 +9,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.enchantments.EnchantmentEfficiency;
 import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.entities.EntityItemLava;
+import mod.nethertweaks.init.HammerHandler;
+import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModItems;
+import mod.nethertweaks.init.ModOreRegistration;
 import mod.nethertweaks.modules.thirst.GuiThirstBar;
 import mod.nethertweaks.modules.thirst.ThirstStats;
 import mod.nethertweaks.network.MessageMovementSpeed;
 import mod.nethertweaks.network.bonfire.MessageBonfireGetList;
+import mod.nethertweaks.proxy.ClientProxy;
+import mod.nethertweaks.proxy.ServerProxy;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.base.types.Drinkable;
 import mod.sfhcore.handler.BucketHandler;
@@ -50,6 +54,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -68,25 +74,33 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class EventHook
 {
 	public final static String KEY = "ntm.firstSpawn";
+	
+	public static void registerEvents()
+	{
+		MinecraftForge.EVENT_BUS.register(new EventHook());
+		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
+		MinecraftForge.EVENT_BUS.register(new HammerHandler());
+		MinecraftForge.EVENT_BUS.register(new ModBlocks());
+		MinecraftForge.EVENT_BUS.register(new ModItems());
+	}
 
 	//HELLWORLD
 	@SubscribeEvent
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
-	{
+	{		
 		boolean activated = false;
 		BlockPos pos = event.getPos();
 		ItemStack heldItem = event.getItemStack();
-		World world = event.getEntity().getEntityWorld();
+		World world = event.getWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
 		FluidStack f = FluidUtil.getFluidContained(heldItem);
 
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
-				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !Objects.requireNonNull(f).getFluid().doesVaporize(f)) return;
+				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
@@ -100,7 +114,7 @@ public class EventHook
 		{
 			pos.add(0.5D, 0.5D, 0.5D);
 
-			switch (Objects.requireNonNull(event.getFace()))
+			switch (event.getFace())
 			{
 			case UP:
 				pos = pos.up();
@@ -145,7 +159,7 @@ public class EventHook
 
 		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
-			if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
+			if (!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
 				BlockPos posplayer = player.getPosition();
 				int yDifferenz = 0;
@@ -159,7 +173,7 @@ public class EventHook
 			}
 			else
 			{
-				PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
+				PlayerPosition pos = WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
 			}
@@ -286,17 +300,17 @@ public class EventHook
 	@SubscribeEvent
 	public void onPlayerTick(final TickEvent.PlayerTickEvent event) {
 		if(!event.player.world.isRemote) {
-			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.player.getUniqueID());
+			ThirstStats stats = ServerProxy.getStatsByUUID(event.player.getUniqueID());
 			if(stats != null)
 				stats.update(event.player);
 		} else
-			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, NetherTweaksMod.getClientProxy().clientStats));
+			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, ClientProxy.CLIENT_STATS));
 	}
 
 	@SubscribeEvent
 	public void onAttack(final AttackEntityEvent attack) {
 		if (!attack.getEntityPlayer().world.isRemote) {
-			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(attack.getEntityPlayer().getUniqueID());
+			ThirstStats stats = ServerProxy.getStatsByUUID(attack.getEntityPlayer().getUniqueID());
 			stats.addExhaustion(0.5f);
 		}
 		attack.setResult(Result.DEFAULT);
@@ -307,7 +321,7 @@ public class EventHook
 		if (hurt.getEntity() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) hurt.getEntity();
 			if (!player.world.isRemote) {
-				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addExhaustion(0.4f);
 			}
 		}
@@ -319,7 +333,7 @@ public class EventHook
 		EntityPlayer player = event.getPlayer();
 		if(player != null)
 			if(!player.world.isRemote) {
-				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addExhaustion(0.03f);
 			}
 		event.setResult(Result.DEFAULT);
@@ -328,7 +342,7 @@ public class EventHook
 	public void playedCloned(final net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
 		if(!event.getEntityPlayer().world.isRemote)
 			if(event.isWasDeath()) {
-				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+				ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
 				stats.resetStats();
 			}
 	}
@@ -339,15 +353,15 @@ public class EventHook
 			EntityPlayer player = event.getEntityPlayer();
 			File saveFile = event.getPlayerFile("nethertweaksmod");
 			if(!saveFile.exists())
-				NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+				ServerProxy.registerPlayer(player, new ThirstStats());
 			else
 				try {
 					FileReader reader = new FileReader(saveFile);
-					ThirstStats stats = gsonInstance.fromJson(reader, ThirstStats.class);
+					ThirstStats stats = GSON_INSTANCE.fromJson(reader, ThirstStats.class);
 					if (stats == null)
-						NetherTweaksMod.getProxy().registerPlayer(player, new ThirstStats());
+						ServerProxy.registerPlayer(player, new ThirstStats());
 					else
-						NetherTweaksMod.getProxy().registerPlayer(player, stats);
+						ServerProxy.registerPlayer(player, stats);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -357,10 +371,10 @@ public class EventHook
 	@SubscribeEvent
 	public void onSavePlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
 		if (!event.getEntityPlayer().world.isRemote) {
-			ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(event.getEntityPlayer().getUniqueID());
+			ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
 			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
 			try {
-				String write = gsonInstance.toJson(stats);
+				String write = GSON_INSTANCE.toJson(stats);
 				saveFile.createNewFile();
 				BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
 				writer.write(write);
@@ -385,7 +399,7 @@ public class EventHook
 			if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
 				Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
 
-				ThirstStats stats = NetherTweaksMod.getProxy().getStatsByUUID(player.getUniqueID());
+				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
 				stats.attemptToPoison(drink.getPoisonChance());
 			}
@@ -396,11 +410,11 @@ public class EventHook
 	//*********************************************************************************************************************
 
 	@SubscribeEvent
-	public static void registerEnchantments(final IForgeRegistry<Enchantment> registry)
+	public void registerEnchantments(final RegistryEvent.Register<Enchantment> event)
 	{
-		registry.register(new EnchantmentEfficiency());
-		registry.register(new EnchantmentLuckOfTheSea());
-		registry.register(new EnchantmentFortune());
+		event.getRegistry().register(new EnchantmentEfficiency());
+		event.getRegistry().register(new EnchantmentLuckOfTheSea());
+		event.getRegistry().register(new EnchantmentFortune());
 	}
 
 	//*********************************************************************************************************************

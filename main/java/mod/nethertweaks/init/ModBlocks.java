@@ -38,9 +38,9 @@ import mod.sfhcore.blocks.CustomDoor;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -97,20 +97,22 @@ public class ModBlocks
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
+	
+	//ItemBlocks
+	public static final ItemSlab ITEM_ELDER_SLAB = new ItemSlab(ELDER_SLAB, ELDER_SLAB, ELDER_SLAB_DOUBLE);
 
 	//END_OF_INITIALIZATION
 
 	public static final List<Block> BLOCKS = new ArrayList();
 
-	public ModBlocks()
+	public static void preInit()
 	{
 		register();
 		addItemBlocks();
 		registerTileEntities();
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void register()
+	private static void register()
 	{
 		//Fluid Blocks
 		if (BlocksItems.enableLiquidImpossibility)
@@ -155,7 +157,8 @@ public class ModBlocks
 			addBlock(HELLFAYAH_ORE, Constants.HELLFAYAH_ORE);
 			addBlock(BLOCK_OF_HELLFAYAH, Constants.BLOCK_OF_HELLFAYAH);
 		}
-		if(BlocksItems.enableSaltBlock) 		addBlock(BLOCK_OF_SALT, Constants.BLOCK_OF_SALT);
+		if(BlocksItems.enableSalt && BlocksItems.enableSaltBlock)
+			addBlock(BLOCK_OF_SALT, Constants.BLOCK_OF_SALT);
 		if(BlocksItems.enableDust) 				addBlock(DUST, Constants.DUST);
 		if(BlocksItems.enableStwH) 				addBlock(STWH, Constants.STWH);
 		if(BlocksItems.enableElderTree) {
@@ -172,7 +175,7 @@ public class ModBlocks
 		if(BlocksItems.enableStoneDoor) 		addBlock(STONE_DOOR, Constants.STONE_DOOR);
 	}
 
-	private void addItemBlocks()
+	private static void addItemBlocks()
 	{
 		addItemBlock(STONE_BARREL);
 		addItemBlock(OAK_BARREL);
@@ -208,9 +211,11 @@ public class ModBlocks
 		addItemBlock(ELDER_PLANKS);
 		addItemBlock(NETHERRACK_GRAVEL);
 		addItemBlock(MEAN_VINE);
+		
+		addItemBlock(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
 	}
 
-	private void addBlock(final Block block, final String name)
+	private static void addBlock(final Block block, final String name)
 	{
 		block.setRegistryName(Constants.MOD_ID, name);
 		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
@@ -219,10 +224,22 @@ public class ModBlocks
 		BLOCKS.add(block);
 	}
 
-	private void addItemBlock(final Block block)
+	private static void addItemBlock(final Block block)
 	{
 		if(BLOCKS.contains(block))
 			ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
+	
+	private static void addItemBlock(final ItemBlock block, String name)
+	{
+		if(BLOCKS.contains(block.getBlock()))
+		{
+			block.setRegistryName(Constants.MOD_ID, name);
+			block.setUnlocalizedName(name);
+			block.setCreativeTab(Constants.TABNTM);
+			
+			ITEMS.add(block);
+		}
 	}
 
 	@SubscribeEvent
@@ -234,7 +251,7 @@ public class ModBlocks
 		});
 	}
 
-	private void registerTileEntities()
+	private static void registerTileEntities()
 	{
 		registerTileEntity(TileBarrel.class, Constants.TE_BARREL);
 		registerTileEntity(TileSieve.class, Constants.TE_SIEVE);
@@ -246,7 +263,7 @@ public class ModBlocks
 		registerTileEntity(TileCrucibleStone.class, Constants.TE_CRUCIBLE);
 	}
 
-	private void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name)
+	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name)
 	{
 		GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(Constants.MOD_ID, name));
 	}

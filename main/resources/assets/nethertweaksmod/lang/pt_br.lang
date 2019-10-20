@@ -46,8 +46,6 @@ tile.elder_sieve.name=Peneira
 item.stone_door.name=Porta de pedra
 item.elder_door.name=Porta do Ancião
 
-generator.hellworld=Hellworld
-
 item.cooked_jerky.name=Desapetrechante
 item.grabber_wood.name=Grabber
 item.grabber_gold.name=Grabber
@@ -117,3 +115,7 @@ item.doll_villager.name=Boneca de Aldeia
 item.doll_villager.name=Boneca de Porco
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks
+
+generator.hellworld=Hellworld
+
+generator.hellworld.info=In this worldtype you start in the Nether and respawn there.

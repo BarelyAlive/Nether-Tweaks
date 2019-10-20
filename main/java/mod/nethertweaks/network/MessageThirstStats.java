@@ -1,8 +1,8 @@
 package mod.nethertweaks.network;
 
 import io.netty.buffer.ByteBuf;
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.modules.thirst.ThirstStats;
+import mod.nethertweaks.proxy.ClientProxy;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -39,7 +39,7 @@ public class MessageThirstStats implements IMessage {
 	}
 
 	public void handleClientSide() {
-		ThirstStats stats = NetherTweaksMod.getClientProxy().clientStats;
+		ThirstStats stats = ClientProxy.CLIENT_STATS;
 		stats.thirstLevel = thirstLevel;
 		stats.saturation = saturation;
 		stats.exhaustion = exhaustion;

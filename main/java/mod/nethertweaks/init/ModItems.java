@@ -24,10 +24,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSlab;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -84,7 +82,7 @@ public class ModItems
 	public static final Item STRING 		  	 	 = new Item();
 	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
 	public static final Item POWDER_OF_LIGHT  	 	 = new Item();
-	public static final Item ASH			  	 	 = new Ash();
+	public static final Ash ASH			  	 	 	 = new Ash();
 	public static final CoiledSword COILED_SWORD 	 = new CoiledSword();
 	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 
@@ -106,23 +104,25 @@ public class ModItems
 	//Food & DRINKS
 	public static final ItemFood COOKED_JERKY 	  	 = new ItemFood(6, 1.2F, true);
 
-	//ItemBlocks
+	//"Block-Placer"
 	public static final ItemDoor ITEM_STONE_DOOR 	 = new ItemDoor();
 	public static final ItemDoor ITEM_ELDER_DOOR 	 = new ItemDoor();
-	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB, ModBlocks.ELDER_SLAB_DOUBLE);
 
 	//END_OF_INITIALIZATION
 
 	public static final List<Item> ITEMS = new ArrayList();
 
-	public ModItems()
+	public static void preInit()
 	{
 		register();
+	}
+	
+	public static void init()
+	{
 		addItemBurnTime();
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void register()
+	private static void register()
 	{
 		//Items
 		if(BlocksItems.enableStoneBar)	  		addItem(STONE_BAR, Constants.STONE_BAR);
@@ -179,16 +179,13 @@ public class ModItems
 		if(BlocksItems.enableHammerDiamond)  	addItem(HAMMER_DIAMOND, Constants.HAMMER_DIAMOND);
 		if(BlocksItems.enableJerky)  			addItem(COOKED_JERKY, Constants.COOKED_JERKY);
 		if(BlocksItems.enableStoneDoor)  		addItem(ITEM_STONE_DOOR, Constants.STONE_DOOR);
-		if(BlocksItems.enableElderTree) {
-			addItem(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
-			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
-		}
+		if(BlocksItems.enableElderTree)			addItem(ITEM_ELDER_DOOR, Constants.ELDER_DOOR);
 	}
 
-	private void addItem(final Item item, final String name)
+	private static void addItem(final Item item, final String name)
 	{
 		item.setRegistryName(Constants.MOD_ID, name);
-		item.setUnlocalizedName(Objects.requireNonNull(item.getRegistryName()).getResourcePath());
+		item.setUnlocalizedName(item.getRegistryName().getResourcePath());
 		item.setCreativeTab(Constants.TABNTM);
 
 		ITEMS.add(item);
@@ -211,7 +208,7 @@ public class ModItems
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
 	}
 
-	private void addItemBurnTime()
+	private static void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
 			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);

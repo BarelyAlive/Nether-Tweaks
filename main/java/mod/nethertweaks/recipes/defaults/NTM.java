@@ -27,14 +27,12 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 import mod.nethertweaks.registry.registries.base.types.HammerReward;
 import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
-import mod.sfhcore.util.OreDictUtil;
 import mod.sfhcore.util.TankUtil;
 import mod.sfhcore.util.Util;
 import net.minecraft.block.Block;
@@ -84,7 +82,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(Items.BAKED_POTATO), 0.08f, dirtState, new Color("FFF1B5"));
 		registry.register(new ItemInfo(Items.POISONOUS_POTATO), 0.08f, dirtState, new Color("E0FF8A"));
 		registry.register(new BlockInfo(Blocks.WATERLILY.getDefaultState()), 0.10f, dirtState, new Color("269900"));
-		registry.register(new BlockInfo(Blocks.VINE.getDefaultState()), 0.10f, dirtState, new Color("23630E"));
 		registry.register(new BlockInfo(Blocks.TALLGRASS, 1), 0.08f, dirtState, new Color("23630E"));
 		registry.register(new BlockInfo(Blocks.TALLGRASS, 2), 0.08f, dirtState, new Color("23630E"));
 		registry.register(new ItemInfo(Items.EGG), 0.08f, dirtState, new Color("FFFA66"));
@@ -93,6 +90,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(Items.STRING), 0.04f, dirtState, Util.whiteColor);
 
 		//Register any missed organic items
+		registry.register("vine", 0.10f, dirtState, new Color("23630E"));
 		registry.register("listAllfruit", 0.10f, dirtState, new Color("35A82A"));
 		registry.register("listAllveggie", 0.10f, dirtState, new Color("FFF1B5"));
 		registry.register("listAllGrain", 0.08f, dirtState, new Color("E3E162"));
@@ -439,25 +437,6 @@ public class NTM implements IRecipeDefaults
 		registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-	}
-
-	@Override
-	public void registerOreChunks(final OreRegistry registry)
-	{
-		registry.register("gold", new Color("FFFF00"), new ItemInfo(Items.GOLD_INGOT, 0), OreDictUtil.getOreDictEntry("dustGold"));
-		registry.register("iron", new Color("BF8040"), new ItemInfo(Items.IRON_INGOT, 0), OreDictUtil.getOreDictEntry("dustIron"));
-
-		//        for(EnumModdedMetals metal : EnumModdedMetals.values()) {
-		//            if(metal.getRegistryName().equals("aluminum") &&
-		//                    (!OreDictionary.getOres("oreAluminium").isEmpty() ||
-		//                            !OreDictionary.getOres("oreAluminum").isEmpty())) {
-		//                // Blame Humphry Davy
-		//                registry.register("aluminium", metal.getColor(), metal.getIngot(), metal.getDust());
-		//            }
-		//            else if(!OreDictionary.getOres(metal.getOreName()).isEmpty()) {
-		//                registry.register(metal.getRegistryName(), metal.getColor(), metal.getIngot(), metal.getDust());
-		//            }
-		//        }
 	}
 
 	@Override

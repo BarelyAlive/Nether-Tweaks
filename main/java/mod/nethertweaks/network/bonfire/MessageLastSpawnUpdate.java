@@ -71,9 +71,9 @@ public class MessageLastSpawnUpdate implements IMessage {
 		@Override
 		public IMessage onMessage(final MessageLastSpawnUpdate msg, final MessageContext ctx) {
 			if (msg.status == UpdateStatus.ADD || msg.status == UpdateStatus.UPDATE)
-				WorldSpawnLocation.lastSpawnLocations.put(msg.info, msg.pos);
+				WorldSpawnLocation.getLastSpawnLocations().put(msg.info, msg.pos);
 			else if (msg.status == UpdateStatus.REMOVE)
-				WorldSpawnLocation.lastSpawnLocations.remove(msg.info);
+				WorldSpawnLocation.getLastSpawnLocations().remove(msg.info);
 
 			if (ctx.side == Side.SERVER)
 				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(msg.status, msg.pos, msg.info));

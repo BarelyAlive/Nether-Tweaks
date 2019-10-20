@@ -14,7 +14,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 
 public interface IDefaultRecipeProvider<T> {
@@ -29,8 +28,6 @@ interface IFluidTransformDefaultRegistryProvider extends IDefaultRecipeProvider<
 interface IHammerDefaultRegistryProvider extends IDefaultRecipeProvider<HammerRegistry>{}
 interface IHeatDefaultRegistryProvider extends IDefaultRecipeProvider<HeatRegistry>{}
 interface IMilkEntityDefaultRegistryProvider extends IDefaultRecipeProvider<MilkEntityRegistry>{}
-interface IOreDefaultRegistryProvider extends IDefaultRecipeProvider<OreRegistry>{}
-
 interface ISieveDefaultRegistryProvider extends IDefaultRecipeProvider<SieveRegistry>{
 	void registerSieveRecipeDefaults();}
 

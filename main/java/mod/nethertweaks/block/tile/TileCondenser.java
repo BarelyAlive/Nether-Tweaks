@@ -188,8 +188,8 @@ public class TileCondenser extends TileFluidInventory
 	private void fillToNeighborsTank()
 	{
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(distilled(), Config.fluidOutputAmount);
-			if (getTank().getFluidAmount() != 0 && Config.fluidOutputAmount > 0) {
+			FluidStack water = new FluidStack(distilled(), Config.fluidTransferAmount);
+			if (getTank().getFluidAmount() != 0 && Config.fluidTransferAmount > 0) {
 				BlockPos north = getPos().north();
 				BlockPos east = getPos().east();
 				BlockPos south = getPos().south();
@@ -201,13 +201,13 @@ public class TileCondenser extends TileFluidInventory
 				IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
 				IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 
-				if (hnorth != null && world.getBlockState(north) != ModBlocks.CONDENSER.getDefaultState())
+				if (hnorth != null && world.getBlockState(north).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hnorth, getTank(), water, true);
-				if (heast != null && world.getBlockState(east) != ModBlocks.CONDENSER.getDefaultState())
+				if (heast != null && world.getBlockState(east).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(heast, getTank(), water, true);
-				if (hsouth != null && world.getBlockState(south) != ModBlocks.CONDENSER.getDefaultState())
+				if (hsouth != null && world.getBlockState(south).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hsouth, getTank(), water, true);
-				if (hwest != null && world.getBlockState(west) != ModBlocks.CONDENSER.getDefaultState())
+				if (hwest != null && world.getBlockState(west).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hwest, getTank(), water, true);
 			}
 		}

@@ -15,14 +15,12 @@ import mod.nethertweaks.modules.thirst.ThirstStats;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy implements IProxy{
 
-	public final ThirstStats clientStats = new ThirstStats();
+	public static final ThirstStats CLIENT_STATS = new ThirstStats();
 
 	@Override
 	public void preInit() {
-		super.preInit();
-
 		//TESR
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCrucibleStone.class, new RenderCrucible());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSieve.class, new RenderSieve());
@@ -39,9 +37,14 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void init() {
-		super.init();
 		//        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemDrink.BottleColorHandler(), DRINKS);
 		//        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemCanteen.CanteenColorHandler(), CANTEEN);
 		//        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemCup.CupColorHandler(), CUP);
+	}
+
+	@Override
+	public void postInit() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -58,10 +58,10 @@ public class MessageTeleportPlayer implements IMessage {
 			EntityPlayer player = ctx.getServerHandler().player.world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
 
 			BonfireInfo binfo;
-			if (!WorldSpawnLocation.bonfire_info.containsKey(message.bonfire_pos))
+			if (!WorldSpawnLocation.getBonfireInfo().containsKey(message.bonfire_pos))
 				binfo = new BonfireInfo(Objects.requireNonNull(player).getUniqueID(), player.world.provider.getDimension());
 			else
-				binfo = WorldSpawnLocation.bonfire_info.get(message.bonfire_pos);
+				binfo = WorldSpawnLocation.getBonfireInfo().get(message.bonfire_pos);
 
 			Objects.requireNonNull(player).setPositionAndRotation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 
@@ -70,24 +70,24 @@ public class MessageTeleportPlayer implements IMessage {
 			//ctx.getServerHandler().setPlayerLocation(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5, player.cameraYaw, player.cameraPitch);
 			player.attemptTeleport(binfo.getSpawnPos().getX() + 0.5, binfo.getSpawnPos().getY(), binfo.getSpawnPos().getZ() + 0.5);
 
-			WorldSpawnLocation.lastSpawnLocations.put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
+			WorldSpawnLocation.getLastSpawnLocations().put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 
-			for (BonfireInfo entry : WorldSpawnLocation.bonfire_info.values())
+			for (BonfireInfo entry : WorldSpawnLocation.getBonfireInfo().values())
 				if (entry.hasPlayer(player))
 					entry.removePlayer(player);
 
 			binfo.addPlayer(player);
 
-			WorldSpawnLocation.bonfire_info.put(message.bonfire_pos, binfo);
+			WorldSpawnLocation.getBonfireInfo().put(message.bonfire_pos, binfo);
 
 			player.sendMessage(new TextComponentString(player.getName() + " rested at: " + binfo.getSpawnPos() + "!"));
 
 			player.closeScreen();
 
 			if (ctx.side == Side.CLIENT)
-				NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+				NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
 			else
-				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
+				NetworkHandler.INSTANCE.sendToAll(new MessageLastSpawnUpdate(UpdateStatus.UPDATE, WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile())), EntityPlayer.getUUID(player.getGameProfile())));
 
 			return null;
 		}

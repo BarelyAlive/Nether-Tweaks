@@ -24,7 +24,7 @@ public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile
 		if (te != null)
 		{
 			boolean is_lit;
-			if (WorldSpawnLocation.bonfire_info.containsKey(new BlockPos(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ())))
+			if (WorldSpawnLocation.getBonfireInfo().containsKey(new BlockPos(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ())))
 				is_lit = true;
 			else
 				is_lit = te.isLit();

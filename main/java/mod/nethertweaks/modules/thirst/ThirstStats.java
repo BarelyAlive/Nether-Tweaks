@@ -3,7 +3,6 @@ package mod.nethertweaks.modules.thirst;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.network.MessageThirstStats;
 import mod.sfhcore.network.NetworkHandler;

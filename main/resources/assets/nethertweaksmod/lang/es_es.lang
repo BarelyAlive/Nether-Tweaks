@@ -46,8 +46,6 @@ tile.elder_sieve.name=cedazo
 item.stone_door.name=Puerta de piedra
 item.elder_door.name=Puerta de anciano
 
-generator.hellworld=Hellworld
-
 item.cooked_jerky.name=Incomible
 item.grabber_wood.name=Grabber
 item.grabber_gold.name=Grabber
@@ -115,3 +113,7 @@ item.doll_villager.name=Muñeca Aldeana
 item.doll_villager.name=Cerdo Muñeca
 
 itemGroup.tab_nether_tweaks_mod=Nether Tweaks
+
+generator.hellworld=Hellworld
+
+generator.hellworld.info=In this worldtype you start in the Nether and respawn there.

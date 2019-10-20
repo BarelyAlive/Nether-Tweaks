@@ -7,7 +7,6 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-
 public class DistilledWater extends BlockFluidClassic
 {
 	public DistilledWater()
@@ -28,6 +27,4 @@ public class DistilledWater extends BlockFluidClassic
 	public Fluid getFluid() {
 		return ModFluids.FLUID_DISTILLED_WATER;
 	}
-
-
 }

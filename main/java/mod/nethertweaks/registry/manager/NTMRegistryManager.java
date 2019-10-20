@@ -18,7 +18,6 @@ import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
-import mod.nethertweaks.registry.registries.OreRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 
 public final class NTMRegistryManager {
@@ -34,7 +33,6 @@ public final class NTMRegistryManager {
 	public static final List<IFluidTransformDefaultRegistryProvider> FLUID_TRANSFORM_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IFluidItemFluidDefaultRegistryProvider> FLUID_ITEM_FLUID_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IHeatDefaultRegistryProvider> HEAT_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
-	public static final List<IOreDefaultRegistryProvider> ORE_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IMilkEntityDefaultRegistryProvider> MILK_ENTITY_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IBarrelLiquidBlacklistDefaultRegistryProvider> BARREL_LIQUID_BLACKLIST_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<ICondenserDefaultRegistryProvider> CONDENSER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
@@ -47,7 +45,6 @@ public final class NTMRegistryManager {
 	public static final SieveRegistry SIEVE_REGISTRY = new SieveRegistry();
 	public static final HammerRegistry HAMMER_REGISTRY = new HammerRegistry();
 	public static final HeatRegistry HEAT_REGISTRY = new HeatRegistry();
-	public static final OreRegistry ORE_REGISTRY = new OreRegistry();
 	public static final DynOreRegistry DYN_ORE_REGISTRY = new DynOreRegistry();
 	public static final BarrelLiquidBlacklistRegistry BARREL_LIQUID_BLACKLIST_REGISTRY = new BarrelLiquidBlacklistRegistry();
 	public static final FluidOnTopRegistry FLUID_ON_TOP_REGISTRY = new FluidOnTopRegistry();
@@ -100,10 +97,6 @@ public final class NTMRegistryManager {
 
 	public static void registerHeatDefaultRecipeHandler(final IHeatDefaultRegistryProvider provider) {
 		HEAT_DEFAULT_REGISTRY_PROVIDERS.add(provider);
-	}
-
-	public static void registerOreDefaultRecipeHandler(final IOreDefaultRegistryProvider provider) {
-		ORE_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
 
 	public static void registerBarrelLiquidBlacklistDefaultHandler(final IBarrelLiquidBlacklistDefaultRegistryProvider provider) {

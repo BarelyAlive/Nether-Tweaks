@@ -1,7 +1,7 @@
 package mod.nethertweaks.modules.thirst;
 
-import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.config.Config;
+import mod.nethertweaks.proxy.ClientProxy;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -32,12 +32,12 @@ public class GuiThirstBar {
 
 			EntityPlayerSP player = Minecraft.getMinecraft().player;
 
-			if (!player.isRidingHorse() && NetherTweaksMod.getClientProxy().clientStats != null) {
-				int thirstLevel = NetherTweaksMod.getClientProxy().clientStats.thirstLevel;
+			if (!player.isRidingHorse() && ClientProxy.CLIENT_STATS != null) {
+				int thirstLevel = ClientProxy.CLIENT_STATS.thirstLevel;
 				int xStart = scaledRes.getScaledWidth()/2 + 10;
 				int yStart = scaledRes.getScaledHeight() - 49;
 
-				int poisonModifier = NetherTweaksMod.getClientProxy().clientStats.poisoned ? 16 : 0;
+				int poisonModifier = ClientProxy.CLIENT_STATS.poisoned ? 16 : 0;
 
 				for (int i = 0; i < 10; i++) {
 					gui.drawTexturedModalRect(xStart + i*8, yStart, 1, 1, 7, 9); //empty thirst droplet
