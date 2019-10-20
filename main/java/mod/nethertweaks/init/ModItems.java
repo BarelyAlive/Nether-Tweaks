@@ -206,6 +206,8 @@ public class ModItems
 	{
 		for(Item item : ITEMS)
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
+		
+		ModFluids.initModels();
 	}
 
 	private static void addItemBurnTime()

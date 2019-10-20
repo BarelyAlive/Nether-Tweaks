@@ -85,7 +85,7 @@ public class NetherTweaksMod
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
 		
-		EventHook.registerEvents();
+		EventHook.preInit();
 
 		getProxy().preInit();
 	}
@@ -105,7 +105,7 @@ public class NetherTweaksMod
 	{
 		OreHandler.registerFurnaceRecipe();
 		//Mobs
-		EventHook.addWaterMobs();
+		EventHook.postInit();
 
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();

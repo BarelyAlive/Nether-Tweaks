@@ -6,27 +6,23 @@ import mod.nethertweaks.block.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.fluids.FluidDistilledWater;
 import mod.nethertweaks.fluids.FluidLiquidImpossibility;
-import mod.sfhcore.SFHCore;
 import mod.sfhcore.handler.BucketHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModFluids
 {
 	//Fluids
-	public static final Fluid FLUID_LIQUID_IMPOSSIBILITY = new FluidLiquidImpossibility();
-	public static final Block BLOCK_LIQUID_IMPOSSIBILITY = new LiquidImpossibility();
+	public static final FluidLiquidImpossibility FLUID_LIQUID_IMPOSSIBILITY = new FluidLiquidImpossibility();
+	public static final LiquidImpossibility BLOCK_LIQUID_IMPOSSIBILITY = new LiquidImpossibility();
 
-	public static final Fluid FLUID_DISTILLED_WATER = new FluidDistilledWater();
-	public static final Block BLOCK_DISTILLED_WATER = new DistilledWater();
+	public static final FluidDistilledWater FLUID_DISTILLED_WATER = new FluidDistilledWater();
+	public static final DistilledWater BLOCK_DISTILLED_WATER = new DistilledWater();
 
 	public static void preInit()
 	{
-		if (BlocksItems.enableLiquidImpossibility)
-			SFHCore.proxy.initModel(FLUID_LIQUID_IMPOSSIBILITY, BLOCK_LIQUID_IMPOSSIBILITY);
-		if(BlocksItems.enableDistilledWater)
-			SFHCore.proxy.initModel(FLUID_DISTILLED_WATER, BLOCK_DISTILLED_WATER);
-
 		//Erst wenn die Fluids Models haben
 		registerBuckets();
 	}
@@ -38,4 +34,10 @@ public class ModFluids
 		if(BlocksItems.enableStoneBucket)
 			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MOD_ID, 0x80778899, Constants.TABNTM);
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public static void initModels() {
+        FLUID_DISTILLED_WATER.initModel();
+        FLUID_LIQUID_IMPOSSIBILITY.initModel();
+    }
 }

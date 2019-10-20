@@ -12,6 +12,8 @@ public class Constants {
 	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.ServerProxy";
 
 	public static final CreativeTabNTM TABNTM = new CreativeTabNTM();
+	
+	public static final String RESOURCE_PREFIX = MOD_ID + ":";
 
 	//Fluids
 	public static final String DISTILLED_WATER			= "distilled_water";

@@ -79,13 +79,18 @@ public class EventHook
 {
 	public final static String KEY = "ntm.firstSpawn";
 	
-	public static void registerEvents()
+	public static void preInit()
 	{
 		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 		MinecraftForge.EVENT_BUS.register(new ModBlocks());
 		MinecraftForge.EVENT_BUS.register(new ModItems());
+	}
+	
+	public static void postInit()
+	{
+		addWaterMobs();
 	}
 
 	//HELLWORLD
@@ -433,7 +438,7 @@ public class EventHook
 		}
 	}
 
-	public static void addWaterMobs()
+	private static void addWaterMobs()
 	{
 		if(Config.spawnWaterMobs)
 			EntityRegistry.addSpawn(EntitySquid.class, 25, 1, 10, EnumCreatureType.WATER_CREATURE, BiomeDictionary.getBiomes(Type.NETHER).toArray(new Biome[0]));
