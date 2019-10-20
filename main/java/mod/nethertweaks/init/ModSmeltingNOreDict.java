@@ -12,7 +12,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ModSmeltingNOreDict
 {
-	public ModSmeltingNOreDict()
+	public static void init()
 	{
 		loadSmelting();
 		oreRegistration();

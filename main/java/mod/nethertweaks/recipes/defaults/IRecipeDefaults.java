@@ -5,6 +5,7 @@ import mod.nethertweaks.registry.registries.CompostRegistry;
 import mod.nethertweaks.registry.registries.CondenserRegistry;
 import mod.nethertweaks.registry.registries.CrucibleRegistry;
 import mod.nethertweaks.registry.registries.DrinkRegistry;
+import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
@@ -19,6 +20,7 @@ public interface IRecipeDefaults
 {
 	String getMODID();
 
+	default void registerDynOre(final DynOreRegistry registry) {}
 	default void registerCompost(final CompostRegistry registry) {}
 	default void registerCondenser(final CondenserRegistry registry) {}
 	default void registerDrink(final DrinkRegistry registry) {}

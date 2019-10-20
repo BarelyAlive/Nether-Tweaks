@@ -89,9 +89,9 @@ public class AshBonePile extends CubeContainerHorizontal
 
 		if(resultPos != null && !world.isRemote)
 			if (world.getBlockState(pos).getValue(LIT))
-				if (WorldSpawnLocation.bonfire_info.containsKey(pos))
+				if (WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 				{
-					BonfireInfo info = WorldSpawnLocation.bonfire_info.get(pos);
+					BonfireInfo info = WorldSpawnLocation.getBonfireInfo().get(pos);
 					if(info != null)
 					{
 						info.setSpawnPos(resultPos);
@@ -119,13 +119,13 @@ public class AshBonePile extends CubeContainerHorizontal
 					player.setHeldItem(hand, ItemStack.EMPTY);
 				world.setBlockState(pos, state.withProperty(LIT, true), 3);
 				Objects.requireNonNull(te).isLit(true);
-				if (!WorldSpawnLocation.bonfire_info.containsKey(pos))
+				if (!WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 				{
 					BlockPos resultPos = testPosition(world, pos);
 					BonfireInfo info = new BonfireInfo(EntityPlayer.getUUID(player.getGameProfile()), world.provider.getDimension());
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
-					WorldSpawnLocation.bonfire_info.put(pos, info);
+					WorldSpawnLocation.getBonfireInfo().put(pos, info);
 					NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(UpdateStatus.ADD, pos, info));
 				}
 			}
@@ -199,22 +199,22 @@ public class AshBonePile extends CubeContainerHorizontal
 
 	private void onBlockDestroy(final World world, final BlockPos pos)
 	{
-		if (WorldSpawnLocation.bonfire_info.containsKey(pos))
+		if (WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 		{
-			BonfireInfo binfo = WorldSpawnLocation.bonfire_info.get(pos);
+			BonfireInfo binfo = WorldSpawnLocation.getBonfireInfo().get(pos);
 
 			List<UUID> player_list = binfo.getLastPlayerSpawn();
 			if (player_list.size() != 0)
 				for(UUID entry : player_list)
-					if (WorldSpawnLocation.lastSpawnLocations.containsKey(entry))
+					if (WorldSpawnLocation.getLastSpawnLocations().containsKey(entry))
 					{
 						EntityPlayer player = world.getPlayerEntityByUUID(entry);
 						Objects.requireNonNull(player).sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
-						WorldSpawnLocation.lastSpawnLocations.remove(entry);
+						WorldSpawnLocation.getLastSpawnLocations().remove(entry);
 						if (world.isRemote)
 							NetworkHandler.INSTANCE.sendToServer(new MessageLastSpawnUpdate(UpdateStatus.REMOVE, null, entry));
 					}
-			WorldSpawnLocation.bonfire_info.remove(pos);
+			WorldSpawnLocation.getBonfireInfo().remove(pos);
 			if (world.isRemote)
 				NetworkHandler.INSTANCE.sendToServer(new MessageBonfireUpdate(UpdateStatus.REMOVE, pos, null));
 		}

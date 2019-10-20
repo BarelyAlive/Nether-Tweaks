@@ -41,7 +41,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -100,7 +99,7 @@ public class ModBlocks
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
 	
 	//ItemBlocks
-	public static final ItemSlab ITEM_ELDER_SLAB 	 = new ItemSlab(ELDER_SLAB, ELDER_SLAB, ELDER_SLAB_DOUBLE);
+	public static final ItemSlab ITEM_ELDER_SLAB = new ItemSlab(ELDER_SLAB, ELDER_SLAB, ELDER_SLAB_DOUBLE);
 
 	//END_OF_INITIALIZATION
 

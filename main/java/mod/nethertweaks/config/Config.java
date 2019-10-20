@@ -1,9 +1,10 @@
 package mod.nethertweaks.config;
 
+import static mod.nethertweaks.NetherTweaksMod.configDirectory;
+
 import java.io.File;
 import java.util.List;
 
-import mod.nethertweaks.NetherTweaksMod;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config
@@ -100,9 +101,9 @@ public class Config
 	public static boolean generalItemHandlerCompat  = false;
 	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 
-	public static void init()
+	public static void preInit()
 	{
-		Configuration config = new Configuration(new File(NetherTweaksMod.configDirectory, "NetherTweaksMod.cfg"));
+		Configuration config = new Configuration(new File(configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 
 		burnTimeHellfayah 			  = config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();

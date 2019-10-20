@@ -6,7 +6,7 @@ import mod.nethertweaks.registry.manager.NTMRegistryManager;
 
 public class ModJsonRecipes
 {
-	public static void init(final File f)
+	public static void postInit(final File f)
 	{
 		//load
 		NTMRegistryManager.COMPOST_REGISTRY.loadJson(new File(f, "CompostRegistry.json"));

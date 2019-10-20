@@ -94,12 +94,12 @@ public class MessageBonfireUpdate implements IMessage {
 		@Override
 		public IMessage onMessage(final MessageBonfireUpdate msg, final MessageContext ctx) {
 			if (msg.status == UpdateStatus.ADD || msg.status == UpdateStatus.UPDATE)
-				WorldSpawnLocation.bonfire_info.put(msg.pos, msg.info);
+				WorldSpawnLocation.getBonfireInfo().put(msg.pos, msg.info);
 			else if (msg.status == UpdateStatus.REMOVE)
-				WorldSpawnLocation.bonfire_info.remove(msg.pos);
+				WorldSpawnLocation.getBonfireInfo().remove(msg.pos);
 
 			if (ctx.side == Side.SERVER)
-				NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(msg.status, msg.pos, WorldSpawnLocation.bonfire_info.getOrDefault(msg.pos, null)));
+				NetworkHandler.INSTANCE.sendToAll(new MessageBonfireUpdate(msg.status, msg.pos, WorldSpawnLocation.getBonfireInfo().getOrDefault(msg.pos, null)));
 			return null;
 		}
 	}

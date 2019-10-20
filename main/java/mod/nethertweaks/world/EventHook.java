@@ -1,6 +1,6 @@
 package mod.nethertweaks.world;
 
-import static mod.nethertweaks.NetherTweaksMod.gsonInstance;
+import static mod.nethertweaks.NetherTweaksMod.GSON_INSTANCE;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -81,8 +81,8 @@ public class EventHook
 	
 	public static void registerEvents()
 	{
-		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
 		MinecraftForge.EVENT_BUS.register(new EventHook());
+		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
 		MinecraftForge.EVENT_BUS.register(new ModBlocks());
 		MinecraftForge.EVENT_BUS.register(new ModItems());
@@ -91,16 +91,16 @@ public class EventHook
 	//HELLWORLD
 	@SubscribeEvent
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
-	{
+	{		
 		boolean activated = false;
 		BlockPos pos = event.getPos();
 		ItemStack heldItem = event.getItemStack();
-		World world = event.getEntity().getEntityWorld();
+		World world = event.getWorld();
 		boolean vaporize = world.provider.doesWaterVaporize();
 		FluidStack f = FluidUtil.getFluidContained(heldItem);
 
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
-				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !Objects.requireNonNull(f).getFluid().doesVaporize(f)) return;
+				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
@@ -114,7 +114,7 @@ public class EventHook
 		{
 			pos.add(0.5D, 0.5D, 0.5D);
 
-			switch (Objects.requireNonNull(event.getFace()))
+			switch (event.getFace())
 			{
 			case UP:
 				pos = pos.up();
@@ -159,7 +159,7 @@ public class EventHook
 
 		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
-			if (!WorldSpawnLocation.lastSpawnLocations.containsKey(EntityPlayer.getUUID(player.getGameProfile())))
+			if (!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
 				BlockPos posplayer = player.getPosition();
 				int yDifferenz = 0;
@@ -173,7 +173,7 @@ public class EventHook
 			}
 			else
 			{
-				PlayerPosition pos = WorldSpawnLocation.lastSpawnLocations.get(EntityPlayer.getUUID(player.getGameProfile()));
+				PlayerPosition pos = WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
 			}
@@ -357,7 +357,7 @@ public class EventHook
 			else
 				try {
 					FileReader reader = new FileReader(saveFile);
-					ThirstStats stats = gsonInstance.fromJson(reader, ThirstStats.class);
+					ThirstStats stats = GSON_INSTANCE.fromJson(reader, ThirstStats.class);
 					if (stats == null)
 						ServerProxy.registerPlayer(player, new ThirstStats());
 					else
@@ -374,7 +374,7 @@ public class EventHook
 			ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
 			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
 			try {
-				String write = gsonInstance.toJson(stats);
+				String write = GSON_INSTANCE.toJson(stats);
 				saveFile.createNewFile();
 				BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
 				writer.write(write);
@@ -410,11 +410,11 @@ public class EventHook
 	//*********************************************************************************************************************
 
 	@SubscribeEvent
-	public void registerEnchantments(final RegistryEvent.Register<Enchantment> registry)
+	public void registerEnchantments(final RegistryEvent.Register<Enchantment> event)
 	{
-		registry.getRegistry().register(new EnchantmentEfficiency());
-		registry.getRegistry().register(new EnchantmentLuckOfTheSea());
-		registry.getRegistry().register(new EnchantmentFortune());
+		event.getRegistry().register(new EnchantmentEfficiency());
+		event.getRegistry().register(new EnchantmentLuckOfTheSea());
+		event.getRegistry().register(new EnchantmentFortune());
 	}
 
 	//*********************************************************************************************************************

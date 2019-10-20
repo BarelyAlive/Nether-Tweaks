@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
-
 public class LiquidImpossibility extends BlockFluidClassic
 {
 	public LiquidImpossibility()
@@ -95,6 +94,4 @@ public class LiquidImpossibility extends BlockFluidClassic
 	public Fluid getFluid() {
 		return ModFluids.FLUID_LIQUID_IMPOSSIBILITY;
 	}
-
-
 }

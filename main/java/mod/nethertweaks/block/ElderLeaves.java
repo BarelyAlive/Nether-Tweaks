@@ -22,14 +22,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ElderLeaves extends BlockLeaves implements net.minecraftforge.common.IShearable
+public class ElderLeaves extends BlockLeaves implements IShearable
 {
 	public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
 	public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
-	protected boolean leavesFancy;
 	int[] surroundings;
 
 	public ElderLeaves()
@@ -50,9 +50,8 @@ public class ElderLeaves extends BlockLeaves implements net.minecraftforge.commo
 			if(leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
 			{
 				leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-				world.markBlockRangeForRenderUpdate(pos, pos);
+				world.setBlockState(pos, state, 3);
 			}
-			return;
 		}
 
 		if (state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))

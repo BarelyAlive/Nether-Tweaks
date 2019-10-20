@@ -43,14 +43,14 @@ public class MessageBonfireSetSpawnPoint implements IMessage
 
 		@Override
 		public IMessage onMessage(final MessageBonfireSetSpawnPoint msg, final MessageContext ctx) {
-			BonfireInfo info = WorldSpawnLocation.bonfire_info.get(msg.pos);
+			BonfireInfo info = WorldSpawnLocation.getBonfireInfo().get(msg.pos);
 
 			if(info == null)
 				return null;
 
 			info.setSpawnPos(msg.spawnPos);
 
-			WorldSpawnLocation.bonfire_info.put(msg.pos, info);
+			WorldSpawnLocation.getBonfireInfo().put(msg.pos, info);
 			return null;
 		}
 

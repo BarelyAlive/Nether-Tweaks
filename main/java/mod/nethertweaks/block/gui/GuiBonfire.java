@@ -49,7 +49,7 @@ public class GuiBonfire extends GuiContainer {
 		toggle = true;
 
 		bonfires = new HashMap<>();
-		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.bonfire_info.entrySet())
+		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.getBonfireInfo().entrySet())
 			if((entry.getValue().isPublic() || !entry.getValue().isPublic() && entry.getValue().getOwner().getLeastSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getLeastSignificantBits() && entry.getValue().getOwner().getMostSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getMostSignificantBits()) && !entry.getKey().equals(this.pos))
 				bonfires.put(entry.getKey(), entry.getValue());
 	}
@@ -66,8 +66,8 @@ public class GuiBonfire extends GuiContainer {
 
 		GuiButton b;
 
-		if(WorldSpawnLocation.bonfire_info.containsKey(pos))
-			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLocation.bonfire_info.get(pos).isPublic() ? "G" : "P");
+		if(WorldSpawnLocation.getBonfireInfo().containsKey(pos))
+			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, WorldSpawnLocation.getBonfireInfo().get(pos).isPublic() ? "G" : "P");
 		else
 			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, "G");
 		buttonList.add(b);
@@ -99,7 +99,7 @@ public class GuiBonfire extends GuiContainer {
 		}
 		text = new GuiTextField(8, fontRenderer, posX - 30, posY - 40, 128, 14);
 		text.setMaxStringLength(26);
-		String name = WorldSpawnLocation.bonfire_info.get(pos).getName();
+		String name = WorldSpawnLocation.getBonfireInfo().get(pos).getName();
 		text.setText(name);
 		if (Objects.equals(name, ""))
 			text.setFocused(true);
@@ -113,9 +113,9 @@ public class GuiBonfire extends GuiContainer {
 		//if(world.isRemote) return;
 		if(button.id == 0)
 		{
-			WorldSpawnLocation.bonfire_info.get(pos).isPublic(!WorldSpawnLocation.bonfire_info.get(pos).isPublic());
+			WorldSpawnLocation.getBonfireInfo().get(pos).isPublic(!WorldSpawnLocation.getBonfireInfo().get(pos).isPublic());
 			if(world.isRemote)
-				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
+				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.getBonfireInfo().get(pos)));
 		}
 		if (button.id > 0 && button.id < 6)
 		{
@@ -160,9 +160,9 @@ public class GuiBonfire extends GuiContainer {
 
 		if (text.isFocused())
 		{
-			WorldSpawnLocation.bonfire_info.get(pos).setName(text.getText());
+			WorldSpawnLocation.getBonfireInfo().get(pos).setName(text.getText());
 			if(world.isRemote)
-				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.bonfire_info.get(pos)));
+				NetworkHandler.sendToServer(new MessageBonfireUpdate(UpdateStatus.UPDATE, pos, WorldSpawnLocation.getBonfireInfo().get(pos)));
 		}
 
 		if (!(keyCode == Keyboard.KEY_E && text.isFocused()))
