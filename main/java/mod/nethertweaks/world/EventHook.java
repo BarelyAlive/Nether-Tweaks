@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.enchantments.EnchantmentEfficiency;

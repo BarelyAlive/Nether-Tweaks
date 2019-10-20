@@ -7,8 +7,6 @@ import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.fluids.FluidDistilledWater;
 import mod.nethertweaks.fluids.FluidLiquidImpossibility;
 import mod.sfhcore.handler.BucketHandler;
-import net.minecraft.block.Block;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
