@@ -16,7 +16,7 @@ import mod.nethertweaks.item.ItemDoll;
 import mod.nethertweaks.item.ItemMesh;
 import mod.nethertweaks.item.ItemPebble;
 import mod.nethertweaks.item.Seed;
-import mod.sfhcore.handler.CustomFuelHandler;
+import mod.sfhcore.handler.ModFuelHandler;
 import mod.sfhcore.items.ItemDoor;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -213,10 +213,10 @@ public class ModItems
 	private static void addItemBurnTime()
 	{
 		if(BlocksItems.enableWoodChippings)
-			CustomFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
+			ModFuelHandler.addFuelBurnTime(new ItemInfo(WOOD_CHIPPINGS), 100);
 		if(BlocksItems.enableHellfayah) {
-			CustomFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
-			CustomFuelHandler.addFuelBurnTime(new ItemInfo(ModBlocks.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
+			ModFuelHandler.addFuelBurnTime(new ItemInfo(HELLFAYAH), Config.burnTimeHellfayah);
+			ModFuelHandler.addFuelBurnTime(new ItemInfo(ModBlocks.BLOCK_OF_HELLFAYAH), Config.burnTimeHellfayahBlock);
 		}
 	}
 }
