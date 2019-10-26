@@ -50,7 +50,7 @@ public class HammerHandler
 			event.getDrops().addAll(rewards);
 		}
 
-		hammer =  ItemStack.EMPTY;
+		hammer = ItemStack.EMPTY;
 	}
 
 	public static boolean isHammer(@Nullable final ItemStack stack)

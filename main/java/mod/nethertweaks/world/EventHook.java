@@ -96,25 +96,21 @@ public class EventHook
 	@SubscribeEvent
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
 	{
-		boolean activated = false;
 		BlockPos pos = event.getPos();
-		ItemStack heldItem = event.getItemStack();
 		World world = event.getWorld();
+		IBlockState state = world.getBlockState(pos);
 		boolean vaporize = world.provider.doesWaterVaporize();
-		FluidStack f = FluidUtil.getFluidContained(heldItem);
+		FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
 
 		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
-				|| !BucketHelper.isBucketWithFluidMaterial(heldItem, Material.WATER) || !f.getFluid().doesVaporize(f)) return;
+				|| !BucketHelper.isBucketWithFluidMaterial(event.getItemStack(), Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
 
-		if (world.getBlockState(pos).getBlock().onBlockActivated(world, pos, world.getBlockState(pos), event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
-		{
-			activated = true;
+		if (state.getBlock().onBlockActivated(world, pos, state, event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 			event.setCanceled(true);
-		}
-		if (!activated)
+		else
 		{
 			pos.add(0.5D, 0.5D, 0.5D);
 

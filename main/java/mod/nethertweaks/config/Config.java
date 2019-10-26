@@ -85,7 +85,7 @@ public class Config
 	public static boolean enableSaltRecipe = true;
 	public static boolean waterSources     = true;
 	public static String[] blacklistSalt = {"distilled_water"};
-	public static String[] grabberBlocks = new String[] {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
+	public static String[] grabberBlocks = {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 
 	//JSON
 	public static boolean enableJSONLoading = true;
@@ -99,99 +99,106 @@ public class Config
 	public static boolean fluidListIsBlackList 		= true;
 	public static boolean enableHarvestcraft 		= false;
 	public static boolean generalItemHandlerCompat  = false;
-	public static String[] oreDictPreferenceOrder = {"thermalfoundation", "immersiveengineering"};
 
 	public static void preInit()
 	{
 		Configuration config = new Configuration(new File(configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 
-		burnTimeHellfayah 			  = config.get("Tweak", "Burntime of Hellfayah", 12800).getInt();
-		burnTimeHellfayahBlock 		  = config.get("Tweak", "Burntime of Hellfayah blocks", 128000).getInt();
-		burnTimeFurnace 			  = config.get("Tweak", "Netherrack Furnace worktime in ticks", 1600).getInt();
-		grabberBlocks	 			  = config.get("Tweak", "Whick blocks should be tangible with the grabber?", grabberBlocks).getStringList();
+		final String tweaks = "Tweaks";
+		final String world = "World";
+		final String mechanics = "Mechanics";
+		final String sieving = "Sieving";
+		final String barrel = "Barrel";
+		final String fluids = "Fluids";
+		final String json = "JSON";
+		final String compatibility = "Compatibility";
 
-		autoExtractItems			  = config.get("Tweak", "Enable machine's auto item extract from inventorys above", true).getBoolean();
-		autoOutputItems				  = config.get("Tweak", "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
+		burnTimeHellfayah 			  = config.get(tweaks, "Burntime of Hellfayah", 12800).getInt();
+		burnTimeHellfayahBlock 		  = config.get(tweaks, "Burntime of Hellfayah blocks", 128000).getInt();
+		burnTimeFurnace 			  = config.get(tweaks, "Netherrack Furnace worktime in ticks", 1600).getInt();
+		grabberBlocks	 			  = config.get(tweaks, "Whick blocks should be tangible with the grabber?", grabberBlocks).getStringList();
 
-		fluidTransferAmount			  = config.getInt("Condenser & Freezer max. fluid auto transfer rate in mB/Sec", "Tweak", 200, 0, Integer.MAX_VALUE, "0 disables it");
+		autoExtractItems			  = config.get(tweaks, "Enable machine's auto item extract from inventorys above", true).getBoolean();
+		autoOutputItems				  = config.get(tweaks, "Enable machine's auto item output to inventorys at the sides", true).getBoolean();
 
-		capacityFreezer				  = config.getInt("Freezer fluid capacity in mb", "Tweak", 16000, 1, Integer.MAX_VALUE, "");
-		freezeTimeFreezer 			  = config.getInt("Freezer worktime in ticks", "Tweak", 6000, 1, Integer.MAX_VALUE, "");
-		cooldownFreezer 			  = config.getInt("Freezer cooldown time in ticks", "Tweak", 18000, 1, Integer.MAX_VALUE, "");
+		fluidTransferAmount			  = config.getInt("Condenser & Freezer max. fluid auto transfer rate in mB/Sec", tweaks, 200, 0, Integer.MAX_VALUE, "0 disables it");
 
-		dryTimeCondenser 			  = config.getInt("Condenser worktime in ticks", "Tweak", 2400, 1, Integer.MAX_VALUE, "");
-		capacityCondenser 			  = config.getInt("Condenser fluid capacity in mb", "Tweak", 8000, 1, Integer.MAX_VALUE, "");
-		cooldownCondenser 			  = config.getInt("Condenser heat up time in ticks", "Tweak", 200000, 1, Integer.MAX_VALUE, "");
+		capacityFreezer				  = config.getInt("Freezer fluid capacity in mb", tweaks, 16000, 1, Integer.MAX_VALUE, "");
+		freezeTimeFreezer 			  = config.getInt("Freezer worktime in ticks", tweaks, 6000, 1, Integer.MAX_VALUE, "");
+		cooldownFreezer 			  = config.getInt("Freezer cooldown time in ticks", tweaks, 18000, 1, Integer.MAX_VALUE, "");
 
-		durabilityHWood				  = config.getInt("Durability for Wood Hammer", "Tweak", 64, 1, Integer.MAX_VALUE, "");
-		durabilityHGold				  = config.getInt("Durability for Gold Hammer", "Tweak", 80, 1, Integer.MAX_VALUE, "");
-		durabilityHStone			  = config.getInt("Durability for Stone Hammer", "Tweak", 160, 1, Integer.MAX_VALUE, "");
-		durabilityHIron				  = config.getInt("Durability for Iron Hammer", "Tweak", 640, 1, Integer.MAX_VALUE, "");
-		durabilityHDiamond			  = config.getInt("Durability for Diamond Hammer", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+		dryTimeCondenser 			  = config.getInt("Condenser worktime in ticks", tweaks, 2400, 1, Integer.MAX_VALUE, "");
+		capacityCondenser 			  = config.getInt("Condenser fluid capacity in mb", tweaks, 8000, 1, Integer.MAX_VALUE, "");
+		cooldownCondenser 			  = config.getInt("Condenser heat up time in ticks", tweaks, 200000, 1, Integer.MAX_VALUE, "");
 
-		durabilityGWood				  = config.getInt("Durability for Wood Grabber", "Tweak", 64, 1, Integer.MAX_VALUE, "");
-		durabilityGGold				  = config.getInt("Durability for Gold Grabber", "Tweak", 80, 1, Integer.MAX_VALUE, "");
-		durabilityGStone			  = config.getInt("Durability for Stone Grabber", "Tweak", 160, 1, Integer.MAX_VALUE, "");
-		durabilityGIron				  = config.getInt("Durability for Iron Grabber", "Tweak", 640, 1, Integer.MAX_VALUE, "");
-		durabilityGDiamond			  = config.getInt("Durability for Diamond Grabber", "Tweak", 5120, 1, Integer.MAX_VALUE, "");
+		durabilityHWood				  = config.getInt("Durability for Wood Hammer", tweaks, 64, 1, Integer.MAX_VALUE, "");
+		durabilityHGold				  = config.getInt("Durability for Gold Hammer", tweaks, 80, 1, Integer.MAX_VALUE, "");
+		durabilityHStone			  = config.getInt("Durability for Stone Hammer", tweaks, 160, 1, Integer.MAX_VALUE, "");
+		durabilityHIron				  = config.getInt("Durability for Iron Hammer", tweaks, 640, 1, Integer.MAX_VALUE, "");
+		durabilityHDiamond			  = config.getInt("Durability for Diamond Hammer", tweaks, 5120, 1, Integer.MAX_VALUE, "");
 
-		exhaustMultiplierDefault	  = (float) config.get("Tweak", "General thirst multiplier", 1.0d).getDouble();
-		exhaustMultiplierNighttime	  = (float) config.get("Tweak", "Thirst multiplier at night", 0.9d).getDouble();
+		durabilityGWood				  = config.getInt("Durability for Wood Grabber", tweaks, 64, 1, Integer.MAX_VALUE, "");
+		durabilityGGold				  = config.getInt("Durability for Gold Grabber", tweaks, 80, 1, Integer.MAX_VALUE, "");
+		durabilityGStone			  = config.getInt("Durability for Stone Grabber", tweaks, 160, 1, Integer.MAX_VALUE, "");
+		durabilityGIron				  = config.getInt("Durability for Iron Grabber", tweaks, 640, 1, Integer.MAX_VALUE, "");
+		durabilityGDiamond			  = config.getInt("Durability for Diamond Grabber", tweaks, 5120, 1, Integer.MAX_VALUE, "");
 
-		enableSaltRecipe			  = config.get("World", "Enable salt in-world-crafting?", true).getBoolean();
+		exhaustMultiplierDefault	  = (float) config.get(tweaks, "General thirst multiplier", 1.0d).getDouble();
+		exhaustMultiplierNighttime	  = (float) config.get(tweaks, "Thirst multiplier at night", 0.9d).getDouble();
 
-		enableThirst				  = config.get("Mechanics", "Enable thirst?", true).getBoolean();
-		useMetricSystem				  = config.get("Mechanics", "Use metric System?", true, "").getBoolean();
-		enableTeleport				  = config.get("Mechanics", "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
-		waterSources				  = config.get("Mechanics", "Allow water sources?", false, "").getBoolean();
-		blacklistSalt				  = config.get("Mechanics", "Fluids that sould not work for the salt recipe", blacklistSalt, "Example: minecraft:water").getStringList();
+		enableSaltRecipe			  = config.get(world, "Enable salt in-world-crafting?", true).getBoolean();
+
+		enableThirst				  = config.get(mechanics, "Enable thirst?", true).getBoolean();
+		useMetricSystem				  = config.get(mechanics, "Use metric System?", true, "").getBoolean();
+		enableTeleport				  = config.get(mechanics, "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
+		waterSources				  = config.get(mechanics, "Allow water sources?", false, "").getBoolean();
+		blacklistSalt				  = config.get(mechanics, "Fluids that sould not work for the salt recipe", blacklistSalt, "Example: minecraft:water").getStringList();
 
 		///Sieve
-		sieveSimilarRadius 			  = config.get("Sieving", "Sieve Similar Radius", 2).getInt();
-		sieveFortuneMaxLevel 		  = config.get("Sieving", "Max Level for sieve fortune enchanting?", 3).getInt();
-		sieveEfficiencyMaxLevel 	  = config.get("Sieving", "Max Level for sieve efficiency enchanting?", 5).getInt();
-		sieveLuckOfTheSeaMaxLevel 	  = config.get("Sieving", "Max Level for sieve luck of the sea enchanting?", 3).getInt();
-		normalDropPercent 			  = config.getInt("The normal drop percent chance with any sieve mesh?", "Sieving", 100, 1, Integer.MAX_VALUE, "");
-		sievesAutoOutput 			  = config.get("Sieving", "Sieve Auto output?", false).getBoolean();
-		fakePlayersCanSieve 		  = config.get("Sieving", "Fake players can sieve?", false).getBoolean();
-		setFireToMacroUsers 		  = config.get("Sieving", "Set fire to Macro Users?", false).getBoolean();
-		enableSieveFortune 			  = config.get("Sieving", "Enable sieve fortune enchanting?", true).getBoolean();
-		enableSieveEfficiency 		  = config.get("Sieving", "Enable sieve effiency enchanting?", true).getBoolean();
-		hasteIncreaseSpeed 			  = config.get("Sieving", "Does haste increase sieving speed?", true).getBoolean();
-		enableSieveLuckOfTheSea 	  = config.get("Sieving", "Enable sieve luck of the sea enchanting?", true).getBoolean();
-		flattenSieveRecipes 		  = config.get("Sieving", "If enabled all mesh tiers can obtain the same", false).getBoolean();
+		sieveSimilarRadius 			  = config.get(sieving, "Sieve Similar Radius", 2).getInt();
+		sieveFortuneMaxLevel 		  = config.get(sieving, "Max Level for sieve fortune enchanting?", 3).getInt();
+		sieveEfficiencyMaxLevel 	  = config.get(sieving, "Max Level for sieve efficiency enchanting?", 5).getInt();
+		sieveLuckOfTheSeaMaxLevel 	  = config.get(sieving, "Max Level for sieve luck of the sea enchanting?", 3).getInt();
+		sievesAutoOutput 			  = config.get(sieving, "Sieve Auto output?", false).getBoolean();
+		fakePlayersCanSieve 		  = config.get(sieving, "Fake players can sieve?", false).getBoolean();
+		setFireToMacroUsers 		  = config.get(sieving, "Set fire to Macro Users?", false).getBoolean();
+		enableSieveFortune 			  = config.get(sieving, "Enable sieve fortune enchanting?", true).getBoolean();
+		enableSieveEfficiency 		  = config.get(sieving, "Enable sieve effiency enchanting?", true).getBoolean();
+		hasteIncreaseSpeed 			  = config.get(sieving, "Does haste increase sieving speed?", true).getBoolean();
+		enableSieveLuckOfTheSea 	  = config.get(sieving, "Enable sieve luck of the sea enchanting?", true).getBoolean();
+		flattenSieveRecipes 		  = config.get(sieving, "If enabled all mesh tiers can obtain the same", false).getBoolean();
+		normalDropPercent 			  = config.getInt("The normal drop percent chance with any sieve mesh?", sieving, 100, 1, Integer.MAX_VALUE, "");
 
 		//Barrel
-		compostingTicks 			  = config.get("Barrel", "Ticks to form Dirt", 600).getInt();
-		woodBarrelMaxTemp 			  = config.get("Barrel", "How hot can a fluid be in a wooden barrel (in Kelvin)?", 301).getInt();
-		shouldBarrelsFillWithRain 	  = config.get("Barrel", "Barrels fill with rain?", true).getBoolean();
-		enableBarrelTransformLighting = config.get("Barrel", "Enable Barrel transform lighting?", true).getBoolean();
+		compostingTicks 			  = config.get(barrel, "Ticks to form Dirt", 600).getInt();
+		woodBarrelMaxTemp 			  = config.get(barrel, "How hot can a fluid be in a wooden barrel (in Kelvin)?", 301).getInt();
+		shouldBarrelsFillWithRain 	  = config.get(barrel, "Barrels fill with rain?", true).getBoolean();
+		enableBarrelTransformLighting = config.get(barrel, "Enable Barrel transform lighting?", true).getBoolean();
 
 		//Crucible
 
 		//Liquid Impossibility
-		densityLI					  = config.getInt("Density for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
-		luminosityLI				  = config.getInt("Luminosity for Liquid Impossibility", "Fluid", 15, 0, 15, "");
-		viscosityLI					  = config.getInt("Viscosity for Liquid Impossibility", "Fluid", 1000, 0, Integer.MAX_VALUE, "");
-		temperatureLI				  = config.getInt("Temperatur of Liquid Impossibility (in Kelvin)", "Fluid", 0, 0, Integer.MAX_VALUE, "");
-		doesLIVaporize 				  = config.get("Fluid", "Does Liquid Impossibility vaporize?", false).getBoolean();
-		spawnSkeletons 				  = config.get("Fluid", "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
-		spawnSlimes 				  = config.get("Fluid", "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
-		spawnWaterMobs				  = config.get("Fluid", "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
+		densityLI					  = config.getInt("Density for Liquid Impossibility", fluids, 1000, 0, Integer.MAX_VALUE, "");
+		luminosityLI				  = config.getInt("Luminosity for Liquid Impossibility", fluids, 15, 0, 15, "");
+		viscosityLI					  = config.getInt("Viscosity for Liquid Impossibility", fluids, 1000, 0, Integer.MAX_VALUE, "");
+		temperatureLI				  = config.getInt("Temperatur of Liquid Impossibility (in Kelvin)", fluids, 0, 0, Integer.MAX_VALUE, "");
+		doesLIVaporize 				  = config.get(fluids, "Does Liquid Impossibility vaporize?", false).getBoolean();
+		spawnSkeletons 				  = config.get(fluids, "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
+		spawnSlimes 				  = config.get(fluids, "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
+		spawnWaterMobs				  = config.get(fluids, "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
 
 		//JSON
-		enableJSONLoading 			  = config.getBoolean("Enable use of JSON configuration?", "JSON", true, "Disable this if JSON configuration causes problems");
+		enableJSONLoading 			  = config.getBoolean("Enable use of JSON configuration?", json, true, "Disable this if JSON configuration causes problems");
 
 		//Mod-Compatibility
-		fluidListIsBlackList		  = config.get("Compatibility", "Is the Moo-Fluids-List a blacklist?", true).getBoolean();
-		enableMooFluid 				  = config.get("Compatibility", "Enable Moo-Fluids-Compatibility?", true).getBoolean();
-		enableHarvestcraft			  = config.get("Compatibility", "Enable sifting of Harvestcraft-Saplings?", false, "Disabled by default, cuz HC wants you to buy or find its saplings").getBoolean();
+		fluidListIsBlackList		  = config.get(compatibility, "Is the Moo-Fluids-List a blacklist?", true).getBoolean();
+		enableMooFluid 				  = config.get(compatibility, "Enable Moo-Fluids-Compatibility?", true).getBoolean();
+		enableHarvestcraft			  = config.get(compatibility, "Enable sifting of Harvestcraft-Saplings?", false, "Disabled by default, cuz HC wants you to buy or find its saplings").getBoolean();
 		fillAmount 					  = config.get("FillAmount", "How many mB milk should be produced?", 1000).getInt();
-		oreDictPreferenceOrder 		  = config.getStringList("OreDict preference order", "Compatibility", oreDictPreferenceOrder, "");
 		generalItemHandlerCompat 	  = config.get("GeneralItemHandlerCompat", "Use of greater Item-Capability?", false).getBoolean();
-		dankNullIntegration 		  = config.get("Compatibility", "Enable Dank-Null Integration?", true).getBoolean();
-		preventUnidict 				  = config.get("Compatibility", "Enable Unidictionary?", true).getBoolean();
+		dankNullIntegration 		  = config.get(compatibility, "Enable Dank-Null Integration?", true).getBoolean();
+		preventUnidict 				  = config.get(compatibility, "Enable Unidictionary?", true).getBoolean();
 
 		BlocksItems.load(config);
 
