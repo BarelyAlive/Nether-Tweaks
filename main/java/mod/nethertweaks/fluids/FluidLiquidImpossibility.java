@@ -4,6 +4,7 @@ import mod.nethertweaks.Constants;
 import mod.nethertweaks.config.Config;
 import mod.sfhcore.helper.FluidStateMapper;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -43,16 +44,16 @@ public class FluidLiquidImpossibility extends Fluid{
 	public boolean doesVaporize(final FluidStack fluidStack) {
 		return Config.doesLIVaporize;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
     public void initModel() {
-        Block block = this.getBlock();
+        Block block = getBlock();
 
         FluidStateMapper mapper = new FluidStateMapper(Constants.MOD_ID, this);
 
         Item item = Item.getItemFromBlock(block);
         if (item != Items.AIR) {
-            ModelLoader.registerItemVariants(item);
+            ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, mapper);
         }
 

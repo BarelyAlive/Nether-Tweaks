@@ -84,14 +84,14 @@ public class NetherTweaksMod
 		new Hellworld(); //makes it register itself
 
 		GameRegistry.registerWorldGenerator(new WorldGeneratorNTM(), 1);
-		
+
 		EventHook.preInit();
 
 		getProxy().preInit();
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent event)
+	public void Init(final FMLInitializationEvent event)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		ModSmeltingNOreDict.init();
@@ -110,7 +110,7 @@ public class NetherTweaksMod
 		BarrelModeRegistry.registerDefaults();
 		NTMDefaultRecipes.registerDefaults();
 		ModJsonRecipes.postInit(configDirectory);
-		
+
 		getProxy().postInit();
 	}
 

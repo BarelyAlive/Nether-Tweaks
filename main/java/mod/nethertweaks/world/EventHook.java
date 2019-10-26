@@ -77,16 +77,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EventHook
 {
 	public final static String KEY = "ntm.firstSpawn";
-	
+
 	public static void preInit()
 	{
+		MinecraftForge.EVENT_BUS.register(new ModBlocks());
+		MinecraftForge.EVENT_BUS.register(new ModItems());
 		MinecraftForge.EVENT_BUS.register(new EventHook());
 		MinecraftForge.EVENT_BUS.register(new ModOreRegistration());
 		MinecraftForge.EVENT_BUS.register(new HammerHandler());
-		MinecraftForge.EVENT_BUS.register(new ModBlocks());
-		MinecraftForge.EVENT_BUS.register(new ModItems());
 	}
-	
+
 	public static void postInit()
 	{
 		addWaterMobs();
@@ -95,7 +95,7 @@ public class EventHook
 	//HELLWORLD
 	@SubscribeEvent
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
-	{		
+	{
 		boolean activated = false;
 		BlockPos pos = event.getPos();
 		ItemStack heldItem = event.getItemStack();

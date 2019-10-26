@@ -97,7 +97,7 @@ public class ModBlocks
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
-	
+
 	//ItemBlocks
 	public static final ItemSlab ITEM_ELDER_SLAB = new ItemSlab(ELDER_SLAB, ELDER_SLAB, ELDER_SLAB_DOUBLE);
 
@@ -211,7 +211,7 @@ public class ModBlocks
 		addItemBlock(ELDER_PLANKS);
 		addItemBlock(NETHERRACK_GRAVEL);
 		addItemBlock(MEAN_VINE);
-		
+
 		addItemBlock(ITEM_ELDER_SLAB, Constants.ELDER_SLAB);
 	}
 
@@ -229,15 +229,15 @@ public class ModBlocks
 		if(BLOCKS.contains(block))
 			ITEMS.add(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
-	
-	private static void addItemBlock(final ItemBlock block, String name)
+
+	private static void addItemBlock(final ItemBlock block, final String name)
 	{
 		if(BLOCKS.contains(block.getBlock()))
 		{
 			block.setRegistryName(Constants.MOD_ID, name);
 			block.setUnlocalizedName(name);
 			block.setCreativeTab(Constants.TABNTM);
-			
+
 			ITEMS.add(block);
 		}
 	}

@@ -32,7 +32,7 @@ public class ModFluids
 		if(BlocksItems.enableStoneBucket)
 			BucketHandler.addBucket("stone", "Stone", -1, 16, Constants.MOD_ID, 0x80778899, Constants.TABNTM);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
     public static void initModels() {
         FLUID_DISTILLED_WATER.initModel();

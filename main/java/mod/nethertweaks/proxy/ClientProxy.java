@@ -45,6 +45,6 @@ public class ClientProxy implements IProxy{
 	@Override
 	public void postInit() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

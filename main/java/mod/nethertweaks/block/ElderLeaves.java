@@ -46,13 +46,11 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 	public void updateTick(final World world, final BlockPos pos, final IBlockState state, final Random rand)
 	{
 		if(world.isRemote)
-		{
 			if(leavesFancy != Minecraft.getMinecraft().gameSettings.fancyGraphics)
 			{
 				leavesFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
 				world.setBlockState(pos, state, 3);
 			}
-		}
 
 		if (state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
 		{

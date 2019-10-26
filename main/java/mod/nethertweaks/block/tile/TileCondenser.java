@@ -77,7 +77,7 @@ public class TileCondenser extends TileFluidInventory
 			if(timer > 0) timer--;
 			setMaxTimer(Config.cooldownCondenser);
 		}
-		
+
 		if(getTemp() > getMaxTemp())
 			setTemp(getTemp() - getMaxTemp() > 0f ? 20 -  (getMaxTemp() - 20) * ((float)timer / (float)getMaxTimer()) : getTemp());
 		else
@@ -271,7 +271,7 @@ public class TileCondenser extends TileFluidInventory
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
 			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
 
-		
+
 		if(world.provider.doesWaterVaporize()) return 1;
 
 		if(stateBelow == Blocks.AIR.getDefaultState())

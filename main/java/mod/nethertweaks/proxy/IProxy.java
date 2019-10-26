@@ -8,8 +8,8 @@ public interface IProxy {
 	void init();
 
 	void postInit();
-	
-	public static boolean isClient()
+
+	static boolean isClient()
 	{
 		return FMLCommonHandler.instance().getSide().isClient();
 	}

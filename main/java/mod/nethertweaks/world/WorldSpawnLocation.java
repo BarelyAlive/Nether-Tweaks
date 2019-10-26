@@ -74,7 +74,7 @@ public class WorldSpawnLocation {
 		return new PlayerPosition(player.getPosition());
 	}
 
-	public static void setBonfire_info(Map<BlockPos, BonfireInfo> bonfire_info) {
+	public static void setBonfire_info(final Map<BlockPos, BonfireInfo> bonfire_info) {
 		WorldSpawnLocation.bonfire_info = bonfire_info;
 	}
 

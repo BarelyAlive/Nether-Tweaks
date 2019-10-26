@@ -247,7 +247,7 @@ public class AshBonePile extends CubeContainerHorizontal
 				world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D,
 						-(rand.nextDouble() % 0.04D), rand.nextDouble() % 0.08D, -(rand.nextDouble() % 0.04D));
 				l = 0;
-			} 
+			}
 		}
 		super.randomDisplayTick(stateIn, world, pos, rand);
 	}

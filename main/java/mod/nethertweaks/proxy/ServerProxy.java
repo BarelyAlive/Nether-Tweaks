@@ -11,10 +11,12 @@ public class ServerProxy implements IProxy{
 
 	public final static HashMap<UUID, ThirstStats> LOADED_PLAYERS = new HashMap<>();
 
+	@Override
 	public void preInit() {}
 
+	@Override
 	public void init() {}
-	
+
 	@Override
 	public void postInit() {}
 
