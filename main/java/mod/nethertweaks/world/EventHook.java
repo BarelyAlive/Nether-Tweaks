@@ -224,13 +224,14 @@ public class EventHook
 	@SubscribeEvent
 	public void getMilk(final PlayerInteractEvent.EntityInteract event)
 	{
+		ItemStack stack = event.getItemStack();
+		EntityPlayer player = event.getEntityPlayer();
+		
 		if(event.getTarget() instanceof EntityCow)
 		{
-			if(!NotNull.checkNotNull(event.getItemStack())) return;
-
-			ItemStack stack = event.getItemStack();
+			if(!NotNull.checkNotNull(stack)) return;
+			
 			Item item = stack.getItem();
-			EntityPlayer player = event.getEntityPlayer();
 
 			if(item == BucketHandler.getBucketFromFluid(null, "wood"))
 			{
