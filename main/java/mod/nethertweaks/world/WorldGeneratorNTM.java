@@ -16,11 +16,10 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class WorldGeneratorNTM implements IWorldGenerator{
 
-	private final WorldGenerator tree = new WorldGenElderTree(true);
-	private final WorldGenMinable nrack = new WorldGenMinable(ModBlocks.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
+	private final WorldGenElderTree TREE = new WorldGenElderTree(true);
+	private final WorldGenMinable ORE = new WorldGenMinable(ModBlocks.HELLFAYAH_ORE.getDefaultState(), 20, BlockMatcher.forBlock(Blocks.NETHERRACK));
 
-	public WorldGeneratorNTM() {
-	}
+	public WorldGeneratorNTM() {}
 
 	@Override
 	public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkGenerator chunkGenerator,
@@ -41,7 +40,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 				int positionX = posX + random.nextInt(16);
 				int positionY = 1 + random.nextInt(differenzMinMaxY);
 				int positionZ = posZ + random.nextInt(16);
-				nrack.generate(world, random, new BlockPos(positionX, positionY, positionZ));
+				ORE.generate(world, random, new BlockPos(positionX, positionY, positionZ));
 			}
 		if (BlocksItems.enableElderTree)
 			for (int i = 0; i < 15; i++) // 15 is rarity
@@ -49,7 +48,7 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 				int randPosX = posX + random.nextInt(16) +8;
 				int randPosY = random.nextInt(128); //Max Y coordinate
 				int randPosZ = posZ + random.nextInt(16) +8;
-				tree.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
+				TREE.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
 			}
 		/*Wichtige Anmerkung der Autorin:
 		 * Es muss die spawn position der Bäume
