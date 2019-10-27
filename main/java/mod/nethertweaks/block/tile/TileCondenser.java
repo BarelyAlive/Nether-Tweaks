@@ -44,7 +44,7 @@ public class TileCondenser extends TileFluidInventory
 	private int maxTimer = Config.cooldownCondenser;
 	private float compostMeter = 0;
 	private float maxCompost = Config.capacityCondenser;
-	private static int maxHeatAmunt = 0;
+	private static int maxHeatAmount = 0;
 
 	private static Fluid distilled()
 	{
@@ -54,7 +54,7 @@ public class TileCondenser extends TileFluidInventory
 	public TileCondenser() {
 		super(3, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
-		this.maxHeatAmunt = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
+		this.maxHeatAmount = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
 	}
 
 	@Override
