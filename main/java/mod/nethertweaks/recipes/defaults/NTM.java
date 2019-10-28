@@ -295,7 +295,7 @@ public class NTM implements IRecipeDefaults
 
 		// Custom Ores for other mods
 		// All default Ores
-		for (ItemChunk ore : OreHandler.mod_chunks.values()) {
+		for (ItemChunk ore : OreHandler.MOD_CHUNKS.values()) {
 			ItemInfo info = new ItemInfo(ore);
 			String name = ore.getOreName();
 			switch (name) {

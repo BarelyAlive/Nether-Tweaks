@@ -218,7 +218,7 @@ public class ModBlocks
 	private static void addBlock(final Block block, final String name)
 	{
 		block.setRegistryName(Constants.MOD_ID, name);
-		block.setUnlocalizedName(Objects.requireNonNull(block.getRegistryName()).getResourcePath());
+		block.setUnlocalizedName(block.getRegistryName().getResourcePath());
 		block.setCreativeTab(Constants.TABNTM);
 
 		BLOCKS.add(block);

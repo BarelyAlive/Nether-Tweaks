@@ -34,10 +34,10 @@ class OreInfo
 
 public class OreHandler {
 
-	private static final Map<Item, Integer> ore_list = new HashMap<>();
-	public static final Map<String, ItemChunk> mod_chunks = new HashMap<>();
-	private static final List<String> disabled_chunks = new ArrayList<>();
-	private static final List<String> enable_chunks = new ArrayList<>();
+	private static final Map<Item, Integer> ORE_LIST = new HashMap<>();
+	public static final Map<String, ItemChunk> MOD_CHUNKS = new HashMap<>();
+	private static final List<String> DISABLED_CHUNKS = new ArrayList<>();
+	private static final List<String> ENABLED_CHUNKS = new ArrayList<>();
 
 	public static void add(final Item stack, final int rarity)
 	{
@@ -46,10 +46,10 @@ public class OreHandler {
 		String reg = reg_domain + ":" + reg_path;
 		String unlocalized_name = stack.getUnlocalizedName();
 		String display_name = new ItemStack(stack).getDisplayName().toLowerCase();
-        for (String dis_name : disabled_chunks)
+        for (String dis_name : DISABLED_CHUNKS)
 			if (reg.contains(dis_name) || unlocalized_name.contains(dis_name) || display_name.contains(dis_name))
-                if (enable_chunks.size() != 0)
-                    for (String en_name : enable_chunks) {
+                if (ENABLED_CHUNKS.size() != 0)
+                    for (String en_name : ENABLED_CHUNKS) {
                         if (!reg.contains(en_name) && !unlocalized_name.contains(en_name) && !display_name.contains(en_name))
                             return;
                     }
@@ -83,32 +83,32 @@ public class OreHandler {
 		}
 		*/
 
-		if (!ore_list.containsKey(stack))
-			ore_list.put(stack, rarity);
+		if (!ORE_LIST.containsKey(stack))
+			ORE_LIST.put(stack, rarity);
 	}
 
 	public static void disableOre(final String name)
 	{
-		if (!disabled_chunks.contains(name))
-			disabled_chunks.add(name);
+		if (!DISABLED_CHUNKS.contains(name))
+			DISABLED_CHUNKS.add(name);
 	}
 
 	public static void enableOre(final String name)
 	{
-		if (!enable_chunks.contains(name))
-			enable_chunks.add(name);
+		if (!ENABLED_CHUNKS.contains(name))
+			ENABLED_CHUNKS.add(name);
 	}
 
 	public static void remove(final Item stack)
 	{
-        ore_list.remove(stack);
+        ORE_LIST.remove(stack);
 	}
 
 	public static void register(final IForgeRegistry<Item> registry) {
 		ItemChunk chunks;
 		ArrayList<DynOre> list = (ArrayList<DynOre>) NTMRegistryManager.DYN_ORE_REGISTRY.getRegistry();
 
-		for(Map.Entry<Item, Integer> entry : ore_list.entrySet())
+		for(Map.Entry<Item, Integer> entry : ORE_LIST.entrySet())
 		{
 			String[] name_array = new ItemStack(entry.getKey()).getDisplayName().split(" ");
 			List<String> name_list = new ArrayList<>(Arrays.asList(name_array));
@@ -130,7 +130,7 @@ public class OreHandler {
 					continue;
 			}
 
-			if(!mod_chunks.containsKey(mod_domain))
+			if(!MOD_CHUNKS.containsKey(mod_domain))
 			{
 				chunks = new ItemChunk();
 				chunks.setRegistryName(Constants.MOD_ID, Constants.CHUNK + "_" + mod_domain);
@@ -142,35 +142,35 @@ public class OreHandler {
 					chunks.setResult(mod_domain, found_entry.getResult().getItem());
 					chunks.setDisplayName(found_entry.getName());
 				}
-				mod_chunks.put(mod_domain, chunks);
+				MOD_CHUNKS.put(mod_domain, chunks);
 			}
 			chunks = null;
 		}
 
-		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		for(Map.Entry<String, ItemChunk> entry : MOD_CHUNKS.entrySet())
 			registry.register(entry.getValue());
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerItemHandlers(final net.minecraftforge.client.event.ColorHandlerEvent.Item event) {
-		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		for(Map.Entry<String, ItemChunk> entry : MOD_CHUNKS.entrySet())
 			event.getItemColors().registerItemColorHandler(new mod.nethertweaks.client.renderers.ChunkColorer(), entry.getValue());
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(final ModelRegistryEvent event) {
-		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		for(Map.Entry<String, ItemChunk> entry : MOD_CHUNKS.entrySet())
 			ModelLoader.setCustomModelResourceLocation(entry.getValue(), 0, new net.minecraft.client.renderer.block.model.ModelResourceLocation(Constants.MOD_ID + ":chunk"));
 	}
 
 	public static void registerFurnaceRecipe()
 	{
-		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		for(Map.Entry<String, ItemChunk> entry : MOD_CHUNKS.entrySet())
 			FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(entry.getValue(), 1), entry.getValue().getResult(), 1.0f);
 	}
 
 	public static void registerDynOreChunks(final DynOreRegistry registry) {
-		for(Map.Entry<String, ItemChunk> entry : mod_chunks.entrySet())
+		for(Map.Entry<String, ItemChunk> entry : MOD_CHUNKS.entrySet())
 		{
 	        try {
 	        	ItemStack result = entry.getValue().getResult();
@@ -183,7 +183,7 @@ public class OreHandler {
 						if(res.getParticleTexture().getFrameTextureData(0)[0].length == 256)
 							entry.getValue().setColor(res.getParticleTexture().getFrameTextureData(0)[i][140]);
 	        	}
-	        	mod_chunks.put(entry.getKey(), entry.getValue());
+	        	MOD_CHUNKS.put(entry.getKey(), entry.getValue());
 			} catch (Exception e) {
 	        	e.printStackTrace();
 			}
