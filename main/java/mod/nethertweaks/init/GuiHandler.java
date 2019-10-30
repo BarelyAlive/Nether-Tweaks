@@ -1,7 +1,5 @@
 package mod.nethertweaks.init;
 
-import java.util.Objects;
-
 import mod.nethertweaks.block.container.ContainerBonfire;
 import mod.nethertweaks.block.container.ContainerCondenser;
 import mod.nethertweaks.block.container.ContainerFreezer;
@@ -36,13 +34,13 @@ public class GuiHandler implements IGuiHandler
 		switch (ID)
 		{
 		case ID_FURNACE:
-			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerNetherrackFurnace(player.inventory, (TileNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
 		case ID_CONDENSER:
-			return new ContainerCondenser(player.inventory, (TileCondenser)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerCondenser(player.inventory, (TileCondenser) world.getTileEntity(new BlockPos(x, y, z)));
 		case ID_FREEZER:
-			return new ContainerFreezer(player.inventory, (TileFreezer)world.getTileEntity(new BlockPos(x, y, z)));
+			return new ContainerFreezer(player.inventory, (TileFreezer) world.getTileEntity(new BlockPos(x, y, z)));
 		case ID_HELLMART:
-			return new ContainerHellmart(player.inventory, (TileHellmart) Objects.requireNonNull(world.getTileEntity(new BlockPos(x, y, z))));
+			return new ContainerHellmart(player.inventory, (TileHellmart) world.getTileEntity(new BlockPos(x, y, z)));
 		case ID_BONFIRE:
 			return new ContainerBonfire();
 		default:

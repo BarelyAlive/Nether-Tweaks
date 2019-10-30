@@ -4,7 +4,6 @@ import static mod.nethertweaks.init.ModItems.ITEMS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.block.AshBonePile;

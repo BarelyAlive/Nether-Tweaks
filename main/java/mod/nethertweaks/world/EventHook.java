@@ -25,10 +25,7 @@ import mod.nethertweaks.proxy.ClientProxy;
 import mod.nethertweaks.proxy.ServerProxy;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.base.types.Drinkable;
-import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.BucketHelper;
-import mod.sfhcore.helper.NotNull;
-import mod.sfhcore.helper.PlayerInventory;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.vars.PlayerPosition;
 import net.minecraft.block.material.Material;
@@ -36,13 +33,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -63,7 +58,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.BlockEvent.CreateFluidSourceEvent;
 import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -218,32 +212,6 @@ public class EventHook
 	{
 		teleportPlayer(event.player);
 		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
-	}
-
-	//Enitity Interaction
-	@SubscribeEvent
-	public void getMilk(final PlayerInteractEvent.EntityInteract event)
-	{
-		ItemStack stack = event.getItemStack();
-		EntityPlayer player = event.getEntityPlayer();
-		
-		if(event.getTarget() instanceof EntityCow)
-		{
-			if(!NotNull.checkNotNull(stack)) return;
-			
-			Item item = stack.getItem();
-
-			if(item == BucketHandler.getBucketFromFluid(null, "wood"))
-			{
-				stack.shrink(1);
-				PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "wood")));
-			}
-			else if(item == BucketHandler.getBucketFromFluid(null, "stone"))
-			{
-				stack.shrink(1);
-				PlayerInventory.tryAddItem(player, new ItemStack(BucketHandler.getBucketFromFluid(FluidRegistry.getFluid("milk"), "stone")));
-			}
-		}
 	}
 
 	//WORLD DATA
