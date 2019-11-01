@@ -82,7 +82,7 @@ public class TileCondenser extends TileFluidInventory
 		//heatNStuff
 		if(timer < (int)((getMaxTimer() / rate)))
 		{ 
-			timer++;
+			timer+=getHeatRate();
 		}
 		else if(timer > (int)((getMaxTimer() / rate)))
 		{
@@ -90,9 +90,11 @@ public class TileCondenser extends TileFluidInventory
 		}
 		setMaxTimer(Config.cooldownCondenser);
 		
-		if(getTemp() > (getMaxTemp() + 0.01))
+		float incr = 0.01f * getHeatRate();
+		
+		if(getTemp() > (getMaxTemp() + incr))
 			setTemp(getTemp() - getMaxTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
-		else if (getTemp() < (getMaxTemp() + 0.01))
+		else if (getTemp() < (getMaxTemp() + incr))
 			setTemp(getMaxTemp() - getTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
 
 		if(getTemp() > 100f)
