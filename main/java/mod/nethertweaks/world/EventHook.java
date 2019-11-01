@@ -96,7 +96,7 @@ public class EventHook
 		boolean vaporize = world.provider.doesWaterVaporize();
 		FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
 
-		if (world.isRemote || !Config.enableSaltRecipe || !vaporize || event.getEntity() == null
+		if (!Config.enableSaltRecipe || !vaporize || event.getEntity() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(event.getItemStack(), Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(String fluidName : Config.blacklistSalt)
@@ -104,7 +104,7 @@ public class EventHook
 
 		if (state.getBlock().onBlockActivated(world, pos, state, event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 			event.setCanceled(true);
-		else
+		else if(!world.isRemote)
 		{
 			pos.add(0.5D, 0.5D, 0.5D);
 
