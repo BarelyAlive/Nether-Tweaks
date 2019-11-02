@@ -113,21 +113,21 @@ public class NTM implements IRecipeDefaults
 
 		//Dolls
 		registry.register(new ItemInfo(ModItems.DOLL_BAT), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_CHICKEN), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_COW), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_DONKEY), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_HORSE), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_LLAMA), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_MULE), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_OCELOT), ice, 3);
+		registry.register(new ItemInfo(ModItems.DOLL_CHICKEN), ice, 10);
+		registry.register(new ItemInfo(ModItems.DOLL_COW), ice, 25);
+		registry.register(new ItemInfo(ModItems.DOLL_DONKEY), ice, 10);
+		registry.register(new ItemInfo(ModItems.DOLL_HORSE), ice, 15);
+		registry.register(new ItemInfo(ModItems.DOLL_LLAMA), ice, 10);
+		registry.register(new ItemInfo(ModItems.DOLL_MULE), ice, 10);
+		registry.register(new ItemInfo(ModItems.DOLL_OCELOT), ice, 5);
 		registry.register(new ItemInfo(ModItems.DOLL_PARROT), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_PIG), ice, 3);
+		registry.register(new ItemInfo(ModItems.DOLL_PIG), ice, 10);
 		registry.register(new ItemInfo(ModItems.DOLL_POLAR_BEAR), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_RABBIT), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_RED_MOOSHROOM), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_SHEEP), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_VILLAGER), ice, 3);
-		registry.register(new ItemInfo(ModItems.DOLL_WOLF), ice, 3);
+		registry.register(new ItemInfo(ModItems.DOLL_RABBIT), ice, 10);
+		registry.register(new ItemInfo(ModItems.DOLL_RED_MOOSHROOM), ice, 35);
+		registry.register(new ItemInfo(ModItems.DOLL_SHEEP), ice, 20);
+		registry.register(new ItemInfo(ModItems.DOLL_VILLAGER), ice, 50);
+		registry.register(new ItemInfo(ModItems.DOLL_WOLF), ice, 5);
 
 		final Ingredient ingredient = new OreIngredientStoring("treeSapling");
 		for(final ItemStack ore : ingredient.getMatchingStacks())
