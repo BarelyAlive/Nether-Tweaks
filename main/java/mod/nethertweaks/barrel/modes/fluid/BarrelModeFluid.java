@@ -92,15 +92,15 @@ public class BarrelModeFluid implements IBarrelMode {
 
 	@Override
 	public void onBlockActivated(final World world, final TileBarrel barrel, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
-		ItemStack stack = player.getHeldItem(hand);
+		final ItemStack stack = player.getHeldItem(hand);
 
 		if (!stack.isEmpty()) {
-			ItemStack remainder = getHandler(barrel).insertItem(0, stack, false);
+			final ItemStack remainder = getHandler(barrel).insertItem(0, stack, false);
 
-			int size = remainder.isEmpty() ? 0 : remainder.getCount();
+			final int size = remainder.isEmpty() ? 0 : remainder.getCount();
 
 			if (stack.getItem().hasContainerItem(stack)) {
-				ItemStack container = stack.getItem().getContainerItem(stack);
+				final ItemStack container = stack.getItem().getContainerItem(stack);
 
 				// Should always be 1 but LET'S JUST MAKE SURE
 				container.setCount(stack.getCount() - size);
@@ -149,7 +149,7 @@ public class BarrelModeFluid implements IBarrelMode {
 
 	@Override
 	public float getFilledLevelForRender(final TileBarrel barrel) {
-		double amount = barrel.getTank().getFluidAmount();
+		final double amount = barrel.getTank().getFluidAmount();
 		return (float) (amount / Fluid.BUCKET_VOLUME * 0.9375F);
 	}
 
@@ -158,15 +158,15 @@ public class BarrelModeFluid implements IBarrelMode {
 	public void update(final TileBarrel barrel) {
 		// Fluids on top.
 		if (barrel.getTank().getFluid() != null) {
-			FluidTank tank = barrel.getTank();
+			final FluidTank tank = barrel.getTank();
 			if (tank.getFluid() == null || tank.getFluid().amount != tank.getCapacity())
 				return;
 
-			Fluid fluidInBarrel = tank.getFluid().getFluid();
+			final Fluid fluidInBarrel = tank.getFluid().getFluid();
 
-			BlockPos barrelPos = barrel.getPos();
-			BlockPos pos = new BlockPos(barrelPos.getX(), barrelPos.getY() + 1, barrelPos.getZ());
-			Block onTop = barrel.getWorld().getBlockState(pos).getBlock();
+			final BlockPos barrelPos = barrel.getPos();
+			final BlockPos pos = new BlockPos(barrelPos.getX(), barrelPos.getY() + 1, barrelPos.getZ());
+			final Block onTop = barrel.getWorld().getBlockState(pos).getBlock();
 
 			Fluid fluidOnTop = null;
 			if (onTop instanceof BlockLiquid)
@@ -177,7 +177,7 @@ public class BarrelModeFluid implements IBarrelMode {
 				fluidOnTop = ((IFluidBlock) onTop).getFluid();
 
 			if (NTMRegistryManager.FLUID_ON_TOP_REGISTRY.isValidRecipe(fluidInBarrel, fluidOnTop)) {
-				BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, Objects.requireNonNull(fluidOnTop));
+				final BlockInfo info = NTMRegistryManager.FLUID_ON_TOP_REGISTRY.getTransformedBlock(fluidInBarrel, Objects.requireNonNull(fluidOnTop));
 				tank.drain(tank.getCapacity(), true);
 				barrel.setMode("block");
 				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("block", barrel.getPos()), barrel);
@@ -189,23 +189,23 @@ public class BarrelModeFluid implements IBarrelMode {
 
 			// Fluid transforming time!
 			if (NTMRegistryManager.FLUID_TRANSFORM_REGISTRY.containsKey(Objects.requireNonNull(barrel.getTank().getFluid()).getFluid().getName())) {
-				List<FluidTransformer> transformers = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY
+				final List<FluidTransformer> transformers = NTMRegistryManager.FLUID_TRANSFORM_REGISTRY
 						.getFluidTransformers(barrel.getTank().getFluid().getFluid().getName());
 
 				boolean found = false;
 				for (int radius = 0; radius <= 2; radius++) {
-					for (FluidTransformer transformer : transformers)
+					for (final FluidTransformer transformer : transformers)
 						if (!NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.isBlacklisted(barrel.getTier(), transformer.getOutputFluid())
 								&& (Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
 										barrel.getPos().add(0, -1, 0), barrel.getWorld(), radius)
 										|| Util.isSurroundingBlocksAtLeastOneOf(transformer.getTransformingBlocks(),
 												barrel.getPos(), barrel.getWorld(), radius))) {
 							// Time to start the process.
-							FluidStack fstack = tank.getFluid();
+							final FluidStack fstack = tank.getFluid();
 							tank.setFluid(null);
 
 							barrel.setMode("fluidTransform");
-							BarrelModeFluidTransform mode = (BarrelModeFluidTransform) barrel.getMode();
+							final BarrelModeFluidTransform mode = (BarrelModeFluidTransform) barrel.getMode();
 
 							mode.setTransformer(transformer);
 							mode.setInputStack(fstack);
@@ -220,7 +220,7 @@ public class BarrelModeFluid implements IBarrelMode {
 			barrel.getItemHandler().getStackInSlot(0);
 			if(barrel.getTank().getFluid() != null)
 			{
-				String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
+				final String transformFluidItem = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(barrel.getTank().getFluid().getFluid(), barrel.getItemHandler().getStackInSlot(0));
 				if(transformFluidItem != null)
 				{
 					workTime++;
@@ -239,7 +239,7 @@ public class BarrelModeFluid implements IBarrelMode {
 	public void addItem(final ItemStack stack, final TileBarrel barrel) {
 		if (workTime != 0)
 			return;
-		FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
+		final FluidStack fstack = barrel.getMode().getFluidHandler(barrel).getFluid();
 		handler.setBarrel(barrel);
 		if(handler.getStackInSlot(0).isEmpty())
 			handler.insertItem(0, stack, false);
@@ -253,7 +253,7 @@ public class BarrelModeFluid implements IBarrelMode {
 
 	@Override
 	public FluidTank getFluidHandler(final TileBarrel barrel) {
-		BarrelFluidHandler handler = barrel.getTank();
+		final BarrelFluidHandler handler = barrel.getTank();
 		handler.setBarrel(barrel);
 		return handler;
 	}

@@ -36,7 +36,7 @@ public class Freezer extends CubeContainerHorizontal
 			final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
 	{
 		if(!world.isBlockLoaded(pos)) return false;
-		TileFreezer te = (TileFreezer) world.getTileEntity(pos);
+		final TileFreezer te = (TileFreezer) world.getTileEntity(pos);
 		if(te == null) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
@@ -45,7 +45,7 @@ public class Freezer extends CubeContainerHorizontal
 		success = TankUtil.drainWaterFromBottle(te, player, te.getTank());
 		if(success) return true;
 
-		IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+		final IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
 
 		if (item != null) {
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());

@@ -44,7 +44,7 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 				gson.toJson(registry, typeOfSource, fw);
 			else
 				gson.toJson(registry, fw);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -56,7 +56,7 @@ public abstract class BaseRegistry<RegType> implements IRegistry<RegType> {
 			try(FileReader fr = new FileReader(file)) {
 				registerEntriesFromJSON(fr);
 
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				e.printStackTrace();
 			}
 		else {

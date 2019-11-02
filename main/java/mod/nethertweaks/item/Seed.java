@@ -22,8 +22,8 @@ public class Seed extends Item
 	@Override
 	public EnumActionResult onItemUse(final EntityPlayer player, final World world, final BlockPos pos, final EnumHand hand, final EnumFacing facing, final float hitX, final float hitY, final float hitZ)
 	{
-		Block block = world.getBlockState(pos).getBlock();
-		String name = NameHelper.getName(player.getHeldItem(hand));
+		final Block block = world.getBlockState(pos).getBlock();
+		final String name = NameHelper.getName(player.getHeldItem(hand));
 
 		if (!world.isRemote)
 			switch (name) {

@@ -20,7 +20,7 @@ public class CustomFluidBlockTransformerJson implements JsonDeserializer<FluidBl
 	@Override
 	public JsonElement serialize(final FluidBlockTransformer src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 		obj.addProperty("fluidName", src.getFluidName());
 		obj.add("input", context.serialize(src.getInput()));
 		obj.add("output", context.serialize(src.getOutput()));
@@ -40,7 +40,7 @@ public class CustomFluidBlockTransformerJson implements JsonDeserializer<FluidBl
 	public FluidBlockTransformer deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
 			throws JsonParseException
 	{
-		JsonObject obj = json.getAsJsonObject();
+		final JsonObject obj = json.getAsJsonObject();
 
 		return new FluidBlockTransformer(
 				//obj.getAsJsonPrimitive("fluidName").getAsString(),

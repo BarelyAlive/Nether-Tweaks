@@ -20,7 +20,7 @@ public class AbstractMooFluids implements IAbstractCow {
 	@Override
 	public int addCooldownEquivalent(final int millibuckets) {
 		// Fraction of max cooldown added.
-		int timeAdded = cow.getEntityTypeData().getMaxUseCooldown() * millibuckets / Fluid.BUCKET_VOLUME;
+		final int timeAdded = cow.getEntityTypeData().getMaxUseCooldown() * millibuckets / Fluid.BUCKET_VOLUME;
 		// Set Cooldown
 		cow.setNextUseCooldown(cow.getNextUseCooldown() + timeAdded);
 

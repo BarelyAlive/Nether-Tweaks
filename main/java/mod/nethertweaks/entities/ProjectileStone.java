@@ -54,7 +54,7 @@ public class ProjectileStone extends EntityThrowable {
 	public void writeEntityToNBT(final NBTTagCompound tag) {
 		super.writeEntityToNBT(tag);
 
-		NBTTagCompound stackTag = new NBTTagCompound();
+		final NBTTagCompound stackTag = new NBTTagCompound();
 		stack.writeToNBT(stackTag);
 
 		tag.setTag("pebbleStack", stackTag);

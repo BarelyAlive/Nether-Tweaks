@@ -14,9 +14,9 @@ public class IngredientUtil {
 			s = s.substring(4);
 			return new OreIngredientStoring(s);
 		} else {
-			String[] split = s.split(":");
+			final String[] split = s.split(":");
 			if (split.length >= 2) {
-				Item item = Item.getByNameOrId(split[0]+ ":" + split[1]);
+				final Item item = Item.getByNameOrId(split[0]+ ":" + split[1]);
 
 				if (item == null) {
 					LogUtil.error("Error parsing Ingredient String: Invalid Item: " + s);
@@ -28,10 +28,10 @@ public class IngredientUtil {
 				if (split.length >= 3)
 					try {
 						meta = Integer.parseInt(split[2]);
-						ItemStack stack = new ItemStack(item, 1, meta);
+						final ItemStack stack = new ItemStack(item, 1, meta);
 						return CraftingHelper.getIngredient(stack);
 
-					} catch (NumberFormatException ignored){
+					} catch (final NumberFormatException ignored){
 						LogUtil.error("Number error in json: " + s);
 					}
 				else

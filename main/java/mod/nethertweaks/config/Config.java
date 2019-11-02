@@ -102,7 +102,7 @@ public class Config
 
 	public static void preInit()
 	{
-		Configuration config = new Configuration(new File(configDirectory, "NetherTweaksMod.cfg"));
+		final Configuration config = new Configuration(new File(configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 
 		final String tweaks = "Tweaks";

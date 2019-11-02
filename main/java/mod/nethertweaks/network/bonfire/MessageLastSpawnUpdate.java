@@ -39,7 +39,7 @@ public class MessageLastSpawnUpdate implements IMessage {
 		else
 			info = new UUID(buf.readLong(), buf.readLong());
 
-		int status_int = buf.readInt();
+		final int status_int = buf.readInt();
 
 		status = status_int == 1 ? UpdateStatus.ADD : status_int == 2 ? UpdateStatus.UPDATE : status_int == 3 ? UpdateStatus.REMOVE : UpdateStatus.UPDATE;
 	}

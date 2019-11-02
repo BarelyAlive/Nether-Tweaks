@@ -50,7 +50,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 	public boolean isValidRecipe(final String entityOnTop) {
 		if (entityOnTop == null)
 			return false;
-		for (Milkable milk : registry)
+		for (final Milkable milk : registry)
 			if (milk.getEntityOnTop().equals(entityOnTop))
 				return true;
 		return false;
@@ -61,7 +61,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 		// Returns the entire milkable object instead of having use multiple functions
 		if (entityOnTop == null)
 			return null;
-		for (Milkable milk : registry)
+		for (final Milkable milk : registry)
 			if (milk.getEntityOnTop().equals(entityOnTop.getName()))
 				return milk;
 		return null;
@@ -69,7 +69,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 
 	@Override
 	public String getResult(@Nonnull final Entity entityOnTop) {
-		for (Milkable milk : registry)
+		for (final Milkable milk : registry)
 			if (milk.getEntityOnTop().equals(entityOnTop.getName()))
 				return milk.getResult();
 		return null;
@@ -77,7 +77,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 
 	@Override
 	public int getAmount(@Nonnull final Entity entityOnTop) {
-		for (Milkable milk : registry)
+		for (final Milkable milk : registry)
 			if (milk.getEntityOnTop().equals(entityOnTop.getName()))
 				return milk.getAmount();
 		return 0;
@@ -85,7 +85,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 
 	@Override
 	public int getCoolDown(@Nonnull final Entity entityOnTop) {
-		for (Milkable milk : registry)
+		for (final Milkable milk : registry)
 			if (milk.getEntityOnTop().equals(entityOnTop.getName()))
 				return milk.getCoolDown();
 		return 0;
@@ -93,7 +93,7 @@ public class MilkEntityRegistry extends BaseRegistryList<Milkable> implements IM
 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr) {
-		List<Milkable> gsonInput = gson.fromJson(fr, new TypeToken<List<Milkable>>() {
+		final List<Milkable> gsonInput = gson.fromJson(fr, new TypeToken<List<Milkable>>() {
 		}.getType());
 		registry.addAll(gsonInput);
 	}

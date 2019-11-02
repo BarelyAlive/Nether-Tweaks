@@ -50,7 +50,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 	@Override
 	public boolean generate(final World world, final Random rand, final BlockPos position)
 	{
-		int i = rand.nextInt(3) + minTreeHeight;
+		final int i = rand.nextInt(3) + minTreeHeight;
 		boolean flag = true;
 
 		if (position.getY() >= 1 && position.getY() + i + 1 <= world.getHeight())
@@ -65,7 +65,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 				if (j >= position.getY() + 1 + i - 2)
 					k = 2;
 
-				BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+				final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 				for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
 					for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
@@ -86,25 +86,25 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 				if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, ModBlocks.ELDER_SAPLING) && position.getY() < world.getHeight() - i - 1)
 				{
 					setDirtAt(world, position.down());
-					int k2 = 3;
-					int l2 = 0;
+					final int k2 = 3;
+					final int l2 = 0;
 
 					for (int i3 = position.getY() - 3 + i; i3 <= position.getY() + i; ++i3)
 					{
-						int i4 = i3 - (position.getY() + i);
-						int j1 = 1 - i4 / 2;
+						final int i4 = i3 - (position.getY() + i);
+						final int j1 = 1 - i4 / 2;
 
 						for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
 						{
-							int l1 = k1 - position.getX();
+							final int l1 = k1 - position.getX();
 
 							for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2)
 							{
-								int j2 = i2 - position.getZ();
+								final int j2 = i2 - position.getZ();
 
 								if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
 								{
-									BlockPos blockpos = new BlockPos(k1, i3, i2);
+									final BlockPos blockpos = new BlockPos(k1, i3, i2);
 									state = world.getBlockState(blockpos);
 
 									if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.VINE)
@@ -116,7 +116,7 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 
 					for (int j3 = 0; j3 < i; ++j3)
 					{
-						BlockPos upN = position.up(j3);
+						final BlockPos upN = position.up(j3);
 						state = world.getBlockState(upN);
 
 						if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() == Material.VINE)
@@ -143,9 +143,9 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 					if (vinesGrow)
 						for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; ++k3)
 						{
-							int j4 = k3 - (position.getY() + i);
-							int k4 = 2 - j4 / 2;
-							BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+							final int j4 = k3 - (position.getY() + i);
+							final int k4 = 2 - j4 / 2;
+							final BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
 							for (int l4 = position.getX() - k4; l4 <= position.getX() + k4; ++l4)
 								for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; ++i5)
@@ -155,10 +155,10 @@ public class WorldGenElderTree extends WorldGenAbstractTree
 									state = world.getBlockState(blockpos$mutableblockpos1);
 									if (state.getBlock().isLeaves(state, world, blockpos$mutableblockpos1))
 									{
-										BlockPos blockpos2 = blockpos$mutableblockpos1.west();
-										BlockPos blockpos3 = blockpos$mutableblockpos1.east();
-										BlockPos blockpos4 = blockpos$mutableblockpos1.north();
-										BlockPos blockpos1 = blockpos$mutableblockpos1.south();
+										final BlockPos blockpos2 = blockpos$mutableblockpos1.west();
+										final BlockPos blockpos3 = blockpos$mutableblockpos1.east();
+										final BlockPos blockpos4 = blockpos$mutableblockpos1.north();
+										final BlockPos blockpos1 = blockpos$mutableblockpos1.south();
 
 										if (rand.nextInt(4) == 0 && world.isAirBlock(blockpos2))
 											addHangingVine(world, blockpos2, BlockVine.EAST);

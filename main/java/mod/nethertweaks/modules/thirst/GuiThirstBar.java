@@ -25,19 +25,19 @@ public class GuiThirstBar {
 		if(!Config.enableThirst) return;
 
 		if (event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
-			GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
-			ScaledResolution scaledRes = event.getResolution();
+			final GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
+			final ScaledResolution scaledRes = event.getResolution();
 
 			Minecraft.getMinecraft().getTextureManager().bindTexture(THIRST_BAR_ICONS);
 
-			EntityPlayerSP player = Minecraft.getMinecraft().player;
+			final EntityPlayerSP player = Minecraft.getMinecraft().player;
 
 			if (!player.isRidingHorse() && ClientProxy.CLIENT_STATS != null) {
-				int thirstLevel = ClientProxy.CLIENT_STATS.thirstLevel;
-				int xStart = scaledRes.getScaledWidth()/2 + 10;
-				int yStart = scaledRes.getScaledHeight() - 49;
+				final int thirstLevel = ClientProxy.CLIENT_STATS.thirstLevel;
+				final int xStart = scaledRes.getScaledWidth()/2 + 10;
+				final int yStart = scaledRes.getScaledHeight() - 49;
 
-				int poisonModifier = ClientProxy.CLIENT_STATS.poisoned ? 16 : 0;
+				final int poisonModifier = ClientProxy.CLIENT_STATS.poisoned ? 16 : 0;
 
 				for (int i = 0; i < 10; i++) {
 					gui.drawTexturedModalRect(xStart + i*8, yStart, 1, 1, 7, 9); //empty thirst droplet
@@ -52,15 +52,15 @@ public class GuiThirstBar {
 		} else if (event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
 			event.setCanceled(true);
 
-			GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
-			ScaledResolution scaledRes = event.getResolution();
+			final GuiIngame gui = Minecraft.getMinecraft().ingameGUI;
+			final ScaledResolution scaledRes = event.getResolution();
 
-			int xStart = scaledRes.getScaledWidth() / 2 + 91;
-			int yStart = scaledRes.getScaledHeight() - 49;
+			final int xStart = scaledRes.getScaledWidth() / 2 + 91;
+			final int yStart = scaledRes.getScaledHeight() - 49;
 			int xModifier = 0;
 			int yModifier = 0;
 
-			int armorLevel = ForgeHooks.getTotalArmorValue(Minecraft.getMinecraft().player);
+			final int armorLevel = ForgeHooks.getTotalArmorValue(Minecraft.getMinecraft().player);
 
 			if (!Minecraft.getMinecraft().player.isRidingHorse())
 				if (armorLevel > 0)
@@ -69,9 +69,9 @@ public class GuiThirstBar {
 					xModifier = -101;
 
 			if (Minecraft.getMinecraft().player.isInsideOfMaterial(Material.WATER)) {
-				int air = Minecraft.getMinecraft().player.getAir();
-				int full = MathHelper.ceil((air - 2) * 10.0D / 300.0D);
-				int partial = MathHelper.ceil(air * 10.0D / 300.0D) - full;
+				final int air = Minecraft.getMinecraft().player.getAir();
+				final int full = MathHelper.ceil((air - 2) * 10.0D / 300.0D);
+				final int partial = MathHelper.ceil(air * 10.0D / 300.0D) - full;
 
 				for (int i = 0; i < full + partial; ++i)
 					gui.drawTexturedModalRect(xStart - i * 8 - 9 + xModifier, yStart + yModifier, i < full ? 16 : 25, 18, 9, 9);

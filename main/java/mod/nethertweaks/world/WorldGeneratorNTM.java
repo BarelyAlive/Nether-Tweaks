@@ -33,20 +33,20 @@ public class WorldGeneratorNTM implements IWorldGenerator{
 
 	private void oreGenerationNether(final World world, final Random random, final int posX, final int posZ, final int spawnChancen)
 	{
-		int differenzMinMaxY = 127 - 1;
+		final int differenzMinMaxY = 127 - 1;
 		if (BlocksItems.enableHellfayah)
 			for (int i = 0; i < spawnChancen; i++) {
-				int positionX = posX + random.nextInt(16);
-				int positionY = 1 + random.nextInt(differenzMinMaxY);
-				int positionZ = posZ + random.nextInt(16);
+				final int positionX = posX + random.nextInt(16);
+				final int positionY = 1 + random.nextInt(differenzMinMaxY);
+				final int positionZ = posZ + random.nextInt(16);
 				ORE.generate(world, random, new BlockPos(positionX, positionY, positionZ));
 			}
 		if (BlocksItems.enableElderTree)
 			for (int i = 0; i < 15; i++) // 15 is rarity
 			{
-				int randPosX = posX + random.nextInt(16) +8;
-				int randPosY = random.nextInt(128); //Max Y coordinate
-				int randPosZ = posZ + random.nextInt(16) +8;
+				final int randPosX = posX + random.nextInt(16) +8;
+				final int randPosY = random.nextInt(128); //Max Y coordinate
+				final int randPosZ = posZ + random.nextInt(16) +8;
 				TREE.generate(world, random, new BlockPos(randPosX, randPosY, randPosZ));
 			}
 		/*Wichtige Anmerkung der Autorin:

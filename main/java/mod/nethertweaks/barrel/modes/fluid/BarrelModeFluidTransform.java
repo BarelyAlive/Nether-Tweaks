@@ -68,12 +68,12 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 	@Override
 	public void writeToNBT(final NBTTagCompound tag) {
 		if (inputStack != null) {
-			NBTTagCompound inputTag = inputStack.writeToNBT(new NBTTagCompound());
+			final NBTTagCompound inputTag = inputStack.writeToNBT(new NBTTagCompound());
 			tag.setTag("inputTag", inputTag);
 		}
 
 		if (outputStack != null) {
-			NBTTagCompound outputTag = outputStack.writeToNBT(new NBTTagCompound());
+			final NBTTagCompound outputTag = outputStack.writeToNBT(new NBTTagCompound());
 			tag.setTag("outputTag", outputTag);
 		}
 
@@ -83,11 +83,11 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 	@Override
 	public void readFromNBT(final NBTTagCompound tag) {
 		if (tag.hasKey("inputTag")) {
-			NBTTagCompound inputTag = (NBTTagCompound) tag.getTag("inputTag");
+			final NBTTagCompound inputTag = (NBTTagCompound) tag.getTag("inputTag");
 			inputStack = FluidStack.loadFluidStackFromNBT(inputTag);
 		}
 		if (tag.hasKey("outputTag")) {
-			NBTTagCompound outputTag = (NBTTagCompound) tag.getTag("outputTag");
+			final NBTTagCompound outputTag = (NBTTagCompound) tag.getTag("outputTag");
 			outputStack = FluidStack.loadFluidStackFromNBT(outputTag);
 		}
 		if (tag.hasKey("progress"))
@@ -142,7 +142,7 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 		if (transformer == null)
 			return;
 		if (progress < 1) {
-			int numberOfBlocks = Util.getNumSurroundingBlocksAtLeastOneOf(
+			final int numberOfBlocks = Util.getNumSurroundingBlocksAtLeastOneOf(
 					transformer.getTransformingBlocks(),
 					barrel.getPos().add(0, -1, 0), barrel.getWorld())
 					+ Util.getNumSurroundingBlocksAtLeastOneOf(
@@ -153,18 +153,18 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 
 				if (barrel.getWorld().rand.nextDouble() < 0.005) {
 					boolean spawned = false;
-					ArrayList<BlockInfo> blockList = new ArrayList<>(
+					final ArrayList<BlockInfo> blockList = new ArrayList<>(
 							Arrays.asList(transformer.getTransformingBlocks()));
 					for (int xShift = -1; xShift <= 1; xShift++)
 						for (int zShift = -1; zShift <= 1; zShift++)
 							if (!spawned) {
-								BlockPos testPos = barrel.getPos().add(xShift,
+								final BlockPos testPos = barrel.getPos().add(xShift,
 										-1, zShift);
 								if (blockList.contains(new BlockInfo(barrel
 										.getWorld().getBlockState(testPos)))
 										&& barrel.getWorld().isAirBlock(
 												testPos.add(0, 1, 0))) {
-									BlockInfo[] toSpawn = transformer
+									final BlockInfo[] toSpawn = transformer
 											.getBlocksToSpawn();
 									if (toSpawn.length > 0) {
 										barrel.getWorld()
@@ -185,8 +185,8 @@ public class BarrelModeFluidTransform implements IBarrelMode {
 
 		if (progress >= 1) {
 			barrel.setMode("fluid");
-			FluidTank tank = barrel.getMode().getFluidHandler(barrel);
-			Fluid fluid = FluidRegistry.getFluid(transformer.getOutputFluid());
+			final FluidTank tank = barrel.getMode().getFluidHandler(barrel);
+			final Fluid fluid = FluidRegistry.getFluid(transformer.getOutputFluid());
 			tank.setFluid(new FluidStack(fluid, 1000));
 			NetworkHandler.sendNBTUpdate(barrel);
 		}

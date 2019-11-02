@@ -91,12 +91,12 @@ public class TileFreezer extends TileFluidInventory
 		}
 
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidTransferAmount);
+			final FluidStack water = new FluidStack(FluidRegistry.WATER, Config.fluidTransferAmount);
 			if (Config.fluidTransferAmount > 0) {
-				BlockPos up = getPos().up();
+				final BlockPos up = getPos().up();
 
 				//Check FluidHandler
-				IFluidHandler hup = FluidUtil.getFluidHandler(world, up, EnumFacing.DOWN);
+				final IFluidHandler hup = FluidUtil.getFluidHandler(world, up, EnumFacing.DOWN);
 
 				if (hup != null && world.getBlockState(up).getBlock() instanceof Barrel)
 					FluidUtil.tryFluidTransfer(getTank(), hup, water, true);
@@ -126,30 +126,30 @@ public class TileFreezer extends TileFluidInventory
 
 	private void fillFromItem()
 	{
-		ItemStack input  = getStackInSlot(2);
-		ItemStack output = getStackInSlot(1);
+		final ItemStack input  = getStackInSlot(2);
+		final ItemStack output = getStackInSlot(1);
 
 		if(input.isEmpty()) return;
 		if(output.getCount() == output.getMaxStackSize()) return;
 
-		ItemStack copy = input.copy();
+		final ItemStack copy = input.copy();
 
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
+		final IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
 
 		if(handler != null)
 		{
-			FluidStack f = FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false);
+			final FluidStack f = FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false);
 			if (f == null) return;
 
 			//Z.b. der leere bucket bei nem Wassereimer
-			ItemStack containerItem = handler.getContainer();
+			final ItemStack containerItem = handler.getContainer();
 
 			if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
 
 			FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, true);
 
 			//Das veränderte Fluid Item
-			ItemStack container = handler.getContainer();
+			final ItemStack container = handler.getContainer();
 			container.setCount(output.getCount()+1);
 
 			setInventorySlotContents(1, container);
@@ -161,7 +161,7 @@ public class TileFreezer extends TileFluidInventory
 			{
 				getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
 
-				ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
+				final ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
 
 				setInventorySlotContents(1, bottles);
 				decrStackSize(2, 1);
@@ -171,7 +171,7 @@ public class TileFreezer extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlot(final int index, final ItemStack stack)
 	{
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		final IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {

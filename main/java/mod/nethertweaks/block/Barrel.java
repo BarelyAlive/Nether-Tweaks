@@ -39,14 +39,14 @@ public class Barrel extends Block implements ITileEntityProvider
 
 	@Override
 	public void breakBlock(@Nonnull final World worldIn, @Nonnull final BlockPos pos, @Nonnull final IBlockState state) {
-		TileEntity te = worldIn.getTileEntity(pos);
+		final TileEntity te = worldIn.getTileEntity(pos);
 		if (te instanceof TileBarrel) {
-			TileBarrel barrel = (TileBarrel) te;
+			final TileBarrel barrel = (TileBarrel) te;
 
 			if (barrel.getMode() != null && barrel.getMode().getName().equals("block")) {
-				IItemHandler barrelCap = barrel.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				final IItemHandler barrelCap = barrel.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 				if (barrelCap != null) {
-					ItemStack stack = barrelCap.getStackInSlot(0);
+					final ItemStack stack = barrelCap.getStackInSlot(0);
 					if (!stack.isEmpty())
 						Util.dropItemInWorld(te, null, stack, 0);
 				}
@@ -58,35 +58,35 @@ public class Barrel extends Block implements ITileEntityProvider
 
 	@Override
 	public int getLightValue(@Nonnull final IBlockState state, final IBlockAccess world, @Nonnull final BlockPos pos) {
-		TileEntity te = world.getTileEntity(pos);
+		final TileEntity te = world.getTileEntity(pos);
 
 		if(!(te instanceof TileBarrel)) return super.getLightValue(state, world, pos);
 		if(!Config.enableBarrelTransformLighting) return super.getLightValue(state, world, pos);
 
-		TileBarrel tile = (TileBarrel) te;
+		final TileBarrel tile = (TileBarrel) te;
 		if (tile.getMode() instanceof BarrelModeBlock) {
-			BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
+			final BarrelModeBlock mode = (BarrelModeBlock) tile.getMode();
 
 			if (mode.getBlock() != null)
 				return Block.getBlockFromItem(mode.getBlock().getItem()).getStateFromMeta(mode.getBlock().getMeta()).getLightValue();
 		} else if (tile.getMode() instanceof BarrelModeFluid) {
-			BarrelModeFluid mode = (BarrelModeFluid) tile.getMode();
+			final BarrelModeFluid mode = (BarrelModeFluid) tile.getMode();
 
 			if (mode.getFluidHandler(tile).getFluidAmount() > 0)
 				return Util.getLightValue(mode.getFluidHandler(tile).getFluid());
 		} else if (tile.getMode() instanceof BarrelModeCompost) {
-			BarrelModeCompost mode = (BarrelModeCompost) tile.getMode();
+			final BarrelModeCompost mode = (BarrelModeCompost) tile.getMode();
 
 			if (mode.getCompostState() != null) {
-				int value = mode.getCompostState().getLightValue() / 2;
+				final int value = mode.getCompostState().getLightValue() / 2;
 
 				return Math.round(Util.weightedAverage((float) value / 2, value, mode.getProgress()));
 			}
 		} else if (tile.getMode() instanceof BarrelModeFluidTransform) {
-			BarrelModeFluidTransform mode = (BarrelModeFluidTransform) tile.getMode();
+			final BarrelModeFluidTransform mode = (BarrelModeFluidTransform) tile.getMode();
 
-			int inputValue = Util.getLightValue(mode.getInputStack());
-			int outputValue = Util.getLightValue(mode.getOutputStack());
+			final int inputValue = Util.getLightValue(mode.getInputStack());
+			final int outputValue = Util.getLightValue(mode.getOutputStack());
 
 			return Math.round(Util.weightedAverage(outputValue, inputValue, mode.getProgress()));
 		}
@@ -99,7 +99,7 @@ public class Barrel extends Block implements ITileEntityProvider
 	{
 		if(!worldIn.isBlockLoaded(pos)) return false;
 		if(worldIn.isRemote) return true;
-		TileEntity te = worldIn.getTileEntity(pos);
+		final TileEntity te = worldIn.getTileEntity(pos);
 		if(!(te instanceof TileBarrel)) return false;
 		if (((TileBarrel) te).getMode() != null)
 			if (((TileBarrel) te).getMode().getName().equals("fluid"))
@@ -150,7 +150,7 @@ public class Barrel extends Block implements ITileEntityProvider
 	// Barrels will attempt to milk entities
 	@Override
 	public void onEntityWalk(final World worldIn, final BlockPos pos, final Entity entityIn) {
-		TileEntity te = worldIn.getTileEntity(pos);
+		final TileEntity te = worldIn.getTileEntity(pos);
 		if (!(te instanceof TileBarrel)) return;
 		((TileBarrel) te).entityOnTop(worldIn, entityIn);
 	}

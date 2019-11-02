@@ -50,7 +50,7 @@ public class CompatDefaultRecipes
         MODS.add(new MagicBees());
         MODS.add(new BinniesBotany());
 		 */
-		for(ISFHCoreModule module : NetherTweaksMod.LOADED_MODULES)
+		for(final ISFHCoreModule module : NetherTweaksMod.LOADED_MODULES)
 			if(module instanceof IRecipeDefaults)
 				MODS.add((IRecipeDefaults) module);
 

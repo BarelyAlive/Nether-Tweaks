@@ -52,11 +52,11 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr)
 	{
-		Map<String, Drinkable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Drinkable>>() {
+		final Map<String, Drinkable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Drinkable>>() {
 		}.getType());
 
-		for (Map.Entry<String, Drinkable> entry : gsonInput.entrySet()) {
-			Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
+		for (final Map.Entry<String, Drinkable> entry : gsonInput.entrySet()) {
+			final Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("Drinkable JSON Entry for " + entry.getKey() + " already exists, skipping.");
@@ -68,7 +68,7 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 	@Override
 	public Map<Ingredient, Drinkable> getRegistry() {
 		//noinspection unchecked
-		Map<Ingredient, Drinkable> map = (HashMap) ((HashMap) registry).clone();
+		final Map<Ingredient, Drinkable> map = (HashMap) ((HashMap) registry).clone();
 		map.putAll(drinkRegistry);
 		return map;
 	}
@@ -84,13 +84,13 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 		if (itemStack.isEmpty())
 			return;
 
-		Ingredient ingredient = Ingredient.fromStacks(itemStack);
+		final Ingredient ingredient = Ingredient.fromStacks(itemStack);
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
 			LogUtil.error("Drinkable Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
 			return;
 		}
-		Drinkable dryable = new Drinkable(itemStack, thirstReplenish, saturationReplenish, poisonChance);
+		final Drinkable dryable = new Drinkable(itemStack, thirstReplenish, saturationReplenish, poisonChance);
 		register(ingredient, dryable);
 	}
 
@@ -111,14 +111,14 @@ public class DrinkRegistry extends BaseRegistryMap<Ingredient, Drinkable> implem
 
 	@Override
 	public void register(@Nonnull final String name, final int thirstReplenish, final float saturationReplenish, final float poisonChance) {
-		Ingredient ingredient = new OreIngredientStoring(name);
+		final Ingredient ingredient = new OreIngredientStoring(name);
 
 		if (drinkRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
 			LogUtil.error("Drink Entry for " + name + " already exists, skipping.");
 		else
-			for(ItemStack stack : ingredient.getMatchingStacks())
+			for(final ItemStack stack : ingredient.getMatchingStacks())
 			{
-				Drinkable dryable = new Drinkable(stack, thirstReplenish, saturationReplenish, poisonChance);
+				final Drinkable dryable = new Drinkable(stack, thirstReplenish, saturationReplenish, poisonChance);
 				register(ingredient, dryable);
 			}
 	}

@@ -24,7 +24,7 @@ public class AbstractMiniMoo implements IAbstractCow {
 	@Override
 	public int addCooldownEquivalent(final int millibuckets) {
 		// Fraction of max cooldown added.
-		int timeAdded = maxDelay * millibuckets / Fluid.BUCKET_VOLUME;
+		final int timeAdded = maxDelay * millibuckets / Fluid.BUCKET_VOLUME;
 		// Set Cooldown
 		cow.setDelay(cow.getDelay() + timeAdded);
 		return timeAdded;

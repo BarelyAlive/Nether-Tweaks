@@ -74,13 +74,13 @@ public class GuiHellmart extends GuiContainer {
 			tileEntityMarket.setBrowsingInfo(itemNum);
 		}
 		if(guibutton.id == 2) {
-			ItemStack buySlot = Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
+			final ItemStack buySlot = Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
 					.getStackInSlot(0);
-			HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+			final HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 			final HellmartData data = dataz[itemNum];
 			if(buySlot.getItem() == data.getCurrency().getItem())
 				if(buySlot.getItemDamage() == data.getCurrency().getItemDamage()) {
-					int price = data.getPrice();
+					final int price = data.getPrice();
 					if(buySlot.getCount() == price)
 						NetworkHandler.INSTANCE.sendToServer(new MessageHellmartBuy(itemNum,
 								tileEntityMarket.getPos().getX(), tileEntityMarket.getPos().getY(),
@@ -116,20 +116,20 @@ public class GuiHellmart extends GuiContainer {
 		GL11.glEnable(GL11.GL_LIGHTING);
 		itemRender.zLevel = 100.0F;
 
-		HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
-		HellmartData data = dataz[itemNum];
+		final HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+		final HellmartData data = dataz[itemNum];
 
-		ItemStack item = data.getItem();
+		final ItemStack item = data.getItem();
 		itemRender.renderItemAndEffectIntoGUI(item, 73, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, item, 73, 16, "");
 
-		ItemStack currency = data.getCurrency();
+		final ItemStack currency = data.getCurrency();
 		itemRender.renderItemAndEffectIntoGUI(currency, 100, 16);
 		itemRender.renderItemOverlayIntoGUI(fontRenderer, currency, 100, 16, "");
 		itemRender.zLevel = 0.0F;
 		GL11.glDisable(GL11.GL_LIGHTING);
 
-		int price = data.getPrice();
+		final int price = data.getPrice();
 		fontRenderer.drawString("x" + price, 116, 20, 0);
 
 		GL11.glPopMatrix();
@@ -142,7 +142,7 @@ public class GuiHellmart extends GuiContainer {
 	public void drawScreen(final int par1, final int par2, final float par3) {
 		drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
-		HellmartData[] item = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+		final HellmartData[] item = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 
 		if(isPointInRegion(73, 16, 16, 16, par1, par2))
 			renderToolTip(item[itemNum].getItem(), par1, par2);
@@ -152,8 +152,8 @@ public class GuiHellmart extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(final float f, final int i, final int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(gui);
-		int l = (width - xSize) / 2;
-		int i1 = (height - ySize) / 2;
+		final int l = (width - xSize) / 2;
+		final int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1 - 10, 0, 0, xSize, ySize + 21);
 	}
 }

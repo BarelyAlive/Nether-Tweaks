@@ -19,7 +19,7 @@ public class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<He
 	@Override
 	public JsonElement serialize(final Heat src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 		obj.add("heatBlock", context.serialize(src.getItem(), BlockInfo.class));
 		obj.addProperty("value", src.getValue());
 
@@ -29,12 +29,12 @@ public class CustomHeatJson implements JsonDeserializer<Heat>, JsonSerializer<He
 	@Override
 	public Heat deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		int value =  helper.getInteger("value");
+		final int value =  helper.getInteger("value");
 
-		BlockInfo result = context.deserialize(obj.get("heatBlock"), BlockInfo.class);
+		final BlockInfo result = context.deserialize(obj.get("heatBlock"), BlockInfo.class);
 
 		return new Heat(result, value);
 	}

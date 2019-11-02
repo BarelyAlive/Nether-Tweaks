@@ -22,7 +22,7 @@ public class EntityItemLava extends EntityItem {
 	@Override
 	protected void setOnFireFromLava() {
 		super.setOnFireFromLava();
-		EntityItem coiledSword = new EntityItem(world, posX, posY, posZ, new ItemStack(ModItems.COILED_SWORD));
+		final EntityItem coiledSword = new EntityItem(world, posX, posY, posZ, new ItemStack(ModItems.COILED_SWORD));
 		world.spawnEntity(coiledSword);
 	}
 

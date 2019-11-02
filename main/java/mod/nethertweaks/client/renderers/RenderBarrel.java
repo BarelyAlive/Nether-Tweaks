@@ -26,7 +26,7 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
 		if (te == null || te.getMode() == null) return;
 
 		// Fill Level
-		float fill = te.getMode().getFilledLevelForRender(te);
+		final float fill = te.getMode().getFilledLevelForRender(te);
 
 		if (fill == 0) return;
 
@@ -46,8 +46,8 @@ public class RenderBarrel extends FastTESR<TileBarrel> {
 		final int skyLight = mixedBrightness >> 16 & 0xFFFF;
 		final int blockLight = mixedBrightness & 0xFFFF;
 		// Texturing
-		TextureAtlasSprite icon = sprite.getSprite();
-		mod.sfhcore.texturing.Color color = sprite.getColor();
+		final TextureAtlasSprite icon = sprite.getSprite();
+		final mod.sfhcore.texturing.Color color = sprite.getColor();
 
 		// Draw
 		for (final ModelVertex vert : model) {

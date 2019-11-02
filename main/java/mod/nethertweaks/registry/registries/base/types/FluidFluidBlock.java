@@ -45,7 +45,7 @@ public class FluidFluidBlock {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FluidFluidBlock other = (FluidFluidBlock) obj;
+		final FluidFluidBlock other = (FluidFluidBlock) obj;
 		if (fluidInBarrel == null) {
 			if (other.fluidInBarrel != null)
 				return false;

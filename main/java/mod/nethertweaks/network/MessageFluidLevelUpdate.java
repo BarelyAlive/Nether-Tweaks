@@ -51,10 +51,10 @@ public class MessageFluidLevelUpdate implements IMessage {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void run() {
-					TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+					final TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
 					if (entity instanceof TileBarrel) {
-						TileBarrel te = (TileBarrel) entity;
-						FluidStack f = te.getTank().getFluid();
+						final TileBarrel te = (TileBarrel) entity;
+						final FluidStack f = te.getTank().getFluid();
 						if (f != null) {
 							f.amount = msg.fillAmount;
 							te.getTank().setFluid(f);

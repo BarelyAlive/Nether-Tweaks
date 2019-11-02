@@ -29,7 +29,7 @@ public class Heat
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Heat other = (Heat) obj;
+		final Heat other = (Heat) obj;
 		if (item == null) {
 			if (other.item != null)
 				return false;

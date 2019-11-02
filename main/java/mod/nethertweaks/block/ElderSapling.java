@@ -57,14 +57,14 @@ public class ElderSapling extends BlockBush implements IPlantable, IGrowable
 	public void generateTree(final World world, final BlockPos pos, final IBlockState state, final Random rand)
 	{
 		if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, pos)) return;
-		WorldGenerator worldgenerator = new WorldGenElderTree(true);
-		int i = 0;
-		int j = 0;
-		boolean flag = false;
+		final WorldGenerator worldgenerator = new WorldGenElderTree(true);
+		final int i = 0;
+		final int j = 0;
+		final boolean flag = false;
 
 		worldgenerator.generate(world, rand, pos);
 
-		IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
+		final IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
 
 		world.setBlockState(pos, iblockstate2, 4);
 

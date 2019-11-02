@@ -61,7 +61,7 @@ public class Milkable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Milkable other = (Milkable) obj;
+		final Milkable other = (Milkable) obj;
 		if (amount != other.amount)
 			return false;
 		if (coolDown != other.coolDown)

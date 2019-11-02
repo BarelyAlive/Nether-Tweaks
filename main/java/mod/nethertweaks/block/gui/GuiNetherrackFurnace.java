@@ -54,10 +54,10 @@ public class GuiNetherrackFurnace extends GuiContainer
 		getTE();
 
 		if(TileInventory.isWorking(entity)){
-			int k = entity.getWorkTimeRemainingScaled(13);
+			final int k = entity.getWorkTimeRemainingScaled(13);
 			x += 57;
 			y += 36;
-			int k_inv = 13 - k;
+			final int k_inv = 13 - k;
 			drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
 		}
 	}

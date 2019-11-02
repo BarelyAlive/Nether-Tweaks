@@ -55,11 +55,11 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr)
 	{
-		Map<String, Dryable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Dryable>>() {
+		final Map<String, Dryable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Dryable>>() {
 		}.getType());
 
-		for (Map.Entry<String, Dryable> entry : gsonInput.entrySet()) {
-			Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
+		for (final Map.Entry<String, Dryable> entry : gsonInput.entrySet()) {
+			final Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("Dryable JSON Entry for " + entry.getKey() + " already exists, skipping.");
@@ -71,7 +71,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 	@Override
 	public Map<Ingredient, Dryable> getRegistry() {
 		//noinspection unchecked
-		Map<Ingredient, Dryable> map = (HashMap) ((HashMap) registry).clone();
+		final Map<Ingredient, Dryable> map = (HashMap) ((HashMap) registry).clone();
 		map.putAll(dryRegistry);
 		return map;
 	}
@@ -87,13 +87,13 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 		if (itemStack.isEmpty())
 			return;
 
-		Ingredient ingredient = Ingredient.fromStacks(itemStack);
+		final Ingredient ingredient = Ingredient.fromStacks(itemStack);
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
 			LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
 			return;
 		}
-		Dryable dryable = new Dryable(itemStack, value);
+		final Dryable dryable = new Dryable(itemStack, value);
 		register(ingredient, dryable);
 	}
 
@@ -119,14 +119,14 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 	@Override
 	public void register(@Nonnull final String name, final int value) {
-		Ingredient ingredient = new OreIngredientStoring(name);
+		final Ingredient ingredient = new OreIngredientStoring(name);
 
 		if (dryRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
 			LogUtil.error("Dry Ore Entry for " + name + " already exists, skipping.");
 		else
-			for(ItemStack stack : ingredient.getMatchingStacks())
+			for(final ItemStack stack : ingredient.getMatchingStacks())
 			{
-				Dryable dryable = new Dryable(stack, value);
+				final Dryable dryable = new Dryable(stack, value);
 				register(ingredient, dryable);
 			}
 	}

@@ -28,13 +28,13 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 
 	@Override
 	public void render(final TileSieve te, final double x, final double y, final double z, final float partialTicks, final int destroyStage, final float alpha) {
-		Tessellator tes = Tessellator.getInstance();
+		final Tessellator tes = Tessellator.getInstance();
 
-		BufferBuilder wr = tes.getBuffer();
+		final BufferBuilder wr = tes.getBuffer();
 
-		float offsetX = 0;
-		float offsetY = 0;
-		float offsetZ = 0;
+		final float offsetX = 0;
+		final float offsetY = 0;
+		final float offsetZ = 0;
 
 		renderSieve(te, x + offsetX, y + offsetY, z + offsetZ, wr);
 		renderBlockInSieve(te, x + offsetX, y + offsetY, z + offsetZ, tes, wr);
@@ -47,17 +47,17 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 		// GlStateManager.translate(0, 1, 0);
 
 		if (te.getTexture() != null && te.getCurrentStack() != null) {
-			TextureAtlasSprite icon = te.getTexture();
-			double minU = icon.getMinU();
-			double maxU = icon.getMaxU();
-			double minV = icon.getMinV();
-			double maxV = icon.getMaxV();
+			final TextureAtlasSprite icon = te.getTexture();
+			final double minU = icon.getMinU();
+			final double maxU = icon.getMaxU();
+			final double minV = icon.getMinV();
+			final double maxV = icon.getMaxV();
 
 			bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
 			worldRendererBuffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_NORMAL);
-			double height = (100.0 - te.getProgress()) / 100;
-			float fillAmount = (float) (0.15625 * height + 0.84375);
+			final double height = (100.0 - te.getProgress()) / 100;
+			final float fillAmount = (float) (0.15625 * height + 0.84375);
 
 			worldRendererBuffer.pos(0.0625f, fillAmount, 0.0625f).tex(minU, minV).normal(0, 1, 0).endVertex();
 			worldRendererBuffer.pos(0.0625f, fillAmount, 0.9375f).tex(minU, maxV).normal(0, 1, 0).endVertex();
@@ -75,15 +75,15 @@ public class RenderSieve extends TileEntitySpecialRenderer<TileSieve> {
 
 	private void renderSieve(final TileSieve tile, final double x, final double y, final double z, final BufferBuilder worldRendererBuffer) {
 		final BlockRendererDispatcher blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
-		Block blocktype = tile.getBlockType();
+		final Block blocktype = tile.getBlockType();
 
 		if (!(blocktype instanceof Sieve)) return;
 
-		IBlockState state = blocktype.getDefaultState().withProperty(Sieve.MESH, tile.getMeshType());
+		final IBlockState state = blocktype.getDefaultState().withProperty(Sieve.MESH, tile.getMeshType());
 
-		List<BakedQuad> quadsSieve = blockRenderer.getModelForState(state).getQuads(state, null, 0);
+		final List<BakedQuad> quadsSieve = blockRenderer.getModelForState(state).getQuads(state, null, 0);
 
-		Tessellator tessellator = Tessellator.getInstance();
+		final Tessellator tessellator = Tessellator.getInstance();
 		GlStateManager.pushMatrix();
 
 		GlStateManager.translate(x, y, z);

@@ -21,7 +21,7 @@ public class ServerProxy implements IProxy{
 	public void postInit() {}
 
 	public static ThirstStats getStatsByUUID(final UUID uuid) {
-		ThirstStats stats = LOADED_PLAYERS.get(uuid);
+		final ThirstStats stats = LOADED_PLAYERS.get(uuid);
 		if (stats == null) {
 			LogUtil.error("[Nether Tweaks Mod] Error: Attempted to access non-existent player with UUID: " + uuid);
 			return null;
@@ -30,7 +30,7 @@ public class ServerProxy implements IProxy{
 	}
 
 	public static void registerPlayer(final EntityPlayer player, final ThirstStats stats) {
-		UUID uuid = player.getUniqueID();
+		final UUID uuid = player.getUniqueID();
 		if (LOADED_PLAYERS.containsKey(uuid))
 			// Player already loaded from previous login session where the
 			// server was not closed since the players last login.

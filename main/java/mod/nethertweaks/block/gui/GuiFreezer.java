@@ -52,19 +52,19 @@ public class GuiFreezer extends GuiContainer
 
 		//Fluid & amount
 		String fName = "---";
-		FluidStack f = entity.getTank().getFluid();
+		final FluidStack f = entity.getTank().getFluid();
 		if(f != null) fName = f.getLocalizedName() + " : " + entity.getTank().getFluidAmount() + " mB";
 		else fName = fName +" : 0 mB";
 		int lenght0 = fontRenderer.getStringWidth(fName);
-		int x0 = 174 - lenght0;
+		final int x0 = 174 - lenght0;
 		fontRenderer.drawStringWithShadow(fName, x0, 73, 0xffffff);
 
 		//Temperature in Celsius/Fahrenheit
-		String celsius = " °C";
-		String fahrenheit = " °F";
+		final String celsius = " °C";
+		final String fahrenheit = " °F";
 		String text;
 
-		double temp = Math.round(10.0 * entity.getTemp()) / 10.0;
+		final double temp = Math.round(10.0 * entity.getTemp()) / 10.0;
 
 		if(Config.useMetricSystem)
 			text = temp + celsius;
@@ -73,7 +73,7 @@ public class GuiFreezer extends GuiContainer
 
 		lenght0 = fontRenderer.getStringWidth(text);
 		lenght0 /= 2;
-		int x1 = 35 - lenght0;
+		final int x1 = 35 - lenght0;
 		fontRenderer.drawStringWithShadow(text, x1, 35, 0xffffff);
 	}
 
@@ -88,13 +88,13 @@ public class GuiFreezer extends GuiContainer
 
 		getTE();
 
-		int x_old = x;
-		int y_old = y;
+		final int x_old = x;
+		final int y_old = y;
 		if(TileInventory.isWorking(entity)){
-			int k = entity.getWorkTimeRemainingScaled(12);
+			final int k = entity.getWorkTimeRemainingScaled(12);
 			x += 28;
 			y += 17;
-			int k_inv = 12 - k;
+			final int k_inv = 12 - k;
 			drawTexturedModalRect(x, y + k_inv, 176, k_inv, 14, k + 2);
 		}
 
@@ -103,25 +103,25 @@ public class GuiFreezer extends GuiContainer
 
 		if(entity.getTank().getFluidAmount() != 0)
 		{
-			int k = entity.getTank().getFluidAmount() * 64 / entity.getTank().getCapacity();
+			final int k = entity.getTank().getFluidAmount() * 64 / entity.getTank().getCapacity();
 			x += 134;
 			y += 6;
-			int k_inv = 64 - k;
+			final int k_inv = 64 - k;
 
 			GL11.glPushMatrix();
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-			FluidStack fluid = entity.getTank().getFluid();
+			final FluidStack fluid = entity.getTank().getFluid();
 
-			TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Objects.requireNonNull(fluid).getFluid().getStill().toString());
+			final TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Objects.requireNonNull(fluid).getFluid().getStill().toString());
 			ResourceLocation res = Objects.requireNonNull(entity.getTank().getFluid()).getFluid().getStill(entity.getTank().getFluid());
 			res = new ResourceLocation(res.getResourceDomain(), "textures/" + res.getResourcePath() + ".png");
 			Minecraft.getMinecraft().getTextureManager().bindTexture(res);
 
 			for (int i = 0; i < 16; i++)
 			{
-				int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
+				final int frame = (int) ( System.currentTimeMillis() / (6400 / sprite.getFrameCount())) % (sprite.getFrameCount() + 1);
 				drawTexturedModalRect(x + i, y + k_inv, i* sprite.getIconHeight(), frame * sprite.getIconHeight() , 1, k);
 			}
 			GL11.glPopMatrix();

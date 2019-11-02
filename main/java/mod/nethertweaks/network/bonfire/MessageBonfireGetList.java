@@ -34,19 +34,19 @@ public class MessageBonfireGetList implements IMessage
 	public void toBytes(final ByteBuf buf)
 	{
 		// Write to Bytes
-		UUID[] uuid_array = lastSpawnLocas.keySet().toArray(new UUID[0]);
+		final UUID[] uuid_array = lastSpawnLocas.keySet().toArray(new UUID[0]);
 
 		System.out.println(Arrays.toString(uuid_array));
 
 		buf.writeInt(uuid_array.length);
-		for(UUID uuid : uuid_array)
+		for(final UUID uuid : uuid_array)
 		{
 			buf.writeLong(uuid.getMostSignificantBits());
 			buf.writeLong(uuid.getLeastSignificantBits());
 
-			PlayerPosition player_pos = lastSpawnLocas.get(uuid);
+			final PlayerPosition player_pos = lastSpawnLocas.get(uuid);
 
-			BlockPos pos = player_pos.getPos();
+			final BlockPos pos = player_pos.getPos();
 			buf.writeInt(pos.getX());
 			buf.writeInt(pos.getY());
 			buf.writeInt(pos.getZ());
@@ -55,22 +55,22 @@ public class MessageBonfireGetList implements IMessage
 			buf.writeFloat(player_pos.getYaw());
 		}
 
-		BlockPos[] block_pos_array = bonfire_info.keySet().toArray(new BlockPos[0]);
+		final BlockPos[] block_pos_array = bonfire_info.keySet().toArray(new BlockPos[0]);
 
 		buf.writeInt(block_pos_array.length);
 
-		for(Map.Entry<BlockPos, BonfireInfo> entry : bonfire_info.entrySet())
+		for(final Map.Entry<BlockPos, BonfireInfo> entry : bonfire_info.entrySet())
 		{
 			buf.writeInt(entry.getKey().getX());
 			buf.writeInt(entry.getKey().getY());
 			buf.writeInt(entry.getKey().getZ());
 
-			BonfireInfo info = entry.getValue();
+			final BonfireInfo info = entry.getValue();
 
 			buf.writeLong(info.getOwner().getMostSignificantBits());
 			buf.writeLong(info.getOwner().getLeastSignificantBits());
 			buf.writeInt(info.getDimension());
-			BlockPos spawnpos = info.getSpawnPos();
+			final BlockPos spawnpos = info.getSpawnPos();
 			if (spawnpos != null)
 			{
 				buf.writeInt(spawnpos.getX());
@@ -86,9 +86,9 @@ public class MessageBonfireGetList implements IMessage
 			buf.writeInt(info.getName().length());
 			buf.writeCharSequence(info.getName(), StandardCharsets.UTF_8);
 			buf.writeBoolean(info.isPublic());
-			List<UUID> player_list = info.getLastPlayerSpawn();
+			final List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());
-            for (UUID uuid : player_list) {
+            for (final UUID uuid : player_list) {
                 buf.writeLong(uuid.getMostSignificantBits());
                 buf.writeLong(uuid.getLeastSignificantBits());
             }
@@ -117,8 +117,8 @@ public class MessageBonfireGetList implements IMessage
 
 		for(int i = 0; i < arr_length; i++)
 		{
-			BlockPos pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-			BonfireInfo info = new BonfireInfo(new UUID(buf.readLong(), buf.readLong()), buf.readInt());
+			final BlockPos pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+			final BonfireInfo info = new BonfireInfo(new UUID(buf.readLong(), buf.readLong()), buf.readInt());
 
 			info.setSpawnPos(new BlockPos(buf.readInt(), buf.readInt(), buf.readInt()));
 			int length = buf.readInt();

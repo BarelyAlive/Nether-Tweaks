@@ -37,7 +37,7 @@ public class Condenser extends CubeContainerHorizontal
 			final EnumFacing side, final float hitX, final float hitY, final float hitZ)
 	{
 		if(!world.isBlockLoaded(pos)) return false;
-		TileCondenser te = (TileCondenser) world.getTileEntity(pos);
+		final TileCondenser te = (TileCondenser) world.getTileEntity(pos);
 		if(te == null) return false;
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
@@ -50,7 +50,7 @@ public class Condenser extends CubeContainerHorizontal
 				return true;
 		}
 
-		IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
+		final IFluidHandlerItem item = FluidUtil.getFluidHandler(player.getHeldItem(hand));
 
 		if (item != null) {
 			success = FluidUtil.interactWithFluidHandler(player, hand, te.getTank());

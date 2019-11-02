@@ -116,8 +116,8 @@ public class TileSieve extends TileBase {
 		if (!currentStack.isValid() && NTMRegistryManager.SIEVE_REGISTRY.canBeSifted(stack)) {
 			if (meshStack.isEmpty())
 				return false;
-			String meshLevel = NameHelper.getName(meshStack);
-			for (Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack))
+			final String meshLevel = NameHelper.getName(meshStack);
+			for (final Siftable siftable : NTMRegistryManager.SIEVE_REGISTRY.getDrops(stack))
 				if (("mesh_" + siftable.getMeshLevel()).equals(meshLevel)) {
 					currentStack = new BlockInfo(stack);
 					markDirtyClient();
@@ -170,7 +170,7 @@ public class TileSieve extends TileBase {
 			markDirtyClient();
 
 			if (progress >= 100) {
-				List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
+				final List<ItemStack> drops = NTMRegistryManager.SIEVE_REGISTRY.getRewardDrops(rand, currentStack.getBlockState(), NameHelper.getName(meshStack).substring(5), fortune);
 
 				// Fancy math to make the average fish dropped ~ luckOfTheSea / 2 fish, which is what it was before
 
@@ -207,16 +207,16 @@ public class TileSieve extends TileBase {
 					drops.add(new ItemStack(Items.FISH, 1, fishMeta));
 				}
 
-				TileEntity teUp = world.getTileEntity(pos.up());
+				final TileEntity teUp = world.getTileEntity(pos.up());
 				IItemHandler cap;
 
 				if (teUp != null
 						&& teUp.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)
 						&& (cap = teUp.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN)) != null) {
 
-					int slotAmount = cap.getSlots();
+					final int slotAmount = cap.getSlots();
 
-					for (ItemStack drop : drops) {
+					for (final ItemStack drop : drops) {
 						ItemStack newStack = drop;
 						for (int i = 0; i < slotAmount && !newStack.isEmpty(); i++)
 							newStack = cap.insertItem(i, newStack, false);
@@ -265,12 +265,12 @@ public class TileSieve extends TileBase {
 	@Nonnull
 	public NBTTagCompound writeToNBT(final NBTTagCompound tag) {
 		if (currentStack.isValid()) {
-			NBTTagCompound stackTag = currentStack.writeToNBT(new NBTTagCompound());
+			final NBTTagCompound stackTag = currentStack.writeToNBT(new NBTTagCompound());
 			tag.setTag("stack", stackTag);
 		}
 
 		if (!meshStack.isEmpty()) {
-			NBTTagCompound meshTag = meshStack.writeToNBT(new NBTTagCompound());
+			final NBTTagCompound meshTag = meshStack.writeToNBT(new NBTTagCompound());
 			tag.setTag("mesh", meshTag);
 		}
 
@@ -314,7 +314,7 @@ public class TileSieve extends TileBase {
 	@Override
 	public void markDirtyChunk() {
 		markDirty();
-		IBlockState state = getWorld().getBlockState(getPos());
+		final IBlockState state = getWorld().getBlockState(getPos());
 		getWorld().notifyBlockUpdate(getPos(), state, state, 3);
 		NetworkHandler.sendNBTUpdate(this);
 	}
@@ -335,7 +335,7 @@ public class TileSieve extends TileBase {
 	@SideOnly(Side.CLIENT)
 	public void onDataPacket(final NetworkManager net, final SPacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.getNbtCompound());
-		IBlockState state = world.getBlockState(pos);
+		final IBlockState state = world.getBlockState(pos);
 		world.notifyBlockUpdate(pos, state, state, 3);
 	}
 }

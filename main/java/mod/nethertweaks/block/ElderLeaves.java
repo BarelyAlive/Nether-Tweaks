@@ -54,28 +54,28 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 
 		if (state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
 		{
-			int i = 4;
-			int j = 5;
-			int k = pos.getX();
-			int l = pos.getY();
-			int i1 = pos.getZ();
-			int j1 = 32;
-			int k1 = 1024;
-			int l1 = 16;
+			final int i = 4;
+			final int j = 5;
+			final int k = pos.getX();
+			final int l = pos.getY();
+			final int i1 = pos.getZ();
+			final int j1 = 32;
+			final int k1 = 1024;
+			final int l1 = 16;
 
 			if (surroundings == null)
 				surroundings = new int[32768];
 
 			if (world.isAreaLoaded(new BlockPos(k - 5, l - 5, i1 - 5), new BlockPos(k + 5, l + 5, i1 + 5)))
 			{
-				BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+				final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
 				for (int i2 = -4; i2 <= 4; ++i2)
 					for (int j2 = -4; j2 <= 4; ++j2)
 						for (int k2 = -4; k2 <= 4; ++k2)
 						{
-							IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
-							Block block = iblockstate.getBlock();
+							final IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2));
+							final Block block = iblockstate.getBlock();
 
 							final int i3 = (i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16;
 							if (!block.canSustainLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(k + i2, l + j2, i1 + k2)))
@@ -121,7 +121,7 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 							}
 			}
 
-			int l2 = surroundings[16912];
+			final int l2 = surroundings[16912];
 
 			if (l2 >= 0)
 				world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.FALSE), 4);
@@ -200,8 +200,8 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 	@Override
 	public java.util.List<ItemStack> getDrops(final IBlockAccess world, final BlockPos pos, final IBlockState state, final int fortune)
 	{
-		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
-		Random rand = world instanceof World ? ((World)world).rand : new Random();
+		final java.util.List<ItemStack> ret = new java.util.ArrayList<>();
+		final Random rand = world instanceof World ? ((World)world).rand : new Random();
 		int chance = getSaplingDropChance(state);
 
 		if (fortune > 0)
@@ -246,7 +246,7 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 	@Override
 	public int getMetaFromState(final IBlockState state) {
 
-		boolean cd = state.getValue(CHECK_DECAY);
+		final boolean cd = state.getValue(CHECK_DECAY);
 
 		if(!cd) return 0;
 		return 1;
@@ -255,7 +255,7 @@ public class ElderLeaves extends BlockLeaves implements IShearable
 
 	@Override
 	public List<ItemStack> onSheared(final ItemStack item, final IBlockAccess world, final BlockPos pos, final int fortune) {
-		java.util.List<ItemStack> ret = new java.util.ArrayList<>();
+		final java.util.List<ItemStack> ret = new java.util.ArrayList<>();
 		ret.add(new ItemStack(ModBlocks.ELDER_LEAVES));
 
 		return ret;

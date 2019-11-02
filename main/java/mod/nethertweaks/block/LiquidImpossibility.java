@@ -50,7 +50,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 		if (Config.spawnSkeletons)
 			if (entity instanceof EntityWitherSkeleton && ((EntityWitherSkeleton) entity).getAttackTarget() == null)
 			{
-				EntitySkeleton skeleton = new EntitySkeleton(world);
+				final EntitySkeleton skeleton = new EntitySkeleton(world);
 				skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
 				skeleton.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 				skeleton.setNoAI(skeleton.isAIDisabled());
@@ -69,7 +69,7 @@ public class LiquidImpossibility extends BlockFluidClassic
 			if (entity instanceof EntityMagmaCube && ((EntityMagmaCube) entity).getAttackTarget() == null)
 			{
 
-				EntitySlime slime = new EntitySlime(world);
+				final EntitySlime slime = new EntitySlime(world);
 				slime.setLocationAndAngles(pos.getX(), pos.getY(), pos.getZ(), entity.rotationYaw, entity.rotationPitch);
 				slime.setNoAI(slime.isAIDisabled());
 

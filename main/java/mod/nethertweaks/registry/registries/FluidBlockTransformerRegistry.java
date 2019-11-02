@@ -54,7 +54,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 	public void register(final Fluid fluid, @Nonnull final StackInfo inputBlock, @Nonnull final StackInfo outputBlock, final String entityName) {
 		if (fluid == null){
 			LogUtil.error("Fluid is null, this may not happen!");
-			for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace())
+			for (final StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace())
 				LogUtil.warn(stackTraceElement);
 
 			return;
@@ -87,7 +87,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	public boolean canBlockBeTransformedWithThisFluid(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return true;
 
@@ -97,7 +97,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 	@Override
 	@Nonnull
 	public BlockInfo getBlockForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return transformer.getOutput();
 
@@ -106,7 +106,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	public int getSpawnCountForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return transformer.getSpawnCount();
 
@@ -115,7 +115,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	public int getSpawnRangeForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return transformer.getSpawnRange();
 
@@ -124,7 +124,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	public FluidBlockTransformer getTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return transformer;
 
@@ -133,7 +133,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	public EntityInfo getSpawnForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		for (FluidBlockTransformer transformer : registry)
+		for (final FluidBlockTransformer transformer : registry)
 			if (fluid.getName().equals(transformer.getFluidName()) && transformer.getInput().apply(stack))
 				return transformer.getToSpawn();
 
@@ -142,7 +142,7 @@ public class FluidBlockTransformerRegistry extends BaseRegistryList<FluidBlockTr
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-		List<FluidBlockTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidBlockTransformer>>() {
+		final List<FluidBlockTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidBlockTransformer>>() {
 		}.getType());
 		registry.addAll(gsonInput);
 	}

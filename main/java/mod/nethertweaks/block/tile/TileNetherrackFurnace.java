@@ -71,9 +71,9 @@ public class TileNetherrackFurnace extends TileInventory
 	{
 		if(calcMaxWorktime() == 0) return false;
 		if(getStackInSlot(0).isEmpty()) return false;
-		ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
+		final ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
 		if(itemstack.isEmpty()) return false;
-		ItemStack itemstack1 = getStackInSlot(1);
+		final ItemStack itemstack1 = getStackInSlot(1);
 		if(itemstack1.isEmpty()) return true;
 		if(!itemstack1.isItemEqual(itemstack)) return false;
 		if(itemstack1.getCount() + itemstack.getCount() <= getInventoryStackLimit()
@@ -84,8 +84,8 @@ public class TileNetherrackFurnace extends TileInventory
 	}
 
 	private int getHeatRate() {
-		BlockPos posBelow = pos.add(0, -1, 0);
-		IBlockState stateBelow = getWorld().getBlockState(posBelow);
+		final BlockPos posBelow = pos.add(0, -1, 0);
+		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
 		if (stateBelow == Blocks.AIR.getDefaultState()) return 0;
 
@@ -98,7 +98,7 @@ public class TileNetherrackFurnace extends TileInventory
 
 		if (heat != 0) return heat;
 
-		TileEntity tile = getWorld().getTileEntity(posBelow);
+		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
 			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
@@ -108,7 +108,7 @@ public class TileNetherrackFurnace extends TileInventory
 
 	private int calcMaxWorktime()
 	{
-		int heat = getHeatRate();
+		final int heat = getHeatRate();
 		int workTime = 0;
 
 		if (heat != 0)
@@ -129,7 +129,7 @@ public class TileNetherrackFurnace extends TileInventory
 	 */
 	public void smeltItem()
 	{
-		ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
+		final ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
 
 		if (getStackInSlot(1).isEmpty())
 			setInventorySlotContents(1, itemstack.copy());

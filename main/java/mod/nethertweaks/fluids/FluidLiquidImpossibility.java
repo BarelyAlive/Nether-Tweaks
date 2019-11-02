@@ -47,11 +47,11 @@ public class FluidLiquidImpossibility extends Fluid{
 
 	@SideOnly(Side.CLIENT)
     public void initModel() {
-        Block block = getBlock();
+        final Block block = getBlock();
 
-        FluidStateMapper mapper = new FluidStateMapper(Constants.MOD_ID, this);
+        final FluidStateMapper mapper = new FluidStateMapper(Constants.MOD_ID, this);
 
-        Item item = Item.getItemFromBlock(block);
+        final Item item = Item.getItemFromBlock(block);
         if (item != Items.AIR) {
             ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, mapper);

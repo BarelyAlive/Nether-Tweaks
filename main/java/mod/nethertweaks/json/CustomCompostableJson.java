@@ -20,7 +20,7 @@ public class CustomCompostableJson implements JsonDeserializer<Compostable>, Jso
 	@Override
 	public JsonElement serialize(final Compostable src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 		obj.addProperty("value", src.getValue());
 		obj.add("compostBlock", context.serialize(src.getCompostBlock(), BlockInfo.class));
 		if (src.getColor() != Color.INVALID_COLOR)
@@ -32,15 +32,15 @@ public class CustomCompostableJson implements JsonDeserializer<Compostable>, Jso
 	@Override
 	public Compostable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		float value = (float) helper.getDouble("value");
+		final float value = (float) helper.getDouble("value");
 		Color color = Color.INVALID_COLOR;
 		if (obj.has("color"))
 			color = context.deserialize(obj.get("color"), Color.class);
 
-		BlockInfo result = context.deserialize(obj.get("compostBlock"), BlockInfo.class);
+		final BlockInfo result = context.deserialize(obj.get("compostBlock"), BlockInfo.class);
 
 		return new Compostable(value, color, result);
 	}

@@ -60,7 +60,7 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 
 		if (item.isEmpty()) {
 			Fluid fluid = null;
-			Block block = blockInfo.getBlock();
+			final Block block = blockInfo.getBlock();
 			if (block instanceof IFluidBlock)
 				fluid = ((IFluidBlock) block).getFluid();
 			if (block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)
@@ -100,13 +100,13 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 
 		GlStateManager.popMatrix();
 
-		float angle = RenderTickCounter.getRenderTicks() * 45.0f / 128.0f;
+		final float angle = RenderTickCounter.getRenderTicks() * 45.0f / 128.0f;
 
 		// When we want to render translucent blocks we might need this
-		BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
+		final BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
 
 		// Init GlStateManager
-		TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
+		final TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
 		textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		textureManager.getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
 		GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
@@ -141,17 +141,17 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 		// Scale down to gui scale
 		GlStateManager.scale(16.0f, -16.0f, 16.0f);
 
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder buffer = tessellator.getBuffer();
+		final Tessellator tessellator = Tessellator.getInstance();
+		final BufferBuilder buffer = tessellator.getBuffer();
 
 		buffer.setTranslation(-.5, 0, -.5);
 
 		GlStateManager.enableCull();
 
 		//IBlockState crucible = ModBlocks.crucibleStone.getDefaultState().withProperty(Block.FIRED, true);
-		IBlockState state = blockInfo.getBlockState();
+		final IBlockState state = blockInfo.getBlockState();
 
-		BlockPos pos = new BlockPos(0, 0, 0);
+		final BlockPos pos = new BlockPos(0, 0, 0);
 		/*if (blockInfo.getBlock() instanceof IFluidBlock || blockInfo.getBlock() instanceof BlockLiquid) {
             pos = pos.up();
         }*/
@@ -184,7 +184,7 @@ public class HeatSourcesRecipe implements IRecipeWrapper {
 
 		try {
 			blockrendererdispatcher.renderBlock(blockState, pos, access, buffer);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 

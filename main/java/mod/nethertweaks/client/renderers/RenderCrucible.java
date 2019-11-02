@@ -35,7 +35,7 @@ public class RenderCrucible extends FastTESR<TileCrucibleBase> {
 		if (!(block instanceof CrucibleBase)) return;
 
 		// Draw
-		SpriteColor[] sprites = te.getSpriteAndColor();
+		final SpriteColor[] sprites = te.getSpriteAndColor();
 
 		buffer.setTranslation(x, y, z);
 		addSpriteColor(te, sprites[0], buffer, te.getSolidProportion());
@@ -52,8 +52,8 @@ public class RenderCrucible extends FastTESR<TileCrucibleBase> {
 		final int skyLight = mixedBrightness >> 16 & 0xFFFF;
 		final int blockLight = mixedBrightness & 0xFFFF;
 		// Texturing
-		TextureAtlasSprite icon = sprite.getSprite();
-		Color color = sprite.getColor();
+		final TextureAtlasSprite icon = sprite.getSprite();
+		final Color color = sprite.getColor();
 
 		if(icon == null)
 			return;

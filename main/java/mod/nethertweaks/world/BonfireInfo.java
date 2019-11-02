@@ -117,7 +117,7 @@ public class BonfireInfo {
 
 	public void removePlayer(final UUID player)
 	{
-		int index = lastSpawnPlayer.indexOf(player);
+		final int index = lastSpawnPlayer.indexOf(player);
 		if (index == -1) return;
 		lastSpawnPlayer.remove(index);
 	}
@@ -144,7 +144,7 @@ public class BonfireInfo {
 
 	public BonfireInfo copy()
 	{
-		BonfireInfo bi = new BonfireInfo(owner, dim);
+		final BonfireInfo bi = new BonfireInfo(owner, dim);
 		bi.setName(getName());
 		bi.isPublic(this.isPublic());
 		bi.setLastPlayerSpawn(getLastPlayerSpawn());

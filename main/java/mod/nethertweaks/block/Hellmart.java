@@ -44,7 +44,7 @@ public class Hellmart extends BlockContainer
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
-		TileHellmart te = (TileHellmart) world.getTileEntity(pos);
+		final TileHellmart te = (TileHellmart) world.getTileEntity(pos);
 		if(te == null) return false;
 
         player.openGui(NetherTweaksMod.getInstance(), GuiHandler.ID_HELLMART, world, pos.getX(), pos.getY(), pos.getZ());

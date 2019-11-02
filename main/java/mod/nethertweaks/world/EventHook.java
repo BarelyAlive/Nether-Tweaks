@@ -91,15 +91,15 @@ public class EventHook
 	public void createSalt(final PlayerInteractEvent.RightClickBlock event)
 	{
 		BlockPos pos = event.getPos();
-		World world = event.getWorld();
-		IBlockState state = world.getBlockState(pos);
-		boolean vaporize = world.provider.doesWaterVaporize();
-		FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
+		final World world = event.getWorld();
+		final IBlockState state = world.getBlockState(pos);
+		final boolean vaporize = world.provider.doesWaterVaporize();
+		final FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
 
 		if (!Config.enableSaltRecipe || !vaporize || event.getEntity() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(event.getItemStack(), Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
-		for(String fluidName : Config.blacklistSalt)
+		for(final String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
 
 		if (state.getBlock().onBlockActivated(world, pos, state, event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
@@ -129,7 +129,7 @@ public class EventHook
 				pos = pos.down();
 				break;
 			}
-			EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.SALT, 1));
+			final EntityItem salt = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.SALT, 1));
 			world.spawnEntity(salt);
 		}
 	}
@@ -137,9 +137,9 @@ public class EventHook
 	@SubscribeEvent
 	public void noSource(final CreateFluidSourceEvent event)
 	{
-		BlockPos pos = event.getPos();
-		IBlockState state = event.getState();
-		World world = event.getWorld();
+		final BlockPos pos = event.getPos();
+		final IBlockState state = event.getState();
+		final World world = event.getWorld();
 
 		if(!world.isRemote && Hellworld.isHellworld(world))
 			if(state.getMaterial() == Material.WATER && !Config.waterSources)
@@ -148,26 +148,26 @@ public class EventHook
 
 	@SubscribeEvent
 	public void respawn(final PlayerEvent.PlayerRespawnEvent event) {
-		EntityPlayer player = event.player;
-		int range = 32;
+		final EntityPlayer player = event.player;
+		final int range = 32;
 
 		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
 			if (!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
-				BlockPos posplayer = player.getPosition();
+				final BlockPos posplayer = player.getPosition();
 				int yDifferenz = 0;
 				if (posplayer.getY() < range)
 					yDifferenz = range - posplayer.getY();
-				Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
+				final Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 
-				for(BlockPos pos : posi)
+				for(final BlockPos pos : posi)
 					if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 						player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 			}
 			else
 			{
-				PlayerPosition pos = WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile()));
+				final PlayerPosition pos = WorldSpawnLocation.getLastSpawnLocations().get(EntityPlayer.getUUID(player.getGameProfile()));
 				player.setPositionAndUpdate(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5);
 				player.setPositionAndRotation(pos.getPos().getX() + 0.5, pos.getPos().getY(), pos.getPos().getZ() + 0.5, pos.getYaw(), pos.getAng());
 			}
@@ -188,11 +188,11 @@ public class EventHook
 
 		if (event.getEntity() instanceof EntityItem)
 		{
-			EntityItem item = (EntityItem) event.getEntity();
+			final EntityItem item = (EntityItem) event.getEntity();
 			if(item.getItem().getItem() == Items.IRON_SWORD)
 			{
 				event.setCanceled(false);
-				EntityItemLava new_item = new EntityItemLava(
+				final EntityItemLava new_item = new EntityItemLava(
 						item.getEntityWorld(),
 						item.getPosition().getX(),
 						item.getPosition().getY(),
@@ -269,7 +269,7 @@ public class EventHook
 	@SubscribeEvent
 	public void onPlayerTick(final TickEvent.PlayerTickEvent event) {
 		if(!event.player.world.isRemote) {
-			ThirstStats stats = ServerProxy.getStatsByUUID(event.player.getUniqueID());
+			final ThirstStats stats = ServerProxy.getStatsByUUID(event.player.getUniqueID());
 			if(stats != null)
 				stats.update(event.player);
 		} else
@@ -279,7 +279,7 @@ public class EventHook
 	@SubscribeEvent
 	public void onAttack(final AttackEntityEvent attack) {
 		if (!attack.getEntityPlayer().world.isRemote) {
-			ThirstStats stats = ServerProxy.getStatsByUUID(attack.getEntityPlayer().getUniqueID());
+			final ThirstStats stats = ServerProxy.getStatsByUUID(attack.getEntityPlayer().getUniqueID());
 			stats.addExhaustion(0.5f);
 		}
 		attack.setResult(Result.DEFAULT);
@@ -288,9 +288,9 @@ public class EventHook
 	@SubscribeEvent
 	public void onHurt(final LivingHurtEvent hurt) {
 		if (hurt.getEntity() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) hurt.getEntity();
+			final EntityPlayer player = (EntityPlayer) hurt.getEntity();
 			if (!player.world.isRemote) {
-				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
+				final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addExhaustion(0.4f);
 			}
 		}
@@ -299,10 +299,10 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onBlockBreak(final BlockEvent.BreakEvent event) {
-		EntityPlayer player = event.getPlayer();
+		final EntityPlayer player = event.getPlayer();
 		if(player != null)
 			if(!player.world.isRemote) {
-				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
+				final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addExhaustion(0.03f);
 			}
 		event.setResult(Result.DEFAULT);
@@ -311,7 +311,7 @@ public class EventHook
 	public void playedCloned(final net.minecraftforge.event.entity.player.PlayerEvent.Clone event) {
 		if(!event.getEntityPlayer().world.isRemote)
 			if(event.isWasDeath()) {
-				ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
+				final ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
 				stats.resetStats();
 			}
 	}
@@ -319,19 +319,19 @@ public class EventHook
 	@SubscribeEvent
 	public void onLoadPlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
 		if (!event.getEntityPlayer().world.isRemote) {
-			EntityPlayer player = event.getEntityPlayer();
-			File saveFile = event.getPlayerFile("nethertweaksmod");
+			final EntityPlayer player = event.getEntityPlayer();
+			final File saveFile = event.getPlayerFile("nethertweaksmod");
 			if(!saveFile.exists())
 				ServerProxy.registerPlayer(player, new ThirstStats());
 			else
 				try {
-					FileReader reader = new FileReader(saveFile);
-					ThirstStats stats = GSON_INSTANCE.fromJson(reader, ThirstStats.class);
+					final FileReader reader = new FileReader(saveFile);
+					final ThirstStats stats = GSON_INSTANCE.fromJson(reader, ThirstStats.class);
 					if (stats == null)
 						ServerProxy.registerPlayer(player, new ThirstStats());
 					else
 						ServerProxy.registerPlayer(player, stats);
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					e.printStackTrace();
 				}
 		}
@@ -340,15 +340,15 @@ public class EventHook
 	@SubscribeEvent
 	public void onSavePlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
 		if (!event.getEntityPlayer().world.isRemote) {
-			ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
-			File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
+			final ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
+			final File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
 			try {
-				String write = GSON_INSTANCE.toJson(stats);
+				final String write = GSON_INSTANCE.toJson(stats);
 				saveFile.createNewFile();
-				BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
+				final BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile));
 				writer.write(write);
 				writer.close();
-			} catch (IOException e) {
+			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -360,15 +360,15 @@ public class EventHook
 		if (!Config.enableThirst) return;
 
 		if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
-			ItemStack eventItem = event.getItem();
+			final ItemStack eventItem = event.getItem();
 			// have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
 			eventItem.setCount(eventItem.getCount() + 1);
-			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			final EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
 			if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
-				Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
+				final Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
 
-				ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
+				final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addStats(drink.getThirstReplenish(), drink.getSaturationReplenish());
 				stats.attemptToPoison(drink.getPoisonChance());
 			}

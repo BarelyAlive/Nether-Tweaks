@@ -41,7 +41,7 @@ public class ItemChunk extends Item {
 
 	public ItemStack getResult()
 	{
-		ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
+		final ItemStack result = FurnaceRecipes.instance().getSmeltingResult(new ItemStack(results));
 		return result.isEmpty() ? new ItemStack(results) : result;
 	}
 
@@ -79,10 +79,10 @@ public class ItemChunk extends Item {
 		if (display_name == "")
 		{
 			String name = getResult().getDisplayName();
-			String[] name_split = name.split(" ");
+			final String[] name_split = name.split(" ");
 			if (name_split[name_split.length - 1].toLowerCase().equals("ingot"))
 			{
-	            StringBuilder nameBuilder = new StringBuilder();
+	            final StringBuilder nameBuilder = new StringBuilder();
 	            for(int i = 0; i < name_split.length - 1; i++)
 				{
 					nameBuilder.append(name_split[i]);

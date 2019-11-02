@@ -28,7 +28,7 @@ public class Compostable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Compostable other = (Compostable) obj;
+		final Compostable other = (Compostable) obj;
 		if (color == null) {
 			if (other.color != null)
 				return false;

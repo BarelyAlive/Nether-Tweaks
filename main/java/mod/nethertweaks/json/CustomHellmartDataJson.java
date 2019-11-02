@@ -22,12 +22,12 @@ public class CustomHellmartDataJson implements JsonDeserializer<HellmartData>, J
 	@Override
 	public HellmartData deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		ItemInfo itemItem = context.deserialize(obj.get("item_name"), ItemInfo.class);
-		ItemInfo currencyItem = context.deserialize(obj.get("currency_name"), ItemInfo.class);
-		int price = helper.getNullableInteger("price", 1);
+		final ItemInfo itemItem = context.deserialize(obj.get("item_name"), ItemInfo.class);
+		final ItemInfo currencyItem = context.deserialize(obj.get("currency_name"), ItemInfo.class);
+		final int price = helper.getNullableInteger("price", 1);
 
 		if(itemItem == null || currencyItem == null)
 		{
@@ -43,7 +43,7 @@ public class CustomHellmartDataJson implements JsonDeserializer<HellmartData>, J
 	@Override
 	public JsonElement serialize(final HellmartData src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject jsonObject = new JsonObject();
+		final JsonObject jsonObject = new JsonObject();
 
 		jsonObject.add("item_name", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
 		jsonObject.add("currency_name", context.serialize(new ItemInfo(src.getCurrency()), ItemInfo.class));

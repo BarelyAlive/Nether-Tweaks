@@ -99,11 +99,11 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	@Override
 	public void register(@Nonnull final Ingredient ingredient, @Nonnull final Siftable drop) {
 
-		Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(entry, ingredient)).findAny().orElse(null);
+		final Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(entry, ingredient)).findAny().orElse(null);
 		if (search != null)
 			registry.get(search).add(drop);
 		else {
-			NonNullList<Siftable> drops = NonNullList.create();
+			final NonNullList<Siftable> drops = NonNullList.create();
 			drops.add(drop);
 			super.register(ingredient, drops);
 		}
@@ -134,7 +134,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	@Override
 	@Nonnull
 	public List<Siftable> getDrops(@Nonnull final ItemStack stack) {
-		List<Siftable> drops = new ArrayList<>();
+		final List<Siftable> drops = new ArrayList<>();
 		if (!stack.isEmpty())
 			registry.entrySet().stream().filter(entry -> entry.getKey().test(stack)).forEach(entry -> drops.addAll(entry.getValue()));
 		return drops;
@@ -143,7 +143,7 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	@Override
 	@Nonnull
 	public List<Siftable> getDrops(@Nonnull final Ingredient ingredient) {
-		List<Siftable> drops = new ArrayList<>();
+		final List<Siftable> drops = new ArrayList<>();
 		registry.entrySet().stream().filter(entry -> entry.getKey() == ingredient).forEach(entry -> drops.addAll(entry.getValue()));
 		return drops;
 	}
@@ -152,11 +152,11 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 	@Nonnull
 	public List<ItemStack> getRewardDrops(@Nonnull final Random random, @Nonnull final IBlockState block, final String meshLevel, final int fortuneLevel) {
 
-		List<ItemStack> drops = new ArrayList<>();
+		final List<ItemStack> drops = new ArrayList<>();
 
 		getDrops(new BlockInfo(block)).forEach(siftable -> {
 			if (canSieve(siftable.getMeshLevel(), MeshType.getMeshTypeByID(meshLevel))) {
-				int triesWithFortune = Math.max(random.nextInt(fortuneLevel + 2), 1);
+				final int triesWithFortune = Math.max(random.nextInt(fortuneLevel + 2), 1);
 
 				for (int i = 0; i < triesWithFortune; i++)
 					if (random.nextDouble() < siftable.getChance())
@@ -174,14 +174,14 @@ public class SieveRegistry extends BaseRegistryMap<Ingredient, List<Siftable>> i
 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr) {
-		HashMap<Ingredient, ArrayList<Siftable>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Ingredient, ArrayList<Siftable>>>() {
+		final HashMap<Ingredient, ArrayList<Siftable>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<Ingredient, ArrayList<Siftable>>>() {
 		}.getType());
 
-		for (Map.Entry<Ingredient, ArrayList<Siftable>> input : gsonInput.entrySet()) {
-			Ingredient key = input.getKey();
+		for (final Map.Entry<Ingredient, ArrayList<Siftable>> input : gsonInput.entrySet()) {
+			final Ingredient key = input.getKey();
 
 			if (key != null && key != Ingredient.EMPTY)
-				for (Siftable siftable : input.getValue())
+				for (final Siftable siftable : input.getValue())
 					if (siftable.getDrop().isValid())
 						register(key, siftable);
 		}

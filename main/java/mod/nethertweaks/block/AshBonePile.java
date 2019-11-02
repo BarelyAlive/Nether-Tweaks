@@ -57,15 +57,15 @@ public class AshBonePile extends CubeContainerHorizontal
 	private BlockPos testPosition(final World world, final BlockPos destination)
 	{
 		if (!world.isRemote) {
-			boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
-			boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
-			boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
-			boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
+			final boolean north = world.isAirBlock(destination.north()) && world.isAirBlock(destination.north().up()) && world.isSideSolid(destination.north().down(), EnumFacing.UP);
+			final boolean east = world.isAirBlock(destination.east()) && world.isAirBlock(destination.east().up()) && world.isSideSolid(destination.east().down(), EnumFacing.UP);
+			final boolean south = world.isAirBlock(destination.south()) && world.isAirBlock(destination.south().up()) && world.isSideSolid(destination.south().down(), EnumFacing.UP);
+			final boolean west = world.isAirBlock(destination.west()) && world.isAirBlock(destination.west().up()) && world.isSideSolid(destination.west().down(), EnumFacing.UP);
 
-			boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
-			boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
-			boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
-			boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
+			final boolean northEast = world.isAirBlock(destination.north().east()) && world.isAirBlock(destination.north().east().up()) && world.isSideSolid(destination.north().east().down(), EnumFacing.UP);
+			final boolean southEast = world.isAirBlock(destination.east().south()) && world.isAirBlock(destination.east().south().up()) && world.isSideSolid(destination.east().south().down(), EnumFacing.UP);
+			final boolean southWest = world.isAirBlock(destination.south().west()) && world.isAirBlock(destination.south().west().up()) && world.isSideSolid(destination.south().west().down(), EnumFacing.UP);
+			final boolean northWest = world.isAirBlock(destination.west().north()) && world.isAirBlock(destination.west().north().up()) && world.isSideSolid(destination.west().north().down(), EnumFacing.UP);
 
 			if(north) return destination.north();
 			if(east) return destination.east();
@@ -85,13 +85,13 @@ public class AshBonePile extends CubeContainerHorizontal
 	public void updateTick(final World world, final BlockPos pos, final IBlockState state, final Random rand) {
 		super.updateTick(world, pos, state, rand);
 
-		BlockPos resultPos = testPosition(world, pos);
+		final BlockPos resultPos = testPosition(world, pos);
 
 		if(resultPos != null && !world.isRemote)
 			if (world.getBlockState(pos).getValue(LIT))
 				if (WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 				{
-					BonfireInfo info = WorldSpawnLocation.getBonfireInfo().get(pos);
+					final BonfireInfo info = WorldSpawnLocation.getBonfireInfo().get(pos);
 					if(info != null)
 					{
 						info.setSpawnPos(resultPos);
@@ -109,7 +109,7 @@ public class AshBonePile extends CubeContainerHorizontal
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
-		TileAshBonePile te = (TileAshBonePile) world.getTileEntity(pos);
+		final TileAshBonePile te = (TileAshBonePile) world.getTileEntity(pos);
 
 		if (!world.getBlockState(pos).getValue(LIT))
 		{
@@ -121,8 +121,8 @@ public class AshBonePile extends CubeContainerHorizontal
 				Objects.requireNonNull(te).isLit(true);
 				if (!WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 				{
-					BlockPos resultPos = testPosition(world, pos);
-					BonfireInfo info = new BonfireInfo(EntityPlayer.getUUID(player.getGameProfile()), world.provider.getDimension());
+					final BlockPos resultPos = testPosition(world, pos);
+					final BonfireInfo info = new BonfireInfo(EntityPlayer.getUUID(player.getGameProfile()), world.provider.getDimension());
 					if(resultPos != null)
 						info.setSpawnPos(resultPos);
 					WorldSpawnLocation.getBonfireInfo().put(pos, info);
@@ -201,14 +201,14 @@ public class AshBonePile extends CubeContainerHorizontal
 	{
 		if (WorldSpawnLocation.getBonfireInfo().containsKey(pos))
 		{
-			BonfireInfo binfo = WorldSpawnLocation.getBonfireInfo().get(pos);
+			final BonfireInfo binfo = WorldSpawnLocation.getBonfireInfo().get(pos);
 
-			List<UUID> player_list = binfo.getLastPlayerSpawn();
+			final List<UUID> player_list = binfo.getLastPlayerSpawn();
 			if (player_list.size() != 0)
-				for(UUID entry : player_list)
+				for(final UUID entry : player_list)
 					if (WorldSpawnLocation.getLastSpawnLocations().containsKey(entry))
 					{
-						EntityPlayer player = world.getPlayerEntityByUUID(entry);
+						final EntityPlayer player = world.getPlayerEntityByUUID(entry);
 						Objects.requireNonNull(player).sendMessage(new TextComponentString(player.getName() + "'s point of rest is lost!"));
 						WorldSpawnLocation.getLastSpawnLocations().remove(entry);
 						if (world.isRemote)

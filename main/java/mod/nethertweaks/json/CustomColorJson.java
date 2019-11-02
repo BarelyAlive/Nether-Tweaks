@@ -21,14 +21,14 @@ public class CustomColorJson implements JsonDeserializer<Color>, JsonSerializer<
 	@Override
 	public Color deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException{
 		if (json.isJsonPrimitive()) {
-			JsonPrimitive prim = json.getAsJsonPrimitive();
+			final JsonPrimitive prim = json.getAsJsonPrimitive();
 			if(prim.isString())
 				return new Color(prim.getAsString());
 			if(prim.isNumber())
 				return new Color(prim.getAsInt());
 			else LogUtil.warn("Invalid Color primitive for $json");
 		} else {
-			JsonHelper helper = new JsonHelper(json);
+			final JsonHelper helper = new JsonHelper(json);
 			return new Color((float) helper.getDouble("r"), (float) helper.getDouble("g"), (float) helper.getDouble("b"), (float) helper.getDouble("a"));
 		}
 

@@ -30,7 +30,7 @@ public class MooFluidsEtc implements ISFHCoreModule {
 
 	@Override
 	public void postInitServer(final FMLPostInitializationEvent event){
-		for(String s : Config.fluidList)
+		for(final String s : Config.fluidList)
 			if(FluidRegistry.isFluidRegistered(s))
 				fluidSet.add(FluidRegistry.getFluid(s));
 	}

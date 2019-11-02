@@ -20,7 +20,7 @@ public class CustomMeltableJson implements JsonDeserializer<Meltable>, JsonSeria
 
 	@Override
 	public JsonElement serialize(final Meltable src, final Type typeOfSrc, final JsonSerializationContext context) {
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 
 		obj.addProperty("fluid", src.getFluid());
 		obj.addProperty("amount", src.getAmount());
@@ -34,11 +34,11 @@ public class CustomMeltableJson implements JsonDeserializer<Meltable>, JsonSeria
 	@Override
 	public Meltable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
 			throws JsonParseException {
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		String fluid = helper.getString("fluid");
-		int amount = helper.getInteger("amount");
+		final String fluid = helper.getString("fluid");
+		final int amount = helper.getInteger("amount");
 
 		BlockInfo textureOverride = BlockInfo.EMPTY;
 		if (obj.has("textureOverride"))

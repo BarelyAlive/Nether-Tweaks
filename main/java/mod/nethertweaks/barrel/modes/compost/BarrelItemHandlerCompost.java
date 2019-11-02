@@ -24,10 +24,10 @@ public class BarrelItemHandlerCompost extends ItemStackHandler {
 	@Nonnull
 	public ItemStack insertItem(final int slot, @Nonnull final ItemStack stack, final boolean simulate) {
 		if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(stack)) {
-			BarrelModeCompost mode = (BarrelModeCompost) barrel.getMode();
+			final BarrelModeCompost mode = (BarrelModeCompost) barrel.getMode();
 
 			if (mode != null && mode.getFillAmount() < 1) {
-				ItemStack toReturn = stack.copy();
+				final ItemStack toReturn = stack.copy();
 				toReturn.shrink(1);
 
 				if (!simulate)

@@ -65,20 +65,16 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
 	}
 
 	public int getHeatAmount(final String name) {
-		String ingredient = registry.keySet().stream().filter(entry -> entry.equals(name)).findFirst().orElse(null);
+		final String ingredient = registry.keySet().stream().filter(entry -> entry.equals(name)).findFirst().orElse(null);
 		if (ingredient != null && !Objects.equals(ingredient, "")) return registry.get(ingredient);
 		return 0;
 	}
-	
+
 	public int getMaxHeatAmount() {
 		int max = 0;
-		for (Map.Entry<String, Integer> entry : this.registry.entrySet())
-		{
+		for (final Map.Entry<String, Integer> entry : registry.entrySet())
 			if (max < entry.getValue())
-			{
 				max = entry.getValue();
-			}
-		}
 		return max;
 	}
 
@@ -92,10 +88,10 @@ public class HeatRegistry extends BaseRegistryMap<String, Integer> implements IH
 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr) {
-		Map<String, Integer> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Integer>>() {
+		final Map<String, Integer> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Integer>>() {
 		}.getType());
 
-		for (Map.Entry<String, Integer> entry : gsonInput.entrySet())
+		for (final Map.Entry<String, Integer> entry : gsonInput.entrySet())
 			if (registry.keySet().stream().anyMatch(ingredient -> ingredient.equals(entry.getKey())))
 				LogUtil.error("Heat JSON Entry for " + entry.getKey() + " already exists, skipping.");
 			else

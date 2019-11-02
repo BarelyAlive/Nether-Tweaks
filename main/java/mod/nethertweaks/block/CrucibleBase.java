@@ -47,14 +47,14 @@ public abstract class CrucibleBase extends Block
 		if (world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
-		TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
+		final TileCrucibleBase te = (TileCrucibleBase) world.getTileEntity(pos);
 
 		if (te != null) {
 			if(!player.getHeldItem(hand).isEmpty())
 				if(TankUtil.drainWaterIntoBottle(te, player, (FluidTank) te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)))
 					return true;
 
-			IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			final IFluidHandler fluidHandler = te.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
 			return te.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ, fluidHandler);
 		} else
 			return true;

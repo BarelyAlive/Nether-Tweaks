@@ -21,7 +21,7 @@ public class CrystalOfLight extends Item
 	@Override
 	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		String name = Objects.requireNonNull(stack.getItem().getRegistryName()).getResourcePath();
+		final String name = Objects.requireNonNull(stack.getItem().getRegistryName()).getResourcePath();
 
         if (Constants.CRYSTAL_OF_LIGHT.equals(name))
 			tooltip.add("This crystal enchants water, making it resistant to temperature changes");

@@ -58,7 +58,7 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 	@Override
 	public FluidTransformer getFluidTransformer(@Nonnull final String inputFluid, @Nonnull final String outputFluid) {
 		if (registry.containsKey(inputFluid))
-			for (FluidTransformer transformer : registry.get(inputFluid))
+			for (final FluidTransformer transformer : registry.get(inputFluid))
 				if (transformer.getInputFluid().equals(inputFluid) && transformer.getOutputFluid().equals(outputFluid))
 					return transformer;
 		return null;
@@ -72,10 +72,10 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-		List<FluidTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidTransformer>>() {
+		final List<FluidTransformer> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidTransformer>>() {
 		}.getType());
 
-		for (FluidTransformer transformer : gsonInput)
+		for (final FluidTransformer transformer : gsonInput)
 			register(transformer);
 	}
 
@@ -90,7 +90,7 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 			fw = new FileWriter(file);
 
 			gson.toJson(getFluidTransformers(), fw);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		} finally {
 			IOUtils.closeQuietly(fw);
@@ -98,8 +98,8 @@ public class FluidTransformRegistry extends BaseRegistryMap<String, List<FluidTr
 	}
 
 	public List<FluidTransformer> getFluidTransformers() {
-		List<FluidTransformer> fluidTransformers = new ArrayList<>();
-		for (List<FluidTransformer> transformers : registry.values())
+		final List<FluidTransformer> fluidTransformers = new ArrayList<>();
+		for (final List<FluidTransformer> transformers : registry.values())
 			fluidTransformers.addAll(transformers);
 		return fluidTransformers;
 	}

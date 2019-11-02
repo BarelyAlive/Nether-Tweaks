@@ -54,7 +54,7 @@ public class TileCondenser extends TileFluidInventory
 	public TileCondenser() {
 		super(3, new FluidTankSingle(distilled(), 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
-		this.maxHeatAmount = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
+		maxHeatAmount = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
 	}
 
 	@Override
@@ -69,33 +69,27 @@ public class TileCondenser extends TileFluidInventory
 		fillToNeighborsTank();
 
 		NetworkHandler.sendNBTUpdate(this);
-		
-		int rate = getMaxTemp() > 100 ? (int)(Math.floor((float)getMaxTemp() / 100f)) : 0;
+
+		int rate = getMaxTemp() > 100 ? (int)Math.floor(getMaxTemp() / 100f) : 0;
 
 		rate -= 10;
 		rate *= -1;
-		
+
 		if (rate == 0)
-		{
 			rate = 1;
-		}
 		//heatNStuff
-		if(timer < (int)((getMaxTimer() / rate)))
-		{ 
+		if(timer < getMaxTimer() / rate)
 			timer+=getHeatRate();
-		}
-		else if(timer > (int)((getMaxTimer() / rate)))
-		{
+		else if(timer > getMaxTimer() / rate)
 			timer--;
-		}
 		setMaxTimer(Config.cooldownCondenser);
-		
-		float incr = 0.01f * getHeatRate();
-		
-		if(getTemp() > (getMaxTemp() + incr))
-			setTemp(getTemp() - getMaxTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
-		else if (getTemp() < (getMaxTemp() + incr))
-			setTemp(getMaxTemp() - getTemp() > 0f ? (timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp()) : getTemp());
+
+		final float incr = 0.01f * getHeatRate();
+
+		if(getTemp() > getMaxTemp() + incr)
+			setTemp(getTemp() - getMaxTemp() > 0f ? timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp() : getTemp());
+		else if (getTemp() < getMaxTemp() + incr)
+			setTemp(getMaxTemp() - getTemp() > 0f ? timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp() : getTemp());
 
 		if(getTemp() > 100f)
 			setMaxworkTime((int) (Config.dryTimeCondenser / (getTemp() / 100f)));
@@ -121,7 +115,7 @@ public class TileCondenser extends TileFluidInventory
 		if(getTemp() < 100f) return false;
 		if(getStackInSlot(0).isEmpty()) return false;
 		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
-		Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
+		final Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
 		if(result == null) return false;
         return emptyRoom() >= result.getValue();
     }
@@ -140,7 +134,7 @@ public class TileCondenser extends TileFluidInventory
 		if (fillTick == 20)
 			if (world.getTileEntity(pos.up()) instanceof TileBarrel)
 			{
-				TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
+				final TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
 				if(barrel != null)
 					if (barrel.getMode() == null || Objects.equals(barrel.getMode().getName(), "compost")) {
 						float amount = 0;
@@ -165,7 +159,7 @@ public class TileCondenser extends TileFluidInventory
 
 	private float getMaxTemp()
 	{
-		int heat = getHeatRate();
+		final int heat = getHeatRate();
 
 		switch (heat) {
 		case 0:
@@ -176,12 +170,12 @@ public class TileCondenser extends TileFluidInventory
 			return 250f;
 		case 3:
 			return 600f;
-			
+
 		default:
 			return getMaxPossibleTemp();
 		}
 	}
-	
+
 	private float getMaxPossibleTemp()
 	{
 		return 999f;
@@ -190,18 +184,18 @@ public class TileCondenser extends TileFluidInventory
 	private void fillToNeighborsTank()
 	{
 		if (fillTick == 20) {
-			FluidStack water = new FluidStack(distilled(), Config.fluidTransferAmount);
+			final FluidStack water = new FluidStack(distilled(), Config.fluidTransferAmount);
 			if (getTank().getFluidAmount() != 0 && Config.fluidTransferAmount > 0) {
-				BlockPos north = getPos().north();
-				BlockPos east = getPos().east();
-				BlockPos south = getPos().south();
-				BlockPos west = getPos().west();
+				final BlockPos north = getPos().north();
+				final BlockPos east = getPos().east();
+				final BlockPos south = getPos().south();
+				final BlockPos west = getPos().west();
 
 				//Check FluidHandler
-				IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
-				IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
-				IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
-				IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
+				final IFluidHandler hnorth = FluidUtil.getFluidHandler(world, north, EnumFacing.SOUTH);
+				final IFluidHandler heast = FluidUtil.getFluidHandler(world, east, EnumFacing.WEST);
+				final IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
+				final IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 
 				if (hnorth != null && world.getBlockState(north).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hnorth, getTank(), water, true);
@@ -217,16 +211,16 @@ public class TileCondenser extends TileFluidInventory
 
 	private void dry()
 	{
-		ItemStack material = getStackInSlot(0);
+		final ItemStack material = getStackInSlot(0);
 
 		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
 		{
-			float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
+			final float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
 			if(compostMeter <= getMaxCompost() - waste) compostMeter += waste;
 		}
 		if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
 		{
-			int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
+			final int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 			if(amount > 0) getTank().fill(new FluidStack(distilled(), amount), true);
 
 			material.shrink(1);
@@ -235,26 +229,26 @@ public class TileCondenser extends TileFluidInventory
 
 	private void fillToItemSlot()
 	{
-		ItemStack input  = getStackInSlot(2);
-		ItemStack output = getStackInSlot(1);
+		final ItemStack input  = getStackInSlot(2);
+		final ItemStack output = getStackInSlot(1);
 
 		if(!output.isEmpty()) return;
 		if(input.isEmpty()) return;
 		if(getTank().getFluidAmount() == 0) return;
 
-		ItemStack copy = input.copy();
+		final ItemStack copy = input.copy();
 		copy.setCount(1);
 
-		IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(copy);
+		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(copy);
 
 		if (input_handler != null)
 		{
-			FluidStack f = FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, false);
+			final FluidStack f = FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, false);
 			if (f == null) return;
 
 			FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true);
 
-			ItemStack container = input_handler.getContainer();
+			final ItemStack container = input_handler.getContainer();
 
 			setInventorySlotContents(1, container);
 			decrStackSize(2, 1);
@@ -273,8 +267,8 @@ public class TileCondenser extends TileFluidInventory
 	}
 
 	private int getHeatRate() {
-		BlockPos posBelow = pos.add(0, -1, 0);
-		IBlockState stateBelow = getWorld().getBlockState(posBelow);
+		final BlockPos posBelow = pos.add(0, -1, 0);
+		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
 		// Try to match metadata
 		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
@@ -285,7 +279,7 @@ public class TileCondenser extends TileFluidInventory
 
 		if(heat != 0) return heat;
 
-		TileEntity tile = getWorld().getTileEntity(posBelow);
+		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
 			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
@@ -302,7 +296,7 @@ public class TileCondenser extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlot(final int index, final ItemStack stack)
 	{
-		IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		final IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
@@ -361,7 +355,7 @@ public class TileCondenser extends TileFluidInventory
 
 	public void setTemp(float temp) {
 		temp *= 100;
-		int itemp = (int)temp;
+		final int itemp = (int)temp;
 		this.temp = (float)itemp / 100;
 	}
 

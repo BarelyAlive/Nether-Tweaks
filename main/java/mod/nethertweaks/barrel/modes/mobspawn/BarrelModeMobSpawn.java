@@ -38,7 +38,7 @@ public class BarrelModeMobSpawn implements IBarrelMode {
 	public void writeToNBT(final NBTTagCompound tag) {
 		tag.setFloat("progress", progress);
 
-		NBTTagCompound dollTag = dollStack.writeToNBT(new NBTTagCompound());
+		final NBTTagCompound dollTag = dollStack.writeToNBT(new NBTTagCompound());
 		tag.setTag("doll", dollTag);
 
 	}
@@ -75,7 +75,7 @@ public class BarrelModeMobSpawn implements IBarrelMode {
 		if (dollStack == null || dollStack.isEmpty())
 			return null;
 
-		ItemDoll doll = (ItemDoll) dollStack.getItem();
+		final ItemDoll doll = (ItemDoll) dollStack.getItem();
 
 		return Util.getTextureFromFluid(doll.getSpawnFluid(dollStack));
 	}
@@ -98,8 +98,8 @@ public class BarrelModeMobSpawn implements IBarrelMode {
 		}
 
 		if (progress >= 1) {
-			ItemDoll doll = (ItemDoll) dollStack.getItem();
-			boolean result = doll.spawnMob(dollStack, barrel.getWorld(), barrel.getPos());
+			final ItemDoll doll = (ItemDoll) dollStack.getItem();
+			final boolean result = doll.spawnMob(dollStack, barrel.getWorld(), barrel.getPos());
 			if (result) {
 				barrel.setMode("null");
 				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);

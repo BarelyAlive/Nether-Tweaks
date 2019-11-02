@@ -36,23 +36,23 @@ public class RenderProjectileStone extends Render<ProjectileStone> {
 		double zMin = Math.min(z1, z2);
 		double zMax = Math.max(z1, z2);
 
-		double xUMin = minU + (maxU - minU) * (xMin + 8.0) / 16.0;
-		double xUMax = minU + (maxU - minU) * (xMax + 8.0) / 16.0;
+		final double xUMin = minU + (maxU - minU) * (xMin + 8.0) / 16.0;
+		final double xUMax = minU + (maxU - minU) * (xMax + 8.0) / 16.0;
 
 		//double yUMin = minU + (maxU - minU) * (yMin + 8.0) / 16.0;
 		//double yUMax = minU + (maxU - minU) * (yMax + 8.0) / 16.0;
 
-		double zUMin = minU + (maxU - minU) * (zMin + 8.0) / 16.0;
-		double zUMax = minU + (maxU - minU) * (zMax + 8.0) / 16.0;
+		final double zUMin = minU + (maxU - minU) * (zMin + 8.0) / 16.0;
+		final double zUMax = minU + (maxU - minU) * (zMax + 8.0) / 16.0;
 
 		//double xVMin = minV + (maxV - minV) * (xMin + 8.0) / 16.0;
 		//double xVMax = minV + (maxV - minV) * (xMax + 8.0) / 16.0;
 
-		double yVMin = minV + (maxV - minV) * (yMin + 8.0) / 16.0;
-		double yVMax = minV + (maxV - minV) * (yMax + 8.0) / 16.0;
+		final double yVMin = minV + (maxV - minV) * (yMin + 8.0) / 16.0;
+		final double yVMax = minV + (maxV - minV) * (yMax + 8.0) / 16.0;
 
-		double zVMin = minV + (maxV - minV) * (zMin + 8.0) / 16.0;
-		double zVMax = minV + (maxV - minV) * (zMax + 8.0) / 16.0;
+		final double zVMin = minV + (maxV - minV) * (zMin + 8.0) / 16.0;
+		final double zVMax = minV + (maxV - minV) * (zMax + 8.0) / 16.0;
 
 		xMin *= size;
 		xMax *= size;
@@ -105,24 +105,24 @@ public class RenderProjectileStone extends Render<ProjectileStone> {
 
 	@Override
 	public void doRender(@Nonnull final ProjectileStone entity, final double x, final double y, final double z, final float entityYaw, final float partialTicks) {
-		TextureAtlasSprite texture = getTexture(Blocks.STONE.getDefaultState());
+		final TextureAtlasSprite texture = getTexture(Blocks.STONE.getDefaultState());
 
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder buffer = tessellator.getBuffer();
+		final Tessellator tessellator = Tessellator.getInstance();
+		final BufferBuilder buffer = tessellator.getBuffer();
 
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(x, y, z);
 
-		double minU = texture.getMinU();
-		double maxU = texture.getMaxU();
-		double minV = texture.getMinV();
-		double maxV = texture.getMaxV();
+		final double minU = texture.getMinU();
+		final double maxU = texture.getMaxU();
+		final double minV = texture.getMinV();
+		final double maxV = texture.getMaxV();
 
 		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
 		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_NORMAL);
 
-		double size = 0.5;
+		final double size = 0.5;
 
 		//bufferCuboid(buffer, 1, minU, minV, maxU, maxV, -8, -8, -8, 8, 8, 8);
 

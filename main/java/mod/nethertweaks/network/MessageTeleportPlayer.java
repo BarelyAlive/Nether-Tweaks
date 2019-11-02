@@ -36,7 +36,7 @@ public class MessageTeleportPlayer implements IMessage {
 	public void fromBytes(final ByteBuf buf) {
 		bonfire_pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
 		uuid_size = buf.readInt();
-		byte[] temp_char_arr = new byte[uuid_size];
+		final byte[] temp_char_arr = new byte[uuid_size];
 		buf.readBytes(temp_char_arr);
 		uuid = new String(temp_char_arr, StandardCharsets.US_ASCII);
 	}
@@ -55,7 +55,7 @@ public class MessageTeleportPlayer implements IMessage {
 		@Override
 		public IMessage onMessage(final MessageTeleportPlayer message, final MessageContext ctx) {
 
-			EntityPlayer player = ctx.getServerHandler().player.world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
+			final EntityPlayer player = ctx.getServerHandler().player.world.getPlayerEntityByUUID(UUID.fromString(message.uuid));
 
 			BonfireInfo binfo;
 			if (!WorldSpawnLocation.getBonfireInfo().containsKey(message.bonfire_pos))
@@ -72,7 +72,7 @@ public class MessageTeleportPlayer implements IMessage {
 
 			WorldSpawnLocation.getLastSpawnLocations().put(EntityPlayer.getUUID(player.getGameProfile()), new PlayerPosition(new BlockPos(player), player.cameraYaw, player.cameraPitch));
 
-			for (BonfireInfo entry : WorldSpawnLocation.getBonfireInfo().values())
+			for (final BonfireInfo entry : WorldSpawnLocation.getBonfireInfo().values())
 				if (entry.hasPlayer(player))
 					entry.removePlayer(player);
 
@@ -98,7 +98,7 @@ public class MessageTeleportPlayer implements IMessage {
 			double diry = player.getPosition().getY() - py;
 			double dirz = player.getPosition().getZ() - pz;
 
-			double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
+			final double len = Math.sqrt(dirx*dirx + diry*diry + dirz*dirz);
 
 			dirx /= len;
 			diry /= len;

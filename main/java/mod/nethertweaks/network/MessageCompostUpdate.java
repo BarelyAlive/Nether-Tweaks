@@ -64,7 +64,7 @@ public class MessageCompostUpdate implements IMessage {
 		buf.writeFloat(color.a);
 		buf.writeFloat(compValue);
 		buf.writeBoolean(isFirst);
-		String itemName = Objects.requireNonNull(stack.getItem().getRegistryName()).toString();
+		final String itemName = Objects.requireNonNull(stack.getItem().getRegistryName()).toString();
 		buf.writeInt(itemName.length());
 		buf.writeCharSequence(stack.getItem().getRegistryName().toString(), CHARSET);
 		buf.writeInt(stack.getMetadata());
@@ -81,11 +81,11 @@ public class MessageCompostUpdate implements IMessage {
 		color = new Color(buf.readFloat(),buf.readFloat(),buf.readFloat(),buf.readFloat());
 		compValue = buf.readFloat();
 		isFirst = buf.readBoolean();
-		int length = buf.readInt();
-		String name = buf.readCharSequence(length, Charset.defaultCharset()).toString();
-		int meta = buf.readInt();
+		final int length = buf.readInt();
+		final String name = buf.readCharSequence(length, Charset.defaultCharset()).toString();
+		final int meta = buf.readInt();
 
-		Item item = Item.getByNameOrId(name);
+		final Item item = Item.getByNameOrId(name);
 		if (item != null)
 			stack = new ItemStack(item, 1, meta);
 		else
@@ -114,13 +114,13 @@ public class MessageCompostUpdate implements IMessage {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void run() {
-					TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+					final TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
 
 					if (entity instanceof TileBarrel) {
-						TileBarrel te = (TileBarrel) entity;
+						final TileBarrel te = (TileBarrel) entity;
 						if(te.getMode() == null || !(te.getMode() instanceof BarrelModeCompost))
 							te.setMode("compost");
-						BarrelModeCompost mode = (BarrelModeCompost) te.getMode();
+						final BarrelModeCompost mode = (BarrelModeCompost) te.getMode();
 						mode.setFillAmount(msg.fillAmount);
 
 						if (msg.stack.isEmpty() && msg.compValue == 0.0f && mode.getOriginalColor() != null)
@@ -137,7 +137,7 @@ public class MessageCompostUpdate implements IMessage {
 								mode.setColor(compColor);
 								mode.setOriginalColor(compColor);
 							} else {
-								Color col = Color.average(mode.getColorForRender(), compColor, msg.compValue);
+								final Color col = Color.average(mode.getColorForRender(), compColor, msg.compValue);
 								mode.setColor(col);
 								mode.setOriginalColor(col);
 							}

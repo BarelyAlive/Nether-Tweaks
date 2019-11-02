@@ -45,7 +45,7 @@ public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implem
 	public boolean isValidRecipe(final Fluid fluidInBarrel, final Fluid fluidOnTop) {
 		if (fluidInBarrel == null || fluidOnTop == null)
 			return false;
-		for (FluidFluidBlock fBlock : registry)
+		for (final FluidFluidBlock fBlock : registry)
 			if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
 					fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
 				return true;
@@ -56,7 +56,7 @@ public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implem
 	@Override
 	@Nonnull
 	public BlockInfo getTransformedBlock(@Nonnull final Fluid fluidInBarrel, @Nonnull final Fluid fluidOnTop) {
-		for (FluidFluidBlock fBlock : registry)
+		for (final FluidFluidBlock fBlock : registry)
 			if (fBlock.getFluidInBarrel().equals(fluidInBarrel.getName()) &&
 					fBlock.getFluidOnTop().equals(fluidOnTop.getName()))
 				return fBlock.getResult();
@@ -66,7 +66,7 @@ public class FluidOnTopRegistry extends BaseRegistryList<FluidFluidBlock> implem
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-		List<FluidFluidBlock> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidFluidBlock>>() {
+		final List<FluidFluidBlock> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidFluidBlock>>() {
 		}.getType());
 		registry.addAll(gsonInput);
 	}

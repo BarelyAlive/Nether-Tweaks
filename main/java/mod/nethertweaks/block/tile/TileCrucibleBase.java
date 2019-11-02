@@ -84,16 +84,16 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 	 */
 	@SideOnly(Side.CLIENT)
 	public SpriteColor[] getSpriteAndColor() {
-		SpriteColor[] spriteColors = new SpriteColor[2];
+		final SpriteColor[] spriteColors = new SpriteColor[2];
 
-		int noItems = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		final int noItems = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
 		if (noItems == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
 			return spriteColors;
 
-		FluidStack fluid = tank.getFluid();
+		final FluidStack fluid = tank.getFluid();
 		if (fluid != null && fluid.amount > 0) //Nothing being melted.
 		{
-			Color color = new Color(fluid.getFluid().getColor(), false);
+			final Color color = new Color(fluid.getFluid().getColor(), false);
 			spriteColors[1] = new SpriteColor(Util.getTextureFromFluidStack(fluid), color);
 		}
 
@@ -101,8 +101,8 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		Color color = Util.whiteColor;
 
 		if (getCurrentItem().isValid()) {
-			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
-			BlockInfo override = meltable.getTextureOverride();
+			final Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			final BlockInfo override = meltable.getTextureOverride();
 			if (override.isValid())
 				block = override.getBlockState();
 			else block = getCurrentItem().getBlockState();
@@ -116,17 +116,17 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 
 	@SideOnly(Side.CLIENT)
 	public float getFilledAmount() {
-		int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		final int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
 		if (itemCount == 0 && !getCurrentItem().isValid() && tank.getFluidAmount() == 0) //Empty!
 			return 0;
 
-		float fluidProportion = (float) tank.getFluidAmount() / tank.getCapacity();
+		final float fluidProportion = (float) tank.getFluidAmount() / tank.getCapacity();
 		if (itemCount == 0 && !getCurrentItem().isValid()) //Nothing being melted.
 			return fluidProportion;
 
 		float solidProportion = (float) itemCount / MAX_ITEMS;
 		if (getCurrentItem().isValid()) {
-			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			final Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
 			if (meltable != Meltable.getEMPTY())
 				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
 		}
@@ -141,10 +141,10 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 
 	@SideOnly(Side.CLIENT)
 	public float getSolidProportion() {
-		int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
+		final int itemCount = itemHandler.getStackInSlot(0).isEmpty() ? 0 : itemHandler.getStackInSlot(0).getCount();
 		float solidProportion = (float) itemCount / MAX_ITEMS;
 		if (getCurrentItem().isValid()) {
-			Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
+			final Meltable meltable = crucibleRegistry.getMeltable(getCurrentItem());
 			if (meltable != Meltable.getEMPTY())
 				solidProportion += (double) solidAmount / (MAX_ITEMS * meltable.getAmount());
 		}
@@ -153,11 +153,11 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 
 
 	public boolean onBlockActivated(final World world, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ, final IFluidHandler handler) {
-		ItemStack stack = player.getHeldItem(hand);
+		final ItemStack stack = player.getHeldItem(hand);
 		if (stack.isEmpty())
 			return false;
 
-		boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
+		final boolean result = FluidUtil.interactWithFluidHandler(player, hand, handler);
 
 		if (result) {
 			if (!player.isCreative())
@@ -168,9 +168,9 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 		}
 
 		//Adding a meltable.
-		ItemStack addStack = stack.copy();
+		final ItemStack addStack = stack.copy();
 		addStack.setCount(1);
-		ItemStack insertStack = itemHandler.insertItem(0, addStack, true);
+		final ItemStack insertStack = itemHandler.insertItem(0, addStack, true);
 		if (!ItemStack.areItemStacksEqual(addStack, insertStack)) {
 			itemHandler.insertItem(0, addStack, false);
 
@@ -206,16 +206,16 @@ public abstract class TileCrucibleBase extends TileBase implements ITickable {
 	@Nonnull
 	public NBTTagCompound writeToNBT(final NBTTagCompound tag) {
 		if (getCurrentItem().isValid()) {
-			NBTTagCompound currentItemTag = getCurrentItem().writeToNBT(new NBTTagCompound());
+			final NBTTagCompound currentItemTag = getCurrentItem().writeToNBT(new NBTTagCompound());
 			tag.setTag("currentItem", currentItemTag);
 		}
 
 		tag.setInteger("solidAmount", solidAmount);
 
-		NBTTagCompound itemHandlerTag = itemHandler.serializeNBT();
+		final NBTTagCompound itemHandlerTag = itemHandler.serializeNBT();
 		tag.setTag("itemHandler", itemHandlerTag);
 
-		NBTTagCompound tankTag = tank.writeToNBT(new NBTTagCompound());
+		final NBTTagCompound tankTag = tank.writeToNBT(new NBTTagCompound());
 		tag.setTag("tank", tankTag);
 
 		return super.writeToNBT(tag);

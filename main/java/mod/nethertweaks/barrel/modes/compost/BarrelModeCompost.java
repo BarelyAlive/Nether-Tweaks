@@ -86,28 +86,28 @@ public class BarrelModeCompost implements IBarrelMode {
 	public void onBlockActivated(final World world, final TileBarrel barrel, final BlockPos pos, final IBlockState state, final EntityPlayer player, final EnumHand hand, final EnumFacing side, final float hitX, final float hitY, final float hitZ) {
 		if (fillAmount == 0)
 			if (!player.getHeldItem(hand).isEmpty()) {
-				ItemInfo info = new ItemInfo(player.getHeldItem(hand));
+				final ItemInfo info = new ItemInfo(player.getHeldItem(hand));
 				if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info)) {
-					Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+					final Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
 					compostState = comp.getCompostBlock().getBlockState();
 					NetworkHandler.sendNBTUpdate(barrel);
 				}
 			}
 		if (fillAmount < 1 && compostState != null) {
 			if (!player.getHeldItem(hand).isEmpty()) {
-				ItemStack stack = player.getHeldItem(hand);
-				ItemInfo info = new ItemInfo(player.getHeldItem(hand));
-				Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+				final ItemStack stack = player.getHeldItem(hand);
+				final ItemInfo info = new ItemInfo(player.getHeldItem(hand));
+				final Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
 
 				if (!comp.getCompostBlock().isValid()) return;
 
-				IBlockState testState = comp.getCompostBlock().getBlockState();
+				final IBlockState testState = comp.getCompostBlock().getBlockState();
 
 				if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState.equals(testState)) {
-					Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
-					Color compColor = compost.getColor();
+					final Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+					final Color compColor = compost.getColor();
 
-					boolean isFirst = fillAmount == 0;
+					final boolean isFirst = fillAmount == 0;
 
 					fillAmount += compost.getValue();
 					if (fillAmount > 1)
@@ -133,7 +133,7 @@ public class BarrelModeCompost implements IBarrelMode {
 		compostState = null;
 		NetworkHandler.sendToAllAround(new MessageCompostUpdate(fillAmount, color, ItemStack.EMPTY, progress,0.0f,  barrel.getPos(), false), barrel);
 		barrel.setMode("null");
-		IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
+		final IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
 		NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("null", barrel.getPos()), barrel);
 		barrel.getWorld().setBlockState(barrel.getPos(), state);
 	}
@@ -142,17 +142,17 @@ public class BarrelModeCompost implements IBarrelMode {
 	public void addItem(final ItemStack stack, final TileBarrel barrel) {
 		if (fillAmount < 1)
 			if (stack != null && !stack.isEmpty()) {
-				ItemInfo info = new ItemInfo(stack);
-				Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
-				IBlockState testState = comp.getCompostBlock().getBlockState();
+				final ItemInfo info = new ItemInfo(stack);
+				final Compostable comp = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+				final IBlockState testState = comp.getCompostBlock().getBlockState();
 
 				if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState == null)
 					compostState = testState;
 
 				if (NTMRegistryManager.COMPOST_REGISTRY.containsItem(info) && compostState.equals(testState)) {
-					Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
+					final Compostable compost = NTMRegistryManager.COMPOST_REGISTRY.getItem(info);
 
-					boolean isFirst = fillAmount == 0;
+					final boolean isFirst = fillAmount == 0;
 					fillAmount += compost.getValue();
 					if (fillAmount > 1)
 						fillAmount = 1;
@@ -235,7 +235,7 @@ public class BarrelModeCompost implements IBarrelMode {
 			originalColor = new Color(tag.getInteger("originalColor"));
 		progress = tag.getFloat("progress");
 		if (tag.hasKey("block")) {
-			Block block = Block.REGISTRY.getObject(new ResourceLocation(tag.getString("block")));
+			final Block block = Block.REGISTRY.getObject(new ResourceLocation(tag.getString("block")));
 			compostState = block.getStateFromMeta(tag.getInteger("meta"));
 		}
 	}

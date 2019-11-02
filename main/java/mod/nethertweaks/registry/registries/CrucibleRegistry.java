@@ -85,7 +85,7 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 
 	@Override
 	public void register(@Nonnull final String name, @Nonnull final Meltable meltable) {
-		Ingredient ingredient = new OreIngredientStoring(name);
+		final Ingredient ingredient = new OreIngredientStoring(name);
 		if (!FluidRegistry.isFluidRegistered(meltable.getFluid()))
 			return;
 
@@ -107,7 +107,7 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 	@Override
 	@Nonnull
 	public Meltable getMeltable(@Nonnull final ItemStack stack) {
-		Ingredient ingredient = registry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
+		final Ingredient ingredient = registry.keySet().stream().filter(entry -> entry.test(stack)).findFirst().orElse(null);
 
 		if (ingredient != null)
 			return registry.get(ingredient);
@@ -129,11 +129,11 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-		Map<String, Meltable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Meltable>>() {
+		final Map<String, Meltable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Meltable>>() {
 		}.getType());
 
 		gsonInput.forEach((key, value) -> {
-			Ingredient ingredient = IngredientUtil.parseFromString(key);
+			final Ingredient ingredient = IngredientUtil.parseFromString(key);
 
 			if (registry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(ingredient, entry)))
 				LogUtil.error("Compost JSON Entry for " + Arrays.toString(ingredient.getMatchingStacks()) + " already exists, skipping.");
@@ -149,27 +149,27 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 
 	@Override
 	public List<CrucibleRecipe> getRecipeList() {
-		List<CrucibleRecipe> recipes = Lists.newLinkedList();
+		final List<CrucibleRecipe> recipes = Lists.newLinkedList();
 
-		Map<Fluid, List<List<ItemStack>>> outputMap = new HashMap<>();
-		for(Map.Entry<Ingredient, Meltable> entry: getRegistry().entrySet()){
-			Fluid output = FluidRegistry.getFluid(entry.getValue().getFluid());
-			Ingredient ingredient = entry.getKey();
+		final Map<Fluid, List<List<ItemStack>>> outputMap = new HashMap<>();
+		for(final Map.Entry<Ingredient, Meltable> entry: getRegistry().entrySet()){
+			final Fluid output = FluidRegistry.getFluid(entry.getValue().getFluid());
+			final Ingredient ingredient = entry.getKey();
 			if(output == null || ingredient == null)
 				continue;
 			// Initialize new outputs
 			if(!outputMap.containsKey(output)){
-				List<List<ItemStack>> inputs = new ArrayList<>();
+				final List<List<ItemStack>> inputs = new ArrayList<>();
 				outputMap.put(output, inputs);
 			}
 			// Collect all the potential itemstacks which match this ingredient
-			List<ItemStack> inputs = new ArrayList<>();
-			for(ItemStack match : ingredient.getMatchingStacks()){
+			final List<ItemStack> inputs = new ArrayList<>();
+			for(final ItemStack match : ingredient.getMatchingStacks()){
 				if(match.isEmpty())
 					continue;
 				else
 					match.getItem();
-				ItemStack input = match.copy();
+				final ItemStack input = match.copy();
 				input.setCount((int) Math.ceil(Fluid.BUCKET_VOLUME / entry.getValue().getAmount()));
 				inputs.add(input);
 			}
@@ -178,7 +178,7 @@ public class CrucibleRegistry extends BaseRegistryMap<Ingredient, Meltable> impl
 				outputMap.get(output).add(inputs);
 		}
 		// Split the recipe up into "pages"
-		for(Map.Entry<Fluid, List<List<ItemStack>>> entry : outputMap.entrySet())
+		for(final Map.Entry<Fluid, List<List<ItemStack>>> entry : outputMap.entrySet())
 			for(int i = 0; i < entry.getValue().size(); i+=21)
 				recipes.add(new CrucibleRecipe(entry.getKey(),
 						entry.getValue().subList(i,  Math.min(i+21, entry.getValue().size()))));

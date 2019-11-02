@@ -27,7 +27,7 @@ public class HellmartData
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		HellmartData other = (HellmartData) obj;
+		final HellmartData other = (HellmartData) obj;
 		if (currency == null) {
 			if (other.currency != null)
 				return false;

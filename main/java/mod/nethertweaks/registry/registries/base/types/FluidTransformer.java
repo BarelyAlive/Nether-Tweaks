@@ -26,7 +26,7 @@ public class FluidTransformer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FluidTransformer other = (FluidTransformer) obj;
+		final FluidTransformer other = (FluidTransformer) obj;
 		if (!Arrays.equals(blocksToSpawn, other.blocksToSpawn))
 			return false;
 		if (duration != other.duration)

@@ -49,7 +49,7 @@ public class GuiBonfire extends GuiContainer {
 		toggle = true;
 
 		bonfires = new HashMap<>();
-		for(Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.getBonfireInfo().entrySet())
+		for(final Map.Entry<BlockPos, BonfireInfo> entry : WorldSpawnLocation.getBonfireInfo().entrySet())
 			if((entry.getValue().isPublic() || !entry.getValue().isPublic() && entry.getValue().getOwner().getLeastSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getLeastSignificantBits() && entry.getValue().getOwner().getMostSignificantBits() == EntityPlayer.getUUID(player.getGameProfile()).getMostSignificantBits()) && !entry.getKey().equals(this.pos))
 				bonfires.put(entry.getKey(), entry.getValue());
 	}
@@ -72,11 +72,11 @@ public class GuiBonfire extends GuiContainer {
 			b = new GuiButton(0, posX + 108, posY - 42, 20, 20, "G");
 		buttonList.add(b);
 
-		Set<BlockPos> bonfires = this.bonfires.keySet();
-		Collection<BonfireInfo> bonfire_infos = this.bonfires.values();
+		final Set<BlockPos> bonfires = this.bonfires.keySet();
+		final Collection<BonfireInfo> bonfire_infos = this.bonfires.values();
 
-		BlockPos[] bonfire_array = bonfires.toArray(new BlockPos[0]);
-		BonfireInfo[] bonfire_info_array = bonfire_infos.toArray(new BonfireInfo[0]);
+		final BlockPos[] bonfire_array = bonfires.toArray(new BlockPos[0]);
+		final BonfireInfo[] bonfire_info_array = bonfire_infos.toArray(new BonfireInfo[0]);
 
 		int bon_i = page * 5;
 
@@ -99,7 +99,7 @@ public class GuiBonfire extends GuiContainer {
 		}
 		text = new GuiTextField(8, fontRenderer, posX - 30, posY - 40, 128, 14);
 		text.setMaxStringLength(26);
-		String name = WorldSpawnLocation.getBonfireInfo().get(pos).getName();
+		final String name = WorldSpawnLocation.getBonfireInfo().get(pos).getName();
 		text.setText(name);
 		if (Objects.equals(name, ""))
 			text.setFocused(true);
@@ -130,7 +130,7 @@ public class GuiBonfire extends GuiContainer {
 
 			final BlockPos destination = bonfires.keySet().toArray(new BlockPos[0])[id];
 
-			int result = 0;
+			final int result = 0;
 			if(world.isRemote)
 				NetworkHandler.sendToServer(new MessageTeleportPlayer(destination, player));
 		}
@@ -185,8 +185,8 @@ public class GuiBonfire extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(final float f, final int i, final int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(gui);
-		int l = (width - xSize) / 2;
-		int i1 = (height - ySize) / 2;
+		final int l = (width - xSize) / 2;
+		final int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1 - 10, 0, 0, xSize, ySize + 21);
 		text.drawTextBox();
 	}

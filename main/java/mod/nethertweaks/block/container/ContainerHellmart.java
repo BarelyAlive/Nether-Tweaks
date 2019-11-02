@@ -33,7 +33,7 @@ public class ContainerHellmart extends Container {
 		ItemStack itemStack = ItemStack.EMPTY;
 		final Slot slot = inventorySlots.get(slotIndex);
 		if(slot != null && slot.getStack() != ItemStack.EMPTY) {
-			ItemStack slotStack = slot.getStack();
+			final ItemStack slotStack = slot.getStack();
 			itemStack = slotStack.copy();
 
 			if(slotIndex >= 1) {

@@ -32,7 +32,7 @@ public class WorldSaveData extends WorldSavedData {
 	}
 
 	public static WorldSaveData get(final World world) {
-		MapStorage storage = world.getPerWorldStorage();
+		final MapStorage storage = world.getPerWorldStorage();
 		WorldSaveData result;
 		result = (WorldSaveData) storage.getOrLoadData(WorldSaveData.class, key);
 		if(result == null) {
@@ -53,11 +53,11 @@ public class WorldSaveData extends WorldSavedData {
 		String name;
 		float yaw, ang;
 		List<UUID> player_list;
-		NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
-		NBTTagList bonfireNbtList = nbt.getTagList("NTM.Bonfires", 10);
+		final NBTTagList nbtList = nbt.getTagList("NTM.Network", 10);
+		final NBTTagList bonfireNbtList = nbt.getTagList("NTM.Bonfires", 10);
 
 		for(int i = 0; i < nbtList.tagCount(); i++) {
-			NBTTagCompound tag = nbtList.getCompoundTagAt(i);
+			final NBTTagCompound tag = nbtList.getCompoundTagAt(i);
 
 			lBits = tag.getLong("NTM.leastSignificantBits");
 			mBits = tag.getLong("NTM.mostSignificantBits");
@@ -74,15 +74,15 @@ public class WorldSaveData extends WorldSavedData {
 		}
 
 		for(int i = 0; i < bonfireNbtList.tagCount(); i++) {
-			NBTTagCompound tag = bonfireNbtList.getCompoundTagAt(i);
+			final NBTTagCompound tag = bonfireNbtList.getCompoundTagAt(i);
 
-			NBTTagList nbt_player_list = tag.getTagList("NTM.UUIDs", 10);
+			final NBTTagList nbt_player_list = tag.getTagList("NTM.UUIDs", 10);
 
 			player_list = new ArrayList<>();
 
 			for(int j = 0; j < nbt_player_list.tagCount(); j++)
 			{
-				NBTTagCompound player_tag = nbt_player_list.getCompoundTagAt(i);
+				final NBTTagCompound player_tag = nbt_player_list.getCompoundTagAt(i);
 				lBits = player_tag.getLong("NTM.leastSignificantBits");
 				mBits = player_tag.getLong("NTM.mostSignificantBits");
 				index = new UUID(mBits, lBits);
@@ -92,22 +92,22 @@ public class WorldSaveData extends WorldSavedData {
 			is_public = tag.getBoolean("NTM.seeable");
 			name = tag.getString("NTM.Name");
 
-			long ownerlBits = tag.getLong("NTM.ownerLeastSignificantBits");
-			long ownermBits = tag.getLong("NTM.ownerMostSignificantBits");
+			final long ownerlBits = tag.getLong("NTM.ownerLeastSignificantBits");
+			final long ownermBits = tag.getLong("NTM.ownerMostSignificantBits");
 
-			UUID owner = new UUID(ownermBits, ownerlBits);
+			final UUID owner = new UUID(ownermBits, ownerlBits);
 
 			x = tag.getInteger("NTM.SpawnPosX");
 			y = tag.getInteger("NTM.SpawnPosY");
 			z = tag.getInteger("NTM.SpawnPosZ");
 
-			BlockPos spawnPos = new BlockPos(x, y, z);
+			final BlockPos spawnPos = new BlockPos(x, y, z);
 
 			x = tag.getInteger("NTM.PosX");
 			y = tag.getInteger("NTM.PosY");
 			z = tag.getInteger("NTM.PosZ");
 
-			int dimension = tag.getInteger("NTM.Dimension");
+			final int dimension = tag.getInteger("NTM.Dimension");
 
 			bonfire_info.put(new BlockPos(x, y, z), new BonfireInfo(name, is_public, owner, player_list, spawnPos, dimension));
 		}
@@ -117,9 +117,9 @@ public class WorldSaveData extends WorldSavedData {
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt)
 	{
 		NBTTagList tagList = new NBTTagList();
-		for(Map.Entry<UUID, PlayerPosition> entry : lastSpawnLocas.entrySet()) {
+		for(final Map.Entry<UUID, PlayerPosition> entry : lastSpawnLocas.entrySet()) {
 
-			NBTTagCompound tag = new NBTTagCompound();
+			final NBTTagCompound tag = new NBTTagCompound();
 
 			tag.setLong("NTM.leastSignificantBits", entry.getKey().getLeastSignificantBits());
 			tag.setLong("NTM.mostSignificantBits", entry.getKey().getMostSignificantBits());
@@ -139,9 +139,9 @@ public class WorldSaveData extends WorldSavedData {
 
 		tagList = new NBTTagList();
 
-		for(Map.Entry<BlockPos, BonfireInfo> entry : bonfire_info.entrySet())
+		for(final Map.Entry<BlockPos, BonfireInfo> entry : bonfire_info.entrySet())
 		{
-			NBTTagCompound tag = new NBTTagCompound();
+			final NBTTagCompound tag = new NBTTagCompound();
 
 			tag.setInteger("NTM.PosX", entry.getKey().getX());
 			tag.setInteger("NTM.PosY", entry.getKey().getY());
@@ -157,11 +157,11 @@ public class WorldSaveData extends WorldSavedData {
 			tag.setInteger("NTM.SpawnPosZ", entry.getValue().getSpawnPos().getZ());
 			tag.setInteger("NTM.Dimension", entry.getValue().getDimension());
 
-			NBTTagList list = new NBTTagList();
+			final NBTTagList list = new NBTTagList();
 
-			for(UUID uuid : entry.getValue().getLastPlayerSpawn())
+			for(final UUID uuid : entry.getValue().getLastPlayerSpawn())
 			{
-				NBTTagCompound player_tag = new NBTTagCompound();
+				final NBTTagCompound player_tag = new NBTTagCompound();
 				player_tag.setLong("NTM.leastSignificantBits", uuid.getLeastSignificantBits());
 				player_tag.setLong("NTM.mostSignificantBits", uuid.getMostSignificantBits());
 				list.appendTag(player_tag);

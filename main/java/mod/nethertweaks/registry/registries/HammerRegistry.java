@@ -49,17 +49,17 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr) {
-		HashMap<String, ArrayList<HammerReward>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<String, ArrayList<HammerReward>>>() {
+		final HashMap<String, ArrayList<HammerReward>> gsonInput = gson.fromJson(fr, new TypeToken<HashMap<String, ArrayList<HammerReward>>>() {
 		}.getType());
 
-		for (Map.Entry<String, ArrayList<HammerReward>> s : gsonInput.entrySet()) {
-			Ingredient ingredient = IngredientUtil.parseFromString(s.getKey());
+		for (final Map.Entry<String, ArrayList<HammerReward>> s : gsonInput.entrySet()) {
+			final Ingredient ingredient = IngredientUtil.parseFromString(s.getKey());
 
-			Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
+			final Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
 			if (search != null)
 				registry.get(search).addAll(s.getValue());
 			else {
-				NonNullList<HammerReward> drops = NonNullList.create();
+				final NonNullList<HammerReward> drops = NonNullList.create();
 				drops.addAll(s.getValue());
 				registry.put(ingredient, drops);
 			}
@@ -94,24 +94,24 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 	public void register(@Nonnull final ItemStack stack, @Nonnull final HammerReward reward) {
 		if (stack.isEmpty())
 			return;
-		Ingredient ingredient = CraftingHelper.getIngredient(stack);
+		final Ingredient ingredient = CraftingHelper.getIngredient(stack);
 		register(ingredient, reward);
 	}
 
 	@Override
 	public void register(@Nonnull final String name, @Nonnull final ItemStack reward, final int miningLevel, final float chance, final float fortuneChance) {
-		Ingredient ingredient = new OreIngredientStoring(name);
+		final Ingredient ingredient = new OreIngredientStoring(name);
 		register(ingredient, new HammerReward(reward, miningLevel, chance, fortuneChance));
 	}
 
 	@Override
 	public void register(@Nonnull final Ingredient ingredient, @Nonnull final HammerReward reward) {
-		Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
+		final Ingredient search = registry.keySet().stream().filter(entry -> IngredientUtil.ingredientEquals(ingredient, entry)).findAny().orElse(null);
 
 		if (search != null)
 			registry.get(search).add(reward);
 		else {
-			NonNullList<HammerReward> drops = NonNullList.create();
+			final NonNullList<HammerReward> drops = NonNullList.create();
 			drops.add(reward);
 			registry.put(ingredient, drops);
 		}
@@ -120,9 +120,9 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 	@Override
 	@Nonnull
 	public NonNullList<ItemStack> getRewardDrops(@Nonnull final Random random, @Nonnull final IBlockState block, final int miningLevel, final int fortuneLevel) {
-		NonNullList<ItemStack> rewards = NonNullList.create();
+		final NonNullList<ItemStack> rewards = NonNullList.create();
 
-		for (HammerReward reward : getRewards(block))
+		for (final HammerReward reward : getRewards(block))
 			if (miningLevel >= reward.getMiningLevel())
 				if (random.nextFloat() <= reward.getChance() + reward.getFortuneChance() * fortuneLevel)
 					rewards.add(reward.getItemStack().copy());
@@ -145,7 +145,7 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 	@Override
 	@Nonnull
 	public NonNullList<HammerReward> getRewards(@Nonnull final BlockInfo stackInfo) {
-		NonNullList<HammerReward> drops = NonNullList.create();
+		final NonNullList<HammerReward> drops = NonNullList.create();
 		if (stackInfo.isValid())
 			registry.entrySet().stream().filter(entry -> entry.getKey().test(stackInfo.getItemStack())).forEach(entry -> drops.addAll(entry.getValue()));
 		return drops;
@@ -154,7 +154,7 @@ public class HammerRegistry extends BaseRegistryMap<Ingredient, List<HammerRewar
 	@Override
 	@Nonnull
 	public NonNullList<HammerReward> getRewards(@Nonnull final Ingredient ingredient) {
-		NonNullList<HammerReward> drops = NonNullList.create();
+		final NonNullList<HammerReward> drops = NonNullList.create();
 		registry.entrySet().stream().filter(entry -> entry.getKey() == ingredient).forEach(entry -> drops.addAll(entry.getValue()));
 		return drops;
 	}

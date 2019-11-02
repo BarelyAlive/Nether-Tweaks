@@ -65,8 +65,8 @@ public class ThirstStats {
 					}
 		}
 
-		int ms = player.isRiding() ? 10 : movementSpeed;
-		float exhaustMultiplier = exhaustionMultiplier(player);
+		final int ms = player.isRiding() ? 10 : movementSpeed;
+		final float exhaustMultiplier = exhaustionMultiplier(player);
 
 		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
 			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
@@ -96,14 +96,14 @@ public class ThirstStats {
 			try {
 				foodTimer = player.getFoodStats().getClass().getDeclaredField("foodTimer");
 				foodTimer.setAccessible(true);
-			} catch (NoSuchFieldException e) {
+			} catch (final NoSuchFieldException e) {
 				e.printStackTrace();
 			}
 
 		if (thirstLevel < 16 || poisoned)
 			try {
 				foodTimer.setInt(player.getFoodStats(), 0);
-			} catch (IllegalAccessException e) {
+			} catch (final IllegalAccessException e) {
 				e.printStackTrace();
 			}
 
@@ -124,8 +124,8 @@ public class ThirstStats {
 	private float exhaustionMultiplier(final EntityPlayer player)
 	{
 		float exhaustMultiplier = Config.exhaustMultiplierDefault;
-		Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
-		float temp = biome.getDefaultTemperature();
+		final Biome biome = player.world.getBiomeForCoordsBody(player.getPosition());
+		final float temp = biome.getDefaultTemperature();
 
 		if(temp > 0.8f)
 			exhaustMultiplier *= Math.min(temp / 0.8f, 2.0f);
@@ -156,9 +156,9 @@ public class ThirstStats {
 	}
 
 	public int getMovementSpeed(final EntityPlayer player) {
-		double x = player.posX - player.prevPosX;
-		double y = player.posY - player.prevPosY;
-		double z = player.posZ - player.prevPosZ;
+		final double x = player.posX - player.prevPosX;
+		final double y = player.posY - player.prevPosY;
+		final double z = player.posZ - player.prevPosZ;
 		return (int) Math.round(100.0d * Math.sqrt(x*x + y*y + z*z));
 	}
 
@@ -180,7 +180,7 @@ public class ThirstStats {
 		@Override
 		public ITextComponent getDeathMessage(final EntityLivingBase entity) {
 			if(entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer)entity;
+				final EntityPlayer player = (EntityPlayer)entity;
 				return new TextComponentString(player.getDisplayName() + "'s body is now made up of 0% water!");
 			}
 			return super.getDeathMessage(entity);

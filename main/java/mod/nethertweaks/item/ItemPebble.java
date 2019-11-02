@@ -22,16 +22,16 @@ public class ItemPebble extends Item
 	@Override
 	@Nonnull
 	public ActionResult<ItemStack> onItemRightClick(final World world, final EntityPlayer player, @Nonnull final EnumHand hand) {
-		ItemStack stack = player.getHeldItem(hand);
+		final ItemStack stack = player.getHeldItem(hand);
 
 		stack.shrink(1);
 		world.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
 		if (!world.isRemote) {
-			ItemStack thrown = stack.copy();
+			final ItemStack thrown = stack.copy();
 			thrown.setCount(1);
 
-			ProjectileStone projectile = new ProjectileStone(world, player);
+			final ProjectileStone projectile = new ProjectileStone(world, player);
 			projectile.setStack(thrown);
 			projectile.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 0.5F);
 			world.spawnEntity(projectile);

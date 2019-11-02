@@ -35,7 +35,7 @@ public class RenderAshBonePile extends TileEntitySpecialRenderer<TileAshBonePile
 
 				GlStateManager.translate(x, y, z);
 				GlStateManager.disableRescaleNormal();
-				RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+				final RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 				RenderHelper.enableStandardItemLighting();
 				GlStateManager.enableLighting();
 				GlStateManager.pushMatrix();

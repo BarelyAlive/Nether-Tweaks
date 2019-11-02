@@ -58,13 +58,13 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 		if (itemStack.isEmpty())
 			return;
 
-		Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
+		final Ingredient ingredient = CraftingHelper.getIngredient(itemStack);
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
 			LogUtil.error("Compost Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
 			return;
 		}
-		Compostable compostable = new Compostable(value, color, state);
+		final Compostable compostable = new Compostable(value, color, state);
 		register(ingredient, compostable);
 	}
 
@@ -90,8 +90,8 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 
 	@Override
 	public void register(@Nonnull final String name, final float value, @Nonnull final BlockInfo state, @Nonnull final Color color) {
-		Ingredient ingredient = new OreIngredientStoring(name);
-		Compostable compostable = new Compostable(value, color, state);
+		final Ingredient ingredient = new OreIngredientStoring(name);
+		final Compostable compostable = new Compostable(value, color, state);
 
 		if (oreRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
 			LogUtil.error("Compost Ore Entry for " + name + " already exists, skipping.");
@@ -146,11 +146,11 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr) {
-		Map<String, Compostable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Compostable>>() {
+		final Map<String, Compostable> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, Compostable>>() {
 		}.getType());
 
-		for (Map.Entry<String, Compostable> entry : gsonInput.entrySet()) {
-			Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
+		for (final Map.Entry<String, Compostable> entry : gsonInput.entrySet()) {
+			final Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("Compost JSON Entry for " + entry.getKey() + " already exists, skipping.");
@@ -162,7 +162,7 @@ public class CompostRegistry extends BaseRegistryMap<Ingredient, Compostable> im
 	@Override
 	public Map<Ingredient, Compostable> getRegistry() {
 		//noinspection unchecked
-		Map<Ingredient, Compostable> map = (HashMap) ((HashMap) registry).clone();
+		final Map<Ingredient, Compostable> map = (HashMap) ((HashMap) registry).clone();
 		map.putAll(oreRegistry);
 		return map;
 	}

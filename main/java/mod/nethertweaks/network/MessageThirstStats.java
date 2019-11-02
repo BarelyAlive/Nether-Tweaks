@@ -39,7 +39,7 @@ public class MessageThirstStats implements IMessage {
 	}
 
 	public void handleClientSide() {
-		ThirstStats stats = ClientProxy.CLIENT_STATS;
+		final ThirstStats stats = ClientProxy.CLIENT_STATS;
 		stats.thirstLevel = thirstLevel;
 		stats.saturation = saturation;
 		stats.exhaustion = exhaustion;

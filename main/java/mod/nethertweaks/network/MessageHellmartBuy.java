@@ -61,7 +61,7 @@ public class MessageHellmartBuy implements IMessage{
 				if(tile_entity instanceof TileHellmart) {
 					final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
 
-					HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
+					final HellmartData[] dataz = NTMRegistryManager.HELLMART_REGISTRY.getRegistry().values().toArray(new HellmartData[0]);
 					final HellmartData data = dataz[message.itemNum];
 
 					final int price = data.getPrice();

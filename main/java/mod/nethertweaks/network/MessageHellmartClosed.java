@@ -45,11 +45,11 @@ public class MessageHellmartClosed implements IMessage{
 	{
 		@Override
 		public IMessage onMessage(final MessageHellmartClosed message, final MessageContext ctx) {
-			EntityPlayerMP player = ctx.getServerHandler().player;
+			final EntityPlayerMP player = ctx.getServerHandler().player;
 			player.getServerWorld().addScheduledTask(() -> {
-				TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+				final TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 				if(tile_entity instanceof TileHellmart) {
-					TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
+					final TileHellmart tileEntityMarket = (TileHellmart) tile_entity;
 
 					if(!Objects.requireNonNull(tileEntityMarket.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)).getStackInSlot(0)
 							.isEmpty()) {

@@ -20,11 +20,11 @@ public class ModOreRegistration
 	{
 		NTMRegistryManager.DYN_ORE_REGISTRY.loadJson(NetherTweaksMod.configDirectory);
 		NTMRegistryManager.registerDynOreDefaultRecipeHandler(new NTMDefaultRecipes.DynOreDefaults());
-		String[] ore_names = OreDictionary.getOreNames();
-		for (String ore_name : ore_names)
+		final String[] ore_names = OreDictionary.getOreNames();
+		for (final String ore_name : ore_names)
 			if (ore_name.startsWith("ore"))
 			{
-				String ore_raw_name = ore_name.substring(3);
+				final String ore_raw_name = ore_name.substring(3);
 				if(!OreDictionary.doesOreNameExist("ingot" + ore_raw_name))
 					continue;
 				if (OreDictionary.getOres(ore_name).size() == 0)

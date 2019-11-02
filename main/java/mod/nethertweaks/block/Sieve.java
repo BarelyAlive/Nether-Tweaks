@@ -55,10 +55,10 @@ public class Sieve extends BlockContainer {
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
-		TileSieve te = (TileSieve) world.getTileEntity(pos);
+		final TileSieve te = (TileSieve) world.getTileEntity(pos);
 		if(te == null) return true;
 
-		ItemStack heldItem = player.getHeldItem(hand);
+		final ItemStack heldItem = player.getHeldItem(hand);
 
 		// Removing a mesh
 		if (heldItem.isEmpty() && !te.getMeshStack().isEmpty() && player.isSneaking() && te.setMesh(ItemStack.EMPTY, true)) {
@@ -85,10 +85,10 @@ public class Sieve extends BlockContainer {
 		}
 
 		for(;slot < maxSlot; slot++){
-			ItemStack stack = cap.getStackInSlot(slot);
+			final ItemStack stack = cap.getStackInSlot(slot);
 			if(!stack.isEmpty() && stack.getItem() instanceof ItemMesh){
 				// Adding a mesh
-				boolean added = te.setMesh(cap.extractItem(slot, 1, true));
+				final boolean added = te.setMesh(cap.extractItem(slot, 1, true));
 				if(added){
 					cap.extractItem(slot, 1, player.isCreative());
 					return true;
@@ -101,10 +101,10 @@ public class Sieve extends BlockContainer {
 					for(int dz = -Config.sieveSimilarRadius; dz <= Config.sieveSimilarRadius; dz++){
 						if(cap.getStackInSlot(slot).isEmpty())
 							continue; // No more items
-						TileEntity otherTE = world.getTileEntity(pos.add(dx, 0, dz));
+						final TileEntity otherTE = world.getTileEntity(pos.add(dx, 0, dz));
 						if(!(otherTE instanceof TileSieve))
 							continue; // Not a sieve
-						TileSieve sieve = (TileSieve) otherTE;
+						final TileSieve sieve = (TileSieve) otherTE;
 						if(!te.isSieveSimilarToInput(sieve))
 							continue; // Not a similar sieve
 						if(sieve.addBlock(cap.extractItem(slot,1,true)))
@@ -114,20 +114,20 @@ public class Sieve extends BlockContainer {
 			}
 		}
 
-		List<BlockPos> toSift = new ArrayList<>();
+		final List<BlockPos> toSift = new ArrayList<>();
 		for (int xOffset = -1 * Config.sieveSimilarRadius; xOffset <= Config.sieveSimilarRadius; xOffset++)
 			for (int zOffset = -1 * Config.sieveSimilarRadius; zOffset <= Config.sieveSimilarRadius; zOffset++) {
-				TileEntity entity = world.getTileEntity(pos.add(xOffset, 0, zOffset));
+				final TileEntity entity = world.getTileEntity(pos.add(xOffset, 0, zOffset));
 				if (entity instanceof TileSieve) {
-					TileSieve sieve = (TileSieve) entity;
+					final TileSieve sieve = (TileSieve) entity;
 
 					if (te.isSieveSimilar(sieve))
 						toSift.add(pos.add(xOffset, 0, zOffset));
 				}
 			}
-		for (BlockPos posIter : toSift)
+		for (final BlockPos posIter : toSift)
 			if (posIter != null) {
-				TileSieve sieve = (TileSieve) world.getTileEntity(posIter);
+				final TileSieve sieve = (TileSieve) world.getTileEntity(posIter);
 				if (sieve != null)
 					sieve.doSieving(player, false);
 			}
@@ -154,9 +154,9 @@ public class Sieve extends BlockContainer {
 
 	@Override
 	public void breakBlock(@Nonnull final World world, @Nonnull final BlockPos pos, @Nonnull final IBlockState state) {
-		TileEntity te = world.getTileEntity(pos);
+		final TileEntity te = world.getTileEntity(pos);
 		if (te != null) {
-			TileSieve sieve = (TileSieve) te;
+			final TileSieve sieve = (TileSieve) te;
 			if (!sieve.getMeshStack().isEmpty())
 				Util.dropItemInWorld(sieve, null, sieve.getMeshStack(), 0.02f);
 		}

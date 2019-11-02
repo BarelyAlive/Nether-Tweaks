@@ -39,7 +39,7 @@ public class BarrelFluidHandler extends FluidTank {
 		if (fluid == null || fluid.getFluid() == null || NTMRegistryManager.BARREL_LIQUID_BLACKLIST_REGISTRY.isBlacklisted(barrel.getTier(), fluid.getFluid().getName()))
 			return false;
 
-		for (IBarrelMode mode : BarrelModeRegistry.getModes(TriggerType.FLUID))
+		for (final IBarrelMode mode : BarrelModeRegistry.getModes(TriggerType.FLUID))
 			if (mode.isTriggerFluidStack(fluid))
 				return true;
 		return false;
@@ -55,7 +55,7 @@ public class BarrelFluidHandler extends FluidTank {
 		if (barrel.getMode() != null && !barrel.getMode().canFillWithFluid(barrel))
 			return 0;
 
-		int amount = super.fill(resource, doFill);
+		final int amount = super.fill(resource, doFill);
 		if (amount > 0) {
 			NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
 			if (fluid != null && barrel.getMode() == null) {
@@ -68,7 +68,7 @@ public class BarrelFluidHandler extends FluidTank {
 
 	@Override
 	public FluidStack drain(final FluidStack resource, final boolean doDrain) {
-		FluidStack stack = super.drain(resource, doDrain);
+		final FluidStack stack = super.drain(resource, doDrain);
 		if (stack != null && stack.amount > 0)
 			NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
 		if (fluid == null && barrel.getMode() != null && barrel.getMode().getName().equals("fluid")) {
@@ -80,7 +80,7 @@ public class BarrelFluidHandler extends FluidTank {
 
 	@Override
 	public FluidStack drain(final int maxDrain, final boolean doDrain) {
-		FluidStack stack = super.drain(maxDrain, doDrain);
+		final FluidStack stack = super.drain(maxDrain, doDrain);
 		if (stack != null && stack.amount > 0)
 			NetworkHandler.sendToAllAround(new MessageFluidUpdate(fluid, barrel.getPos()), barrel);
 		if (fluid == null && barrel.getMode() != null && barrel.getMode().getName().equals("fluid")) {

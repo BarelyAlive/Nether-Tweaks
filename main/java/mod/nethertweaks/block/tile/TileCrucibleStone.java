@@ -65,8 +65,8 @@ public class TileCrucibleStone extends TileCrucibleBase {
 				heatRate = solidAmount;
 
 			if (heatRate > 0 && getCurrentItem().isValid() && crucibleRegistry.canBeMelted(getCurrentItem())) {
-				FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(getCurrentItem()).getFluid()), heatRate);
-				int filled = tank.fillInternal(toFill, true);
+				final FluidStack toFill = new FluidStack(FluidRegistry.getFluid(crucibleRegistry.getMeltable(getCurrentItem()).getFluid()), heatRate);
+				final int filled = tank.fillInternal(toFill, true);
 				solidAmount -= filled;
 
 				// already done two lines above in fillinternal
@@ -76,8 +76,8 @@ public class TileCrucibleStone extends TileCrucibleBase {
 
 	@Override
 	public int getHeatRate() {
-		BlockPos posBelow = pos.add(0, -1, 0);
-		IBlockState stateBelow = getWorld().getBlockState(posBelow);
+		final BlockPos posBelow = pos.add(0, -1, 0);
+		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
 		if (stateBelow == Blocks.AIR.getDefaultState())
 			return 0;
@@ -92,7 +92,7 @@ public class TileCrucibleStone extends TileCrucibleBase {
 		if (heat != 0)
 			return heat;
 
-		TileEntity tile = getWorld().getTileEntity(posBelow);
+		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
 			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();

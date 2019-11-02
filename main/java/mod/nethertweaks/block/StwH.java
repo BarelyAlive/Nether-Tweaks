@@ -34,10 +34,10 @@ public class StwH extends Block{
 	@Override
 	public void onBlockPlacedBy(final World world, final BlockPos pos, final IBlockState state, final EntityLivingBase placer,
 			final ItemStack stack) {
-		EntityLightningBolt entitybolt = new EntityLightningBolt(world, 0D, 0D, 0D, enableStats);
-		double x = pos.getX();  	//what ever location you want
-		double y = pos.getY();	//what ever location you want
-		double z = pos.getZ();  	//what ever location you want
+		final EntityLightningBolt entitybolt = new EntityLightningBolt(world, 0D, 0D, 0D, enableStats);
+		final double x = pos.getX();  	//what ever location you want
+		final double y = pos.getY();	//what ever location you want
+		final double z = pos.getZ();  	//what ever location you want
 		entitybolt.setLocationAndAngles(x, y, z, 0, 0.0F);
 		world.spawnEntity(entitybolt);
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
@@ -70,12 +70,12 @@ public class StwH extends Block{
 		for (int i = 0; i < 4; ++i)
 		{
 			double d0 = pos.getX() + rand.nextFloat();
-			double d1 = pos.getY() + rand.nextFloat();
+			final double d1 = pos.getY() + rand.nextFloat();
 			double d2 = pos.getZ() + rand.nextFloat();
 			double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
-			double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
+			final double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
 			double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
-			int j = rand.nextInt(2) * 2 - 1;
+			final int j = rand.nextInt(2) * 2 - 1;
 
 			if (world.getBlockState(pos.west()).getBlock() != this && world.getBlockState(pos.east()).getBlock() != this)
 			{

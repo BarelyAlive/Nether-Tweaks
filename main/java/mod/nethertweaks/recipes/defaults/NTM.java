@@ -58,7 +58,7 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerCompost(final CompostRegistry registry)
 	{
-		BlockInfo dirtState = new BlockInfo(Blocks.DIRT);
+		final BlockInfo dirtState = new BlockInfo(Blocks.DIRT);
 
 		registry.register(new ItemInfo(Items.ROTTEN_FLESH), 0.1f, dirtState, new Color("C45631"));
 		registry.register(new ItemInfo(Items.SPIDER_EYE), 0.08f, dirtState, new Color("963E44"));
@@ -109,7 +109,7 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerHellmart(final HellmartRegistry registry)
 	{
-		ItemInfo ice = new ItemInfo(Blocks.ICE);
+		final ItemInfo ice = new ItemInfo(Blocks.ICE);
 
 		//Dolls
 		registry.register(new ItemInfo(ModItems.DOLL_BAT), ice, 3);
@@ -129,8 +129,8 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(ModItems.DOLL_VILLAGER), ice, 3);
 		registry.register(new ItemInfo(ModItems.DOLL_WOLF), ice, 3);
 
-		Ingredient ingredient = new OreIngredientStoring("treeSapling");
-		for(ItemStack ore : ingredient.getMatchingStacks())
+		final Ingredient ingredient = new OreIngredientStoring("treeSapling");
+		for(final ItemStack ore : ingredient.getMatchingStacks())
 			registry.register(new ItemInfo(ore), ice, 3);
 	}
 
@@ -270,16 +270,16 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemStack(ModBlocks.DUST), new ItemInfo(Items.BLAZE_POWDER), getDropChance(0.05f), MeshType.IRON.getName());
 
 		//Damit Saplinge erfasst werden, die auch von ihren Leaves gedroppt werden sollen
-		for(ItemStack leaves : OreDictionary.getOres("treeLeaves"))
+		for(final ItemStack leaves : OreDictionary.getOres("treeLeaves"))
 		{
-			Block leafBlock = Block.getBlockFromItem(leaves.getItem());
-			IBlockState state = leafBlock.getDefaultState();
-			Random rand = new Random();
-			Item sapling = leafBlock.getItemDropped(state, rand, 0);
+			final Block leafBlock = Block.getBlockFromItem(leaves.getItem());
+			final IBlockState state = leafBlock.getDefaultState();
+			final Random rand = new Random();
+			final Item sapling = leafBlock.getItemDropped(state, rand, 0);
 
 			if (Block.getBlockFromItem(sapling) instanceof IPlantable)
 			{
-				boolean hc = Objects.equals(NameHelper.getModID(sapling), "harvestcraft");
+				final boolean hc = Objects.equals(NameHelper.getModID(sapling), "harvestcraft");
 
 				if(hc && Config.enableHarvestcraft)
 					registry.register("dirt", new ItemInfo(sapling), getDropChance(0.05f), MeshType.STRING.getName());
@@ -295,9 +295,9 @@ public class NTM implements IRecipeDefaults
 
 		// Custom Ores for other mods
 		// All default Ores
-		for (ItemChunk ore : OreHandler.MOD_CHUNKS.values()) {
-			ItemInfo info = new ItemInfo(ore);
-			String name = ore.getOreName();
+		for (final ItemChunk ore : OreHandler.MOD_CHUNKS.values()) {
+			final ItemInfo info = new ItemInfo(ore);
+			final String name = ore.getOreName();
 			switch (name) {
 			case "iron":
 				registry.register("gravel", info.copy(), getDropChance(0.1f/4.0f), MeshType.FLINT.getName());
@@ -349,7 +349,7 @@ public class NTM implements IRecipeDefaults
 
 		getLeavesSapling().forEach((leaves, sapling) ->
 		{
-			float chance = 20f / 100f;
+			final float chance = 20f / 100f;
 
 			registry.register(leaves, sapling, Math.min(chance * 1, 1.0f), MeshType.STRING.getName());
 			registry.register(leaves, sapling, Math.min(chance * 2, 1.0f), MeshType.FLINT.getName());
@@ -379,7 +379,7 @@ public class NTM implements IRecipeDefaults
 		registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
 
 		//Yes, I have to do this otherwise i can'split the outputs
-		for(ItemStack block : OreDictionary.getOres("gravel"))
+		for(final ItemStack block : OreDictionary.getOres("gravel"))
 			if(block.getItem() != Item.getItemFromBlock(ModBlocks.NETHERRACK_GRAVEL))
 				registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
 		registry.register("sand", new ItemStack(ModBlocks.DUST, 1), 0, 1.0F, 0.0F);
@@ -408,7 +408,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(new BlockInfo(Blocks.GLOWSTONE), 2);
 
 		// Hot Fluids
-		for(Fluid fluid : FluidRegistry.getRegisteredFluids().values())
+		for(final Fluid fluid : FluidRegistry.getRegisteredFluids().values())
 			if(fluid != FluidRegistry.LAVA) {
 				final int T = fluid.getTemperature() / 350; // Value arbitrarily chosen to make it line up with lava's heat value
 				if(T > 0 && fluid.getBlock() != null)
@@ -422,7 +422,7 @@ public class NTM implements IRecipeDefaults
 
 	@Override
 	public void registerBarrelLiquidBlacklist(final BarrelLiquidBlacklistRegistry registry) {
-		for(Fluid fluid : FluidRegistry.getRegisteredFluids().values())
+		for(final Fluid fluid : FluidRegistry.getRegisteredFluids().values())
 			if(fluid.getTemperature() >= Config.woodBarrelMaxTemp)
 				registry.register(ModBlocks.OAK_BARREL.getTier(), fluid);
 	}
@@ -510,7 +510,7 @@ public class NTM implements IRecipeDefaults
 
 	private static Map<BlockInfo, BlockInfo> getLeavesSapling()
 	{
-		Map<BlockInfo, BlockInfo> saplingMap = new LinkedHashMap<>();
+		final Map<BlockInfo, BlockInfo> saplingMap = new LinkedHashMap<>();
 		saplingMap.put(new BlockInfo(Blocks.LEAVES, 0), new BlockInfo(Blocks.SAPLING, 0));
 		saplingMap.put(new BlockInfo(Blocks.LEAVES, 1), new BlockInfo(Blocks.SAPLING, 1));
 		saplingMap.put(new BlockInfo(Blocks.LEAVES, 2), new BlockInfo(Blocks.SAPLING, 2));

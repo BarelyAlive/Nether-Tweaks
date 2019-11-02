@@ -55,17 +55,17 @@ public class Grabber extends ItemShears
 		if (world.isRemote) return false;
 		if (!(entity instanceof IShearable)) return false;
 
-		IShearable target = (IShearable)entity;
-		BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
+		final IShearable target = (IShearable)entity;
+		final BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
 		if (target.isShearable(itemstack, world, pos))
 		{
-			List<ItemStack> drops = target.onSheared(itemstack, world, pos,
+			final List<ItemStack> drops = target.onSheared(itemstack, world, pos,
 					EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 
-			for(ItemStack stack : drops)
+			for(final ItemStack stack : drops)
 				if (!player.inventory.addItemStackToInventory(stack.copy()))
 				{
-					EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
+					final EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), stack.copy());
 					world.spawnEntity(item);
 				}
 			if (!player.capabilities.isCreativeMode)
@@ -110,7 +110,7 @@ public class Grabber extends ItemShears
 				if (!world.isRemote) {
 					world.setBlockToAir(posi);
 					if (!player.inventory.addItemStackToInventory(new ItemStack(block, 1))) {
-						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
+						final EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
 						world.spawnEntity(item);
 					}
 					posi = posi.add(0, -1, 0);
@@ -122,13 +122,13 @@ public class Grabber extends ItemShears
 		}
 
 		//Pick up blocks like melons from the list
-		for (String name : BLOCKS) {
+		for (final String name : BLOCKS) {
 			final ResourceLocation loc = new ResourceLocation(name);
 			if (loc.equals(block.getRegistryName()) || block instanceof IShearable) {
 				if (!world.isRemote) {
 					world.setBlockToAir(pos);
 					if (!player.inventory.addItemStackToInventory(new ItemStack(block, 1))) {
-						EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
+						final EntityItem item = new EntityItem(world, playerPos.getX(), playerPos.getY(), playerPos.getZ(), info.getItemStack());
 						world.spawnEntity(item);
 					}
 				}

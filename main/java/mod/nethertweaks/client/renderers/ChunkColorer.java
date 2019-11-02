@@ -8,10 +8,10 @@ public class ChunkColorer implements IItemColor {
 
 	@Override
 	public int colorMultiplier(final ItemStack stack, final int tintIndex) {
-		int pixel = 0xFFFFFFFF;
+		final int pixel = 0xFFFFFFFF;
         if (!(stack.getItem() instanceof ItemChunk))
 			return pixel;
-        ItemChunk chunk = (ItemChunk) stack.getItem();
+        final ItemChunk chunk = (ItemChunk) stack.getItem();
         if (tintIndex == 0)
 			return chunk.getColor();
         return pixel;

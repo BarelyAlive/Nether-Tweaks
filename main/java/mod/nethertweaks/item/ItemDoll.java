@@ -43,86 +43,86 @@ public class ItemDoll extends Item
 	 */
 	public boolean spawnMob(final ItemStack stack, final World world, final BlockPos pos)
 	{
-		String name = NameHelper.getName(stack);
+		final String name = NameHelper.getName(stack);
 
 		switch (name) {
 		case Constants.DOLL_BAT:
-			EntityBat bat = new EntityBat(world);
+			final EntityBat bat = new EntityBat(world);
 			bat.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(bat);
 		case Constants.DOLL_CHICKEN:
-			EntityChicken chick = new EntityChicken(world);
+			final EntityChicken chick = new EntityChicken(world);
 			chick.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(chick);
 		case Constants.DOLL_COW:
-			EntityCow cow = new EntityCow(world);
+			final EntityCow cow = new EntityCow(world);
 			cow.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(cow);
 		case Constants.DOLL_DONKEY:
-			EntityDonkey donk = new EntityDonkey(world);
+			final EntityDonkey donk = new EntityDonkey(world);
 			donk.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(donk);
 		case Constants.DOLL_HORSE:
-			EntityHorse horst = new EntityHorse(world);
+			final EntityHorse horst = new EntityHorse(world);
 			horst.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(horst);
 		case Constants.DOLL_RED_MOOSHROOM:
-			EntityMooshroom moo = new EntityMooshroom(world);
+			final EntityMooshroom moo = new EntityMooshroom(world);
 			moo.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(moo);
 		case Constants.DOLL_MULE:
-			EntityMule mule = new EntityMule(world);
+			final EntityMule mule = new EntityMule(world);
 			mule.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(mule);
 		case Constants.DOLL_OCELOT:
-			EntityOcelot revolver_ocelot = new EntityOcelot(world);
+			final EntityOcelot revolver_ocelot = new EntityOcelot(world);
 			revolver_ocelot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(revolver_ocelot);
 		case Constants.DOLL_PARROT:
-			EntityParrot parrot = new EntityParrot(world);
+			final EntityParrot parrot = new EntityParrot(world);
 			parrot.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(parrot);
 		case Constants.DOLL_RABBIT:
-			EntityRabbit rabbit = new EntityRabbit(world);
+			final EntityRabbit rabbit = new EntityRabbit(world);
 			rabbit.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(rabbit);
 		case Constants.DOLL_SHEEP:
-			EntitySheep sheep = new EntitySheep(world);
+			final EntitySheep sheep = new EntitySheep(world);
 			sheep.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(sheep);
 		case Constants.DOLL_LLAMA:
-			EntityLlama llama = new EntityLlama(world);
+			final EntityLlama llama = new EntityLlama(world);
 			llama.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(llama);
 		case Constants.DOLL_POLAR_BEAR:
-			EntityPolarBear pobear = new EntityPolarBear(world);
+			final EntityPolarBear pobear = new EntityPolarBear(world);
 			pobear.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(pobear);
 		case Constants.DOLL_WOLF:
-			EntityWolf wolf = new EntityWolf(world);
+			final EntityWolf wolf = new EntityWolf(world);
 			wolf.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(wolf);
 		case Constants.DOLL_VILLAGER:
-			EntityVillager derp = new EntityVillager(world);
+			final EntityVillager derp = new EntityVillager(world);
 			derp.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(derp);
 		case Constants.DOLL_PIG:
-			EntityPig pig = new EntityPig(world);
+			final EntityPig pig = new EntityPig(world);
 			pig.setPosition(pos.getX(), pos.getY()+1, pos.getZ());
 
 			return world.spawnEntity(pig);

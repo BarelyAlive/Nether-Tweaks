@@ -41,9 +41,9 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-        List<DynOre> gsonInput = gson.fromJson(fr, new TypeToken<List<DynOre>>() {
+        final List<DynOre> gsonInput = gson.fromJson(fr, new TypeToken<List<DynOre>>() {
         }.getType());
-        for (DynOre ore : gsonInput)
+        for (final DynOre ore : gsonInput)
 			register(ore);
 	}
 
@@ -90,7 +90,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 	@Override
 	public DynOre register(final String id, final String name, final ItemInfo ingot, final int rarity, final int color) {
 		// TODO Auto-generated method stub
-		DynOre ore = new DynOre(id, name, ingot, rarity, color);
+		final DynOre ore = new DynOre(id, name, ingot, rarity, color);
 		register(ore);
 		return ore;
 	}
@@ -119,7 +119,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
 						gson.toJson(registry, typeOfSource, fw);
 					else
 						gson.toJson(registry, fw);
-		    	} catch (Exception e) {
+		    	} catch (final Exception e) {
 		        	e.printStackTrace();
 		    	}
 	}
@@ -132,7 +132,7 @@ public class DynOreRegistry extends BaseRegistryList<DynOre> implements IDynOreR
         if (file.exists() && Config.enableJSONLoading)
 			try(FileReader fr = new FileReader(file)) {
                 registerEntriesFromJSON(fr);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 e.printStackTrace();
             }
 

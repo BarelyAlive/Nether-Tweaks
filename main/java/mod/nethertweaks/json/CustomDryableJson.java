@@ -20,7 +20,7 @@ public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSeriali
 	@Override
 	public JsonElement serialize(final Dryable src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 		obj.addProperty("value", src.getValue());
 		obj.add("item", context.serialize(new ItemInfo(src.getItem()), ItemInfo.class));
 
@@ -30,11 +30,11 @@ public class CustomDryableJson implements JsonDeserializer<Dryable>, JsonSeriali
 	@Override
 	public Dryable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		int value =  helper.getInteger("value");
-		ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
+		final int value =  helper.getInteger("value");
+		final ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
 
 		return new Dryable(result.getItemStack(), value);
 	}

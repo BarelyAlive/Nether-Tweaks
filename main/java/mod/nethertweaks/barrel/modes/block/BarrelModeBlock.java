@@ -94,7 +94,7 @@ public class BarrelModeBlock implements IBarrelMode {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTextureForRender(final TileBarrel barrel) {
 		handler.setBarrel(barrel);
-		ItemStack stack = handler.getStackInSlot(0);
+		final ItemStack stack = handler.getStackInSlot(0);
 		if (stack.isEmpty())
 			return Util.getTextureFromBlockState(Blocks.AIR.getDefaultState());
 		return Util.getTextureFromBlockState(Block.getBlockFromItem(stack.getItem()).getStateFromMeta(stack.getItemDamage()));

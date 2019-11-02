@@ -20,13 +20,13 @@ public class ElderLog extends CubeFacingXYZ{
 
 	@Override
 	public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {
-		int i = 4;
-		int j = 5;
+		final int i = 4;
+		final int j = 5;
 
 		if (world.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))
-			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4)))
+			for (final BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4)))
 			{
-				IBlockState iblockstate = world.getBlockState(blockpos);
+				final IBlockState iblockstate = world.getBlockState(blockpos);
 
 				if (iblockstate.getBlock().isLeaves(iblockstate, world, blockpos))
 					iblockstate.getBlock().beginLeavesDecay(iblockstate, world, blockpos);

@@ -41,12 +41,12 @@ public class MessageBonfireUpdate implements IMessage {
 			info.setName(ByteBufUtils.readUTF8String(buf));
 			info.isPublic(buf.readBoolean());
 
-			int length = buf.readInt();
+			final int length = buf.readInt();
 			for(int j = 0; j < length; j++)
 				info.addPlayer(new UUID(buf.readLong(), buf.readLong()));
 		}
 
-		int status_int = buf.readInt();
+		final int status_int = buf.readInt();
 
 		status = status_int == 1 ? UpdateStatus.ADD : status_int == 2 ? UpdateStatus.UPDATE : status_int == 3 ? UpdateStatus.REMOVE : UpdateStatus.UPDATE;
 	}
@@ -63,7 +63,7 @@ public class MessageBonfireUpdate implements IMessage {
 			buf.writeLong(info.getOwner().getMostSignificantBits());
 			buf.writeLong(info.getOwner().getLeastSignificantBits());
 			buf.writeInt(info.getDimension());
-			BlockPos spawnpos = info.getSpawnPos();
+			final BlockPos spawnpos = info.getSpawnPos();
 			if (spawnpos != null)
 			{
 				buf.writeInt(spawnpos.getX());
@@ -78,9 +78,9 @@ public class MessageBonfireUpdate implements IMessage {
 			}
 			ByteBufUtils.writeUTF8String(buf, info.getName());
 			buf.writeBoolean(info.isPublic());
-			List<UUID> player_list = info.getLastPlayerSpawn();
+			final List<UUID> player_list = info.getLastPlayerSpawn();
 			buf.writeInt(player_list.size());
-            for (UUID uuid : player_list) {
+            for (final UUID uuid : player_list) {
                 buf.writeLong(uuid.getMostSignificantBits());
                 buf.writeLong(uuid.getLeastSignificantBits());
             }

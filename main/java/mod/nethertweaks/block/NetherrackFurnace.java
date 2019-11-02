@@ -49,7 +49,7 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 		if(world.isRemote) return true;
 		if(player.isSneaking()) return false;
 
-		TileEntity te = world.getTileEntity(pos);
+		final TileEntity te = world.getTileEntity(pos);
 		if(te == null) return false;
 		if(!(te instanceof TileNetherrackFurnace))
 			return false;
@@ -68,9 +68,9 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 	{
 		IBlockState b = world.getBlockState(pos);
 		if(b == Blocks.AIR.getDefaultState()) return;
-		TileEntity tileentity = world.getTileEntity(pos);
+		final TileEntity tileentity = world.getTileEntity(pos);
 		if(tileentity == null) return;
-		TileNetherrackFurnace furnace = (TileNetherrackFurnace) tileentity;
+		final TileNetherrackFurnace furnace = (TileNetherrackFurnace) tileentity;
 
 		//Only do this, if something has changed
 		if(active && !b.getValue(ISBURNING)) {
@@ -103,12 +103,12 @@ public class NetherrackFurnace extends CubeContainerHorizontal {
 	{
 		if (stateIn.getValue(ISBURNING))
 		{
-			EnumFacing enumfacing = stateIn.getValue(FACING);
-			double d0 = pos.getX() + 0.5D;
-			double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-			double d2 = pos.getZ() + 0.5D;
-			double d3 = 0.52D;
-			double d4 = rand.nextDouble() * 0.6D - 0.3D;
+			final EnumFacing enumfacing = stateIn.getValue(FACING);
+			final double d0 = pos.getX() + 0.5D;
+			final double d1 = pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+			final double d2 = pos.getZ() + 0.5D;
+			final double d3 = 0.52D;
+			final double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 			if (rand.nextDouble() < 0.1D)
 				world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);

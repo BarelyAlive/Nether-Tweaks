@@ -71,7 +71,7 @@ public class FluidBlockTransformer
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FluidBlockTransformer other = (FluidBlockTransformer) obj;
+		final FluidBlockTransformer other = (FluidBlockTransformer) obj;
 		if (fluidName == null) {
 			if (other.fluidName != null)
 				return false;

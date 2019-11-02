@@ -29,7 +29,7 @@ public class BarrelItemHandlerBlock extends ItemStackHandler
 	@Override
 	public ItemStack insertItem(final int slot, final ItemStack stack, final boolean simulate)
 	{
-		ItemStack returned = super.insertItem(slot, stack, simulate);
+		final ItemStack returned = super.insertItem(slot, stack, simulate);
 
 		if (!simulate)
 			NetworkHandler.sendNBTUpdate(barrel);
@@ -40,7 +40,7 @@ public class BarrelItemHandlerBlock extends ItemStackHandler
 	@Override
 	public ItemStack extractItem(final int slot, final int amount, final boolean simulate)
 	{
-		ItemStack ret = super.extractItem(slot, amount, simulate);
+		final ItemStack ret = super.extractItem(slot, amount, simulate);
 
 		checkEmpty();
 

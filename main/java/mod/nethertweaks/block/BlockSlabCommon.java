@@ -22,7 +22,7 @@ public abstract class BlockSlabCommon extends BlockSlab
 	public BlockSlabCommon(final Material material) {
 		super(material);
 
-		IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+		final IBlockState iblockstate = blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 
 		if(!isDouble())
 			iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);

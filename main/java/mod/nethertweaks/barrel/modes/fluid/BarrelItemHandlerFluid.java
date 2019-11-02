@@ -34,23 +34,23 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 	@Override
 	@Nonnull
 	public ItemStack insertItem(final int slot, @Nonnull final ItemStack stack, final boolean simulate) {
-		FluidTank tank = barrel.getTank();
+		final FluidTank tank = barrel.getTank();
 
 		if (tank.getFluid() == null)
 			return stack;
 
-		BarrelItemHandler handler = barrel.getItemHandler();
+		final BarrelItemHandler handler = barrel.getItemHandler();
 		if (handler != null)
 			if (!handler.getStackInSlot(0).isEmpty())
 				return stack;
 
 		// Fluid to block transformations
 		if (NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.canBlockBeTransformedWithThisFluid(tank.getFluid().getFluid(), stack) && tank.getFluidAmount() == tank.getCapacity()) {
-			FluidBlockTransformer transformer = NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.getTransformation(tank.getFluid().getFluid(), stack);
+			final FluidBlockTransformer transformer = NTMRegistryManager.FLUID_BLOCK_TRANSFORMER_REGISTRY.getTransformation(tank.getFluid().getFluid(), stack);
 
 			if (transformer != null) {
-				BlockInfo info = transformer.getOutput();
-				int spawnCount = transformer.getSpawnCount();
+				final BlockInfo info = transformer.getOutput();
+				final int spawnCount = transformer.getSpawnCount();
 				if (!simulate) {
 					tank.drain(tank.getCapacity(), true);
 					barrel.setMode("block");
@@ -58,14 +58,14 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 
 					barrel.getMode().addItem(info.getItemStack(), barrel);
 					if(spawnCount > 0){
-						int spawnRange = transformer.getSpawnRange();
-						EntityInfo entityInfo = transformer.getToSpawn();
+						final int spawnRange = transformer.getSpawnRange();
+						final EntityInfo entityInfo = transformer.getToSpawn();
 						for(int i=0; i<spawnCount; i++)
 							entityInfo.spawnEntityNear(barrel.getPos(), spawnRange, barrel.getWorld());
 					}
 				}
 
-				ItemStack ret = stack.copy();
+				final ItemStack ret = stack.copy();
 				ret.shrink(1);
 
 				return ret.isEmpty() ? ItemStack.EMPTY : ret;
@@ -74,14 +74,14 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 		}
 
 		// Fluid to Fluid transformations
-		String fluidItemFluidOutput = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(tank.getFluid().getFluid(), stack);
+		final String fluidItemFluidOutput = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getFluidForTransformation(tank.getFluid().getFluid(), stack);
 		if (fluidItemFluidOutput != null && tank.getFluidAmount() == tank.getCapacity()) {
 
-			int spawnCount = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getTransformTime(tank.getFluid().getFluid(), stack);
-			boolean isConsumable = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getConsumable(tank.getFluid().getFluid(), stack);
+			final int spawnCount = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getTransformTime(tank.getFluid().getFluid(), stack);
+			final boolean isConsumable = NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.getConsumable(tank.getFluid().getFluid(), stack);
 
 			if (!simulate) {
-				FluidStack fstack = tank.drain(tank.getCapacity(), true);
+				final FluidStack fstack = tank.drain(tank.getCapacity(), true);
 				barrel.setMode("fluid");
 				NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate("fluid", barrel.getPos()), barrel);
 
@@ -98,7 +98,7 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 					NetworkHandler.sendNBTUpdate(barrel);
 				}
 			}
-			ItemStack ret = stack.copy();
+			final ItemStack ret = stack.copy();
 			ret.shrink(1);
 
 			return !isConsumable ? stack : ret.isEmpty() ? ItemStack.EMPTY : ret;
@@ -114,7 +114,7 @@ public class BarrelItemHandlerFluid extends ItemStackHandler {
 				((BarrelModeMobSpawn) barrel.getMode()).setDollStack(stack);
 				NetworkHandler.sendNBTUpdate(barrel);
 			}
-			ItemStack ret = stack.copy();
+			final ItemStack ret = stack.copy();
 			ret.shrink(1);
 
 			return ret;

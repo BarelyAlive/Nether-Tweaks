@@ -43,15 +43,15 @@ public class BarrelItemHandler extends ItemStackHandler {
 			barrel.getMode().addItem(stack, barrel);
 			barrel.markDirty();
 
-			IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
+			final IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
 			barrel.getWorld().setBlockState(barrel.getPos(), state);
 		} else if (barrel.getMode() != null && barrel.getMode().getHandler(barrel) != null)
 			barrel.getMode().getHandler(barrel).setStackInSlot(slot, stack);
 		else if (barrel.getMode() == null) {
-			List<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
+			final List<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
 
 			if (modes != null)
-				for (IBarrelMode possibleMode : modes)
+				for (final IBarrelMode possibleMode : modes)
 					if (possibleMode.isTriggerItemStack(stack)) {
 						barrel.setMode(possibleMode.getName());
 						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
@@ -59,7 +59,7 @@ public class BarrelItemHandler extends ItemStackHandler {
 						barrel.getMode().addItem(stack, barrel);
 						barrel.markDirty();
 
-						IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
+						final IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
 						barrel.getWorld().setBlockState(barrel.getPos(), state);
 					}
 		}
@@ -78,23 +78,23 @@ public class BarrelItemHandler extends ItemStackHandler {
 	@Nonnull
 	public ItemStack insertItem(final int slot, @Nonnull final ItemStack stack, final boolean simulate) {
 		if (barrel.getMode() == null) {
-			ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
+			final ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
 
 			if (modes == null)
 				return stack;
 
-			for (IBarrelMode possibleMode : modes)
+			for (final IBarrelMode possibleMode : modes)
 				if (possibleMode.isTriggerItemStack(stack)) {
 					if (!simulate) {
 						barrel.setMode(possibleMode.getName());
 						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(barrel.getMode().getName(), barrel.getPos()), barrel);
 						barrel.getMode().addItem(stack, barrel);
 						barrel.markDirty();
-						IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
+						final IBlockState state = barrel.getWorld().getBlockState(barrel.getPos());
 						barrel.getWorld().setBlockState(barrel.getPos(), state);
 					}
 
-					ItemStack ret = stack.copy();
+					final ItemStack ret = stack.copy();
 					ret.shrink(1);
 					return ret;
 				}

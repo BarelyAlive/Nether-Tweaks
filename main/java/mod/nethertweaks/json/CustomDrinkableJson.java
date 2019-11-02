@@ -20,7 +20,7 @@ public class CustomDrinkableJson implements JsonDeserializer<Drinkable>, JsonSer
 	@Override
 	public JsonElement serialize(final Drinkable src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 		obj.addProperty("thirstReplenish", src.getThirstReplenish());
 		obj.addProperty("saturationReplenish", src.getSaturationReplenish());
 		obj.addProperty("poisonChance", src.getPoisonChance());
@@ -32,13 +32,13 @@ public class CustomDrinkableJson implements JsonDeserializer<Drinkable>, JsonSer
 	@Override
 	public Drinkable deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
-		int thirstReplenish = helper.getInteger("thirstReplenish");
-		float saturationReplenish = helper.getNullableFloat("saturationReplenish", 0);
-		float poisonChance = helper.getNullableFloat("poisonChance", 0);
-		ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
+		final int thirstReplenish = helper.getInteger("thirstReplenish");
+		final float saturationReplenish = helper.getNullableFloat("saturationReplenish", 0);
+		final float poisonChance = helper.getNullableFloat("poisonChance", 0);
+		final ItemInfo result = context.deserialize(obj.get("item"), ItemInfo.class);
 
 		return new Drinkable(result.getItemStack(), thirstReplenish, saturationReplenish, poisonChance);
 	}

@@ -48,10 +48,10 @@ public class MessageBarrelModeUpdate implements IMessage {
 		public IMessage onMessage(final MessageBarrelModeUpdate msg, final MessageContext ctx)
 		{
 			Minecraft.getMinecraft().addScheduledTask(() -> {
-				TileEntity entity =  Minecraft.getMinecraft().player.world.getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+				final TileEntity entity =  Minecraft.getMinecraft().player.world.getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
 				if (entity instanceof TileBarrel)
 				{
-					TileBarrel te = (TileBarrel) entity;
+					final TileBarrel te = (TileBarrel) entity;
 					te.setMode(msg.modeName);
 				}
 			});

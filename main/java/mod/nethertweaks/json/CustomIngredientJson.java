@@ -25,7 +25,7 @@ public class CustomIngredientJson implements JsonDeserializer<Ingredient>, JsonS
 	public Ingredient deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException
 	{
 		if (json.isJsonPrimitive() && ((JsonPrimitive)json).isString()) {
-			String s = json.getAsString();
+			final String s = json.getAsString();
 			return IngredientUtil.parseFromString(s);
 		} else
 			LogUtil.error("Error parsing JSON: No Primitive String: $json");
@@ -39,7 +39,7 @@ public class CustomIngredientJson implements JsonDeserializer<Ingredient>, JsonS
 		if (src instanceof OreIngredientStoring)
 			return new JsonPrimitive("ore:" + ((OreIngredientStoring)src).getOreName());
 		else {
-			ItemStack[] stacks = src.getMatchingStacks();
+			final ItemStack[] stacks = src.getMatchingStacks();
 			if (stacks.length != 0)
 				return new JsonPrimitive(Objects.requireNonNull(stacks[0].getItem().getRegistryName()).toString() + ":" + stacks[0].getItemDamage());
 		}

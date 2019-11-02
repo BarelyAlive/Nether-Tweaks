@@ -63,11 +63,11 @@ public class MessageFluidUpdate implements IMessage {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void run() {
-					TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
+					final TileEntity entity = Minecraft.getMinecraft().player.getEntityWorld().getTileEntity(new BlockPos(msg.x, msg.y, msg.z));
 					if (entity instanceof TileBarrel) {
-						TileBarrel te = (TileBarrel) entity;
-						Fluid fluid = FluidRegistry.getFluid(msg.fluidName);
-						FluidStack f = fluid == null ? null : new FluidStack(fluid, msg.fillAmount);
+						final TileBarrel te = (TileBarrel) entity;
+						final Fluid fluid = FluidRegistry.getFluid(msg.fluidName);
+						final FluidStack f = fluid == null ? null : new FluidStack(fluid, msg.fillAmount);
 						te.getTank().setFluid(f);
 					}
 				}

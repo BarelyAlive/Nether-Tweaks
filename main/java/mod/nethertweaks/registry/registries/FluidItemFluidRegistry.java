@@ -54,9 +54,9 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 
 	@Override
 	public String getFluidForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		ItemInfo info = new ItemInfo(stack);
+		final ItemInfo info = new ItemInfo(stack);
 
-		for (FluidItemFluid transformer : registry)
+		for (final FluidItemFluid transformer : registry)
 			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
 				return transformer.getOutput();
 
@@ -64,9 +64,9 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 	}
 
 	public int getTransformTime(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		ItemInfo info = new ItemInfo(stack);
+		final ItemInfo info = new ItemInfo(stack);
 
-		for (FluidItemFluid transformer : registry)
+		for (final FluidItemFluid transformer : registry)
 			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
 				return transformer.getTransformTime();
 
@@ -74,9 +74,9 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 	}
 
 	public boolean getConsumable(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {
-		ItemInfo info = new ItemInfo(stack);
+		final ItemInfo info = new ItemInfo(stack);
 
-		for (FluidItemFluid transformer : registry)
+		for (final FluidItemFluid transformer : registry)
 			if (fluid.getName().equals(transformer.getInputFluid()) && info.equals(transformer.getReactant()))
 				return transformer.isConsumable();
 
@@ -85,7 +85,7 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 
 	@Override
 	protected void registerEntriesFromJSON(final FileReader fr) {
-		List<FluidItemFluid> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidItemFluid>>() {
+		final List<FluidItemFluid> gsonInput = gson.fromJson(fr, new TypeToken<List<FluidItemFluid>>() {
 		}.getType());
 		registry.addAll(gsonInput);
 	}

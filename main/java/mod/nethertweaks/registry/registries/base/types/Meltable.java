@@ -66,7 +66,7 @@ public class Meltable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Meltable other = (Meltable) obj;
+		final Meltable other = (Meltable) obj;
 		if (amount != other.amount)
 			return false;
 		if (fluid == null)

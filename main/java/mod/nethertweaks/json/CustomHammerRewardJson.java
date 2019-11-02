@@ -22,7 +22,7 @@ public class CustomHammerRewardJson implements JsonDeserializer<HammerReward>, J
 	@Override
 	public JsonElement serialize(final HammerReward src, final Type typeOfSrc, final JsonSerializationContext context)
 	{
-		JsonObject obj = new JsonObject();
+		final JsonObject obj = new JsonObject();
 
 		obj.addProperty("item", Objects.requireNonNull(src.getItemStack().getItem().getRegistryName()).toString() + ":" + src.getItemStack().getItemDamage());
 		obj.addProperty("amount", src.getItemStack().getCount());
@@ -35,14 +35,14 @@ public class CustomHammerRewardJson implements JsonDeserializer<HammerReward>, J
 
 	@Override
 	public HammerReward deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException{
-		JsonHelper helper = new JsonHelper(json);
-		JsonObject obj = json.getAsJsonObject();
+		final JsonHelper helper = new JsonHelper(json);
+		final JsonObject obj = json.getAsJsonObject();
 
 
 		// gets the item in both the new and the old way
 		ItemStack stack = ItemStack.EMPTY;
 		if (obj.has("item")) {
-			ItemInfo info = new ItemInfo(helper.getString("item"));
+			final ItemInfo info = new ItemInfo(helper.getString("item"));
 			if (!info.isValid()) {
 				LogUtil.error("Error parsing JSON: Invalid Item: $json");
 				return new HammerReward(ItemStack.EMPTY, 0, 0f, 0f);
@@ -52,9 +52,9 @@ public class CustomHammerRewardJson implements JsonDeserializer<HammerReward>, J
 		} else
 			context.deserialize(json.getAsJsonObject().get("stack"), ItemStack.class);
 
-		int miningLevel = helper.getInteger("miningLevel");
-		float chance = (float) helper.getDouble("chance");
-		double fortuneChance = (float) helper.getDouble("fortuneChance");
+		final int miningLevel = helper.getInteger("miningLevel");
+		final float chance = (float) helper.getDouble("chance");
+		final double fortuneChance = (float) helper.getDouble("fortuneChance");
 
 		return new HammerReward(stack, miningLevel, chance, fortuneChance);
 	}

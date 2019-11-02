@@ -93,9 +93,9 @@ public class TileBarrel extends TileBase implements ITickable {
 				return true;
 
 
-			ItemStack stack = player.getHeldItem(hand);
+			final ItemStack stack = player.getHeldItem(hand);
 
-			IFluidHandler fluidHandler = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			final IFluidHandler fluidHandler = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
 			boolean result = false;
 			if (fluidHandler != null) result = FluidUtil.interactWithFluidHandler(player, hand, fluidHandler);
 
@@ -122,13 +122,13 @@ public class TileBarrel extends TileBase implements ITickable {
 			}
 
 			//Check for more fluid
-			IFluidHandler tank = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-			FluidStack bucketStack = FluidUtil.getFluidContained(stack);
+			final IFluidHandler tank = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			final FluidStack bucketStack = FluidUtil.getFluidContained(stack);
 
 			if (tank == null)
 				return false;
 
-			FluidStack tankStack = tank.drain(Integer.MAX_VALUE, false);
+			final FluidStack tankStack = tank.drain(Integer.MAX_VALUE, false);
 			if (bucketStack != null && tankStack != null
 					&& bucketStack.getFluid() == tankStack.getFluid()
 					&& tank.fill(FluidUtil.getFluidContained(stack), false) != 0) {
@@ -144,11 +144,11 @@ public class TileBarrel extends TileBase implements ITickable {
 
 		if (mode == null) {
 			if (!player.getHeldItem(hand).isEmpty()) {
-				ItemStack stack = player.getHeldItem(hand);
-				ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
+				final ItemStack stack = player.getHeldItem(hand);
+				final ArrayList<IBarrelMode> modes = BarrelModeRegistry.getModes(TriggerType.ITEM);
 				if (modes == null)
 					return false;
-				for (IBarrelMode possibleMode : modes)
+				for (final IBarrelMode possibleMode : modes)
 					if (possibleMode.isTriggerItemStack(stack)) {
 						setMode(possibleMode.getName());
 						NetworkHandler.sendToAllAround(new MessageBarrelModeUpdate(mode.getName(), this.pos), this);
@@ -185,9 +185,9 @@ public class TileBarrel extends TileBase implements ITickable {
 			return;
 
 		if (Config.shouldBarrelsFillWithRain && (mode == null || mode.getName().equalsIgnoreCase("fluid"))) {
-			BlockPos plusY = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+			final BlockPos plusY = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
 			if (getWorld().isRainingAt(plusY)) {
-				FluidStack stack = new FluidStack(FluidRegistry.WATER, 2);
+				final FluidStack stack = new FluidStack(FluidRegistry.WATER, 2);
 				tank.fill(stack, true);
 			}
 		}
@@ -206,13 +206,13 @@ public class TileBarrel extends TileBase implements ITickable {
 		tank.writeToNBT(tag);
 
 		if (mode != null) {
-			NBTTagCompound barrelModeTag = new NBTTagCompound();
+			final NBTTagCompound barrelModeTag = new NBTTagCompound();
 			mode.writeToNBT(barrelModeTag);
 			barrelModeTag.setString("name", mode.getName());
 			tag.setTag("mode", barrelModeTag);
 		}
 
-		NBTTagCompound handlerTag = itemHandler.serializeNBT();
+		final NBTTagCompound handlerTag = itemHandler.serializeNBT();
 		tag.setTag("itemHandler", handlerTag);
 		tag.setInteger("barrelTier", tier);
 
@@ -224,7 +224,7 @@ public class TileBarrel extends TileBase implements ITickable {
 	public void readFromNBT(final NBTTagCompound tag) {
 		tank.readFromNBT(tag);
 		if (tag.hasKey("mode")) {
-			NBTTagCompound barrelModeTag = (NBTTagCompound) tag.getTag("mode");
+			final NBTTagCompound barrelModeTag = (NBTTagCompound) tag.getTag("mode");
 			this.setMode(barrelModeTag.getString("name"));
 			if (mode != null)
 				mode.readFromNBT(barrelModeTag);
@@ -245,7 +245,7 @@ public class TileBarrel extends TileBase implements ITickable {
 			else
 				mode = BarrelModeRegistry.getModeByName(modeName).getClass().newInstance();
 			markDirty();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace(); //Naughty
 		}
 	}
@@ -274,22 +274,22 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	public void entityOnTop(final World world, final Entity entityIn) {
-		long currentTime = world.getTotalWorldTime(); //Get the current time, shouldn't be affected by in-game /time command
+		final long currentTime = world.getTotalWorldTime(); //Get the current time, shouldn't be affected by in-game /time command
 		if (currentTime < entityWalkCooldown) return; // Cooldown hasn't elapsed, do nothing
 
 		if(MooFluidsEtc.isLoaded() && Config.enableMooFluid){
-			IAbstractCow cow = AbstractCowFactory.getCow(entityIn);
+			final IAbstractCow cow = AbstractCowFactory.getCow(entityIn);
 			if(cow != null){
 				moofluidsEntityWalk(world, cow);
 				return;
 			}
 		}
 
-		Milkable milk = MILK_ENTITY_REGISTRY.getMilkable(entityIn);
+		final Milkable milk = MILK_ENTITY_REGISTRY.getMilkable(entityIn);
 		if (milk == null) return; // Not a valid recipe
 
 		// Attempt to add the fluid if it is a valid fluid
-		Fluid result = FluidRegistry.getFluid(milk.getResult());
+		final Fluid result = FluidRegistry.getFluid(milk.getResult());
 		if (result != null)
 			tank.fill(new FluidStack(result, milk.getAmount()), true);
 
@@ -298,25 +298,25 @@ public class TileBarrel extends TileBase implements ITickable {
 	}
 
 	private void moofluidsEntityWalk(final World world, final IAbstractCow cow) {
-		Fluid result = cow.getFluid();
+		final Fluid result = cow.getFluid();
 		if(result == null || !MooFluidsEtc.fluidIsAllowed(result))
 			return;
 
 		// Amount to fill
-		int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), Config.fillAmount);
+		final int amount = Math.min(tank.getCapacity() - tank.getFluidAmount(), Config.fillAmount);
 
 		// Cow needs to cool down more
 		if(cow.getAvailableFluid() < amount)
 			return;
 
 		// Do fill
-		int filled = tank.fill(new FluidStack(result, amount), true);
+		final int filled = tank.fill(new FluidStack(result, amount), true);
 
 		// Reset everyone's timers
 		if(filled == 0)
 			return;
 
-		int appliedcooldown = cow.addCooldownEquivalent(filled);
+		final int appliedcooldown = cow.addCooldownEquivalent(filled);
 		entityWalkCooldown = world.getTotalWorldTime() + appliedcooldown;
 	}
 

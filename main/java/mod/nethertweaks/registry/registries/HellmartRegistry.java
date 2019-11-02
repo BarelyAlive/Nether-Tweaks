@@ -56,11 +56,11 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 	@Override
 	public void registerEntriesFromJSON(final FileReader fr)
 	{
-		Map<String, HellmartData> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, HellmartData>>() {
+		final Map<String, HellmartData> gsonInput = gson.fromJson(fr, new TypeToken<Map<String, HellmartData>>() {
 		}.getType());
 
-		for (Map.Entry<String, HellmartData> entry : gsonInput.entrySet()) {
-			Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
+		for (final Map.Entry<String, HellmartData> entry : gsonInput.entrySet()) {
+			final Ingredient ingr = IngredientUtil.parseFromString(entry.getKey());
 
 			if (registry.keySet().stream().anyMatch(ingredient -> IngredientUtil.ingredientEquals(ingredient, ingr)))
 				LogUtil.error("HellmartData JSON Entry for " + entry.getKey() + " already exists, skipping.");
@@ -72,7 +72,7 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 	@Override
 	public Map<Ingredient, HellmartData> getRegistry() {
 		//noinspection unchecked
-		Map<Ingredient, HellmartData> map = (HashMap) ((HashMap) registry).clone();
+		final Map<Ingredient, HellmartData> map = (HashMap) ((HashMap) registry).clone();
 		map.putAll(buyRegistry);
 		return map;
 	}
@@ -88,13 +88,13 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 		if (itemStack.isEmpty())
 			return;
 
-		Ingredient ingredient = Ingredient.fromStacks(itemStack);
+		final Ingredient ingredient = Ingredient.fromStacks(itemStack);
 
 		if (registry.keySet().stream().anyMatch(entry -> entry.test(itemStack))) {
 			LogUtil.error("Dry Entry for " + itemStack.getItem().getRegistryName() + " with meta " + itemStack.getMetadata() + " already exists, skipping.");
 			return;
 		}
-		HellmartData buyable = new HellmartData(itemStack, currency, price);
+		final HellmartData buyable = new HellmartData(itemStack, currency, price);
 		register(ingredient, buyable);
 	}
 
@@ -110,17 +110,17 @@ public class HellmartRegistry extends BaseRegistryMap<Ingredient, HellmartData> 
 
 	@Override
 	public void register(@Nonnull final String name, @Nonnull final String currency, final int price) {
-		Ingredient ingredient = new OreIngredientStoring(name);
-		Ingredient ingredient2 = new OreIngredientStoring(currency);
+		final Ingredient ingredient = new OreIngredientStoring(name);
+		final Ingredient ingredient2 = new OreIngredientStoring(currency);
 
 		if (buyRegistry.keySet().stream().anyMatch(entry -> IngredientUtil.ingredientEquals(entry, ingredient)))
 			LogUtil.error("Compost Ore Entry for " + name + " already exists, skipping.");
 		else
-			for(ItemStack stack : ingredient.getMatchingStacks())
+			for(final ItemStack stack : ingredient.getMatchingStacks())
 			{
-				ItemStack[] curry = ingredient2.getMatchingStacks();
+				final ItemStack[] curry = ingredient2.getMatchingStacks();
 
-				HellmartData buyable = new HellmartData(stack, curry[0], price);
+				final HellmartData buyable = new HellmartData(stack, curry[0], price);
 				register(ingredient, buyable);
 			}
 	}

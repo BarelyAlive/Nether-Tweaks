@@ -28,7 +28,7 @@ public class Dryable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dryable other = (Dryable) obj;
+		final Dryable other = (Dryable) obj;
 		if (item == null) {
 			if (other.item != null)
 				return false;

@@ -203,7 +203,7 @@ public class ModItems
 	@SideOnly(Side.CLIENT)
 	public void registerModels(final ModelRegistryEvent event)
 	{
-		for(Item item : ITEMS)
+		for(final Item item : ITEMS)
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 
 		ModFluids.initModels();
