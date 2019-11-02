@@ -83,7 +83,7 @@ public class Config
 	public static boolean useMetricSystem  = true;
 	public static boolean enableTeleport   = true;
 	public static boolean enableSaltRecipe = true;
-	public static boolean waterSources     = true;
+	public static boolean waterSources     = false;
 	public static String[] blacklistSalt = {"distilled_water"};
 	public static String[] grabberBlocks = {"minecraft:cactus", "minecraft:melon_block", "minecraft:web", "minecraft:fern", "minecraft:deadbush"};
 

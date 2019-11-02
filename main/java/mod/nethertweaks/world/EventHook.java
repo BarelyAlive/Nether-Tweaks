@@ -137,7 +137,6 @@ public class EventHook
 	@SubscribeEvent
 	public void noSource(final CreateFluidSourceEvent event)
 	{
-		final BlockPos pos = event.getPos();
 		final IBlockState state = event.getState();
 		final World world = event.getWorld();
 
