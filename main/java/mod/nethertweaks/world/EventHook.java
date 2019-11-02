@@ -96,7 +96,7 @@ public class EventHook
 		final boolean vaporize = world.provider.doesWaterVaporize();
 		final FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
 
-		if (!Config.enableSaltRecipe || !vaporize || event.getEntity() == null
+		if (!Config.enableSaltRecipe || !vaporize || event.getEntityPlayer() == null
 				|| !BucketHelper.isBucketWithFluidMaterial(event.getItemStack(), Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(final String fluidName : Config.blacklistSalt)
