@@ -1,8 +1,0 @@
-{
-    "parent": "nethertweaksmod:block/oak_barrel",
-    "textures": {
-        "particle": "nethertweaksmod:blocks/elder_planks",
-        "texture": "nethertweaksmod:blocks/elder_planks"
-    },
-    "name": "barrel1"
-}

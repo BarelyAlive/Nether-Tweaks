@@ -1,7 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures": {
-        "bottom": "nethertweaksmod:blocks/elder_door_lower",
-        "top": "nethertweaksmod:blocks/elder_door_upper"
-    }
-}

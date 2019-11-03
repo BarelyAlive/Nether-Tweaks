@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "nethertweaksmod:blocks/elder_planks",
-        "side": "nethertweaksmod:blocks/elder_planks",
-        "top": "nethertweaksmod:blocks/elder_planks"
-    }
-}

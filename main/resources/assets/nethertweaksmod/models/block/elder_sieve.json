@@ -1,8 +1,0 @@
-{
-    "parent": "nethertweaksmod:block/oak_sieve",
-    "textures": {
-        "particle": "nethertweaksmod:blocks/elder_planks",
-        "texture": "nethertweaksmod:blocks/elder_planks"
-    },
-    "name": "sieve"
-}

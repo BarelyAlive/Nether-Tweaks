@@ -1,17 +1,16 @@
 [
 {
-  "modid": "nethertweaksmod",
-  "name": "Nether Tweaks Mod",
-  "description": "A mod which makes it possible to live exclusively in the nether",
-  "version": "2.1.0",
-  "mcversion": "1.12.2",
+  "modid": "NetherTweaksModID",
+  "name": "NetherTweaksMod",
+  "description": "A mod which helps to live only in the nether, or better anywhere else",
+  "version": "1.5.0",
+  "mcversion": "1.9.4",
   "url": "http://www.curse.com/mc-mods/Minecraft/231443-nether-tweaks",
   "updateUrl": "",
-  "authorList": ["Angayoco", "Gaprosys"],
-  "credits": "Gaprosys for his love & great contributions",
+  "authorList": ["Barely Alive", "Gaprosys"],
+  "credits": "Gaprosys for helping me out",
   "logoFile": "",
-  "parent": "sfhcore",
   "screenshots": [],
-  "dependencies": ["sfhcore"]
+  "dependencies": []
 }
 ]
