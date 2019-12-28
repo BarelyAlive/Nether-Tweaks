@@ -40,9 +40,10 @@ public class Sieve extends BlockContainer {
 		if (material == Material.ROCK) {
 			setResistance(10.0F);
 			setHardness(1.5f);
-		} else
+		} else {
 			setResistance(5F);
 			setHardness(2.0f);
+		}
 		setDefaultState(blockState.getBaseState().withProperty(MESH, MeshType.NONE));
 	}
 

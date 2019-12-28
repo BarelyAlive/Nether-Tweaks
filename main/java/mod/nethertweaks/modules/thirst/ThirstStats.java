@@ -45,6 +45,7 @@ public class ThirstStats {
 
 	public void update(final EntityPlayer player)
 	{
+		//KILL-SWITCH
 		if(!Config.enableThirst) return;
 
 		if (exhaustion > 5.0f) {
