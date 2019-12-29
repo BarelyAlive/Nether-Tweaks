@@ -49,11 +49,11 @@ public class ModBlocks
 	//Tile Entity
 	public static final AshBonePile ASH_BONE_PILE  			 = new AshBonePile();
 	public static final Condenser CONDENSER 	  			 = new Condenser();
-	public static final NetherrackFurnace NETHERRACK_FURNACE = new NetherrackFurnace();
 	public static final Freezer FREEZER 			   		 = new Freezer();
 	public static final Hellmart HELLMART 			   		 = new Hellmart();
 	public static final CrucibleStone CRUCIBLE		 	   	 = new CrucibleStone(true);
 	public static final CrucibleStone UNFIRED_CRUCIBLE	   	 = new CrucibleStone(false);
+	public static final NetherrackFurnace NETHERRACK_FURNACE = new NetherrackFurnace();
 
 	//Sieves
 	public static final Sieve STONE_SIEVE		   			 = new Sieve(Material.ROCK);
@@ -80,19 +80,19 @@ public class ModBlocks
 	//Blocks
 	public static final Block DUST 				   			 = new CubeFalling(Material.SAND, 2.0F, 0.4F);
 	public static final StwH STWH 				   			 = new StwH();
-	public static final MeanVine MEAN_VINE			  		 = new MeanVine();
-	public static final NetherrackGravel NETHERRACK_GRAVEL	 = new NetherrackGravel();
 	public static final Block STONE_DOOR 		   			 = new CustomDoor(Material.ROCK, 10F, 1.5F);
 	public static final Block ELDER_DOOR 		   			 = new CustomDoor(Material.WOOD, 10F, 1.5F);
+	public static final MeanVine MEAN_VINE			  		 = new MeanVine();
 	public static final Block HELLFAYAH_ORE		   			 = new Cube(Material.ROCK, 2.0F, 0.4F);
-	public static final Block BLOCK_OF_HELLFAYAH   			 = new Cube(Material.ROCK, 10F, 5F);
 	public static final Block BLOCK_OF_SALT		   			 = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block BLOCK_OF_HELLFAYAH   			 = new Cube(Material.ROCK, 10F, 5F);
+	public static final Block NETHERRACK_GRAVEL	 			 = new NetherrackGravel();
 
 	//Tree
 	public static final ElderLog ELDER_LOG 		   			 = new ElderLog();
 	public static final ElderLeaves ELDER_LEAVES 		   	 = new ElderLeaves();
-	public static final Block ELDER_PLANKS 		   			 = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
 	public static final ElderSapling ELDER_SAPLING 	   		 = new ElderSapling();
+	public static final Block ELDER_PLANKS 		   			 = new CubeFireResistant(Material.WOOD, 10F, 1.5F);
 
 	public static final BlockSlabCommon ELDER_SLAB = (BlockSlabCommon) new BlockSlabCommon.Half(Material.WOOD).setResistance(10F).setHardness(2F);
 	public static final BlockSlabCommon ELDER_SLAB_DOUBLE = (BlockSlabCommon) new BlockSlabCommon.Double(Material.WOOD).setResistance(10F).setHardness(2F);
