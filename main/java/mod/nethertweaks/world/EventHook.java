@@ -267,12 +267,14 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onPlayerTick(final TickEvent.PlayerTickEvent event) {
-		if(!event.player.world.isRemote) {
-			final ThirstStats stats = ServerProxy.getStatsByUUID(event.player.getUniqueID());
+		final EntityPlayer player = event.player;
+		
+		if(!player.world.isRemote) {
+			final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 			if(stats != null)
-				stats.update(event.player);
+				stats.update(player);
 		} else
-			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(event.player, ClientProxy.CLIENT_STATS));
+			NetworkHandler.INSTANCE.sendToServer(new MessageMovementSpeed(player, ClientProxy.CLIENT_STATS));
 	}
 
 	@SubscribeEvent
