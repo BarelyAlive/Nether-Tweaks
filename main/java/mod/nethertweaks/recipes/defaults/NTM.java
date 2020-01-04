@@ -52,7 +52,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class NTM implements IRecipeDefaults
 {
-
     @Override
 	public String getMODID() {
 		return Constants.MOD_ID;
@@ -471,8 +470,12 @@ public class NTM implements IRecipeDefaults
 		}
 		else {
 			// No milk, fall back to liquid impossibility
-			registry.register(ModFluids.FLUID_BLOOD, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-			registry.register(ModFluids.FLUID_BLOOD, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+			for(Fluid f : FluidRegistry.getBucketFluids())
+				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
+				{
+					registry.register(f, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+					registry.register(f, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+				}
 		}
 
 		// Vanilla Concrete
