@@ -29,6 +29,7 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 import mod.nethertweaks.registry.registries.base.types.HammerReward;
+import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
@@ -45,6 +46,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class NTM implements IRecipeDefaults
@@ -137,6 +140,12 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerCondenser(final CondenserRegistry registry)
 	{
+		//Blood to water
+		registry.register(new ItemInfo(FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_BLOOD, 1000))), 523);
+		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "wood")), 523);
+		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "stone")), 523);
+
+		//F00D
 		registry.register(new ItemInfo(Items.ROTTEN_FLESH), 90);
 		registry.register(new ItemInfo(Items.APPLE), 80);
 		registry.register(new ItemInfo(Items.CHORUS_FRUIT), 42);
@@ -431,12 +440,12 @@ public class NTM implements IRecipeDefaults
 	public void registerFluidOnTop(final FluidOnTopRegistry registry)
 	{
 		registry.register(FluidRegistry.LAVA, FluidRegistry.WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
-		registry.register(FluidRegistry.LAVA, ModFluids.FLUID_LIQUID_IMPOSSIBILITY, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
+		registry.register(FluidRegistry.LAVA, ModFluids.FLUID_BRINE, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
 		registry.register(FluidRegistry.LAVA, ModFluids.FLUID_DISTILLED_WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
 
 		registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-		registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+		registry.register(ModFluids.FLUID_BRINE, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 	}
 
 	@Override
@@ -448,7 +457,7 @@ public class NTM implements IRecipeDefaults
 	public void registerFluidBlockTransform(final FluidBlockTransformerRegistry registry)
 	{
 		registry.register(FluidRegistry.WATER, new ItemInfo(ModBlocks.DUST), new ItemInfo(Blocks.CLAY));
-		registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, new ItemInfo(ModBlocks.DUST), new ItemInfo(Blocks.CLAY));
+		registry.register(ModFluids.FLUID_BRINE, new ItemInfo(ModBlocks.DUST), new ItemInfo(Blocks.CLAY));
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(ModBlocks.DUST), new ItemInfo(Blocks.CLAY));
 		registry.register(FluidRegistry.LAVA, "dustRedstone", new ItemInfo(Blocks.NETHERRACK));
 		registry.register(FluidRegistry.LAVA, "dustGlowstone", new ItemInfo(Blocks.END_STONE));
@@ -459,8 +468,8 @@ public class NTM implements IRecipeDefaults
 		}
 		else {
 			// No milk, fall back to liquid impossibility
-			registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-			registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+			registry.register(ModFluids.FLUID_BLOOD, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
+			registry.register(ModFluids.FLUID_BLOOD, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 		}
 
 		// Vanilla Concrete
@@ -468,15 +477,16 @@ public class NTM implements IRecipeDefaults
 		{
 			registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
 			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
-			registry.register(ModFluids.FLUID_LIQUID_IMPOSSIBILITY, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
+			registry.register(ModFluids.FLUID_BRINE, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
 		}
 	}
 
 	@Override
 	public void registerFluidItemFluid(final FluidItemFluidRegistry registry)
 	{
-		registry.register(FluidRegistry.WATER, new ItemInfo(ModItems.CRYSTAL_OF_LIGHT), ModFluids.FLUID_LIQUID_IMPOSSIBILITY, 1000, false);
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(ModItems.SALT), FluidRegistry.WATER, 100, true);
+		registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(ModBlocks.BLOCK_OF_SALT), FluidRegistry.WATER, 100, true);
+		registry.register(FluidRegistry.WATER, new ItemInfo(ModBlocks.BLOCK_OF_SALT), ModFluids.FLUID_BRINE, 100, true);
 	}
 
 	@Override

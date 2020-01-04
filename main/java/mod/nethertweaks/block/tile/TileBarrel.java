@@ -92,7 +92,6 @@ public class TileBarrel extends TileBase implements ITickable {
 			if (TankUtil.drainWaterIntoBottle(this, player, tank))
 				return true;
 
-
 			final ItemStack stack = player.getHeldItem(hand);
 
 			final IFluidHandler fluidHandler = getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
@@ -104,7 +103,7 @@ public class TileBarrel extends TileBase implements ITickable {
 					if (fluidHandler.getTankProperties()[0].getContents() != null)
 						if (fluidHandler.getTankProperties()[0].getContents().getFluid() != null)
 							if (fluidHandler.getTankProperties()[0].getContents().getFluid() == FluidRegistry.WATER)
-								if (Objects.requireNonNull(ModItems.CRYSTAL_OF_LIGHT.getRegistryName()).equals(stack.getItem().getRegistryName()))
+								if (Objects.requireNonNull(ModItems.KITCHEN_KNIFE.getRegistryName()).equals(stack.getItem().getRegistryName()))
 									getItemHandler().insertItem(0, stack, true);
 
 			if (result) {

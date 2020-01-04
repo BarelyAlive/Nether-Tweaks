@@ -68,11 +68,11 @@ public class Config
 
 	//Crucible
 
-	//Liquid Impossibility
-	public static int temperatureLI = 0;
-	public static int luminosityLI  = 15;
-	public static int densityLI 	= 1000;
-	public static int viscosityLI   = 1000;
+	//Blood
+	public static int temperatureBlood = 0;
+	public static int luminosityBlood  = 15;
+	public static int densityBlood 	= 1000;
+	public static int viscosityBlood   = 1000;
 	public static boolean doesLIVaporize = false;
 	public static boolean spawnSkeletons = true;
 	public static boolean spawnSlimes 	 = true;
@@ -172,21 +172,21 @@ public class Config
 
 		//Barrel
 		compostingTicks 			  = config.get(barrel, "Ticks to form Dirt", 600).getInt();
-		woodBarrelMaxTemp 			  = config.get(barrel, "How hot can a fluid be in a wooden barrel (in Kelvin)?", 301).getInt();
+		woodBarrelMaxTemp 			  = config.get(barrel, "How hot can a fluid be in a wooden barrel (in Kelvin)?", 374).getInt();
 		shouldBarrelsFillWithRain 	  = config.get(barrel, "Barrels fill with rain?", true).getBoolean();
 		enableBarrelTransformLighting = config.get(barrel, "Enable Barrel transform lighting?", true).getBoolean();
 
 		//Crucible
 
-		//Liquid Impossibility
-		densityLI					  = config.getInt("Density for Liquid Impossibility", fluids, 1000, 0, Integer.MAX_VALUE, "");
-		luminosityLI				  = config.getInt("Luminosity for Liquid Impossibility", fluids, 15, 0, 15, "");
-		viscosityLI					  = config.getInt("Viscosity for Liquid Impossibility", fluids, 1000, 0, Integer.MAX_VALUE, "");
-		temperatureLI				  = config.getInt("Temperatur of Liquid Impossibility (in Kelvin)", fluids, 0, 0, Integer.MAX_VALUE, "");
-		doesLIVaporize 				  = config.get(fluids, "Does Liquid Impossibility vaporize?", false).getBoolean();
-		spawnSkeletons 				  = config.get(fluids, "Can Liquid Impossibility transform wither skeletons into skeletons", true).getBoolean();
-		spawnSlimes 				  = config.get(fluids, "Can Liquid Impossibility transform magma slimes into slimes?", true).getBoolean();
-		spawnWaterMobs				  = config.get(fluids, "Do water mobs spawn in the nether? (i.e. Liquid Impossibility)", true).getBoolean();
+		//Blood
+		densityBlood				  = config.getInt("Density for Blood", fluids, 1000, 0, Integer.MAX_VALUE, "");
+		luminosityBlood				  = config.getInt("Luminosity for Blood", fluids, 0, 0, 15, "");
+		viscosityBlood				  = config.getInt("Viscosity for Blood", fluids, 1000, 0, Integer.MAX_VALUE, "");
+		temperatureBlood			  = config.getInt("Temperatur of Blood (in Kelvin)", fluids, 309, 0, Integer.MAX_VALUE, "");
+		doesLIVaporize 				  = config.get(fluids, "Does Blood vaporize?", false).getBoolean();
+		spawnSkeletons 				  = config.get(fluids, "Can Blood transform wither skeletons into skeletons", true).getBoolean();
+		spawnSlimes 				  = config.get(fluids, "Can Blood transform magma slimes into slimes?", true).getBoolean();
+		spawnWaterMobs				  = config.get(fluids, "Do water mobs spawn in the nether? (i.e. Blood)", true).getBoolean();
 
 		//JSON
 		enableJSONLoading 			  = config.getBoolean("Enable use of JSON configuration?", json, true, "Disable this if JSON configuration causes problems");

@@ -1,8 +1,10 @@
 fluid.distilled_water=Distilled Water
-fluid.liquid_impossibility=Liquid Impossibility
+fluid.blood=Blood
+fluid.brine=Brine
 
 tile.distilled_water.name=Distilled Water
-tile.liquid_impossibility.name=Liquid Impossibility
+tile.blood.name=Blood
+tile.brine.name=Brine
 
 tile.condenser.name=Condenser
 tile.netherrack_furnace.name=Netherrack Furnace
@@ -65,7 +67,7 @@ item.sugarcane_seeds.name=Sugarcane Seeds
 
 item.flint_and_blaze.name=Flint and Blaze
 
-item.crystal_of_light.name=Crystal of Light
+item.kitchen_knife.name=Kitchen Knife
 
 item.end_box.name=End Box
 item.portal_core.name=Portal Core

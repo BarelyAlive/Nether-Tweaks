@@ -1,11 +1,13 @@
 package mod.nethertweaks.init;
 
 import mod.nethertweaks.Constants;
+import mod.nethertweaks.block.Blood;
+import mod.nethertweaks.block.Brine;
 import mod.nethertweaks.block.DistilledWater;
-import mod.nethertweaks.block.LiquidImpossibility;
 import mod.nethertweaks.config.BlocksItems;
+import mod.nethertweaks.fluids.FluidBlood;
+import mod.nethertweaks.fluids.FluidBrine;
 import mod.nethertweaks.fluids.FluidDistilledWater;
-import mod.nethertweaks.fluids.FluidLiquidImpossibility;
 import mod.sfhcore.handler.BucketHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -13,11 +15,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModFluids
 {
 	//Fluids
-	public static final FluidLiquidImpossibility FLUID_LIQUID_IMPOSSIBILITY = new FluidLiquidImpossibility();
-	public static final LiquidImpossibility BLOCK_LIQUID_IMPOSSIBILITY = new LiquidImpossibility();
+	public static final FluidBlood FLUID_BLOOD = new FluidBlood();
+	public static final Blood BLOCK_BLOOD = new Blood();
 
 	public static final FluidDistilledWater FLUID_DISTILLED_WATER = new FluidDistilledWater();
 	public static final DistilledWater BLOCK_DISTILLED_WATER = new DistilledWater();
+
+	public static final FluidBrine FLUID_BRINE = new FluidBrine();
+	public static final Brine BLOCK_BRINE = new Brine();
 
 	public static void preInit()
 	{
@@ -35,7 +40,8 @@ public class ModFluids
 
 	@SideOnly(Side.CLIENT)
     public static void initModels() {
+        FLUID_BLOOD.initModel();
         FLUID_DISTILLED_WATER.initModel();
-        FLUID_LIQUID_IMPOSSIBILITY.initModel();
+        FLUID_BRINE.initModel();
     }
 }

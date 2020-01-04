@@ -114,10 +114,13 @@ public class ModBlocks
 	private static void register()
 	{
 		//Fluid Blocks
-		if (BlocksItems.enableLiquidImpossibility)
-			addBlock(ModFluids.BLOCK_LIQUID_IMPOSSIBILITY, Constants.LIQUID_IMPOSSIBILITY);
+		if(BlocksItems.enableBlood)
+			addBlock(ModFluids.BLOCK_BLOOD, Constants.BLOOD);
+		if(BlocksItems.enableBrine)
+			addBlock(ModFluids.BLOCK_BRINE, Constants.BRINE);
 		if(BlocksItems.enableDistilledWater)
 			addBlock(ModFluids.BLOCK_DISTILLED_WATER, Constants.DISTILLED_WATER);
+		
 		//Regular Blocks
 		if(BlocksItems.enableBarrel) {
 			addBlock(STONE_BARREL, Constants.STONE_BARREL);

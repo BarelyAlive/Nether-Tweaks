@@ -108,17 +108,10 @@ public class Barrel extends Block implements ITileEntityProvider
 		return ((TileBarrel) te).onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
-	@Override
-	@Deprecated
-	public boolean isFullBlock(final IBlockState state) {
-		return false;
-	}
-
-	@Override
-	@Deprecated
-	public boolean isOpaqueCube(final IBlockState state) {
-		return false;
-	}
+	@Override @Deprecated public boolean isFullBlock(final IBlockState state) {	return false; }
+	@Override @Deprecated public boolean isOpaqueCube(final IBlockState state) { return false; }
+	@Override @Deprecated public boolean isFullCube(final IBlockState state) { return false; }
+	@Override public boolean isTopSolid(final IBlockState state) { return false; }
 
 	@Override
 	public TileEntity createNewTileEntity(@Nonnull final World worldIn, final int meta) {
@@ -130,17 +123,6 @@ public class Barrel extends Block implements ITileEntityProvider
 	@Deprecated
 	public AxisAlignedBB getBoundingBox(final IBlockState state, final IBlockAccess source, final BlockPos pos) {
 		return boundingBox;
-	}
-
-	@Override
-	public boolean isTopSolid(final IBlockState state) {
-		return false;
-	}
-
-	@Override
-	@Deprecated
-	public boolean isFullCube(final IBlockState state) {
-		return false;
 	}
 
 	public int getTier() {

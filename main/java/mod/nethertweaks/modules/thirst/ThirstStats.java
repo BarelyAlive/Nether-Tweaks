@@ -104,7 +104,7 @@ public class ThirstStats {
 		if (thirstLevel < 16 || poisoned)
 			try {
 				foodTimer.setInt(player.getFoodStats(), 0);
-			} catch (final IllegalAccessException e) {
+			} catch (final IllegalAccessException | NullPointerException e) {
 				e.printStackTrace();
 			}
 

@@ -7,14 +7,14 @@
         "inventory": [
                {
                 "custom": {
-                    "fluid": "liquid_impossibility"
+                    "fluid": "brine"
                 }
             }
         ],
-        "liquid_impossibility": [
+        "brine": [
             {
                 "custom": {
-                    "fluid": "liquid_impossibility"
+                    "fluid": "brine"
                 }
             }
         ]

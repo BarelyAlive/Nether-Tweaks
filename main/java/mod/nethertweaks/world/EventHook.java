@@ -174,12 +174,6 @@ public class EventHook
 	}
 
 	@SubscribeEvent
-	public void changeToHomeDim(final PlayerEvent.PlayerChangedDimensionEvent event)
-	{
-		teleportPlayer(event.player);
-	}
-
-	@SubscribeEvent
 	public void dropItem(final EntityJoinWorldEvent event)
 	{
 		if(event.getEntity().dimension != -1) return;
@@ -206,11 +200,19 @@ public class EventHook
 		}
 	}
 
+	//HELLWORLD
+
 	@SubscribeEvent
 	public void firstSpawn(final PlayerEvent.PlayerLoggedInEvent event)
 	{
 		teleportPlayer(event.player);
 		NetworkHandler.INSTANCE.sendTo(new MessageBonfireGetList(WorldSpawnLocation.getLastSpawnLocations(), WorldSpawnLocation.getBonfireInfo()), (EntityPlayerMP) event.player);
+	}
+
+	@SubscribeEvent
+	public void changeToHomeDim(final PlayerEvent.PlayerChangedDimensionEvent event)
+	{
+		teleportPlayer(event.player);
 	}
 
 	//WORLD DATA

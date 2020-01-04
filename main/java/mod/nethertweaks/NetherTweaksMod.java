@@ -65,7 +65,7 @@ public class NetherTweaksMod
 	}
 
 	@Mod.EventHandler
-	public void PreInit(final FMLPreInitializationEvent event)
+	public void preInit(final FMLPreInitializationEvent event)
 	{
 		configDirectory = new File(event.getModConfigurationDirectory(), Constants.MOD_ID);
 		Config.preInit();
@@ -91,7 +91,7 @@ public class NetherTweaksMod
 	}
 
 	@Mod.EventHandler
-	public void Init(final FMLInitializationEvent event)
+	public void init(final FMLInitializationEvent event)
 	{
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		ModSmeltingNOreDict.init();
@@ -101,7 +101,7 @@ public class NetherTweaksMod
 	}
 
 	@Mod.EventHandler
-	public void PostInit(final FMLPostInitializationEvent event)
+	public void postInit(final FMLPostInitializationEvent event)
 	{
 		OreHandler.registerFurnaceRecipe();
 		//Mobs

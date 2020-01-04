@@ -8,12 +8,12 @@ import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.item.Ash;
 import mod.nethertweaks.item.CoiledSword;
-import mod.nethertweaks.item.CrystalOfLight;
 import mod.nethertweaks.item.Grabber;
 import mod.nethertweaks.item.Hammer;
 import mod.nethertweaks.item.ItemDoll;
 import mod.nethertweaks.item.ItemMesh;
 import mod.nethertweaks.item.ItemPebble;
+import mod.nethertweaks.item.KitchenKnife;
 import mod.nethertweaks.item.Seed;
 import mod.sfhcore.handler.ModFuelHandler;
 import mod.sfhcore.items.ItemDoor;
@@ -39,7 +39,7 @@ public class ModItems
 	public static final Seed SUGARCANE_SEEDS  	 	 = new Seed();
 
 	//CRYSTALS
-	public static final Item CRYSTAL_OF_LIGHT 	 	= new CrystalOfLight();
+	public static final Item KITCHEN_KNIFE 	 	= new KitchenKnife();
 
 	//MESHES
 	public static final ItemMesh MESH_STRING	  	 = new ItemMesh();
@@ -80,7 +80,6 @@ public class ModItems
 	public static final Item ENDER_INFUSED_FRAME 	 = new Item();
 	public static final Item STRING 		  	 	 = new Item();
 	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
-	public static final Item POWDER_OF_LIGHT  	 	 = new Item();
 	public static final Ash ASH			  	 	 	 = new Ash();
 	public static final CoiledSword COILED_SWORD 	 = new CoiledSword();
 	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
@@ -132,7 +131,6 @@ public class ModItems
 		if(BlocksItems.enableEnderInfusedFrame)	addItem(ENDER_INFUSED_FRAME, Constants.ENDER_INFUSED_FRAME);
 		if(BlocksItems.enableMeanVine)			addItem(STRING, Constants.STRING);
 		if(BlocksItems.enablePorcelainClay) 	addItem(PORCELAIN_CLAY, Constants.PORCELAIN_CLAY);
-		if(BlocksItems.enablePowderOfLight) 	addItem(POWDER_OF_LIGHT, Constants.POWDER_OF_LIGHT);
 		if(BlocksItems.enableAsh) 				addItem(ASH, Constants.ASH);
 		if(BlocksItems.enableWoodChippings)		addItem(WOOD_CHIPPINGS, Constants.WOOD_CHIPPINGS);
 		if(BlocksItems.enableCoiledSword)		addItem(COILED_SWORD, Constants.COILED_SWORD);
@@ -140,7 +138,7 @@ public class ModItems
 		if(BlocksItems.enableGrassSeeds)		addItem(GRASS_SEEDS, Constants.GRASS_SEEDS);
 		if(BlocksItems.enableCactusSeeds)		addItem(CACTUS_SEEDS, Constants.CACTUS_SEEDS);
 		if(BlocksItems.enableSugarcaneSeeds)	addItem(SUGARCANE_SEEDS, Constants.SUGARCANE_SEEDS);
-		if(BlocksItems.enableCrystalOfLight)	addItem(CRYSTAL_OF_LIGHT, Constants.CRYSTAL_OF_LIGHT);
+		if(BlocksItems.enableKitchenKnife)		addItem(KITCHEN_KNIFE, Constants.KITCHEN_KNIFE);
 		if(BlocksItems.enablePebbleStone)		addItem(PEBBLE_STONE, Constants.PEBBLE_STONE);
 		if(BlocksItems.enablePebbleGranite)		addItem(PEBBLE_GRANITE, Constants.PEBBLE_GRANITE);
 		if(BlocksItems.enablePebbleDiorite)		addItem(PEBBLE_DIORITE, Constants.PEBBLE_DIORITE);

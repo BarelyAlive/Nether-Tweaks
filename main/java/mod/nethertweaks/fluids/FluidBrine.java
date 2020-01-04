@@ -1,7 +1,6 @@
 package mod.nethertweaks.fluids;
 
 import mod.nethertweaks.Constants;
-import mod.nethertweaks.config.Config;
 import mod.sfhcore.helper.FluidStateMapper;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -17,19 +16,19 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class FluidLiquidImpossibility extends Fluid{
+public class FluidBrine extends Fluid
+{
+	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/brine_still");
+	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/brine_flow");
 
-	public static final ResourceLocation STILL = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_still");
-	public static final ResourceLocation FLOW = new ResourceLocation("nethertweaksmod:blocks/liquid_impossibility_flow");
-
-	public FluidLiquidImpossibility()
+	public FluidBrine()
 	{
-		super(Constants.LIQUID_IMPOSSIBILITY, STILL, FLOW);
+		super(Constants.BRINE, STILL, FLOW);
 
-		setTemperature(Config.temperatureLI);
-		setDensity(Config.densityLI);
-		setViscosity(Config.viscosityLI);
-		setLuminosity(Config.luminosityLI);
+		setTemperature(FluidRegistry.WATER.getTemperature());
+		setDensity(1025);
+		setViscosity(1025);
+		setLuminosity(FluidRegistry.WATER.getLuminosity());
 
 		FluidRegistry.registerFluid(this);
 		FluidRegistry.addBucketForFluid(this);
@@ -42,7 +41,7 @@ public class FluidLiquidImpossibility extends Fluid{
 
 	@Override
 	public boolean doesVaporize(final FluidStack fluidStack) {
-		return Config.doesLIVaporize;
+		return false;
 	}
 
 	@SideOnly(Side.CLIENT)

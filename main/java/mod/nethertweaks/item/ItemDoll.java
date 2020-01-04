@@ -32,7 +32,7 @@ public class ItemDoll extends Item
 	public ItemDoll(){}
 
 	public Fluid getSpawnFluid(final ItemStack stack) {
-		return ModFluids.FLUID_LIQUID_IMPOSSIBILITY;
+		return ModFluids.FLUID_BLOOD;
 	}
 
 	/**

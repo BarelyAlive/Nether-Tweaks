@@ -1,8 +1,10 @@
 fluid.distilled_water=Água destilada
-fluid.liquid_impossibility=Impossibilidade Líquida
+fluid.blood=Sangue
+fluid.brine=Salmoura
 
 tile.distilled_water.name=Água destilada
-tile.liquid_impossibility.name=Impossibilidade Líquida
+tile.blood.name=Sangue
+tile.brine.name=Salmoura
 
 tile.condenser.name=Condensador
 tile.netherrack_furnace.name=Fornalha Netherrack
@@ -66,7 +68,7 @@ item.sugarcane_seeds.name=Sementes de Cana de Açúcar
 
 item.flint_and_blaze.name=Flint and Blaze
 
-item.crystal_of_light.name=Cristal de Luz
+item.kitchen_knife.name=Faca de Cozinha
 
 item.end_box.name=End Box
 item.portal_core.name=Núcleo do Portal

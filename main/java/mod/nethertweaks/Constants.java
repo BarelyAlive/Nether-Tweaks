@@ -4,9 +4,9 @@ public class Constants {
 
 	public static final String MOD_ID 		= "nethertweaksmod";
 	public static final String MOD_NAME 	= "Nether Tweaks Mod";
-	public static final String VERSION 		= "2.1.0";
+	public static final String VERSION 		= "2.2.0";
 	public static final String MC_VERSION 	= "[1.12.2]";
-	public static final String DEPENDENCIES = "required-after:sfhcore@[2.1.0];";
+	public static final String DEPENDENCIES = "required-after:sfhcore@[2.1.1];";
 
 	public static final String CLIENT_PROXY = "mod.nethertweaks.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "mod.nethertweaks.proxy.ServerProxy";
@@ -15,7 +15,8 @@ public class Constants {
 
 	//Fluids
 	public static final String DISTILLED_WATER			= "distilled_water";
-	public static final String LIQUID_IMPOSSIBILITY		= "liquid_impossibility";
+	public static final String BLOOD					= "blood";
+	public static final String BRINE					= "brine";
 
 	//Blocks
 	public static final String CONDENSER 				= "condenser";
@@ -93,7 +94,7 @@ public class Constants {
 	public static final String CACTUS_SEEDS				= "cactus_seeds";
 	public static final String SUGARCANE_SEEDS			= "sugarcane_seeds";
 
-	public static final String CRYSTAL_OF_LIGHT			= "crystal_of_light";
+	public static final String KITCHEN_KNIFE			= "kitchen_knife";
 
 	public static final String DOLL_BAT					= "doll_bat";
 	public static final String DOLL_CHICKEN				= "doll_chicken";
@@ -120,7 +121,6 @@ public class Constants {
 	public static final String ENDER_INFUSED_FRAME		= "ender_infused_frame";
 	public static final String STRING					= "string";
 	public static final String PORCELAIN_CLAY			= "porcelain_clay";
-	public static final String POWDER_OF_LIGHT			= "powder_of_light";
 	public static final String ASH						= "ash";
 	public static final String WOOD_CHIPPINGS			= "wood_chippings";
 

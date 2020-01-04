@@ -20,7 +20,8 @@ public class BlocksItems
 	enableStwH 				  = true,
 	enableFreezer 			  = true,
 	enableHellmart 			  = true,
-	enableLiquidImpossibility = true,
+	enableBlood 			  = true,
+	enableBrine 			  = true,
 	enableDistilledWater	  = true,
 	enableMeanVine 			  = true,
 	enableNetherrackFurnace   = true,
@@ -39,7 +40,7 @@ public class BlocksItems
 	enableGrassSeeds		  = true,
 	enableCactusSeeds		  = true,
 	enableSugarcaneSeeds	  = true,
-	enableCrystalOfLight 	  = true,
+	enableKitchenKnife 	  = true,
 	enableAsh			 	  = true,
 	enableWoodChippings 	  = true,
 	enableCoiledSword 		  = true,
@@ -101,7 +102,8 @@ public class BlocksItems
 		enableHellmart 					= config.get(blocks, "Enable Hellmart?", true).getBoolean();
 		enableDistilledWater	 		= config.get(blocks, "Enable Distilled Water?", true,
 				"If you deactivate this fluid, Condensers will produce vanilla water.").getBoolean();
-		enableLiquidImpossibility 		= config.get(blocks, "Enable Liquid Impossibility?", true).getBoolean();
+		enableBlood 					= config.get(blocks, "Enable Blood?", true).getBoolean();
+		enableBrine 					= config.get(blocks, "Enable Brine?", true).getBoolean();
 		enableMeanVine 					= config.get(blocks, "Enable Mean Vines?", true).getBoolean();
 		enableElderTree 				= config.get(blocks, "Enable Elder Tree?", true).getBoolean();
 		enableNetherrackFurnace 		= config.get(blocks, "Enable Elderrack Furnace?", true).getBoolean();
@@ -123,7 +125,7 @@ public class BlocksItems
 		enableGrassSeeds				= config.get(items, "Enable Grass Seeds?", true).getBoolean();
 		enableCactusSeeds				= config.get(items, "Enable Cactus Seeds?", true).getBoolean();
 		enableSugarcaneSeeds			= config.get(items, "Enable Sugarcane Seeds?", true).getBoolean();
-		enableCrystalOfLight			= config.get(items, "Enable Crystal of Light?", true).getBoolean();
+		enableKitchenKnife			= config.get(items, "Enable Crystal of Light?", true).getBoolean();
 		enableAsh						= config.get(items, "Enable Ash?", true).getBoolean();
 		enableWoodChippings				= config.get(items, "Enable Wood Chippings?", true).getBoolean();
 		enableCoiledSword				= config.get(items, "Enable Coiled Sword?", true).getBoolean();
