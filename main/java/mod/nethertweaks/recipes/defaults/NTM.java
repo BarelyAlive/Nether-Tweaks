@@ -141,7 +141,10 @@ public class NTM implements IRecipeDefaults
 	public void registerCondenser(final CondenserRegistry registry)
 	{
 		//Blood to water
-		registry.register(new ItemInfo(FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_BLOOD, 1000))), 523);
+		for(Fluid f : FluidRegistry.getBucketFluids())
+			if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
+				registry.register(new ItemInfo(FluidUtil.getFilledBucket(new FluidStack(f, 1000))), 523);
+		
 		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "wood")), 523);
 		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "stone")), 523);
 
