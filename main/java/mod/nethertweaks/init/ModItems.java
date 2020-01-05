@@ -80,9 +80,9 @@ public class ModItems
 	public static final Item ENDER_INFUSED_FRAME 	 = new Item();
 	public static final Item STRING 		  	 	 = new Item();
 	public static final Item PORCELAIN_CLAY	  	 	 = new Item();
+	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 	public static final Ash ASH			  	 	 	 = new Ash();
 	public static final CoiledSword COILED_SWORD 	 = new CoiledSword();
-	public static final Item WOOD_CHIPPINGS	  	 	 = new Item();
 
 	//Tools
 	public static final Grabber GRABBER_WOOD 	  	 = new Grabber(Config.durabilityGWood, ToolMaterial.WOOD);

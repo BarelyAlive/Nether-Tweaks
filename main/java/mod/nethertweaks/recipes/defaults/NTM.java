@@ -447,8 +447,8 @@ public class NTM implements IRecipeDefaults
 		registry.register(FluidRegistry.LAVA, ModFluids.FLUID_DISTILLED_WATER, new BlockInfo(Blocks.OBSIDIAN.getDefaultState()));
 
 		registry.register(FluidRegistry.WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
-		registry.register(ModFluids.FLUID_DISTILLED_WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 		registry.register(ModFluids.FLUID_BRINE, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
+		registry.register(ModFluids.FLUID_DISTILLED_WATER, FluidRegistry.LAVA, new BlockInfo(Blocks.STONE.getDefaultState()));
 	}
 
 	@Override
