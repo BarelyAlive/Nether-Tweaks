@@ -220,12 +220,14 @@ public class TileCondenser extends TileFluidInventory
 
 			final IFluidHandler handler = FluidUtil.getFluidHandler(material);
 			
-			if(handler == null)
-				material.shrink(1);
+			if(handler != null)
+				handler.drain(Integer.MAX_VALUE, true);
 			else
 			{
-				handler.drain(Integer.MAX_VALUE, true);
-				setInventorySlotContents(0, material.getItem().getContainerItem(material));
+				if(material.getItem().getContainerItem() != null)
+					setInventorySlotContents(0, material.getItem().getContainerItem(material));
+				else
+				material.shrink(1);
 			}
 		}
 	}
