@@ -142,10 +142,11 @@ public class NTM implements IRecipeDefaults
 		//Blood to water
 		for(Fluid f : FluidRegistry.getBucketFluids())
 			if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
+			{
 				registry.register(new ItemInfo(FluidUtil.getFilledBucket(new FluidStack(f, 1000))), 523);
-		
-		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "wood")), 523);
-		registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "stone")), 523);
+				registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(f, "wood")), 523);
+				registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(f, "stone")), 523);
+			}
 
 		//F00D
 		registry.register(new ItemInfo(Items.ROTTEN_FLESH), 90);
