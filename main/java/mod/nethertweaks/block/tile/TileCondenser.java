@@ -227,7 +227,7 @@ public class TileCondenser extends TileFluidInventory
 				if(material.getItem().getContainerItem() != null)
 					setInventorySlotContents(0, material.getItem().getContainerItem(material));
 				else
-				material.shrink(1);
+					material.shrink(1);
 			}
 		}
 	}
@@ -258,17 +258,6 @@ public class TileCondenser extends TileFluidInventory
 			setInventorySlotContents(1, container);
 			decrStackSize(2, 1);
 		}
-
-		if(BlocksItems.enableDistilledWater) return;
-
-		if(getStackInSlot(2).getItem() == Items.GLASS_BOTTLE && getStackInSlot(1).isEmpty())
-			if(getTank().getFluidAmount() >= 250)
-			{
-				getTank().drain(250, true);
-
-				setInventorySlotContents(1, TankUtil.WATER_BOTTLE.copy());
-				decrStackSize(2, 1);
-			}
 	}
 
 	private int getHeatRate() {
@@ -308,7 +297,6 @@ public class TileCondenser extends TileFluidInventory
 		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		case 1: return false;
 		case 2:
-			if(stack.getItem() == Items.GLASS_BOTTLE && !BlocksItems.enableDistilledWater) return true;
 			if(handler == null) return false;
 			if(FluidUtil.tryFluidTransfer(handler, getTank(), Integer.MAX_VALUE, false) == null) return false;
 		}
