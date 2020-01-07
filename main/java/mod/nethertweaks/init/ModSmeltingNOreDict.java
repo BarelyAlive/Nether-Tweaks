@@ -2,8 +2,10 @@ package mod.nethertweaks.init;
 
 import mod.nethertweaks.config.BlocksItems;
 import mod.sfhcore.handler.BucketHandler;
+import mod.sfhcore.util.ItemInfo;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -13,7 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModSmeltingNOreDict
 {
 	//NTM
-	public static final String BLOOD = "blood";
+	public static final String BLOOD = "listAllBlood";
 	public static final String DISTILLED_WATER = "listAllDistilledWater";
 
 	public static final String HELLFAYAH = "hellfayah";
@@ -101,6 +103,15 @@ public class ModSmeltingNOreDict
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "wood"));
 		}
+		
+		if(BlocksItems.enableBlood && BlocksItems.enableWoodBucket && BlocksItems.enableWoodBucket)
+			for(Fluid f : FluidRegistry.getBucketFluids())
+				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
+				{
+					OreDictionary.registerOre(BLOOD, FluidUtil.getFilledBucket(new FluidStack(f, 1000)));
+					OreDictionary.registerOre(BLOOD, BucketHandler.getBucketFromFluid(f, "wood"));
+					OreDictionary.registerOre(BLOOD, BucketHandler.getBucketFromFluid(f, "stone"));
+				}
 
 		OreDictionary.registerOre("listAllBucket", Items.BUCKET);
 		OreDictionary.registerOre("listAllWater", Items.WATER_BUCKET);

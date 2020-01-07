@@ -7,14 +7,14 @@
   ],
   "key": {
     "X": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:netherrack"
     },
     "Y": {
       "item": "minecraft:iron_ingot"
     },
     "Z": {
       "type": "forge:ore_dict",
-      "ore": "listAllLiquidImpossibility"
+      "ore": "listBlood"
     }
   },
   "result": {
