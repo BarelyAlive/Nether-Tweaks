@@ -77,8 +77,6 @@ public class ModSmeltingNOreDict
 		if(BlocksItems.enableCactusSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.CACTUS_SEEDS));
 
 		//Vanilla/Forge Buckets
-		if(BlocksItems.enableBlood)
-			OreDictionary.registerOre(BLOOD,	FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_BLOOD, 1000)));
 		if(BlocksItems.enableDistilledWater)
 			OreDictionary.registerOre(DISTILLED_WATER,	FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, 1000)));
 
@@ -88,8 +86,6 @@ public class ModSmeltingNOreDict
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "stone"));
 			OreDictionary.registerOre("listAllLava", BucketHandler.getBucketFromFluid(FluidRegistry.LAVA, "stone"));
 
-			if(BlocksItems.enableBlood)
-				OreDictionary.registerOre(BLOOD, BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "stone"));
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "stone"));
 		}
@@ -99,8 +95,6 @@ public class ModSmeltingNOreDict
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
 			OreDictionary.registerOre("listAllWater", BucketHandler.getBucketFromFluid(FluidRegistry.WATER, "wood"));
 
-			if(BlocksItems.enableBlood)
-				OreDictionary.registerOre(BLOOD, BucketHandler.getBucketFromFluid(ModFluids.FLUID_BLOOD, "wood"));
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "wood"));
 		}
