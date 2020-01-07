@@ -93,6 +93,7 @@ public class ModSmeltingNOreDict
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "stone"));
 		}
+		
 		if(BlocksItems.enableWoodBucket)
 		{
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
