@@ -491,12 +491,12 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerFluidItemFluid(final FluidItemFluidRegistry registry)
 	{
-		for(ItemStack s : OreDictionary.getOres("itemSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), FluidRegistry.WATER, 100, true);
-		for(ItemStack s : OreDictionary.getOres("dustSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), FluidRegistry.WATER, 100, true);
-		for(ItemStack s : OreDictionary.getOres("blockSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), ModFluids.FLUID_BRINE, 100, true);
+		for(ItemStack salt : OreDictionary.getOres("itemSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), FluidRegistry.WATER, 100, true);
+		for(ItemStack salt : OreDictionary.getOres("dustSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), FluidRegistry.WATER, 100, true);
+		for(ItemStack salt : OreDictionary.getOres("blockSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), ModFluids.FLUID_BRINE, 100, true);
 	}
 
 	@Override
