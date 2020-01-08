@@ -72,13 +72,13 @@ public class ModSmeltingNOreDict
 			OreDictionary.registerOre("treeSapling", ModBlocks.ELDER_SAPLING);
 			OreDictionary.registerOre("treeLeaves", ModBlocks.ELDER_LEAVES);
 		}
-		if(BlocksItems.enableMushroomSpores)   OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.MUSHROOM_SPORES));
-		if(BlocksItems.enableGrassSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.GRASS_SEEDS));
-		if(BlocksItems.enableCactusSeeds) 	  OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.CACTUS_SEEDS));
+		if(BlocksItems.enableMushroomSpores) OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.MUSHROOM_SPORES));
+		if(BlocksItems.enableGrassSeeds) 	 OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.GRASS_SEEDS));
+		if(BlocksItems.enableCactusSeeds) 	 OreDictionary.registerOre("listAllseed", new ItemStack(ModItems.CACTUS_SEEDS));
 
 		//Vanilla/Forge Buckets
 		if(BlocksItems.enableDistilledWater)
-			OreDictionary.registerOre(DISTILLED_WATER,	FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, 1000)));
+			OreDictionary.registerOre(DISTILLED_WATER, FluidUtil.getFilledBucket(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, 1000)));
 
 		if(BlocksItems.enableStoneBucket)
 		{

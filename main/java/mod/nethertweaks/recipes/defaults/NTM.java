@@ -480,7 +480,7 @@ public class NTM implements IRecipeDefaults
 		}
 
 		// Vanilla Concrete
-		for (int meta = 0; meta < 16; meta++)
+		for(int meta = 0; meta < 16; meta++)
 		{
 			registry.register(FluidRegistry.WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
 			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(Blocks.CONCRETE_POWDER, meta), new ItemInfo(Blocks.CONCRETE, meta));
@@ -491,9 +491,12 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerFluidItemFluid(final FluidItemFluidRegistry registry)
 	{
-		registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(ModItems.SALT), FluidRegistry.WATER, 100, true);
-		registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(ModBlocks.BLOCK_OF_SALT), FluidRegistry.WATER, 100, true);
-		registry.register(FluidRegistry.WATER, new ItemInfo(ModBlocks.BLOCK_OF_SALT), ModFluids.FLUID_BRINE, 100, true);
+		for(ItemStack s : OreDictionary.getOres("itemSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), FluidRegistry.WATER, 100, true);
+		for(ItemStack s : OreDictionary.getOres("dustSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), FluidRegistry.WATER, 100, true);
+		for(ItemStack s : OreDictionary.getOres("blockSalt"))
+			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(s), ModFluids.FLUID_BRINE, 100, true);
 	}
 
 	@Override

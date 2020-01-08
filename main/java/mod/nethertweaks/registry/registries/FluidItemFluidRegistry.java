@@ -44,10 +44,12 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName()));
 	}
 
+	@Override
 	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime) {
 		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime));
 	}
 
+	@Override
 	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable) {
 		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
 	}

@@ -38,9 +38,6 @@ public class ModItems
 	public static final Seed CACTUS_SEEDS	  	 	 = new Seed();
 	public static final Seed SUGARCANE_SEEDS  	 	 = new Seed();
 
-	//CRYSTALS
-	public static final Item KITCHEN_KNIFE 	 	= new KitchenKnife();
-
 	//MESHES
 	public static final ItemMesh MESH_STRING	  	 = new ItemMesh();
 	public static final ItemMesh MESH_FLINT		  	 = new ItemMesh();
@@ -97,6 +94,7 @@ public class ModItems
 	public static final Hammer HAMMER_IRON 	  	 	 = new Hammer(Config.durabilityHIron, ToolMaterial.IRON);
 	public static final Hammer HAMMER_DIAMOND	  	 = new Hammer(Config.durabilityHDiamond, ToolMaterial.DIAMOND);
 
+	public static final Item KITCHEN_KNIFE 	 		 = new KitchenKnife();
 	public static final Item FLINT_N_BLAZE	 		 = new ItemFlintAndSteel().setMaxDamage(256);
 
 	//Food & DRINKS
