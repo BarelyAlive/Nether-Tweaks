@@ -408,16 +408,12 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerHeat(final HeatRegistry registry)
 	{
-		// Vanilla fluids are weird, the "flowing" variant is simply a temporary state of checking if it can flow.
-		// So, once the lava has spread out all the way, it will all actually be "still" lava.
-		// Thanks Mojang <3
-
-		registry.register(new BlockInfo(Blocks.FLOWING_LAVA), 3);
-		registry.register(new BlockInfo(Blocks.LAVA), 3);
-		registry.register(new BlockInfo(Blocks.FIRE), 4);
 		registry.register(new BlockInfo(Blocks.TORCH), 1);
 		registry.register(new BlockInfo(Blocks.MAGMA), 2);
 		registry.register(new BlockInfo(Blocks.GLOWSTONE), 2);
+		registry.register(new BlockInfo(Blocks.FLOWING_LAVA), 3);
+		registry.register(new BlockInfo(Blocks.LAVA), 3);
+		registry.register(new BlockInfo(Blocks.FIRE), 4);
 
 		// Hot Fluids
 		for(final Fluid fluid : FluidRegistry.getRegisteredFluids().values())
