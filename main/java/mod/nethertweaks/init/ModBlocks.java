@@ -120,7 +120,7 @@ public class ModBlocks
 			addBlock(ModFluids.BLOCK_BRINE, Constants.BRINE);
 		if(BlocksItems.enableDistilledWater)
 			addBlock(ModFluids.BLOCK_DISTILLED_WATER, Constants.DISTILLED_WATER);
-		
+
 		//Regular Blocks
 		if(BlocksItems.enableBarrel) {
 			addBlock(STONE_BARREL, Constants.STONE_BARREL);

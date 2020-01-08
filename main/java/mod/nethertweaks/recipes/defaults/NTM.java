@@ -468,8 +468,7 @@ public class NTM implements IRecipeDefaults
 		if(FluidRegistry.isFluidRegistered("milk")){
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-		}
-		else {
+		} else
 			// No milk, fall back to liquid impossibility
 			for(Fluid f : FluidRegistry.getBucketFluids())
 				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
@@ -477,7 +476,6 @@ public class NTM implements IRecipeDefaults
 					registry.register(f, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 					registry.register(f, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 				}
-		}
 
 		// Vanilla Concrete
 		for(int meta = 0; meta < 16; meta++)

@@ -2,7 +2,6 @@ package mod.nethertweaks.init;
 
 import mod.nethertweaks.config.BlocksItems;
 import mod.sfhcore.handler.BucketHandler;
-import mod.sfhcore.util.ItemInfo;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -89,7 +88,7 @@ public class ModSmeltingNOreDict
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "stone"));
 		}
-		
+
 		if(BlocksItems.enableWoodBucket)
 		{
 			OreDictionary.registerOre("listAllBucket", BucketHandler.getBucketFromFluid(null, "wood"));
@@ -98,7 +97,7 @@ public class ModSmeltingNOreDict
 			if(BlocksItems.enableDistilledWater)
 				OreDictionary.registerOre(DISTILLED_WATER, BucketHandler.getBucketFromFluid(ModFluids.FLUID_DISTILLED_WATER, "wood"));
 		}
-		
+
 		if(BlocksItems.enableBlood && BlocksItems.enableWoodBucket && BlocksItems.enableWoodBucket)
 			for(Fluid f : FluidRegistry.getBucketFluids())
 				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))

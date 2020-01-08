@@ -5,7 +5,6 @@ import java.util.Objects;
 import mod.nethertweaks.barrel.modes.compost.BarrelModeCompost;
 import mod.nethertweaks.block.container.ContainerCondenser;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
-import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.init.ModBlocks;
 import mod.nethertweaks.init.ModFluids;
@@ -16,12 +15,10 @@ import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
-import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,8 +26,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -219,16 +214,13 @@ public class TileCondenser extends TileFluidInventory
 			if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
 
 			final IFluidHandler handler = FluidUtil.getFluidHandler(material);
-			
+
 			if(handler != null)
 				handler.drain(Integer.MAX_VALUE, true);
+			else if(material.getItem().getContainerItem() != null)
+				setInventorySlotContents(0, material.getItem().getContainerItem(material));
 			else
-			{
-				if(material.getItem().getContainerItem() != null)
-					setInventorySlotContents(0, material.getItem().getContainerItem(material));
-				else
-					material.shrink(1);
-			}
+				material.shrink(1);
 		}
 	}
 
