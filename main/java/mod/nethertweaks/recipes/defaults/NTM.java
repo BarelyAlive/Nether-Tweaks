@@ -465,7 +465,7 @@ public class NTM implements IRecipeDefaults
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 		} else
-			// No milk, fall back to liquid impossibility
+			// No milk, fall back to blood
 			for(Fluid f : FluidRegistry.getBucketFluids())
 				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
 				{
@@ -485,12 +485,9 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerFluidItemFluid(final FluidItemFluidRegistry registry)
 	{
-		for(ItemStack salt : OreDictionary.getOres("itemSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), FluidRegistry.WATER, 100, true);
-		for(ItemStack salt : OreDictionary.getOres("dustSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), FluidRegistry.WATER, 100, true);
-		for(ItemStack salt : OreDictionary.getOres("blockSalt"))
-			registry.register(ModFluids.FLUID_DISTILLED_WATER, new ItemInfo(salt), ModFluids.FLUID_BRINE, 100, true);
+		registry.register(ModFluids.FLUID_DISTILLED_WATER, "itemSalt", FluidRegistry.WATER, 100, true);
+		registry.register(ModFluids.FLUID_DISTILLED_WATER, "dustSalt", FluidRegistry.WATER, 100, true);
+		registry.register(ModFluids.FLUID_DISTILLED_WATER, "blockSalt", ModFluids.FLUID_BRINE, 100, true);
 	}
 
 	@Override

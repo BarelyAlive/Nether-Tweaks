@@ -19,6 +19,7 @@ import mod.sfhcore.util.ItemInfo;
 import mod.sfhcore.util.StackInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> implements IFluidItemFluidRegistry {
 
@@ -53,6 +54,33 @@ public class FluidItemFluidRegistry extends BaseRegistryList<FluidItemFluid> imp
 	public void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable) {
 		registry.add(new FluidItemFluid(inputFluid.getName(), reactant, outputFluid.getName(), transformTime, consumable));
 	}
+
+	//ORE-DICT
+	@Override
+	public void register(@Nonnull final String inputFluid, @Nonnull final String reactant, @Nonnull final String outputFluid) {
+		for(ItemStack stack : OreDictionary.getOres(reactant))
+			registry.add(new FluidItemFluid(inputFluid, new ItemInfo(stack), outputFluid));
+	}
+
+	@Override
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final String reactant, @Nonnull final Fluid outputFluid) {
+		for(ItemStack stack : OreDictionary.getOres(reactant))
+			registry.add(new FluidItemFluid(inputFluid.getName(), new ItemInfo(stack), outputFluid.getName()));
+	}
+
+	@Override
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final String reactant, @Nonnull final Fluid outputFluid, final int transformTime) {
+		for(ItemStack stack : OreDictionary.getOres(reactant))
+			registry.add(new FluidItemFluid(inputFluid.getName(), new ItemInfo(stack), outputFluid.getName(), transformTime));
+	}
+
+	@Override
+	public void register(@Nonnull final Fluid inputFluid, @Nonnull final String reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable) {
+		for(ItemStack stack : OreDictionary.getOres(reactant))
+			registry.add(new FluidItemFluid(inputFluid.getName(), new ItemInfo(stack), outputFluid.getName(), transformTime, consumable));
+	}
+
+	//ENDE
 
 	@Override
 	public String getFluidForTransformation(@Nonnull final Fluid fluid, @Nonnull final ItemStack stack) {

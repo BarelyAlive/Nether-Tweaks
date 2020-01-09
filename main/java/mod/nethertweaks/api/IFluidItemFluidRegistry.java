@@ -14,5 +14,11 @@ public interface IFluidItemFluidRegistry extends IRegistryList<FluidItemFluid>
 	void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime);
 	void register(@Nonnull final Fluid inputFluid, @Nonnull final StackInfo reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable);
 
+	//ORE-DICT
+	void register(String inputFluid, String reactant, String outputFluid);
+	void register(Fluid inputFluid, String reactant, Fluid outputFluid);
+	void register(@Nonnull final Fluid inputFluid, @Nonnull final String reactant, @Nonnull final Fluid outputFluid, final int transformTime);
+	void register(@Nonnull final Fluid inputFluid, @Nonnull final String reactant, @Nonnull final Fluid outputFluid, final int transformTime, final boolean consumable);
+
 	String getFluidForTransformation(Fluid fluid, ItemStack stack);
 }
