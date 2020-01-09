@@ -131,8 +131,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(new ItemInfo(ModItems.DOLL_VILLAGER), ice, 50);
 		registry.register(new ItemInfo(ModItems.DOLL_WOLF), ice, 5);
 
-		final Ingredient ingredient = new OreIngredientStoring("treeSapling");
-		for(final ItemStack ore : ingredient.getMatchingStacks())
+		for(final ItemStack ore : OreDictionary.getOres("treeSapling"))
 			registry.register(new ItemInfo(ore), ice, 3);
 	}
 
