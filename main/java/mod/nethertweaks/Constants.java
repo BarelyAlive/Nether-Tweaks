@@ -1,7 +1,8 @@
 package mod.nethertweaks;
 
-public class Constants {
-
+public class Constants
+{
+	//Main Mod Stuff
 	public static final String MOD_ID 		= "nethertweaksmod";
 	public static final String MOD_NAME 	= "Nether Tweaks Mod";
 	public static final String VERSION 		= "2.2.0";
@@ -26,6 +27,13 @@ public class Constants {
 	public static final String CRUCIBLE					= "crucible";
 	public static final String HELLMART 				= "hellmart";
 
+	//Meshes
+	public static final String MESH_STRING				= "mesh_string";
+	public static final String MESH_FLINT				= "mesh_flint";
+	public static final String MESH_IRON				= "mesh_iron";
+	public static final String MESH_DIAMOND				= "mesh_diamond";
+
+	//Sieve
 	public static final String STONE_SIEVE				= "stone_sieve";
 
 	public static final String OAK_SIEVE				= "oak_sieve";
@@ -36,6 +44,7 @@ public class Constants {
 	public static final String DARK_OAK_SIEVE			= "dark_oak_sieve";
 	public static final String ELDER_SIEVE				= "elder_sieve";
 
+	//Barrel
 	public static final String STONE_BARREL				= "stone_barrel";
 
 	public static final String OAK_BARREL				= "oak_barrel";
@@ -62,6 +71,7 @@ public class Constants {
 	public static final String ELDER_SLAB_DOUBLE		= "elder_slab_double";
 	public static final String ELDER_LOG 				= "elder_log";
 
+	//Resources
 	public static final String HELLFAYAH_ORE 			= "hellfayah_ore";
 	public static final String BLOCK_OF_HELLFAYAH		= "block_of_hellfayah";
 	public static final String BLOCK_OF_SALT 			= "block_of_salt";
@@ -76,14 +86,39 @@ public class Constants {
 	public static final String TE_ASH_BONE_PILE			= "ntm.tile.ash_bone_pile";
 	public static final String TE_CRUCIBLE				= "ntm.tile.crucible";
 
-	//Items
-	public static final String MESH_STRING				= "mesh_string";
-	public static final String MESH_FLINT				= "mesh_flint";
-	public static final String MESH_IRON				= "mesh_iron";
-	public static final String MESH_DIAMOND				= "mesh_diamond";
+	//Food & Drinks
+	public static final String COOKED_JERKY 			= "cooked_jerky";
 
+	//Tools & Weapons
+	public static final String KITCHEN_KNIFE			= "kitchen_knife";
+	public static final String COILED_SWORD				= "coiled_sword";
 	public static final String FLINT_N_BLAZE 			= "flint_and_blaze";
 
+	public static final String GRABBER_WOOD				= "grabber_wood";
+	public static final String GRABBER_GOLD				= "grabber_gold";
+	public static final String GRABBER_STONE			= "grabber_stone";
+	public static final String GRABBER_IRON				= "grabber_iron";
+	public static final String GRABBER_DIAMOND			= "grabber_diamond";
+
+	public static final String HAMMER_WOOD 				= "hammer_wood";
+	public static final String HAMMER_GOLD 				= "hammer_gold";
+	public static final String HAMMER_STONE 			= "hammer_stone";
+	public static final String HAMMER_IRON				= "hammer_iron";
+	public static final String HAMMER_DIAMOND			= "hammer_diamond";
+
+	//Crafting Ingredients
+	public static final String STONE_BAR 				= "stone_bar";
+	public static final String PORTAL_CORE				= "portal_core";
+	public static final String END_BOX 					= "end_box";
+	public static final String SALT 					= "salt";
+	public static final String HELLFAYAH 				= "hellfayah";
+	public static final String ENDER_INFUSED_FRAME		= "ender_infused_frame";
+	public static final String STRING					= "string";
+	public static final String PORCELAIN_CLAY			= "porcelain_clay";
+	public static final String ASH						= "ash";
+	public static final String WOOD_CHIPPINGS			= "wood_chippings";
+
+	//Miscellaneous
 	public static final String PEBBLE_STONE				= "pebble_stone";
 	public static final String PEBBLE_GRANITE			= "pebble_granite";
 	public static final String PEBBLE_DIORITE			= "pebble_diorite";
@@ -93,8 +128,6 @@ public class Constants {
 	public static final String GRASS_SEEDS				= "grass_seeds";
 	public static final String CACTUS_SEEDS				= "cactus_seeds";
 	public static final String SUGARCANE_SEEDS			= "sugarcane_seeds";
-
-	public static final String KITCHEN_KNIFE			= "kitchen_knife";
 
 	public static final String DOLL_BAT					= "doll_bat";
 	public static final String DOLL_CHICKEN				= "doll_chicken";
@@ -113,32 +146,6 @@ public class Constants {
 	public static final String DOLL_VILLAGER			= "doll_villager";
 	public static final String DOLL_PIG					= "doll_pig";
 
-	public static final String STONE_BAR 				= "stone_bar";
-	public static final String PORTAL_CORE				= "portal_core";
-	public static final String END_BOX 					= "end_box";
-	public static final String SALT 					= "salt";
-	public static final String HELLFAYAH 				= "hellfayah";
-	public static final String ENDER_INFUSED_FRAME		= "ender_infused_frame";
-	public static final String STRING					= "string";
-	public static final String PORCELAIN_CLAY			= "porcelain_clay";
-	public static final String ASH						= "ash";
-	public static final String WOOD_CHIPPINGS			= "wood_chippings";
-
-	public static final String COILED_SWORD				= "coiled_sword";
-
-	public static final String COOKED_JERKY 			= "cooked_jerky";
-
-	public static final String GRABBER_WOOD				= "grabber_wood";
-	public static final String GRABBER_GOLD				= "grabber_gold";
-	public static final String GRABBER_STONE			= "grabber_stone";
-	public static final String GRABBER_IRON				= "grabber_iron";
-	public static final String GRABBER_DIAMOND			= "grabber_diamond";
-
-	public static final String HAMMER_WOOD 				= "hammer_wood";
-	public static final String HAMMER_GOLD 				= "hammer_gold";
-	public static final String HAMMER_STONE 			= "hammer_stone";
-	public static final String HAMMER_IRON				= "hammer_iron";
-	public static final String HAMMER_DIAMOND			= "hammer_diamond";
-
+	//Ores
 	public static final String CHUNK					= "chunk";
 }

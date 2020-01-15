@@ -13,7 +13,6 @@ import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.init.ModItems;
 import mod.nethertweaks.init.OreHandler;
 import mod.nethertweaks.item.ItemChunk;
-import mod.nethertweaks.registry.ingredient.OreIngredientStoring;
 import mod.nethertweaks.registry.registries.BarrelLiquidBlacklistRegistry;
 import mod.nethertweaks.registry.registries.CompostRegistry;
 import mod.nethertweaks.registry.registries.CondenserRegistry;
@@ -42,7 +41,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -389,7 +387,7 @@ public class NTM implements IRecipeDefaults
 		registry.register("stone", new ItemStack(Blocks.COBBLESTONE, 1), 0, 1.0F, 0.0F);
 		registry.register("cobblestone", new ItemStack(Blocks.GRAVEL, 1), 0, 1.0F, 0.0F);
 
-		//Yes, I have to do this otherwise i can'split the outputs
+		//Yes, I have to do this otherwise i can't split the output
 		for(final ItemStack block : OreDictionary.getOres("gravel"))
 			if(block.getItem() != Item.getItemFromBlock(ModBlocks.NETHERRACK_GRAVEL))
 				registry.register(block, new HammerReward(new ItemStack(Blocks.SAND, 1), 0, 1.0F, 0.0F));
@@ -463,14 +461,7 @@ public class NTM implements IRecipeDefaults
 		if(FluidRegistry.isFluidRegistered("milk")){
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
 			registry.register(FluidRegistry.getFluid("milk"), new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-		} else
-			// No milk, fall back to blood
-			for(Fluid f : FluidRegistry.getBucketFluids())
-				if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
-				{
-					registry.register(f, new ItemInfo(Blocks.BROWN_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-					registry.register(f, new ItemInfo(Blocks.RED_MUSHROOM), new ItemInfo(Blocks.SLIME_BLOCK), "Slime");
-				}
+		}
 
 		// Vanilla Concrete
 		for(int meta = 0; meta < 16; meta++)
