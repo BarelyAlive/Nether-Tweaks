@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import mod.nethertweaks.api.INetherTweaksModModule;
 import mod.nethertweaks.capabilities.ModCapabilities;
 import mod.nethertweaks.compatibility.Compatibility;
 import mod.nethertweaks.config.Config;
@@ -25,7 +26,6 @@ import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.world.EventHook;
 import mod.nethertweaks.world.Hellworld;
 import mod.nethertweaks.world.WorldGeneratorNTM;
-import mod.sfhcore.modules.ISFHCoreModule;
 import mod.sfhcore.util.LogUtil;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -43,7 +43,7 @@ public class NetherTweaksMod
 {
 	public static File configDirectory;
 	public static final Gson GSON_INSTANCE = new Gson();
-	public static final List<ISFHCoreModule> LOADED_MODULES = new ArrayList<>();
+	public static final List<INetherTweaksModModule> LOADED_MODULES = new ArrayList<>();
 
 	@Instance(value=Constants.MOD_ID)
 	private static NetherTweaksMod instance;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mod.nethertweaks.NetherTweaksMod;
+import mod.nethertweaks.api.INetherTweaksModModule;
 import mod.nethertweaks.init.OreHandler;
 import mod.nethertweaks.recipes.defaults.IRecipeDefaults;
 import mod.nethertweaks.recipes.defaults.NTM;
@@ -22,7 +23,6 @@ import mod.nethertweaks.registry.registries.HeatRegistry;
 import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
-import mod.sfhcore.modules.ISFHCoreModule;
 import net.minecraftforge.fml.common.Loader;
 
 public class CompatDefaultRecipes
@@ -50,7 +50,7 @@ public class CompatDefaultRecipes
         MODS.add(new MagicBees());
         MODS.add(new BinniesBotany());
 		 */
-		for(final ISFHCoreModule module : NetherTweaksMod.LOADED_MODULES)
+		for(final INetherTweaksModModule module : NetherTweaksMod.LOADED_MODULES)
 			if(module instanceof IRecipeDefaults)
 				MODS.add((IRecipeDefaults) module);
 
