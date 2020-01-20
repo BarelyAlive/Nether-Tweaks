@@ -48,19 +48,19 @@ public class ThirstStats {
 		//KILL-SWITCH
 		if(!Config.enableThirst) return;
 
-		if (exhaustion > 5.0f) {
+		if(exhaustion > 5.0f) {
 			exhaustion -= 5.0f;
-			if (saturation > 0.0f)
+			if(saturation > 0.0f)
 				saturation = Math.max(saturation - 1.0f, 0);
-			else if (player.world.getDifficulty() != EnumDifficulty.PEACEFUL)
+			else if(player.world.getDifficulty() != EnumDifficulty.PEACEFUL)
 				thirstLevel = Math.max(thirstLevel - 1, 0);
 		}
 
-		if (thirstLevel <= 6) {
+		if(thirstLevel <= 6) {
 			player.setSprinting(false);
-			if (thirstLevel == 0)
-				if (thirstTimer++ > 200)
-					if (player.getHealth() > 10.0f || player.world.getDifficulty() == EnumDifficulty.HARD || player.world.getDifficulty() == EnumDifficulty.NORMAL && player.getHealth() > 1.0f) {
+			if(thirstLevel == 0)
+				if(thirstTimer++ > 200)
+					if(player.getHealth() > 10.0f || player.world.getDifficulty() == EnumDifficulty.HARD || player.world.getDifficulty() == EnumDifficulty.NORMAL && player.getHealth() > 1.0f) {
 						thirstTimer = 0;
 						player.attackEntityFrom(thirstDmgSource, 1);
 					}
@@ -69,22 +69,22 @@ public class ThirstStats {
 		final int ms = player.isRiding() ? 10 : movementSpeed;
 		final float exhaustMultiplier = exhaustionMultiplier(player);
 
-		if (player.isInsideOfMaterial(Material.WATER) || player.isInWater())
+		if(player.isInsideOfMaterial(Material.WATER) || player.isInWater())
 			addExhaustion(0.03f * ms * 0.003f * exhaustMultiplier);
-		else if (player.onGround) {
-			if (player.isSprinting())
+		else if(player.onGround) {
+			if(player.isSprinting())
 				addExhaustion(0.06f * ms * 0.018f * exhaustMultiplier);
 			else
 				addExhaustion(0.01f * ms * 0.018f * exhaustMultiplier);
-		} else if (!player.isRiding())
-			if (player.isSprinting())
+		} else if(!player.isRiding())
+			if(player.isSprinting())
 				addExhaustion(0.06f * ms * 0.025f * exhaustMultiplier);
 			else
 				addExhaustion(0.01f * ms * 0.025f * exhaustMultiplier);
 
-		if (poisoned && thirstLevel > 0)
-			if (poisonTimer++ < POISON_DURATION) {
-				if (player.getHealth() > 1.0f && player.world.getDifficulty() != EnumDifficulty.PEACEFUL && thirstTimer++ > 200) {
+		if(poisoned && thirstLevel > 0)
+			if(poisonTimer++ < POISON_DURATION) {
+				if(player.getHealth() > 1.0f && player.world.getDifficulty() != EnumDifficulty.PEACEFUL && thirstTimer++ > 200) {
 					thirstTimer = 0;
 					player.attackEntityFrom(thirstDmgSource, 1);
 				}
@@ -93,7 +93,7 @@ public class ThirstStats {
 				poisonTimer = 0;
 			}
 
-		if (foodTimer == null)
+		if(foodTimer == null)
 			try {
 				foodTimer = player.getFoodStats().getClass().getDeclaredField("foodTimer");
 				foodTimer.setAccessible(true);
@@ -101,24 +101,24 @@ public class ThirstStats {
 				e.printStackTrace();
 			}
 
-		if (thirstLevel < 16 || poisoned)
+		if(thirstLevel < 16 || poisoned)
 			try {
-				foodTimer.setInt(player.getFoodStats(), 0);
+				foodTimer.setInt(player.getFoodStats().getFoodLevel(), 0);
 			} catch (final IllegalAccessException | NullPointerException e) {
 				e.printStackTrace();
 			}
 
 		// Only send packet update if the thirst level or saturation has changed.
-		if (lastThirstLevel != thirstLevel || lastSaturation != saturation || lastPoisoned != poisoned) {
+		if(lastThirstLevel != thirstLevel || lastSaturation != saturation || lastPoisoned != poisoned) {
 			NetworkHandler.INSTANCE.sendTo(new MessageThirstStats(this), (EntityPlayerMP) player);
 			lastThirstLevel = thirstLevel;
 			lastSaturation = saturation;
 			lastPoisoned = poisoned;
 		}
 
-		//		if (Keyboard.isKeyDown(Keyboard.KEY_J))
+		//		if(Keyboard.isKeyDown(Keyboard.KEY_J))
 		//			thirstLevel = Math.max(thirstLevel - 1, 0);
-		//		else if (Keyboard.isKeyDown(Keyboard.KEY_K))
+		//		else if(Keyboard.isKeyDown(Keyboard.KEY_K))
 		//			thirstLevel = Math.min(thirstLevel + 1, 20);
 	}
 
@@ -148,7 +148,7 @@ public class ThirstStats {
 	}
 
 	public void attemptToPoison(final float chance) {
-		if (random.nextFloat() < chance)
+		if(random.nextFloat() < chance)
 			poisoned = true;
 	}
 
