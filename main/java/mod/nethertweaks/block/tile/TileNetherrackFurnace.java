@@ -32,7 +32,7 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
 	public void update()
 	{
-		if (canSmelt()) work();
+		if(canSmelt()) work();
 		else setWorkTime(0);
 
 		checkInputOutput();
@@ -83,27 +83,24 @@ public class TileNetherrackFurnace extends TileInventory
 		return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
 	}
 
-	private int getHeatRate() {
+	private int getHeatRate()
+	{
 		final BlockPos posBelow = pos.add(0, -1, 0);
 		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
-
-		if (stateBelow == Blocks.AIR.getDefaultState()) return 0;
 
 		// Try to match metadata
 		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
 		// Try to match without metadata
-		if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+		if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
 			heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
-
-		if (heat != 0) return heat;
 
 		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
-		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
+		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
+			heat = Math.max(heat, tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate());
 
-		return 0;
+		return heat;
 	}
 
 	private int calcMaxWorktime()
@@ -111,7 +108,7 @@ public class TileNetherrackFurnace extends TileInventory
 		final int heat = getHeatRate();
 		int workTime = 0;
 
-		if (heat != 0)
+		if(heat != 0)
 			workTime = Config.burnTimeFurnace * 3 / heat;
 		else
 			setWorkTime(0);
@@ -131,14 +128,14 @@ public class TileNetherrackFurnace extends TileInventory
 	{
 		final ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
 
-		if (getStackInSlot(1).isEmpty())
+		if(getStackInSlot(1).isEmpty())
 			setInventorySlotContents(1, itemstack.copy());
-		else if (getStackInSlot(1).getItem() == itemstack.getItem())
+		else if(getStackInSlot(1).getItem() == itemstack.getItem())
 			getStackInSlot(1).grow(itemstack.getCount());
 
 		getStackInSlot(0).shrink(1);
 
-		if (getStackInSlot(0).getCount() <= 0)
+		if(getStackInSlot(0).getCount() <= 0)
 			setInventorySlotContents(0, ItemStack.EMPTY);
 	}
 
@@ -159,7 +156,7 @@ public class TileNetherrackFurnace extends TileInventory
 
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack) {
-		if (index == 0) return false;
+		if(index == 0) return false;
         return index == 1;
     }
 

@@ -260,8 +260,8 @@ public class TileCondenser extends TileFluidInventory
 		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
 		// Try to match without metadata
-		if(!Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
-			heat = Math.max(heat, NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock())));
+		if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+			heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
 
 		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
