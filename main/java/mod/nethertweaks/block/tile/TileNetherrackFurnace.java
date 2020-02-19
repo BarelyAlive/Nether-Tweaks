@@ -1,7 +1,5 @@
 package mod.nethertweaks.block.tile;
 
-import java.util.Objects;
-
 import mod.nethertweaks.block.NetherrackFurnace;
 import mod.nethertweaks.block.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
@@ -13,7 +11,6 @@ import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
