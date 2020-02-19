@@ -65,7 +65,7 @@ public class TileCondenser extends TileFluidInventory
 		rate -= 10;
 		rate *= -1;
 
-		if (rate == 0)
+		if(rate == 0)
 			rate = 1;
 		//heatNStuff
 		if(timer < getMaxTimer() / rate)
@@ -78,7 +78,7 @@ public class TileCondenser extends TileFluidInventory
 
 		if(getTemp() > getMaxTemp() + incr)
 			setTemp(getTemp() - getMaxTemp() > 0f ? timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp() : getTemp());
-		else if (getTemp() < getMaxTemp() + incr)
+		else if(getTemp() < getMaxTemp() + incr)
 			setTemp(getMaxTemp() - getTemp() > 0f ? timer % 2 == 0 ? getMaxTemp() * ((float)timer / (getMaxTimer() / rate)) : getTemp() : getTemp());
 
 		if(getTemp() > 100f)
@@ -121,16 +121,16 @@ public class TileCondenser extends TileFluidInventory
 			insertToInventory(pos.east(), EnumFacing.WEST);
 		}
 
-		if (fillTick == 20)
-			if (world.getTileEntity(pos.up()) instanceof TileBarrel)
+		if(fillTick == 20)
+			if(world.getTileEntity(pos.up()) instanceof TileBarrel)
 			{
 				final TileBarrel barrel = (TileBarrel) world.getTileEntity(pos.up());
 				if(barrel != null)
-					if (barrel.getMode() == null || Objects.equals(barrel.getMode().getName(), "compost")) {
+					if(barrel.getMode() == null || Objects.equals(barrel.getMode().getName(), "compost")) {
 						float amount = 0;
-						if (barrel.getMode() != null)
+						if(barrel.getMode() != null)
 							amount = ((BarrelModeCompost) barrel.getMode()).getFillAmount();
-						if (amount <= 1f && getCompostMeter() >= 100f)
+						if(amount <= 1f && getCompostMeter() >= 100f)
 						{
 							if(barrel.getMode() == null) barrel.setMode("compost");
 
@@ -173,9 +173,9 @@ public class TileCondenser extends TileFluidInventory
 
 	private void fillToNeighborsTank()
 	{
-		if (fillTick == 20) {
+		if(fillTick == 20) {
 			final FluidStack water = new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Config.fluidTransferAmount);
-			if (getTank().getFluidAmount() != 0 && Config.fluidTransferAmount > 0) {
+			if(getTank().getFluidAmount() != 0 && Config.fluidTransferAmount > 0) {
 				final BlockPos north = getPos().north();
 				final BlockPos east = getPos().east();
 				final BlockPos south = getPos().south();
@@ -187,13 +187,13 @@ public class TileCondenser extends TileFluidInventory
 				final IFluidHandler hsouth = FluidUtil.getFluidHandler(world, south, EnumFacing.NORTH);
 				final IFluidHandler hwest = FluidUtil.getFluidHandler(world, west, EnumFacing.EAST);
 
-				if (hnorth != null && world.getBlockState(north).getBlock() != ModBlocks.CONDENSER)
+				if(hnorth != null && world.getBlockState(north).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hnorth, getTank(), water, true);
-				if (heast != null && world.getBlockState(east).getBlock() != ModBlocks.CONDENSER)
+				if(heast != null && world.getBlockState(east).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(heast, getTank(), water, true);
-				if (hsouth != null && world.getBlockState(south).getBlock() != ModBlocks.CONDENSER)
+				if(hsouth != null && world.getBlockState(south).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hsouth, getTank(), water, true);
-				if (hwest != null && world.getBlockState(west).getBlock() != ModBlocks.CONDENSER)
+				if(hwest != null && world.getBlockState(west).getBlock() != ModBlocks.CONDENSER)
 					FluidUtil.tryFluidTransfer(hwest, getTank(), water, true);
 			}
 		}
@@ -228,22 +228,20 @@ public class TileCondenser extends TileFluidInventory
 
 	private void fillToItemSlot()
 	{
-		final ItemStack input  = getStackInSlot(2);
-		final ItemStack output = getStackInSlot(1);
+		final ItemStack input = getStackInSlot(2).copy();
+		final ItemStack output = getStackInSlot(1).copy();
 
-		if(!output.isEmpty()) return;
-		if(input.isEmpty()) return;
+		if(input.isEmpty() || !output.isEmpty()) return;
 		if(getTank().getFluidAmount() == 0) return;
 
-		final ItemStack copy = input.copy();
-		copy.setCount(1);
+		input.setCount(1);
 
-		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(copy);
+		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 
-		if (input_handler != null)
+		if(input_handler != null)
 		{
 			final FluidStack f = FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, false);
-			if (f == null) return;
+			if(f == null) return;
 
 			FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true);
 
@@ -262,23 +260,17 @@ public class TileCondenser extends TileFluidInventory
 		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
 		// Try to match without metadata
-		if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
-			heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
-
-		if(heat != 0) return heat;
+		if(!Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+			heat = Math.max(heat, NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock())));
 
 		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
+			heat = Math.max(heat, tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate());
 
+		if(world.provider.doesWaterVaporize()) heat = Math.max(heat, 1);
 
-		if(world.provider.doesWaterVaporize()) return 1;
-
-		if(stateBelow == Blocks.AIR.getDefaultState())
-			return 0;
-
-		return 0;
+		return heat;
 	}
 
 	@Override
@@ -301,7 +293,12 @@ public class TileCondenser extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack)
 	{
-		return index == 1;
+		switch (index) {
+		case 0: return !NTMRegistryManager.CONDENSER_REGISTRY.containsItem(itemStack);
+		case 1: return true;
+		}
+		
+		return false;
 	}
 
 	@Override
