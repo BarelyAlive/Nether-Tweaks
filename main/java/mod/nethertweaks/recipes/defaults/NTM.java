@@ -136,6 +136,8 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerCondenser(final CondenserRegistry registry)
 	{
+		//Values for items containing fluids are per 1000mB
+		
 		//Blood to water
 		for(Fluid f : FluidRegistry.getBucketFluids())
 			if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
