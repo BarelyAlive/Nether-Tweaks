@@ -39,7 +39,7 @@ public class TileCondenser extends TileFluidInventory
 	private int maxTimer = Config.cooldownCondenser;
 	private float compostMeter = 0;
 	private float maxCompost = Config.capacityCondenser;
-	private static int maxHeatAmount = 0;
+	private int maxHeatAmount = 0;
 
 	public TileCondenser() {
 		super(3, new FluidTankSingle(ModFluids.FLUID_DISTILLED_WATER, 0, Config.capacityCondenser));
@@ -268,7 +268,8 @@ public class TileCondenser extends TileFluidInventory
 		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
 			heat = Math.max(heat, tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate());
 
-		if(world.provider.doesWaterVaporize()) heat = Math.max(heat, 1);
+		if(world.provider.doesWaterVaporize())
+			heat = Math.max(heat, 1);
 
 		return heat;
 	}
@@ -283,8 +284,7 @@ public class TileCondenser extends TileFluidInventory
 		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
 		case 1: return false;
 		case 2:
-			if(handler == null) return false;
-			if(FluidUtil.tryFluidTransfer(handler, getTank(), Integer.MAX_VALUE, false) == null) return false;
+			return handler != null || FluidUtil.tryFluidTransfer(handler, getTank(), Integer.MAX_VALUE, false) != null;
 		}
 
 		return true;

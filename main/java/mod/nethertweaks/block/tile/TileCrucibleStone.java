@@ -79,24 +79,21 @@ public class TileCrucibleStone extends TileCrucibleBase {
 		final BlockPos posBelow = pos.add(0, -1, 0);
 		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
-		if (stateBelow == Blocks.AIR.getDefaultState())
-			return 0;
-
 		// Try to match metadata
 		int heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow));
 
 		// Try to match without metadata
-		if (heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
+		if(heat == 0 && !Item.getItemFromBlock(stateBelow.getBlock()).getHasSubtypes())
 			heat = NTMRegistryManager.HEAT_REGISTRY.getHeatAmount(new BlockInfo(stateBelow.getBlock()));
-
-		if (heat != 0)
-			return heat;
 
 		final TileEntity tile = getWorld().getTileEntity(posBelow);
 
-		if (tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
-			return Objects.requireNonNull(tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP)).getHeatRate();
+		if(tile != null && tile.hasCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP))
+			heat = Math.max(heat, tile.getCapability(CapabilityHeatManager.HEAT_CAPABILITY, EnumFacing.UP).getHeatRate());
 
-		return 0;
+		if(world.provider.doesWaterVaporize())
+			heat = Math.max(heat, 1);
+
+		return heat;
 	}
 }

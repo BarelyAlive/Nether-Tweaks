@@ -68,16 +68,20 @@ public class TileNetherrackFurnace extends TileInventory
 	{
 		if(calcMaxWorktime() == 0) return false;
 		if(getStackInSlot(0).isEmpty()) return false;
-		final ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
-		if(itemstack.isEmpty()) return false;
-		final ItemStack itemstack1 = getStackInSlot(1);
-		if(itemstack1.isEmpty()) return true;
-		if(!itemstack1.isItemEqual(itemstack)) return false;
-		if(itemstack1.getCount() + itemstack.getCount() <= getInventoryStackLimit()
-				&& itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+		
+		final ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
+		
+		if(stack.isEmpty()) return false;
+		
+		final ItemStack stack1 = getStackInSlot(1);
+		
+		if(stack1.isEmpty()) return true;
+		if(!stack1.isItemEqual(stack)) return false;
+		if(stack1.getCount() + stack.getCount() <= getInventoryStackLimit()
+				&& stack1.getCount() + stack.getCount() <= stack1.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
 			return true;
 
-		return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+		return stack1.getCount() + stack.getCount() <= stack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
 	}
 
 	private int getHeatRate()
@@ -123,14 +127,14 @@ public class TileNetherrackFurnace extends TileInventory
 	 */
 	public void smeltItem()
 	{
-		final ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
+		final ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0));
 
 		if(getStackInSlot(1).isEmpty())
-			setInventorySlotContents(1, itemstack.copy());
-		else if(getStackInSlot(1).getItem() == itemstack.getItem())
-			getStackInSlot(1).grow(itemstack.getCount());
+			setInventorySlotContents(1, stack.copy());
+		else if(ItemStack.areItemsEqual(getStackInSlot(1), stack))
+			getStackInSlot(1).grow(stack.getCount());
 
-		getStackInSlot(0).shrink(1);
+		decrStackSize(0, 1);
 
 		if(getStackInSlot(0).getCount() <= 0)
 			setInventorySlotContents(0, ItemStack.EMPTY);
@@ -139,22 +143,30 @@ public class TileNetherrackFurnace extends TileInventory
 	@Override
 	public boolean isItemValidForSlot(final int index, final ItemStack stack)
 	{
-		ItemStack slot;
-		ItemStack result;
-		if(index == 0) {
-			slot = getStackInSlot(1);
-			if(slot.getCount() == slot.getMaxStackSize()) return false;
+		ItemStack slot = getStackInSlot(index);
+		
+		if(slot.getCount() == slot.getMaxStackSize()) return false;
+		
+		switch (index) {
+		case 0:
+            return !FurnaceRecipes.instance().getSmeltingResult(stack).isEmpty();
 
-			result = FurnaceRecipes.instance().getSmeltingResult(stack);
-            return result != ItemStack.EMPTY;
+		default:
+			return false;
 		}
-		return false;
 	}
 
 	@Override
-	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack) {
-		if(index == 0) return false;
-        return index == 1;
+	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack)
+	{
+        switch (index) {
+		case 0:
+			return false;
+		case 1:
+			return true;
+		default:
+			return false;
+		}
     }
 
 	@Override
