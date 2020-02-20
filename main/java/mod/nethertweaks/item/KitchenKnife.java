@@ -34,8 +34,8 @@ public class KitchenKnife extends Item
 
 		IFluidHandler handler = FluidUtil.getFluidHandler(worldIn, pos, facing);
 
-		if (player.getHealth() >= 2.0F)
-			if (handler != null && handler.fill(new FluidStack(ModFluids.FLUID_BLOOD, 200), true) > 0) {
+		if(player.getHealth() >= 2.0F)
+			if (handler != null && handler.fill(new FluidStack(ModFluids.FLUID_BLOOD, 200), true) == 200) {
 				player.attackEntityFrom(blood_lead, 1.0f);
 
 				return EnumActionResult.SUCCESS;
@@ -47,9 +47,9 @@ public class KitchenKnife extends Item
 	@Override
 	public void addInformation(final ItemStack stack, final World world, final List<String> tooltip, final ITooltipFlag flagIn)
 	{
-		final String name = Objects.requireNonNull(stack.getItem().getRegistryName()).getResourcePath();
+		final String name = stack.getItem().getRegistryName().getResourcePath();
 
-        if (Constants.KITCHEN_KNIFE.equals(name))
+        if(Constants.KITCHEN_KNIFE.equals(name))
 			tooltip.add("Cutting edge tool!");
 	}
 

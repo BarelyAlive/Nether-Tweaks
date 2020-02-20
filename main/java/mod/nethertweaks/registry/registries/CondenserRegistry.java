@@ -114,7 +114,7 @@ public class CondenserRegistry extends BaseRegistryMap<Ingredient, Dryable> impl
 
 	@Override
 	public void register(@Nonnull final ResourceLocation location, final int meta, final int value) {
-		register(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(location)), meta, value);
+		register(ForgeRegistries.ITEMS.getValue(location), meta, value);
 	}
 
 	@Override

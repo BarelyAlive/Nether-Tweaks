@@ -210,14 +210,14 @@ public class TileCondenser extends TileFluidInventory
 		}
 		if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
 		{
+			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(material);
+			
 			final int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 			if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
 
-			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(material);
-
 			if(handler != null)
 			{
-				int drainable =  Math.min(FluidUtil.getFluidContained(material).amount, 1000);
+				int drainable = Math.min(FluidUtil.getFluidContained(material).amount, 1000);
 				handler.drain(drainable, true);
 				setInventorySlotContents(0, handler.getContainer());
 			}

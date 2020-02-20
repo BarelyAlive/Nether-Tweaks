@@ -105,13 +105,13 @@ public class Config
 		final Configuration config = new Configuration(new File(configDirectory, "NetherTweaksMod.cfg"));
 		config.load();
 
-		final String tweaks = "Tweaks";
-		final String world = "World";
-		final String mechanics = "Mechanics";
-		final String sieving = "Sieving";
-		final String barrel = "Barrel";
-		final String fluids = "Fluids";
-		final String json = "JSON";
+		final String tweaks 	= "Tweaks";
+		final String world 		= "World";
+		final String mechanics 	= "Mechanics";
+		final String sieving 	= "Sieving";
+		final String barrel 	= "Barrel";
+		final String fluids 	= "Fluids";
+		final String json 		= "JSON";
 		final String compatibility = "Compatibility";
 
 		burnTimeHellfayah 			  = config.get(tweaks, "Burntime of Hellfayah", 12800).getInt();
@@ -153,7 +153,7 @@ public class Config
 		useMetricSystem				  = config.get(mechanics, "Use metric System?", true, "").getBoolean();
 		enableTeleport				  = config.get(mechanics, "Enable bonfire-to-bonfire teleport?", true, "").getBoolean();
 		waterSources				  = config.get(mechanics, "Allow water sources?", false, "").getBoolean();
-		blacklistSalt				  = config.get(mechanics, "Fluids that sould not work for the salt recipe", blacklistSalt, "Example: minecraft:water").getStringList();
+		blacklistSalt				  = config.get(mechanics, "Fluids that should not work for the salt recipe", blacklistSalt, "Example: minecraft:water").getStringList();
 
 		///Sieve
 		sieveSimilarRadius 			  = config.get(sieving, "Sieve Similar Radius", 2).getInt();

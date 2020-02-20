@@ -55,7 +55,7 @@ public class HammerHandler
 
 	public static boolean isHammer(@Nullable final ItemStack stack)
 	{
-		if (Objects.requireNonNull(stack).isEmpty())
+		if (stack.isEmpty())
 			return false;
 
 		if (stack.getItem() instanceof IHammer)
