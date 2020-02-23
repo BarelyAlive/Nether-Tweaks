@@ -9,6 +9,7 @@ import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -35,4 +36,5 @@ public interface IRecipeDefaults
 	default void registerFluidItemFluid(final FluidItemFluidRegistry registry) {}
 	default void registerCrucibleStone(final CrucibleRegistry registry) {}
 	default void registerMilk(final MilkEntityRegistry registry) {}
+	default void registerFluidToWater(final FluidToWaterRegistry registry) {}
 }

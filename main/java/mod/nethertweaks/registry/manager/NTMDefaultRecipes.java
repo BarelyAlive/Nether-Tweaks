@@ -11,6 +11,7 @@ import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -38,6 +39,7 @@ public class NTMDefaultRecipes
 		NTMRegistryManager.registerFluidItemFluidDefaultHandler(new FluidItemFluidDefaults());
 		NTMRegistryManager.registerCrucibleStoneDefaultRecipeHandler(new CrucibleStoneDefaults());
 		NTMRegistryManager.registerMilkEntityDefaultRecipeHandler(new MilkEntityDefaults());
+		NTMRegistryManager.registerFluidToWaterDefaultRecipeHandler(new FluidToWaterDefaults());
 	}
 
 	private static class CompostDefaults implements ICompostDefaultRegistryProvider {
@@ -147,6 +149,13 @@ public class NTMDefaultRecipes
         @Override
         public void registerRecipeDefaults(@Nonnull final MilkEntityRegistry registry) {
             compat.registerMilk(registry);
+        }
+    }
+    
+    public static class FluidToWaterDefaults implements IFluidToWaterDefaultRegistryProvider {
+        @Override
+        public void registerRecipeDefaults(@Nonnull final FluidToWaterRegistry registry) {
+            compat.registerFluidToWater(registry);
         }
     }
 }

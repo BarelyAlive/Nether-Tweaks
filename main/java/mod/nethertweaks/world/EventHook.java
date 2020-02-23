@@ -96,13 +96,13 @@ public class EventHook
 		final boolean vaporize = world.provider.doesWaterVaporize();
 		final FluidStack f = FluidUtil.getFluidContained(event.getItemStack());
 
-		if (!Config.enableSaltRecipe || !vaporize || event.getEntityPlayer().isSneaking()
+		if(!Config.enableSaltRecipe || !vaporize || event.getEntityPlayer().isSneaking() || world.getTileEntity(pos) != null
 				|| !BucketHelper.isBucketWithFluidMaterial(event.getItemStack(), Material.WATER) || !f.getFluid().doesVaporize(f)) return;
 
 		for(final String fluidName : Config.blacklistSalt)
 			if(f.getFluid().getName().equals(fluidName)) return;
 
-		if (state.getBlock().onBlockActivated(world, pos, state, event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
+		if(state.getBlock().onBlockActivated(world, pos, state, event.getEntityPlayer(), event.getHand(), event.getFace(), (float)event.getHitVec().x, (float)event.getHitVec().y, (float)event.getHitVec().z))
 			event.setCanceled(true);
 		else if(!world.isRemote)
 		{
@@ -152,16 +152,16 @@ public class EventHook
 
 		if(Hellworld.isHellworld(player.world)) {
 			teleportPlayer(player);
-			if (!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
+			if(!WorldSpawnLocation.getLastSpawnLocations().containsKey(EntityPlayer.getUUID(player.getGameProfile())))
 			{
 				final BlockPos posplayer = player.getPosition();
 				int yDifferenz = 0;
-				if (posplayer.getY() < range)
+				if(posplayer.getY() < range)
 					yDifferenz = range - posplayer.getY();
 				final Iterable<BlockPos> posi = BlockPos.getAllInBox(posplayer.down(range - yDifferenz).east(range).south(range), posplayer.up(range + yDifferenz).west(range).north(range));
 
 				for(final BlockPos pos : posi)
-					if (player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
+					if(player.world.getBlockState(pos).getBlock() == Blocks.PORTAL)
 						player.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
 			}
 			else
@@ -177,9 +177,9 @@ public class EventHook
 	public void dropItem(final EntityJoinWorldEvent event)
 	{
 		if(event.getEntity().dimension != -1) return;
-		if (event.getEntity() instanceof EntityItemLava) return;
+		if(event.getEntity() instanceof EntityItemLava) return;
 
-		if (event.getEntity() instanceof EntityItem)
+		if(event.getEntity() instanceof EntityItem)
 		{
 			final EntityItem item = (EntityItem) event.getEntity();
 			if(item.getItem().getItem() == Items.IRON_SWORD)
@@ -279,7 +279,7 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onAttack(final AttackEntityEvent attack) {
-		if (!attack.getEntityPlayer().world.isRemote) {
+		if(!attack.getEntityPlayer().world.isRemote) {
 			final ThirstStats stats = ServerProxy.getStatsByUUID(attack.getEntityPlayer().getUniqueID());
 			stats.addExhaustion(0.5f);
 		}
@@ -288,9 +288,9 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onHurt(final LivingHurtEvent hurt) {
-		if (hurt.getEntity() instanceof EntityPlayer) {
+		if(hurt.getEntity() instanceof EntityPlayer) {
 			final EntityPlayer player = (EntityPlayer) hurt.getEntity();
-			if (!player.world.isRemote) {
+			if(!player.world.isRemote) {
 				final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());
 				stats.addExhaustion(0.4f);
 			}
@@ -319,7 +319,7 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onLoadPlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.LoadFromFile event) {
-		if (!event.getEntityPlayer().world.isRemote) {
+		if(!event.getEntityPlayer().world.isRemote) {
 			final EntityPlayer player = event.getEntityPlayer();
 			final File saveFile = event.getPlayerFile("nethertweaksmod");
 			if(!saveFile.exists())
@@ -328,7 +328,7 @@ public class EventHook
 				try {
 					final FileReader reader = new FileReader(saveFile);
 					final ThirstStats stats = GSON_INSTANCE.fromJson(reader, ThirstStats.class);
-					if (stats == null)
+					if(stats == null)
 						ServerProxy.registerPlayer(player, new ThirstStats());
 					else
 						ServerProxy.registerPlayer(player, stats);
@@ -340,7 +340,7 @@ public class EventHook
 
 	@SubscribeEvent
 	public void onSavePlayerData(final net.minecraftforge.event.entity.player.PlayerEvent.SaveToFile event) {
-		if (!event.getEntityPlayer().world.isRemote) {
+		if(!event.getEntityPlayer().world.isRemote) {
 			final ThirstStats stats = ServerProxy.getStatsByUUID(event.getEntityPlayer().getUniqueID());
 			final File saveFile = new File(event.getPlayerDirectory(), event.getPlayerUUID() + ".nethertweaksmod");
 			try {
@@ -358,15 +358,15 @@ public class EventHook
 	@SubscribeEvent
 	public void onFinishUsingItem(final LivingEntityUseItemEvent.Finish event)
 	{
-		if (!Config.enableThirst) return;
+		if(!Config.enableThirst) return;
 
-		if (!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
+		if(!event.getEntity().world.isRemote && event.getEntityLiving() instanceof EntityPlayer) {
 			final ItemStack eventItem = event.getItem();
 			// have to increment count because if count == 0, then ItemAir is returned instead of the item that was just consumed.
 			eventItem.setCount(eventItem.getCount() + 1);
 			final EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
-			if (NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
+			if(NTMRegistryManager.DRINK_REGISTRY.containsItem(eventItem)) {
 				final Drinkable drink = NTMRegistryManager.DRINK_REGISTRY.getItem(eventItem);
 
 				final ThirstStats stats = ServerProxy.getStatsByUUID(player.getUniqueID());

@@ -23,6 +23,7 @@ public class ModJsonRecipes
 		NTMRegistryManager.FLUID_ITEM_FLUID_REGISTRY.loadJson(new File(f, "FluidItemFluidRegistry.json"));
 		NTMRegistryManager.CRUCIBLE_STONE_REGISTRY.loadJson(new File(f, "CrucibleRegistryStone.json"));
 		NTMRegistryManager.MILK_ENTITY_REGISTRY.loadJson(new File(f, "MilkEntityRegistry.json"));
+		NTMRegistryManager.FLUID_TO_WATER_REGISTRY.loadJson(new File(f, "FluidToWaterRegistry.json"));
 
 		//save
 		NTMRegistryManager.DYN_ORE_REGISTRY.saveJson(f);

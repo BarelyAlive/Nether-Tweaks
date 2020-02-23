@@ -21,6 +21,7 @@ import mod.nethertweaks.registry.registries.DrinkRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -28,7 +29,6 @@ import mod.nethertweaks.registry.registries.HellmartRegistry;
 import mod.nethertweaks.registry.registries.MilkEntityRegistry;
 import mod.nethertweaks.registry.registries.SieveRegistry;
 import mod.nethertweaks.registry.registries.base.types.HammerReward;
-import mod.sfhcore.handler.BucketHandler;
 import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.texturing.Color;
 import mod.sfhcore.util.BlockInfo;
@@ -44,8 +44,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class NTM implements IRecipeDefaults
@@ -136,17 +134,6 @@ public class NTM implements IRecipeDefaults
 	@Override
 	public void registerCondenser(final CondenserRegistry registry)
 	{
-		//Values for items containing fluids are per 1000mB
-		
-		//Blood to water
-		for(Fluid f : FluidRegistry.getBucketFluids())
-			if(f.getName().equals("blood") || f.getName().equals("lifeEssence"))
-			{
-				registry.register(new ItemInfo(FluidUtil.getFilledBucket(new FluidStack(f, 1000))), 523);
-				registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(f, "wood")), 523);
-				registry.register(new ItemInfo(BucketHandler.getBucketFromFluid(f, "stone")), 523);
-			}
-
 		//F00D
 		registry.register(new ItemInfo(Items.ROTTEN_FLESH), 90);
 		registry.register(new ItemInfo(Items.APPLE), 80);
@@ -480,6 +467,14 @@ public class NTM implements IRecipeDefaults
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, "itemSalt", FluidRegistry.WATER, 100, true);
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, "dustSalt", FluidRegistry.WATER, 100, true);
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, "blockSalt", ModFluids.FLUID_BRINE, 100, true);
+	}
+	
+	@Override
+	public void registerFluidToWater(final FluidToWaterRegistry registry)
+	{
+		registry.register(ModFluids.FLUID_BLOOD.getName(), 523);
+		registry.register("lifeEssence", 523);
+		registry.register(mod.sfhcore.handler.ModFluids.FLUID_MILK.getName(), 879);
 	}
 
 	@Override

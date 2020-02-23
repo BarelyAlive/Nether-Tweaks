@@ -1,13 +1,10 @@
 package mod.nethertweaks.block.tile;
 
-import java.util.Objects;
-
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.sfhcore.util.BlockInfo;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

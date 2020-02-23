@@ -17,6 +17,7 @@ import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -128,5 +129,10 @@ public class CompatDefaultRecipes
 	public void registerMilk(final MilkEntityRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerMilk(registry));
+	}
+	
+	public void registerFluidToWater(final FluidToWaterRegistry registry) {
+		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
+		.forEach(mod -> mod.registerFluidToWater(registry));
 	}
 }

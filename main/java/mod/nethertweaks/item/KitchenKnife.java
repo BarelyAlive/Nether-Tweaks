@@ -1,7 +1,6 @@
 package mod.nethertweaks.item;
 
 import java.util.List;
-import java.util.Objects;
 
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.init.ModFluids;

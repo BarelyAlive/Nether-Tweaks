@@ -9,6 +9,7 @@ import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -37,3 +38,4 @@ interface IHellmartDefaultRegistryProvider extends IDefaultRecipeProvider<Hellma
 interface ICrucibleStoneDefaultRegistryProvider extends IDefaultRecipeProvider<CrucibleRegistry>{}
 interface ICompostDefaultRegistryProvider extends IDefaultRecipeProvider<CompostRegistry>{}
 interface IBarrelLiquidBlacklistDefaultRegistryProvider extends IDefaultRecipeProvider<BarrelLiquidBlacklistRegistry>{}
+interface IFluidToWaterDefaultRegistryProvider extends IDefaultRecipeProvider<FluidToWaterRegistry>{}

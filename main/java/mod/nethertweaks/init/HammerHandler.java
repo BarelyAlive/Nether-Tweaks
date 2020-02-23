@@ -1,7 +1,6 @@
 package mod.nethertweaks.init;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.Nullable;
 

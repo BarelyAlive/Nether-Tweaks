@@ -13,6 +13,7 @@ import mod.nethertweaks.registry.registries.DynOreRegistry;
 import mod.nethertweaks.registry.registries.FluidBlockTransformerRegistry;
 import mod.nethertweaks.registry.registries.FluidItemFluidRegistry;
 import mod.nethertweaks.registry.registries.FluidOnTopRegistry;
+import mod.nethertweaks.registry.registries.FluidToWaterRegistry;
 import mod.nethertweaks.registry.registries.FluidTransformRegistry;
 import mod.nethertweaks.registry.registries.HammerRegistry;
 import mod.nethertweaks.registry.registries.HeatRegistry;
@@ -38,6 +39,7 @@ public final class NTMRegistryManager {
 	public static final List<ICondenserDefaultRegistryProvider> CONDENSER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IDrinkDefaultRegistryProvider> DRINK_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 	public static final List<IHellmartDefaultRegistryProvider> HELLMART_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
+	public static final List<IFluidToWaterDefaultRegistryProvider> FLUID_TO_WATER_DEFAULT_REGISTRY_PROVIDERS = new ArrayList<>();
 
 	//endregion
 
@@ -56,6 +58,7 @@ public final class NTMRegistryManager {
 	public static final CondenserRegistry CONDENSER_REGISTRY = new CondenserRegistry();
 	public static final DrinkRegistry DRINK_REGISTRY = new DrinkRegistry();
 	public static final HellmartRegistry HELLMART_REGISTRY = new HellmartRegistry();
+	public static final FluidToWaterRegistry FLUID_TO_WATER_REGISTRY = new FluidToWaterRegistry();
 
 	//region >>>> DEFAULT RECIPE REGISTERS
 
@@ -117,6 +120,10 @@ public final class NTMRegistryManager {
 
 	public static void registerHellmartDefaultRecipeHandler(final IHellmartDefaultRegistryProvider provider) {
 		HELLMART_DEFAULT_REGISTRY_PROVIDERS.add(provider);
+	}
+	
+	public static void registerFluidToWaterDefaultRecipeHandler(final IFluidToWaterDefaultRegistryProvider provider) {
+		FLUID_TO_WATER_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
 
 	//endregion

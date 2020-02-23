@@ -30,7 +30,7 @@ public class TileFreezer extends TileFluidInventory
 	private int timer = 0;
 	private final int maxTimer = Config.cooldownFreezer;
 
-	private ItemStack ice()
+	protected ItemStack ice()
 	{
 		return ice.copy();
 	}
@@ -79,7 +79,7 @@ public class TileFreezer extends TileFluidInventory
 		if(fillTick >= 20) fillTick = 0;
 	}
 
-	private void checkInputOutput()
+	protected void checkInputOutput()
 	{
 		if(Config.autoExtractItems)
 			extractFromInventory(pos.up(), EnumFacing.DOWN);
@@ -104,84 +104,81 @@ public class TileFreezer extends TileFluidInventory
 		}
 	}
 
-	private boolean canFreeze()
+	protected boolean canFreeze()
 	{
-		if(getTemp() > 0) return false;
-		if(getTank().getFluidAmount() < 1000) return false;
-        return getStackInSlot(0).getCount() != ice().getMaxStackSize();
+		return getTemp() <= 0 &&
+				getTank().getFluidAmount() >= 1000 &&
+				getStackInSlot(0).getCount() != ice().getMaxStackSize();
     }
 
-	private void freezeItem()
+	protected void freezeItem()
 	{
 		getTank().drain(1000, true);
 
 		if(getStackInSlot(0).isEmpty())
-			setInventorySlotContents(0, new ItemStack(ice().getItem()));
-
-		else if(getStackInSlot(0).getCount() >= 1)
+			setInventorySlotContents(0, ice());
+		else
 			getStackInSlot(0).grow(1);
 
 		fillFromItem();
 	}
 
-	private void fillFromItem()
+	protected void fillFromItem()
 	{
-		final ItemStack input  = getStackInSlot(2);
-		final ItemStack output = getStackInSlot(1);
+		final ItemStack input  = getStackInSlot(2).copy();
+		final ItemStack output = getStackInSlot(1).copy();
 
-		if(input.isEmpty()) return;
-		if(output.getCount() == output.getMaxStackSize()) return;
-
-		final ItemStack copy = input.copy();
-
-		final IFluidHandlerItem handler = FluidUtil.getFluidHandler(copy);
-
-		if(handler != null)
+		if (!input.isEmpty() && output.getCount() != output.getMaxStackSize())
 		{
-			final FluidStack f = FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false);
-			if (f == null) return;
-
-			//Z.b. der leere bucket bei nem Wassereimer
-			final ItemStack containerItem = handler.getContainer();
-
-			if (!output.isEmpty() && !ItemStack.areItemsEqual(output, containerItem)) return;
-
-			FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, true);
-
-			//Das veränderte Fluid Item
-			final ItemStack container = handler.getContainer();
-			container.setCount(output.getCount()+1);
-
-			setInventorySlotContents(1, container);
-			getStackInSlot(2).shrink(1);
-		}
-
-		if(ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
-			if(emptyRoom() >= 250)
-			{
-				getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
-
-				final ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount()+1);
-
-				setInventorySlotContents(1, bottles);
-				decrStackSize(2, 1);
+			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
+			
+			if (handler != null && FluidUtil.getFluidContained(input) != null)
+			{	
+				if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, true) != null)
+				{		
+					//Das veränderte Fluid Item
+					final ItemStack container = handler.getContainer();
+					
+					decrStackSize(2, 1);
+					
+					if (FluidUtil.getFluidContained(container) != null)
+					{
+						if(output.isEmpty())
+							setInventorySlotContents(1, container);
+						else
+							setInventorySlotContents(2, container);
+					}
+					else if(container.getMaxStackSize() > 1 &&
+							output.getMaxStackSize() != output.getCount() && 
+							ItemStack.areItemsEqual(container, output))
+						getStackInSlot(1).grow(1);
+					else
+						setInventorySlotContents(2, container);
+				}
 			}
+			else if (ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
+				if (emptyRoom() >= 250) {
+					getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
+					final ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount() + 1);
+
+					setInventorySlotContents(1, bottles);
+					decrStackSize(2, 1);
+				} 
+		}
 	}
 
 	@Override
 	public boolean isItemValidForSlot(final int index, final ItemStack stack)
 	{
-		final IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
+		FluidStack f = FluidUtil.getFluidContained(stack);
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
-		case 0:
-			case 1:
-				return false;
-			case 2:
-			if(ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE)) return true;
-			if(handler ==  null) return false;
-			if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, false) == null) return false;
+		case 0:	return false;
+		case 1:	return false;
+		case 2:
+		return ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE) ||
+				f != null && f.getFluid() == FluidRegistry.WATER;
 		}
 
 		return true;

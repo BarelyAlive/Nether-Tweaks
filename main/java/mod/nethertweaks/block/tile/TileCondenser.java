@@ -11,6 +11,7 @@ import mod.nethertweaks.init.ModFluids;
 import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.base.types.Dryable;
+import mod.nethertweaks.registry.registries.base.types.FluidToWater;
 import mod.sfhcore.blocks.tiles.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.NetworkHandler;
@@ -100,17 +101,86 @@ public class TileCondenser extends TileFluidInventory
 		if(fillTick >= 20) fillTick = 0;
 	}
 
-	private boolean canDry()
+	protected boolean canDry()
 	{
-		if(getTemp() < 100f) return false;
-		if(getStackInSlot(0).isEmpty()) return false;
-		if(!NTMRegistryManager.CONDENSER_REGISTRY.containsItem(getStackInSlot(0))) return false;
-		final Dryable result = NTMRegistryManager.CONDENSER_REGISTRY.getItem(getStackInSlot(0));
-		if(result == null) return false;
-        return emptyRoom() >= result.getValue();
+		ItemStack input = getStackInSlot(0).copy();
+		FluidStack f = FluidUtil.getFluidContained(input);
+		
+		final Dryable dryable = NTMRegistryManager.CONDENSER_REGISTRY.getItem(input);
+		final FluidToWater fluidToWater = NTMRegistryManager.FLUID_TO_WATER_REGISTRY.getFluid(input);
+		
+		if(getTemp() >= 100f && !input.isEmpty())
+		{
+			if(dryable != null && !dryable.equals(Dryable.getEMPTY()))
+				return emptyRoom() >= dryable.getValue();
+			else if(fluidToWater != null && f != null) 
+				return emptyRoom() >= fluidToWater.getPercOfWater() && f.amount >= 1000;
+		}
+		
+		return false;
     }
+	
+	protected void dry()
+	{
+		final ItemStack material = getStackInSlot(0).copy();
+		int amount = 0;
 
-	private void checkInputOutput()
+		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
+		{
+			final float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
+			if(compostMeter <= getMaxCompost() - waste) compostMeter += waste;
+		}
+		if(NTMRegistryManager.FLUID_TO_WATER_REGISTRY.containsFluid(material))
+		{
+			//FluidContainer
+			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(material);
+			
+			if(handler != null)
+			{
+				amount = NTMRegistryManager.FLUID_TO_WATER_REGISTRY.getFluid(material).getPercOfWater();
+				if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
+			
+				handler.drain(1000, true);
+				setInventorySlotContents(0, handler.getContainer());
+			}
+		}
+		else if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
+		{			
+			amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
+			if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
+			
+			decrStackSize(0, 1);
+		}
+	}
+	
+	protected void fillToItemSlot()
+	{
+		final ItemStack input = getStackInSlot(2).copy();
+		final ItemStack output = getStackInSlot(1).copy();
+
+		if(input.isEmpty() || !output.isEmpty()) return;
+
+		input.setCount(1);
+
+		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
+
+		if(input_handler != null)
+		{
+			if(FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true) != null)
+			{
+				final ItemStack container = input_handler.getContainer();
+				
+				decrStackSize(2, 1);
+				int result = FluidUtil.getFluidHandler(container).fill(input_handler.getTankProperties()[0].getContents(), false);
+				if(result == 0)
+					setInventorySlotContents(1, container);
+				else
+					setInventorySlotContents(2, container);
+			}
+		}
+	}
+
+	protected void checkInputOutput()
 	{
 		if(Config.autoExtractItems)
 			extractFromInventory(pos.up(), EnumFacing.DOWN);
@@ -147,7 +217,7 @@ public class TileCondenser extends TileFluidInventory
 			}
 	}
 
-	private float getMaxTemp()
+	protected float getMaxTemp()
 	{
 		final int heat = getHeatRate();
 
@@ -166,12 +236,12 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 
-	private float getMaxPossibleTemp()
+	protected float getMaxPossibleTemp()
 	{
 		return 999f;
 	}
 
-	private void fillToNeighborsTank()
+	protected void fillToNeighborsTank()
 	{
 		if(fillTick == 20) {
 			final FluidStack water = new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Config.fluidTransferAmount);
@@ -199,60 +269,8 @@ public class TileCondenser extends TileFluidInventory
 		}
 	}
 
-	private void dry()
+	protected int getHeatRate()
 	{
-		final ItemStack material = getStackInSlot(0).copy();
-
-		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
-		{
-			final float waste = NTMRegistryManager.COMPOST_REGISTRY.getItem(material).getValue() * 1000;
-			if(compostMeter <= getMaxCompost() - waste) compostMeter += waste;
-		}
-		if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
-		{
-			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(material);
-			
-			final int amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
-			if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
-
-			if(handler != null)
-			{
-				int drainable = Math.min(FluidUtil.getFluidContained(material).amount, 1000);
-				handler.drain(drainable, true);
-				setInventorySlotContents(0, handler.getContainer());
-			}
-			else
-				decrStackSize(0, 1);
-		}
-	}
-
-	private void fillToItemSlot()
-	{
-		final ItemStack input = getStackInSlot(2).copy();
-		final ItemStack output = getStackInSlot(1).copy();
-
-		if(input.isEmpty() || !output.isEmpty()) return;
-		if(getTank().getFluidAmount() == 0) return;
-
-		input.setCount(1);
-
-		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
-
-		if(input_handler != null)
-		{
-			final FluidStack f = FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, false);
-			if(f == null) return;
-
-			FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true);
-
-			final ItemStack container = input_handler.getContainer();
-
-			setInventorySlotContents(1, container);
-			decrStackSize(2, 1);
-		}
-	}
-
-	private int getHeatRate() {
 		final BlockPos posBelow = pos.add(0, -1, 0);
 		final IBlockState stateBelow = getWorld().getBlockState(posBelow);
 
@@ -281,24 +299,22 @@ public class TileCondenser extends TileFluidInventory
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
 		switch (index) {
-		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack);
-		case 1: return false;
-		case 2:
-			return handler != null || FluidUtil.tryFluidTransfer(handler, getTank(), Integer.MAX_VALUE, false) != null;
+		case 0: return NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack) || NTMRegistryManager.FLUID_TO_WATER_REGISTRY.containsFluid(stack);
+		case 2:	return handler != null || FluidUtil.tryFluidTransfer(handler, getTank(), Integer.MAX_VALUE, false) != null;
+		default:
+			return false;
 		}
-
-		return true;
 	}
 
 	@Override
-	public boolean isItemValidForSlotToExtract(final int index, final ItemStack itemStack)
-	{
+	public boolean isItemValidForSlotToExtract(final int index, final ItemStack stack)
+	{		
 		switch (index) {
-		case 0: return !NTMRegistryManager.CONDENSER_REGISTRY.containsItem(itemStack);
+		case 0: return !NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack) && !NTMRegistryManager.FLUID_TO_WATER_REGISTRY.containsFluid(stack);
 		case 1: return true;
+		default:
+			return false;
 		}
-		
-		return false;
 	}
 
 	@Override
