@@ -138,9 +138,10 @@ public class TileCondenser extends TileFluidInventory
 			if(handler != null)
 			{
 				amount = NTMRegistryManager.FLUID_TO_WATER_REGISTRY.getFluid(material).getPercOfWater();
-				if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
+				getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Math.max(amount, 0)), true);
 			
 				handler.drain(1000, true);
+				
 				setInventorySlotContents(0, handler.getContainer());
 			}
 		}
@@ -155,28 +156,26 @@ public class TileCondenser extends TileFluidInventory
 	
 	protected void fillToItemSlot()
 	{
-		final ItemStack input = getStackInSlot(2).copy();
-		final ItemStack output = getStackInSlot(1).copy();
-
-		if(input.isEmpty() || !output.isEmpty()) return;
-
-		input.setCount(1);
+		final ItemStack input = getStackInSlot(2);
+		final ItemStack output = getStackInSlot(1);
 
 		final IFluidHandlerItem input_handler = FluidUtil.getFluidHandler(input);
 
-		if(input_handler != null)
+		if(input_handler != null && FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true) != null)
 		{
-			if(FluidUtil.tryFluidTransfer(input_handler, getTank(), Integer.MAX_VALUE, true) != null)
+			final ItemStack container = input_handler.getContainer();
+			int result = FluidUtil.getFluidHandler(container).fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Integer.MAX_VALUE), false);
+			
+			decrStackSize(2, 1);
+			
+			if(result == 0)
 			{
-				final ItemStack container = input_handler.getContainer();
-				
-				decrStackSize(2, 1);
-				int result = FluidUtil.getFluidHandler(container).fill(input_handler.getTankProperties()[0].getContents(), false);
-				if(result == 0)
+				if(output.isEmpty())
 					setInventorySlotContents(1, container);
-				else
-					setInventorySlotContents(2, container);
+				return;
 			}
+			
+			setInventorySlotContents(2, container);
 		}
 	}
 
@@ -222,14 +221,10 @@ public class TileCondenser extends TileFluidInventory
 		final int heat = getHeatRate();
 
 		switch (heat) {
-		case 0:
-			return 0;
-		case 1:
-			return 100f;
-		case 2:
-			return 250f;
-		case 3:
-			return 600f;
+		case 0:	return 0;
+		case 1:	return 100f;
+		case 2:	return 250f;
+		case 3:	return 600f;
 
 		default:
 			return getMaxPossibleTemp();
@@ -309,12 +304,7 @@ public class TileCondenser extends TileFluidInventory
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack stack)
 	{		
-		switch (index) {
-		case 0: return !NTMRegistryManager.CONDENSER_REGISTRY.containsItem(stack) && !NTMRegistryManager.FLUID_TO_WATER_REGISTRY.containsFluid(stack);
-		case 1: return true;
-		default:
-			return false;
-		}
+		return index == 1;
 	}
 
 	@Override

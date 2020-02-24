@@ -117,8 +117,8 @@ public class TileFreezer extends TileFluidInventory
 
 	protected void fillFromItem()
 	{
-		final ItemStack input  = getStackInSlot(2).copy();
-		final ItemStack output = getStackInSlot(1).copy();
+		final ItemStack input  = getStackInSlot(2);
+		final ItemStack output = getStackInSlot(1);
 
 		if (!input.isEmpty() && output.getCount() != output.getMaxStackSize())
 		{
@@ -135,14 +135,10 @@ public class TileFreezer extends TileFluidInventory
 					
 					if (FluidUtil.getFluidContained(container) != null)
 					{
-						if(output.isEmpty())
-							setInventorySlotContents(1, container);
-						else
+						if(!output.isEmpty())
 							setInventorySlotContents(2, container);
 					}
-					else if(container.getMaxStackSize() > 1 &&
-							output.getMaxStackSize() != output.getCount() && 
-							ItemStack.areItemsEqual(container, output))
+					else if(output.getMaxStackSize() < output.getCount() && ItemStack.areItemsEqual(container, output))
 						getStackInSlot(1).grow(1);
 					else
 						setInventorySlotContents(2, container);
@@ -151,11 +147,16 @@ public class TileFreezer extends TileFluidInventory
 			else if (ItemStack.areItemStacksEqual(getStackInSlot(2), TankUtil.WATER_BOTTLE))
 				if (emptyRoom() >= 250) {
 					getTank().fill(new FluidStack(FluidRegistry.WATER, 250), true);
-					final ItemStack bottles = new ItemStack(Items.GLASS_BOTTLE, output.getCount() + 1);
 
-					setInventorySlotContents(1, bottles);
+					setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE, output.getCount() + 1));
 					decrStackSize(2, 1);
 				} 
+		}
+		
+		if(output.isEmpty() && !input.isEmpty())
+		{
+			decrStackSize(2, 1);
+			setInventorySlotContents(1, input);
 		}
 	}
 
@@ -165,15 +166,8 @@ public class TileFreezer extends TileFluidInventory
 		FluidStack f = FluidUtil.getFluidContained(stack);
 		if(getStackInSlot(index).getCount() == getStackInSlot(index).getMaxStackSize()) return false;
 
-		switch (index) {
-		case 0:	return false;
-		case 1:	return false;
-		case 2:
-		return ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE) ||
-				f != null && f.getFluid() == FluidRegistry.WATER;
-		}
-
-		return true;
+		return index == 2 && (ItemStack.areItemStacksEqual(stack, TankUtil.WATER_BOTTLE) ||
+				f != null && f.getFluid() == FluidRegistry.WATER);
 	}
 
 	@Override
