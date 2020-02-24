@@ -25,15 +25,9 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 public class TileFreezer extends TileFluidInventory
 {
 	private int fillTick = 0;
-	private final ItemStack ice = new ItemStack(Blocks.ICE, 1);
 	private float temp = 20f;
 	private int timer = 0;
 	private final int maxTimer = Config.cooldownFreezer;
-
-	protected ItemStack ice()
-	{
-		return ice.copy();
-	}
 
 	public TileFreezer() {
 		super(3, new FluidTankSingle(FluidRegistry.WATER, 0, Config.capacityFreezer));
@@ -108,7 +102,7 @@ public class TileFreezer extends TileFluidInventory
 	{
 		return getTemp() <= 0 &&
 				getTank().getFluidAmount() >= 1000 &&
-				getStackInSlot(0).getCount() != ice().getMaxStackSize();
+				getStackInSlot(0).getCount() < 64;
     }
 
 	protected void freezeItem()
@@ -116,11 +110,9 @@ public class TileFreezer extends TileFluidInventory
 		getTank().drain(1000, true);
 
 		if(getStackInSlot(0).isEmpty())
-			setInventorySlotContents(0, ice());
+			setInventorySlotContents(0, new ItemStack(Blocks.ICE));
 		else
 			getStackInSlot(0).grow(1);
-
-		fillFromItem();
 	}
 
 	protected void fillFromItem()
