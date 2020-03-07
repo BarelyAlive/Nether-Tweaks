@@ -121,7 +121,7 @@ public final class NTMRegistryManager {
 	public static void registerHellmartDefaultRecipeHandler(final IHellmartDefaultRegistryProvider provider) {
 		HELLMART_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}
-	
+
 	public static void registerFluidToWaterDefaultRecipeHandler(final IFluidToWaterDefaultRegistryProvider provider) {
 		FLUID_TO_WATER_DEFAULT_REGISTRY_PROVIDERS.add(provider);
 	}

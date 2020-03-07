@@ -468,7 +468,7 @@ public class NTM implements IRecipeDefaults
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, "dustSalt", FluidRegistry.WATER, 100, true);
 		registry.register(ModFluids.FLUID_DISTILLED_WATER, "blockSalt", ModFluids.FLUID_BRINE, 100, true);
 	}
-	
+
 	@Override
 	public void registerFluidToWater(final FluidToWaterRegistry registry)
 	{

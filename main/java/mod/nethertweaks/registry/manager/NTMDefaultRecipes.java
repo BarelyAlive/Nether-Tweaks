@@ -151,7 +151,7 @@ public class NTMDefaultRecipes
             compat.registerMilk(registry);
         }
     }
-    
+
     public static class FluidToWaterDefaults implements IFluidToWaterDefaultRegistryProvider {
         @Override
         public void registerRecipeDefaults(@Nonnull final FluidToWaterRegistry registry) {

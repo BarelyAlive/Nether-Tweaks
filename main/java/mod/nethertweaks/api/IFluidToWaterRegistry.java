@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.Fluid;
 public interface IFluidToWaterRegistry extends IRegistryList<FluidToWater>
 {
 	void register(String inputFluid, int percOfWater);
-	
+
 	FluidToWater getFluid(Fluid fluid);
 	FluidToWater getFluid(@Nonnull ItemStack stack);
 

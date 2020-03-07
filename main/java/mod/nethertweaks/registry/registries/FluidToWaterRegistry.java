@@ -29,42 +29,42 @@ public class FluidToWaterRegistry extends BaseRegistryList<FluidToWater> impleme
 	}
 
 	@Override
-	public void register(@Nonnull final String inputFluid, int percOfWater) {
+	public void register(@Nonnull final String inputFluid, final int percOfWater) {
 		registry.add(new FluidToWater(inputFluid, percOfWater));
 	}
 
 	//ENDE
-	
+
 	@Override
 	public boolean containsFluid(@Nonnull final ItemStack stack) {
 		FluidStack f = FluidUtil.getFluidContained(stack);
-		
+
 		if(f != null)
 			return registry.stream().anyMatch(entry -> entry.getInputFluid().equals(f.getFluid().getName()));
 		else
 			return false;
 	}
-	
+
 	@Override
 	public boolean containsFluid(@Nonnull final Fluid fluid) {
 		return registry.stream().anyMatch(entry -> entry.getInputFluid().equals(fluid.getName()));
 	}
-	
+
 	@Override
 	@Nonnull
 	public FluidToWater getFluid(@Nonnull final ItemStack stack) {
 		FluidStack f = FluidUtil.getFluidContained(stack);
-		
+
 		if(f != null)
 			return registry.stream().filter(entry -> entry.getInputFluid().equals(f.getFluid().getName())).findFirst().orElse(null);
 		else
 			return null;
 	}
-	
+
 	@Override
 	@Nonnull
 	public FluidToWater getFluid(@Nonnull final Fluid fluid) {
-		return registry.stream().filter(entry -> entry.getInputFluid().equals(fluid.getName())).findFirst().orElse(null);	
+		return registry.stream().filter(entry -> entry.getInputFluid().equals(fluid.getName())).findFirst().orElse(null);
 	}
 
 	@Override

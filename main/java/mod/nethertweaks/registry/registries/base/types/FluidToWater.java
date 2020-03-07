@@ -16,10 +16,10 @@ public class FluidToWater
 		return "FluidToWater [inputFluid=" + inputFluid + ", percOfWater=" + percOfWater + "]";
 	}
 
-	public FluidToWater(final String inputFluid, final int transformTime) {
+	public FluidToWater(final String inputFluid, final int percOfWater) {
 		super();
 		this.inputFluid = inputFluid;
-		this.percOfWater = transformTime;
+		this.percOfWater = percOfWater;
 	}
 
 	String inputFluid;

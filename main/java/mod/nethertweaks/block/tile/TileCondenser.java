@@ -105,26 +105,24 @@ public class TileCondenser extends TileFluidInventory
 	{
 		ItemStack input = getStackInSlot(0).copy();
 		FluidStack f = FluidUtil.getFluidContained(input);
-		
+
 		final Dryable dryable = NTMRegistryManager.CONDENSER_REGISTRY.getItem(input);
 		final FluidToWater fluidToWater = NTMRegistryManager.FLUID_TO_WATER_REGISTRY.getFluid(input);
-		
+
 		if(getTemp() >= 100f && !input.isEmpty())
-		{
 			if(dryable != null && !dryable.equals(Dryable.getEMPTY()))
 				return emptyRoom() >= dryable.getValue();
-			else if(fluidToWater != null && f != null) 
+			else if(fluidToWater != null && f != null)
 				return emptyRoom() >= fluidToWater.getPercOfWater() && f.amount >= 1000;
-		}
-		
+
 		return false;
     }
-	
+
 	protected void dry()
 	{
 		final ItemStack material = getStackInSlot(0).copy();
 		int amount = 0;
-		
+
 		decrStackSize(0, 1);
 
 		if(NTMRegistryManager.COMPOST_REGISTRY.containsItem(material))
@@ -136,24 +134,24 @@ public class TileCondenser extends TileFluidInventory
 		{
 			//FluidContainer
 			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(material);
-			
+
 			if(handler != null)
 			{
 				amount = NTMRegistryManager.FLUID_TO_WATER_REGISTRY.getFluid(material).getPercOfWater();
 				getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Math.max(amount, 0)), true);
-			
+
 				handler.drain(1000, true);
-				
+
 				setInventorySlotContents(0, handler.getContainer());
 			}
 		}
 		else if(NTMRegistryManager.CONDENSER_REGISTRY.containsItem(material))
-		{			
+		{
 			amount = NTMRegistryManager.CONDENSER_REGISTRY.getItem(material).getValue();
 			if(amount > 0) getTank().fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, amount), true);
 		}
 	}
-	
+
 	protected void fillToItemSlot()
 	{
 		final ItemStack input = getStackInSlot(2);
@@ -165,16 +163,16 @@ public class TileCondenser extends TileFluidInventory
 		{
 			final ItemStack container = input_handler.getContainer();
 			int result = FluidUtil.getFluidHandler(container).fill(new FluidStack(ModFluids.FLUID_DISTILLED_WATER, Integer.MAX_VALUE), false);
-			
+
 			decrStackSize(2, 1);
-			
+
 			if(result == 0)
 			{
 				if(output.isEmpty())
 					setInventorySlotContents(1, container);
 				return;
 			}
-			
+
 			setInventorySlotContents(2, container);
 		}
 	}
@@ -303,7 +301,7 @@ public class TileCondenser extends TileFluidInventory
 
 	@Override
 	public boolean isItemValidForSlotToExtract(final int index, final ItemStack stack)
-	{		
+	{
 		return index == 1;
 	}
 

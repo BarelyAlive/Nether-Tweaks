@@ -130,7 +130,7 @@ public class CompatDefaultRecipes
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerMilk(registry));
 	}
-	
+
 	public void registerFluidToWater(final FluidToWaterRegistry registry) {
 		MODS.stream().filter(mod -> Loader.isModLoaded(mod.getMODID()))
 		.forEach(mod -> mod.registerFluidToWater(registry));

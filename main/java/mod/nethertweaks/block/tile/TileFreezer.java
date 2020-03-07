@@ -123,16 +123,16 @@ public class TileFreezer extends TileFluidInventory
 		if (!input.isEmpty() && output.getCount() != output.getMaxStackSize())
 		{
 			final IFluidHandlerItem handler = FluidUtil.getFluidHandler(input);
-			
+
 			if (handler != null && FluidUtil.getFluidContained(input) != null)
-			{	
+			{
 				if(FluidUtil.tryFluidTransfer(getTank(), handler, Integer.MAX_VALUE, true) != null)
-				{		
+				{
 					//Das veränderte Fluid Item
 					final ItemStack container = handler.getContainer();
-					
+
 					decrStackSize(2, 1);
-					
+
 					if (FluidUtil.getFluidContained(container) != null)
 					{
 						if(!output.isEmpty())
@@ -150,9 +150,9 @@ public class TileFreezer extends TileFluidInventory
 
 					setInventorySlotContents(1, new ItemStack(Items.GLASS_BOTTLE, output.getCount() + 1));
 					decrStackSize(2, 1);
-				} 
+				}
 		}
-		
+
 		if(output.isEmpty() && !input.isEmpty())
 		{
 			decrStackSize(2, 1);
