@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import mod.nethertweaks.block.Sieve;
 import mod.nethertweaks.block.tile.TileSieve;
-import mod.sfhcore.client.renderers.RenderUtils;
+import mod.sfhcore.client.renderer.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

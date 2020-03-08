@@ -5,7 +5,7 @@ import java.util.Random;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.block.tile.TileNetherrackFurnace;
 import mod.nethertweaks.init.GuiHandler;
-import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.block.CubeContainerHorizontal;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.BlockHorizontal;

@@ -16,7 +16,7 @@ import mod.nethertweaks.item.ItemPebble;
 import mod.nethertweaks.item.KitchenKnife;
 import mod.nethertweaks.item.Seed;
 import mod.sfhcore.handler.ModFuelHandler;
-import mod.sfhcore.items.ItemDoor;
+import mod.sfhcore.item.ItemDoor;
 import mod.sfhcore.util.ItemInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

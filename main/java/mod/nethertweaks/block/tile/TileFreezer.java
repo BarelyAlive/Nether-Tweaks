@@ -3,7 +3,7 @@ package mod.nethertweaks.block.tile;
 import mod.nethertweaks.block.Barrel;
 import mod.nethertweaks.block.container.ContainerFreezer;
 import mod.nethertweaks.config.Config;
-import mod.sfhcore.blocks.tiles.TileFluidInventory;
+import mod.sfhcore.block.tile.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;

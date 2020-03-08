@@ -1,6 +1,6 @@
 package mod.nethertweaks.block;
 
-import mod.sfhcore.blocks.CubeFacingXYZ;
+import mod.sfhcore.block.CubeFacingXYZ;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

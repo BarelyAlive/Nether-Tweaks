@@ -14,7 +14,7 @@ import mod.nethertweaks.network.bonfire.MessageLastSpawnUpdate;
 import mod.nethertweaks.network.bonfire.UpdateStatus;
 import mod.nethertweaks.world.BonfireInfo;
 import mod.nethertweaks.world.WorldSpawnLocation;
-import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.block.CubeContainerHorizontal;
 import mod.sfhcore.network.NetworkHandler;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;

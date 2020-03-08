@@ -12,7 +12,7 @@ import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.base.types.Dryable;
 import mod.nethertweaks.registry.registries.base.types.FluidToWater;
-import mod.sfhcore.blocks.tiles.TileFluidInventory;
+import mod.sfhcore.block.tile.TileFluidInventory;
 import mod.sfhcore.fluid.FluidTankSingle;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;

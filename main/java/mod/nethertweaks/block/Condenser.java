@@ -4,7 +4,7 @@ import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.block.tile.TileCondenser;
 import mod.nethertweaks.config.BlocksItems;
 import mod.nethertweaks.init.GuiHandler;
-import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.block.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;

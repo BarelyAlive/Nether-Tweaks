@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import mod.nethertweaks.Constants;
 import mod.nethertweaks.block.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.block.tile.TileNetherrackFurnace;
-import mod.sfhcore.blocks.tiles.TileInventory;
+import mod.sfhcore.block.tile.TileInventory;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import mod.nethertweaks.block.CrucibleBase;
 import mod.nethertweaks.block.tile.TileCrucibleBase;
-import mod.sfhcore.client.renderers.ModelVertex;
-import mod.sfhcore.client.renderers.SpriteColor;
+import mod.sfhcore.client.renderer.ModelVertex;
+import mod.sfhcore.client.renderer.SpriteColor;
 import mod.sfhcore.texturing.Color;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.BufferBuilder;

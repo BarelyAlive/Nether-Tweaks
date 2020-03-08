@@ -1,6 +1,6 @@
 package mod.nethertweaks.block.tile;
 
-import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.block.tile.TileBase;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileAshBonePile extends TileBase  {

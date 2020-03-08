@@ -3,7 +3,7 @@ package mod.nethertweaks.block;
 import mod.nethertweaks.NetherTweaksMod;
 import mod.nethertweaks.block.tile.TileFreezer;
 import mod.nethertweaks.init.GuiHandler;
-import mod.sfhcore.blocks.CubeContainerHorizontal;
+import mod.sfhcore.block.CubeContainerHorizontal;
 import mod.sfhcore.util.TankUtil;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;

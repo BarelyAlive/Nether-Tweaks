@@ -16,7 +16,7 @@ import mod.nethertweaks.enchantments.EnchantmentFortune;
 import mod.nethertweaks.enchantments.EnchantmentLuckOfTheSea;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
 import mod.nethertweaks.registry.registries.base.types.Siftable;
-import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.block.tile.TileBase;
 import mod.sfhcore.helper.NameHelper;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;

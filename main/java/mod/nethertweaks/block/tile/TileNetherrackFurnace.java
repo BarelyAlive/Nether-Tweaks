@@ -5,7 +5,7 @@ import mod.nethertweaks.block.container.ContainerNetherrackFurnace;
 import mod.nethertweaks.capabilities.CapabilityHeatManager;
 import mod.nethertweaks.config.Config;
 import mod.nethertweaks.registry.manager.NTMRegistryManager;
-import mod.sfhcore.blocks.tiles.TileInventory;
+import mod.sfhcore.block.tile.TileInventory;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.BlockInfo;
 import net.minecraft.block.state.IBlockState;

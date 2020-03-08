@@ -8,7 +8,7 @@ import mod.nethertweaks.Constants;
 import mod.nethertweaks.block.container.ContainerFreezer;
 import mod.nethertweaks.block.tile.TileFreezer;
 import mod.nethertweaks.config.Config;
-import mod.sfhcore.blocks.tiles.TileInventory;
+import mod.sfhcore.block.tile.TileInventory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;

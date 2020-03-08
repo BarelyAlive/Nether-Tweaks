@@ -21,7 +21,7 @@ import mod.nethertweaks.network.MessageBarrelModeUpdate;
 import mod.nethertweaks.registry.registries.BarrelModeRegistry;
 import mod.nethertweaks.registry.registries.BarrelModeRegistry.TriggerType;
 import mod.nethertweaks.registry.registries.base.types.Milkable;
-import mod.sfhcore.blocks.tiles.TileBase;
+import mod.sfhcore.block.tile.TileBase;
 import mod.sfhcore.network.MessageCheckLight;
 import mod.sfhcore.network.NetworkHandler;
 import mod.sfhcore.util.TankUtil;

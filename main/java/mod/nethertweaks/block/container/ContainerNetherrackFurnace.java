@@ -1,7 +1,7 @@
 package mod.nethertweaks.block.container;
 
 import mod.nethertweaks.block.tile.TileNetherrackFurnace;
-import mod.sfhcore.blocks.container.ContainerBase;
+import mod.sfhcore.block.container.ContainerBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
