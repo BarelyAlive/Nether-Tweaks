@@ -40,12 +40,11 @@ public class TileCondenser extends TileFluidInventory
 	private int maxTimer = Config.cooldownCondenser;
 	private float compostMeter = 0;
 	private float maxCompost = Config.capacityCondenser;
-	private int maxHeatAmount = 0;
+	private int maxHeatAmount = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
 
 	public TileCondenser() {
 		super(3, new FluidTankSingle(ModFluids.FLUID_DISTILLED_WATER, 0, Config.capacityCondenser));
 		setMaxworkTime(Config.dryTimeCondenser);
-		maxHeatAmount = NTMRegistryManager.HEAT_REGISTRY.getMaxHeatAmount();
 	}
 
 	@Override
@@ -63,11 +62,8 @@ public class TileCondenser extends TileFluidInventory
 
 		int rate = getMaxTemp() > 100 ? (int)Math.floor(getMaxTemp() / 100f) : 0;
 
-		rate -= 10;
-		rate *= -1;
-
-		if(rate == 0)
-			rate = 1;
+		rate = Math.max((rate - 10) * -1, 1);
+		
 		//heatNStuff
 		if(timer < getMaxTimer() / rate)
 			timer+=getHeatRate();
@@ -225,13 +221,8 @@ public class TileCondenser extends TileFluidInventory
 		case 3:	return 600f;
 
 		default:
-			return getMaxPossibleTemp();
+			return 999f;
 		}
-	}
-
-	protected float getMaxPossibleTemp()
-	{
-		return 999f;
 	}
 
 	protected void fillToNeighborsTank()
@@ -336,6 +327,8 @@ public class TileCondenser extends TileFluidInventory
 		nbt.setFloat("compostMeter", getCompostMeter());
 		return super.writeToNBT(nbt);
 	}
+	
+	//GETTER & SETTER
 
 	public float getTemp() {
 		return temp;
