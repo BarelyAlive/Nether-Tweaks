@@ -37,7 +37,7 @@ public class TileFreezer extends TileFluidInventory
 	@Override
 	public void update()
 	{
-		if(world.isRemote) return;
+		if(getWorld().isRemote) return;
 
 		fillTick++;
 
@@ -45,7 +45,7 @@ public class TileFreezer extends TileFluidInventory
 		fillFromItem();
 		NetworkHandler.sendNBTUpdate(this);
 
-		if(!world.isBlockPowered(pos))
+		if(!getWorld().isBlockPowered(getPos()))
 		{
 			if(timer > 0) timer--;
 			if(getWorld().provider.doesWaterVaporize())
@@ -76,12 +76,12 @@ public class TileFreezer extends TileFluidInventory
 	protected void checkInputOutput()
 	{
 		if(Config.autoExtractItems)
-			extractFromInventory(pos.up(), EnumFacing.DOWN);
+			extractFromInventory(getPos().up(), EnumFacing.DOWN);
 		if(Config.autoOutputItems) {
-			insertToInventory(pos.north(), EnumFacing.SOUTH);
-			insertToInventory(pos.south(), EnumFacing.NORTH);
-			insertToInventory(pos.west(), EnumFacing.EAST);
-			insertToInventory(pos.east(), EnumFacing.WEST);
+			insertToInventory(getPos().north(), EnumFacing.SOUTH);
+			insertToInventory(getPos().south(), EnumFacing.NORTH);
+			insertToInventory(getPos().west(), EnumFacing.EAST);
+			insertToInventory(getPos().east(), EnumFacing.WEST);
 		}
 
 		if (fillTick == 20) {
@@ -90,9 +90,9 @@ public class TileFreezer extends TileFluidInventory
 				final BlockPos up = getPos().up();
 
 				//Check FluidHandler
-				final IFluidHandler hup = FluidUtil.getFluidHandler(world, up, EnumFacing.DOWN);
+				final IFluidHandler hup = FluidUtil.getFluidHandler(getWorld(), up, EnumFacing.DOWN);
 
-				if (hup != null && world.getBlockState(up).getBlock() instanceof Barrel)
+				if (hup != null && getWorld().getBlockState(up).getBlock() instanceof Barrel)
 					FluidUtil.tryFluidTransfer(getTank(), hup, water, true);
 			}
 		}
