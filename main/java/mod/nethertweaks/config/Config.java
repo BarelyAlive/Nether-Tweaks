@@ -71,7 +71,7 @@ public class Config
 	//Blood
 	public static int temperatureBlood = 0;
 	public static int luminosityBlood  = 15;
-	public static int densityBlood 	= 1000;
+	public static int densityBlood	   = 1000;
 	public static int viscosityBlood   = 1000;
 	public static boolean doesLIVaporize = false;
 	public static boolean spawnSkeletons = true;
